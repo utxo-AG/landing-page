@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 48" role="img" aria-labelledby="logo-title">
+  <title id="logo-title">utxo AG Logo</title>
+  <!-- Concept 2: "Transaction Diamond" — A rotated square (diamond) with internal channels -->
+  <!-- Suggests both a blockchain block and a mailbox/envelope abstraction -->
+  <g id="icon" transform="translate(24, 24)">
+    <!-- Outer diamond -->
+    <rect x="-16" y="-16" width="32" height="32" rx="4" transform="rotate(45)" fill="#000"/>
+    <!-- Inner cross channels — representing inputs/outputs of a UTXO -->
+    <line x1="-8" y1="0" x2="8" y2="0" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="0" y1="-8" x2="0" y2="8" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Corner dots — nodes -->
+    <circle cx="0" cy="-8" r="1.5" fill="#fff"/>
+    <circle cx="8" cy="0" r="1.5" fill="#fff"/>
+    <circle cx="0" cy="8" r="1.5" fill="#fff"/>
+    <circle cx="-8" cy="0" r="1.5" fill="#fff"/>
+  </g>
+  <g id="wordmark">
+    <text x="56" y="31" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="22" font-weight="600" letter-spacing="-0.5" fill="#000">utxo</text>
+    <text x="116" y="31" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="22" font-weight="400" letter-spacing="-0.3" fill="#000">AG</text>
+  </g>
+</svg>

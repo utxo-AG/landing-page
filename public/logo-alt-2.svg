@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-labelledby="alt2-title">
+  <title id="alt2-title">utxo AG Logo — Geometric Block</title>
+  <!-- Concept: Interlocking L-shaped blocks suggesting transaction inputs/outputs assembling together -->
+  <!-- Top-left block -->
+  <rect x="6" y="6" width="16" height="16" rx="2" fill="#000"/>
+  <!-- Bottom-right block -->
+  <rect x="26" y="26" width="16" height="16" rx="2" fill="#000"/>
+  <!-- Top-right connector block (smaller) -->
+  <rect x="26" y="6" width="16" height="12" rx="2" fill="none" stroke="#000" stroke-width="2.5"/>
+  <!-- Bottom-left connector block (smaller) -->
+  <rect x="6" y="30" width="16" height="12" rx="2" fill="none" stroke="#000" stroke-width="2.5"/>
+</svg>

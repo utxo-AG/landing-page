@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-labelledby="alt1-title">
+  <title id="alt1-title">utxo AG Logo — Git-style</title>
+  <!-- Concept: Git-style branching/merging node graph. Two inputs merge into one output node. -->
+  <!-- Input node top-left -->
+  <circle cx="10" cy="12" r="4.5" fill="#000"/>
+  <!-- Input node bottom-left -->
+  <circle cx="10" cy="36" r="4.5" fill="#000"/>
+  <!-- Central merge node -->
+  <circle cx="24" cy="24" r="5.5" fill="#000"/>
+  <!-- Output node right -->
+  <circle cx="38" cy="24" r="4.5" fill="#000"/>
+  <!-- Branch lines: inputs to merge -->
+  <line x1="14" y1="14" x2="19" y2="21" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="14" y1="34" x2="19" y2="27" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Merge to output -->
+  <line x1="29" y1="24" x2="34" y2="24" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

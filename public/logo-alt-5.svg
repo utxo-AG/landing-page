@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-labelledby="alt5-title">
+  <title id="alt5-title">utxo AG Logo — Dot Matrix</title>
+  <!-- Concept: 4x4 dot grid with selective dots filled/empty to create a directional arrow-like pattern suggesting flow -->
+  <!-- Row 1 -->
+  <circle cx="10" cy="10" r="3" fill="#000"/>
+  <circle cx="20" cy="10" r="3" fill="none" stroke="#000" stroke-width="1.5"/>
+  <circle cx="30" cy="10" r="3" fill="none" stroke="#000" stroke-width="1.5"/>
+  <circle cx="40" cy="10" r="3" fill="none" stroke="#000" stroke-width="1.5"/>
+  <!-- Row 2 -->
+  <circle cx="10" cy="20" r="3" fill="#000"/>
+  <circle cx="20" cy="20" r="3" fill="#000"/>
+  <circle cx="30" cy="20" r="3" fill="#000"/>
+  <circle cx="40" cy="20" r="3" fill="none" stroke="#000" stroke-width="1.5"/>
+  <!-- Row 3 -->
+  <circle cx="10" cy="30" r="3" fill="#000"/>
+  <circle cx="20" cy="30" r="3" fill="#000"/>
+  <circle cx="30" cy="30" r="3" fill="#000"/>
+  <circle cx="40" cy="30" r="3" fill="#000"/>
+  <!-- Row 4 -->
+  <circle cx="10" cy="40" r="3" fill="#000"/>
+  <circle cx="20" cy="40" r="3" fill="none" stroke="#000" stroke-width="1.5"/>
+  <circle cx="30" cy="40" r="3" fill="#000"/>
+  <circle cx="40" cy="40" r="3" fill="none" stroke="#000" stroke-width="1.5"/>
+</svg>

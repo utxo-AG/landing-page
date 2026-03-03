@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 48" role="img" aria-labelledby="logo-title">
+  <title id="logo-title">utxo AG Logo</title>
+  <!-- Concept 3: "Abstract U" — Lettermark 'U' built from geometric blocks -->
+  <!-- Two vertical bars connected at bottom, suggesting both the letter U and a data channel/pipe -->
+  <!-- The gap between bars = the transaction space -->
+  <g id="icon">
+    <!-- Left bar -->
+    <rect x="6" y="8" width="8" height="24" rx="2" fill="#000"/>
+    <!-- Right bar -->
+    <rect x="22" y="8" width="8" height="24" rx="2" fill="#000"/>
+    <!-- Bottom connector with rounded corners -->
+    <path d="M8,28 L8,34 Q8,38 12,38 L24,38 Q28,38 28,34 L28,28" fill="#000"/>
+    <!-- Small arrow/dot indicating output direction -->
+    <circle cx="36" cy="24" r="3" fill="#000"/>
+    <line x1="31" y1="24" x2="34" y2="24" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <g id="wordmark">
+    <text x="52" y="31" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="22" font-weight="600" letter-spacing="-0.5" fill="#000">utxo</text>
+    <text x="112" y="31" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="22" font-weight="400" letter-spacing="-0.3" fill="#000">AG</text>
+  </g>
+</svg>

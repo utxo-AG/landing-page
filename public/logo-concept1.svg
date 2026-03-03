@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 48" role="img" aria-labelledby="logo-title">
+  <title id="logo-title">utxo AG Logo</title>
+  <!-- Concept 1: "Flow Node" — Two overlapping geometric shapes suggesting input→output transaction flow -->
+  <!-- A hexagon (blockchain) with an arrow-like cutout (directed flow/email send) -->
+  <g id="icon">
+    <!-- Left shape: input node -->
+    <rect x="2" y="10" width="28" height="28" rx="6" fill="#000"/>
+    <!-- Right shape: output node, offset to show flow -->
+    <rect x="14" y="10" width="28" height="28" rx="6" fill="none" stroke="#000" stroke-width="2.5"/>
+    <!-- Arrow connector suggesting transaction direction -->
+    <line x1="22" y1="24" x2="36" y2="24" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+    <polyline points="32,20 36,24 32,28" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g id="wordmark">
+    <text x="56" y="31" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="22" font-weight="600" letter-spacing="-0.5" fill="#000">utxo</text>
+    <text x="116" y="31" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="22" font-weight="400" letter-spacing="-0.3" fill="#000">AG</text>
+  </g>
+</svg>
