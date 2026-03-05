@@ -1,0 +1,192 @@
+{
+  "Metadata": {
+    "title": "utxo AG — Email-First AI Agents",
+    "description": "We build agentic coworkers. You hire them by email. utxo AG is a product studio focused on Email-First AI Agents that integrate into your existing workflows."
+  },
+  "Navbar": {
+    "toggleMenu": "Toggle menu",
+    "agents": "Agents",
+    "howItWorks": "How It Works",
+    "portfolio": "Portfolio"
+  },
+  "Hero": {
+    "label": "Product Studio",
+    "titleBlack": "AI coworkers,",
+    "titleGray": "right in your workflow.",
+    "description": "We build custom AI agents for your company — deeply integrated with SAP, Outlook, Teams, Slack, and more. Want your own? Get in touch.",
+    "inboxLabel": "Inbox — AI Agents",
+    "toYou": "to: you"
+  },
+  "HeroDemos": {
+    "data": {
+      "name": "Data Analysis Agent",
+      "preview": "Re: Q4 revenue breakdown",
+      "subject": "Re: Q4 revenue breakdown by region",
+      "body1": "Here's the Q4 revenue breakdown you requested. I pulled the numbers directly from your SAP system and cross-referenced them with the CRM pipeline data.",
+      "body2": "Key findings: DACH region grew 18% QoQ, driven by 3 new enterprise accounts. Southern Europe underperformed target by 6%, mainly due to delayed onboarding of the Milan contract.",
+      "closing": "Want me to break this down further by product line? Just reply and I'll pull the SKU-level data.",
+      "rowTotal": "Total Revenue",
+      "rowDach": "DACH Region",
+      "rowWest": "Western Europe",
+      "rowSouth": "Southern Europe",
+      "footer": "vs. Q3: +12.4%"
+    },
+    "crm": {
+      "name": "CRM Coworker Agent",
+      "preview": "3 new leads flagged",
+      "subject": "Daily lead summary — 3 new, 2 follow-ups due",
+      "body1": "Good morning. I scanned your inbox and CRM overnight. Here's what needs attention today.",
+      "body2": "3 new inbound leads came in from the website contact form. I've already created records in HubSpot and enriched them with LinkedIn data.",
+      "closing": "I've drafted personalized replies for each lead based on their industry. Reply 'send' to approve, or edit them in HubSpot first.",
+      "footer": "2 follow-ups due today (Schneider AG, TechVentures)"
+    },
+    "research": {
+      "name": "Research Agent",
+      "preview": "Market analysis complete",
+      "subject": "Re: Competitor analysis — AI agents in DACH",
+      "body1": "I've completed the competitive landscape analysis for AI agent providers in the DACH region. I reviewed 14 companies, cross-referenced Crunchbase funding data, and analyzed their product positioning.",
+      "body2": "The market is still early. Most competitors focus on chat-based interfaces or dashboards. Only 2 others offer email-based interaction, but neither supports SAP integration.",
+      "closing": "I also found 3 potential partnership opportunities. Want me to draft outreach emails?",
+      "rowCompanies": "Companies analyzed",
+      "rowFunding": "Total funding (combined)",
+      "rowEmail": "Email-first approach",
+      "rowSap": "SAP integration",
+      "footer": "Your positioning: strong differentiation"
+    },
+    "invoice": {
+      "name": "Invoice Agent",
+      "preview": "12 invoices processed",
+      "subject": "Invoice batch processed — 12 done, 1 flagged",
+      "body1": "I processed the 13 invoices you forwarded this morning. 12 matched existing purchase orders in SAP and have been routed for approval.",
+      "body2": "1 invoice from DataStream GmbH (€14,200) doesn't match any open PO. The amount is also 22% higher than their last 3 invoices. I've flagged it for manual review.",
+      "closing": "The approved invoices are queued for payment on Feb 3. Reply to adjust the payment date or approve the flagged one.",
+      "rowProcessed": "Processed",
+      "rowTotal": "Total amount",
+      "rowFlagged": "Flagged for review",
+      "footer": "Avg. processing time: 8 seconds per invoice"
+    }
+  },
+  "Agents": {
+    "label": "Agents",
+    "title": "Agentic coworkers, ready to work.",
+    "description": "Some are available instantly. Others are custom-built for your company — with deep integrations into SAP, Microsoft 365, Slack, and your existing tools.",
+    "available": "Available",
+    "custom": "Custom",
+    "getStarted": "Get started",
+    "requestAgent": "Request this agent",
+    "hireInstantly": "Hire instantly",
+    "customDeployment": "Custom deployment",
+    "showLess": "Show less",
+    "showAll": "Show all {count}"
+  },
+  "AgentsList": {
+    "teacherSupport": {
+      "name": "Teacher Support Agent",
+      "description": "Lesson planning, curriculum alignment, and teaching support — entirely via email."
+    },
+    "adVisuals": {
+      "name": "Ad Visuals Generator",
+      "description": "Turns short briefs into campaign-ready visuals. Send a one-liner, get back designs."
+    },
+    "brandCi": {
+      "name": "Brand & CI Extraction Agent",
+      "description": "Analyzes existing material and extracts brand rules, tone, and visual logic."
+    },
+    "dataAnalysis": {
+      "name": "Data Analysis Agent",
+      "description": "Ask business questions in plain English. Get answers from your data."
+    },
+    "meetingNotes": {
+      "name": "Meeting Notes Agent",
+      "description": "Forward meeting recordings or transcripts. Get structured summaries, action items, and follow-ups."
+    },
+    "invoiceProcessing": {
+      "name": "Invoice Processing Agent",
+      "description": "Send invoices as attachments. Gets them categorized, validated, and ready for approval."
+    },
+    "crmCoworker": {
+      "name": "CRM Coworker Agent",
+      "description": "Reads inbound emails, updates CRM records, drafts replies, flags deals."
+    },
+    "supportTriage": {
+      "name": "Support Triage Agent",
+      "description": "Classifies, prioritizes, and routes support requests automatically."
+    },
+    "internalOps": {
+      "name": "Internal Ops Agent",
+      "description": "Handles repetitive operational workflows across teams and tools."
+    },
+    "evaluationQa": {
+      "name": "Evaluation & QA Agent",
+      "description": "Scores outputs, checks quality, and logs every decision for audit."
+    },
+    "complianceMonitor": {
+      "name": "Compliance Monitor Agent",
+      "description": "Continuously checks processes against regulatory requirements and flags violations."
+    },
+    "onboarding": {
+      "name": "Onboarding Agent",
+      "description": "Guides new hires through setup, documentation, and team introductions via email."
+    }
+  },
+  "HowItWorks": {
+    "label": "How It Works",
+    "title": "Three steps. No onboarding.",
+    "step1Title": "Send an email",
+    "step1Description": "Write to the agent like you'd write to a colleague. Plain language, attachments, whatever you need.",
+    "step2Title": "The agent does the work",
+    "step2Description": "It reads your request, connects to your systems — CRM, databases, APIs — and executes the task.",
+    "step3Title": "You get the result",
+    "step3Description": "A reply lands in your inbox with the completed work. Review it, reply to refine, or move on.",
+    "graphicTo": "To:",
+    "graphicSubject": "Subject:",
+    "graphicSubjectText": "Q4 revenue by region",
+    "graphicSend": "Send",
+    "graphicDatabase": "Database",
+    "graphicDataAgent": "Data Analysis Agent",
+    "graphicToYou": "to: you"
+  },
+  "Portfolio": {
+    "label": "Portfolio",
+    "title": "Also built by utxo AG",
+    "description": "Products and protocols we've built from scratch — now used by thousands.",
+    "nmkr": {
+      "description": "The largest NFT infrastructure on Cardano. 2.4M+ tokens minted, multi-chain support across Cardano, Solana, Aptos, and Midnight. Backed by EMURGO."
+    },
+    "finest": {
+      "description": "BaFin-compliant tokenization launchpad for real-world assets. Fractional ownership of real estate, diamonds, and commodities. Built with FluidTokens and IAMX."
+    },
+    "masumi": {
+      "description": "Decentralized protocol for the AI agent economy. Identity, payments, and discovery for autonomous agents. Co-developed with Serviceplan Group."
+    }
+  },
+  "Founder": {
+    "alt": "Patrick Tobler",
+    "quote": "We believe the best AI tools disappear into workflows you already use. No dashboards to learn, no apps to install — just email. That's how work should be.",
+    "name": "Patrick Tobler",
+    "role": "Founder & CEO · Speaker at Cardano Summit & World Economic Forum"
+  },
+  "TrustBar": {
+    "partnersLabel": "Trusted by and partnered with",
+    "grantsLabel": "Over $3M in development grants received from",
+    "catalystFund": "Catalyst Fund",
+    "ecosystemGrant": "Ecosystem Grant",
+    "developmentGrant": "Development Grant"
+  },
+  "CTABar": {
+    "title": "Want your own AI agent?",
+    "description": "Tell us what you need. We'll take it from there."
+  },
+  "Footer": {
+    "copyright": "© {year} utxo AG",
+    "imprint": "Imprint",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
+  },
+  "CopyEmail": {
+    "copied": "Copied!"
+  },
+  "Common": {
+    "backToHome": "← Back to home"
+  }
+}

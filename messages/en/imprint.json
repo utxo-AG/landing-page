@@ -1,0 +1,43 @@
+{
+  "Imprint": {
+    "metadata": {
+      "title": "Imprint — utxo AG"
+    },
+    "heading": "Imprint",
+    "sections": {
+      "company": {
+        "label": "Company",
+        "name": "utxo AG",
+        "street": "Dammstrasse 16",
+        "zip": "6300 Zug",
+        "country": "Switzerland"
+      },
+      "commercialRegister": {
+        "label": "Commercial Register",
+        "number": "Handelsregister-Nummer CH-400.3.450.669-8"
+      },
+      "representedBy": {
+        "label": "Represented by",
+        "person": "Patrick Tobler, CEO"
+      },
+      "contact": {
+        "label": "Contact",
+        "email": "business@utxo.ag"
+      },
+      "disclaimer": {
+        "label": "Disclaimer",
+        "paragraph1": "The author assumes no liability for the correctness, accuracy, timeliness, reliability, or completeness of the information provided. Liability claims against the author for damages of a material or immaterial nature arising from access to, use or non-use of the published information, from misuse of the connection, or from technical faults are excluded.",
+        "paragraph2": "All offers are non-binding. The author expressly reserves the right to change, supplement, or delete parts of the pages or the entire offering without prior notice, or to temporarily or permanently cease publication."
+      },
+      "liabilityForLinks": {
+        "label": "Liability for Links",
+        "paragraph": "References and links to third-party websites are outside our area of responsibility. Any responsibility for such websites is declined. Access to and use of such websites is at the user's own risk."
+      },
+      "copyright": {
+        "label": "Copyright",
+        "paragraph": "The copyright and all other rights to content, images, photos, or other files on this website belong exclusively to utxo AG or the specifically named rights holders. Written consent of the copyright holder must be obtained in advance for the reproduction of any elements."
+      }
+    },
+    "backToHome": "\u2190 Back to home"
+  }
+}

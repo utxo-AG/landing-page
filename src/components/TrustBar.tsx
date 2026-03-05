@@ -1,3 +1,5 @@
+import { getTranslations } from "next-intl/server";
+
 const partners = [
   { name: "EMURGO", logo: "/logos/emurgo.png", iconOnly: true },
   { name: "IOHK", logo: "/logos/iog.svg", iconOnly: false },
@@ -10,20 +12,24 @@ const partners = [
   { name: "Goodwall", logo: "/logos/goodwall.svg", iconOnly: false },
 ];
 
+const GRANT_KEYS = ["catalystFund", "ecosystemGrant", "developmentGrant"] as const;
+
 const grants = [
-  { name: "Cardano", subtitle: "Catalyst Fund", logo: "/logos/cardano.svg" },
-  { name: "Aptos", subtitle: "Ecosystem Grant", logo: "/logos/aptos.svg" },
-  { name: "Midnight", subtitle: "Development Grant", logo: "/logos/midnight.svg" },
+  { name: "Cardano", subtitleKey: GRANT_KEYS[0], logo: "/logos/cardano.svg" },
+  { name: "Aptos", subtitleKey: GRANT_KEYS[1], logo: "/logos/aptos.svg" },
+  { name: "Midnight", subtitleKey: GRANT_KEYS[2], logo: "/logos/midnight.svg" },
 ];
 
-export default function TrustBar() {
+export default async function TrustBar() {
+  const t = await getTranslations("TrustBar");
+
   return (
     <section className="px-6 py-20 border-t border-[#f0f0f0]">
       <div className="max-w-[1120px] mx-auto">
         {/* Partner logos */}
         <div className="mb-20">
           <p className="text-[11px] font-mono uppercase tracking-[0.1em] text-[#bbb] mb-8 text-center">
-            Trusted by and partnered with
+            {t("partnersLabel")}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
             {partners.map((p) =>
@@ -56,7 +62,7 @@ export default function TrustBar() {
         {/* Development grants */}
         <div>
           <p className="text-[11px] font-mono uppercase tracking-[0.1em] text-[#bbb] mb-3 text-center">
-            Over $3M in development grants received from
+            {t("grantsLabel")}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6 mt-8">
             {grants.map((g) => (
@@ -71,7 +77,7 @@ export default function TrustBar() {
                 />
                 <div>
                   <p className="text-[14px] font-bold tracking-[-0.2px]">{g.name}</p>
-                  <p className="text-[12px] text-[#999]">{g.subtitle}</p>
+                  <p className="text-[12px] text-[#999]">{t(g.subtitleKey)}</p>
                 </div>
               </div>
             ))}

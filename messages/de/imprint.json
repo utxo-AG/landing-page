@@ -1,0 +1,43 @@
+{
+  "Imprint": {
+    "metadata": {
+      "title": "Impressum — utxo AG"
+    },
+    "heading": "Impressum",
+    "sections": {
+      "company": {
+        "label": "Unternehmen",
+        "name": "utxo AG",
+        "street": "Dammstrasse 16",
+        "zip": "6300 Zug",
+        "country": "Schweiz"
+      },
+      "commercialRegister": {
+        "label": "Handelsregister",
+        "number": "Handelsregister-Nummer CH-400.3.450.669-8"
+      },
+      "representedBy": {
+        "label": "Vertreten durch",
+        "person": "Patrick Tobler, CEO"
+      },
+      "contact": {
+        "label": "Kontakt",
+        "email": "business@utxo.ag"
+      },
+      "disclaimer": {
+        "label": "Haftungsausschluss",
+        "paragraph1": "Der Autor übernimmt keine Haftung für die Richtigkeit, Genauigkeit, Aktualität, Zuverlässigkeit oder Vollständigkeit der bereitgestellten Informationen. Haftungsansprüche gegen den Autor wegen Schäden materieller oder immaterieller Art, die aus dem Zugang zu, der Nutzung oder Nichtnutzung der veröffentlichten Informationen, aus Missbrauch der Verbindung oder aus technischen Störungen entstehen, werden ausgeschlossen.",
+        "paragraph2": "Alle Angebote sind freibleibend. Der Autor behält sich ausdrücklich vor, Teile der Seiten oder das gesamte Angebot ohne vorherige Ankündigung zu verändern, zu ergänzen oder zu löschen oder die Veröffentlichung zeitweise oder endgültig einzustellen."
+      },
+      "liabilityForLinks": {
+        "label": "Haftung für Links",
+        "paragraph": "Verweise und Links auf Websites Dritter liegen ausserhalb unseres Verantwortungsbereichs. Jegliche Verantwortung für solche Websites wird abgelehnt. Der Zugriff auf und die Nutzung solcher Websites erfolgt auf eigenes Risiko des Nutzers."
+      },
+      "copyright": {
+        "label": "Urheberrecht",
+        "paragraph": "Die Urheberrechte und alle weiteren Rechte an Inhalten, Bildern, Fotos oder anderen Dateien auf dieser Website gehören ausschliesslich der utxo AG oder den namentlich genannten Rechteinhabern. Für die Reproduktion jeglicher Elemente ist die vorherige schriftliche Einwilligung des Urheberrechtsinhabers einzuholen."
+      }
+    },
+    "backToHome": "← Zurück zur Startseite"
+  }
+}

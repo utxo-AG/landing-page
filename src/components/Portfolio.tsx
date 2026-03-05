@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import { PORTFOLIO } from "@/lib/constants";
 
 const PROJECT_BRANDING: Record<string, { logo: string; bg: string; textColor: string }> = {
@@ -18,19 +19,21 @@ const PROJECT_BRANDING: Record<string, { logo: string; bg: string; textColor: st
   },
 };
 
-export default function Portfolio() {
+export default async function Portfolio() {
+  const t = await getTranslations("Portfolio");
+
   return (
     <section id="portfolio" className="px-6 py-28 border-t border-[#f0f0f0]">
       <div className="max-w-[1120px] mx-auto">
         <div className="max-w-[480px] mb-16">
           <p className="text-[12px] font-mono uppercase tracking-[0.14em] text-[#999] mb-4">
-            Portfolio
+            {t("label")}
           </p>
           <h2 className="text-[36px] md:text-[42px] font-extrabold tracking-[-1.5px] leading-[1.1] mb-5">
-            Also built by utxo AG
+            {t("title")}
           </h2>
           <p className="text-[16px] text-[#888] leading-[1.65]">
-            Products and protocols we&apos;ve built from scratch — now used by thousands.
+            {t("description")}
           </p>
         </div>
 
@@ -72,7 +75,7 @@ export default function Portfolio() {
                     </svg>
                   </div>
                   <p className="text-[13px] text-[#999] leading-[1.6]">
-                    {project.description}
+                    {t(`${project.key}.description`)}
                   </p>
                 </div>
               </a>

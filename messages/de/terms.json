@@ -1,0 +1,126 @@
+{
+  "Terms": {
+    "metadata": {
+      "title": "Nutzungsbedingungen — utxo AG"
+    },
+    "heading": "Nutzungsbedingungen",
+    "lastUpdated": "Letzte Aktualisierung: 30. Januar 2026",
+    "sections": {
+      "scope": {
+        "title": "1. Geltungsbereich und Parteien",
+        "content1": "Diese Nutzungsbedingungen («Bedingungen») regeln die Nutzung aller Dienstleistungen der utxo AG, Dammstrasse 16, 6300 Zug, Schweiz (Handelsregister-Nummer CH-400.3.450.669-8) («utxo AG», «wir», «uns»), einschliesslich, aber nicht beschränkt auf: KI-Agenten-Dienste, E-Mail-basierte Agenten-Interaktionen, individuelle KI-Agenten-Entwicklung, Integrationsdienste und alle damit verbundenen Software- oder Plattformdienste (zusammen die «Dienste»).",
+        "content2": "Mit der Nutzung unserer Dienste erklären Sie sich («Kunde», «Sie») mit diesen Bedingungen einverstanden. Wenn Sie die Dienste im Namen einer Organisation nutzen, versichern Sie, dass Sie befugt sind, diese Organisation an diese Bedingungen zu binden."
+      },
+      "natureOfAIAgentServices": {
+        "title": "2. Art der KI-Agenten-Dienste",
+        "content": "Unsere KI-Agenten werden durch Künstliche Intelligenz betrieben, einschliesslich grosser Sprachmodelle (LLMs) und automatisierter Entscheidungssysteme. Sie anerkennen und stimmen zu, dass:",
+        "items": [
+          "KI-Agenten autonom auf der Grundlage probabilistischer Modelle arbeiten und fehlerhafte, unvollständige, irreführende oder unangemessene Ausgaben erzeugen können.",
+          "KI-Agenten keinen Ersatz für professionelle Beratung darstellen, einschliesslich, aber nicht beschränkt auf Rechts-, Finanz-, Medizin-, Steuer- oder Compliance-Beratung.",
+          "Von KI-Agenten generierte Ausgaben keine Empfehlungen, Gewährleistungen oder Garantien jeglicher Art darstellen.",
+          "Sie allein dafür verantwortlich sind, jede Ausgabe oder Massnahme eines KI-Agenten zu überprüfen, zu verifizieren und zu validieren, bevor Sie sich darauf verlassen.",
+          "KI-Agenten auf Daten in verbundenen Systemen (CRM, ERP, Datenbanken, E-Mail) gemäss Anweisung zugreifen, diese ändern oder darauf basierend handeln können. utxo AG haftet nicht für die Folgen solcher Handlungen."
+        ]
+      },
+      "intellectualProperty": {
+        "title": "3. Geistiges Eigentum",
+        "ourIP": {
+          "title": "3.1 Unser geistiges Eigentum",
+          "content": "Alle Rechte am geistigen Eigentum an den Diensten, einschliesslich, aber nicht beschränkt auf Software, Algorithmen, Modelle, Agenten-Architekturen, Workflows, Prompts, Systemdesigns, Dokumentation und jede zugrunde liegende Technologie, verbleiben im ausschliesslichen Eigentum der utxo AG. Nichts in diesen Bedingungen überträgt Ihnen geistige Eigentumsrechte, mit Ausnahme der eingeschränkten Lizenz zur Nutzung der Dienste wie hierin beschrieben."
+        },
+        "yourData": {
+          "title": "3.2 Ihre Daten",
+          "content": "Sie behalten das Eigentum an Daten, die Sie unseren Diensten bereitstellen. Durch die Nutzung unserer Dienste gewähren Sie utxo AG jedoch eine weltweite, nicht-exklusive, lizenzgebührenfreie, unbefristete, unwiderrufliche Lizenz zur Nutzung, Verarbeitung, Speicherung, Vervielfältigung, Änderung und Erstellung abgeleiteter Werke aus allen Daten, Inhalten, Rückmeldungen oder Materialien, die Sie unseren Diensten bereitstellen oder über diese übermitteln, zum Zweck des Betriebs, der Wartung, der Verbesserung und der Entwicklung der Dienste und verwandter Technologien, einschliesslich des Trainings und der Verbesserung von KI-Modellen."
+        },
+        "aiGeneratedOutputs": {
+          "title": "3.3 KI-generierte Ausgaben",
+          "content": "Von unseren KI-Agenten generierte Ausgaben werden «wie besehen» bereitgestellt. utxo AG erhebt keinen Eigentumsanspruch auf speziell für Sie generierte Ausgaben. Wir behalten uns jedoch das Recht vor, anonymisierte oder aggregierte Ausgaben zur Dienstverbesserung, für Benchmarking und Entwicklungszwecke zu verwenden."
+        }
+      },
+      "limitationOfLiability": {
+        "title": "4. Haftungsbeschränkung",
+        "preamble": "IM GRÖSSTMÖGLICHEN DURCH DAS ANWENDBARE RECHT GESTATTETEN UMFANG:",
+        "items": [
+          "DIE DIENSTE WERDEN «WIE BESEHEN» UND «WIE VERFÜGBAR» OHNE GEWÄHRLEISTUNGEN JEGLICHER ART BEREITGESTELLT, WEDER AUSDRÜCKLICH, STILLSCHWEIGEND NOCH GESETZLICH, EINSCHLIESSLICH, ABER NICHT BESCHRÄNKT AUF GEWÄHRLEISTUNGEN DER MARKTGÄNGIGKEIT, DER EIGNUNG FÜR EINEN BESTIMMTEN ZWECK, DER RICHTIGKEIT, DER ZUVERLÄSSIGKEIT ODER DER NICHTVERLETZUNG VON RECHTEN.",
+          "UTXO AG HAFTET NICHT FÜR INDIREKTE, BEILÄUFIGE, BESONDERE, FOLGE-, STRAF- ODER EXEMPLARISCHE SCHÄDEN, EINSCHLIESSLICH, ABER NICHT BESCHRÄNKT AUF SCHÄDEN DURCH ENTGANGENEN GEWINN, VERLUST DES GESCHÄFTSWERTS, DATENVERLUST, ENTGANGENE GESCHÄFTSMÖGLICHKEITEN ODER ANDERE IMMATERIELLE VERLUSTE, DIE AUS ODER IN VERBINDUNG MIT DEN DIENSTEN ENTSTEHEN.",
+          "UTXO AG HAFTET NICHT FÜR DIREKTE SCHÄDEN, DIE DEN GESAMTBETRAG DER VON IHNEN AN UTXO AG GEZAHLTEN GEBÜHREN IN DEN ZWÖLF (12) MONATEN VOR DEM SCHADENSEREIGNIS ÜBERSTEIGEN.",
+          "UTXO AG HAFTET NICHT FÜR VERLUSTE, SCHÄDEN ODER BEEINTRÄCHTIGUNGEN, DIE SICH ERGEBEN AUS: (a) FEHLERN, UNGENAUIGKEITEN ODER AUSLASSUNGEN IN KI-AGENTEN-AUSGABEN; (b) MASSNAHMEN ODER ENTSCHEIDUNGEN, DIE AUF DER GRUNDLAGE VON KI-AGENTEN-AUSGABEN GETROFFEN WERDEN; (c) UNBEFUGTEM ZUGRIFF AUF ODER VERÄNDERUNG IHRER DATEN; (d) UNTERBRECHUNG ODER EINSTELLUNG DER DIENSTE; (e) HANDLUNGEN DRITTER ODER INTEGRATIONEN; (f) DATENVERLUST ODER -BESCHÄDIGUNG; (g) JEGLICHEM VERSAGEN DES KI-AGENTEN, WIE ERWARTET ZU FUNKTIONIEREN."
+        ]
+      },
+      "indemnification": {
+        "title": "5. Freistellung",
+        "content": "Sie verpflichten sich, utxo AG, deren Geschäftsführer, leitende Angestellte, Mitarbeiter, Beauftragte und verbundene Unternehmen gegen sämtliche Ansprüche, Schäden, Verluste, Verbindlichkeiten, Kosten und Aufwendungen (einschliesslich angemessener Anwaltsgebühren) zu verteidigen, freizustellen und schadlos zu halten, die sich ergeben aus oder im Zusammenhang stehen mit: (a) Ihrer Nutzung der Dienste; (b) Ihrer Verletzung dieser Bedingungen; (c) Ihrer Verletzung geltenden Rechts; (d) Daten oder Inhalten, die Sie den Diensten bereitstellen; (e) Handlungen, die von KI-Agenten in Ihrem Namen oder auf Ihre Anweisung vorgenommen werden; (f) Streitigkeiten zwischen Ihnen und Dritten, die sich aus der Nutzung der Dienste ergeben."
+      },
+      "noGuarantees": {
+        "title": "6. Keine Garantien",
+        "content": "Wir garantieren nicht:",
+        "items": [
+          "Dass die Dienste ununterbrochen, fehlerfrei oder jederzeit verfügbar sein werden",
+          "Dass KI-Agenten-Ausgaben korrekt, vollständig, aktuell oder für einen bestimmten Zweck geeignet sein werden",
+          "Dass die Dienste Ihren spezifischen Anforderungen oder Erwartungen entsprechen werden",
+          "Dass Mängel oder Fehler in den Diensten behoben werden",
+          "Dass die Dienste mit allen Systemen, Konfigurationen oder Drittanbieter-Werkzeugen kompatibel sein werden",
+          "Bestimmte Ergebnisse, Leistungsniveaus oder Resultate aus der Nutzung der Dienste"
+        ]
+      },
+      "euAIAct": {
+        "title": "7. Einhaltung des EU AI Act",
+        "content": "In Übereinstimmung mit dem Gesetz über Künstliche Intelligenz der EU (Verordnung (EU) 2024/1689) geben wir folgende Transparenzhinweise:",
+        "items": [
+          "Unsere KI-Agenten sind KI-Systeme im Sinne des EU AI Act.",
+          "Nutzer, die mit unseren KI-Agenten interagieren, werden eindeutig darüber informiert, dass sie mit einem KI-System und nicht mit einem Menschen kommunizieren.",
+          "Wir stufen unsere KI-Agenten im Rahmen des EU AI Act als KI-Systeme mit begrenztem Risiko ein.",
+          "KI-generierte Inhalte werden eindeutig als solche gekennzeichnet.",
+          "Wir führen die nach den anwendbaren Bestimmungen des EU AI Act erforderliche Dokumentation unserer KI-Systeme."
+        ],
+        "disclaimer": "Ungeachtet dieser Compliance-Massnahmen lehnt utxo AG jede Haftung für regulatorische Strafen, Bussgelder oder Konsequenzen ab, die sich aus dem Einsatz oder der Nutzung von KI-Agenten durch den Kunden in einer Weise ergeben, die gegen den EU AI Act oder andere anwendbare Vorschriften verstösst. Der Kunde ist allein dafür verantwortlich, sicherzustellen, dass seine Nutzung der Dienste allen anwendbaren Gesetzen entspricht, einschliesslich dem EU AI Act."
+      },
+      "dataProcessing": {
+        "title": "8. Datenverarbeitung und DSGVO",
+        "content": "Die Datenverarbeitung unterliegt unserer {privacyLink}. Sofern wir personenbezogene Daten in Ihrem Auftrag verarbeiten, kann ein separater Auftragsverarbeitungsvertrag (AVV) erforderlich sein. Sie sind dafür verantwortlich, dass Ihre Nutzung der Dienste der DSGVO und den anwendbaren Datenschutzgesetzen entspricht, einschliesslich der Einholung erforderlicher Einwilligungen von betroffenen Personen, deren Daten durch KI-Agenten verarbeitet werden.",
+        "privacyLinkText": "Datenschutzerklärung"
+      },
+      "acceptableUse": {
+        "title": "9. Zulässige Nutzung",
+        "content": "Sie verpflichten sich, die Dienste nicht zu verwenden, um:",
+        "items": [
+          "Gegen anwendbares Recht, Vorschriften oder Rechte Dritter zu verstossen",
+          "Daten unter Verstoss gegen Datenschutzgesetze zu verarbeiten",
+          "Spam, unaufgeforderte Mitteilungen oder schädliche Inhalte über KI-Agenten zu versenden",
+          "Die den Diensten zugrunde liegenden Modelle, Algorithmen oder den Quellcode zurückzuentwickeln, zu dekompilieren oder zu extrahieren",
+          "Die Dienste zur Entwicklung konkurrierender Produkte oder Dienstleistungen zu verwenden",
+          "Sicherheitsmassnahmen, Zugangskontrollen oder Nutzungslimits zu umgehen",
+          "Die Dienste für illegale, betrügerische oder schädliche Zwecke zu verwenden"
+        ]
+      },
+      "termination": {
+        "title": "10. Kündigung",
+        "content": "Wir können Ihren Zugang zu den Diensten jederzeit mit oder ohne Grund und mit oder ohne Vorankündigung aussetzen oder beenden. Bei Kündigung: (a) erlöschen alle Ihnen im Rahmen dieser Bedingungen gewährten Rechte sofort; (b) müssen Sie jegliche Nutzung der Dienste einstellen; (c) können wir Ihre Daten nach einer angemessenen Aufbewahrungsfrist löschen, sofern wir nicht gesetzlich zu deren Aufbewahrung verpflichtet sind; (d) bleiben Bestimmungen, die ihrer Natur nach die Kündigung überdauern sollen, bestehen, einschliesslich, aber nicht beschränkt auf die Abschnitte 3, 4, 5, 6 und 12."
+      },
+      "modifications": {
+        "title": "11. Änderungen",
+        "content": "Wir behalten uns das Recht vor, diese Bedingungen jederzeit zu ändern. Änderungen werden mit der Veröffentlichung auf dieser Website wirksam. Ihre fortgesetzte Nutzung der Dienste nach einer Änderung gilt als Zustimmung zu den geänderten Bedingungen. Es liegt in Ihrer Verantwortung, diese Bedingungen regelmässig zu überprüfen."
+      },
+      "governingLaw": {
+        "title": "12. Anwendbares Recht und Gerichtsstand",
+        "content1": "Diese Bedingungen unterliegen dem materiellen Recht der Schweiz unter Ausschluss der kollisionsrechtlichen Bestimmungen der Schweiz und des Übereinkommens der Vereinten Nationen über Verträge über den internationalen Warenkauf (CISG).",
+        "content2": "Jegliche Streitigkeiten, die sich aus oder im Zusammenhang mit diesen Bedingungen oder den Diensten ergeben, unterliegen der ausschliesslichen Zuständigkeit der zuständigen Gerichte am Sitz der utxo AG in Zug, Schweiz. utxo AG behält sich das Recht vor, Verfahren vor jedem anderen zuständigen Gericht einzuleiten."
+      },
+      "severability": {
+        "title": "13. Salvatorische Klausel",
+        "content": "Sollte eine Bestimmung dieser Bedingungen für ungültig oder nicht durchsetzbar erklärt werden, bleiben die übrigen Bestimmungen in vollem Umfang wirksam. Die ungültige oder nicht durchsetzbare Bestimmung wird durch eine gültige und durchsetzbare Bestimmung ersetzt, die dem beabsichtigten wirtschaftlichen Zweck am nächsten kommt."
+      },
+      "entireAgreement": {
+        "title": "14. Vollständige Vereinbarung",
+        "content": "Diese Bedingungen bilden zusammen mit unserer Datenschutzerklärung und allfälligen Dienstleistungsvereinbarungen die vollständige Vereinbarung zwischen Ihnen und utxo AG in Bezug auf die Dienste und ersetzen alle früheren oder gleichzeitigen Mitteilungen, ob elektronisch, mündlich oder schriftlich."
+      },
+      "contact": {
+        "title": "15. Kontakt",
+        "content": "Bei Fragen zu diesen Bedingungen kontaktieren Sie:",
+        "address": "utxo AG, Dammstrasse 16, 6300 Zug, Schweiz",
+        "email": "business@utxo.ag"
+      }
+    },
+    "backToHome": "← Zurück zur Startseite"
+  }
+}
