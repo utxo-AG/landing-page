@@ -1,7 +1,7 @@
 {
   "Metadata": {
-    "title": "utxo AG — Email-First AI-Agents",
-    "description": "Wir entwickeln AI-Agents — beauftragt per E-Mail. utxo AG ist ein Produktstudio für Email-First AI-Agents, die sich direkt in Ihre bestehenden Workflows integrieren."
+    "title": "utxo AG — Email-First KI-Agenten",
+    "description": "Wir entwickeln KI-Agenten — beauftragt per E-Mail. utxo AG ist ein Produktstudio für Email-First KI-Agenten, die sich direkt in Ihre bestehenden Workflows integrieren."
   },
   "Navbar": {
     "toggleMenu": "Menü öffnen",
@@ -11,10 +11,10 @@
   },
   "Hero": {
     "label": "Produktstudio",
-    "titleBlack": "KI-Kollegen,",
+    "titleBlack": "KI-Kollegen,",  
     "titleGray": "direkt in Ihrem Workflow.",
-    "description": "Wir entwickeln massgeschneiderte AI-Agents für Ihr Unternehmen — direkt integriert in SAP, Outlook, Teams, Slack und mehr. Interesse? Schreiben Sie uns.",
-    "inboxLabel": "Inbox — AI-Agents",
+    "description": "Wir entwickeln massgeschneiderte KI-Agenten für Ihr Unternehmen — direkt integriert in SAP, Outlook, Teams, Slack und mehr. Interesse? Schreiben Sie uns.",
+    "inboxLabel": "Inbox — KI-Agenten",
     "toYou": "An: Sie"
   },
   "HeroDemos": {
@@ -43,8 +43,8 @@
     "research": {
       "name": "Recherche-Agent",
       "preview": "Marktanalyse abgeschlossen",
-      "subject": "Re: Wettbewerbsanalyse — AI-Agents im DACH-Raum",
-      "body1": "Die Wettbewerbsanalyse für AI-Agent-Anbieter in der DACH-Region ist fertig. 14 Unternehmen geprüft, Crunchbase-Finanzierungsdaten abgeglichen und Produktpositionierung analysiert.",
+      "subject": "Re: Wettbewerbsanalyse — KI-Agenten im DACH-Raum",
+      "body1": "Die Wettbewerbsanalyse für KI-Agent-Anbieter in der DACH-Region ist fertig. 14 Unternehmen geprüft, Crunchbase-Finanzierungsdaten abgeglichen und Produktpositionierung analysiert.",
       "body2": "Der Markt ist noch jung. Die meisten Anbieter setzen auf Chat-Oberflächen oder Dashboards. Nur 2 bieten E-Mail-basierte Interaktion — keiner davon mit SAP-Integration.",
       "closing": "Ausserdem habe ich 3 mögliche Partner gefunden. Soll ich Outreach-E-Mails entwerfen?",
       "rowCompanies": "Unternehmen analysiert",
@@ -174,7 +174,7 @@
     "developmentGrant": "Development Grant"
   },
   "CTABar": {
-    "title": "Ihr eigener AI-Agent?",
+    "title": "Ihr eigener KI-Agent??",
     "description": "Sagen Sie uns, was Sie brauchen. Den Rest übernehmen wir."
   },
   "Footer": {
