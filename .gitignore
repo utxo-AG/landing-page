@@ -52,3 +52,10 @@ logs/
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+CLAUDE.md
+german-translation-qa.skill
+.agents/
+skills-lock.json
+.claude/skills/german-translation-qa
+.claude/skills/german-translator-ui-legal
+@fix_plan.md

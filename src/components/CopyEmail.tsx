@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { useTranslations } from "next-intl";
 
 const EMAIL = "business@utxo.ag";
 
@@ -11,6 +12,7 @@ interface CopyEmailProps {
 
 export default function CopyEmail({ className, children }: CopyEmailProps) {
   const [copied, setCopied] = useState(false);
+  const t = useTranslations("CopyEmail");
 
   const handleClick = useCallback(() => {
     navigator.clipboard.writeText(EMAIL).then(() => {
@@ -23,7 +25,7 @@ export default function CopyEmail({ className, children }: CopyEmailProps) {
     <button onClick={handleClick} className={className} title={EMAIL}>
       {copied ? (
         <span className="inline-flex items-center gap-2">
-          Copied!
+          {t("copied")}
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="2,7 5.5,10.5 12,4" />
           </svg>

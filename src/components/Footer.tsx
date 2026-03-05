@@ -1,6 +1,11 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+
 export default function Footer() {
+  const t = useTranslations("Footer");
+
   return (
     <footer className="bg-[#111] px-6 py-8">
       <div className="max-w-[1120px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
@@ -11,12 +16,12 @@ export default function Footer() {
             <circle cx="38" cy="22" r="3.5" fill="#fff"/>
             <circle cx="38" cy="32" r="3.5" fill="#fff"/>
           </svg>
-          <span className="text-[13px] text-white/40">&copy; {new Date().getFullYear()} utxo AG</span>
+          <span className="text-[13px] text-white/40">{t("copyright", { year: new Date().getFullYear() })}</span>
         </div>
         <div className="flex items-center gap-6 text-[12px] text-white/30">
-          <a href="/imprint" className="hover:text-white/60 transition-colors duration-200">Imprint</a>
-          <a href="/privacy" className="hover:text-white/60 transition-colors duration-200">Privacy Policy</a>
-          <a href="/terms" className="hover:text-white/60 transition-colors duration-200">Terms of Service</a>
+          <Link href="/imprint" className="hover:text-white/60 transition-colors duration-200">{t("imprint")}</Link>
+          <Link href="/privacy" className="hover:text-white/60 transition-colors duration-200">{t("privacyPolicy")}</Link>
+          <Link href="/terms" className="hover:text-white/60 transition-colors duration-200">{t("termsOfService")}</Link>
         </div>
       </div>
     </footer>

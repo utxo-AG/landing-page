@@ -1,0 +1,192 @@
+{
+  "Metadata": {
+    "title": "utxo AG — Email-First AI-Agents",
+    "description": "Wir entwickeln AI-Agents — beauftragt per E-Mail. utxo AG ist ein Produktstudio für Email-First AI-Agents, die sich direkt in Ihre bestehenden Workflows integrieren."
+  },
+  "Navbar": {
+    "toggleMenu": "Menü öffnen",
+    "agents": "Agents",
+    "howItWorks": "So funktioniert es",
+    "portfolio": "Portfolio"
+  },
+  "Hero": {
+    "label": "Produktstudio",
+    "titleBlack": "KI-Kollegen,",
+    "titleGray": "direkt in Ihrem Workflow.",
+    "description": "Wir entwickeln massgeschneiderte AI-Agents für Ihr Unternehmen — direkt integriert in SAP, Outlook, Teams, Slack und mehr. Interesse? Schreiben Sie uns.",
+    "inboxLabel": "Inbox — AI-Agents",
+    "toYou": "An: Sie"
+  },
+  "HeroDemos": {
+    "data": {
+      "name": "Datenanalyse-Agent",
+      "preview": "Re: Q4-Umsatz nach Region",
+      "subject": "Re: Q4-Umsatz nach Region",
+      "body1": "Hier ist die gewünschte Aufschlüsselung der Q4-Umsätze. Die Zahlen stammen direkt aus Ihrem SAP-System, abgeglichen mit den CRM-Pipeline-Daten.",
+      "body2": "Wichtigste Ergebnisse: DACH ist um 18 % gegenüber Q3 gewachsen, dank 3 neuer Enterprise-Kunden. Südeuropa lag 6 % unter dem Ziel — hauptsächlich wegen verzögertem Onboarding des Mailand-Vertrags.",
+      "closing": "Soll ich das zusätzlich nach Produktlinie aufschlüsseln? Antworten Sie einfach, ich ziehe die Daten auf SKU-Ebene.",
+      "rowTotal": "Gesamtumsatz",
+      "rowDach": "DACH-Region",
+      "rowWest": "Westeuropa",
+      "rowSouth": "Südeuropa",
+      "footer": "ggü. Q3: +12.4 %"
+    },
+    "crm": {
+      "name": "CRM-Kollege",
+      "preview": "3 neue Leads markiert",
+      "subject": "Tägliche Lead-Übersicht — 3 neue, 2 Follow-ups fällig",
+      "body1": "Guten Morgen. Ich habe über Nacht Ihre Inbox und Ihr CRM geprüft. Das steht heute an.",
+      "body2": "3 neue Leads über das Website-Kontaktformular. Einträge in HubSpot sind bereits erstellt und mit LinkedIn-Daten angereichert.",
+      "closing": "Ich habe für jeden Lead eine individuelle Antwort entworfen. Antworten Sie mit «senden» zur Freigabe — oder bearbeiten Sie sie zuerst in HubSpot.",
+      "footer": "2 Follow-ups heute fällig (Schneider AG, TechVentures)"
+    },
+    "research": {
+      "name": "Recherche-Agent",
+      "preview": "Marktanalyse abgeschlossen",
+      "subject": "Re: Wettbewerbsanalyse — AI-Agents im DACH-Raum",
+      "body1": "Die Wettbewerbsanalyse für AI-Agent-Anbieter in der DACH-Region ist fertig. 14 Unternehmen geprüft, Crunchbase-Finanzierungsdaten abgeglichen und Produktpositionierung analysiert.",
+      "body2": "Der Markt ist noch jung. Die meisten Anbieter setzen auf Chat-Oberflächen oder Dashboards. Nur 2 bieten E-Mail-basierte Interaktion — keiner davon mit SAP-Integration.",
+      "closing": "Ausserdem habe ich 3 mögliche Partner gefunden. Soll ich Outreach-E-Mails entwerfen?",
+      "rowCompanies": "Unternehmen analysiert",
+      "rowFunding": "Gesamtfinanzierung (kombiniert)",
+      "rowEmail": "Email-First-Ansatz",
+      "rowSap": "SAP-Integration",
+      "footer": "Ihre Positionierung: starke Differenzierung"
+    },
+    "invoice": {
+      "name": "Rechnungs-Agent",
+      "preview": "12 Rechnungen verarbeitet",
+      "subject": "Rechnungslauf abgeschlossen — 12 erledigt, 1 markiert",
+      "body1": "Die 13 Rechnungen, die Sie heute Morgen weitergeleitet haben, sind verarbeitet. 12 stimmen mit bestehenden Bestellungen in SAP überein und wurden zur Freigabe weitergeleitet.",
+      "body2": "1 Rechnung von DataStream GmbH (14'200 €) passt zu keiner offenen Bestellung. Der Betrag liegt zudem 22 % über den letzten 3 Rechnungen. Zur manuellen Prüfung markiert.",
+      "closing": "Die freigegebenen Rechnungen sind zur Zahlung am 3. Feb. eingeplant. Antworten Sie, um das Zahlungsdatum zu ändern oder die markierte Rechnung freizugeben.",
+      "rowProcessed": "Verarbeitet",
+      "rowTotal": "Gesamtbetrag",
+      "rowFlagged": "Zur Prüfung markiert",
+      "footer": "Ø Verarbeitungszeit: 8 Sekunden pro Rechnung"
+    }
+  },
+  "Agents": {
+    "label": "Agents",
+    "title": "Wie Kollegen. Nur schneller.",
+    "description": "Einige Agents stehen sofort bereit. Andere entwickeln wir speziell für Ihr Unternehmen — mit direkter Integration in SAP, Microsoft 365, Slack und Ihre bestehenden Tools.",
+    "available": "Verfügbar",
+    "custom": "Individuell",
+    "getStarted": "Jetzt starten",
+    "requestAgent": "Agent anfragen",
+    "hireInstantly": "Sofort einsetzbar",
+    "customDeployment": "Für Sie entwickelt",
+    "showLess": "Weniger anzeigen",
+    "showAll": "Alle {count} anzeigen"
+  },
+  "AgentsList": {
+    "teacherSupport": {
+      "name": "Unterrichts-Agent",
+      "description": "Unterrichtsplanung, Lehrplanabstimmung und didaktische Unterstützung — komplett per E-Mail."
+    },
+    "adVisuals": {
+      "name": "Werbedesign-Agent",
+      "description": "Aus kurzen Briefings werden kampagnenfertige Visuals. Einzeiler senden, Designs erhalten."
+    },
+    "brandCi": {
+      "name": "Markenidentitäts-Agent",
+      "description": "Analysiert bestehendes Material und extrahiert Markenregeln, Tonalität und visuelle Logik."
+    },
+    "dataAnalysis": {
+      "name": "Datenanalyse-Agent",
+      "description": "Geschäftsfragen in Klartext stellen. Antworten direkt aus Ihren Daten."
+    },
+    "meetingNotes": {
+      "name": "Protokoll-Agent",
+      "description": "Meeting-Aufnahmen oder Transkripte weiterleiten. Strukturierte Zusammenfassungen, Aufgaben und Follow-ups erhalten."
+    },
+    "invoiceProcessing": {
+      "name": "Rechnungs-Agent",
+      "description": "Rechnungen als Anhang senden. Werden automatisch kategorisiert, geprüft und zur Freigabe vorbereitet."
+    },
+    "crmCoworker": {
+      "name": "CRM-Kollege",
+      "description": "Liest eingehende E-Mails, aktualisiert CRM-Einträge, entwirft Antworten, markiert Deals."
+    },
+    "supportTriage": {
+      "name": "Support-Triage-Agent",
+      "description": "Klassifiziert, priorisiert und leitet Support-Anfragen automatisch weiter."
+    },
+    "internalOps": {
+      "name": "Betriebsabläufe-Agent",
+      "description": "Übernimmt wiederkehrende operative Workflows über Teams und Tools hinweg."
+    },
+    "evaluationQa": {
+      "name": "Qualitätsprüfungs-Agent",
+      "description": "Bewertet Ergebnisse, prüft Qualität und protokolliert jede Entscheidung für Audits."
+    },
+    "complianceMonitor": {
+      "name": "Compliance-Agent",
+      "description": "Prüft Prozesse laufend gegen regulatorische Vorgaben und meldet Verstösse."
+    },
+    "onboarding": {
+      "name": "Onboarding-Agent",
+      "description": "Begleitet neue Mitarbeiter durch Setup, Dokumentation und Teamvorstellungen — per E-Mail."
+    }
+  },
+  "HowItWorks": {
+    "label": "So funktioniert es",
+    "title": "Drei Schritte. Kein Onboarding.",
+    "step1Title": "E-Mail schreiben",
+    "step1Description": "Schreiben Sie dem Agent wie einem Kollegen. Klartext, Anhänge — was immer Sie brauchen.",
+    "step2Title": "Der Agent erledigt die Arbeit",
+    "step2Description": "Er liest Ihre Anfrage, verbindet sich mit Ihren Systemen — CRM, Datenbanken, APIs — und erledigt die Aufgabe.",
+    "step3Title": "Ergebnis in der Inbox",
+    "step3Description": "Die fertige Arbeit landet direkt in Ihrer Inbox. Prüfen, antworten, anpassen — oder einfach weiterarbeiten.",
+    "graphicTo": "An:",
+    "graphicSubject": "Betreff:",
+    "graphicSubjectText": "Umsatz Q4 nach Region",
+    "graphicSend": "Senden",
+    "graphicDatabase": "Datenbank",
+    "graphicDataAgent": "Datenanalyse-Agent",
+    "graphicToYou": "An: Sie"
+  },
+  "Portfolio": {
+    "label": "Portfolio",
+    "title": "Ebenfalls von utxo AG",
+    "description": "Produkte und Protokolle, die wir von Grund auf entwickelt haben — heute von Tausenden genutzt.",
+    "nmkr": {
+      "description": "Die grösste NFT-Infrastruktur auf Cardano. Über 2.4 Mio. Tokens geprägt, Multi-Chain-Support für Cardano, Solana, Aptos und Midnight. Unterstützt von EMURGO."
+    },
+    "finest": {
+      "description": "BaFin-konforme Tokenization-Plattform für Real-World-Assets. Fraktionalisiertes Eigentum an Immobilien, Diamanten und Rohstoffen. Entwickelt mit FluidTokens und IAMX."
+    },
+    "masumi": {
+      "description": "Dezentrales Protokoll für die AI-Agent-Economy. Identität, Zahlungen und Discovery für autonome Agents. Mitentwickelt mit Serviceplan Group."
+    }
+  },
+  "Founder": {
+    "alt": "Patrick Tobler",
+    "quote": "Die besten AI-Tools verschwinden in Workflows, die Sie schon nutzen. Keine Dashboards, keine neuen Apps — nur E-Mail. So soll Arbeit sein.",
+    "name": "Patrick Tobler",
+    "role": "Gründer & CEO · Speaker am Cardano Summit & World Economic Forum"
+  },
+  "TrustBar": {
+    "partnersLabel": "Unterstützt und begleitet von",
+    "grantsLabel": "Über $3M an Fördermitteln erhalten von",
+    "catalystFund": "Catalyst Fund",
+    "ecosystemGrant": "Ecosystem Grant",
+    "developmentGrant": "Development Grant"
+  },
+  "CTABar": {
+    "title": "Ihr eigener AI-Agent?",
+    "description": "Sagen Sie uns, was Sie brauchen. Den Rest übernehmen wir."
+  },
+  "Footer": {
+    "copyright": "© {year} utxo AG",
+    "imprint": "Impressum",
+    "privacyPolicy": "Datenschutzerklärung",
+    "termsOfService": "AGB"
+  },
+  "CopyEmail": {
+    "copied": "Kopiert!"
+  },
+  "Common": {
+    "backToHome": "← Zur Startseite"
+  }
+}

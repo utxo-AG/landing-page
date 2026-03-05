@@ -1,8 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { NAV_ITEMS } from "@/lib/constants";
+import { Link } from "@/i18n/navigation";
 import CopyEmail from "@/components/CopyEmail";
+import LocaleSwitcher from "@/components/LocaleSwitcher";
 
 function Logo() {
   return (
@@ -18,6 +21,7 @@ function Logo() {
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const t = useTranslations("Navbar");
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -34,10 +38,10 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex h-[60px] max-w-[1120px] items-center justify-between px-6">
-        <a href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           <Logo />
           <span className="text-[16px] font-bold tracking-[-0.4px]">utxo AG</span>
-        </a>
+        </Link>
 
         <div className="hidden md:flex items-center gap-8">
           {NAV_ITEMS.map((item) => (
@@ -46,16 +50,17 @@ export default function Navbar() {
               href={item.href}
               className="text-[13px] text-[#888] hover:text-[#111] transition-colors duration-200"
             >
-              {item.label}
+              {t(item.key)}
             </a>
           ))}
           <CopyEmail className="text-[13px] font-medium text-[#111] bg-[#f5f5f5] px-4 py-1.5 rounded-full hover:bg-[#eee] transition-colors duration-200 cursor-pointer" />
+          <LocaleSwitcher />
         </div>
 
         <button
           className="md:hidden p-2 -mr-2"
           onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
+          aria-label={t("toggleMenu")}
         >
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#111" strokeWidth="1.5">
             {open ? (
@@ -82,10 +87,13 @@ export default function Navbar() {
               className="block py-2.5 text-[14px] text-[#888] hover:text-[#111]"
               onClick={() => setOpen(false)}
             >
-              {item.label}
+              {t(item.key)}
             </a>
           ))}
           <CopyEmail className="block py-2.5 text-[14px] font-medium text-[#111] cursor-pointer" />
+          <div className="py-2.5">
+            <LocaleSwitcher />
+          </div>
         </div>
       )}
     </header>
