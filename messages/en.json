@@ -11,8 +11,8 @@
   },
   "Hero": {
     "label": "Product Studio",
-    "titleBlack": "Hire AI agents.",
-    "titleGray": "Work with them by email.",
+    "titleBlack": "Hire AI agents",
+    "titleGray": "by email."
     "description": "We build custom AI agents for your company — deeply integrated with SAP, Outlook, Teams, Slack, and more. Want your own? Get in touch.",
     "inboxLabel": "Inbox — AI Agents",
     "toYou": "to: you"
