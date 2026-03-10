@@ -16,6 +16,14 @@
         "label": "Commercial Register",
         "number": "Handelsregister-Nummer CH-400.3.450.669-8"
       },
+      "uid": {
+        "label": "UID / VAT",
+        "number": "CHE-494.509.135 MWST"
+      },
+      "betriebsnummer": {
+        "label": "German Business Registration Number",
+        "number": "76311831"
+      },
       "representedBy": {
         "label": "Represented by",
         "person": "Patrick Tobler, CEO"

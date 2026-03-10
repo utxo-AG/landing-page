@@ -1,0 +1,272 @@
+DATA PROCESSING AGREEMENT
+
+Last updated: [TO BE COMPLETED BY UTXO AG]
+
+This Data Processing Agreement ("DPA") forms an integral part of the Agentic Service Subscription Terms ("Terms") between UTXO AG, Dammstrasse 16, 6300 Zug, Switzerland ("Processor") and the subscribing business entity ("Controller") (each a "Party", together the "Parties").
+
+This DPA is automatically accepted by the Controller upon subscribing to the Agentic Service. No separate signature is required.
+
+Unless otherwise defined in this DPA, capitalised terms have the meanings given to them in the Terms.
+
+
+1. GENERAL PROVISIONS
+
+1.1 The Processor shall process personal data only on behalf of and in accordance with the documented instructions of the Controller, under and for the purposes of the Terms, and in compliance with the General Data Protection Regulation (EU) 2016/679 ("GDPR"), the Swiss Federal Act on Data Protection ("FADP" / "nDSG"), and any other applicable data protection laws.
+
+1.2 This DPA constitutes the data processing agreement within the meaning of Art. 28 GDPR, governing the rights and obligations of the Parties with respect to the processing of personal data.
+
+1.3 "Personal Data" means any information relating to an identified or identifiable natural person ("Data Subject").
+
+1.4 "Processing" means any operation or set of operations performed on Personal Data, whether or not by automated means, such as collection, recording, organisation, structuring, storage, adaptation, alteration, retrieval, consultation, use, disclosure by transmission, dissemination, alignment, combination, restriction, erasure, or destruction.
+
+1.5 "Instruction" means a documented directive issued by the Controller to the Processor regarding the processing of Personal Data. Instructions may be issued in writing or by email. Oral instructions shall be confirmed in writing without undue delay.
+
+1.6 The Controller retains all rights in the Personal Data. The Processor shall not assert any right of retention over the Controller's Personal Data, except where required by applicable law.
+
+
+2. SCOPE AND PURPOSE OF PROCESSING
+
+2.1 The Processor shall process Personal Data solely to the extent necessary for providing, administering, and operating the subscribed AI agent service ("Agentic Service") under the Terms, and only in accordance with the Controller's instructions.
+
+2.2 The categories of Data Subjects and types of Personal Data processed are specified in Appendix 1.
+
+2.3 The processing of special categories of Personal Data within the meaning of Art. 9 GDPR may occur only where such data has been lawfully collected by the Controller and the Controller has provided instructions for their processing.
+
+
+3. CONTROLLER'S RIGHTS AND OBLIGATIONS
+
+3.1 The Controller is the data controller within the meaning of applicable data protection laws with respect to the Processor's processing of Personal Data.
+
+3.2 The Controller shall determine the purposes and means of the processing and is responsible for ensuring that the processing complies with applicable data protection laws.
+
+3.3 The Controller may at any time issue additional or amended instructions regarding the purpose, type, and scope of processing.
+
+3.4 The Controller shall be responsible for ensuring the rights of Data Subjects. Data Subject rights requests are to be directed to the Controller.
+
+3.5 The Controller may inform the Processor of any error or irregularity in the Processor's processing of Personal Data.
+
+
+4. PROCESSOR'S OBLIGATIONS AND RESPONSIBILITIES
+
+4.1 The Processor shall process Personal Data only within the scope of the Terms, this DPA, and the Controller's instructions. The Processor shall not process Personal Data for its own purposes.
+
+4.2 The Processor shall not make copies of Personal Data except where necessary to provide the Agentic Service, ensure proper processing (including backups and redundancy), or comply with legal obligations.
+
+4.3 The Processor shall support the Controller in any inspections or information requests by competent supervisory authorities relating to the processing under this DPA and shall promptly inform the Controller of any such inquiries.
+
+4.4 The Processor shall, without undue delay, inform the Controller if the Processor considers an instruction to be in violation of applicable data protection laws.
+
+4.5 The Processor shall, upon reasonable request, provide the Controller with the information necessary to maintain accurate records of processing activities in accordance with Art. 30 GDPR.
+
+4.6 The Processor shall, to the extent reasonably required, assist the Controller in fulfilling its obligations under Art. 32 to 36 GDPR, including matters relating to data security, data protection impact assessments, and prior consultations with supervisory authorities.
+
+4.7 If the Processor is required by law to disclose Personal Data, the Processor shall inform the Controller in writing prior to such disclosure (to the extent legally permitted), including the recipients, timing, content, and legal basis for the disclosure.
+
+4.8 The Processor shall, upon the Controller's instruction, correct, delete, or restrict Personal Data in accordance with applicable law. The Processor shall confirm completion upon request. Statutory retention obligations remain unaffected.
+
+4.9 The Processor shall implement and maintain procedures to ensure compliance with this DPA and applicable data protection laws. Upon reasonable request, the Processor shall provide evidence of compliance (e.g. certifications, audit reports, or equivalent documentation).
+
+4.10 If the Controller's Personal Data stored by the Processor is endangered due to attachment, sequestration, insolvency proceedings, or other third-party measures, the Processor shall inform the Controller without undue delay and inform all relevant parties that the rights to the data lie solely with the Controller.
+
+
+5. DATA BREACH NOTIFICATION
+
+5.1 In the event of a breach of Personal Data, the Processor shall notify the Controller without undue delay, and in any case no later than forty-eight (48) hours after becoming aware of the breach.
+
+5.2 The notification shall at minimum:
+
+(a) describe the nature of the Personal Data breach, including, where possible, the categories and approximate number of Data Subjects and data records concerned;
+
+(b) communicate the name and contact details of the Processor's data protection contact or other contact point;
+
+(c) describe the likely consequences of the breach; and
+
+(d) describe the measures taken or proposed to address the breach, including measures to mitigate its possible adverse effects.
+
+5.3 The Processor shall cooperate fully with and assist the Controller in complying with the Controller's obligations under Art. 33 and 34 GDPR.
+
+
+6. DATA SUBJECTS' RIGHTS
+
+6.1 If a Data Subject contacts the Processor directly with a request regarding access, rectification, erasure, restriction, portability, or objection, the Processor shall forward this request to the Controller without undue delay. The Processor shall not respond to the Data Subject directly unless instructed to do so by the Controller.
+
+6.2 The Processor shall assist the Controller in fulfilling Data Subject requests by providing the information and support reasonably necessary within a reasonable timeframe.
+
+
+7. SUB-PROCESSORS
+
+7.1 The Controller hereby grants the Processor general written authorisation to engage sub-processors for the processing of Personal Data under this DPA.
+
+7.2 The Processor shall inform the Controller of any intended changes concerning the addition or replacement of sub-processors, thereby giving the Controller the opportunity to object in accordance with Clause 7.7.
+
+7.3 The Processor shall carefully select sub-processors and ensure that they provide sufficient guarantees to implement appropriate technical and organisational measures.
+
+7.4 The Processor shall ensure that sub-processors are bound by written contracts imposing data protection obligations no less protective than those set out in this DPA. The Processor shall remain fully liable for the performance of its sub-processors.
+
+7.5 Upon request, the Processor shall provide the Controller with the main data protection terms agreed with sub-processors.
+
+7.6 The Processor shall monitor its sub-processors' compliance on a regular basis and provide relevant evidence to the Controller upon request.
+
+7.7 If the Processor engages additional sub-processors or changes sub-processors during the term of this DPA, the Processor shall inform the Controller in writing before granting the new sub-processor access to Personal Data. If the Controller has justified data protection concerns, the Controller may object within fifteen (15) days of receiving notification (written form sufficient). If no objection is made within this period, consent shall be deemed given. If the Controller objects, the Parties shall cooperate in good faith to find a mutually acceptable solution. If no solution can be found within thirty (30) days, either Party may terminate the affected subscription in accordance with the Terms.
+
+7.8 Where the engagement of a sub-processor involves the transfer of data to third countries, appropriate safeguards in accordance with Art. 44 et seq. GDPR must be in place. The Processor shall ensure such safeguards and provide evidence upon request.
+
+7.9 All sub-processors engaged at the time of conclusion of this DPA are listed in Appendix 2.
+
+
+8. INTERNATIONAL DATA TRANSFERS
+
+8.1 The Processor shall ensure that any transfer of Personal Data to a country outside Switzerland and the European Economic Area (EEA) is carried out only with appropriate safeguards in accordance with Art. 44 et seq. GDPR, including:
+
+(a) an adequacy decision by the European Commission or the Swiss Federal Council;
+
+(b) Standard Contractual Clauses (SCCs) approved by the European Commission; or
+
+(c) other recognised safeguards under applicable data protection law.
+
+8.2 The Processor shall ensure that all sub-processors comply with the same requirements for international data transfers.
+
+8.3 The Processor shall provide evidence of appropriate safeguards upon request by the Controller.
+
+
+9. AUDIT RIGHTS
+
+9.1 Audits shall primarily be conducted remotely and may include the review of existing certifications (e.g. ISO 27001, SOC 2), audit reports, or equivalent documentation provided by the Processor.
+
+9.2 On-site audits shall be permitted only where remote audits do not provide sufficient assurance or in case of a justified suspicion of non-compliance or a data breach.
+
+9.3 Audits may be carried out no more than once per year, unless required by a supervisory authority or justified by a specific incident.
+
+9.4 The Controller may engage qualified third parties to exercise audit rights, provided such third parties are bound by appropriate confidentiality obligations. Audits shall be carried out during regular business hours, upon reasonable notice (at least twenty (20) business days), and in a manner that does not unreasonably disrupt the Processor's operations.
+
+9.5 The Processor shall make available to the Controller all information reasonably necessary to demonstrate compliance with this DPA and Art. 28 GDPR.
+
+
+10. DATA SECRECY AND CONFIDENTIALITY
+
+10.1 The Processor shall maintain data secrecy when processing Personal Data on behalf of the Controller.
+
+10.2 The Processor shall ensure that all personnel authorised to process Personal Data are subject to appropriate statutory or contractual confidentiality obligations and receive adequate data protection training.
+
+
+11. TECHNICAL AND ORGANISATIONAL MEASURES
+
+11.1 The Processor shall implement and maintain appropriate technical and organisational measures ("TOMs") as required under Art. 32 GDPR to ensure a level of security appropriate to the risk, taking into account the state of the art, the costs of implementation, and the nature, scope, context, and purposes of processing.
+
+11.2 The TOMs are described in Appendix 3.
+
+11.3 The Processor may modify the TOMs from time to time, provided that such modification does not decrease the level of data protection below what is required by law and under this DPA.
+
+11.4 The Processor shall promptly inform the Controller in writing of any significant changes to the TOMs.
+
+11.5 Upon request, the Processor shall provide documentation demonstrating that appropriate TOMs are in place and kept up to date.
+
+
+12. TERM AND TERMINATION
+
+12.1 This DPA automatically enters into force upon subscription to the Agentic Service and terminates upon expiration or termination of the subscription.
+
+12.2 The obligations under Clauses 5, 6, 10, and 13 shall survive termination of this DPA.
+
+
+13. DATA DELETION AND RETURN
+
+13.1 Upon termination of this DPA, the Processor shall cease all processing of the Controller's Personal Data, except as required for deletion or return.
+
+13.2 Unless instructed otherwise by the Controller, the Processor shall irretrievably delete or destroy all Personal Data using industry-standard secure deletion methods within thirty (30) days of termination.
+
+13.3 Upon the Controller's written request (to be made within fourteen (14) days of termination), the Processor shall return the Personal Data to the Controller in a commonly used, machine-readable format before deletion.
+
+13.4 The Processor shall inform the Controller prior to permanent deletion, unless the Controller has instructed otherwise.
+
+13.5 The Processor shall document the deletion or destruction and provide confirmation to the Controller upon request.
+
+13.6 Statutory retention obligations under Swiss commercial, tax, or other applicable law remain unaffected.
+
+
+APPENDIX 1: DATA SUBJECTS AND DATA CATEGORIES
+
+1. Purpose of Processing
+
+The Processor processes Personal Data solely for the purpose of providing, administering, and operating the Agentic Service as defined in the Terms.
+
+2. Categories of Data Subjects
+
+The processing may concern the following categories of Data Subjects:
+
+(a) Employees, contractors, or other representatives of the Controller who use or administer the AI Coworker;
+
+(b) End users or contacts of the Controller whose data is processed through the AI Coworker (e.g. email correspondents, CRM contacts, customers of the Controller);
+
+(c) Other individuals whose Personal Data is submitted to or processed by the Agentic Service by or on behalf of the Controller.
+
+3. Categories of Personal Data
+
+The processing may include the following categories of Personal Data:
+
+(a) Master data (e.g. name, email address, company name, job title, contact details);
+
+(b) Content data (e.g. email content, attachments, text entries, document content, prompts, AI agent outputs);
+
+(c) Usage data (e.g. interaction logs, timestamps, task execution records, frequency of use);
+
+(d) Technical data (e.g. IP address, device type, browser information, system identifiers);
+
+(e) Payment data (e.g. billing details, transaction IDs — processed by Stripe).
+
+4. Special Categories of Data
+
+The processing of special categories of Personal Data within the meaning of Art. 9 GDPR may occur only where such data has been lawfully collected and provided by the Controller with corresponding instructions. In such cases, the Processor shall implement appropriate additional safeguards.
+
+5. Duration of Processing
+
+Personal Data shall be processed for the duration of the subscription and shall be deleted or returned in accordance with Clause 13 of this DPA upon termination.
+
+
+APPENDIX 2: SUB-PROCESSORS
+
+The following sub-processors are authorised at the time of conclusion of this DPA:
+
+| Name of Sub-Processor | Purpose | Registered Address / Country | Legal Transfer Safeguard |
+|---|---|---|---|
+| OpenAI (OpenAI, LLC) | AI model inference | San Francisco, CA, USA | Standard Contractual Clauses (SCCs) |
+| Anthropic (Anthropic, PBC) | AI model inference | San Francisco, CA, USA | Standard Contractual Clauses (SCCs) |
+| Railway (Railway Corp.) | Application hosting | San Francisco, CA, USA | Standard Contractual Clauses (SCCs) |
+| DigitalOcean (DigitalOcean, LLC) | Application hosting | New York, NY, USA / EU | Standard Contractual Clauses (SCCs); EU data centres where applicable |
+| Stripe (Stripe, Inc.) | Payment processing | San Francisco, CA, USA / EU | Standard Contractual Clauses (SCCs); EU data centres where applicable |
+| Google (Google LLC) | Website analytics (Google Analytics) | Mountain View, CA, USA / EU | Standard Contractual Clauses (SCCs); EU data centres where applicable |
+
+The Processor shall keep this list up to date and notify the Controller in accordance with Clause 7.7 of this DPA of any intended changes.
+
+
+APPENDIX 3: TECHNICAL AND ORGANISATIONAL MEASURES
+
+The Processor shall implement and maintain appropriate technical and organisational measures ("TOMs") addressing, at a minimum, the following areas:
+
+1. Access Control and User Management
+[TO BE COMPLETED BY UTXO AG — describe measures for user authentication, role-based access control, password policies, multi-factor authentication, access logging, and periodic access reviews]
+
+2. Physical and Environmental Security
+[TO BE COMPLETED BY UTXO AG — describe measures for physical access control to data centres and offices, environmental controls, and infrastructure provider certifications]
+
+3. Encryption and Pseudonymisation
+[TO BE COMPLETED BY UTXO AG — describe measures for encryption at rest and in transit, key management, and pseudonymisation techniques where applicable]
+
+4. System and Network Security
+[TO BE COMPLETED BY UTXO AG — describe measures for firewalls, intrusion detection/prevention, vulnerability management, patch management, network segmentation, and secure development practices]
+
+5. Incident Response and Business Continuity
+[TO BE COMPLETED BY UTXO AG — describe measures for incident detection, response procedures, escalation paths, backup and recovery procedures, and business continuity planning]
+
+6. Data Protection by Design and by Default
+[TO BE COMPLETED BY UTXO AG — describe measures for privacy-by-design principles, data minimisation, purpose limitation controls, and default privacy settings]
+
+The TOMs described above form an integral part of this DPA and shall be kept up to date by the Processor. Any material changes to the TOMs that may affect the level of data protection or information security shall be notified to the Controller in advance.
+
+
+UTXO AG
+Dammstrasse 16
+6300 Zug, Switzerland
+Commercial register: CH-400.3.450.669-8
+Email: business@utxo.ag
+Website: https://utxoag.com

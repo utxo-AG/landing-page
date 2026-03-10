@@ -181,7 +181,9 @@
     "copyright": "© {year} utxo AG",
     "imprint": "Imprint",
     "privacyPolicy": "Privacy Policy",
-    "termsOfService": "Terms of Service"
+    "termsOfService": "Terms of Service",
+    "acceptableUsePolicy": "Acceptable Use Policy",
+    "dataProcessingAgreement": "Data Processing Agreement"
   },
   "CopyEmail": {
     "copied": "Copied!"
