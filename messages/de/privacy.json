@@ -4,108 +4,166 @@
       "title": "Datenschutzerklärung — utxo AG"
     },
     "heading": "Datenschutzerklärung",
-    "lastUpdated": "Letzte Aktualisierung: 30. Januar 2026",
+    "lastUpdated": "Letzte Aktualisierung: 10. März 2026",
+    "intro": "UTXO AG («UTXO AG», «wir», «uns», «unser») nimmt den Schutz Ihrer personenbezogenen Daten ernst. Diese Datenschutzerklärung erläutert, wie wir personenbezogene Daten im Zusammenhang mit unserer Website (https://utxoag.com) und unseren AI-Agent-Dienstleistungen («AI Coworkers» oder «Agentic Service») erheben, verwenden, speichern und weitergeben.",
+    "introCompliance": "Wir verarbeiten personenbezogene Daten in Übereinstimmung mit der Datenschutz-Grundverordnung (EU) 2016/679 («DSGVO»), dem Bundesgesetz über den Datenschutz («DSG») und weiteren anwendbaren Datenschutzgesetzen.",
     "sections": {
-      "controller": {
-        "title": "1. Verantwortlicher",
-        "content": "Der Verantwortliche für die Datenverarbeitung auf dieser Website und im Rahmen unserer KI-Agenten-Dienste ist:",
-        "address": "utxo AG\nDammstrasse 16, 6300 Zug, Schweiz\nHandelsregister-Nummer CH-400.3.450.669-8\nE-Mail: business@utxo.ag"
+      "controllerAndContact": {
+        "title": "1. Verantwortlicher und Kontakt",
+        "content": "Der für die Verarbeitung personenbezogener Daten Verantwortliche ist:",
+        "company": "UTXO AG",
+        "address": "Dammstrasse 16\n6300 Zug, Schweiz",
+        "register": "Handelsregister: CH-400.3.450.669-8",
+        "contactLabel": "Datenschutzkontakt:",
+        "contactEmail": "business@utxo.ag",
+        "contactNote": "Bei Fragen zu dieser Datenschutzerklärung oder zur Verarbeitung Ihrer personenbezogenen Daten können Sie uns unter der oben genannten Adresse kontaktieren."
       },
-      "scope": {
-        "title": "2. Geltungsbereich und Zweck",
-        "content1": "Diese Datenschutzerklärung gilt für alle von utxo AG erbrachten Dienstleistungen, einschliesslich, aber nicht beschränkt auf: diese Website, im Auftrag von Kunden betriebene KI-Agenten, E-Mail-basierte Agenten-Interaktionen und alle damit verbundenen Softwaredienste (zusammen die «Dienste»).",
-        "content2": "Wir verarbeiten personenbezogene Daten in Übereinstimmung mit dem Schweizerischen Bundesgesetz über den Datenschutz (DSG), der Datenschutz-Grundverordnung der EU (DSGVO) und dem EU-Gesetz über Künstliche Intelligenz (EU AI Act), soweit anwendbar."
-      },
-      "dataWeCollect": {
-        "title": "3. Daten, die wir erheben",
-        "websiteData": {
-          "title": "3.1 Website-Daten",
-          "content": "Wenn Sie unsere Website besuchen, erheben wir möglicherweise: IP-Adresse, Browsertyp und -version, Betriebssystem, Verweis-URL, besuchte Seiten, Datum und Uhrzeit des Zugriffs sowie weitere technische Metadaten, die von Ihrem Browser übermittelt werden."
+      "purposesOfProcessing": {
+        "title": "2. Verarbeitungszwecke, Rechtsgrundlagen und Datenkategorien",
+        "content": "Die folgende Tabelle gibt einen Überblick über die Zwecke, zu denen wir personenbezogene Daten verarbeiten, die betroffenen Datenkategorien und die jeweilige Rechtsgrundlage.",
+        "tableHeaders": ["Verarbeitungszweck", "Kategorien personenbezogener Daten", "Rechtsgrundlage"],
+        "tableRows": [
+          ["Dienstleistungserbringung und Betrieb der AI-Agents", "Aufgabeninhalte, Anweisungen, Agent-Input-/Output-Daten, Interaktions-Metadaten, Daten aus verbundenen Systemen (E-Mail-Inhalte, Anhänge, CRM-Daten)", "Art. 6(1)(b) DSGVO — Vertragserfüllung"],
+          ["Konto- und Abonnementverwaltung", "Name, E-Mail-Adresse, Firmenname, Abonnementdetails, Anmeldedaten", "Art. 6(1)(b) DSGVO — Vertragserfüllung"],
+          ["Abrechnung und Zahlungsabwicklung (über Stripe)", "Name, Firmenname, Rechnungsadresse, Zahlungsinformationen (Kartenmarke, gekürzte Kartennummer, Ablaufdatum), Transaktions-ID, Rechnungsdaten", "Art. 6(1)(b) DSGVO — Vertragserfüllung"],
+          ["Support und Problemlösung", "Name, E-Mail-Adresse, Anfrageinhalt, Kommunikationsverlauf, relevante technische Protokolle", "Art. 6(1)(b) und Art. 6(1)(f) DSGVO — Vertragserfüllung / berechtigtes Interesse"],
+          ["Marketingkommunikation", "E-Mail-Adresse, Präferenzen, Einwilligungsprotokolle", "Art. 6(1)(a) DSGVO — Einwilligung"],
+          ["Plattformanalysen und Optimierung", "Gerätedaten, anonymisierte/pseudonymisierte IP-Adresse, Nutzungsmuster, Seitenaufrufe, Cookies", "Art. 6(1)(a) DSGVO — Einwilligung (Cookie-basiert); Art. 6(1)(f) DSGVO — berechtigtes Interesse (aggregierte Analysen)"],
+          ["Einhaltung gesetzlicher Vorschriften", "Nutzungsdaten, Identitätsdaten, Finanz- und Steuerinformationen", "Art. 6(1)(c) DSGVO — gesetzliche Verpflichtung"]
+        ],
+        "serviceProvision": {
+          "title": "2.1 Dienstleistungserbringung und Betrieb der AI-Agents",
+          "content": "Wenn Sie einen AI Coworker nutzen, verarbeitet der Agent Daten aus Ihren verbundenen Systemen (z. B. E-Mail-Inhalte, Anhänge, CRM-Einträge, Datenbankeinträge), um die zugewiesenen Aufgaben auszuführen. Diese Daten werden ausschliesslich zum Zweck der Erbringung der abonnierten Dienstleistung verarbeitet. Soweit UTXO AG als Auftragsverarbeiter im Auftrag des Kunden handelt, wird die Verarbeitung durch den {dpaLink} geregelt.",
+          "dpaLinkText": "Auftragsverarbeitungsvertrag"
         },
-        "aiAgentInteractionData": {
-          "title": "3.2 Interaktionsdaten der KI-Agenten",
-          "content": "Wenn Sie mit unseren KI-Agenten interagieren (per E-Mail oder über andere Kanäle), erheben und verarbeiten wir:",
-          "items": [
-            "E-Mail-Adressen, Namen und Kontaktinformationen",
-            "Den vollständigen Inhalt von E-Mails, die an unsere KI-Agenten gesendet und von diesen empfangen werden, einschliesslich Anhänge",
-            "Daten, die aus verbundenen Drittsystemen (CRM, ERP, Datenbanken, APIs) in Ihrem Namen oder im Namen Ihrer Organisation abgerufen werden",
-            "Metadaten über Agenten-Interaktionen (Zeitstempel, Verarbeitungsprotokolle, Leistungskennzahlen)",
-            "Alle Dateien, Dokumente oder Daten, die Sie den Agenten bereitstellen oder über diese übermitteln"
-          ]
+        "accountManagement": {
+          "title": "2.2 Konto- und Abonnementverwaltung",
+          "content": "Wir verarbeiten Ihre Kontakt- und Unternehmensdaten, um Ihr Abonnement einzurichten und zu verwalten, dienstleistungsbezogene Informationen zu übermitteln und Ihr Konto zu administrieren."
         },
-        "businessContactData": {
-          "title": "3.3 Geschäftliche Kontaktdaten",
-          "content": "Wenn Sie uns für geschäftliche Anfragen kontaktieren, erheben wir Ihren Namen, Ihre E-Mail-Adresse, Ihren Firmennamen und alle Informationen, die Sie uns freiwillig mitteilen."
+        "billing": {
+          "title": "2.3 Abrechnung und Zahlungsabwicklung",
+          "content": "Zahlungstransaktionen werden von Stripe, Inc., einem lizenzierten Zahlungsdienstleister, abgewickelt. Wir erhalten lediglich eingeschränkte Zahlungsinformationen (z. B. gekürzte Kartennummer, Transaktionsbestätigung), die für die Rechnungsstellung und Buchhaltung erforderlich sind. Vollständige Zahlungskartendaten werden von uns nicht gespeichert."
+        },
+        "support": {
+          "title": "2.4 Support und Problemlösung",
+          "content": "Wenn Sie unser Support-Team unter support@utxoag.com kontaktieren, erheben wir die zur Bearbeitung Ihrer Anfrage erforderlichen Informationen, einschliesslich Ihrer Kontaktdaten, einer Beschreibung des Problems sowie relevanter Konto- oder technischer Daten."
+        },
+        "marketing": {
+          "title": "2.5 Marketingkommunikation",
+          "content": "Mit Ihrer ausdrücklichen Einwilligung können wir Ihnen Marketingmitteilungen zu unseren Dienstleistungen, Produktaktualisierungen oder Veranstaltungen senden. Sie können Ihre Einwilligung jederzeit widerrufen, indem Sie den Abmeldelink in einer Marketingmitteilung nutzen oder uns unter business@utxo.ag kontaktieren. Der Widerruf der Einwilligung berührt nicht die Rechtmässigkeit der vor dem Widerruf erfolgten Verarbeitung."
+        },
+        "analytics": {
+          "title": "2.6 Plattformanalysen und Optimierung",
+          "content": "Wir setzen Analysetools ein, um die Nutzung unserer Website und Dienstleistungen zu verstehen und das Nutzererlebnis zu verbessern. Soweit Analysen auf Cookies oder ähnlichen Technologien basieren, holen wir Ihre Einwilligung gemäss dem anwendbaren Recht ein. Analysedaten werden, soweit möglich, pseudonymisiert oder anonymisiert."
+        },
+        "legalCompliance": {
+          "title": "2.7 Einhaltung gesetzlicher Vorschriften",
+          "content": "Wir verarbeiten bestimmte Daten zur Erfüllung anwendbarer gesetzlicher Pflichten, einschliesslich der handels- und steuerrechtlichen Aufbewahrungspflichten nach Schweizer Recht (Art. 957 ff. OR, Schweizer Steuergesetzgebung)."
         }
       },
-      "legalBasis": {
-        "title": "4. Rechtsgrundlage der Verarbeitung",
-        "content": "Wir verarbeiten personenbezogene Daten auf folgenden Rechtsgrundlagen:",
-        "items": [
-          "Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO): Verarbeitung, die für die Erbringung unserer Dienste gemäss der mit Ihnen oder Ihrer Organisation getroffenen Vereinbarung erforderlich ist.",
-          "Berechtigtes Interesse (Art. 6 Abs. 1 lit. f DSGVO): Verarbeitung, die für den Betrieb, die Verbesserung und die Sicherheit unserer Dienste erforderlich ist, einschliesslich KI-Agenten-Training, Qualitätssicherung, Fehlerbehebung und Analysen.",
-          "Einwilligung (Art. 6 Abs. 1 lit. a DSGVO): Sofern Sie eine ausdrückliche Einwilligung erteilt haben, die Sie jederzeit widerrufen können.",
-          "Rechtliche Verpflichtung (Art. 6 Abs. 1 lit. c DSGVO): Verarbeitung, die zur Einhaltung geltender Gesetze erforderlich ist."
-        ]
-      },
       "aiSpecificProcessing": {
-        "title": "5. KI-spezifische Datenverarbeitung",
-        "content": "Unsere KI-Agenten verarbeiten Daten mithilfe von grossen Sprachmodellen (LLMs) und anderen maschinellen Lernsystemen. Mit der Nutzung unserer KI-Agenten-Dienste anerkennen und akzeptieren Sie Folgendes:",
-        "items": [
-          "Alle Daten, die an unsere KI-Agenten gesendet oder von diesen verarbeitet werden, können zum Zweck der Bereitstellung, Wartung, Verbesserung und Entwicklung unserer KI-Dienste verwendet werden.",
-          "E-Mail-Inhalte, Anhänge und alle Daten aus verbundenen Systemen können von Drittanbietern für KI-Infrastruktur (einschliesslich, aber nicht beschränkt auf Cloud-Computing-Anbieter und LLM-API-Anbieter) ausserhalb der Schweiz und des EWR verarbeitet werden.",
-          "Von KI generierte Ausgaben können zu Zwecken der Qualitätssicherung, Fehlerbehebung, Compliance-Überwachung und Dienstverbesserung protokolliert, gespeichert und analysiert werden.",
-          "Wir können anonymisierte oder aggregierte Interaktionsdaten für Forschungs-, Benchmarking- und Modellverbesserungszwecke verwenden.",
-          "In Übereinstimmung mit dem EU AI Act stufen wir unsere KI-Agenten als KI-Systeme mit begrenztem Risiko ein und wahren Transparenz über deren Einsatz von Künstlicher Intelligenz. Nutzer, die mit unseren Agenten interagieren, werden darüber informiert, dass sie mit einem KI-System kommunizieren."
-        ]
-      },
-      "dataSharingAndTransfers": {
-        "title": "6. Datenweitergabe und -übermittlung",
-        "content": "Wir können personenbezogene Daten an folgende Empfänger weitergeben:",
-        "items": [
-          "Cloud-Infrastruktur-Anbieter für Hosting und Rechenleistung (Server können sich in der EU, den USA oder anderen Rechtsordnungen befinden)",
-          "KI-/LLM-Anbieter zur Verarbeitung von Agenten-Anfragen",
-          "Drittsysteme, zu deren Anbindung Ihre Organisation uns autorisiert hat (CRM, ERP, E-Mail-Server, Datenbanken)",
-          "Fachberater (Rechtsberatung, Buchhaltung), soweit erforderlich",
-          "Behörden, sofern gesetzlich vorgeschrieben"
+        "title": "3. AI-spezifische Offenlegung der Datenverarbeitung",
+        "content1": "3.1 AI Coworkers verarbeiten Kundendaten — einschliesslich E-Mail-Inhalte, Anhänge und Daten aus verbundenen Systemen — unter Verwendung von AI-Infrastruktur folgender Drittanbieter:",
+        "providers": [
+          "OpenAI (OpenAI, LLC), USA",
+          "Anthropic (Anthropic, PBC), USA"
         ],
-        "transferSafeguards": "Sofern Daten ausserhalb der Schweiz oder des EWR übermittelt werden, stützen wir uns auf Angemessenheitsbeschlüsse, Standardvertragsklauseln (SCCs) oder andere geeignete Schutzmassnahmen gemäss dem anwendbaren Recht."
+        "content2": "3.2 Diese Verarbeitung kann die Übermittlung von Daten an Server ausserhalb der Schweiz und des Europäischen Wirtschaftsraums (EWR), insbesondere in die Vereinigten Staaten, umfassen. Geeignete Schutzmassnahmen sind vorhanden (siehe Abschnitt 6).",
+        "content3": "3.3 AI Coworkers werden als AI-Systeme mit begrenztem Risiko im Sinne des EU-Gesetzes über künstliche Intelligenz (Verordnung (EU) 2024/1689) eingestuft. Personen, die mit einem AI Coworker interagieren, werden hiermit darüber informiert, dass sie mit einem AI-System und nicht mit einem Menschen kommunizieren.",
+        "content4": "3.4 AI-generierte Ergebnisse sind probabilistischer Natur und bedürfen der menschlichen Überprüfung. Die AI Coworkers treffen keine automatisierten Entscheidungen mit rechtlicher Wirkung im Sinne von Art. 22 DSGVO."
       },
-      "dataRetention": {
-        "title": "7. Datenaufbewahrung",
-        "content": "Wir bewahren personenbezogene Daten so lange auf, wie es zur Erfüllung der in dieser Erklärung beschriebenen Zwecke, zur Einhaltung gesetzlicher Pflichten, zur Beilegung von Streitigkeiten und zur Durchsetzung unserer Vereinbarungen erforderlich ist. Interaktionsprotokolle der KI-Agenten können auf unbestimmte Zeit zur Dienstverbesserung, Compliance und Prüfungszwecken aufbewahrt werden, es sei denn, Sie fordern die Löschung an und es besteht keine gesetzliche Aufbewahrungspflicht."
+      "cookiesAndTracking": {
+        "title": "4. Cookies und Tracking-Technologien",
+        "content1": "Wir verwenden Cookies und ähnliche Technologien auf unserer Website, um Ihr Nutzererlebnis zu verbessern, den Datenverkehr zu analysieren und die Plattformfunktionalität zu unterstützen. Sie können Cookies über Ihre Browsereinstellungen verwalten oder deaktivieren; die Deaktivierung bestimmter Cookies kann jedoch die Funktionalität der Website beeinträchtigen.",
+        "content2": "Soweit gesetzlich vorgeschrieben, holen wir Ihre Einwilligung ein, bevor nicht wesentliche Cookies gesetzt werden."
+      },
+      "sharingWithThirdParties": {
+        "title": "5. Weitergabe von Daten an Dritte",
+        "content": "Wir geben personenbezogene Daten nur dann an Dritte weiter, wenn dies gesetzlich zulässig, vertraglich erforderlich ist oder Sie Ihre Einwilligung erteilt haben. Wir verkaufen oder vermieten keine personenbezogenen Daten.",
+        "subProcessors": {
+          "title": "5.1 Unterauftragsverarbeiter und Dienstleister",
+          "content": "Wir setzen die folgenden Drittanbieter ein, die personenbezogene Daten in unserem Auftrag verarbeiten:",
+          "tableHeaders": ["Dienstleister", "Zweck", "Standort"],
+          "tableRows": [
+            ["OpenAI (OpenAI, LLC)", "AI-Modellinferenz", "USA"],
+            ["Anthropic (Anthropic, PBC)", "AI-Modellinferenz", "USA"],
+            ["Railway (Railway Corp.)", "Anwendungshosting", "USA"],
+            ["DigitalOcean (DigitalOcean, LLC)", "Anwendungshosting", "USA/EU"],
+            ["Stripe (Stripe, Inc.)", "Zahlungsabwicklung", "USA/EU"],
+            ["Google (Google LLC)", "Website-Analyse (Google Analytics)", "USA/EU"]
+          ],
+          "note": "Diese Anbieter verarbeiten Daten ausschliesslich in unserem Auftrag auf der Grundlage verbindlicher vertraglicher Verpflichtungen gemäss Art. 28 DSGVO."
+        },
+        "legalObligations": {
+          "title": "5.2 Gesetzliche Pflichten",
+          "content": "Wir können personenbezogene Daten an Behörden, Gerichte oder Rechtsberater weitergeben, soweit dies gesetzlich vorgeschrieben ist, beispielsweise im Rahmen von Steuerprüfungen, behördlichen Untersuchungen oder Gerichtsverfahren."
+        }
+      },
+      "internationalTransfers": {
+        "title": "6. Internationale Datenübermittlung",
+        "content": "Soweit personenbezogene Daten in Länder ausserhalb der Schweiz und des EWR übermittelt werden, die kein angemessenes Datenschutzniveau gewährleisten, stellen wir sicher, dass geeignete Schutzmassnahmen bestehen, darunter:",
+        "items": [
+          "Von der Europäischen Kommission genehmigte Standardvertragsklauseln;",
+          "Angemessenheitsbeschlüsse der Europäischen Kommission oder des Schweizerischen Bundesrates;",
+          "Den Datenschutzrahmen Schweiz–USA, soweit anwendbar."
+        ],
+        "note": "Wir verpflichten sämtliche Unterauftragsverarbeiter zur Einhaltung gleichwertiger Schutzmassnahmen bei internationalen Datenübermittlungen."
+      },
+      "retentionPeriods": {
+        "title": "7. Aufbewahrungsfristen",
+        "content": "Wir bewahren personenbezogene Daten nur so lange auf, wie es für die Zwecke, für die sie erhoben wurden, erforderlich ist, einschliesslich der Einhaltung gesetzlicher Aufbewahrungspflichten:",
+        "tableHeaders": ["Datenkategorie", "Aufbewahrungsfrist"],
+        "tableRows": [
+          ["Konto- und Abonnementdaten", "Dauer des Abonnements + 30 Tage nach Beendigung"],
+          ["Transaktions- und Abrechnungsdaten", "6 bis 10 Jahre (gemäss Schweizer Handels- und Steuerrecht, Art. 957 ff. OR)"],
+          ["Support- und Kommunikationsdaten", "3 Jahre ab dem Datum der letzten Interaktion"],
+          ["Marketingeinwilligungsdaten", "3 Jahre ab der letzten Interaktion oder dem Widerruf der Einwilligung"],
+          ["Protokoll- und Nutzungsdaten", "12 Monate"]
+        ],
+        "note": "Nach Ablauf der jeweiligen Aufbewahrungsfrist werden personenbezogene Daten gelöscht oder anonymisiert, sofern keine gesetzliche Pflicht zur längeren Aufbewahrung besteht."
       },
       "yourRights": {
         "title": "8. Ihre Rechte",
-        "content": "Nach geltendem Datenschutzrecht (DSG/DSGVO) haben Sie das Recht:",
+        "content": "Als betroffene Person stehen Ihnen nach der DSGVO und dem Schweizer DSG folgende Rechte zu:",
         "items": [
-          "Auskunft über die von uns über Sie gespeicherten personenbezogenen Daten zu erhalten",
-          "Die Berichtigung unrichtiger Daten zu verlangen",
-          "Das Recht auf Löschung Ihrer Daten geltend zu machen (vorbehaltlich gesetzlicher Aufbewahrungspflichten)",
-          "Der Verarbeitung zu widersprechen oder diese einzuschränken",
-          "Datenübertragbarkeit zu verlangen",
-          "Die Einwilligung jederzeit zu widerrufen (ohne dass die Rechtmässigkeit der vorherigen Verarbeitung berührt wird)",
-          "Eine Beschwerde bei einer Aufsichtsbehörde einzureichen (EDÖB in der Schweiz oder Ihre zuständige EU-Datenschutzbehörde)"
+          "Auskunftsrecht (Art. 15 DSGVO): Sie können Auskunft darüber verlangen, ob wir Ihre personenbezogenen Daten verarbeiten, und gegebenenfalls Zugang zu diesen Daten sowie zugehörigen Informationen erhalten.",
+          "Recht auf Berichtigung (Art. 16 DSGVO): Sie können die Berichtigung unrichtiger personenbezogener Daten oder die Vervollständigung unvollständiger Daten verlangen.",
+          "Recht auf Löschung (Art. 17 DSGVO): Sie können die Löschung Ihrer personenbezogenen Daten verlangen, sofern einer der in Art. 17 DSGVO genannten Gründe vorliegt und keine gesetzliche Aufbewahrungspflicht oder ein überwiegendes berechtigtes Interesse der Löschung entgegensteht.",
+          "Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO): Sie können die Einschränkung der Verarbeitung unter den in Art. 18 DSGVO genannten Voraussetzungen verlangen.",
+          "Recht auf Datenübertragbarkeit (Art. 20 DSGVO): Soweit die Verarbeitung auf einer Einwilligung oder einem Vertrag beruht und mittels automatisierter Verfahren erfolgt, können Sie verlangen, Ihre personenbezogenen Daten in einem strukturierten, gängigen und maschinenlesbaren Format zu erhalten.",
+          "Widerspruchsrecht (Art. 21 DSGVO): Sie können der Verarbeitung auf Grundlage von Art. 6(1)(f) DSGVO aus Gründen, die sich aus Ihrer besonderen Situation ergeben, widersprechen.",
+          "Recht auf Widerruf der Einwilligung (Art. 7(3) DSGVO): Soweit die Verarbeitung auf einer Einwilligung beruht, können Sie diese jederzeit mit Wirkung für die Zukunft widerrufen. Die Rechtmässigkeit der vor dem Widerruf erfolgten Verarbeitung bleibt davon unberührt."
         ],
-        "contactInfo": "Zur Ausübung dieser Rechte kontaktieren Sie uns unter business@utxo.ag. Wir können vor der Bearbeitung Ihres Antrags eine Identitätsprüfung verlangen. Wir werden innerhalb von 30 Tagen antworten, wie gesetzlich vorgeschrieben."
+        "contactInfo": "Zur Ausübung dieser Rechte kontaktieren Sie uns bitte unter business@utxo.ag. Wir können vor der Bearbeitung Ihrer Anfrage eine Identitätsprüfung verlangen."
       },
-      "cookiesAndTracking": {
-        "title": "9. Cookies und Tracking",
-        "content": "Diese Website kann technisch notwendige Cookies verwenden, die für ihren Betrieb erforderlich sind. Wir verwenden keine Werbe- oder Tracking-Cookies. Allfällige Analysen werden, sofern implementiert, datenschutzfreundliche Werkzeuge in Übereinstimmung mit dem anwendbaren Recht verwenden."
+      "supervisoryAuthorities": {
+        "title": "9. Aufsichtsbehörden",
+        "content": "Die primäre Aufsichtsbehörde für Datenschutzangelegenheiten der UTXO AG ist:",
+        "authority": "EDÖB — Eidgenössischer Datenschutz- und Öffentlichkeitsbeauftragter",
+        "authorityAddress": "Feldeggweg 1\n3003 Bern, Schweiz",
+        "authorityUrl": "https://www.edoeb.admin.ch",
+        "euNote": "Betroffene Personen mit Sitz in der EU können sich auch an ihre zuständige lokale Datenschutzaufsichtsbehörde gemäss Art. 77 DSGVO wenden."
       },
-      "security": {
-        "title": "10. Sicherheit",
-        "content": "Wir implementieren angemessene technische und organisatorische Massnahmen zum Schutz personenbezogener Daten vor unbefugtem Zugriff, Veränderung, Offenlegung oder Zerstörung. Keine Methode der elektronischen Übertragung oder Speicherung ist jedoch zu 100 % sicher, und wir können keine absolute Sicherheit garantieren."
+      "automatedDecisionMaking": {
+        "title": "10. Automatisierte Entscheidungsfindung",
+        "content": "Wir verwenden personenbezogene Daten nicht für automatisierte Entscheidungen, einschliesslich Profiling, die rechtliche Wirkung entfalten oder die betroffene Person in ähnlicher Weise erheblich beeinträchtigen, im Sinne von Art. 22 DSGVO. AI Coworkers erzeugen Ergebnisse zur menschlichen Überprüfung und Verifizierung — sie treffen keine autonomen Entscheidungen mit rechtlicher oder vergleichbar erheblicher Wirkung."
+      },
+      "minors": {
+        "title": "11. Minderjährige",
+        "content": "Unsere Dienstleistungen sind ausschliesslich für die geschäftliche Nutzung bestimmt und richten sich nicht an Personen unter 18 Jahren (bzw. dem jeweils anwendbaren Volljährigkeitsalter). Wir erheben wissentlich keine personenbezogenen Daten von Minderjährigen. Sollten wir Kenntnis davon erlangen, dass personenbezogene Daten von Minderjährigen erhoben wurden, werden wir angemessene Massnahmen ergreifen, um diese Daten unverzüglich zu löschen."
       },
       "changesToPolicy": {
-        "title": "11. Änderungen dieser Erklärung",
-        "content": "Wir behalten uns das Recht vor, diese Datenschutzerklärung jederzeit zu ändern. Änderungen werden mit der Veröffentlichung auf dieser Website wirksam. Die fortgesetzte Nutzung unserer Dienste nach Änderungen gilt als Zustimmung zur aktualisierten Erklärung."
-      },
-      "contact": {
-        "title": "12. Kontakt",
-        "content": "Bei Fragen zu dieser Datenschutzerklärung oder unserer Datenverarbeitung kontaktieren Sie:\nutxo AG, Dammstrasse 16, 6300 Zug, Schweiz\nbusiness@utxo.ag"
+        "title": "12. Änderungen dieser Datenschutzerklärung",
+        "content": "Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren, um Änderungen unserer Praktiken, gesetzlicher Anforderungen oder technischer Entwicklungen zu berücksichtigen. Wesentliche Änderungen werden den betroffenen Abonnenten per E-Mail oder durch einen deutlich sichtbaren Hinweis auf unserer Website mitgeteilt. Wir empfehlen Ihnen, diese Datenschutzerklärung regelmässig zu überprüfen."
       }
     },
-    "backToHome": "← Zurück zur Startseite"
+    "contact": {
+      "company": "UTXO AG",
+      "address": "Dammstrasse 16\n6300 Zug, Schweiz",
+      "register": "Handelsregister: CH-400.3.450.669-8",
+      "email": "business@utxo.ag",
+      "website": "https://utxoag.com"
+    },
+    "backToHome": "Zurück zur Startseite"
   }
 }

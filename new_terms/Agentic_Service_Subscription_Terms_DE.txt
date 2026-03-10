@@ -1,0 +1,211 @@
+ABONNEMENTSBEDINGUNGEN FÜR AGENTIC SERVICES
+
+Letzte Aktualisierung: [DURCH UTXO AG ZU ERGÄNZEN]
+
+Diese Abonnementsbedingungen für Agentic Services («Bedingungen») regeln das Abonnementsverhältnis zwischen der UTXO AG, Dammstrasse 16, 6300 Zug, Schweiz, eingetragen unter CH-400.3.450.669-8 («UTXO AG», «wir», «uns») und dem abonnierenden Unternehmen («Kunde», «Sie») (jeweils eine «Partei», zusammen die «Parteien») für die Erbringung individueller AI-Agent-Dienstleistungen («AI Coworker» oder «Agentic Service»).
+
+Diese Bedingungen gelten ausschliesslich für Geschäftskunden (B2B). Der Agentic Service wird Konsumenten nicht angeboten.
+
+
+1. LEISTUNGSUMFANG
+
+1.1 UTXO AG stellt individuell konfigurierte AI-Agents («AI Coworkers») als verwaltete Dienstleistung (Managed Service) bereit. Jeder AI Coworker wird auf der Infrastruktur von UTXO AG eingerichtet und betrieben und in die bestehenden Workflows des Kunden integriert (z. B. E-Mail, CRM, Datenbanken, ERP-Systeme, Kollaborationswerkzeuge).
+
+1.2 Zwei Leistungsarten stehen zur Verfügung:
+
+(a) Standard AI Coworkers: Vorkonfigurierte Agents mit standardisierten Funktionen, verfügbar über gestufte monatliche Abonnementstarife gemäss Veröffentlichung durch UTXO AG.
+
+(b) Individuelle Entwicklung (Custom Development): Massgeschneiderte Agent-Entwicklung einschliesslich individueller Integrationen, Funktionen und Workflow-Design. Die individuelle Entwicklung wird separat abgerechnet (projektbasiert oder nach Aufwand) und ist vor Beginn des Abonnements abzuschliessen.
+
+1.3 Diese Bedingungen umfassen durch Verweis:
+- die Acceptable Use Policy;
+- die Datenschutzerklärung (Privacy Policy); und
+- den Auftragsverarbeitungsvertrag (Anhang).
+
+Im Falle eines Widerspruchs zwischen diesen Bedingungen und dem Auftragsverarbeitungsvertrag hat der Auftragsverarbeitungsvertrag in Bezug auf datenschutzrechtliche Angelegenheiten Vorrang.
+
+
+2. ONBOARDING UND AKTIVIERUNG DES SERVICE
+
+2.1 Jede AI Coworker-Bereitstellung umfasst eine Onboarding-Phase, in der UTXO AG den Agent konfiguriert, Verbindungen zu den Systemen des Kunden herstellt und die Integration testet.
+
+2.2 Der Kunde ist verpflichtet, am Onboarding-Prozess mitzuwirken, indem er zeitnah Zugang zu den erforderlichen Systemen, Zugangsdaten, Daten und Informationen gewährt, soweit dies von UTXO AG vernünftigerweise verlangt wird.
+
+2.3 Das Abonnement beginnt mit Abschluss der Onboarding-Phase, bestätigt durch die Übermittlung eines Abonnementslinks per E-Mail durch UTXO AG an den Kunden.
+
+
+3. LEISTUNGSBESCHREIBUNG UND AI-TRANSPARENZ
+
+3.1 Der Agentic Service wird «wie besehen» und nach dem Grundsatz der bestmöglichen Leistung (Best-Effort) erbracht. UTXO AG garantiert keine bestimmte Verfügbarkeit, Betriebszeit, Reaktionszeit oder Servicequalität. Es gilt kein Service Level Agreement (SLA), sofern nicht ausdrücklich in einer gesonderten schriftlichen Vereinbarung festgelegt.
+
+3.2 AI Coworkers basieren auf probabilistischen Modellen künstlicher Intelligenz, die von Drittanbietern für AI-Infrastruktur (einschliesslich OpenAI und Anthropic) bereitgestellt werden. Der Kunde anerkennt und stimmt zu, dass:
+
+(a) AI-Ergebnisse durch statistische Inferenz erzeugt werden und Fehler, Ungenauigkeiten oder unvollständige Informationen enthalten können;
+
+(b) AI Coworkers Aufgaben über längere Zeiträume autonom ausführen können (einige Aufgaben können mehrere Stunden dauern);
+
+(c) der Kunde die alleinige Verantwortung für die Überprüfung, Kontrolle und Freigabe aller AI-generierten Ergebnisse trägt, bevor er sich auf diese verlässt oder sie in einem Geschäftsprozess verwendet;
+
+(d) UTXO AG keine Gewähr für die Richtigkeit, Vollständigkeit, Eignung oder Tauglichkeit für einen bestimmten Zweck von AI-generierten Ergebnissen übernimmt.
+
+3.3 In Übereinstimmung mit der KI-Verordnung der EU (Verordnung (EU) 2024/1689) legt UTXO AG hiermit offen, dass die AI Coworkers AI-Systeme mit begrenztem Risiko darstellen. Der Kunde sowie seine Mitarbeiter, Auftragnehmer und Geschäftspartner, die mit dem AI Coworker interagieren, sind darüber zu informieren, dass sie mit einem AI-System und nicht mit einem Menschen interagieren.
+
+3.4 Das ordnungsgemässe Funktionieren des Agentic Service kann erfordern, dass der Kunde bestimmte technische Voraussetzungen erfüllt (z. B. geeignete E-Mail-Konfiguration, Systemzugang, Netzwerkanbindung). Der Kunde ist für die Umsetzung und Aufrechterhaltung dieser Voraussetzungen verantwortlich. UTXO AG haftet nicht für Mängel des Agentic Service, die auf die Nichterfüllung dieser Voraussetzungen durch den Kunden zurückzuführen sind.
+
+
+4. ABONNEMENT, ABRECHNUNG UND ZAHLUNG
+
+4.1 Jeder AI Coworker unterliegt einem separaten Abonnement. UTXO AG bietet gestufte Abonnementstarife mit monatlichen Abrechnungszyklen an. Die geltende Preisgestaltung wird dem Kunden vor Aktivierung des Abonnements mitgeteilt.
+
+4.2 Abonnements werden durch den Kunden über einen von UTXO AG per E-Mail bereitgestellten Abonnementslink aktiviert. Mit der Aktivierung des Abonnements akzeptiert der Kunde diese Bedingungen, die Acceptable Use Policy, die Datenschutzerklärung (Privacy Policy) und den Auftragsverarbeitungsvertrag.
+
+4.3 Die Zahlung ist monatlich im Voraus fällig und kann per Rechnung oder über den Zahlungsdienstleister Stripe erfolgen. Alle Preise verstehen sich zuzüglich der anfallenden Steuern (einschliesslich Mehrwertsteuer), die gegebenenfalls gesetzlich geschuldet hinzugerechnet werden.
+
+4.4 Kommt der Kunde mit einer Zahlung in Verzug, ist UTXO AG berechtigt, Verzugszinsen gemäss Art. 104 des Schweizerischen Obligationenrechts (OR) zu erheben und den Agentic Service bis zur vollständigen Begleichung aller ausstehenden Beträge auszusetzen.
+
+4.5 Gebühren für individuelle Entwicklung werden separat abgerechnet (projektbasiert oder nach Aufwand), wie zwischen den Parteien vor Beginn der individuellen Entwicklungsarbeiten schriftlich vereinbart. Gebühren für individuelle Entwicklung sind nach Arbeitsbeginn nicht erstattungsfähig.
+
+
+5. LAUFZEIT UND KÜNDIGUNG
+
+5.1 Das Abonnement läuft auf monatlich fortlaufender Basis. Jede Partei kann das Abonnement jederzeit mit Wirkung zum Ende der laufenden Abrechnungsperiode durch schriftliche Mitteilung (E-Mail genügt) kündigen.
+
+5.2 Jede Partei kann das Abonnement aus wichtigem Grund mit sofortiger Wirkung kündigen, wenn:
+
+(a) die andere Partei eine wesentliche Verletzung dieser Bedingungen begeht und diese Verletzung nicht innerhalb von vierzehn (14) Tagen nach Erhalt einer schriftlichen Mitteilung, die den Verstoss spezifiziert, behebt; oder
+
+(b) die andere Partei zahlungsunfähig wird, in Liquidation tritt oder ein Konkursverwalter oder Sachwalter über ihr Vermögen bestellt wird.
+
+5.3 UTXO AG ist berechtigt, den Agentic Service sofort zu kündigen oder auszusetzen, wenn der Kunde gegen die Acceptable Use Policy verstösst.
+
+5.4 Für den verbleibenden Anteil einer im Voraus bezahlten Abrechnungsperiode werden bei Kündigung keine Rückerstattungen gewährt.
+
+5.5 Nach Beendigung hat UTXO AG die Kundendaten gemäss dem Auftragsverarbeitungsvertrag (Abschnitt 12) zu behandeln.
+
+
+6. ÄNDERUNGEN UND AKTUALISIERUNGEN
+
+6.1 Der Kunde kann jederzeit Änderungen an der Konfiguration, den Funktionen oder den Integrationen seines AI Coworkers beantragen, indem er UTXO AG kontaktiert. UTXO AG hat angemessene Änderungen innerhalb eines wirtschaftlich angemessenen Zeitrahmens umzusetzen. Änderungen, die einen erheblichen Entwicklungsaufwand erfordern, können zusätzliche Gebühren nach sich ziehen.
+
+6.2 UTXO AG kann nach eigenem Ermessen Aktualisierungen, Patches oder Modifikationen des Agentic Service zur Aufrechterhaltung der Funktionalität, Sicherheit oder Compliance ohne vorherige Genehmigung des Kunden vornehmen.
+
+6.3 UTXO AG behält sich das Recht vor, diese Bedingungen zu ändern. Wesentliche Änderungen werden dem Kunden mindestens dreissig (30) Tage im Voraus per E-Mail mitgeteilt. Die fortgesetzte Nutzung des Agentic Service nach dem Inkrafttreten einer Änderung gilt als Annahme der geänderten Bedingungen. Stimmt der Kunde den Änderungen nicht zu, kann er das Abonnement gemäss Abschnitt 5.1 kündigen.
+
+
+7. GEISTIGES EIGENTUM
+
+7.1 Sämtliche Rechte, Ansprüche und Interessen (einschliesslich aller Rechte an geistigem Eigentum) am Agentic Service, an den AI Coworkers, der zugrundeliegenden Technologie, Plattform, den Algorithmen, Modellen und der Software verbleiben ausschliesslich bei UTXO AG und ihren Lizenzgebern.
+
+7.2 Der Kunde behält das vollständige Eigentum an allen Daten, Inhalten und Materialien, die er UTXO AG zum Zweck des Betriebs des Agentic Service zur Verfügung stellt («Kundendaten»).
+
+7.3 Der Kunde gewährt UTXO AG eine beschränkte, nicht-exklusive, nicht übertragbare, widerrufliche Lizenz zum Zugriff auf und zur Verarbeitung von Kundendaten ausschliesslich zum Zweck der Erbringung des Agentic Service im Rahmen dieser Bedingungen. Diese Lizenz endet automatisch mit Beendigung des Abonnements.
+
+7.4 UTXO AG ist nicht berechtigt, Kundendaten für andere Zwecke als die Erbringung des Agentic Service zu verwenden. Insbesondere dürfen Kundendaten nicht zum Training von AI-Modellen, zur statistischen Analyse über die Leistungserbringung hinaus oder für sonstige Zwecke verwendet werden.
+
+7.5 Dem Kunden wird ein nicht-exklusives, nicht übertragbares, nicht unterlizenzierbares Recht zur Nutzung des Agentic Service während der Laufzeit des Abonnements eingeräumt, vorbehaltlich der Zahlung der geltenden Gebühren und der Einhaltung dieser Bedingungen.
+
+
+8. HAFTUNG
+
+8.1 Die Gesamthaftung von UTXO AG für sämtliche Ansprüche aus oder im Zusammenhang mit diesen Bedingungen ist, soweit gesetzlich zulässig, auf den Gesamtbetrag der vom Kunden an UTXO AG tatsächlich gezahlten Gebühren in den zwölf (12) Monaten unmittelbar vor dem haftungsbegründenden Ereignis beschränkt.
+
+8.2 Soweit gesetzlich zulässig, haftet UTXO AG nicht für indirekte Schäden, Nebenschäden, besondere Schäden, Folgeschäden oder Strafschadensersatz, einschliesslich, aber nicht beschränkt auf entgangenen Gewinn, Datenverlust, Geschäftsverlust oder Betriebsunterbrechung, ungeachtet der Art des Anspruchs oder der Haftungstheorie.
+
+8.3 UTXO AG haftet nicht für:
+
+(a) die Richtigkeit, Vollständigkeit oder Eignung von AI-generierten Ergebnissen;
+
+(b) Entscheidungen, die der Kunde auf der Grundlage von AI-generierten Ergebnissen trifft;
+
+(c) Verluste oder Schäden, die aus der unterlassenen Überprüfung von AI-generierten Ergebnissen durch den Kunden resultieren;
+
+(d) Unterbrechungen oder Beeinträchtigungen des Agentic Service, die durch Umstände ausserhalb der angemessenen Kontrolle von UTXO AG verursacht werden, einschliesslich Ereignisse höherer Gewalt (Naturkatastrophen, Pandemien, behördliche Massnahmen, Cyberangriffe, Ausfälle von Drittanbieter-Infrastruktur oder Internetunterbrechungen).
+
+8.4 Keine Bestimmung dieser Bedingungen schliesst die Haftung für Schäden aufgrund von Vorsatz oder grober Fahrlässigkeit oder für Personenschäden (Art. 100 OR) aus oder beschränkt diese.
+
+8.5 Die vorstehenden Haftungsbeschränkungen gelten auch für die persönliche Haftung der Mitarbeiter, Geschäftsführer, Vertreter und Beauftragten von UTXO AG.
+
+
+9. VERTRAULICHKEIT
+
+9.1 Jede Partei hat sämtliche von der anderen Partei erhaltenen Informationen, die als vertraulich gekennzeichnet sind oder die ein vernünftige Geschäftsperson als vertraulich betrachten würde, vertraulich zu behandeln («Vertrauliche Informationen»), einschliesslich, aber nicht beschränkt auf technische Informationen, Geschäftspläne, Preisgestaltung, Kundendaten, Prozesse und Quellcode.
+
+9.2 Als Vertrauliche Informationen gelten nicht Informationen, die:
+
+(a) der empfangenden Partei zum Zeitpunkt der Offenlegung bereits bekannt waren;
+
+(b) ohne Verschulden der empfangenden Partei öffentlich zugänglich sind oder werden;
+
+(c) von einem Dritten ohne Verstoss gegen Vertraulichkeitspflichten erhalten wurden; oder
+
+(d) von der empfangenden Partei unabhängig und ohne Bezugnahme auf die Vertraulichen Informationen entwickelt wurden.
+
+9.3 Jede Partei hat Vertrauliche Informationen mindestens mit derselben Sorgfalt zu schützen, die sie für ihre eigenen vertraulichen Informationen aufwendet, in keinem Fall jedoch mit weniger als angemessener Sorgfalt.
+
+9.4 Jede Partei hat sicherzustellen, dass ihre Mitarbeiter, Auftragnehmer und Berater, die Zugang zu Vertraulichen Informationen haben, durch Vertraulichkeitsverpflichtungen gebunden sind, die nicht weniger schützend sind als die in diesem Abschnitt festgelegten.
+
+9.5 Die Vertraulichkeitspflichten gemäss diesem Abschnitt 9 bestehen für einen Zeitraum von fünf (5) Jahren über die Beendigung dieser Bedingungen hinaus fort.
+
+
+10. DATENSCHUTZ
+
+10.1 UTXO AG verarbeitet personenbezogene Daten im Auftrag des Kunden in ihrer Eigenschaft als Auftragsverarbeiter im Sinne von Art. 28 DSGVO bzw. Art. 9 DSG. Der als Anhang zu diesen Bedingungen beigefügte Auftragsverarbeitungsvertrag bildet einen integralen Bestandteil des Vertragsverhältnisses und wird vom Kunden mit dem Abschluss des Abonnements für den Agentic Service automatisch akzeptiert.
+
+10.2 Der Kunde nimmt zur Kenntnis, dass die Erbringung des Agentic Service die Verarbeitung von Kundendaten durch Drittanbieter für AI-Infrastruktur (OpenAI, Anthropic) und Hosting-Anbieter (Railway, DigitalOcean) umfasst, was internationale Datenübermittlungen zur Folge haben kann. Geeignete Schutzmassnahmen sind im Auftragsverarbeitungsvertrag beschrieben.
+
+10.3 Einzelheiten zur Verarbeitung personenbezogener Daten, einschliesslich der Kategorien betroffener Personen, Datenkategorien, Unterauftragsverarbeiter sowie technischer und organisatorischer Massnahmen, sind im Auftragsverarbeitungsvertrag festgelegt.
+
+10.4 Informationen darüber, wie UTXO AG personenbezogene Daten als Verantwortlicher verarbeitet (z. B. im Zusammenhang mit der Website und der Kontoverwaltung), finden Sie in der Datenschutzerklärung unter https://utxoag.com.
+
+
+11. SUPPORT
+
+11.1 UTXO AG erbringt Support ausschliesslich per E-Mail unter support@utxoag.com während der regulären Geschäftszeiten (Montag bis Freitag, 09:00–17:00 Uhr MEZ, ausgenommen gesetzliche Feiertage im Kanton Zug).
+
+11.2 Support wird auf Best-Effort-Basis erbracht. UTXO AG verpflichtet sich nicht zu bestimmten Reaktions- oder Lösungszeiten, sofern nicht ausdrücklich in einer gesonderten schriftlichen Vereinbarung festgelegt.
+
+
+12. COMPLIANCE
+
+Jede Partei ist für die Einhaltung der für sie geltenden gesetzlichen und regulatorischen Pflichten verantwortlich, einschliesslich Datenschutzgesetze, steuerliche Pflichten und branchenspezifische Anforderungen. UTXO AG ist nicht dafür verantwortlich sicherzustellen, dass die Nutzung des Agentic Service durch den Kunden den regulatorischen Anforderungen des Kunden entspricht.
+
+
+13. HÖHERE GEWALT
+
+Keine Partei haftet für Verzögerungen oder die Nichterfüllung ihrer Pflichten aus diesen Bedingungen, soweit solche Verzögerungen oder Nichterfüllungen auf Umstände zurückzuführen sind, die ausserhalb ihrer angemessenen Kontrolle liegen, einschliesslich, aber nicht beschränkt auf Naturkatastrophen, Pandemien, behördliche Massnahmen, Krieg, Terrorismus, innere Unruhen, Cyberangriffe, Internetunterbrechungen oder Ausfälle von Drittanbieter-Infrastruktur. Die betroffene Partei hat die andere Partei unverzüglich zu benachrichtigen und angemessene Anstrengungen zur Minderung der Auswirkungen zu unternehmen.
+
+
+14. ANWENDBARES RECHT UND GERICHTSSTAND
+
+14.1 Diese Bedingungen und alle daraus oder im Zusammenhang damit entstehenden Streitigkeiten (einschliesslich ausservertraglicher Streitigkeiten) unterliegen dem materiellen Recht der Schweiz unter Ausschluss der Kollisionsnormen.
+
+14.2 Das Übereinkommen der Vereinten Nationen über Verträge über den internationalen Warenkauf (CISG) findet keine Anwendung.
+
+14.3 Ausschliesslicher Gerichtsstand für alle Streitigkeiten aus oder im Zusammenhang mit diesen Bedingungen sind die Gerichte des Kantons Zug, Schweiz.
+
+
+15. VERSCHIEDENES
+
+15.1 Salvatorische Klausel. Sollte eine Bestimmung dieser Bedingungen von einem zuständigen Gericht für ungültig oder undurchsetzbar befunden werden, so bleiben die übrigen Bestimmungen in vollem Umfang wirksam. Die ungültige Bestimmung ist durch eine wirksame Bestimmung zu ersetzen, die dem wirtschaftlichen Zweck der ursprünglichen Bestimmung am nächsten kommt.
+
+15.2 Abtretung. Keine Partei darf ihre Rechte oder Pflichten aus diesen Bedingungen ohne vorherige schriftliche Zustimmung der anderen Partei abtreten. Jede Abtretung unter Verstoss gegen diese Bestimmung ist nichtig.
+
+15.3 Gesamtvertrag. Diese Bedingungen bilden zusammen mit der Acceptable Use Policy, der Datenschutzerklärung (Privacy Policy) und dem Auftragsverarbeitungsvertrag die gesamte Vereinbarung zwischen den Parteien in Bezug auf den Vertragsgegenstand und ersetzen alle früheren und gleichzeitigen Vereinbarungen, Zusicherungen und Absprachen. Die allgemeinen Geschäftsbedingungen des Kunden finden keine Anwendung. Änderungen dieser Bedingungen bedürfen der Schriftform.
+
+15.4 Mitteilungen. Alle Mitteilungen im Rahmen dieser Bedingungen sind schriftlich und in englischer oder deutscher Sprache abzufassen. Mitteilungen können per E-Mail an die im Abonnement angegebenen Adressen oder an die folgenden Adressen gesendet werden: business@utxo.ag (UTXO AG) oder die hinterlegte E-Mail-Adresse des Kunden.
+
+15.5 Unabhängige Vertragsparteien. Die Parteien sind unabhängige Vertragsparteien. Keine Bestimmung dieser Bedingungen ist dahingehend auszulegen, dass ein Joint Venture, eine Partnerschaft, ein Arbeitsverhältnis oder ein Vertretungsverhältnis zwischen den Parteien begründet wird.
+
+15.6 Keine Drittbegünstigung. Diese Bedingungen begründen keine Rechte oder Ansprüche zugunsten Dritter.
+
+15.7 Verzicht. Das Unterlassen der Ausübung oder Durchsetzung eines Rechts aus diesen Bedingungen durch eine Partei stellt keinen Verzicht auf dieses Recht dar.
+
+15.8 Embargo-Länder. Der Agentic Service darf nicht von einem Kunden genutzt werden, der seinen Sitz in einem von den USA, der EU, dem Vereinigten Königreich oder der Schweiz mit einem Embargo belegten Land hat.
+
+
+UTXO AG
+Dammstrasse 16
+6300 Zug, Schweiz
+Handelsregister: CH-400.3.450.669-8
+E-Mail: business@utxo.ag
+Website: https://utxoag.com

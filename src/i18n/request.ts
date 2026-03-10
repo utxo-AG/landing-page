@@ -17,10 +17,16 @@ export default getRequestConfig(async ({ requestLocale }) => {
     const terms = (await import(`../../messages/${locale}/terms.json`)).default;
     const imprint = (await import(`../../messages/${locale}/imprint.json`))
       .default;
+    const acceptableUse = (
+      await import(`../../messages/${locale}/acceptable-use.json`)
+    ).default;
+    const dpa = (await import(`../../messages/${locale}/dpa.json`)).default;
     legalMessages = {
       Privacy: privacy.Privacy,
       Terms: terms.Terms,
       Imprint: imprint.Imprint,
+      AcceptableUse: acceptableUse.AcceptableUse,
+      DPA: dpa.DPA,
     };
   } catch {
     // Legal files may not exist yet — skip silently
