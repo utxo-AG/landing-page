@@ -11,8 +11,8 @@
   },
   "Hero": {
     "label": "Produktstudio",
-    "titleBlack": "KI-Kollegen einstellen.",
-    "titleGray": "Einfach per E-Mail.",
+    "titleBlack": "KI-Agenten einsetzen.",
+    "titleGray": "Kein Dashboard. Nur E-Mail."
     "description": "Wir entwickeln massgeschneiderte KI-Agenten für Ihr Unternehmen — direkt integriert in SAP, Outlook, Teams, Slack und mehr. Interesse? Schreiben Sie uns.",
     "inboxLabel": "Inbox — KI-Agenten",
     "toYou": "An: Sie"
