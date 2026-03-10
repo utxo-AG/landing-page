@@ -1,0 +1,194 @@
+DATENSCHUTZERKLÄRUNG
+
+Letzte Aktualisierung: [WIRD VON UTXO AG ERGÄNZT]
+
+UTXO AG («UTXO AG», «wir», «uns», «unser») nimmt den Schutz Ihrer personenbezogenen Daten ernst. Diese Datenschutzerklärung erläutert, wie wir personenbezogene Daten im Zusammenhang mit unserer Website (https://utxoag.com) und unseren AI-Agent-Dienstleistungen («AI Coworkers» oder «Agentic Service») erheben, verwenden, speichern und weitergeben.
+
+Wir verarbeiten personenbezogene Daten in Übereinstimmung mit der Datenschutz-Grundverordnung (EU) 2016/679 («DSGVO»), dem Bundesgesetz über den Datenschutz («DSG») und weiteren anwendbaren Datenschutzgesetzen.
+
+
+1. VERANTWORTLICHER UND KONTAKT
+
+Der für die Verarbeitung personenbezogener Daten Verantwortliche ist:
+
+UTXO AG
+Dammstrasse 16
+6300 Zug, Schweiz
+Handelsregister: CH-400.3.450.669-8
+
+Datenschutzkontakt: business@utxo.ag
+
+Bei Fragen zu dieser Datenschutzerklärung oder zur Verarbeitung Ihrer personenbezogenen Daten können Sie uns unter der oben genannten Adresse kontaktieren.
+
+
+2. VERARBEITUNGSZWECKE, RECHTSGRUNDLAGEN UND DATENKATEGORIEN
+
+Die folgende Tabelle gibt einen Überblick über die Zwecke, zu denen wir personenbezogene Daten verarbeiten, die betroffenen Datenkategorien und die jeweilige Rechtsgrundlage.
+
+Verarbeitungszweck | Kategorien personenbezogener Daten | Rechtsgrundlage
+--- | --- | ---
+Dienstleistungserbringung und Betrieb der AI-Agents | Aufgabeninhalte, Anweisungen, Agent-Input-/Output-Daten, Interaktions-Metadaten, Daten aus verbundenen Systemen (E-Mail-Inhalte, Anhänge, CRM-Daten) | Art. 6(1)(b) DSGVO — Vertragserfüllung
+Konto- und Abonnementverwaltung | Name, E-Mail-Adresse, Firmenname, Abonnementdetails, Anmeldedaten | Art. 6(1)(b) DSGVO — Vertragserfüllung
+Abrechnung und Zahlungsabwicklung (über Stripe) | Name, Firmenname, Rechnungsadresse, Zahlungsinformationen (Kartenmarke, gekürzte Kartennummer, Ablaufdatum), Transaktions-ID, Rechnungsdaten | Art. 6(1)(b) DSGVO — Vertragserfüllung
+Support und Problemlösung | Name, E-Mail-Adresse, Anfrageinhalt, Kommunikationsverlauf, relevante technische Protokolle | Art. 6(1)(b) und Art. 6(1)(f) DSGVO — Vertragserfüllung / berechtigtes Interesse
+Marketingkommunikation | E-Mail-Adresse, Präferenzen, Einwilligungsprotokolle | Art. 6(1)(a) DSGVO — Einwilligung
+Plattformanalysen und Optimierung | Gerätedaten, anonymisierte/pseudonymisierte IP-Adresse, Nutzungsmuster, Seitenaufrufe, Cookies | Art. 6(1)(a) DSGVO — Einwilligung (Cookie-basiert); Art. 6(1)(f) DSGVO — berechtigtes Interesse (aggregierte Analysen)
+Einhaltung gesetzlicher Vorschriften | Nutzungsdaten, Identitätsdaten, Finanz- und Steuerinformationen | Art. 6(1)(c) DSGVO — gesetzliche Verpflichtung
+
+
+2.1 Dienstleistungserbringung und Betrieb der AI-Agents
+
+Wenn Sie einen AI Coworker nutzen, verarbeitet der Agent Daten aus Ihren verbundenen Systemen (z. B. E-Mail-Inhalte, Anhänge, CRM-Einträge, Datenbankeinträge), um die zugewiesenen Aufgaben auszuführen. Diese Daten werden ausschliesslich zum Zweck der Erbringung der abonnierten Dienstleistung verarbeitet. Soweit UTXO AG als Auftragsverarbeiter im Auftrag des Kunden handelt, wird die Verarbeitung durch den Auftragsverarbeitungsvertrag geregelt.
+
+2.2 Konto- und Abonnementverwaltung
+
+Wir verarbeiten Ihre Kontakt- und Unternehmensdaten, um Ihr Abonnement einzurichten und zu verwalten, dienstleistungsbezogene Informationen zu übermitteln und Ihr Konto zu administrieren.
+
+2.3 Abrechnung und Zahlungsabwicklung
+
+Zahlungstransaktionen werden von Stripe, Inc., einem lizenzierten Zahlungsdienstleister, abgewickelt. Wir erhalten lediglich eingeschränkte Zahlungsinformationen (z. B. gekürzte Kartennummer, Transaktionsbestätigung), die für die Rechnungsstellung und Buchhaltung erforderlich sind. Vollständige Zahlungskartendaten werden von uns nicht gespeichert.
+
+2.4 Support und Problemlösung
+
+Wenn Sie unser Support-Team unter support@utxoag.com kontaktieren, erheben wir die zur Bearbeitung Ihrer Anfrage erforderlichen Informationen, einschliesslich Ihrer Kontaktdaten, einer Beschreibung des Problems sowie relevanter Konto- oder technischer Daten.
+
+2.5 Marketingkommunikation
+
+Mit Ihrer ausdrücklichen Einwilligung können wir Ihnen Marketingmitteilungen zu unseren Dienstleistungen, Produktaktualisierungen oder Veranstaltungen senden. Sie können Ihre Einwilligung jederzeit widerrufen, indem Sie den Abmeldelink in einer Marketingmitteilung nutzen oder uns unter business@utxo.ag kontaktieren. Der Widerruf der Einwilligung berührt nicht die Rechtmässigkeit der vor dem Widerruf erfolgten Verarbeitung.
+
+2.6 Plattformanalysen und Optimierung
+
+Wir setzen Analysetools ein, um die Nutzung unserer Website und Dienstleistungen zu verstehen und das Nutzererlebnis zu verbessern. Soweit Analysen auf Cookies oder ähnlichen Technologien basieren, holen wir Ihre Einwilligung gemäss dem anwendbaren Recht ein. Analysedaten werden, soweit möglich, pseudonymisiert oder anonymisiert.
+
+2.7 Einhaltung gesetzlicher Vorschriften
+
+Wir verarbeiten bestimmte Daten zur Erfüllung anwendbarer gesetzlicher Pflichten, einschliesslich der handels- und steuerrechtlichen Aufbewahrungspflichten nach Schweizer Recht (Art. 957 ff. OR, Schweizer Steuergesetzgebung).
+
+
+3. AI-SPEZIFISCHE OFFENLEGUNG DER DATENVERARBEITUNG
+
+3.1 AI Coworkers verarbeiten Kundendaten — einschliesslich E-Mail-Inhalte, Anhänge und Daten aus verbundenen Systemen — unter Verwendung von AI-Infrastruktur folgender Drittanbieter:
+
+- OpenAI (OpenAI, LLC), USA
+- Anthropic (Anthropic, PBC), USA
+
+3.2 Diese Verarbeitung kann die Übermittlung von Daten an Server ausserhalb der Schweiz und des Europäischen Wirtschaftsraums (EWR), insbesondere in die Vereinigten Staaten, umfassen. Geeignete Schutzmassnahmen sind vorhanden (siehe Abschnitt 6).
+
+3.3 AI Coworkers werden als AI-Systeme mit begrenztem Risiko im Sinne des EU-Gesetzes über künstliche Intelligenz (Verordnung (EU) 2024/1689) eingestuft. Personen, die mit einem AI Coworker interagieren, werden hiermit darüber informiert, dass sie mit einem AI-System und nicht mit einem Menschen kommunizieren.
+
+3.4 AI-generierte Ergebnisse sind probabilistischer Natur und bedürfen der menschlichen Überprüfung. Die AI Coworkers treffen keine automatisierten Entscheidungen mit rechtlicher Wirkung im Sinne von Art. 22 DSGVO.
+
+
+4. COOKIES UND TRACKING-TECHNOLOGIEN
+
+Wir verwenden Cookies und ähnliche Technologien auf unserer Website, um Ihr Nutzererlebnis zu verbessern, den Datenverkehr zu analysieren und die Plattformfunktionalität zu unterstützen. Sie können Cookies über Ihre Browsereinstellungen verwalten oder deaktivieren; die Deaktivierung bestimmter Cookies kann jedoch die Funktionalität der Website beeinträchtigen.
+
+Soweit gesetzlich vorgeschrieben, holen wir Ihre Einwilligung ein, bevor nicht wesentliche Cookies gesetzt werden.
+
+Weitere Informationen finden Sie in unserer Cookie-Richtlinie unter https://utxoag.com/cookies.
+
+
+5. WEITERGABE VON DATEN AN DRITTE
+
+Wir geben personenbezogene Daten nur dann an Dritte weiter, wenn dies gesetzlich zulässig, vertraglich erforderlich ist oder Sie Ihre Einwilligung erteilt haben. Wir verkaufen oder vermieten keine personenbezogenen Daten.
+
+5.1 Unterauftragsverarbeiter und Dienstleister
+
+Wir setzen die folgenden Drittanbieter ein, die personenbezogene Daten in unserem Auftrag verarbeiten:
+
+| Dienstleister | Zweck | Standort |
+|---|---|---|
+| OpenAI (OpenAI, LLC) | AI-Modellinferenz | USA |
+| Anthropic (Anthropic, PBC) | AI-Modellinferenz | USA |
+| Railway (Railway Corp.) | Anwendungshosting | USA |
+| DigitalOcean (DigitalOcean, LLC) | Anwendungshosting | USA/EU |
+| Stripe (Stripe, Inc.) | Zahlungsabwicklung | USA/EU |
+| Google (Google LLC) | Website-Analyse (Google Analytics) | USA/EU |
+
+Diese Anbieter verarbeiten Daten ausschliesslich in unserem Auftrag auf der Grundlage verbindlicher vertraglicher Verpflichtungen gemäss Art. 28 DSGVO.
+
+5.2 Gesetzliche Pflichten
+
+Wir können personenbezogene Daten an Behörden, Gerichte oder Rechtsberater weitergeben, soweit dies gesetzlich vorgeschrieben ist, beispielsweise im Rahmen von Steuerprüfungen, behördlichen Untersuchungen oder Gerichtsverfahren.
+
+
+6. INTERNATIONALE DATENÜBERMITTLUNG
+
+Soweit personenbezogene Daten in Länder ausserhalb der Schweiz und des EWR übermittelt werden, die kein angemessenes Datenschutzniveau gewährleisten, stellen wir sicher, dass geeignete Schutzmassnahmen bestehen, darunter:
+
+- Von der Europäischen Kommission genehmigte Standardvertragsklauseln;
+- Angemessenheitsbeschlüsse der Europäischen Kommission oder des Schweizerischen Bundesrates;
+- Den Datenschutzrahmen Schweiz–USA, soweit anwendbar.
+
+Wir verpflichten sämtliche Unterauftragsverarbeiter zur Einhaltung gleichwertiger Schutzmassnahmen bei internationalen Datenübermittlungen.
+
+
+7. AUFBEWAHRUNGSFRISTEN
+
+Wir bewahren personenbezogene Daten nur so lange auf, wie es für die Zwecke, für die sie erhoben wurden, erforderlich ist, einschliesslich der Einhaltung gesetzlicher Aufbewahrungspflichten:
+
+| Datenkategorie | Aufbewahrungsfrist |
+|---|---|
+| Konto- und Abonnementdaten | Dauer des Abonnements + 30 Tage nach Beendigung |
+| Transaktions- und Abrechnungsdaten | 6 bis 10 Jahre (gemäss Schweizer Handels- und Steuerrecht, Art. 957 ff. OR) |
+| Support- und Kommunikationsdaten | 3 Jahre ab dem Datum der letzten Interaktion |
+| Marketingeinwilligungsdaten | 3 Jahre ab der letzten Interaktion oder dem Widerruf der Einwilligung |
+| Protokoll- und Nutzungsdaten | 12 Monate |
+
+Nach Ablauf der jeweiligen Aufbewahrungsfrist werden personenbezogene Daten gelöscht oder anonymisiert, sofern keine gesetzliche Pflicht zur längeren Aufbewahrung besteht.
+
+
+8. IHRE RECHTE
+
+Als betroffene Person stehen Ihnen nach der DSGVO und dem Schweizer DSG folgende Rechte zu:
+
+(a) Auskunftsrecht (Art. 15 DSGVO): Sie können Auskunft darüber verlangen, ob wir Ihre personenbezogenen Daten verarbeiten, und gegebenenfalls Zugang zu diesen Daten sowie zugehörigen Informationen erhalten.
+
+(b) Recht auf Berichtigung (Art. 16 DSGVO): Sie können die Berichtigung unrichtiger personenbezogener Daten oder die Vervollständigung unvollständiger Daten verlangen.
+
+(c) Recht auf Löschung (Art. 17 DSGVO): Sie können die Löschung Ihrer personenbezogenen Daten verlangen, sofern einer der in Art. 17 DSGVO genannten Gründe vorliegt und keine gesetzliche Aufbewahrungspflicht oder ein überwiegendes berechtigtes Interesse der Löschung entgegensteht.
+
+(d) Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO): Sie können die Einschränkung der Verarbeitung unter den in Art. 18 DSGVO genannten Voraussetzungen verlangen.
+
+(e) Recht auf Datenübertragbarkeit (Art. 20 DSGVO): Soweit die Verarbeitung auf einer Einwilligung oder einem Vertrag beruht und mittels automatisierter Verfahren erfolgt, können Sie verlangen, Ihre personenbezogenen Daten in einem strukturierten, gängigen und maschinenlesbaren Format zu erhalten.
+
+(f) Widerspruchsrecht (Art. 21 DSGVO): Sie können der Verarbeitung auf Grundlage von Art. 6(1)(f) DSGVO aus Gründen, die sich aus Ihrer besonderen Situation ergeben, widersprechen.
+
+(g) Recht auf Widerruf der Einwilligung (Art. 7(3) DSGVO): Soweit die Verarbeitung auf einer Einwilligung beruht, können Sie diese jederzeit mit Wirkung für die Zukunft widerrufen. Die Rechtmässigkeit der vor dem Widerruf erfolgten Verarbeitung bleibt davon unberührt.
+
+Zur Ausübung dieser Rechte kontaktieren Sie uns bitte unter business@utxo.ag. Wir können vor der Bearbeitung Ihrer Anfrage eine Identitätsprüfung verlangen.
+
+
+9. AUFSICHTSBEHÖRDEN
+
+Die primäre Aufsichtsbehörde für Datenschutzangelegenheiten der UTXO AG ist:
+
+EDÖB — Eidgenössischer Datenschutz- und Öffentlichkeitsbeauftragter
+Feldeggweg 1
+3003 Bern, Schweiz
+https://www.edoeb.admin.ch
+
+Betroffene Personen mit Sitz in der EU können sich auch an ihre zuständige lokale Datenschutzaufsichtsbehörde gemäss Art. 77 DSGVO wenden.
+
+
+10. AUTOMATISIERTE ENTSCHEIDUNGSFINDUNG
+
+Wir verwenden personenbezogene Daten nicht für automatisierte Entscheidungen, einschliesslich Profiling, die rechtliche Wirkung entfalten oder die betroffene Person in ähnlicher Weise erheblich beeinträchtigen, im Sinne von Art. 22 DSGVO. AI Coworkers erzeugen Ergebnisse zur menschlichen Überprüfung und Verifizierung — sie treffen keine autonomen Entscheidungen mit rechtlicher oder vergleichbar erheblicher Wirkung.
+
+
+11. MINDERJÄHRIGE
+
+Unsere Dienstleistungen sind ausschliesslich für die geschäftliche Nutzung bestimmt und richten sich nicht an Personen unter 18 Jahren (bzw. dem jeweils anwendbaren Volljährigkeitsalter). Wir erheben wissentlich keine personenbezogenen Daten von Minderjährigen. Sollten wir Kenntnis davon erlangen, dass personenbezogene Daten von Minderjährigen erhoben wurden, werden wir angemessene Massnahmen ergreifen, um diese Daten unverzüglich zu löschen.
+
+
+12. ÄNDERUNGEN DIESER DATENSCHUTZERKLÄRUNG
+
+Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren, um Änderungen unserer Praktiken, gesetzlicher Anforderungen oder technischer Entwicklungen zu berücksichtigen. Wesentliche Änderungen werden den betroffenen Abonnenten per E-Mail oder durch einen deutlich sichtbaren Hinweis auf unserer Website mitgeteilt. Wir empfehlen Ihnen, diese Datenschutzerklärung regelmässig zu überprüfen.
+
+
+UTXO AG
+Dammstrasse 16
+6300 Zug, Schweiz
+Handelsregister: CH-400.3.450.669-8
+E-Mail: business@utxo.ag
+Website: https://utxoag.com

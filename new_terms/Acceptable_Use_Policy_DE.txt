@@ -1,0 +1,103 @@
+RICHTLINIE ZUR AKZEPTABLEN NUTZUNG
+
+Letzte Aktualisierung: [DURCH UTXO AG ZU ERGÄNZEN]
+
+Diese Richtlinie zur akzeptablen Nutzung („Richtlinie") regelt die Nutzung der KI-Agent-Dienste („AI Coworkers" oder „Agentic Service"), die von der UTXO AG, Dammstrasse 16, 6300 Zug, Schweiz („UTXO AG") dem abonnierenden Unternehmen („Kunde") bereitgestellt werden. Diese Richtlinie bildet einen integralen Bestandteil der Agentic Service Subscription Terms.
+
+
+1. ALLGEMEINE PFLICHTEN
+
+1.1 Der Kunde hat den Agentic Service ausschliesslich für rechtmässige Zwecke und in Übereinstimmung mit diesen Bestimmungen, den Agentic Service Subscription Terms sowie allen anwendbaren Gesetzen und Vorschriften zu nutzen.
+
+1.2 Der Kunde ist allein dafür verantwortlich sicherzustellen, dass seine Nutzung des Agentic Service, einschliesslich aller durch den AI Coworker verarbeiteten Daten oder erzeugten Ergebnisse, allen Gesetzen, Vorschriften und branchenspezifischen Anforderungen entspricht, die auf den Kunden anwendbar sind.
+
+
+2. VERBOTENE NUTZUNGEN
+
+Der Kunde darf den Agentic Service nicht verwenden, um:
+
+(a) rechtswidrige Handlungen zu begehen, zu fördern oder zu erleichtern;
+
+(b) Personen zu verleumden, zu beschimpfen, zu belästigen, zu verfolgen, zu bedrohen oder deren Rechte anderweitig zu verletzen;
+
+(c) obszönes, schädliches oder rechtswidriges Material zu verarbeiten, zu veröffentlichen, zu verbreiten oder zu verteilen;
+
+(d) Schadsoftware, Viren, Würmer, Trojaner oder anderen schädlichen Code, Dateien, Skripte oder Programme zu erzeugen, hochzuladen oder zu verbreiten;
+
+(e) Material hochzuladen, das urheberrechtlich, markenrechtlich, patentrechtlich oder anderweitig rechtlich geschützte Inhalte enthält, ohne über die erforderlichen Rechte, Lizenzen oder Zustimmungen zu verfügen;
+
+(f) Desinformation oder irreführende Inhalte zu erzeugen, zu fördern oder zu verbreiten;
+
+(g) den Agentic Service oder die damit verbundenen Netzwerke, Server oder Infrastrukturen zu stören, zu beeinträchtigen oder deren Leistung zu mindern;
+
+(h) sich unbefugten Zugang zum Agentic Service oder zu den damit verbundenen Systemen zu verschaffen;
+
+(i) vertragliche Nutzungsbeschränkungen oder von UTXO AG auferlegte technische Einschränkungen zu umgehen;
+
+(j) auf geistiges Eigentum von UTXO AG zuzugreifen, dieses zu kopieren oder zu nutzen, es sei denn, dies ist gemäss den Agentic Service Subscription Terms ausdrücklich gestattet;
+
+(k) den Agentic Service zur Entwicklung, zum Training oder zur Verbesserung eines konkurrierenden Produkts oder Dienstes zu verwenden oder den Agentic Service zu Wettbewerbszwecken einem Benchmark zu unterziehen; oder
+
+(l) den Agentic Service unter Verstoss gegen anwendbare Exportkontrollgesetze oder Sanktionsvorschriften zu nutzen.
+
+
+3. KI-VERORDNUNG DER EU — VERBOTENE PRAKTIKEN
+
+In Übereinstimmung mit der KI-Verordnung (Verordnung (EU) 2024/1689) darf der Kunde den Agentic Service nicht für oder im Zusammenhang mit verbotenen KI-Praktiken verwenden. Insbesondere darf der Kunde nicht:
+
+(a) unterschwellige, manipulative oder täuschende Techniken einsetzen, die das Verhalten einer Person in einer Weise verzerren, die dieser Person oder einer anderen Person physischen oder psychischen Schaden zufügt oder voraussichtlich zufügen wird;
+
+(b) Schwachstellen einer Person oder Gruppe ausnutzen, die sich aus dem Alter, einer Behinderung oder den sozioökonomischen Umständen ergeben, um deren Verhalten in einer Weise wesentlich zu verzerren, die Schaden verursacht oder voraussichtlich verursachen wird;
+
+(c) Personen auf der Grundlage ihres Sozialverhaltens oder ihrer persönlichen Eigenschaften bewerten oder klassifizieren (Social Scoring), wenn eine solche Bewertung zu einer nachteiligen oder ungünstigen Behandlung führt, die in keinem Zusammenhang mit dem Kontext steht, in dem die Daten ursprünglich erhoben wurden;
+
+(d) das Risiko bewerten oder vorhersagen, dass eine Person eine Straftat begeht, allein auf der Grundlage von Profiling oder persönlichen Merkmalen;
+
+(e) Gesichtserkennungsdatenbanken durch ungezieltes Sammeln von Gesichtsbildern erstellen oder erweitern;
+
+(f) biometrische Echtzeit-Fernidentifizierung in öffentlich zugänglichen Räumen zum Zwecke der Strafverfolgung durchführen;
+
+(g) die Emotionen von Personen am Arbeitsplatz oder in Bildungseinrichtungen ableiten, es sei denn, eine solche Nutzung ist aus medizinischen oder sicherheitstechnischen Gründen erforderlich; oder
+
+(h) Personen auf der Grundlage biometrischer Daten kategorisieren, um sensible Merkmale wie Rasse, politische Überzeugungen, Gewerkschaftszugehörigkeit, religiöse oder weltanschauliche Überzeugungen, Sexualleben oder sexuelle Orientierung abzuleiten oder zu erschliessen.
+
+
+4. VERBOT VON HOCHRISIKO-KI-SYSTEMEN
+
+Der Kunde darf den Agentic Service nicht in einer Weise verändern, konfigurieren oder nutzen, die ihn in ein Hochrisiko-KI-System im Sinne von Art. 6 der KI-Verordnung (Verordnung (EU) 2024/1689) umwandelt, oder ihn als solches verwenden, ohne vorgängige schriftliche Vereinbarung mit UTXO AG.
+
+
+5. REVERSE ENGINEERING UND GEISTIGES EIGENTUM
+
+5.1 Der Kunde darf den Agentic Service oder Bestandteile davon nicht dekompilieren, disassemblieren, einem Reverse Engineering unterziehen oder auf andere Weise versuchen, den Quellcode, die zugrunde liegenden Algorithmen oder die Architektur des Agentic Service zu ermitteln, es sei denn, dies ist nach zwingendem anwendbarem Recht ausdrücklich gestattet.
+
+5.2 Der Kunde darf den Agentic Service oder daran bestehende Rechte nicht vermieten, verkaufen, verleasen, unterlizenzieren, abtreten, verbreiten, in Frames einbetten, spiegeln oder anderweitig an Dritte übertragen.
+
+5.3 Der Kunde darf unbefugten Dritten weder direkt noch indirekt Zugang zum Agentic Service gewähren. Der Kunde darf seinen Mitarbeitenden und Auftragnehmern Zugang nur in dem Umfang gewähren, der für die bestimmungsgemässe Nutzung des Agentic Service erforderlich ist, wobei der Kunde für die Einhaltung dieser Richtlinie durch diese Personen uneingeschränkt verantwortlich bleibt.
+
+
+6. DURCHSETZUNG
+
+6.1 UTXO AG behält sich das Recht vor, jeden mutmasslichen Verstoss gegen diese Richtlinie zu untersuchen.
+
+6.2 Stellt UTXO AG nach eigenem vernünftigem Ermessen fest, dass der Kunde gegen diese Richtlinie verstossen hat, kann UTXO AG:
+
+(a) eine Verwarnung aussprechen und den Kunden auffordern, die verstossende Handlung einzustellen;
+
+(b) den Zugang des Kunden zum Agentic Service vorübergehend aussetzen; oder
+
+(c) das Abonnement mit sofortiger Wirkung gemäss den Agentic Service Subscription Terms kündigen.
+
+6.3 UTXO AG hat den Kunden über jede gemäss diesem Abschnitt 6 ergriffene Durchsetzungsmassnahme zu benachrichtigen, es sei denn, die Offenlegung wäre gesetzlich untersagt oder würde eine laufende Untersuchung gefährden.
+
+
+7. MELDEPFLICHT
+
+Der Kunde hat UTXO AG unverzüglich unter support@utxoag.com zu benachrichtigen, wenn ihm ein Verstoss gegen diese Richtlinie, ein den Agentic Service betreffender Sicherheitsvorfall oder eine Nutzung des Agentic Service bekannt wird, die eine verbotene Praktik im Sinne der KI-Verordnung der EU darstellen könnte.
+
+
+UTXO AG
+Dammstrasse 16
+6300 Zug, Schweiz
+E-Mail: business@utxo.ag
+Website: https://utxoag.com

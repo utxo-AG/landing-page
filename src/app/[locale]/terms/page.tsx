@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import LegalPageLayout from "@/components/legal/LegalPageLayout";
+import { Section, ItemList } from "@/components/legal/LegalSection";
 import { Link } from "@/i18n/navigation";
 
 export async function generateMetadata({
@@ -12,25 +14,25 @@ export async function generateMetadata({
   return { title: t("metadata.title") };
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function renderWithLink(
+  text: string,
+  placeholder: string,
+  href: string,
+  linkText: string
+) {
+  const parts = text.split(placeholder);
+  if (parts.length === 1) return <>{text}</>;
   return (
     <>
-      <section>
-        <h2 className="text-[17px] font-bold text-[#111] mb-3">{title}</h2>
-        {children}
-      </section>
-      <hr className="my-8 border-[#eee]" />
+      {parts[0]}
+      <Link
+        href={href}
+        className="underline underline-offset-2 hover:text-[#111]"
+      >
+        {linkText}
+      </Link>
+      {parts[1]}
     </>
-  );
-}
-
-function ItemList({ items }: { items: string[] }) {
-  return (
-    <ul className="list-disc pl-5 mt-2 space-y-2">
-      {items.map((item, i) => (
-        <li key={i}>{item}</li>
-      ))}
-    </ul>
   );
 }
 
@@ -44,119 +46,233 @@ export default async function TermsPage({
   const t = await getTranslations("Terms");
 
   return (
-    <main className="px-6 py-32">
-      <div className="max-w-[640px] mx-auto">
-        <h1 className="text-[36px] font-extrabold tracking-[-1.5px] leading-[1.1] mb-4">
-          {t("heading")}
-        </h1>
-        <p className="text-[14px] text-[#999] mb-12">{t("lastUpdated")}</p>
+    <LegalPageLayout
+      heading={t("heading")}
+      lastUpdated={t("lastUpdated")}
+      backToHomeLabel={t("backToHome")}
+    >
+      <p>{t("intro")}</p>
+      <p className="mt-3 font-semibold text-[#111]">{t("b2bNotice")}</p>
+      <hr className="my-8 border-[#eee]" />
 
-        <div className="text-[15px] text-[#555] leading-[1.75]">
-          <Section title={t("sections.scope.title")}>
-            <p>{t("sections.scope.content1")}</p>
-            <p className="mt-3">{t("sections.scope.content2")}</p>
-          </Section>
+      {/* 1. Scope of Services */}
+      <Section title={t("sections.scopeOfServices.title")}>
+        <p>{t("sections.scopeOfServices.content1")}</p>
+        <p className="mt-3">{t("sections.scopeOfServices.content2")}</p>
+        <ItemList
+          items={t.raw("sections.scopeOfServices.serviceTypes") as string[]}
+        />
+        <p className="mt-3">{t("sections.scopeOfServices.content3")}</p>
+        <ul className="list-disc pl-5 mt-2 space-y-2">
+          {(
+            t.raw("sections.scopeOfServices.incorporatedDocs") as string[]
+          ).map((doc, i) => {
+            const placeholders = [
+              { key: "{aupLink}", href: "/acceptable-use", textKey: "sections.scopeOfServices.aupLinkText" },
+              { key: "{privacyLink}", href: "/privacy", textKey: "sections.scopeOfServices.privacyLinkText" },
+              { key: "{dpaLink}", href: "/dpa", textKey: "sections.scopeOfServices.dpaLinkText" },
+            ];
+            const match = placeholders.find((p) => doc.includes(p.key));
+            return (
+              <li key={i}>
+                {match
+                  ? renderWithLink(doc, match.key, match.href, t(match.textKey))
+                  : doc}
+              </li>
+            );
+          })}
+        </ul>
+        <p className="mt-3">{t("sections.scopeOfServices.conflictNote")}</p>
+      </Section>
 
-          <Section title={t("sections.natureOfAIAgentServices.title")}>
-            <p>{t("sections.natureOfAIAgentServices.content")}</p>
-            <ItemList items={t.raw("sections.natureOfAIAgentServices.items") as string[]} />
-          </Section>
+      {/* 2. Onboarding */}
+      <Section title={t("sections.onboarding.title")}>
+        {(t.raw("sections.onboarding.items") as string[]).map((item, i) => (
+          <p key={i} className={i > 0 ? "mt-3" : ""}>
+            {item}
+          </p>
+        ))}
+      </Section>
 
-          <Section title={t("sections.intellectualProperty.title")}>
-            <h3 className="text-[15px] font-semibold text-[#333] mt-4 mb-2">{t("sections.intellectualProperty.ourIP.title")}</h3>
-            <p>{t("sections.intellectualProperty.ourIP.content")}</p>
-            <h3 className="text-[15px] font-semibold text-[#333] mt-4 mb-2">{t("sections.intellectualProperty.yourData.title")}</h3>
-            <p>{t("sections.intellectualProperty.yourData.content")}</p>
-            <h3 className="text-[15px] font-semibold text-[#333] mt-4 mb-2">{t("sections.intellectualProperty.aiGeneratedOutputs.title")}</h3>
-            <p>{t("sections.intellectualProperty.aiGeneratedOutputs.content")}</p>
-          </Section>
+      {/* 3. Service Description */}
+      <Section title={t("sections.serviceDescription.title")}>
+        <p>{t("sections.serviceDescription.content1")}</p>
+        <p className="mt-3">{t("sections.serviceDescription.content2")}</p>
+        <ItemList
+          items={
+            t.raw("sections.serviceDescription.acknowledgements") as string[]
+          }
+        />
+        <p className="mt-3">{t("sections.serviceDescription.content3")}</p>
+        <p className="mt-3">{t("sections.serviceDescription.content4")}</p>
+      </Section>
 
-          <Section title={t("sections.limitationOfLiability.title")}>
-            <p className="font-semibold text-[#111]">{t("sections.limitationOfLiability.preamble")}</p>
-            <ItemList items={t.raw("sections.limitationOfLiability.items") as string[]} />
-          </Section>
+      {/* 4. Billing */}
+      <Section title={t("sections.billing.title")}>
+        {(t.raw("sections.billing.items") as string[]).map((item, i) => (
+          <p key={i} className={i > 0 ? "mt-3" : ""}>
+            {item}
+          </p>
+        ))}
+      </Section>
 
-          <Section title={t("sections.indemnification.title")}>
-            <p>{t("sections.indemnification.content")}</p>
-          </Section>
+      {/* 5. Term and Termination */}
+      <Section title={t("sections.termAndTermination.title")}>
+        <p>{t("sections.termAndTermination.content1")}</p>
+        <p className="mt-3">{t("sections.termAndTermination.content2")}</p>
+        <ItemList
+          items={
+            t.raw("sections.termAndTermination.causeItems") as string[]
+          }
+        />
+        <p className="mt-3">
+          {renderWithLink(
+            t.raw("sections.termAndTermination.content3") as string,
+            "{aupLink}",
+            "/acceptable-use",
+            t("sections.termAndTermination.aupLinkText")
+          )}
+        </p>
+        <p className="mt-3">{t("sections.termAndTermination.content4")}</p>
+        <p className="mt-3">
+          {renderWithLink(
+            t.raw("sections.termAndTermination.content5") as string,
+            "{dpaLink}",
+            "/dpa",
+            t("sections.termAndTermination.dpaLinkText")
+          )}
+        </p>
+      </Section>
 
-          <Section title={t("sections.noGuarantees.title")}>
-            <p>{t("sections.noGuarantees.content")}</p>
-            <ul className="list-disc pl-5 mt-2 space-y-1">
-              {(t.raw("sections.noGuarantees.items") as string[]).map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
-          </Section>
-
-          <Section title={t("sections.euAIAct.title")}>
-            <p>{t("sections.euAIAct.content")}</p>
-            <ul className="list-disc pl-5 mt-2 space-y-1">
-              {(t.raw("sections.euAIAct.items") as string[]).map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
-            <p className="mt-3">{t("sections.euAIAct.disclaimer")}</p>
-          </Section>
-
-          <Section title={t("sections.dataProcessing.title")}>
-            <p>
-              {(t.raw("sections.dataProcessing.content") as string).split("{privacyLink}")[0]}
-              <Link href="/privacy" className="underline underline-offset-2 hover:text-[#111]">
-                {t("sections.dataProcessing.privacyLinkText")}
-              </Link>
-              {(t.raw("sections.dataProcessing.content") as string).split("{privacyLink}")[1]}
+      {/* 6. Changes and Updates */}
+      <Section title={t("sections.changesAndUpdates.title")}>
+        {(t.raw("sections.changesAndUpdates.items") as string[]).map(
+          (item, i) => (
+            <p key={i} className={i > 0 ? "mt-3" : ""}>
+              {item}
             </p>
-          </Section>
+          )
+        )}
+      </Section>
 
-          <Section title={t("sections.acceptableUse.title")}>
-            <p>{t("sections.acceptableUse.content")}</p>
-            <ul className="list-disc pl-5 mt-2 space-y-1">
-              {(t.raw("sections.acceptableUse.items") as string[]).map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
-          </Section>
-
-          <Section title={t("sections.termination.title")}>
-            <p>{t("sections.termination.content")}</p>
-          </Section>
-
-          <Section title={t("sections.modifications.title")}>
-            <p>{t("sections.modifications.content")}</p>
-          </Section>
-
-          <Section title={t("sections.governingLaw.title")}>
-            <p>{t("sections.governingLaw.content1")}</p>
-            <p className="mt-3">{t("sections.governingLaw.content2")}</p>
-          </Section>
-
-          <Section title={t("sections.severability.title")}>
-            <p>{t("sections.severability.content")}</p>
-          </Section>
-
-          <Section title={t("sections.entireAgreement.title")}>
-            <p>{t("sections.entireAgreement.content")}</p>
-          </Section>
-
-          <section>
-            <h2 className="text-[17px] font-bold text-[#111] mb-3">{t("sections.contact.title")}</h2>
-            <p>
-              {t("sections.contact.content")}<br />
-              {t("sections.contact.address")}<br />
-              <a href={`mailto:${t("sections.contact.email")}`} className="underline underline-offset-2 hover:text-[#111]">
-                {t("sections.contact.email")}
-              </a>
+      {/* 7. Intellectual Property */}
+      <Section title={t("sections.intellectualProperty.title")}>
+        {(t.raw("sections.intellectualProperty.items") as string[]).map(
+          (item, i) => (
+            <p key={i} className={i > 0 ? "mt-3" : ""}>
+              {item}
             </p>
-          </section>
-        </div>
+          )
+        )}
+      </Section>
 
-        <div className="mt-16 pt-8 border-t border-[#eee]">
-          <Link href="/" className="text-[13px] text-[#999] hover:text-[#111] transition-colors">
-            {t("backToHome")}
-          </Link>
-        </div>
-      </div>
-    </main>
+      {/* 8. Liability */}
+      <Section title={t("sections.liability.title")}>
+        <p>{t("sections.liability.content1")}</p>
+        <p className="mt-3">{t("sections.liability.content2")}</p>
+        <p className="mt-3">{t("sections.liability.content3")}</p>
+        <ItemList
+          items={
+            t.raw("sections.liability.liabilityExclusions") as string[]
+          }
+        />
+        <p className="mt-3">{t("sections.liability.content4")}</p>
+        <p className="mt-3">{t("sections.liability.content5")}</p>
+      </Section>
+
+      {/* 9. Confidentiality */}
+      <Section title={t("sections.confidentiality.title")}>
+        <p>{t("sections.confidentiality.content1")}</p>
+        <p className="mt-3">{t("sections.confidentiality.content2")}</p>
+        <ItemList
+          items={
+            t.raw("sections.confidentiality.exclusions") as string[]
+          }
+        />
+        <p className="mt-3">{t("sections.confidentiality.content3")}</p>
+        <p className="mt-3">{t("sections.confidentiality.content4")}</p>
+        <p className="mt-3">{t("sections.confidentiality.content5")}</p>
+      </Section>
+
+      {/* 10. Data Protection */}
+      <Section title={t("sections.dataProtection.title")}>
+        <p>
+          {renderWithLink(
+            t.raw("sections.dataProtection.content1") as string,
+            "{dpaLink}",
+            "/dpa",
+            t("sections.dataProtection.dpaLinkText")
+          )}
+        </p>
+        <p className="mt-3">{t("sections.dataProtection.content2")}</p>
+        <p className="mt-3">{t("sections.dataProtection.content3")}</p>
+        <p className="mt-3">
+          {renderWithLink(
+            t.raw("sections.dataProtection.content4") as string,
+            "{privacyLink}",
+            "/privacy",
+            t("sections.dataProtection.privacyLinkText")
+          )}
+        </p>
+      </Section>
+
+      {/* 11. Support */}
+      <Section title={t("sections.support.title")}>
+        {(t.raw("sections.support.items") as string[]).map((item, i) => (
+          <p key={i} className={i > 0 ? "mt-3" : ""}>
+            {item}
+          </p>
+        ))}
+      </Section>
+
+      {/* 12. Compliance */}
+      <Section title={t("sections.compliance.title")}>
+        <p>{t("sections.compliance.content")}</p>
+      </Section>
+
+      {/* 13. Force Majeure */}
+      <Section title={t("sections.forceMajeure.title")}>
+        <p>{t("sections.forceMajeure.content")}</p>
+      </Section>
+
+      {/* 14. Governing Law */}
+      <Section title={t("sections.governingLaw.title")}>
+        {(t.raw("sections.governingLaw.items") as string[]).map((item, i) => (
+          <p key={i} className={i > 0 ? "mt-3" : ""}>
+            {item}
+          </p>
+        ))}
+      </Section>
+
+      {/* 15. Miscellaneous */}
+      <section>
+        <h2 className="text-[17px] font-bold text-[#111] mb-3">
+          {t("sections.miscellaneous.title")}
+        </h2>
+        {(t.raw("sections.miscellaneous.items") as string[]).map(
+          (item, i) => (
+            <p key={i} className={i > 0 ? "mt-3" : ""}>
+              {item}
+            </p>
+          )
+        )}
+      </section>
+
+      <hr className="my-8 border-[#eee]" />
+
+      <section>
+        <p className="font-semibold text-[#111]">{t("contact.company")}</p>
+        <p className="whitespace-pre-line">{t("contact.address")}</p>
+        <p>{t("contact.register")}</p>
+        <p>
+          <a
+            href={`mailto:${t("contact.email")}`}
+            className="underline underline-offset-2 hover:text-[#111]"
+          >
+            {t("contact.email")}
+          </a>
+        </p>
+      </section>
+    </LegalPageLayout>
   );
 }
