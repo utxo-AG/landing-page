@@ -1,0 +1,235 @@
+{
+  "DPA": {
+    "metadata": {
+      "title": "Auftragsverarbeitungsvertrag — utxo AG"
+    },
+    "heading": "Auftragsverarbeitungsvertrag",
+    "lastUpdated": "Letzte Aktualisierung: 10. März 2026",
+    "intro": "Dieser Auftragsverarbeitungsvertrag («AVV») ist integraler Bestandteil der Agentic Service Subscription Terms («Vertragsbedingungen») zwischen UTXO AG, Dammstrasse 16, 6300 Zug, Schweiz («Auftragsverarbeiter») und dem abonnierenden Unternehmen («Verantwortlicher») (jeweils eine «Partei», gemeinsam die «Parteien»).",
+    "autoAcceptance": "Dieser AVV wird vom Verantwortlichen automatisch mit dem Abschluss des Abonnements des Agentic Service akzeptiert. Eine separate Unterzeichnung ist nicht erforderlich.",
+    "definitions": "Sofern in diesem AVV nicht anders definiert, haben grossgeschriebene Begriffe die ihnen in den Vertragsbedingungen zugewiesene Bedeutung.",
+    "sections": {
+      "generalProvisions": {
+        "title": "1. Allgemeine Bestimmungen",
+        "items": [
+          "1.1 Der Auftragsverarbeiter hat personenbezogene Daten ausschliesslich im Auftrag und nach Massgabe der dokumentierten Weisungen des Verantwortlichen, im Rahmen und für die Zwecke der Vertragsbedingungen sowie unter Einhaltung der Datenschutz-Grundverordnung (EU) 2016/679 («DSGVO»), des Bundesgesetzes über den Datenschutz («DSG») und aller sonstigen anwendbaren Datenschutzgesetze zu verarbeiten.",
+          "1.2 Dieser AVV stellt den Auftragsverarbeitungsvertrag im Sinne von Art. 28 DSGVO dar und regelt die Rechte und Pflichten der Parteien in Bezug auf die Verarbeitung personenbezogener Daten.",
+          "1.3 «Personenbezogene Daten» bezeichnet alle Informationen, die sich auf eine identifizierte oder identifizierbare natürliche Person («betroffene Person») beziehen.",
+          "1.4 «Verarbeitung» bezeichnet jeden mit oder ohne Hilfe automatisierter Verfahren ausgeführten Vorgang oder jede solche Vorgangsreihe im Zusammenhang mit personenbezogenen Daten wie das Erheben, das Erfassen, die Organisation, das Ordnen, die Speicherung, die Anpassung oder Veränderung, das Auslesen, das Abfragen, die Verwendung, die Offenlegung durch Übermittlung, Verbreitung oder eine andere Form der Bereitstellung, den Abgleich oder die Verknüpfung, die Einschränkung, das Löschen oder die Vernichtung.",
+          "1.5 «Weisung» bezeichnet eine dokumentierte Anordnung des Verantwortlichen an den Auftragsverarbeiter bezüglich der Verarbeitung personenbezogener Daten. Weisungen können schriftlich oder per E-Mail erteilt werden. Mündliche Weisungen sind unverzüglich schriftlich zu bestätigen.",
+          "1.6 Der Verantwortliche behält sämtliche Rechte an den personenbezogenen Daten. Der Auftragsverarbeiter hat kein Zurückbehaltungsrecht an den personenbezogenen Daten des Verantwortlichen geltend zu machen, es sei denn, dies ist nach anwendbarem Recht erforderlich."
+        ]
+      },
+      "scopeAndPurpose": {
+        "title": "2. Gegenstand und Zweck der Verarbeitung",
+        "items": [
+          "2.1 Der Auftragsverarbeiter hat personenbezogene Daten ausschliesslich in dem Umfang zu verarbeiten, der für die Bereitstellung, Verwaltung und den Betrieb des abonnierten KI-Agentendiensts («Agentic Service») im Rahmen der Vertragsbedingungen erforderlich ist, und nur gemäss den Weisungen des Verantwortlichen.",
+          "2.2 Die Kategorien betroffener Personen und die Arten der verarbeiteten personenbezogenen Daten sind in Anhang 1 festgelegt.",
+          "2.3 Die Verarbeitung besonderer Kategorien personenbezogener Daten im Sinne von Art. 9 DSGVO darf nur erfolgen, wenn diese Daten vom Verantwortlichen rechtmässig erhoben wurden und der Verantwortliche entsprechende Weisungen für deren Verarbeitung erteilt hat."
+        ]
+      },
+      "controllerObligations": {
+        "title": "3. Rechte und Pflichten des Verantwortlichen",
+        "items": [
+          "3.1 Der Verantwortliche ist der Datenverantwortliche im Sinne der anwendbaren Datenschutzgesetze in Bezug auf die Verarbeitung personenbezogener Daten durch den Auftragsverarbeiter.",
+          "3.2 Der Verantwortliche hat die Zwecke und Mittel der Verarbeitung festzulegen und ist dafür verantwortlich, dass die Verarbeitung den anwendbaren Datenschutzgesetzen entspricht.",
+          "3.3 Der Verantwortliche kann jederzeit ergänzende oder geänderte Weisungen hinsichtlich Zweck, Art und Umfang der Verarbeitung erteilen.",
+          "3.4 Der Verantwortliche ist für die Wahrung der Rechte der betroffenen Personen verantwortlich. Anfragen betroffener Personen zur Ausübung ihrer Rechte sind an den Verantwortlichen zu richten.",
+          "3.5 Der Verantwortliche kann den Auftragsverarbeiter auf Fehler oder Unregelmässigkeiten bei der Verarbeitung personenbezogener Daten durch den Auftragsverarbeiter hinweisen."
+        ]
+      },
+      "processorObligations": {
+        "title": "4. Pflichten und Verantwortlichkeiten des Auftragsverarbeiters",
+        "items": [
+          "4.1 Der Auftragsverarbeiter hat personenbezogene Daten ausschliesslich im Rahmen der Vertragsbedingungen, dieses AVV und der Weisungen des Verantwortlichen zu verarbeiten. Der Auftragsverarbeiter darf personenbezogene Daten nicht für eigene Zwecke verarbeiten.",
+          "4.2 Der Auftragsverarbeiter darf keine Kopien personenbezogener Daten anfertigen, es sei denn, dies ist zur Erbringung des Agentic Service, zur Sicherstellung einer ordnungsgemässen Verarbeitung (einschliesslich Datensicherungen und Redundanz) oder zur Erfüllung gesetzlicher Verpflichtungen erforderlich.",
+          "4.3 Der Auftragsverarbeiter hat den Verantwortlichen bei Prüfungen oder Auskunftsersuchen zuständiger Aufsichtsbehörden im Zusammenhang mit der Verarbeitung nach diesem AVV zu unterstützen und den Verantwortlichen unverzüglich über solche Anfragen zu informieren.",
+          "4.4 Der Auftragsverarbeiter hat den Verantwortlichen unverzüglich zu informieren, wenn er der Auffassung ist, dass eine Weisung gegen anwendbare Datenschutzgesetze verstösst.",
+          "4.5 Der Auftragsverarbeiter hat dem Verantwortlichen auf angemessenes Verlangen die Informationen zur Verfügung zu stellen, die zur Führung eines ordnungsgemässen Verzeichnisses der Verarbeitungstätigkeiten gemäss Art. 30 DSGVO erforderlich sind.",
+          "4.6 Der Auftragsverarbeiter hat den Verantwortlichen im angemessenen Umfang bei der Erfüllung seiner Pflichten gemäss Art. 32 bis 36 DSGVO zu unterstützen, einschliesslich in Bezug auf Datensicherheit, Datenschutz-Folgenabschätzungen und vorherige Konsultationen mit Aufsichtsbehörden.",
+          "4.7 Ist der Auftragsverarbeiter gesetzlich zur Offenlegung personenbezogener Daten verpflichtet, hat er den Verantwortlichen vor der Offenlegung schriftlich zu informieren (soweit gesetzlich zulässig), einschliesslich über die Empfänger, den Zeitpunkt, den Inhalt und die Rechtsgrundlage der Offenlegung.",
+          "4.8 Der Auftragsverarbeiter hat auf Weisung des Verantwortlichen personenbezogene Daten gemäss dem anwendbaren Recht zu berichtigen, zu löschen oder einzuschränken. Der Auftragsverarbeiter hat die Durchführung auf Verlangen zu bestätigen. Gesetzliche Aufbewahrungspflichten bleiben unberührt.",
+          "4.9 Der Auftragsverarbeiter hat Verfahren zur Sicherstellung der Einhaltung dieses AVV und der anwendbaren Datenschutzgesetze einzurichten und aufrechtzuerhalten. Auf angemessenes Verlangen hat der Auftragsverarbeiter Nachweise der Einhaltung vorzulegen (z. B. Zertifizierungen, Prüfberichte oder gleichwertige Dokumentation).",
+          "4.10 Sind die beim Auftragsverarbeiter gespeicherten personenbezogenen Daten des Verantwortlichen durch Pfändung, Beschlagnahme, Insolvenzverfahren oder sonstige Massnahmen Dritter gefährdet, hat der Auftragsverarbeiter den Verantwortlichen unverzüglich zu informieren und alle betroffenen Parteien darauf hinzuweisen, dass die Rechte an den Daten ausschliesslich beim Verantwortlichen liegen."
+        ]
+      },
+      "dataBreachNotification": {
+        "title": "5. Meldung von Datenschutzverletzungen",
+        "content1": "5.1 Im Falle einer Verletzung des Schutzes personenbezogener Daten hat der Auftragsverarbeiter den Verantwortlichen unverzüglich, spätestens jedoch innerhalb von achtundvierzig (48) Stunden nach Kenntnisnahme der Verletzung, zu benachrichtigen.",
+        "content2": "5.2 Die Benachrichtigung hat mindestens folgende Angaben zu enthalten:",
+        "notificationItems": [
+          "eine Beschreibung der Art der Verletzung des Schutzes personenbezogener Daten, soweit möglich einschliesslich der Kategorien und der ungefähren Anzahl der betroffenen Personen und Datensätze;",
+          "den Namen und die Kontaktdaten der Datenschutz-Kontaktperson des Auftragsverarbeiters oder einer sonstigen Anlaufstelle;",
+          "eine Beschreibung der wahrscheinlichen Folgen der Verletzung; und",
+          "eine Beschreibung der ergriffenen oder vorgeschlagenen Massnahmen zur Behebung der Verletzung, einschliesslich Massnahmen zur Abmilderung möglicher nachteiliger Auswirkungen."
+        ],
+        "content3": "5.3 Der Auftragsverarbeiter hat umfassend mit dem Verantwortlichen zusammenzuarbeiten und ihn bei der Erfüllung seiner Pflichten gemäss Art. 33 und 34 DSGVO zu unterstützen."
+      },
+      "dataSubjectsRights": {
+        "title": "6. Rechte der betroffenen Personen",
+        "items": [
+          "6.1 Wendet sich eine betroffene Person mit einem Ersuchen bezüglich Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit oder Widerspruch direkt an den Auftragsverarbeiter, hat dieser das Ersuchen unverzüglich an den Verantwortlichen weiterzuleiten. Der Auftragsverarbeiter darf der betroffenen Person nicht direkt antworten, es sei denn, der Verantwortliche hat ihn entsprechend angewiesen.",
+          "6.2 Der Auftragsverarbeiter hat den Verantwortlichen bei der Erfüllung von Ersuchen betroffener Personen zu unterstützen, indem er die hierfür angemessenerweise erforderlichen Informationen und Unterstützung innerhalb einer angemessenen Frist bereitstellt."
+        ]
+      },
+      "subProcessors": {
+        "title": "7. Unterauftragsverarbeiter",
+        "items": [
+          "7.1 Der Verantwortliche erteilt dem Auftragsverarbeiter hiermit eine allgemeine schriftliche Genehmigung zur Beauftragung von Unterauftragsverarbeitern für die Verarbeitung personenbezogener Daten im Rahmen dieses AVV.",
+          "7.2 Der Auftragsverarbeiter hat den Verantwortlichen über jede beabsichtigte Änderung bezüglich der Hinzuziehung oder des Austauschs von Unterauftragsverarbeitern zu informieren und dem Verantwortlichen damit die Möglichkeit zu geben, gemäss Ziffer 7.7 Widerspruch einzulegen.",
+          "7.3 Der Auftragsverarbeiter hat Unterauftragsverarbeiter sorgfältig auszuwählen und sicherzustellen, dass diese hinreichende Garantien für die Umsetzung angemessener technischer und organisatorischer Massnahmen bieten.",
+          "7.4 Der Auftragsverarbeiter hat sicherzustellen, dass Unterauftragsverarbeiter durch schriftliche Verträge gebunden sind, die Datenschutzpflichten auferlegen, die nicht weniger schützend sind als die in diesem AVV festgelegten. Der Auftragsverarbeiter haftet in vollem Umfang für die Leistung seiner Unterauftragsverarbeiter.",
+          "7.5 Auf Verlangen hat der Auftragsverarbeiter dem Verantwortlichen die wesentlichen Datenschutzbestimmungen offenzulegen, die mit den Unterauftragsverarbeitern vereinbart wurden.",
+          "7.6 Der Auftragsverarbeiter hat die Einhaltung der Datenschutzpflichten durch seine Unterauftragsverarbeiter regelmässig zu überwachen und dem Verantwortlichen auf Verlangen entsprechende Nachweise vorzulegen.",
+          "7.7 Beauftragt der Auftragsverarbeiter während der Laufzeit dieses AVV zusätzliche Unterauftragsverarbeiter oder wechselt er Unterauftragsverarbeiter aus, hat er den Verantwortlichen schriftlich zu informieren, bevor dem neuen Unterauftragsverarbeiter Zugang zu personenbezogenen Daten gewährt wird. Hat der Verantwortliche begründete datenschutzrechtliche Bedenken, kann er innerhalb von fünfzehn (15) Tagen nach Erhalt der Mitteilung Widerspruch einlegen (Schriftform genügt). Erfolgt innerhalb dieser Frist kein Widerspruch, gilt die Genehmigung als erteilt. Legt der Verantwortliche Widerspruch ein, haben die Parteien nach Treu und Glauben zusammenzuarbeiten, um eine für beide Seiten akzeptable Lösung zu finden. Kann innerhalb von dreissig (30) Tagen keine Lösung gefunden werden, kann jede Partei das betroffene Abonnement gemäss den Vertragsbedingungen kündigen.",
+          "7.8 Soweit die Beauftragung eines Unterauftragsverarbeiters mit der Übermittlung von Daten in Drittländer verbunden ist, müssen angemessene Garantien gemäss Art. 44 ff. DSGVO bestehen. Der Auftragsverarbeiter hat solche Garantien sicherzustellen und auf Verlangen nachzuweisen.",
+          "7.9 Alle zum Zeitpunkt des Abschlusses dieses AVV beauftragten Unterauftragsverarbeiter sind in Anhang 2 aufgeführt."
+        ]
+      },
+      "internationalTransfers": {
+        "title": "8. Internationale Datenübermittlungen",
+        "content1": "8.1 Der Auftragsverarbeiter hat sicherzustellen, dass jede Übermittlung personenbezogener Daten in ein Land ausserhalb der Schweiz und des Europäischen Wirtschaftsraums (EWR) nur mit angemessenen Garantien gemäss Art. 44 ff. DSGVO erfolgt, insbesondere:",
+        "safeguards": [
+          "auf Grundlage eines Angemessenheitsbeschlusses der Europäischen Kommission oder des Schweizerischen Bundesrats;",
+          "auf Grundlage von Standardvertragsklauseln (SCCs), die von der Europäischen Kommission genehmigt wurden; oder",
+          "auf Grundlage sonstiger anerkannter Garantien nach anwendbarem Datenschutzrecht."
+        ],
+        "content2": "8.2 Der Auftragsverarbeiter hat sicherzustellen, dass alle Unterauftragsverarbeiter die gleichen Anforderungen an internationale Datenübermittlungen einhalten.",
+        "content3": "8.3 Der Auftragsverarbeiter hat dem Verantwortlichen auf Verlangen den Nachweis angemessener Garantien zu erbringen."
+      },
+      "auditRights": {
+        "title": "9. Prüfungsrechte",
+        "items": [
+          "9.1 Prüfungen sind vorrangig aus der Ferne durchzuführen und können die Überprüfung bestehender Zertifizierungen (z. B. ISO 27001, SOC 2), Prüfberichte oder gleichwertiger Dokumentation umfassen, die vom Auftragsverarbeiter bereitgestellt werden.",
+          "9.2 Prüfungen vor Ort sind nur zulässig, wenn Fernprüfungen keine ausreichende Gewissheit bieten oder ein begründeter Verdacht auf Verstösse oder eine Datenschutzverletzung besteht.",
+          "9.3 Prüfungen dürfen höchstens einmal jährlich durchgeführt werden, es sei denn, eine Aufsichtsbehörde verlangt dies oder ein konkreter Vorfall rechtfertigt eine zusätzliche Prüfung.",
+          "9.4 Der Verantwortliche kann qualifizierte Dritte mit der Wahrnehmung der Prüfungsrechte beauftragen, sofern diese angemessenen Vertraulichkeitsverpflichtungen unterliegen. Prüfungen sind während der regulären Geschäftszeiten, mit angemessener Vorankündigung (mindestens zwanzig (20) Geschäftstage) und in einer Weise durchzuführen, die den Betrieb des Auftragsverarbeiters nicht unangemessen beeinträchtigt.",
+          "9.5 Der Auftragsverarbeiter hat dem Verantwortlichen alle Informationen zur Verfügung zu stellen, die nach vernünftigem Ermessen erforderlich sind, um die Einhaltung dieses AVV und von Art. 28 DSGVO nachzuweisen."
+        ]
+      },
+      "dataSecrecy": {
+        "title": "10. Datengeheimnis und Vertraulichkeit",
+        "items": [
+          "10.1 Der Auftragsverarbeiter hat bei der Verarbeitung personenbezogener Daten im Auftrag des Verantwortlichen das Datengeheimnis zu wahren.",
+          "10.2 Der Auftragsverarbeiter hat sicherzustellen, dass alle zur Verarbeitung personenbezogener Daten befugten Mitarbeitenden angemessenen gesetzlichen oder vertraglichen Vertraulichkeitsverpflichtungen unterliegen und eine angemessene Datenschutzschulung erhalten."
+        ]
+      },
+      "technicalMeasures": {
+        "title": "11. Technische und organisatorische Massnahmen",
+        "items": [
+          "11.1 Der Auftragsverarbeiter hat angemessene technische und organisatorische Massnahmen («TOM») gemäss Art. 32 DSGVO umzusetzen und aufrechtzuerhalten, um ein dem Risiko angemessenes Schutzniveau zu gewährleisten, unter Berücksichtigung des Stands der Technik, der Implementierungskosten sowie der Art, des Umfangs, der Umstände und der Zwecke der Verarbeitung.",
+          "11.2 Die TOM sind in Anhang 3 beschrieben.",
+          "11.3 Der Auftragsverarbeiter kann die TOM von Zeit zu Zeit anpassen, sofern eine solche Anpassung das Datenschutzniveau nicht unter das gesetzlich und in diesem AVV vorgeschriebene Niveau senkt.",
+          "11.4 Der Auftragsverarbeiter hat den Verantwortlichen über wesentliche Änderungen der TOM zeitnah schriftlich zu informieren.",
+          "11.5 Auf Verlangen hat der Auftragsverarbeiter eine Dokumentation vorzulegen, die belegt, dass angemessene TOM bestehen und auf dem neuesten Stand gehalten werden."
+        ]
+      },
+      "termAndTermination": {
+        "title": "12. Laufzeit und Beendigung",
+        "items": [
+          "12.1 Dieser AVV tritt automatisch mit dem Abschluss des Abonnements des Agentic Service in Kraft und endet mit dem Ablauf oder der Beendigung des Abonnements.",
+          "12.2 Die Pflichten aus den Ziffern 5, 6, 10 und 13 gelten über die Beendigung dieses AVV hinaus fort."
+        ]
+      },
+      "dataDeletionAndReturn": {
+        "title": "13. Datenlöschung und -rückgabe",
+        "items": [
+          "13.1 Nach Beendigung dieses AVV hat der Auftragsverarbeiter die Verarbeitung der personenbezogenen Daten des Verantwortlichen einzustellen, es sei denn, die Verarbeitung ist für die Löschung oder Rückgabe erforderlich.",
+          "13.2 Sofern der Verantwortliche keine anderweitige Weisung erteilt, hat der Auftragsverarbeiter sämtliche personenbezogene Daten innerhalb von dreissig (30) Tagen nach Beendigung unter Verwendung branchenüblicher sicherer Löschverfahren unwiderruflich zu löschen oder zu vernichten.",
+          "13.3 Auf schriftliches Verlangen des Verantwortlichen (innerhalb von vierzehn (14) Tagen nach Beendigung zu stellen) hat der Auftragsverarbeiter die personenbezogenen Daten vor der Löschung in einem gängigen, maschinenlesbaren Format an den Verantwortlichen zurückzugeben.",
+          "13.4 Der Auftragsverarbeiter hat den Verantwortlichen vor der endgültigen Löschung zu informieren, es sei denn, der Verantwortliche hat eine anderweitige Weisung erteilt.",
+          "13.5 Der Auftragsverarbeiter hat die Löschung oder Vernichtung zu dokumentieren und dem Verantwortlichen auf Verlangen eine Bestätigung vorzulegen.",
+          "13.6 Gesetzliche Aufbewahrungspflichten nach schweizerischem Handels-, Steuer- oder sonstigem anwendbarem Recht bleiben unberührt."
+        ]
+      }
+    },
+    "appendix1": {
+      "title": "Anhang 1: Betroffene Personen und Datenkategorien",
+      "purpose": {
+        "title": "1. Zweck der Verarbeitung",
+        "content": "Der Auftragsverarbeiter verarbeitet personenbezogene Daten ausschliesslich zum Zweck der Bereitstellung, Verwaltung und des Betriebs des Agentic Service gemäss den Vertragsbedingungen."
+      },
+      "dataSubjects": {
+        "title": "2. Kategorien betroffener Personen",
+        "content": "Die Verarbeitung kann die folgenden Kategorien betroffener Personen betreffen:",
+        "items": [
+          "Mitarbeitende, Auftragnehmer oder sonstige Vertreter des Verantwortlichen, die den AI Coworker nutzen oder verwalten;",
+          "Endnutzer oder Kontakte des Verantwortlichen, deren Daten über den AI Coworker verarbeitet werden (z. B. E-Mail-Korrespondenten, CRM-Kontakte, Kunden des Verantwortlichen);",
+          "sonstige Personen, deren personenbezogene Daten vom oder im Namen des Verantwortlichen an den Agentic Service übermittelt oder durch diesen verarbeitet werden."
+        ]
+      },
+      "dataCategories": {
+        "title": "3. Kategorien personenbezogener Daten",
+        "content": "Die Verarbeitung kann die folgenden Kategorien personenbezogener Daten umfassen:",
+        "items": [
+          "Stammdaten (z. B. Name, E-Mail-Adresse, Firmenname, Berufsbezeichnung, Kontaktdaten);",
+          "Inhaltsdaten (z. B. E-Mail-Inhalte, Anhänge, Texteingaben, Dokumenteninhalte, Prompts, Ausgaben des AI-Agents);",
+          "Nutzungsdaten (z. B. Interaktionsprotokolle, Zeitstempel, Aufgabenausführungsprotokolle, Nutzungshäufigkeit);",
+          "technische Daten (z. B. IP-Adresse, Gerätetyp, Browser-Informationen, Systemkennungen);",
+          "Zahlungsdaten (z. B. Rechnungsangaben, Transaktions-IDs — verarbeitet durch Stripe)."
+        ]
+      },
+      "specialCategories": {
+        "title": "4. Besondere Kategorien personenbezogener Daten",
+        "content": "Die Verarbeitung besonderer Kategorien personenbezogener Daten im Sinne von Art. 9 DSGVO darf nur erfolgen, wenn diese Daten vom Verantwortlichen rechtmässig erhoben und mit entsprechenden Weisungen bereitgestellt wurden. In solchen Fällen hat der Auftragsverarbeiter angemessene zusätzliche Schutzmassnahmen umzusetzen."
+      },
+      "duration": {
+        "title": "5. Dauer der Verarbeitung",
+        "content": "Personenbezogene Daten werden für die Dauer des Abonnements verarbeitet und nach Beendigung gemäss Ziffer 13 dieses AVV gelöscht oder zurückgegeben."
+      }
+    },
+    "appendix2": {
+      "title": "Anhang 2: Unterauftragsverarbeiter",
+      "content": "Die folgenden Unterauftragsverarbeiter sind zum Zeitpunkt des Abschlusses dieses AVV genehmigt:",
+      "tableHeaders": ["Name des Unterauftragsverarbeiters", "Zweck", "Sitz / Land", "Rechtliche Übermittlungsgarantie"],
+      "tableRows": [
+        ["OpenAI (OpenAI, LLC)", "KI-Modellinferenz", "San Francisco, CA, USA", "Standardvertragsklauseln (SCCs)"],
+        ["Anthropic (Anthropic, PBC)", "KI-Modellinferenz", "San Francisco, CA, USA", "Standardvertragsklauseln (SCCs)"],
+        ["Railway (Railway Corp.)", "Anwendungshosting", "San Francisco, CA, USA", "Standardvertragsklauseln (SCCs)"],
+        ["DigitalOcean (DigitalOcean, LLC)", "Anwendungshosting", "New York, NY, USA / EU", "Standardvertragsklauseln (SCCs); EU-Rechenzentren soweit anwendbar"],
+        ["Stripe (Stripe, Inc.)", "Zahlungsabwicklung", "San Francisco, CA, USA / EU", "Standardvertragsklauseln (SCCs); EU-Rechenzentren soweit anwendbar"],
+        ["Google (Google LLC)", "Website-Analyse (Google Analytics)", "Mountain View, CA, USA / EU", "Standardvertragsklauseln (SCCs); EU-Rechenzentren soweit anwendbar"]
+      ],
+      "note": "Der Auftragsverarbeiter hat diese Liste aktuell zu halten und den Verantwortlichen gemäss Ziffer 7.7 dieses AVV über beabsichtigte Änderungen zu informieren."
+    },
+    "appendix3": {
+      "title": "Anhang 3: Technische und organisatorische Massnahmen",
+      "intro": "Der Auftragsverarbeiter hat angemessene technische und organisatorische Massnahmen («TOM») umzusetzen und aufrechtzuerhalten, die mindestens die folgenden Bereiche abdecken:",
+      "measures": [
+        {
+          "title": "1. Zugangs- und Benutzerverwaltung",
+          "content": "Sämtliche Zugriffe auf Produktionssysteme sind durch Multi-Faktor-Authentifizierung (MFA) geschützt. Eine rollenbasierte Zugangskontrolle (RBAC) stellt sicher, dass Mitarbeitende ausschliesslich die für ihre Rolle erforderlichen Mindestberechtigungen erhalten. Passwortrichtlinien erzwingen starke Anmeldedaten mit regelmässiger Rotation. Zugriffsprotokolle werden geführt und regelmässig überprüft. Zugriffsrechte werden mindestens vierteljährlich überprüft und bei Rollenwechsel oder Austritt unverzüglich entzogen."
+        },
+        {
+          "title": "2. Physische und umgebungsbezogene Sicherheit",
+          "content": "UTXO AG betreibt eine Cloud-native Infrastruktur und unterhält keine eigenen Rechenzentren. Das gesamte Hosting erfolgt durch Infrastrukturanbieter (Railway, DigitalOcean), die branchenübliche Zertifizierungen wie SOC 2 Type II und ISO 27001 vorweisen. Der physische Zugang zu Rechenzentren wird vom jeweiligen Infrastrukturanbieter kontrolliert."
+        },
+        {
+          "title": "3. Verschlüsselung und Pseudonymisierung",
+          "content": "Sämtliche Daten werden bei der Übertragung durch TLS 1.2 oder höher geschützt. Gespeicherte Daten werden mit AES-256 oder gleichwertigen Verfahren verschlüsselt. Verschlüsselungsschlüssel werden über dedizierte Schlüsselmanagement-Dienste mit regelmässigen Rotationszyklen verwaltet. Pseudonymisierungstechniken werden eingesetzt, soweit dies zur Risikominderung bei der Datenverarbeitung möglich ist."
+        },
+        {
+          "title": "4. System- und Netzwerksicherheit",
+          "content": "Produktionsumgebungen sind durch Web Application Firewalls (WAF) und Netzwerksegmentierung geschützt. Regelmässige Schwachstellenscans und Penetrationstests werden durchgeführt. Patches und Sicherheitsupdates werden zeitnah eingespielt. Die Softwareentwicklung folgt sicheren Programmierpraktiken einschliesslich Code-Review und automatisierter Sicherheitstests."
+        },
+        {
+          "title": "5. Vorfallreaktion und Geschäftskontinuität",
+          "content": "Ein dokumentierter Incident-Response-Plan definiert Erkennungs-, Klassifizierungs-, Eskalations- und Kommunikationsverfahren. Benachrichtigungen über Datenschutzverletzungen erfolgen innerhalb von 48 Stunden nach Erkennung. Regelmässige Datensicherungen werden mit getesteten Wiederherstellungsverfahren durchgeführt. Geschäftskontinuitätspläne gewährleisten die Wiederherstellung der Dienste innerhalb definierter Wiederherstellungsziele."
+        },
+        {
+          "title": "6. Datenschutz durch Technikgestaltung und datenschutzfreundliche Voreinstellungen",
+          "content": "Privacy-by-Design-Grundsätze sind in die Produktentwicklung eingebettet. Datenminimierung stellt sicher, dass nur notwendige Daten erhoben und verarbeitet werden. Zweckbindungskontrollen verhindern die Verwendung von Daten über den vorgesehenen Zweck hinaus. Standardeinstellungen sind auf maximalen Datenschutz konfiguriert. Datenschutz-Folgenabschätzungen (DSFA) werden durchgeführt, soweit gesetzlich erforderlich."
+        }
+      ],
+      "closing": "Die vorstehend beschriebenen TOM sind integraler Bestandteil dieses AVV und sind vom Auftragsverarbeiter auf dem neuesten Stand zu halten. Wesentliche Änderungen der TOM, die das Datenschutz- oder Informationssicherheitsniveau beeinflussen können, sind dem Verantwortlichen vorab mitzuteilen."
+    },
+    "contact": {
+      "company": "UTXO AG",
+      "address": "Dammstrasse 16\n6300 Zug, Schweiz",
+      "register": "Handelsregister: CH-400.3.450.669-8",
+      "email": "business@utxo.ag",
+      "website": "https://utxoag.com"
+    },
+    "backToHome": "Zurück zur Startseite"
+  }
+}

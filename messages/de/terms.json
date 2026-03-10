@@ -1,126 +1,176 @@
 {
   "Terms": {
     "metadata": {
-      "title": "Nutzungsbedingungen — utxo AG"
+      "title": "Abonnementsbedingungen für Agentic Services — utxo AG"
     },
-    "heading": "Nutzungsbedingungen",
-    "lastUpdated": "Letzte Aktualisierung: 30. Januar 2026",
+    "heading": "Abonnementsbedingungen für Agentic Services",
+    "lastUpdated": "Letzte Aktualisierung: 10. März 2026",
+    "intro": "Diese Abonnementsbedingungen für Agentic Services («Bedingungen») regeln das Abonnementsverhältnis zwischen der UTXO AG, Dammstrasse 16, 6300 Zug, Schweiz, eingetragen unter CH-400.3.450.669-8 («UTXO AG», «wir», «uns») und dem abonnierenden Unternehmen («Kunde», «Sie») (jeweils eine «Partei», zusammen die «Parteien») für die Erbringung individueller AI-Agent-Dienstleistungen («AI Coworker» oder «Agentic Service»).",
+    "b2bNotice": "Diese Bedingungen gelten ausschliesslich für Geschäftskunden (B2B). Der Agentic Service wird Konsumenten nicht angeboten.",
     "sections": {
-      "scope": {
-        "title": "1. Geltungsbereich und Parteien",
-        "content1": "Diese Nutzungsbedingungen («Bedingungen») regeln die Nutzung aller Dienstleistungen der utxo AG, Dammstrasse 16, 6300 Zug, Schweiz (Handelsregister-Nummer CH-400.3.450.669-8) («utxo AG», «wir», «uns»), einschliesslich, aber nicht beschränkt auf: KI-Agenten-Dienste, E-Mail-basierte Agenten-Interaktionen, individuelle KI-Agenten-Entwicklung, Integrationsdienste und alle damit verbundenen Software- oder Plattformdienste (zusammen die «Dienste»).",
-        "content2": "Mit der Nutzung unserer Dienste erklären Sie sich («Kunde», «Sie») mit diesen Bedingungen einverstanden. Wenn Sie die Dienste im Namen einer Organisation nutzen, versichern Sie, dass Sie befugt sind, diese Organisation an diese Bedingungen zu binden."
+      "scopeOfServices": {
+        "title": "1. Leistungsumfang",
+        "content1": "1.1 UTXO AG stellt individuell konfigurierte AI-Agents («AI Coworkers») als verwaltete Dienstleistung (Managed Service) bereit. Jeder AI Coworker wird auf der Infrastruktur von UTXO AG eingerichtet und betrieben und in die bestehenden Workflows des Kunden integriert (z. B. E-Mail, CRM, Datenbanken, ERP-Systeme, Kollaborationswerkzeuge).",
+        "content2": "1.2 Zwei Leistungsarten stehen zur Verfügung:",
+        "serviceTypes": [
+          "Standard AI Coworkers: Vorkonfigurierte Agents mit standardisierten Funktionen, verfügbar über gestufte monatliche Abonnementstarife gemäss Veröffentlichung durch UTXO AG.",
+          "Individuelle Entwicklung (Custom Development): Massgeschneiderte Agent-Entwicklung einschliesslich individueller Integrationen, Funktionen und Workflow-Design. Die individuelle Entwicklung wird separat abgerechnet (projektbasiert oder nach Aufwand) und ist vor Beginn des Abonnements abzuschliessen."
+        ],
+        "content3": "1.3 Diese Bedingungen umfassen durch Verweis:",
+        "incorporatedDocs": [
+          "die {aupLink};",
+          "die {privacyLink}; und",
+          "den {dpaLink} (Anhang)."
+        ],
+        "aupLinkText": "Acceptable Use Policy",
+        "privacyLinkText": "Datenschutzerklärung",
+        "dpaLinkText": "Auftragsverarbeitungsvertrag",
+        "conflictNote": "Im Falle eines Widerspruchs zwischen diesen Bedingungen und dem Auftragsverarbeitungsvertrag hat der Auftragsverarbeitungsvertrag in Bezug auf datenschutzrechtliche Angelegenheiten Vorrang."
       },
-      "natureOfAIAgentServices": {
-        "title": "2. Art der KI-Agenten-Dienste",
-        "content": "Unsere KI-Agenten werden durch Künstliche Intelligenz betrieben, einschliesslich grosser Sprachmodelle (LLMs) und automatisierter Entscheidungssysteme. Sie anerkennen und stimmen zu, dass:",
+      "onboarding": {
+        "title": "2. Onboarding und Aktivierung des Service",
         "items": [
-          "KI-Agenten autonom auf der Grundlage probabilistischer Modelle arbeiten und fehlerhafte, unvollständige, irreführende oder unangemessene Ausgaben erzeugen können.",
-          "KI-Agenten keinen Ersatz für professionelle Beratung darstellen, einschliesslich, aber nicht beschränkt auf Rechts-, Finanz-, Medizin-, Steuer- oder Compliance-Beratung.",
-          "Von KI-Agenten generierte Ausgaben keine Empfehlungen, Gewährleistungen oder Garantien jeglicher Art darstellen.",
-          "Sie allein dafür verantwortlich sind, jede Ausgabe oder Massnahme eines KI-Agenten zu überprüfen, zu verifizieren und zu validieren, bevor Sie sich darauf verlassen.",
-          "KI-Agenten auf Daten in verbundenen Systemen (CRM, ERP, Datenbanken, E-Mail) gemäss Anweisung zugreifen, diese ändern oder darauf basierend handeln können. utxo AG haftet nicht für die Folgen solcher Handlungen."
+          "2.1 Jede AI Coworker-Bereitstellung umfasst eine Onboarding-Phase, in der UTXO AG den Agent konfiguriert, Verbindungen zu den Systemen des Kunden herstellt und die Integration testet.",
+          "2.2 Der Kunde ist verpflichtet, am Onboarding-Prozess mitzuwirken, indem er zeitnah Zugang zu den erforderlichen Systemen, Zugangsdaten, Daten und Informationen gewährt, soweit dies von UTXO AG vernünftigerweise verlangt wird.",
+          "2.3 Das Abonnement beginnt mit Abschluss der Onboarding-Phase, bestätigt durch die Übermittlung eines Abonnementslinks per E-Mail durch UTXO AG an den Kunden."
+        ]
+      },
+      "serviceDescription": {
+        "title": "3. Leistungsbeschreibung und AI-Transparenz",
+        "content1": "3.1 Der Agentic Service wird «wie besehen» und nach dem Grundsatz der bestmöglichen Leistung (Best-Effort) erbracht. UTXO AG garantiert keine bestimmte Verfügbarkeit, Betriebszeit, Reaktionszeit oder Servicequalität. Es gilt kein Service Level Agreement (SLA), sofern nicht ausdrücklich in einer gesonderten schriftlichen Vereinbarung festgelegt.",
+        "content2": "3.2 AI Coworkers basieren auf probabilistischen Modellen künstlicher Intelligenz, die von Drittanbietern für AI-Infrastruktur (einschliesslich OpenAI und Anthropic) bereitgestellt werden. Der Kunde anerkennt und stimmt zu, dass:",
+        "acknowledgements": [
+          "AI-Ergebnisse durch statistische Inferenz erzeugt werden und Fehler, Ungenauigkeiten oder unvollständige Informationen enthalten können;",
+          "AI Coworkers Aufgaben über längere Zeiträume autonom ausführen können (einige Aufgaben können mehrere Stunden dauern);",
+          "der Kunde die alleinige Verantwortung für die Überprüfung, Kontrolle und Freigabe aller AI-generierten Ergebnisse trägt, bevor er sich auf diese verlässt oder sie in einem Geschäftsprozess verwendet;",
+          "UTXO AG keine Gewähr für die Richtigkeit, Vollständigkeit, Eignung oder Tauglichkeit für einen bestimmten Zweck von AI-generierten Ergebnissen übernimmt."
+        ],
+        "content3": "3.3 In Übereinstimmung mit der KI-Verordnung der EU (Verordnung (EU) 2024/1689) legt UTXO AG hiermit offen, dass die AI Coworkers AI-Systeme mit begrenztem Risiko darstellen. Der Kunde sowie seine Mitarbeiter, Auftragnehmer und Geschäftspartner, die mit dem AI Coworker interagieren, sind darüber zu informieren, dass sie mit einem AI-System und nicht mit einem Menschen interagieren.",
+        "content4": "3.4 Das ordnungsgemässe Funktionieren des Agentic Service kann erfordern, dass der Kunde bestimmte technische Voraussetzungen erfüllt (z. B. geeignete E-Mail-Konfiguration, Systemzugang, Netzwerkanbindung). Der Kunde ist für die Umsetzung und Aufrechterhaltung dieser Voraussetzungen verantwortlich. UTXO AG haftet nicht für Mängel des Agentic Service, die auf die Nichterfüllung dieser Voraussetzungen durch den Kunden zurückzuführen sind."
+      },
+      "billing": {
+        "title": "4. Abonnement, Abrechnung und Zahlung",
+        "items": [
+          "4.1 Jeder AI Coworker unterliegt einem separaten Abonnement. UTXO AG bietet gestufte Abonnementstarife mit monatlichen Abrechnungszyklen an. Die geltende Preisgestaltung wird dem Kunden vor Aktivierung des Abonnements mitgeteilt.",
+          "4.2 Abonnements werden durch den Kunden über einen von UTXO AG per E-Mail bereitgestellten Abonnementslink aktiviert. Mit der Aktivierung des Abonnements akzeptiert der Kunde diese Bedingungen, die Acceptable Use Policy, die Datenschutzerklärung (Privacy Policy) und den Auftragsverarbeitungsvertrag.",
+          "4.3 Die Zahlung ist monatlich im Voraus fällig und kann per Rechnung oder über den Zahlungsdienstleister Stripe erfolgen. Alle Preise verstehen sich zuzüglich der anfallenden Steuern (einschliesslich Mehrwertsteuer), die gegebenenfalls gesetzlich geschuldet hinzugerechnet werden.",
+          "4.4 Kommt der Kunde mit einer Zahlung in Verzug, ist UTXO AG berechtigt, Verzugszinsen gemäss Art. 104 des Schweizerischen Obligationenrechts (OR) zu erheben und den Agentic Service bis zur vollständigen Begleichung aller ausstehenden Beträge auszusetzen.",
+          "4.5 Gebühren für individuelle Entwicklung werden separat abgerechnet (projektbasiert oder nach Aufwand), wie zwischen den Parteien vor Beginn der individuellen Entwicklungsarbeiten schriftlich vereinbart. Gebühren für individuelle Entwicklung sind nach Arbeitsbeginn nicht erstattungsfähig."
+        ]
+      },
+      "termAndTermination": {
+        "title": "5. Laufzeit und Kündigung",
+        "content1": "5.1 Das Abonnement läuft auf monatlich fortlaufender Basis. Jede Partei kann das Abonnement jederzeit mit Wirkung zum Ende der laufenden Abrechnungsperiode durch schriftliche Mitteilung (E-Mail genügt) kündigen.",
+        "content2": "5.2 Jede Partei kann das Abonnement aus wichtigem Grund mit sofortiger Wirkung kündigen, wenn:",
+        "causeItems": [
+          "die andere Partei eine wesentliche Verletzung dieser Bedingungen begeht und diese Verletzung nicht innerhalb von vierzehn (14) Tagen nach Erhalt einer schriftlichen Mitteilung, die den Verstoss spezifiziert, behebt; oder",
+          "die andere Partei zahlungsunfähig wird, in Liquidation tritt oder ein Konkursverwalter oder Sachwalter über ihr Vermögen bestellt wird."
+        ],
+        "content3": "5.3 UTXO AG ist berechtigt, den Agentic Service sofort zu kündigen oder auszusetzen, wenn der Kunde gegen die {aupLink} verstösst.",
+        "aupLinkText": "Acceptable Use Policy",
+        "content4": "5.4 Für den verbleibenden Anteil einer im Voraus bezahlten Abrechnungsperiode werden bei Kündigung keine Rückerstattungen gewährt.",
+        "content5": "5.5 Nach Beendigung hat UTXO AG die Kundendaten gemäss dem {dpaLink} (Abschnitt 12) zu behandeln.",
+        "dpaLinkText": "Auftragsverarbeitungsvertrag"
+      },
+      "changesAndUpdates": {
+        "title": "6. Änderungen und Aktualisierungen",
+        "items": [
+          "6.1 Der Kunde kann jederzeit Änderungen an der Konfiguration, den Funktionen oder den Integrationen seines AI Coworkers beantragen, indem er UTXO AG kontaktiert. UTXO AG hat angemessene Änderungen innerhalb eines wirtschaftlich angemessenen Zeitrahmens umzusetzen. Änderungen, die einen erheblichen Entwicklungsaufwand erfordern, können zusätzliche Gebühren nach sich ziehen.",
+          "6.2 UTXO AG kann nach eigenem Ermessen Aktualisierungen, Patches oder Modifikationen des Agentic Service zur Aufrechterhaltung der Funktionalität, Sicherheit oder Compliance ohne vorherige Genehmigung des Kunden vornehmen.",
+          "6.3 UTXO AG behält sich das Recht vor, diese Bedingungen zu ändern. Wesentliche Änderungen werden dem Kunden mindestens dreissig (30) Tage im Voraus per E-Mail mitgeteilt. Die fortgesetzte Nutzung des Agentic Service nach dem Inkrafttreten einer Änderung gilt als Annahme der geänderten Bedingungen. Stimmt der Kunde den Änderungen nicht zu, kann er das Abonnement gemäss Abschnitt 5.1 kündigen."
         ]
       },
       "intellectualProperty": {
-        "title": "3. Geistiges Eigentum",
-        "ourIP": {
-          "title": "3.1 Unser geistiges Eigentum",
-          "content": "Alle Rechte am geistigen Eigentum an den Diensten, einschliesslich, aber nicht beschränkt auf Software, Algorithmen, Modelle, Agenten-Architekturen, Workflows, Prompts, Systemdesigns, Dokumentation und jede zugrunde liegende Technologie, verbleiben im ausschliesslichen Eigentum der utxo AG. Nichts in diesen Bedingungen überträgt Ihnen geistige Eigentumsrechte, mit Ausnahme der eingeschränkten Lizenz zur Nutzung der Dienste wie hierin beschrieben."
-        },
-        "yourData": {
-          "title": "3.2 Ihre Daten",
-          "content": "Sie behalten das Eigentum an Daten, die Sie unseren Diensten bereitstellen. Durch die Nutzung unserer Dienste gewähren Sie utxo AG jedoch eine weltweite, nicht-exklusive, lizenzgebührenfreie, unbefristete, unwiderrufliche Lizenz zur Nutzung, Verarbeitung, Speicherung, Vervielfältigung, Änderung und Erstellung abgeleiteter Werke aus allen Daten, Inhalten, Rückmeldungen oder Materialien, die Sie unseren Diensten bereitstellen oder über diese übermitteln, zum Zweck des Betriebs, der Wartung, der Verbesserung und der Entwicklung der Dienste und verwandter Technologien, einschliesslich des Trainings und der Verbesserung von KI-Modellen."
-        },
-        "aiGeneratedOutputs": {
-          "title": "3.3 KI-generierte Ausgaben",
-          "content": "Von unseren KI-Agenten generierte Ausgaben werden «wie besehen» bereitgestellt. utxo AG erhebt keinen Eigentumsanspruch auf speziell für Sie generierte Ausgaben. Wir behalten uns jedoch das Recht vor, anonymisierte oder aggregierte Ausgaben zur Dienstverbesserung, für Benchmarking und Entwicklungszwecke zu verwenden."
-        }
-      },
-      "limitationOfLiability": {
-        "title": "4. Haftungsbeschränkung",
-        "preamble": "IM GRÖSSTMÖGLICHEN DURCH DAS ANWENDBARE RECHT GESTATTETEN UMFANG:",
+        "title": "7. Geistiges Eigentum",
         "items": [
-          "DIE DIENSTE WERDEN «WIE BESEHEN» UND «WIE VERFÜGBAR» OHNE GEWÄHRLEISTUNGEN JEGLICHER ART BEREITGESTELLT, WEDER AUSDRÜCKLICH, STILLSCHWEIGEND NOCH GESETZLICH, EINSCHLIESSLICH, ABER NICHT BESCHRÄNKT AUF GEWÄHRLEISTUNGEN DER MARKTGÄNGIGKEIT, DER EIGNUNG FÜR EINEN BESTIMMTEN ZWECK, DER RICHTIGKEIT, DER ZUVERLÄSSIGKEIT ODER DER NICHTVERLETZUNG VON RECHTEN.",
-          "UTXO AG HAFTET NICHT FÜR INDIREKTE, BEILÄUFIGE, BESONDERE, FOLGE-, STRAF- ODER EXEMPLARISCHE SCHÄDEN, EINSCHLIESSLICH, ABER NICHT BESCHRÄNKT AUF SCHÄDEN DURCH ENTGANGENEN GEWINN, VERLUST DES GESCHÄFTSWERTS, DATENVERLUST, ENTGANGENE GESCHÄFTSMÖGLICHKEITEN ODER ANDERE IMMATERIELLE VERLUSTE, DIE AUS ODER IN VERBINDUNG MIT DEN DIENSTEN ENTSTEHEN.",
-          "UTXO AG HAFTET NICHT FÜR DIREKTE SCHÄDEN, DIE DEN GESAMTBETRAG DER VON IHNEN AN UTXO AG GEZAHLTEN GEBÜHREN IN DEN ZWÖLF (12) MONATEN VOR DEM SCHADENSEREIGNIS ÜBERSTEIGEN.",
-          "UTXO AG HAFTET NICHT FÜR VERLUSTE, SCHÄDEN ODER BEEINTRÄCHTIGUNGEN, DIE SICH ERGEBEN AUS: (a) FEHLERN, UNGENAUIGKEITEN ODER AUSLASSUNGEN IN KI-AGENTEN-AUSGABEN; (b) MASSNAHMEN ODER ENTSCHEIDUNGEN, DIE AUF DER GRUNDLAGE VON KI-AGENTEN-AUSGABEN GETROFFEN WERDEN; (c) UNBEFUGTEM ZUGRIFF AUF ODER VERÄNDERUNG IHRER DATEN; (d) UNTERBRECHUNG ODER EINSTELLUNG DER DIENSTE; (e) HANDLUNGEN DRITTER ODER INTEGRATIONEN; (f) DATENVERLUST ODER -BESCHÄDIGUNG; (g) JEGLICHEM VERSAGEN DES KI-AGENTEN, WIE ERWARTET ZU FUNKTIONIEREN."
+          "7.1 Sämtliche Rechte, Ansprüche und Interessen (einschliesslich aller Rechte an geistigem Eigentum) am Agentic Service, an den AI Coworkers, der zugrundeliegenden Technologie, Plattform, den Algorithmen, Modellen und der Software verbleiben ausschliesslich bei UTXO AG und ihren Lizenzgebern.",
+          "7.2 Der Kunde behält das vollständige Eigentum an allen Daten, Inhalten und Materialien, die er UTXO AG zum Zweck des Betriebs des Agentic Service zur Verfügung stellt («Kundendaten»).",
+          "7.3 Der Kunde gewährt UTXO AG eine beschränkte, nicht-exklusive, nicht übertragbare, widerrufliche Lizenz zum Zugriff auf und zur Verarbeitung von Kundendaten ausschliesslich zum Zweck der Erbringung des Agentic Service im Rahmen dieser Bedingungen. Diese Lizenz endet automatisch mit Beendigung des Abonnements.",
+          "7.4 UTXO AG ist nicht berechtigt, Kundendaten für andere Zwecke als die Erbringung des Agentic Service zu verwenden. Insbesondere dürfen Kundendaten nicht zum Training von AI-Modellen, zur statistischen Analyse über die Leistungserbringung hinaus oder für sonstige Zwecke verwendet werden.",
+          "7.5 Dem Kunden wird ein nicht-exklusives, nicht übertragbares, nicht unterlizenzierbares Recht zur Nutzung des Agentic Service während der Laufzeit des Abonnements eingeräumt, vorbehaltlich der Zahlung der geltenden Gebühren und der Einhaltung dieser Bedingungen."
         ]
       },
-      "indemnification": {
-        "title": "5. Freistellung",
-        "content": "Sie verpflichten sich, utxo AG, deren Geschäftsführer, leitende Angestellte, Mitarbeiter, Beauftragte und verbundene Unternehmen gegen sämtliche Ansprüche, Schäden, Verluste, Verbindlichkeiten, Kosten und Aufwendungen (einschliesslich angemessener Anwaltsgebühren) zu verteidigen, freizustellen und schadlos zu halten, die sich ergeben aus oder im Zusammenhang stehen mit: (a) Ihrer Nutzung der Dienste; (b) Ihrer Verletzung dieser Bedingungen; (c) Ihrer Verletzung geltenden Rechts; (d) Daten oder Inhalten, die Sie den Diensten bereitstellen; (e) Handlungen, die von KI-Agenten in Ihrem Namen oder auf Ihre Anweisung vorgenommen werden; (f) Streitigkeiten zwischen Ihnen und Dritten, die sich aus der Nutzung der Dienste ergeben."
-      },
-      "noGuarantees": {
-        "title": "6. Keine Garantien",
-        "content": "Wir garantieren nicht:",
-        "items": [
-          "Dass die Dienste ununterbrochen, fehlerfrei oder jederzeit verfügbar sein werden",
-          "Dass KI-Agenten-Ausgaben korrekt, vollständig, aktuell oder für einen bestimmten Zweck geeignet sein werden",
-          "Dass die Dienste Ihren spezifischen Anforderungen oder Erwartungen entsprechen werden",
-          "Dass Mängel oder Fehler in den Diensten behoben werden",
-          "Dass die Dienste mit allen Systemen, Konfigurationen oder Drittanbieter-Werkzeugen kompatibel sein werden",
-          "Bestimmte Ergebnisse, Leistungsniveaus oder Resultate aus der Nutzung der Dienste"
-        ]
-      },
-      "euAIAct": {
-        "title": "7. Einhaltung des EU AI Act",
-        "content": "In Übereinstimmung mit dem Gesetz über Künstliche Intelligenz der EU (Verordnung (EU) 2024/1689) geben wir folgende Transparenzhinweise:",
-        "items": [
-          "Unsere KI-Agenten sind KI-Systeme im Sinne des EU AI Act.",
-          "Nutzer, die mit unseren KI-Agenten interagieren, werden eindeutig darüber informiert, dass sie mit einem KI-System und nicht mit einem Menschen kommunizieren.",
-          "Wir stufen unsere KI-Agenten im Rahmen des EU AI Act als KI-Systeme mit begrenztem Risiko ein.",
-          "KI-generierte Inhalte werden eindeutig als solche gekennzeichnet.",
-          "Wir führen die nach den anwendbaren Bestimmungen des EU AI Act erforderliche Dokumentation unserer KI-Systeme."
+      "liability": {
+        "title": "8. Haftung",
+        "content1": "8.1 Die Gesamthaftung von UTXO AG für sämtliche Ansprüche aus oder im Zusammenhang mit diesen Bedingungen ist, soweit gesetzlich zulässig, auf den Gesamtbetrag der vom Kunden an UTXO AG tatsächlich gezahlten Gebühren in den zwölf (12) Monaten unmittelbar vor dem haftungsbegründenden Ereignis beschränkt.",
+        "content2": "8.2 Soweit gesetzlich zulässig, haftet UTXO AG nicht für indirekte Schäden, Nebenschäden, besondere Schäden, Folgeschäden oder Strafschadensersatz, einschliesslich, aber nicht beschränkt auf entgangenen Gewinn, Datenverlust, Geschäftsverlust oder Betriebsunterbrechung, ungeachtet der Art des Anspruchs oder der Haftungstheorie.",
+        "content3": "8.3 UTXO AG haftet nicht für:",
+        "liabilityExclusions": [
+          "die Richtigkeit, Vollständigkeit oder Eignung von AI-generierten Ergebnissen;",
+          "Entscheidungen, die der Kunde auf der Grundlage von AI-generierten Ergebnissen trifft;",
+          "Verluste oder Schäden, die aus der unterlassenen Überprüfung von AI-generierten Ergebnissen durch den Kunden resultieren;",
+          "Unterbrechungen oder Beeinträchtigungen des Agentic Service, die durch Umstände ausserhalb der angemessenen Kontrolle von UTXO AG verursacht werden, einschliesslich Ereignisse höherer Gewalt (Naturkatastrophen, Pandemien, behördliche Massnahmen, Cyberangriffe, Ausfälle von Drittanbieter-Infrastruktur oder Internetunterbrechungen)."
         ],
-        "disclaimer": "Ungeachtet dieser Compliance-Massnahmen lehnt utxo AG jede Haftung für regulatorische Strafen, Bussgelder oder Konsequenzen ab, die sich aus dem Einsatz oder der Nutzung von KI-Agenten durch den Kunden in einer Weise ergeben, die gegen den EU AI Act oder andere anwendbare Vorschriften verstösst. Der Kunde ist allein dafür verantwortlich, sicherzustellen, dass seine Nutzung der Dienste allen anwendbaren Gesetzen entspricht, einschliesslich dem EU AI Act."
+        "content4": "8.4 Keine Bestimmung dieser Bedingungen schliesst die Haftung für Schäden aufgrund von Vorsatz oder grober Fahrlässigkeit oder für Personenschäden (Art. 100 OR) aus oder beschränkt diese.",
+        "content5": "8.5 Die vorstehenden Haftungsbeschränkungen gelten auch für die persönliche Haftung der Mitarbeiter, Geschäftsführer, Vertreter und Beauftragten von UTXO AG."
       },
-      "dataProcessing": {
-        "title": "8. Datenverarbeitung und DSGVO",
-        "content": "Die Datenverarbeitung unterliegt unserer {privacyLink}. Sofern wir personenbezogene Daten in Ihrem Auftrag verarbeiten, kann ein separater Auftragsverarbeitungsvertrag (AVV) erforderlich sein. Sie sind dafür verantwortlich, dass Ihre Nutzung der Dienste der DSGVO und den anwendbaren Datenschutzgesetzen entspricht, einschliesslich der Einholung erforderlicher Einwilligungen von betroffenen Personen, deren Daten durch KI-Agenten verarbeitet werden.",
+      "confidentiality": {
+        "title": "9. Vertraulichkeit",
+        "content1": "9.1 Jede Partei hat sämtliche von der anderen Partei erhaltenen Informationen, die als vertraulich gekennzeichnet sind oder die eine vernünftige Geschäftsperson als vertraulich betrachten würde, vertraulich zu behandeln («Vertrauliche Informationen»), einschliesslich, aber nicht beschränkt auf technische Informationen, Geschäftspläne, Preisgestaltung, Kundendaten, Prozesse und Quellcode.",
+        "content2": "9.2 Als Vertrauliche Informationen gelten nicht Informationen, die:",
+        "exclusions": [
+          "der empfangenden Partei zum Zeitpunkt der Offenlegung bereits bekannt waren;",
+          "ohne Verschulden der empfangenden Partei öffentlich zugänglich sind oder werden;",
+          "von einem Dritten ohne Verstoss gegen Vertraulichkeitspflichten erhalten wurden; oder",
+          "von der empfangenden Partei unabhängig und ohne Bezugnahme auf die Vertraulichen Informationen entwickelt wurden."
+        ],
+        "content3": "9.3 Jede Partei hat Vertrauliche Informationen mindestens mit derselben Sorgfalt zu schützen, die sie für ihre eigenen vertraulichen Informationen aufwendet, in keinem Fall jedoch mit weniger als angemessener Sorgfalt.",
+        "content4": "9.4 Jede Partei hat sicherzustellen, dass ihre Mitarbeiter, Auftragnehmer und Berater, die Zugang zu Vertraulichen Informationen haben, durch Vertraulichkeitsverpflichtungen gebunden sind, die nicht weniger schützend sind als die in diesem Abschnitt festgelegten.",
+        "content5": "9.5 Die Vertraulichkeitspflichten gemäss diesem Abschnitt 9 bestehen für einen Zeitraum von fünf (5) Jahren über die Beendigung dieser Bedingungen hinaus fort."
+      },
+      "dataProtection": {
+        "title": "10. Datenschutz",
+        "content1": "10.1 UTXO AG verarbeitet personenbezogene Daten im Auftrag des Kunden in ihrer Eigenschaft als Auftragsverarbeiter im Sinne von Art. 28 DSGVO bzw. Art. 9 DSG. Der als Anhang zu diesen Bedingungen beigefügte {dpaLink} bildet einen integralen Bestandteil des Vertragsverhältnisses und wird vom Kunden mit dem Abschluss des Abonnements für den Agentic Service automatisch akzeptiert.",
+        "dpaLinkText": "Auftragsverarbeitungsvertrag",
+        "content2": "10.2 Der Kunde nimmt zur Kenntnis, dass die Erbringung des Agentic Service die Verarbeitung von Kundendaten durch Drittanbieter für AI-Infrastruktur (OpenAI, Anthropic) und Hosting-Anbieter (Railway, DigitalOcean) umfasst, was internationale Datenübermittlungen zur Folge haben kann. Geeignete Schutzmassnahmen sind im Auftragsverarbeitungsvertrag beschrieben.",
+        "content3": "10.3 Einzelheiten zur Verarbeitung personenbezogener Daten, einschliesslich der Kategorien betroffener Personen, Datenkategorien, Unterauftragsverarbeiter sowie technischer und organisatorischer Massnahmen, sind im Auftragsverarbeitungsvertrag festgelegt.",
+        "content4": "10.4 Informationen darüber, wie UTXO AG personenbezogene Daten als Verantwortlicher verarbeitet (z. B. im Zusammenhang mit der Website und der Kontoverwaltung), finden Sie in der {privacyLink}.",
         "privacyLinkText": "Datenschutzerklärung"
       },
-      "acceptableUse": {
-        "title": "9. Zulässige Nutzung",
-        "content": "Sie verpflichten sich, die Dienste nicht zu verwenden, um:",
+      "support": {
+        "title": "11. Support",
         "items": [
-          "Gegen anwendbares Recht, Vorschriften oder Rechte Dritter zu verstossen",
-          "Daten unter Verstoss gegen Datenschutzgesetze zu verarbeiten",
-          "Spam, unaufgeforderte Mitteilungen oder schädliche Inhalte über KI-Agenten zu versenden",
-          "Die den Diensten zugrunde liegenden Modelle, Algorithmen oder den Quellcode zurückzuentwickeln, zu dekompilieren oder zu extrahieren",
-          "Die Dienste zur Entwicklung konkurrierender Produkte oder Dienstleistungen zu verwenden",
-          "Sicherheitsmassnahmen, Zugangskontrollen oder Nutzungslimits zu umgehen",
-          "Die Dienste für illegale, betrügerische oder schädliche Zwecke zu verwenden"
+          "11.1 UTXO AG erbringt Support ausschliesslich per E-Mail unter support@utxoag.com während der regulären Geschäftszeiten (Montag bis Freitag, 09:00–17:00 Uhr MEZ, ausgenommen gesetzliche Feiertage im Kanton Zug).",
+          "11.2 Support wird auf Best-Effort-Basis erbracht. UTXO AG verpflichtet sich nicht zu bestimmten Reaktions- oder Lösungszeiten, sofern nicht ausdrücklich in einer gesonderten schriftlichen Vereinbarung festgelegt."
         ]
       },
-      "termination": {
-        "title": "10. Kündigung",
-        "content": "Wir können Ihren Zugang zu den Diensten jederzeit mit oder ohne Grund und mit oder ohne Vorankündigung aussetzen oder beenden. Bei Kündigung: (a) erlöschen alle Ihnen im Rahmen dieser Bedingungen gewährten Rechte sofort; (b) müssen Sie jegliche Nutzung der Dienste einstellen; (c) können wir Ihre Daten nach einer angemessenen Aufbewahrungsfrist löschen, sofern wir nicht gesetzlich zu deren Aufbewahrung verpflichtet sind; (d) bleiben Bestimmungen, die ihrer Natur nach die Kündigung überdauern sollen, bestehen, einschliesslich, aber nicht beschränkt auf die Abschnitte 3, 4, 5, 6 und 12."
+      "compliance": {
+        "title": "12. Compliance",
+        "content": "Jede Partei ist für die Einhaltung der für sie geltenden gesetzlichen und regulatorischen Pflichten verantwortlich, einschliesslich Datenschutzgesetze, steuerliche Pflichten und branchenspezifische Anforderungen. UTXO AG ist nicht dafür verantwortlich sicherzustellen, dass die Nutzung des Agentic Service durch den Kunden den regulatorischen Anforderungen des Kunden entspricht."
       },
-      "modifications": {
-        "title": "11. Änderungen",
-        "content": "Wir behalten uns das Recht vor, diese Bedingungen jederzeit zu ändern. Änderungen werden mit der Veröffentlichung auf dieser Website wirksam. Ihre fortgesetzte Nutzung der Dienste nach einer Änderung gilt als Zustimmung zu den geänderten Bedingungen. Es liegt in Ihrer Verantwortung, diese Bedingungen regelmässig zu überprüfen."
+      "forceMajeure": {
+        "title": "13. Höhere Gewalt",
+        "content": "Keine Partei haftet für Verzögerungen oder die Nichterfüllung ihrer Pflichten aus diesen Bedingungen, soweit solche Verzögerungen oder Nichterfüllungen auf Umstände zurückzuführen sind, die ausserhalb ihrer angemessenen Kontrolle liegen, einschliesslich, aber nicht beschränkt auf Naturkatastrophen, Pandemien, behördliche Massnahmen, Krieg, Terrorismus, innere Unruhen, Cyberangriffe, Internetunterbrechungen oder Ausfälle von Drittanbieter-Infrastruktur. Die betroffene Partei hat die andere Partei unverzüglich zu benachrichtigen und angemessene Anstrengungen zur Minderung der Auswirkungen zu unternehmen."
       },
       "governingLaw": {
-        "title": "12. Anwendbares Recht und Gerichtsstand",
-        "content1": "Diese Bedingungen unterliegen dem materiellen Recht der Schweiz unter Ausschluss der kollisionsrechtlichen Bestimmungen der Schweiz und des Übereinkommens der Vereinten Nationen über Verträge über den internationalen Warenkauf (CISG).",
-        "content2": "Jegliche Streitigkeiten, die sich aus oder im Zusammenhang mit diesen Bedingungen oder den Diensten ergeben, unterliegen der ausschliesslichen Zuständigkeit der zuständigen Gerichte am Sitz der utxo AG in Zug, Schweiz. utxo AG behält sich das Recht vor, Verfahren vor jedem anderen zuständigen Gericht einzuleiten."
+        "title": "14. Anwendbares Recht und Gerichtsstand",
+        "items": [
+          "14.1 Diese Bedingungen und alle daraus oder im Zusammenhang damit entstehenden Streitigkeiten (einschliesslich ausservertraglicher Streitigkeiten) unterliegen dem materiellen Recht der Schweiz unter Ausschluss der Kollisionsnormen.",
+          "14.2 Das Übereinkommen der Vereinten Nationen über Verträge über den internationalen Warenkauf (CISG) findet keine Anwendung.",
+          "14.3 Ausschliesslicher Gerichtsstand für alle Streitigkeiten aus oder im Zusammenhang mit diesen Bedingungen sind die Gerichte des Kantons Zug, Schweiz."
+        ]
       },
-      "severability": {
-        "title": "13. Salvatorische Klausel",
-        "content": "Sollte eine Bestimmung dieser Bedingungen für ungültig oder nicht durchsetzbar erklärt werden, bleiben die übrigen Bestimmungen in vollem Umfang wirksam. Die ungültige oder nicht durchsetzbare Bestimmung wird durch eine gültige und durchsetzbare Bestimmung ersetzt, die dem beabsichtigten wirtschaftlichen Zweck am nächsten kommt."
-      },
-      "entireAgreement": {
-        "title": "14. Vollständige Vereinbarung",
-        "content": "Diese Bedingungen bilden zusammen mit unserer Datenschutzerklärung und allfälligen Dienstleistungsvereinbarungen die vollständige Vereinbarung zwischen Ihnen und utxo AG in Bezug auf die Dienste und ersetzen alle früheren oder gleichzeitigen Mitteilungen, ob elektronisch, mündlich oder schriftlich."
-      },
-      "contact": {
-        "title": "15. Kontakt",
-        "content": "Bei Fragen zu diesen Bedingungen kontaktieren Sie:",
-        "address": "utxo AG, Dammstrasse 16, 6300 Zug, Schweiz",
-        "email": "business@utxo.ag"
+      "miscellaneous": {
+        "title": "15. Verschiedenes",
+        "items": [
+          "15.1 Salvatorische Klausel. Sollte eine Bestimmung dieser Bedingungen von einem zuständigen Gericht für ungültig oder undurchsetzbar befunden werden, so bleiben die übrigen Bestimmungen in vollem Umfang wirksam. Die ungültige Bestimmung ist durch eine wirksame Bestimmung zu ersetzen, die dem wirtschaftlichen Zweck der ursprünglichen Bestimmung am nächsten kommt.",
+          "15.2 Abtretung. Keine Partei darf ihre Rechte oder Pflichten aus diesen Bedingungen ohne vorherige schriftliche Zustimmung der anderen Partei abtreten. Jede Abtretung unter Verstoss gegen diese Bestimmung ist nichtig.",
+          "15.3 Gesamtvertrag. Diese Bedingungen bilden zusammen mit der Acceptable Use Policy, der Datenschutzerklärung (Privacy Policy) und dem Auftragsverarbeitungsvertrag die gesamte Vereinbarung zwischen den Parteien in Bezug auf den Vertragsgegenstand und ersetzen alle früheren und gleichzeitigen Vereinbarungen, Zusicherungen und Absprachen. Die allgemeinen Geschäftsbedingungen des Kunden finden keine Anwendung. Änderungen dieser Bedingungen bedürfen der Schriftform.",
+          "15.4 Mitteilungen. Alle Mitteilungen im Rahmen dieser Bedingungen sind schriftlich und in englischer oder deutscher Sprache abzufassen. Mitteilungen können per E-Mail an die im Abonnement angegebenen Adressen oder an die folgenden Adressen gesendet werden: business@utxo.ag (UTXO AG) oder die hinterlegte E-Mail-Adresse des Kunden.",
+          "15.5 Unabhängige Vertragsparteien. Die Parteien sind unabhängige Vertragsparteien. Keine Bestimmung dieser Bedingungen ist dahingehend auszulegen, dass ein Joint Venture, eine Partnerschaft, ein Arbeitsverhältnis oder ein Vertretungsverhältnis zwischen den Parteien begründet wird.",
+          "15.6 Keine Drittbegünstigung. Diese Bedingungen begründen keine Rechte oder Ansprüche zugunsten Dritter.",
+          "15.7 Verzicht. Das Unterlassen der Ausübung oder Durchsetzung eines Rechts aus diesen Bedingungen durch eine Partei stellt keinen Verzicht auf dieses Recht dar.",
+          "15.8 Embargo-Länder. Der Agentic Service darf nicht von einem Kunden genutzt werden, der seinen Sitz in einem von den USA, der EU, dem Vereinigten Königreich oder der Schweiz mit einem Embargo belegten Land hat."
+        ]
       }
     },
-    "backToHome": "← Zurück zur Startseite"
+    "contact": {
+      "company": "UTXO AG",
+      "address": "Dammstrasse 16\n6300 Zug, Schweiz",
+      "register": "Handelsregister: CH-400.3.450.669-8",
+      "email": "business@utxo.ag",
+      "website": "https://utxoag.com"
+    },
+    "backToHome": "Zurück zur Startseite"
   }
 }

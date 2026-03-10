@@ -22,6 +22,8 @@ export default function Footer() {
           <Link href="/imprint" className="hover:text-white/60 transition-colors duration-200">{t("imprint")}</Link>
           <Link href="/privacy" className="hover:text-white/60 transition-colors duration-200">{t("privacyPolicy")}</Link>
           <Link href="/terms" className="hover:text-white/60 transition-colors duration-200">{t("termsOfService")}</Link>
+          <Link href="/acceptable-use" className="hover:text-white/60 transition-colors duration-200">{t("acceptableUsePolicy")}</Link>
+          <Link href="/dpa" className="hover:text-white/60 transition-colors duration-200">{t("dataProcessingAgreement")}</Link>
         </div>
       </div>
     </footer>

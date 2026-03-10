@@ -46,6 +46,8 @@ export default async function ImprintPage({
               {t("sections.commercialRegister.label")}
             </h2>
             <p>{t("sections.commercialRegister.number")}</p>
+            <p>{t("sections.uid.label")}: {t("sections.uid.number")}</p>
+            <p>{t("sections.betriebsnummer.label")}: {t("sections.betriebsnummer.number")}</p>
           </section>
 
           <hr className="my-8 border-[#eee]" />
