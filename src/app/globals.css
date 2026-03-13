@@ -17,3 +17,10 @@ body {
   background: #111;
   color: #fff;
 }
+
+@media (min-width: 768px) {
+  .pitch-container,
+  .pitch-container * {
+    cursor: none !important;
+  }
+}
