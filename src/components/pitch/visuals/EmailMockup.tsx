@@ -28,8 +28,16 @@ export default function EmailMockup({ variant, className = "" }: EmailMockupProp
               <g key={i}>
                 <rect x="101" y={37 + i * 56} width="379" height="56" fill={i === 0 ? "rgba(30,42,74,0.04)" : "#fff"} />
                 <line x1="101" y1={37 + (i + 1) * 56} x2="480" y2={37 + (i + 1) * 56} stroke="#f0ede8" strokeWidth="1" />
-                <circle cx="125" cy={65 + i * 56} r="12" fill={i === 0 ? "#111" : "#e8e5df"} stroke={i === 0 ? "#1e2a4a" : "none"} strokeWidth={i === 0 ? "1.5" : "0"} />
-                {i === 0 && <text x="125" y="69" textAnchor="middle" className="text-[8px] font-bold fill-white">O</text>}
+                {i === 0 ? (
+                  <>
+                    <clipPath id={`ottoPfpMockup${i}`}>
+                      <circle cx="125" cy={65 + i * 56} r="12" />
+                    </clipPath>
+                    <image href="/images/pitch/otto-pfp.png" x={113} y={53 + i * 56} width="24" height="24" clipPath={`url(#ottoPfpMockup${i})`} preserveAspectRatio="xMidYMid slice" />
+                  </>
+                ) : (
+                  <circle cx="125" cy={65 + i * 56} r="12" fill="#e8e5df" />
+                )}
                 <rect x="146" y={54 + i * 56} width={140 - i * 10} height="8" rx="2" fill={i === 0 ? "#111" : "#ddd"} />
                 <rect x="146" y={68 + i * 56} width={180 - i * 15} height="6" rx="2" fill={i === 0 ? "#9CA3AF" : "#f0ede8"} />
                 <text x="450" y={65 + i * 56} textAnchor="end" className={`text-[9px] font-mono ${i === 0 ? "fill-[#1e2a4a] font-bold" : "fill-[#ddd]"}`}>

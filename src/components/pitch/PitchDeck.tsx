@@ -26,6 +26,7 @@ import ROI from "./slides/ROI";
 import Pricing from "./slides/Pricing";
 import Roadmap from "./slides/Roadmap";
 import CTASlide from "./slides/CTASlide";
+import NameYourAgent from "./slides/NameYourAgent";
 import ThankYouSlide from "./ThankYouSlide";
 
 function PitchDeckInner() {
@@ -35,7 +36,7 @@ function PitchDeckInner() {
   const logo = searchParams.get("logo") ?? undefined;
 
   const hasWelcome = !!company;
-  const slideCount = 23 + (hasWelcome ? 1 : 0);
+  const slideCount = 24 + (hasWelcome ? 1 : 0);
 
   return (
     <PitchLayout slideCount={slideCount}>
@@ -60,10 +61,11 @@ function PitchDeckInner() {
       <SwissTrust />
       <PilotPartner />
       <BusinessModel />
-      <CTASlide />
       <ROI />
       <Pricing />
       <Roadmap />
+      <NameYourAgent />
+      <CTASlide />
       <ThankYouSlide />
     </PitchLayout>
   );

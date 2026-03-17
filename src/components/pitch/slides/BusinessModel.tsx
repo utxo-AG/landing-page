@@ -8,7 +8,7 @@ export default function BusinessModel() {
   const t = useTranslations("Pitch.BusinessModel");
 
   return (
-    <SlideWrapper variant="cool">
+    <SlideWrapper variant="warm">
       <motion.p variants={itemVariants} className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4">
         {t("label")}
       </motion.p>

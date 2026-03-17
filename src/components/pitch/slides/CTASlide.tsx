@@ -25,17 +25,19 @@ export default function CTASlide() {
             key={step.num}
             variants={itemVariants}
             className={`hover-card rounded-lg p-8 md:p-10 transition-all duration-300 hover:-translate-y-1 ${
-              step.highlighted ? "bg-white/15 text-white border border-white/10 hover:shadow-[0_8px_30px_rgba(30,42,74,0.4)]" : "bg-white/10 text-white border border-white/10 hover:shadow-[0_8px_30px_rgba(30,42,74,0.2)]"
+              step.highlighted
+                ? "bg-white text-[#111] border-2 border-white shadow-[0_8px_40px_rgba(255,255,255,0.15)] hover:shadow-[0_12px_50px_rgba(255,255,255,0.25)]"
+                : "bg-white/10 text-white border border-white/10 hover:shadow-[0_8px_30px_rgba(30,42,74,0.2)]"
             }`}
           >
             <p className={`text-xs font-mono tracking-[0.15em] mb-4 ${
-              step.highlighted ? "text-[#c4a882]" : "text-white/50"
+              step.highlighted ? "text-[#1e2a4a]" : "text-white/50"
             }`}>
               {step.num}
             </p>
             <p className="font-bold text-lg mb-3">{t(`${step.key}Title`)}</p>
             <p className={`text-sm leading-relaxed ${
-              step.highlighted ? "text-white/80" : "text-white/60"
+              step.highlighted ? "text-[#555]" : "text-white/60"
             }`}>
               {t(`${step.key}Desc`)}
             </p>

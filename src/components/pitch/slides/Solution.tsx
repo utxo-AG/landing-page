@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef, useCallback, useEffect } from "react";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import SlideWrapper, { itemVariants } from "../SlideWrapper";
 import { CHAT_MESSAGES } from "@/lib/pitch-constants";
 
@@ -35,6 +36,64 @@ function TypeWriter({ text, onDone }: { text: string; onDone?: () => void }) {
         <span className="inline-block w-[2px] h-[14px] bg-[#999] ml-0.5 align-middle animate-pulse" />
       )}
     </>
+  );
+}
+
+function EmailVisual() {
+  return (
+    <motion.div
+      variants={itemVariants}
+      className="hidden md:flex flex-col items-center justify-center"
+    >
+      <div className="relative w-[240px] h-[300px]">
+        <motion.div
+          className="absolute top-0 left-0 right-0 bg-white rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-[#e5e5e5] overflow-hidden"
+          initial={{ y: 20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+        >
+          <div className="bg-[#fafafa] border-b border-[#eee] px-4 py-2.5 flex items-center gap-2">
+            <div className="flex gap-1">
+              <span className="w-2 h-2 rounded-full bg-[#ddd]" />
+              <span className="w-2 h-2 rounded-full bg-[#ddd]" />
+              <span className="w-2 h-2 rounded-full bg-[#ddd]" />
+            </div>
+            <span className="text-[9px] font-mono text-[#bbb]">inbox</span>
+          </div>
+          {[1, 2, 3].map((i) => (
+            <motion.div
+              key={i}
+              className="px-4 py-3 border-b border-[#f5f5f5] last:border-0"
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 + i * 0.15, duration: 0.4 }}
+            >
+              <div className="flex items-center gap-2 mb-1">
+                <span className="w-4 h-4 rounded-full bg-[#1e2a4a] flex items-center justify-center">
+                  <span className="text-[6px] text-white font-bold">O</span>
+                </span>
+                <span className="text-[10px] font-medium text-[#333]">Otto</span>
+                <span className="text-[8px] text-[#ccc] ml-auto font-mono">09:{10 + i * 12}</span>
+              </div>
+              <div className="h-[6px] bg-[#f0f0f0] rounded-full w-[85%]" />
+              <div className="h-[6px] bg-[#f5f5f5] rounded-full w-[60%] mt-1" />
+            </motion.div>
+          ))}
+        </motion.div>
+
+        <motion.div
+          className="absolute bottom-0 right-0 w-[100px] h-[100px] rounded-full overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.1)] border-2 border-white"
+          initial={{ scale: 0 }}
+          whileInView={{ scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 1.0, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+        >
+          <Image src="/images/pitch/otto-pfp.png" alt="Otto" fill className="object-cover" sizes="100px" />
+        </motion.div>
+      </div>
+    </motion.div>
   );
 }
 
@@ -122,18 +181,22 @@ export default function Solution() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.4, ease: "easeInOut" }}
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
-                <div className="hover-card bg-[#f5f5f5] rounded-lg p-8 md:p-10 transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
-                  <p className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4">{t("typicalAI")}</p>
-                  <p className="text-[#666] text-sm leading-relaxed">
-                    {t("typicalAIDesc")}
-                  </p>
-                </div>
-                <div className="hover-card bg-[#111] text-white rounded-lg p-8 md:p-10 transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
-                  <p className="text-[#888] text-xs font-mono tracking-[0.15em] uppercase mb-4">{t("coworker")}</p>
-                  <p className="text-[#ccc] text-sm leading-relaxed">
-                    {t("coworkerDesc")}
-                  </p>
+              <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-8 md:gap-12 items-center mb-10">
+                <EmailVisual />
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="hover-card bg-[#f5f5f5] rounded-lg p-8 md:p-10 transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
+                    <p className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4">{t("typicalAI")}</p>
+                    <p className="text-[#666] text-sm leading-relaxed">
+                      {t("typicalAIDesc")}
+                    </p>
+                  </div>
+                  <div className="hover-card bg-[#111] text-white rounded-lg p-8 md:p-10 transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
+                    <p className="text-[#888] text-xs font-mono tracking-[0.15em] uppercase mb-4">{t("coworker")}</p>
+                    <p className="text-[#ccc] text-sm leading-relaxed">
+                      {t("coworkerDesc")}
+                    </p>
+                  </div>
                 </div>
               </div>
 

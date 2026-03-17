@@ -3,8 +3,17 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import SlideWrapper, { itemVariants } from "../SlideWrapper";
 import { DELIVERABLE_FORMATS } from "@/lib/pitch-constants";
+
+const AGENT_AVATARS = [
+  { src: "/images/pitch/otto-pfp.png", alt: "Otto" },
+  { src: "/images/pitch/lena-portrait.png", alt: "Lena" },
+  { src: "/images/pitch/otto-portrait.png", alt: "Agent" },
+  { src: "/images/pitch/otto-pfp.png", alt: "Otto" },
+  { src: "/images/pitch/lena-portrait.png", alt: "Lena" },
+];
 
 const icons: Record<string, React.ReactNode> = {
   email: (
@@ -49,10 +58,13 @@ export default function Deliverables() {
             </tr>
           </thead>
           <tbody>
-            {DELIVERABLE_FORMATS.map((item) => (
+            {DELIVERABLE_FORMATS.map((item, idx) => (
               <tr key={item.key} className="border-b border-[#ddd] hover:bg-[#f5f0ea] transition-colors">
                 <td className="py-3 px-5 font-medium text-[#333]">
                   <span className="mr-2 inline-flex align-middle">{icons[item.icon]}</span>
+                  <span className="relative inline-flex w-5 h-5 rounded-full overflow-hidden mr-2 align-middle">
+                    <Image src={AGENT_AVATARS[idx].src} alt={AGENT_AVATARS[idx].alt} fill className="object-cover" sizes="20px" />
+                  </span>
                   {t(`${item.key}Name`)}
                 </td>
                 <td className="py-3 px-5 text-[#333] hidden md:table-cell">{t(`${item.key}Desc`)}</td>

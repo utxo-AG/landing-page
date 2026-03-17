@@ -30,12 +30,11 @@ export default function StepIllustration({ step, className = "" }: StepIllustrat
 
         {step === 2 && (
           <>
+            <clipPath id="ottoPfpStep2">
+              <circle cx="140" cy="75" r="32" />
+            </clipPath>
             <circle cx="140" cy="75" r="32" fill="#111" />
-            <circle cx="130" cy="70" r="5" fill="#fff" />
-            <circle cx="150" cy="70" r="5" fill="#fff" />
-            <circle cx="131" cy="69" r="2" fill="#111" />
-            <circle cx="151" cy="69" r="2" fill="#111" />
-            <path d="M130 85 Q140 93 150 85" stroke="#fff" strokeWidth="2" strokeLinecap="round" fill="none" />
+            <image href="/images/pitch/otto-pfp.png" x="108" y="43" width="64" height="64" clipPath="url(#ottoPfpStep2)" preserveAspectRatio="xMidYMid slice" />
             {/* Animated orbit ring */}
             <circle cx="140" cy="75" r="46" fill="none" stroke="#2d3a5c" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.4" />
             <circle cx="140" cy="75" r="56" fill="none" stroke="#2d3a5c" strokeWidth="1" strokeDasharray="3 6" opacity="0.2" />

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import SlideWrapper, { itemVariants } from "../SlideWrapper";
 import ArchitectureDiagram from "../visuals/ArchitectureDiagram";
 import { EMAIL_FLOW_STEPS } from "@/lib/pitch-constants";
@@ -20,6 +21,13 @@ export default function EmailArchitecture() {
       <motion.p variants={itemVariants} className="text-[#a3a3a3] text-sm md:text-base mb-12 max-w-[600px]">
         {t("description")}
       </motion.p>
+
+      <motion.div variants={itemVariants} className="flex items-center gap-4 mb-8">
+        <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-white/20 flex-shrink-0">
+          <Image src="/images/pitch/otto-pfp.png" alt="Otto" fill className="object-cover" sizes="48px" />
+        </div>
+        <p className="text-white/60 text-sm font-mono">Otto &mdash; {t("label")}</p>
+      </motion.div>
 
       <div className="flex flex-col md:flex-row items-stretch gap-3 md:gap-0 mb-10">
         {EMAIL_FLOW_STEPS.map((step, i) => (
@@ -51,7 +59,7 @@ export default function EmailArchitecture() {
       </div>
 
       <motion.div variants={itemVariants} className="hidden md:block mb-8">
-        <ArchitectureDiagram className="max-w-[800px]" />
+        <ArchitectureDiagram className="w-full" />
       </motion.div>
 
       <motion.p variants={itemVariants} className="text-white/40 text-sm mt-4">
