@@ -9,7 +9,7 @@ export default function Roadmap() {
   const t = useTranslations("Pitch.Roadmap");
 
   return (
-    <SlideWrapper>
+    <SlideWrapper variant="rose">
       <motion.p variants={itemVariants} className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4">
         {t("label")}
       </motion.p>
@@ -25,7 +25,7 @@ export default function Roadmap() {
             key={proj.key}
             variants={itemVariants}
             className={`hover-card rounded-lg p-8 md:p-10 transition-all duration-300 hover:-translate-y-1 ${
-              proj.highlighted ? "bg-[#111] text-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.25)]" : "bg-[#f5f5f5] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
+              proj.highlighted ? "bg-[#111] text-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.25)]" : "bg-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
             }`}
           >
             <p className={`text-xs font-mono tracking-[0.15em] uppercase mb-4 ${

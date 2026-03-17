@@ -9,7 +9,7 @@ export default function Pricing({ footnote }: { footnote?: string }) {
   const t = useTranslations("Pitch.Pricing");
 
   return (
-    <SlideWrapper>
+    <SlideWrapper variant="rose">
       <motion.p variants={itemVariants} className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4">
         {t("label")}
       </motion.p>

@@ -4,6 +4,32 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import SlideWrapper, { itemVariants } from "../SlideWrapper";
 import { COMPARISON_ROWS, COMPARISON_HEADERS } from "@/lib/pitch-constants";
+import { CheckIcon, XIcon, PartialIcon } from "../ComparisonIcons";
+
+function hasIconPrefix(value: string) {
+  return /^[✓✗\u2713\u2717\u25cb]/.test(value);
+}
+
+function CellWithIcon({ value, isUtxo }: { value: string; isUtxo: boolean }) {
+  if (!hasIconPrefix(value)) {
+    return <span className={isUtxo ? "font-medium" : ""}>{value}</span>;
+  }
+
+  const icon = value.startsWith("\u2713") || value.includes("✓✓✓")
+    ? <CheckIcon />
+    : value.startsWith("\u2717") || value.includes("✗")
+      ? <XIcon />
+      : <PartialIcon />;
+
+  const cleanText = value.replace(/^[✓✗\u2713\u2717\u25cb]+\s*/, "").trim();
+
+  return (
+    <span className="inline-flex items-center gap-2">
+      {icon}
+      {cleanText && <span className={isUtxo ? "font-medium" : ""}>{cleanText}</span>}
+    </span>
+  );
+}
 
 export default function ComparisonTable() {
   const t = useTranslations("Pitch.ComparisonTable");
@@ -11,7 +37,7 @@ export default function ComparisonTable() {
   const headers = ["", ...COMPARISON_HEADERS.map((h) => t(`header${h}`))];
 
   return (
-    <SlideWrapper>
+    <SlideWrapper variant="warm">
       <motion.p variants={itemVariants} className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4">
         {t("label")}
       </motion.p>
@@ -23,7 +49,7 @@ export default function ComparisonTable() {
       </motion.p>
 
       {/* Desktop table */}
-      <motion.div variants={itemVariants} className="hover-card hidden md:block overflow-x-auto mb-8 rounded-lg transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
+      <motion.div variants={itemVariants} className="hover-card hidden md:block overflow-x-auto mb-8 bg-white rounded-lg transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
         <table className="w-full text-sm border-collapse">
           <thead>
             <tr>
@@ -31,7 +57,7 @@ export default function ComparisonTable() {
                 <th
                   key={h || "label"}
                   className={`text-left py-3 px-4 font-bold text-xs uppercase tracking-wider border-b-2 ${
-                    i === 1 ? "bg-[#111] text-white rounded-t-lg border-[#111]" : "border-[#eee] text-[#999]"
+                    i === 1 ? "bg-[#1e2a4a] text-white rounded-t-lg border-[#1e2a4a]" : "border-[#e8e5df] text-[#9CA3AF]"
                   }`}
                 >
                   {h}
@@ -44,7 +70,7 @@ export default function ComparisonTable() {
               const values = COMPARISON_HEADERS.map((h) => t(`row${row.key}${h}`));
               return (
                 <tr key={row.key}>
-                  <td className="py-3 px-4 font-medium text-[#666] border-b border-[#eee] text-xs uppercase tracking-wider">
+                  <td className="py-3 px-4 font-medium text-[#333] border-b border-[#eee] text-xs uppercase tracking-wider">
                     {t(`row${row.key}`)}
                   </td>
                   {values.map((val, vi) => (
@@ -52,11 +78,11 @@ export default function ComparisonTable() {
                       key={vi}
                       className={`py-3 px-4 border-b ${
                         vi === 0
-                          ? "bg-[#111] text-white font-medium border-[#222]"
-                          : "text-[#666] border-[#eee]"
+                          ? "bg-[#1e2a4a] text-white font-medium border-[#1e2a4a]"
+                          : "text-[#333] border-[#eee]"
                       }`}
                     >
-                      {val}
+                      <CellWithIcon value={val} isUtxo={vi === 0} />
                     </td>
                   ))}
                 </tr>
@@ -77,7 +103,7 @@ export default function ComparisonTable() {
                 {COMPARISON_HEADERS.map((header, hi) => (
                   <div key={header} className="flex justify-between items-center">
                     <span className={`text-xs ${hi === 0 ? "font-bold" : "text-[#888]"}`}>{t(`header${header}`)}</span>
-                    <span className={`text-sm ${hi === 0 ? "font-bold" : "text-[#666]"}`}>{values[hi]}</span>
+                    <CellWithIcon value={values[hi]} isUtxo={hi === 0} />
                   </div>
                 ))}
               </div>

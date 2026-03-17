@@ -8,7 +8,7 @@ export default function Problems() {
   const t = useTranslations("Pitch.Problems");
 
   return (
-    <SlideWrapper>
+    <SlideWrapper variant="warm">
       <motion.p variants={itemVariants} className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4">
         {t("label")}
       </motion.p>
@@ -20,7 +20,7 @@ export default function Problems() {
 
       <div className="space-y-6 md:space-y-8 max-w-[700px]">
         {[1, 2, 3].map((i) => (
-          <motion.div key={i} variants={itemVariants} className="hover-card flex gap-5 items-start p-4 -mx-4 rounded-lg transition-all duration-300 hover:bg-[#f5f5f5]">
+          <motion.div key={i} variants={itemVariants} className="hover-card flex gap-5 items-start p-4 -mx-4 rounded-lg transition-all duration-300 hover:bg-[#efe8de]">
             <span className="flex-shrink-0 w-10 h-10 rounded-full bg-[#111] text-white flex items-center justify-center text-sm font-bold">
               {i}
             </span>

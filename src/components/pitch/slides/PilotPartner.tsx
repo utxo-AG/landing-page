@@ -8,7 +8,7 @@ export default function PilotPartner() {
   const t = useTranslations("Pitch.PilotPartner");
 
   return (
-    <SlideWrapper>
+    <SlideWrapper variant="warm">
       <motion.p variants={itemVariants} className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4">
         {t("label")}
       </motion.p>

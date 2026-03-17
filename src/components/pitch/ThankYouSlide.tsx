@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { QRCodeSVG } from "qrcode.react";
 import { Link } from "@/i18n/navigation";
 
+
 export default function ThankYouSlide() {
   const t = useTranslations("PitchThankYou");
   const f = useTranslations("Footer");
@@ -76,7 +77,7 @@ export default function ThankYouSlide() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 1.2, duration: 0.8 }}
-            className="mt-16 text-[#555] text-xs font-mono"
+            className="mt-8 text-[#555] text-xs font-mono"
           >
             {t("footer")}
           </motion.div>

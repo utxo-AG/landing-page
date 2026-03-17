@@ -2,13 +2,14 @@
 
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import SlideWrapper, { itemVariants } from "../SlideWrapper";
 
 export default function CompetitivePressure() {
   const t = useTranslations("Pitch.CompetitivePressure");
 
   return (
-    <SlideWrapper>
+    <SlideWrapper variant="rose">
       <motion.p variants={itemVariants} className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4">
         {t("label")}
       </motion.p>
@@ -19,14 +20,14 @@ export default function CompetitivePressure() {
       </motion.h2>
 
       <motion.div variants={itemVariants} className="max-w-[600px] space-y-6 mb-8">
-        <div className="hover-card p-4 -mx-4 rounded-lg transition-all duration-300 hover:bg-[#f5f5f5]">
+        <div className="hover-card p-4 -mx-4 rounded-lg transition-all duration-300 hover:bg-white">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium">{t("withAI")}</span>
-            <span className="text-sm font-bold">76%</span>
+            <span className="text-sm font-bold text-[#111]">{t("withAI")}</span>
+            <span className="text-sm font-bold text-[#111]">76%</span>
           </div>
           <div className="h-10 bg-[#eee] rounded-md overflow-hidden">
             <motion.div
-              className="h-full bg-[#111] rounded-md"
+              className="h-full bg-[#1e2a4a] rounded-md"
               initial={{ width: 0 }}
               whileInView={{ width: "76%" }}
               viewport={{ once: true }}
@@ -35,14 +36,14 @@ export default function CompetitivePressure() {
           </div>
         </div>
 
-        <div className="hover-card p-4 -mx-4 rounded-lg transition-all duration-300 hover:bg-[#f5f5f5]">
+        <div className="hover-card p-4 -mx-4 rounded-lg transition-all duration-300 hover:bg-white">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium">{t("withoutAI")}</span>
-            <span className="text-sm font-bold">46%</span>
+            <span className="text-sm font-bold text-[#111]">{t("withoutAI")}</span>
+            <span className="text-sm font-bold text-[#111]">46%</span>
           </div>
           <div className="h-10 bg-[#eee] rounded-md overflow-hidden">
             <motion.div
-              className="h-full bg-[#ccc] rounded-md"
+              className="h-full bg-[#b8b0a6] rounded-md"
               initial={{ width: 0 }}
               whileInView={{ width: "46%" }}
               viewport={{ once: true }}

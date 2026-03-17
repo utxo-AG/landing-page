@@ -41,6 +41,40 @@ export const CTA_STEPS = [
   { num: "03", key: "step3" },
 ];
 
+export const HOW_TO_STEPS = [
+  { num: 1, key: "step1" },
+  { num: 2, key: "step2" },
+  { num: 3, key: "step3" },
+];
+
+export const DELIVERABLE_FORMATS = [
+  { key: "email", icon: "email" },
+  { key: "excel", icon: "excel" },
+  { key: "summary", icon: "summary" },
+  { key: "status", icon: "status" },
+  { key: "escalation", icon: "escalation" },
+];
+
+export const QUICK_REFERENCE_ITEMS = [
+  { key: "quote" },
+  { key: "complaint" },
+  { key: "report" },
+  { key: "followup" },
+  { key: "translation" },
+  { key: "status" },
+];
+
+export const LIMITATIONS = [
+  { key: "cannot1", type: "cannot" as const },
+  { key: "cannot2", type: "cannot" as const },
+  { key: "cannot3", type: "cannot" as const },
+  { key: "cannot4", type: "cannot" as const },
+  { key: "best1", type: "best" as const },
+  { key: "best2", type: "best" as const },
+  { key: "best3", type: "best" as const },
+  { key: "best4", type: "best" as const },
+];
+
 export const CHAT_MESSAGES = [
   { sender: "agent" as const, key: "chat1", time: "09:12", actionCount: 3 },
   { sender: "agent" as const, key: "chat2", time: "09:12", actionCount: 2 },

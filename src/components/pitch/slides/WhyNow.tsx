@@ -8,7 +8,7 @@ export default function WhyNow() {
   const t = useTranslations("Pitch.WhyNow");
 
   return (
-    <SlideWrapper>
+    <SlideWrapper variant="warm">
       <motion.p variants={itemVariants} className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4">
         {t("label")}
       </motion.p>
@@ -20,7 +20,7 @@ export default function WhyNow() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-10">
         {[1, 2, 3].map((i) => (
-          <motion.div key={i} variants={itemVariants} className="hover-card border-t border-[#111] pt-6 transition-all duration-300 hover:bg-[#f5f5f5] hover:px-4 hover:rounded-lg">
+          <motion.div key={i} variants={itemVariants} className="hover-card bg-[#efe8de] rounded-lg p-6 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
             <p className="text-[24px] md:text-[28px] font-bold tracking-tight mb-3">{t(`item${i}Stat`)}</p>
             <p className="text-[#666] text-sm leading-relaxed">{t(`item${i}Label`)}</p>
           </motion.div>

@@ -43,7 +43,8 @@ export default function PitchLayout({
             );
             if (index >= 0) {
               setActiveSlide(index);
-              setIsDark(entry.target.classList.contains("bg-[#111]"));
+              const theme = (entry.target as HTMLElement).dataset.slideTheme;
+              setIsDark(theme === "dark" || entry.target.classList.contains("bg-[#111]"));
             }
           }
         }

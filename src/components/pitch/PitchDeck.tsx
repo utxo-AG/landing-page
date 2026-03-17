@@ -9,17 +9,21 @@ import MarketReality from "./slides/MarketReality";
 import WhyNow from "./slides/WhyNow";
 import Problems from "./slides/Problems";
 import CompetitivePressure from "./slides/CompetitivePressure";
+import Conviction from "./slides/Conviction";
 import Solution from "./slides/Solution";
+import HowToWorkWithOtto from "./slides/HowToWorkWithOtto";
 import EmailArchitecture from "./slides/EmailArchitecture";
 import UseCases from "./slides/UseCases";
+import Deliverables from "./slides/Deliverables";
+import QuickReference from "./slides/QuickReference";
+import LiveDemo from "./slides/LiveDemo";
 import ComparisonTable from "./slides/ComparisonTable";
+import Limitations from "./slides/Limitations";
 import SwissTrust from "./slides/SwissTrust";
 import PilotPartner from "./slides/PilotPartner";
-import Conviction from "./slides/Conviction";
 import BusinessModel from "./slides/BusinessModel";
-import Pricing from "./slides/Pricing";
 import ROI from "./slides/ROI";
-import LiveDemo from "./slides/LiveDemo";
+import Pricing from "./slides/Pricing";
 import Roadmap from "./slides/Roadmap";
 import CTASlide from "./slides/CTASlide";
 import ThankYouSlide from "./ThankYouSlide";
@@ -31,7 +35,7 @@ function PitchDeckInner() {
   const logo = searchParams.get("logo") ?? undefined;
 
   const hasWelcome = !!company;
-  const slideCount = 19 + (hasWelcome ? 1 : 0);
+  const slideCount = 23 + (hasWelcome ? 1 : 0);
 
   return (
     <PitchLayout slideCount={slideCount}>
@@ -45,17 +49,21 @@ function PitchDeckInner() {
       <CompetitivePressure />
       <Conviction />
       <Solution />
+      <HowToWorkWithOtto />
       <EmailArchitecture />
       <UseCases />
+      <Deliverables />
+      <QuickReference />
       <LiveDemo />
       <ComparisonTable />
+      <Limitations />
       <SwissTrust />
       <PilotPartner />
       <BusinessModel />
+      <CTASlide />
       <ROI />
       <Pricing />
       <Roadmap />
-      <CTASlide />
       <ThankYouSlide />
     </PitchLayout>
   );

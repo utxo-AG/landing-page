@@ -3,20 +3,21 @@
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import SlideWrapper, { itemVariants } from "../SlideWrapper";
+import ArchitectureDiagram from "../visuals/ArchitectureDiagram";
 import { EMAIL_FLOW_STEPS } from "@/lib/pitch-constants";
 
 export default function EmailArchitecture() {
   const t = useTranslations("Pitch.EmailArchitecture");
 
   return (
-    <SlideWrapper>
-      <motion.p variants={itemVariants} className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4">
+    <SlideWrapper variant="glow">
+      <motion.p variants={itemVariants} className="text-[#4a5578] text-xs font-mono tracking-[0.15em] uppercase mb-4">
         {t("label")}
       </motion.p>
-      <motion.h2 variants={itemVariants} className="text-[28px] md:text-[40px] font-bold leading-[1.15] tracking-tight mb-3">
+      <motion.h2 variants={itemVariants} className="text-[28px] md:text-[40px] font-bold leading-[1.15] tracking-tight mb-3 text-white">
         {t("headline")}
       </motion.h2>
-      <motion.p variants={itemVariants} className="text-[#888] text-sm md:text-base mb-12 max-w-[600px]">
+      <motion.p variants={itemVariants} className="text-[#a3a3a3] text-sm md:text-base mb-12 max-w-[600px]">
         {t("description")}
       </motion.p>
 
@@ -33,12 +34,12 @@ export default function EmailArchitecture() {
             <div
               className={`hover-card rounded-lg px-4 py-4 md:px-5 md:py-5 text-center flex-1 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] ${
                 step.highlighted
-                  ? "bg-[#111] text-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.25)]"
-                  : "bg-[#f5f5f5] text-[#111]"
+                  ? "bg-[#1e2a4a] text-white hover:shadow-[0_8px_30px_rgba(30,42,74,0.4)]"
+                  : "bg-white/15 backdrop-blur-sm text-white border border-white/20"
               }`}
             >
               <p className="font-bold text-sm">{t(`${step.key}Label`)}</p>
-              <p className={`text-xs mt-1 ${step.highlighted ? "text-[#888]" : "text-[#999]"}`}>
+              <p className={`text-xs mt-1 ${step.highlighted ? "text-[#4a5578]" : "text-white/50"}`}>
                 {t(`${step.key}Sub`)}
               </p>
             </div>
@@ -49,7 +50,11 @@ export default function EmailArchitecture() {
         ))}
       </div>
 
-      <motion.p variants={itemVariants} className="text-[#888] text-sm mt-4">
+      <motion.div variants={itemVariants} className="hidden md:block mb-8">
+        <ArchitectureDiagram className="max-w-[800px]" />
+      </motion.div>
+
+      <motion.p variants={itemVariants} className="text-white/40 text-sm mt-4">
         {t("footnote")}
       </motion.p>
     </SlideWrapper>

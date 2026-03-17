@@ -9,14 +9,14 @@ function AnimatedStat({ value, label, delay }: { value: string; label: string; d
   return (
     <motion.div
       variants={itemVariants}
-      className="hover-card bg-[#f5f5f5] rounded-lg p-8 md:p-10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
+      className="hover-card bg-white rounded-lg p-8 md:p-10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
     >
       <motion.p
         initial={{ opacity: 0, scale: 0.8 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ delay: delay + 0.3, duration: 0.5, ease: "easeOut" }}
-        className="text-[36px] md:text-[48px] font-bold tracking-tight"
+        className="text-[36px] md:text-[48px] font-bold tracking-tight text-[#1e2a4a]"
       >
         {value}
       </motion.p>
@@ -29,7 +29,7 @@ export default function MarketReality() {
   const t = useTranslations("Pitch.MarketReality");
 
   return (
-    <SlideWrapper>
+    <SlideWrapper variant="warm">
       <motion.p variants={itemVariants} className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4">
         {t("label")}
       </motion.p>

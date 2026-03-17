@@ -222,10 +222,10 @@
   "Pitch": {
     "TitleSlide": {
       "label": "UTXO AG · Zug, Schweiz",
-      "headline1": "KI-CoWorker für",
-      "headline2": "den Mittelstand.",
+      "headline1": "Das ist Otto.",
+      "headline2": "Ihr KI-CoWorker.",
       "subtitle": "Einfach per E-Mail.",
-      "description": "Ihr digitaler Mitarbeiter."
+      "description": "Otto übernimmt Ihre Routineaufgaben — per E-Mail. Kein neues Tool, keine Schulung. Einfach ein Mitarbeiter, der funktioniert."
     },
     "MarketReality": {
       "label": "Markt",
@@ -343,10 +343,14 @@
       "footnote": "KI ersetzt niemanden. Sie gibt Ihren Mitarbeitern die Zeit für das, was wirklich zählt.",
       "item1Title": "Angebotserstellung",
       "item1Desc": "Anfragen prüfen, kalkulieren, Angebot vorbereiten. Der Mitarbeiter gibt frei.",
+      "item1Prompt": "\"Bitte erstelle ein Angebot für Müller GmbH basierend auf der Anfrage von heute Morgen.\"",
       "item2Title": "Kundenkommunikation",
       "item2Desc": "Sortieren, priorisieren, Antwort vorbereiten. Der Mitarbeiter entscheidet.",
+      "item2Prompt": "\"Fasse alle unbeantworteten Kunden-E-Mails zusammen und entwerfe Antworten nach Priorität.\"",
       "item3Title": "Beschaffung",
-      "item3Desc": "Preise vergleichen, Dokumente weiterleiten, Termine nachverfolgen."
+      "item3Desc": "Preise vergleichen, Dokumente weiterleiten, Termine nachverfolgen.",
+      "item3Prompt": "\"Vergleiche die Preise für 500 Hydraulikventile bei unseren Top-3-Lieferanten.\"",
+      "samplePromptLabel": "Beispiel-Prompt"
     },
     "LiveDemo": {
       "label": "Live-Demo",
@@ -498,6 +502,77 @@
       "step2Desc": "Sie teilen Ihre Vorstellungen, wir identifizieren gemeinsam die Use Cases mit dem grössten Hebel.",
       "step3Title": "Deep Dive",
       "step3Desc": "Architektur, Schnittstellen, Zeitplan. Die Grundlage für Ihr Custom Agent Development."
+    },
+    "HowToWorkWithOtto": {
+      "label": "So funktioniert es",
+      "headline": "Drei Schritte. Das war's.",
+      "description": "Mit Otto zu arbeiten ist so einfach wie eine E-Mail zu schreiben. Keine Schulung, keine neuen Tools.",
+      "step1Title": "E-Mail senden",
+      "step1Desc": "Schreiben Sie Otto wie einem Kollegen. Beschreiben Sie, was Sie brauchen — in Klartext.",
+      "step2Title": "Otto verarbeitet",
+      "step2Desc": "Otto liest Ihre Anfrage, zieht Daten aus Ihren Systemen und bereitet das Ergebnis vor.",
+      "step3Title": "Prüfen & freigeben",
+      "step3Desc": "Das Ergebnis landet in Ihrer Inbox. Prüfen, anpassen oder mit einem Klick freigeben.",
+      "footnote": "Kein Dashboard. Kein Login. Nur E-Mail."
+    },
+    "Deliverables": {
+      "label": "Was Otto liefert",
+      "headline": "Echte Ergebnisse. Nicht nur Antworten.",
+      "description": "Otto antwortet nicht nur — er liefert strukturierte, sofort nutzbare Ergebnisse.",
+      "colFormat": "Format",
+      "colDescription": "Beschreibung",
+      "colExample": "Beispiel",
+      "emailName": "E-Mail-Entwürfe",
+      "emailDesc": "Vorformulierte Antworten für Kundenanfragen, Reklamationen, Follow-ups.",
+      "emailExample": "\"Re: Angebotsanfrage Müller GmbH\"",
+      "excelName": "Excel-Reports",
+      "excelDesc": "Strukturierte Datenexporte, Kalkulationen und Vergleiche.",
+      "excelExample": "\"Q4_Umsatz_nach_Region.xlsx\"",
+      "summaryName": "Zusammenfassungen",
+      "summaryDesc": "Kompakte Übersichten langer E-Mail-Verläufe oder Dokumente.",
+      "summaryExample": "\"Meeting-Zusammenfassung: 5 Action Items\"",
+      "statusName": "Status-Updates",
+      "statusDesc": "Automatische Fortschrittsberichte laufender Projekte.",
+      "statusExample": "\"Wochenstatus: 3 on track, 1 verzögert\"",
+      "escalationName": "Eskalations-Alerts",
+      "escalationDesc": "Proaktive Warnungen, wenn etwas sofortige Aufmerksamkeit braucht.",
+      "escalationExample": "\"⚠ Überfällig: Rechnung #4021 — 14 Tage\"",
+      "footnote": "Alles bleibt in Ihrer E-Mail. Keine separate Plattform nötig."
+    },
+    "QuickReference": {
+      "label": "Kurzreferenz",
+      "headline": "Brauchen Sie etwas? Sagen Sie es einfach.",
+      "description": "So sprechen Sie mit Otto. Keine spezielle Syntax — einfach Klartext.",
+      "sayThis": "So sagen Sie es",
+      "quoteNeed": "Angebot erstellen",
+      "quotePrompt": "\"Erstelle ein Angebot für Bauer Landtechnik, 50 Hydraulikventile, Lieferung in 4 Wochen.\"",
+      "complaintNeed": "Reklamation bearbeiten",
+      "complaintPrompt": "\"Kunde Schmitt meldet defektes Teil. Charge prüfen, betroffene Aufträge finden.\"",
+      "reportNeed": "Report erstellen",
+      "reportPrompt": "\"Gib mir eine Übersicht aller offenen Aufträge über 10.000 €.\"",
+      "followupNeed": "Nachfassen",
+      "followupPrompt": "\"Hat Müller GmbH auf unser Angebot von letzter Woche geantwortet?\"",
+      "translationNeed": "Anfrage übersetzen",
+      "translationPrompt": "\"Übersetze diese französische Anfrage und entwirf eine Antwort auf Deutsch.\"",
+      "statusNeed": "Status-Update",
+      "statusPrompt": "\"Was ist der aktuelle Stand beim Projekt Schneider?\"",
+      "footnote": "Otto lernt aus Ihren Korrekturen und wird mit der Zeit besser."
+    },
+    "Limitations": {
+      "label": "Transparenz",
+      "headline1": "Was Otto nicht kann.",
+      "headline2": "Und was er am besten kann.",
+      "cannotLabel": "Otto wird nicht...",
+      "cannot1": "Entscheidungen für Sie treffen — Sie geben immer die Freigabe.",
+      "cannot2": "Ohne Ihre ausdrückliche Erlaubnis auf Systeme zugreifen.",
+      "cannot3": "Das Urteilsvermögen Ihrer erfahrenen Mitarbeiter ersetzen.",
+      "cannot4": "100% Genauigkeit garantieren — deshalb ist menschliche Prüfung eingebaut.",
+      "bestAtLabel": "Aber er glänzt bei...",
+      "best1": "Hohe Volumina an Routine-E-Mails in Minuten verarbeiten.",
+      "best2": "Daten aus ERP, CRM und E-Mail abgleichen.",
+      "best3": "Konsistente, fehlerfreie Dokumente erstellen.",
+      "best4": "24/7 arbeiten — ohne Burnout oder Urlaub.",
+      "footnote": "Transparenz schafft Vertrauen. Wir sind lieber ehrlich als zu viel zu versprechen."
     }
   },
   "AgentDeck": {

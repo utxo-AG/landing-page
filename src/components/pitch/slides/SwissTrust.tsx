@@ -8,7 +8,7 @@ export default function SwissTrust() {
   const t = useTranslations("Pitch.SwissTrust");
 
   return (
-    <SlideWrapper>
+    <SlideWrapper variant="rose">
       <motion.p variants={itemVariants} className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4">
         {t("label")}
       </motion.p>

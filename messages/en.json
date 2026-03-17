@@ -222,10 +222,10 @@
   "Pitch": {
     "TitleSlide": {
       "label": "UTXO AG · Zug, Switzerland",
-      "headline1": "AI CoWorker for",
-      "headline2": "SMEs.",
+      "headline1": "Meet Otto.",
+      "headline2": "Your AI CoWorker.",
       "subtitle": "Just send an email.",
-      "description": "Your digital coworker."
+      "description": "Otto handles your routine tasks — via email. No new tools, no training. Just a coworker that works."
     },
     "MarketReality": {
       "label": "Market",
@@ -343,10 +343,14 @@
       "footnote": "AI replaces no one. It gives your employees time for what truly matters.",
       "item1Title": "Quoting",
       "item1Desc": "Review inquiries, calculate, prepare quotes. The employee approves.",
+      "item1Prompt": "\"Please prepare a quote for Müller GmbH based on their inquiry from this morning.\"",
       "item2Title": "Customer communication",
       "item2Desc": "Sort, prioritize, draft replies. The employee decides.",
+      "item2Prompt": "\"Summarize all unanswered customer emails and draft replies by priority.\"",
       "item3Title": "Procurement",
-      "item3Desc": "Compare prices, forward documents, track deadlines."
+      "item3Desc": "Compare prices, forward documents, track deadlines.",
+      "item3Prompt": "\"Compare prices for 500 hydraulic valves from our top 3 suppliers.\"",
+      "samplePromptLabel": "Sample prompt"
     },
     "LiveDemo": {
       "label": "Live Demo",
@@ -498,6 +502,77 @@
       "step2Desc": "You share your vision, we jointly identify the use cases with the biggest impact.",
       "step3Title": "Deep Dive",
       "step3Desc": "Architecture, interfaces, timeline. The foundation for your custom agent development."
+    },
+    "HowToWorkWithOtto": {
+      "label": "How It Works",
+      "headline": "Three steps. That's it.",
+      "description": "Working with Otto is as simple as writing an email. No training, no new tools.",
+      "step1Title": "Send an email",
+      "step1Desc": "Write to Otto like a colleague. Describe what you need in plain language.",
+      "step2Title": "Otto processes",
+      "step2Desc": "Otto reads your request, pulls data from your systems, and prepares the result.",
+      "step3Title": "Review & approve",
+      "step3Desc": "You get the result in your inbox. Review it, refine it, or approve with one click.",
+      "footnote": "No dashboards. No logins. Just email."
+    },
+    "Deliverables": {
+      "label": "What Otto Delivers",
+      "headline": "Real output. Not just answers.",
+      "description": "Otto doesn't just respond — he delivers structured, actionable results you can use immediately.",
+      "colFormat": "Format",
+      "colDescription": "Description",
+      "colExample": "Example",
+      "emailName": "Email drafts",
+      "emailDesc": "Pre-written replies for customer inquiries, complaints, follow-ups.",
+      "emailExample": "\"Re: Quote request Müller GmbH\"",
+      "excelName": "Excel reports",
+      "excelDesc": "Structured data exports, calculations, and comparisons.",
+      "excelExample": "\"Q4_revenue_by_region.xlsx\"",
+      "summaryName": "Summaries",
+      "summaryDesc": "Condensed overviews of long email threads or documents.",
+      "summaryExample": "\"Meeting summary: 5 action items\"",
+      "statusName": "Status updates",
+      "statusDesc": "Automated progress reports for ongoing projects.",
+      "statusExample": "\"Weekly project status: 3 on track, 1 delayed\"",
+      "escalationName": "Escalation alerts",
+      "escalationDesc": "Proactive alerts when something needs immediate attention.",
+      "escalationExample": "\"⚠ Overdue: Invoice #4021 — 14 days past due\"",
+      "footnote": "All output stays in your email. No separate platform needed."
+    },
+    "QuickReference": {
+      "label": "Quick Reference",
+      "headline": "Need something? Just say it.",
+      "description": "Here's how to talk to Otto. No special syntax — just plain language.",
+      "sayThis": "Say this",
+      "quoteNeed": "Prepare a quote",
+      "quotePrompt": "\"Create a quote for Bauer Landtechnik, 50 hydraulic valves, delivery in 4 weeks.\"",
+      "complaintNeed": "Handle a complaint",
+      "complaintPrompt": "\"Customer Schmitt reported a defective part. Check batch, find affected orders.\"",
+      "reportNeed": "Generate a report",
+      "reportPrompt": "\"Give me a summary of all open orders over €10,000.\"",
+      "followupNeed": "Follow up on a task",
+      "followupPrompt": "\"Check if Müller GmbH has responded to our quote from last week.\"",
+      "translationNeed": "Translate an inquiry",
+      "translationPrompt": "\"Translate this French inquiry and draft a reply in German.\"",
+      "statusNeed": "Get a status update",
+      "statusPrompt": "\"What's the current status on the Schneider project?\"",
+      "footnote": "Otto learns from your corrections and gets better over time."
+    },
+    "Limitations": {
+      "label": "Transparency",
+      "headline1": "What Otto can't do.",
+      "headline2": "And what he does best.",
+      "cannotLabel": "Otto won't...",
+      "cannot1": "Make decisions on your behalf — you always approve.",
+      "cannot2": "Access systems without your explicit permission.",
+      "cannot3": "Replace the judgment of your experienced employees.",
+      "cannot4": "Guarantee 100% accuracy — that's why human review is built in.",
+      "bestAtLabel": "But he excels at...",
+      "best1": "Processing high volumes of routine emails in minutes.",
+      "best2": "Cross-referencing data across ERP, CRM, and email.",
+      "best3": "Drafting consistent, error-free documents.",
+      "best4": "Working 24/7 without burnout or vacation.",
+      "footnote": "Transparency builds trust. We'd rather be honest than overpromise."
     }
   },
   "AgentDeck": {

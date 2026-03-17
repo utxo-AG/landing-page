@@ -98,7 +98,7 @@ export default function Solution() {
   }, [clearTimers]);
 
   return (
-    <SlideWrapper>
+    <SlideWrapper variant="warm">
       <motion.p
         variants={itemVariants}
         className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4"
@@ -197,15 +197,13 @@ export default function Solution() {
                               <div className="px-5 py-4">
                                 <div className="flex items-baseline justify-between mb-1.5">
                                   <div className="flex items-center gap-2">
-                                    <span
-                                      className={`w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold ${
-                                        msg.sender === "agent"
-                                          ? "bg-[#111] text-white"
-                                          : "bg-[#e8e8e8] text-[#666]"
-                                      }`}
-                                    >
-                                      {msg.sender === "agent" ? "A" : "T"}
-                                    </span>
+                                    {msg.sender === "agent" ? (
+                                      <img src="/images/pitch/otto-pfp.png" alt="Otto" className="w-5 h-5 rounded-full object-cover" />
+                                    ) : (
+                                      <span className="w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold bg-[#e8e8e8] text-[#666]">
+                                        T
+                                      </span>
+                                    )}
                                     <span className="text-xs font-medium text-[#333]">{msgFrom}</span>
                                   </div>
                                   <span className="text-[10px] text-[#bbb] font-mono">{msg.time}</span>
