@@ -11,9 +11,9 @@
   },
   "Hero": {
     "label": "Product Studio",
-    "titleBlack": "Hire AI coworkers.",
-    "titleGray": "Just send an email.",
-    "description": "We build custom AI agents for your company — deeply integrated with SAP, Outlook, Teams, Slack, and more. Want your own? Get in touch.",
+    "titleBlack": "AI agents that read,",
+    "titleGray": "reply, and get things done.",
+    "description": "No new tools. No training. Just forward an email — your AI coworker handles the rest. Deeply integrated with SAP, Outlook, Teams, and more.",
     "inboxLabel": "Inbox — AI Agents",
     "toYou": "to: you"
   },
