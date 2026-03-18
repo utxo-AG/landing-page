@@ -258,7 +258,16 @@
       "item2Title": "Systeme sprechen nicht miteinander.",
       "item2Desc": "Ohne Integration von ERP, CRM und E-Mail bleibt KI ein Spielzeug.",
       "item3Title": "Rechtliche Unsicherheit.",
-      "item3Desc": "DSGVO, EU AI Act, Cloud Act. Wer blickt noch durch?"
+      "item3Desc": "DSGVO, EU AI Act, Cloud Act. Wer blickt noch durch?",
+      "email1From": "Personalabteilung",
+      "email1Subject": "Re: KI-Spezialist — Stellenausschreibung",
+      "email1Preview": "Tag 147, keine qualifizierten Bewerbungen.",
+      "email2From": "IT-Support",
+      "email2Subject": "Re: CRM-E-Mail-Synchronisation",
+      "email2Preview": "Fehler: inkompatibles Format. Manuelle Lösung im Anhang.",
+      "email3From": "Rechtsabteilung",
+      "email3Subject": "WG: WG: WG: DSGVO-KI-Bewertung",
+      "email3Preview": "Status: unklar. Empfehlung: verschieben."
     },
     "CompetitivePressure": {
       "label": "Handlungsdruck",
@@ -335,6 +344,10 @@
       "step4Sub": "Vorbereiten",
       "step5Label": "Sie entscheiden",
       "step5Sub": "Freigabe"
+    },
+    "TeamImage": {
+      "label": "Ihr Agent-Team",
+      "headline": "Nicht nur Otto. Lernen Sie das ganze Team kennen."
     },
     "UseCases": {
       "label": "Anwendungsbereiche",
@@ -516,9 +529,9 @@
       "footnote": "Kein Dashboard. Kein Login. Nur E-Mail."
     },
     "Deliverables": {
-      "label": "Was Otto liefert",
+      "label": "Was Ihr Agent liefert",
       "headline": "Echte Ergebnisse. Nicht nur Antworten.",
-      "description": "Otto antwortet nicht nur — er liefert strukturierte, sofort nutzbare Ergebnisse.",
+      "description": "Ihr digitaler Coworker antwortet nicht nur — er liefert strukturierte, sofort nutzbare Ergebnisse.",
       "colFormat": "Format",
       "colDescription": "Beschreibung",
       "colExample": "Beispiel",
@@ -528,9 +541,9 @@
       "excelName": "Excel-Reports",
       "excelDesc": "Strukturierte Datenexporte, Kalkulationen und Vergleiche.",
       "excelExample": "\"Q4_Umsatz_nach_Region.xlsx\"",
-      "summaryName": "Zusammenfassungen",
-      "summaryDesc": "Kompakte Übersichten langer E-Mail-Verläufe oder Dokumente.",
-      "summaryExample": "\"Meeting-Zusammenfassung: 5 Action Items\"",
+      "summaryName": "PDF-Report",
+      "summaryDesc": "Strukturierte Berichte aus E-Mail-Verläufen, Daten oder Dokumenten.",
+      "summaryExample": "\"Wochenbericht Vertrieb: 12 Seiten, PDF\"",
       "statusName": "Status-Updates",
       "statusDesc": "Automatische Fortschrittsberichte laufender Projekte.",
       "statusExample": "\"Wochenstatus: 3 on track, 1 verzögert\"",
@@ -542,7 +555,7 @@
     "QuickReference": {
       "label": "Kurzreferenz",
       "headline": "Brauchen Sie etwas? Sagen Sie es einfach.",
-      "description": "So sprechen Sie mit Otto. Keine spezielle Syntax — einfach Klartext.",
+      "description": "Ihr Agent verarbeitet Klartext-E-Mails — und bezieht automatisch Daten aus Ihrem ERP, CRM oder den Systemen Ihrer Kunden.",
       "sayThis": "So sagen Sie es",
       "quoteNeed": "Angebot erstellen",
       "quotePrompt": "\"Erstelle ein Angebot für Bauer Landtechnik, 50 Hydraulikventile, Lieferung in 4 Wochen.\"",
@@ -554,9 +567,9 @@
       "followupPrompt": "\"Hat Müller GmbH auf unser Angebot von letzter Woche geantwortet?\"",
       "translationNeed": "Anfrage übersetzen",
       "translationPrompt": "\"Übersetze diese französische Anfrage und entwirf eine Antwort auf Deutsch.\"",
-      "statusNeed": "Status-Update",
-      "statusPrompt": "\"Was ist der aktuelle Stand beim Projekt Schneider?\"",
-      "footnote": "Otto lernt aus Ihren Korrekturen und wird mit der Zeit besser."
+      "statusNeed": "ERP-Daten verarbeiten",
+      "statusPrompt": "\"Neue Bestellung #4712 aus dem ERP — Lagerbestand prüfen, Liefertermin bestätigen, Antwort an Kunden entwerfen.\"",
+      "footnote": "Ihr Agent lernt aus Ihren Korrekturen und wird mit der Zeit besser."
     },
     "Limitations": {
       "label": "Transparenz",
@@ -577,9 +590,8 @@
     "NameYourAgent": {
       "label": "Ihr KI-Mitarbeiter",
       "headline": "Und wie soll Ihr\nKI-Mitarbeiter heissen?",
-      "description": "Otto ist unser erster Agent. Aber Ihrer kann anders heissen, anders aussehen, anders arbeiten. Stellen Sie sich vor: Wer fehlt in Ihrem Team?",
-      "lenaName": "Lena — utxo AG",
-      "lenaRole": "Co-Founder & Head of Product"
+      "description": "Otto, Lena, Kai — jeder für eine andere Rolle gebaut. Ihrer bekommt einen eigenen Namen, eigene Fähigkeiten, einen eigenen Fokus. Wer fehlt in Ihrem Team?",
+      "moreAgents": "Ihr nächster Mitarbeiter"
     }
   },
   "AgentDeck": {

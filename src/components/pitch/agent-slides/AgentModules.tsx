@@ -25,7 +25,7 @@ export default function AgentModules() {
           <motion.div
             key={num}
             variants={itemVariants}
-            className={`hover-card rounded-lg p-8 md:p-10 transition-all duration-300 hover:-translate-y-1 ${
+            className={`hover-card rounded-lg p-8 md:p-10 transition-all duration-300 ${
               i === 0 ? "bg-[#111] text-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.25)]" : "bg-[#f5f5f5] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
             }`}
           >

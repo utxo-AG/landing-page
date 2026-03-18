@@ -258,7 +258,16 @@
       "item2Title": "Systems don't talk to each other.",
       "item2Desc": "Without ERP, CRM, and email integration, AI remains a toy.",
       "item3Title": "Legal uncertainty.",
-      "item3Desc": "GDPR, EU AI Act, Cloud Act. Who can keep up?"
+      "item3Desc": "GDPR, EU AI Act, Cloud Act. Who can keep up?",
+      "email1From": "HR Department",
+      "email1Subject": "Re: AI Specialist Position",
+      "email1Preview": "Day 147, no qualified applicants.",
+      "email2From": "IT Support",
+      "email2Subject": "Re: CRM-Email Sync",
+      "email2Preview": "Error: incompatible format. Manual workaround attached.",
+      "email3From": "Legal",
+      "email3Subject": "Fwd: Fwd: Fwd: GDPR AI Assessment",
+      "email3Preview": "Status: unclear. Recommend postponing."
     },
     "CompetitivePressure": {
       "label": "Competitive Pressure",
@@ -335,6 +344,10 @@
       "step4Sub": "Prepares",
       "step5Label": "You decide",
       "step5Sub": "Approval"
+    },
+    "TeamImage": {
+      "label": "Your Agent Team",
+      "headline": "Not just Otto. Meet the entire crew."
     },
     "UseCases": {
       "label": "Use Cases",
@@ -516,9 +529,9 @@
       "footnote": "No dashboards. No logins. Just email."
     },
     "Deliverables": {
-      "label": "What Otto Delivers",
+      "label": "What Your Agent Delivers",
       "headline": "Real output. Not just answers.",
-      "description": "Otto doesn't just respond — he delivers structured, actionable results you can use immediately.",
+      "description": "Your digital coworker doesn't just respond — it delivers structured, actionable results you can use immediately.",
       "colFormat": "Format",
       "colDescription": "Description",
       "colExample": "Example",
@@ -528,9 +541,9 @@
       "excelName": "Excel reports",
       "excelDesc": "Structured data exports, calculations, and comparisons.",
       "excelExample": "\"Q4_revenue_by_region.xlsx\"",
-      "summaryName": "Summaries",
-      "summaryDesc": "Condensed overviews of long email threads or documents.",
-      "summaryExample": "\"Meeting summary: 5 action items\"",
+      "summaryName": "PDF Report",
+      "summaryDesc": "Structured reports generated from email threads, data, or documents.",
+      "summaryExample": "\"Weekly sales report: 12 pages, PDF\"",
       "statusName": "Status updates",
       "statusDesc": "Automated progress reports for ongoing projects.",
       "statusExample": "\"Weekly project status: 3 on track, 1 delayed\"",
@@ -542,7 +555,7 @@
     "QuickReference": {
       "label": "Quick Reference",
       "headline": "Need something? Just say it.",
-      "description": "Here's how to talk to Otto. No special syntax — just plain language.",
+      "description": "Your agent processes plain-language emails — and pulls in data from your ERP, CRM, or customer systems automatically.",
       "sayThis": "Say this",
       "quoteNeed": "Prepare a quote",
       "quotePrompt": "\"Create a quote for Bauer Landtechnik, 50 hydraulic valves, delivery in 4 weeks.\"",
@@ -554,9 +567,9 @@
       "followupPrompt": "\"Check if Müller GmbH has responded to our quote from last week.\"",
       "translationNeed": "Translate an inquiry",
       "translationPrompt": "\"Translate this French inquiry and draft a reply in German.\"",
-      "statusNeed": "Get a status update",
-      "statusPrompt": "\"What's the current status on the Schneider project?\"",
-      "footnote": "Otto learns from your corrections and gets better over time."
+      "statusNeed": "Process ERP data",
+      "statusPrompt": "\"New order #4712 just came in via ERP — check stock, confirm delivery date, draft reply to customer.\"",
+      "footnote": "Your agent learns from your corrections and gets better over time."
     },
     "Limitations": {
       "label": "Transparency",
@@ -577,9 +590,8 @@
     "NameYourAgent": {
       "label": "Your AI CoWorker",
       "headline": "What will your\nAI CoWorker be called?",
-      "description": "Otto is our first agent. But yours can have a different name, a different look, a different focus. Imagine: Who is missing from your team?",
-      "lenaName": "Lena — utxo AG",
-      "lenaRole": "Co-Founder & Head of Product"
+      "description": "Otto, Lena, Kai — each built for a different role. Yours will have its own name, its own skills, its own focus. Who is missing from your team?",
+      "moreAgents": "your next CoWorker"
     }
   },
   "AgentDeck": {

@@ -26,7 +26,7 @@ export default function HowToWorkWithOtto() {
           <motion.div
             key={step.key}
             variants={itemVariants}
-            className="hover-card bg-white shadow-sm rounded-lg p-6 md:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
+            className="hover-card bg-white shadow-sm rounded-lg p-6 md:p-8 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
           >
             <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#1e2a4a] text-white text-sm font-bold mb-4">
               {step.num}

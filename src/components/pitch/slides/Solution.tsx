@@ -61,20 +61,24 @@ function EmailVisual() {
             </div>
             <span className="text-[9px] font-mono text-[#bbb]">inbox</span>
           </div>
-          {[1, 2, 3].map((i) => (
+          {[
+            { initials: "O", name: "Otto", bg: "#1e2a4a", textColor: "#333", delay: 0.65 },
+            { initials: "M", name: "M. Weber", bg: "#ddd", textColor: "#bbb", delay: 0.8 },
+            { initials: "S", name: "S. Keller", bg: "#ddd", textColor: "#bbb", delay: 0.95 },
+          ].map((row, i) => (
             <motion.div
               key={i}
               className="px-4 py-3 border-b border-[#f5f5f5] last:border-0"
               initial={{ opacity: 0, x: -10 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.5 + i * 0.15, duration: 0.4 }}
+              transition={{ delay: row.delay, duration: 0.4 }}
             >
               <div className="flex items-center gap-2 mb-1">
-                <span className="w-4 h-4 rounded-full bg-[#1e2a4a] flex items-center justify-center">
-                  <span className="text-[6px] text-white font-bold">O</span>
+                <span className="w-4 h-4 rounded-full flex items-center justify-center" style={{ backgroundColor: row.bg }}>
+                  <span className={`text-[6px] font-bold ${i === 0 ? "text-white" : "text-[#999]"}`}>{row.initials}</span>
                 </span>
-                <span className="text-[10px] font-medium text-[#333]">Otto</span>
+                <span className="text-[10px] font-medium" style={{ color: row.textColor }}>{row.name}</span>
                 <span className="text-[8px] text-[#ccc] ml-auto font-mono">09:{10 + i * 12}</span>
               </div>
               <div className="h-[6px] bg-[#f0f0f0] rounded-full w-[85%]" />
@@ -157,7 +161,7 @@ export default function Solution() {
   }, [clearTimers]);
 
   return (
-    <SlideWrapper variant="warm">
+    <SlideWrapper variant="rose">
       <motion.p
         variants={itemVariants}
         className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4"
@@ -185,13 +189,13 @@ export default function Solution() {
                 <EmailVisual />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div className="hover-card bg-[#f5f5f5] rounded-lg p-8 md:p-10 transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
+                  <div className="hover-card bg-[#f5f5f5] rounded-lg p-8 md:p-10 transition-[transform,box-shadow] duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
                     <p className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4">{t("typicalAI")}</p>
                     <p className="text-[#666] text-sm leading-relaxed">
                       {t("typicalAIDesc")}
                     </p>
                   </div>
-                  <div className="hover-card bg-[#111] text-white rounded-lg p-8 md:p-10 transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
+                  <div className="hover-card bg-[#111] text-white rounded-lg p-8 md:p-10 transition-[transform,box-shadow] duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
                     <p className="text-[#888] text-xs font-mono tracking-[0.15em] uppercase mb-4">{t("coworker")}</p>
                     <p className="text-[#ccc] text-sm leading-relaxed">
                       {t("coworkerDesc")}

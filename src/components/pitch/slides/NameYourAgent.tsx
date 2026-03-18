@@ -22,14 +22,19 @@ export default function NameYourAgent() {
             {t("description")}
           </motion.p>
 
-          <motion.div variants={itemVariants} className="flex items-center gap-4">
-            <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-white/20 flex-shrink-0">
-              <Image src="/images/pitch/lena-portrait.png" alt="Lena" fill className="object-cover" sizes="56px" />
+          <motion.div variants={itemVariants} className="flex items-center gap-5">
+            <div className="flex items-center -space-x-3">
+              <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-white/20 flex-shrink-0">
+                <Image src="/images/pitch/otto-pfp.png" alt="Otto" fill className="object-cover" sizes="48px" />
+              </div>
+              <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-white/20 flex-shrink-0">
+                <Image src="/images/pitch/lena-portrait.png" alt="Lena" fill className="object-cover object-top" sizes="48px" />
+              </div>
+              <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-white/20 flex-shrink-0">
+                <Image src="/images/pitch/kai-pfp.png" alt="Kai" fill className="object-cover object-top" sizes="48px" />
+              </div>
             </div>
-            <div>
-              <p className="text-white text-sm font-medium">{t("lenaName")}</p>
-              <p className="text-white/40 text-xs">{t("lenaRole")}</p>
-            </div>
+            <p className="text-white/50 text-sm font-mono">Otto, Lena &amp; {t("moreAgents")}</p>
           </motion.div>
         </div>
 

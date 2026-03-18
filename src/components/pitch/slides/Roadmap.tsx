@@ -9,14 +9,14 @@ export default function Roadmap() {
   const t = useTranslations("Pitch.Roadmap");
 
   return (
-    <SlideWrapper variant="glow">
-      <motion.p variants={itemVariants} className="text-[#4a5578] text-xs font-mono tracking-[0.15em] uppercase mb-4">
+    <SlideWrapper variant="rose">
+      <motion.p variants={itemVariants} className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4">
         {t("label")}
       </motion.p>
-      <motion.h2 variants={itemVariants} className="text-[28px] md:text-[40px] font-bold leading-[1.15] tracking-tight mb-12 text-white">
+      <motion.h2 variants={itemVariants} className="text-[28px] md:text-[40px] font-bold leading-[1.15] tracking-tight mb-12">
         {t("headline1")}
         <br />
-        <span className="text-white/50">{t("headline2")}</span>
+        <span className="text-black/40">{t("headline2")}</span>
       </motion.h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
@@ -24,20 +24,20 @@ export default function Roadmap() {
           <motion.div
             key={proj.key}
             variants={itemVariants}
-            className={`hover-card rounded-lg p-8 md:p-10 transition-all duration-300 hover:-translate-y-1 ${
+            className={`hover-card rounded-lg p-8 md:p-10 transition-all duration-300 ${
               proj.highlighted
-                ? "bg-white text-[#111] hover:shadow-[0_8px_30px_rgba(255,255,255,0.1)]"
-                : "bg-white/10 text-white border border-white/10 hover:shadow-[0_8px_30px_rgba(30,42,74,0.3)]"
+                ? "bg-[#111] text-white hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.25)]"
+                : "bg-[#f5f5f5] text-[#111] hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
             }`}
           >
             <p className={`text-xs font-mono tracking-[0.15em] uppercase mb-4 ${
-              proj.highlighted ? "text-[#1e2a4a]" : "text-white/50"
+              proj.highlighted ? "text-[#888]" : "text-[#999]"
             }`}>
               {t(`${proj.key}Industry`)}
             </p>
             <p className="font-bold text-lg mb-3">{t(`${proj.key}Title`)}</p>
             <p className={`text-sm leading-relaxed ${
-              proj.highlighted ? "text-[#666]" : "text-white/60"
+              proj.highlighted ? "text-[#ccc]" : "text-[#666]"
             }`}>
               {t(`${proj.key}Desc`)}
             </p>
@@ -45,7 +45,7 @@ export default function Roadmap() {
         ))}
       </div>
 
-      <motion.p variants={itemVariants} className="text-white/40 text-sm">
+      <motion.p variants={itemVariants} className="text-[#999] text-sm">
         {t("footnote")}
       </motion.p>
     </SlideWrapper>

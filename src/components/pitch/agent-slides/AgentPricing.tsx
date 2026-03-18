@@ -18,7 +18,7 @@ export default function AgentPricing() {
 
       <motion.div
         variants={itemVariants}
-        className="hover-card bg-[#111] text-white rounded-lg p-10 md:p-14 max-w-[500px] mb-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.25)]"
+        className="hover-card bg-[#111] text-white rounded-lg p-10 md:p-14 max-w-[500px] mb-8 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.25)]"
       >
         <p className="font-bold text-lg mb-2">{t("planName")}</p>
         <p className="mb-6">

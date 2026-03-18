@@ -22,7 +22,7 @@ export default function Pricing({ footnote }: { footnote?: string }) {
           <motion.div
             key={tier.key}
             variants={itemVariants}
-            className={`hover-card rounded-lg p-8 md:p-10 transition-all duration-300 hover:-translate-y-1 flex flex-col ${
+            className={`hover-card rounded-lg p-8 md:p-10 transition-all duration-300 flex flex-col ${
               tier.recommended
                 ? "bg-[#111] text-white ring-2 ring-[#111] hover:shadow-[0_8px_30px_rgba(0,0,0,0.25)]"
                 : "bg-[#f5f5f5] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
@@ -45,7 +45,7 @@ export default function Pricing({ footnote }: { footnote?: string }) {
         ))}
         <motion.div
           variants={itemVariants}
-          className="hover-card rounded-lg p-8 md:p-10 bg-[#f5f5f5] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] flex items-center justify-center"
+          className="hover-card rounded-lg p-8 md:p-10 bg-[#f5f5f5] transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] flex items-center justify-center"
         >
           <p className="font-bold text-lg">{t("individualName")}</p>
         </motion.div>

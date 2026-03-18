@@ -9,7 +9,7 @@ function AnimatedStat({ value, label, delay }: { value: string; label: string; d
   return (
     <motion.div
       variants={itemVariants}
-      className="hover-card bg-white rounded-lg p-8 md:p-10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
+      className="hover-card bg-white rounded-lg p-8 md:p-10 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
     >
       <motion.p
         initial={{ opacity: 0, scale: 0.8 }}

@@ -25,7 +25,7 @@ export default function LiveDemo() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
         <motion.div
           variants={itemVariants}
-          className="hover-card bg-white/10 backdrop-blur-sm border border-white/10 text-white rounded-lg p-8 md:p-12 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(30,42,74,0.2)]"
+          className="hover-card bg-white/10 backdrop-blur-sm border border-white/10 text-white rounded-lg p-8 md:p-12 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(30,42,74,0.2)]"
         >
           <p className="font-bold text-xl md:text-2xl mb-4">{t("boxTitle")}</p>
           <p className="text-[#ccc] text-sm leading-relaxed">

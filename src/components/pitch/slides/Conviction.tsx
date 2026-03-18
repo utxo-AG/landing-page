@@ -9,7 +9,7 @@ export default function Conviction() {
   const t = useTranslations("Pitch.Conviction");
 
   return (
-    <SlideWrapper variant="rose">
+    <SlideWrapper variant="warm">
       <motion.p variants={itemVariants} className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4">
         {t("label")}
       </motion.p>
@@ -40,9 +40,23 @@ export default function Conviction() {
           </motion.p>
         </div>
 
-        <motion.div variants={itemVariants} className="hidden md:flex justify-center mt-8 md:mt-0">
-          <div className="relative w-[200px] h-[200px]">
-            <Image src="/images/pitch/otto-pfp.png" alt="Otto" fill className="object-contain" sizes="200px" />
+        <motion.div variants={itemVariants} className="hidden md:flex flex-col items-center gap-6 mt-8 md:mt-0">
+          <div className="flex items-end gap-5">
+            <div className="flex flex-col items-center gap-2">
+              <div className="relative w-[120px] h-[120px] rounded-full overflow-hidden ring-2 ring-[#e0d9cf]">
+                <Image src="/images/pitch/emma-pfp.png" alt="Emma" fill className="object-cover" sizes="120px" />
+              </div>
+              <span className="text-xs font-mono text-[#999] tracking-wide">Emma</span>
+              <span className="text-[10px] text-[#bbb] uppercase tracking-[0.1em]">Human</span>
+            </div>
+            <span className="text-2xl text-[#ccc] mb-10 font-light">+</span>
+            <div className="flex flex-col items-center gap-2">
+              <div className="relative w-[120px] h-[120px] rounded-full overflow-hidden ring-2 ring-[#e0d9cf]">
+                <Image src="/images/pitch/otto-pfp.png" alt="Otto" fill className="object-cover" sizes="120px" />
+              </div>
+              <span className="text-xs font-mono text-[#999] tracking-wide">Otto</span>
+              <span className="text-[10px] text-[#bbb] uppercase tracking-[0.1em]">AI Agent</span>
+            </div>
           </div>
         </motion.div>
       </div>

@@ -8,29 +8,29 @@ export default function PilotPartner() {
   const t = useTranslations("Pitch.PilotPartner");
 
   return (
-    <SlideWrapper variant="warm">
-      <motion.p variants={itemVariants} className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4">
+    <SlideWrapper variant="glow">
+      <motion.p variants={itemVariants} className="text-[#8a9cc5] text-xs font-mono tracking-[0.15em] uppercase mb-4">
         {t("label")}
       </motion.p>
       <motion.h2 variants={itemVariants} className="text-[28px] md:text-[40px] font-bold leading-[1.15] tracking-tight mb-12">
         {t("headline1")}
         <br />
-        <span className="text-[#999]">{t("headline2")}</span>
+        <span className="text-[#8a9cc5]">{t("headline2")}</span>
       </motion.h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
-        <motion.div variants={itemVariants} className="hover-card bg-[#f5f5f5] rounded-lg p-8 md:p-10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
-          <p className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-5">{t("situationLabel")}</p>
-          <ul className="space-y-3 text-[#666] text-sm leading-relaxed">
+        <motion.div variants={itemVariants} className="hover-card bg-white/[0.07] border border-white/[0.08] rounded-lg p-8 md:p-10 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)]">
+          <p className="text-[#8a9cc5] text-xs font-mono tracking-[0.15em] uppercase mb-5">{t("situationLabel")}</p>
+          <ul className="space-y-3 text-[#9aa8c7] text-sm leading-relaxed">
             {[1, 2, 3, 4].map((i) => (
               <li key={i}>{t(`situation${i}`)}</li>
             ))}
           </ul>
         </motion.div>
 
-        <motion.div variants={itemVariants} className="hover-card bg-[#111] text-white rounded-lg p-8 md:p-10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
-          <p className="text-[#888] text-xs font-mono tracking-[0.15em] uppercase mb-5">{t("goalLabel")}</p>
-          <ul className="space-y-3 text-[#ccc] text-sm leading-relaxed">
+        <motion.div variants={itemVariants} className="hover-card bg-black/40 border border-white/10 rounded-lg p-8 md:p-10 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)]">
+          <p className="text-[#8a9cc5] text-xs font-mono tracking-[0.15em] uppercase mb-5">{t("goalLabel")}</p>
+          <ul className="space-y-3 text-[#c8d2e6] text-sm leading-relaxed">
             {[1, 2, 3].map((i) => (
               <li key={i}>{t(`goal${i}`)}</li>
             ))}
@@ -38,7 +38,7 @@ export default function PilotPartner() {
         </motion.div>
       </div>
 
-      <motion.p variants={itemVariants} className="text-[#bbb] text-xs font-mono">
+      <motion.p variants={itemVariants} className="text-[#6b7a9e] text-xs font-mono">
         {t("footnote")}
       </motion.p>
     </SlideWrapper>

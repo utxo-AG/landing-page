@@ -93,7 +93,7 @@ export default function ROI() {
               <motion.div
                 key={item.key}
                 variants={itemVariants}
-                className={`hover-card rounded-lg p-6 transition-all duration-300 hover:-translate-y-1 ${
+                className={`hover-card rounded-lg p-6 transition-all duration-300 ${
                   item.dark
                     ? "bg-[#111] text-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.25)]"
                     : item.highlighted

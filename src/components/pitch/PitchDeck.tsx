@@ -27,6 +27,7 @@ import Pricing from "./slides/Pricing";
 import Roadmap from "./slides/Roadmap";
 import CTASlide from "./slides/CTASlide";
 import NameYourAgent from "./slides/NameYourAgent";
+import TeamImage from "./slides/TeamImage";
 import ThankYouSlide from "./ThankYouSlide";
 
 function PitchDeckInner() {
@@ -36,35 +37,46 @@ function PitchDeckInner() {
   const logo = searchParams.get("logo") ?? undefined;
 
   const hasWelcome = !!company;
-  const slideCount = 24 + (hasWelcome ? 1 : 0);
+  const slideCount = 25 + (hasWelcome ? 1 : 0);
 
   return (
     <PitchLayout slideCount={slideCount}>
       {hasWelcome && (
         <WelcomeSlide company={company} contact={contact} logo={logo} />
       )}
+      {/* 1–5: Hook & Pain */}
       <TitleSlide />
       <MarketReality />
       <WhyNow />
       <Problems />
       <CompetitivePressure />
+      {/* 6–7: Belief & Vision */}
       <Conviction />
       <Solution />
+      {/* 8–10: Product deep-dive */}
       <HowToWorkWithOtto />
       <EmailArchitecture />
+      {/* 11: Team */}
+      <TeamImage />
       <UseCases />
+      {/* 11–12: Tangible proof */}
       <Deliverables />
       <QuickReference />
       <LiveDemo />
-      <ComparisonTable />
+      {/* 14–15: Competitive positioning */}
       <Limitations />
+      <ComparisonTable />
+      {/* 16–18: Trust & Business case */}
       <SwissTrust />
-      <PilotPartner />
-      <BusinessModel />
       <ROI />
-      <Pricing />
+      {/* 19: The Ask */}
+      <PilotPartner />
       <Roadmap />
+      {/* Commitment details */}
+      <BusinessModel />
+      <Pricing />
       <NameYourAgent />
+      {/* 23–24: Close */}
       <CTASlide />
       <ThankYouSlide />
     </PitchLayout>

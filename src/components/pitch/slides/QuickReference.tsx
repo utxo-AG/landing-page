@@ -24,7 +24,7 @@ export default function QuickReference() {
         {QUICK_REFERENCE_ITEMS.map((item) => (
           <div
             key={item.key}
-            className="hover-card bg-white shadow-sm rounded-lg p-5 flex gap-4 items-start transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
+            className="hover-card bg-white shadow-sm rounded-lg p-5 flex gap-4 items-start transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
           >
             <div className="flex-1">
               <p className="text-xs font-mono text-[#999] uppercase tracking-wider mb-1">{t(`${item.key}Need`)}</p>

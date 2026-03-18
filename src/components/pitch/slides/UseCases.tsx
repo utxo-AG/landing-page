@@ -7,6 +7,11 @@ import SlideWrapper, { itemVariants } from "../SlideWrapper";
 import EmailMockup from "../visuals/EmailMockup";
 
 const mockupVariants = ["draft", "inbox", "report"] as const;
+const cardAgents = [
+  { src: "/images/pitch/otto-pfp.png", alt: "Otto" },
+  { src: "/images/pitch/lena-portrait.png", alt: "Lena" },
+  { src: "/images/pitch/kai-pfp.png", alt: "Kai" },
+];
 
 export default function UseCases() {
   const t = useTranslations("Pitch.UseCases");
@@ -25,10 +30,10 @@ export default function UseCases() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-10">
         {[1, 2, 3].map((i) => (
-          <motion.div key={i} variants={itemVariants} className="hover-card bg-white shadow-sm rounded-lg p-4 border-t-2 border-[#1e2a4a] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
+          <motion.div key={i} variants={itemVariants} className="hover-card bg-white shadow-sm rounded-lg p-4 border-t-2 border-[#1e2a4a] transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
             <div className="flex items-center gap-2 mb-3">
               <div className="relative w-6 h-6 rounded-full overflow-hidden flex-shrink-0">
-                <Image src="/images/pitch/otto-pfp.png" alt="Otto" fill className="object-cover" sizes="24px" />
+                <Image src={cardAgents[i - 1].src} alt={cardAgents[i - 1].alt} fill className="object-cover object-top" sizes="24px" />
               </div>
               <p className="font-bold text-lg text-[#111]">{t(`item${i}Title`)}</p>
             </div>

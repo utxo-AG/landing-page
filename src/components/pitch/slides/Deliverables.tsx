@@ -10,7 +10,7 @@ import { DELIVERABLE_FORMATS } from "@/lib/pitch-constants";
 const AGENT_AVATARS = [
   { src: "/images/pitch/otto-pfp.png", alt: "Otto" },
   { src: "/images/pitch/lena-portrait.png", alt: "Lena" },
-  { src: "/images/pitch/otto-portrait.png", alt: "Agent" },
+  { src: "/images/pitch/kai-pfp.png", alt: "Kai" },
   { src: "/images/pitch/otto-pfp.png", alt: "Otto" },
   { src: "/images/pitch/lena-portrait.png", alt: "Lena" },
 ];
@@ -23,7 +23,7 @@ const icons: Record<string, React.ReactNode> = {
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="1" width="14" height="16" rx="2" stroke="#1e2a4a" strokeWidth="1.5" fill="none"/><line x1="6" y1="6" x2="12" y2="6" stroke="#1e2a4a" strokeWidth="1.2"/><line x1="6" y1="9" x2="12" y2="9" stroke="#1e2a4a" strokeWidth="1.2"/><line x1="6" y1="12" x2="10" y2="12" stroke="#1e2a4a" strokeWidth="1.2"/></svg>
   ),
   summary: (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="1" width="14" height="16" rx="2" stroke="#1e2a4a" strokeWidth="1.5" fill="none"/><line x1="5" y1="5" x2="13" y2="5" stroke="#1e2a4a" strokeWidth="1.2"/><line x1="5" y1="8" x2="11" y2="8" stroke="#1e2a4a" strokeWidth="1.2"/><line x1="5" y1="11" x2="9" y2="11" stroke="#1e2a4a" strokeWidth="1.2"/></svg>
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 1h7l5 5v10a2 2 0 01-2 2H4a2 2 0 01-2-2V3a2 2 0 012-2z" stroke="#1e2a4a" strokeWidth="1.5" fill="none"/><path d="M11 1v5h5" stroke="#1e2a4a" strokeWidth="1.5" strokeLinecap="round"/><text x="9" y="14" textAnchor="middle" fontSize="5" fontWeight="700" fill="#1e2a4a">PDF</text></svg>
   ),
   status: (
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#1e2a4a" strokeWidth="1.5" fill="none"/><path d="M9 5v4l3 2" stroke="#1e2a4a" strokeWidth="1.5" strokeLinecap="round"/></svg>
@@ -63,7 +63,7 @@ export default function Deliverables() {
                 <td className="py-3 px-5 font-medium text-[#333]">
                   <span className="mr-2 inline-flex align-middle">{icons[item.icon]}</span>
                   <span className="relative inline-flex w-5 h-5 rounded-full overflow-hidden mr-2 align-middle">
-                    <Image src={AGENT_AVATARS[idx].src} alt={AGENT_AVATARS[idx].alt} fill className="object-cover" sizes="20px" />
+                    <Image src={AGENT_AVATARS[idx].src} alt={AGENT_AVATARS[idx].alt} fill className="object-cover object-top" sizes="20px" />
                   </span>
                   {t(`${item.key}Name`)}
                 </td>

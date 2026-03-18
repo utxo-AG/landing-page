@@ -4,14 +4,31 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import SlideWrapper, { itemVariants } from "../SlideWrapper";
 
+function SwissFlag({ size = 32 }: { size?: number }) {
+  const arm = size * 0.5;
+  const thick = size * 0.16;
+  const cx = size / 2;
+  const cy = size / 2;
+  return (
+    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} fill="none">
+      <rect width={size} height={size} rx={size * 0.15} fill="#DA291C" />
+      <rect x={cx - arm / 2} y={cy - thick / 2} width={arm} height={thick} rx={thick * 0.15} fill="white" />
+      <rect x={cx - thick / 2} y={cy - arm / 2} width={thick} height={arm} rx={thick * 0.15} fill="white" />
+    </svg>
+  );
+}
+
 export default function SwissTrust() {
   const t = useTranslations("Pitch.SwissTrust");
 
   return (
     <SlideWrapper variant="rose">
-      <motion.p variants={itemVariants} className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4">
-        {t("label")}
-      </motion.p>
+      <motion.div variants={itemVariants} className="flex items-center gap-3 mb-4">
+        <SwissFlag size={28} />
+        <p className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase">
+          {t("label")}
+        </p>
+      </motion.div>
       <motion.h2 variants={itemVariants} className="text-[28px] md:text-[40px] font-bold leading-[1.15] tracking-tight mb-12">
         {t("headline1")}
         <br />

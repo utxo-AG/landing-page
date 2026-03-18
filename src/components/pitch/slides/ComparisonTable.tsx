@@ -97,7 +97,7 @@ export default function ComparisonTable() {
         {COMPARISON_ROWS.map((row) => {
           const values = COMPARISON_HEADERS.map((h) => t(`row${row.key}${h}`));
           return (
-            <div key={row.key} className="hover-card bg-[#f5f5f5] rounded-lg p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
+            <div key={row.key} className="hover-card bg-[#f5f5f5] rounded-lg p-4 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
               <p className="text-xs font-mono text-[#999] uppercase tracking-wider mb-2">{t(`row${row.key}`)}</p>
               <div className="space-y-2">
                 {COMPARISON_HEADERS.map((header, hi) => (
