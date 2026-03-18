@@ -34,7 +34,7 @@ export default function ThankYouSlide() {
         <motion.div
           animate={{ x: showQr ? -40 : 0 }}
           transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center"
+          className="text-center max-md:!transform-none"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -89,7 +89,7 @@ export default function ThankYouSlide() {
               initial={{ opacity: 0, x: 40, scale: 0.95, filter: "blur(12px)" }}
               animate={{ opacity: 1, x: 0, scale: 1, filter: "blur(0px)" }}
               transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
-              className="shrink-0"
+              className="shrink-0 hidden md:block"
             >
               <div className="rounded-3xl overflow-hidden bg-white p-5 md:p-6">
                 <QRCodeSVG
@@ -116,7 +116,7 @@ export default function ThankYouSlide() {
             </svg>
             <span className="text-[13px] text-white/40">{f("copyright", { year: new Date().getFullYear() })}</span>
           </div>
-          <div className="flex items-center gap-6 text-[12px] text-white/30">
+          <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-[12px] text-white/30">
             <Link href="/imprint" className="hover:text-white/60 transition-colors duration-200">{f("imprint")}</Link>
             <Link href="/privacy" className="hover:text-white/60 transition-colors duration-200">{f("privacyPolicy")}</Link>
             <Link href="/terms" className="hover:text-white/60 transition-colors duration-200">{f("termsOfService")}</Link>
