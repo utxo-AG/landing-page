@@ -11,9 +11,9 @@
   },
   "Hero": {
     "label": "Produktstudio",
-    "titleBlack": "KI-Mitarbeiter einstellen.",
-    "titleGray": "Per E-Mail.",
-    "description": "Wir entwickeln massgeschneiderte KI-Agenten für Ihr Unternehmen — direkt integriert in SAP, Outlook, Teams, Slack und mehr. Interesse? Schreiben Sie uns.",
+    "titleBlack": "KI-Agenten, die lesen,",
+    "titleGray": "antworten und erledigen.",
+    "description": "Keine neuen Tools. Keine Schulung. Einfach eine E-Mail weiterleiten — Ihr KI-Mitarbeiter erledigt den Rest. Direkt integriert in SAP, Outlook, Teams und mehr.",
     "inboxLabel": "Inbox — KI-Agenten",
     "toYou": "An: Sie"
   },
