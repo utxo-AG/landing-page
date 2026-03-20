@@ -20,7 +20,7 @@ function InfosheetDeckInner() {
   const slideCount = 5 + (hasWelcome ? 1 : 0);
 
   return (
-    <PitchLayout slideCount={slideCount}>
+    <PitchLayout slideCount={slideCount} pdfFilename="utxo AG — Infosheet.pdf">
       {hasWelcome && (
         <WelcomeSlide company={company} contact={contact} logo={logo} />
       )}

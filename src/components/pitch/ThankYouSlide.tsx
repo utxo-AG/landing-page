@@ -5,11 +5,13 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { QRCodeSVG } from "qrcode.react";
 import { Link } from "@/i18n/navigation";
+import { usePrintMode } from "./PrintContext";
 
 
 export default function ThankYouSlide() {
   const t = useTranslations("PitchThankYou");
   const f = useTranslations("Footer");
+  const isPrint = usePrintMode();
   const [url, setUrl] = useState("");
   const [showQr, setShowQr] = useState(false);
   const ref = useRef<HTMLElement>(null);
@@ -20,10 +22,14 @@ export default function ThankYouSlide() {
   }, []);
 
   useEffect(() => {
+    if (isPrint) {
+      setShowQr(true);
+      return;
+    }
     if (!isInView) return;
     const timer = setTimeout(() => setShowQr(true), 5000);
     return () => clearTimeout(timer);
-  }, [isInView]);
+  }, [isInView, isPrint]);
 
   return (
     <section
@@ -31,66 +37,87 @@ export default function ThankYouSlide() {
       className="min-h-[100dvh] w-full snap-start flex flex-col items-center justify-center bg-[#111] text-white px-6 overflow-hidden relative"
     >
       <div className="flex items-center justify-center w-full max-w-[1100px] gap-16 md:gap-24">
-        <motion.div
-          animate={{ x: showQr ? -40 : 0 }}
-          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center max-md:!transform-none"
-        >
+        {isPrint ? (
+          <div className="text-center max-md:!transform-none">
+            <div className="mb-12 flex justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className="w-16 h-16 md:w-20 md:h-20">
+                <rect width="48" height="48" rx="10" fill="#fff" />
+                <path d="M12 8 L12 30 Q12 42 22 42 L26 42 Q36 42 36 30 L36 22" stroke="#111" strokeWidth="3.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                <path d="M24 8 L24 26 Q24 33 30 33 L36 33" stroke="#111" strokeWidth="3.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                <circle cx="40" cy="22" r="3.8" fill="#111" />
+                <circle cx="40" cy="33" r="3.8" fill="#111" />
+              </svg>
+            </div>
+
+            <h1 className="text-[40px] md:text-[56px] lg:text-[64px] font-bold leading-[1.1] tracking-tight mb-6">
+              {t("headline")}
+            </h1>
+
+            <p className="text-[#666] text-lg md:text-xl font-normal">
+              {t("subline")}
+            </p>
+
+            <div className="mt-8 text-[#555] text-xs font-mono">
+              {t("footer")}
+            </div>
+          </div>
+        ) : (
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-            className="mb-12 flex justify-center"
+            animate={{ x: showQr ? -40 : 0 }}
+            transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+            className="text-center max-md:!transform-none"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className="w-16 h-16 md:w-20 md:h-20">
-              <rect width="48" height="48" rx="10" fill="#fff" />
-              <path d="M12 8 L12 30 Q12 42 22 42 L26 42 Q36 42 36 30 L36 22" stroke="#111" strokeWidth="3.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-              <path d="M24 8 L24 26 Q24 33 30 33 L36 33" stroke="#111" strokeWidth="3.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-              <circle cx="40" cy="22" r="3.8" fill="#111" />
-              <circle cx="40" cy="33" r="3.8" fill="#111" />
-            </svg>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-            className="text-[40px] md:text-[56px] lg:text-[64px] font-bold leading-[1.1] tracking-tight mb-6"
-          >
-            {t("headline")}
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            className="text-[#666] text-lg md:text-xl font-normal"
-          >
-            {t("subline")}
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 1.2, duration: 0.8 }}
-            className="mt-8 text-[#555] text-xs font-mono"
-          >
-            {t("footer")}
-          </motion.div>
-        </motion.div>
-
-        <AnimatePresence>
-          {showQr && url && (
             <motion.div
-              initial={{ opacity: 0, x: 40, scale: 0.95, filter: "blur(12px)" }}
-              animate={{ opacity: 1, x: 0, scale: 1, filter: "blur(0px)" }}
-              transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
-              className="shrink-0 hidden md:block"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+              className="mb-12 flex justify-center"
             >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className="w-16 h-16 md:w-20 md:h-20">
+                <rect width="48" height="48" rx="10" fill="#fff" />
+                <path d="M12 8 L12 30 Q12 42 22 42 L26 42 Q36 42 36 30 L36 22" stroke="#111" strokeWidth="3.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                <path d="M24 8 L24 26 Q24 33 30 33 L36 33" stroke="#111" strokeWidth="3.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                <circle cx="40" cy="22" r="3.8" fill="#111" />
+                <circle cx="40" cy="33" r="3.8" fill="#111" />
+              </svg>
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+              className="text-[40px] md:text-[56px] lg:text-[64px] font-bold leading-[1.1] tracking-tight mb-6"
+            >
+              {t("headline")}
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="text-[#666] text-lg md:text-xl font-normal"
+            >
+              {t("subline")}
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 1.2, duration: 0.8 }}
+              className="mt-8 text-[#555] text-xs font-mono"
+            >
+              {t("footer")}
+            </motion.div>
+          </motion.div>
+        )}
+
+        {isPrint ? (
+          url && (
+            <div className="shrink-0 hidden md:block">
               <div className="rounded-3xl overflow-hidden bg-white p-5 md:p-6">
                 <QRCodeSVG
                   value={url}
@@ -100,9 +127,30 @@ export default function ThankYouSlide() {
                   level="M"
                 />
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            </div>
+          )
+        ) : (
+          <AnimatePresence>
+            {showQr && url && (
+              <motion.div
+                initial={{ opacity: 0, x: 40, scale: 0.95, filter: "blur(12px)" }}
+                animate={{ opacity: 1, x: 0, scale: 1, filter: "blur(0px)" }}
+                transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
+                className="shrink-0 hidden md:block"
+              >
+                <div className="rounded-3xl overflow-hidden bg-white p-5 md:p-6">
+                  <QRCodeSVG
+                    value={url}
+                    size={180}
+                    bgColor="#ffffff"
+                    fgColor="#111111"
+                    level="M"
+                  />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        )}
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 px-6 py-8">

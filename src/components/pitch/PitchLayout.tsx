@@ -12,27 +12,41 @@ import NavigationDots from "./NavigationDots";
 import ProgressBar from "./ProgressBar";
 import CustomCursor from "./CustomCursor";
 import { PrintContext } from "./PrintContext";
+import { generatePitchPdf } from "@/lib/generate-pdf";
 
 export default function PitchLayout({
   children,
   slideCount,
+  pdfFilename,
 }: {
   children: ReactNode;
   slideCount: number;
+  pdfFilename?: string;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeSlide, setActiveSlide] = useState(0);
   const [isDark, setIsDark] = useState(false);
+  const [pdfProgress, setPdfProgress] = useState<string | null>(null);
   const searchParams = useSearchParams();
   const isPrintMode = searchParams.get("print") === "true";
 
   useEffect(() => {
-    if (!isPrintMode) return;
-    const timer = setTimeout(() => {
-      window.print();
-    }, 1500);
+    if (!isPrintMode || !containerRef.current) return;
+    const timer = setTimeout(async () => {
+      setPdfProgress("Preparing…");
+      try {
+        await generatePitchPdf(
+          containerRef.current!,
+          pdfFilename ?? "utxo-AG-deck.pdf",
+          (current, total) => setPdfProgress(`Slide ${current}/${total}…`)
+        );
+      } finally {
+        setPdfProgress(null);
+        window.close();
+      }
+    }, 2000);
     return () => clearTimeout(timer);
-  }, [isPrintMode]);
+  }, [isPrintMode, pdfFilename]);
 
   const scrollToSlide = useCallback((index: number) => {
     const container = containerRef.current;
@@ -89,6 +103,14 @@ export default function PitchLayout({
   return (
     <PrintContext.Provider value={isPrintMode}>
       <div className="pitch-container">
+        {pdfProgress && (
+          <div className="fixed inset-0 z-[9999] bg-[#111] flex items-center justify-center">
+            <div className="text-center">
+              <div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin mx-auto mb-4" />
+              <p className="text-white text-sm font-mono">{pdfProgress}</p>
+            </div>
+          </div>
+        )}
         <div className="pitch-custom-cursor">
           <CustomCursor dark={isDark} />
         </div>

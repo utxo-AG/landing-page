@@ -19,7 +19,7 @@ function AgentDeckInner() {
   const slideCount = 4 + (hasWelcome ? 1 : 0);
 
   return (
-    <PitchLayout slideCount={slideCount}>
+    <PitchLayout slideCount={slideCount} pdfFilename="utxo AG — Agent.pdf">
       {hasWelcome && (
         <WelcomeSlide company={company} contact={contact} logo={logo} />
       )}

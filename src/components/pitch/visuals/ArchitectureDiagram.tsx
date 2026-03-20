@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import IntegrationCycler from "./IntegrationCycler";
+import { usePrintMode } from "../PrintContext";
 
 function OttoNode({ clipId }: { clipId: string }) {
   return (
@@ -38,18 +39,38 @@ function DataSourceNodes() {
   );
 }
 
+function StaticInboxNode({ x, y, label }: { x: number; y: number; label: string }) {
+  const cx = x + 70;
+  return (
+    <>
+      <text x={cx} y={y + 55} textAnchor="middle" className="text-[11px] fill-white/50" style={{ fontFamily: "var(--font-jetbrains-mono), monospace", letterSpacing: "0.1em", textTransform: "uppercase" as const }}>{label}</text>
+      <rect x={x + 10} y={y + 68} width="120" height="12" rx="2" fill="#1e2a4a" />
+      <rect x={x + 10} y={y + 84} width="90" height="7" rx="2" fill="rgba(30,42,74,0.2)" />
+      <rect x={x + 10} y={y + 95} width="102" height="7" rx="2" fill="rgba(30,42,74,0.15)" />
+      <rect x={x + 10} y={y + 112} width="120" height="12" rx="2" fill="#1e2a4a" />
+      <rect x={x + 10} y={y + 128} width="72" height="7" rx="2" fill="rgba(30,42,74,0.2)" />
+      <rect x={x + 10} y={y + 139} width="84" height="7" rx="2" fill="rgba(30,42,74,0.15)" />
+    </>
+  );
+}
+
 export default function ArchitectureDiagram({ className = "" }: { className?: string }) {
   const t = useTranslations("Pitch.EmailArchitecture");
+  const isPrint = usePrintMode();
 
   return (
     <div className={className}>
       {/* Desktop */}
       <svg viewBox="0 0 800 370" fill="none" xmlns="http://www.w3.org/2000/svg" className="hidden md:block w-full h-auto">
-        {/* Inbox node — entire area is foreignObject with IntegrationCycler */}
+        {/* Inbox node */}
         <rect x="20" y="80" width="140" height="180" rx="16" fill="#111827" stroke="#1e2a4a" strokeWidth="1" />
-        <foreignObject x="20" y="80" width="140" height="180">
-          <IntegrationCycler inboxLabel={t("inboxLabel")} />
-        </foreignObject>
+        {isPrint ? (
+          <StaticInboxNode x={20} y={80} label={t("inboxLabel")} />
+        ) : (
+          <foreignObject x="20" y="80" width="140" height="180">
+            <IntegrationCycler inboxLabel={t("inboxLabel")} />
+          </foreignObject>
+        )}
 
         <line x1="160" y1="160" x2="230" y2="160" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" />
         <line x1="230" y1="190" x2="160" y2="190" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" strokeDasharray="6 4" />
@@ -70,9 +91,13 @@ export default function ArchitectureDiagram({ className = "" }: { className?: st
       {/* Mobile */}
       <svg viewBox="0 0 620 500" fill="none" xmlns="http://www.w3.org/2000/svg" className="block md:hidden w-full h-auto">
         <rect x="20" y="80" width="140" height="180" rx="16" fill="#111827" stroke="#1e2a4a" strokeWidth="1" />
-        <foreignObject x="20" y="80" width="140" height="180">
-          <IntegrationCycler inboxLabel={t("inboxLabel")} />
-        </foreignObject>
+        {isPrint ? (
+          <StaticInboxNode x={20} y={80} label={t("inboxLabel")} />
+        ) : (
+          <foreignObject x="20" y="80" width="140" height="180">
+            <IntegrationCycler inboxLabel={t("inboxLabel")} />
+          </foreignObject>
+        )}
 
         <line x1="160" y1="160" x2="230" y2="160" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" />
         <line x1="230" y1="190" x2="160" y2="190" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" strokeDasharray="6 4" />
