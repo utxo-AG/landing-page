@@ -14,6 +14,42 @@ async function waitForImages(el: HTMLElement) {
   );
 }
 
+async function toBase64(url: string): Promise<string> {
+  const res = await fetch(url);
+  const blob = await res.blob();
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result as string);
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+}
+
+async function inlineSvgImages(container: HTMLElement) {
+  const svgImages = container.querySelectorAll("svg image");
+  const cache = new Map<string, string>();
+
+  await Promise.all(
+    Array.from(svgImages).map(async (img) => {
+      const href =
+        img.getAttribute("href") ||
+        img.getAttributeNS("http://www.w3.org/1999/xlink", "href");
+      if (!href || href.startsWith("data:")) return;
+
+      try {
+        let base64 = cache.get(href);
+        if (!base64) {
+          base64 = await toBase64(href);
+          cache.set(href, base64);
+        }
+        img.setAttribute("href", base64);
+      } catch {
+        // silently skip images that fail to load
+      }
+    })
+  );
+}
+
 export async function generatePitchPdf(
   container: HTMLElement,
   filename = "utxo-AG-deck.pdf",
@@ -21,6 +57,11 @@ export async function generatePitchPdf(
 ) {
   const sections = container.querySelectorAll<HTMLElement>(":scope > section");
   if (sections.length === 0) return;
+
+  onProgress?.(0, sections.length);
+
+  // Pre-process: inline all SVG <image> hrefs as base64 data URLs
+  await inlineSvgImages(container);
 
   const vw = window.innerWidth;
   const vh = window.innerHeight;
@@ -37,7 +78,7 @@ export async function generatePitchPdf(
 
     section.scrollIntoView({ behavior: "instant" as ScrollBehavior });
     await waitForImages(section);
-    await new Promise((r) => setTimeout(r, 150));
+    await new Promise((r) => setTimeout(r, 200));
 
     const canvas = await html2canvas(section, {
       scale: 2,

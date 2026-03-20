@@ -3,6 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import PitchLayout from "./PitchLayout";
+import { usePrintMode } from "./PrintContext";
 import WelcomeSlide from "./WelcomeSlide";
 import TitleSlide from "./slides/TitleSlide";
 import HowToWorkWithOtto from "./slides/HowToWorkWithOtto";
@@ -28,12 +29,13 @@ import ThankYouSlide from "./ThankYouSlide";
 
 function PitchDeckInner() {
   const searchParams = useSearchParams();
+  const isPrint = usePrintMode();
   const company = searchParams.get("company");
   const contact = searchParams.get("contact") ?? undefined;
   const logo = searchParams.get("logo") ?? undefined;
 
   const hasWelcome = !!company;
-  const slideCount = 21 + (hasWelcome ? 1 : 0);
+  const slideCount = (hasWelcome ? 1 : 0) + 20 + (isPrint ? 0 : 1);
 
   return (
     <PitchLayout slideCount={slideCount} pdfFilename="utxo AG — Pitch Deck.pdf">
@@ -50,7 +52,7 @@ function PitchDeckInner() {
       <TeamImage />
       <Deliverables />
       <QuickReference />
-      <LiveDemo />
+      {!isPrint && <LiveDemo />}
       <Limitations />
       <ComparisonTable />
       <SwissTrust />

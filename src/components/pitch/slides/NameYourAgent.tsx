@@ -42,7 +42,7 @@ export default function NameYourAgent() {
           variants={itemVariants}
           className="hidden md:block relative w-[440px] h-[300px]"
         >
-          <div className="absolute inset-0 opacity-25">
+          <div className="absolute inset-0 opacity-50">
             <Image
               src="/images/pitch/agent-silhouettes.png"
               alt=""
