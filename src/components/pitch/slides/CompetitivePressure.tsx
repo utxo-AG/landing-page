@@ -105,13 +105,13 @@ export default function CompetitivePressure() {
 
   return (
     <SlideWrapper variant="rose">
-      <motion.p variants={itemVariants} className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4">
+      <motion.p variants={itemVariants} className="text-[#666] text-sm font-mono tracking-[0.15em] uppercase mb-4">
         {t("label")}
       </motion.p>
       <motion.h2 variants={itemVariants} className="text-[28px] md:text-[40px] font-bold leading-[1.15] tracking-tight mb-12">
         {t("headline1")}
         <br />
-        <span className="text-[#999]">{t("headline2")}</span>
+        <span className="text-[#666]">{t("headline2")}</span>
       </motion.h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
@@ -148,12 +148,12 @@ export default function CompetitivePressure() {
             </div>
           </div>
 
-          <p className="text-[#888] text-xs">{t("chartLabel")}</p>
+          <p className="text-[#666] text-sm">{t("chartLabel")}</p>
 
           <motion.p variants={itemVariants} className="text-[#888] text-base font-medium mt-6">
             {t.rich("footnote", { em: (chunks) => <em>{chunks}</em> })}
           </motion.p>
-          <motion.p variants={itemVariants} className="text-[#bbb] text-xs font-mono mt-2">
+          <motion.p variants={itemVariants} className="text-[#666] text-sm font-mono mt-2">
             {t("source")}
           </motion.p>
         </motion.div>

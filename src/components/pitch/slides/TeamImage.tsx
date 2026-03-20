@@ -13,7 +13,7 @@ export default function TeamImage() {
   return (
     <SlideWrapper variant="warm" layout="split">
       <div>
-        <motion.p variants={itemVariants} className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4">
+        <motion.p variants={itemVariants} className="text-[#666] text-sm font-mono tracking-[0.15em] uppercase mb-4">
           {t("label")}
         </motion.p>
         <motion.h2 variants={itemVariants} className="text-[28px] md:text-[40px] font-bold leading-[1.15] tracking-tight">

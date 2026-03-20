@@ -21,7 +21,7 @@ export default function TitleSlide() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-[#999] text-xs font-mono tracking-[0.2em] uppercase mb-4 md:mb-8"
+            className="text-[#666] text-sm font-mono tracking-[0.2em] uppercase mb-4 md:mb-8"
           >
             {t("label")}
           </motion.p>
@@ -72,7 +72,7 @@ export default function TitleSlide() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.8, duration: 0.6 }}
-            className="text-[#888] text-base md:text-lg mt-6 md:mt-8 max-w-[500px]"
+            className="text-[#666] text-base md:text-lg mt-6 md:mt-8 max-w-[500px]"
           >
             {t("description")}
           </motion.p>

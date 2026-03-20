@@ -18,7 +18,7 @@ export default function StepIllustration({ step, className = "" }: StepIllustrat
             <circle cx="54" cy="42" r="3.5" fill="#FF5F57" />
             <circle cx="64" cy="42" r="3.5" fill="#FEBC2E" />
             <circle cx="74" cy="42" r="3.5" fill="#28C840" />
-            <text x="56" y="70" className="text-[8px] font-mono fill-[#9CA3AF]">An: otto@firma.de</text>
+            <text x="56" y="70" className="text-[8px] font-mono fill-[#9CA3AF]">otto@your-company.com</text>
             <line x1="50" y1="78" x2="230" y2="78" stroke="#f0ede8" strokeWidth="1" />
             <rect x="56" y="86" width="140" height="6" rx="2" fill="#e8e5df" />
             <rect x="56" y="98" width="160" height="6" rx="2" fill="#f0ede8" />
@@ -70,7 +70,7 @@ export default function StepIllustration({ step, className = "" }: StepIllustrat
             <rect x="56" y="103" width="140" height="5" rx="2" fill="#f0ede8" />
             <rect x="56" y="114" width="150" height="5" rx="2" fill="#f0ede8" />
             <rect x="56" y="128" width="70" height="18" rx="4" fill="#10B981" />
-            <text x="91" y="140" textAnchor="middle" className="text-[8px] font-bold fill-white">Freigeben</text>
+            <text x="91" y="140" textAnchor="middle" className="text-[8px] font-bold fill-white">Approve ✓</text>
             <circle cx="220" cy="90" r="16" fill="#ECFDF5" />
             <path d="M212 90 L218 96 L228 84" stroke="#10B981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
           </>

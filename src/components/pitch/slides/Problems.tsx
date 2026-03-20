@@ -21,7 +21,7 @@ export default function Problems() {
       <div>
         <motion.p
           variants={itemVariants}
-          className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4"
+          className="text-[#666] text-sm font-mono tracking-[0.15em] uppercase mb-4"
         >
           {t("label")}
         </motion.p>
@@ -31,7 +31,7 @@ export default function Problems() {
         >
           {t("headline1")}
           <br />
-          <span className="text-[#999]">{t("headline2")}</span>
+          <span className="text-[#666]">{t("headline2")}</span>
         </motion.h2>
 
         <div className="space-y-6 md:space-y-8 max-w-[700px]">
@@ -106,7 +106,7 @@ export default function Problems() {
               <p className="text-sm font-semibold text-[#222] leading-snug">
                 {t(`email${i}Subject`)}
               </p>
-              <p className="text-xs text-[#888] mt-1 leading-relaxed">
+              <p className="text-sm text-[#666] mt-1 leading-relaxed">
                 {t(`email${i}Preview`)}
               </p>
             </motion.div>

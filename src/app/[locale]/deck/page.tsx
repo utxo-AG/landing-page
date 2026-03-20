@@ -4,8 +4,12 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { useLocale } from "next-intl";
 
-type DeckType = "sales" | "agent";
+type DeckType = "sales" | "infosheet" | "market";
 type Lang = "de" | "en";
+
+function deckPath(type: DeckType) {
+  return type === "sales" ? "pitch" : type === "market" ? "pitch-market" : "pitch-infosheet";
+}
 
 export default function DeckLauncher() {
   const t = useTranslations("DeckLauncher");
@@ -17,15 +21,29 @@ export default function DeckLauncher() {
   const [deck, setDeck] = useState<DeckType>("sales");
   const [lang, setLang] = useState<Lang>(currentLocale as Lang);
 
-  function handleOpen() {
-    const path = deck === "sales" ? "pitch" : "pitch-agent";
+  function buildUrl(raw = false) {
+    const path = deckPath(deck);
+    if (raw) return `/${lang}/${path}`;
+
     const params = new URLSearchParams();
     if (company.trim()) params.set("company", company.trim());
     if (contact.trim()) params.set("contact", contact.trim());
     if (logo.trim()) params.set("logo", logo.trim());
 
     const query = params.toString();
-    const url = `/${lang}/${path}${query ? `?${query}` : ""}`;
+    return `/${lang}/${path}${query ? `?${query}` : ""}`;
+  }
+
+  function handleOpen() {
+    window.open(buildUrl(), "_blank");
+  }
+
+  function handleOpenRaw(type: DeckType) {
+    window.open(`/${lang}/${deckPath(type)}`, "_blank");
+  }
+
+  function handleDownloadPdf() {
+    const url = buildUrl() + (buildUrl().includes("?") ? "&" : "?") + "print=true";
     window.open(url, "_blank");
   }
 
@@ -85,18 +103,19 @@ export default function DeckLauncher() {
             <label className="block text-xs font-mono text-[#888] uppercase tracking-widest mb-2">
               {t("deckLabel")}
             </label>
-            <div className="grid grid-cols-2 gap-3">
-              {(["sales", "agent"] as const).map((type) => (
+            <div className="grid grid-cols-3 gap-3">
+              {(["sales", "infosheet", "market"] as const).map((type) => (
                 <button
                   key={type}
                   onClick={() => setDeck(type)}
-                  className={`px-4 py-3 rounded-lg border text-sm font-medium transition-all ${
+                  onDoubleClick={() => handleOpenRaw(type)}
+                  className={`px-4 py-3 rounded-lg border text-sm font-medium transition-all select-none ${
                     deck === type
                       ? "bg-white text-[#111] border-white"
                       : "bg-[#1a1a1a] text-[#888] border-[#333] hover:border-[#666] hover:text-white"
                   }`}
                 >
-                  {type === "sales" ? t("deckSales") : t("deckAgent")}
+                  {type === "sales" ? t("deckSales") : type === "market" ? t("deckMarket") : t("deckInfosheet")}
                 </button>
               ))}
             </div>
@@ -123,19 +142,52 @@ export default function DeckLauncher() {
             </div>
           </div>
 
-          <button
-            onClick={handleOpen}
-            disabled={!isValid}
-            className={`w-full mt-4 py-3.5 rounded-lg font-semibold text-sm tracking-wide transition-all ${
-              isValid
-                ? "bg-white text-[#111] hover:bg-[#eee] cursor-pointer"
-                : "bg-[#333] text-[#666] cursor-not-allowed"
-            }`}
-          >
-            {t("openButton")} →
-          </button>
+          <div className="grid grid-cols-2 gap-3 mt-4">
+            <button
+              onClick={handleOpen}
+              disabled={!isValid}
+              className={`py-3.5 rounded-lg font-semibold text-sm tracking-wide transition-all ${
+                isValid
+                  ? "bg-white text-[#111] hover:bg-[#eee] cursor-pointer"
+                  : "bg-[#333] text-[#666] cursor-not-allowed"
+              }`}
+            >
+              {t("openButton")} →
+            </button>
+            <button
+              onClick={handleDownloadPdf}
+              disabled={!isValid}
+              className={`py-3.5 rounded-lg font-semibold text-sm tracking-wide transition-all border ${
+                isValid
+                  ? "bg-transparent text-white border-[#555] hover:border-white cursor-pointer"
+                  : "bg-transparent text-[#666] border-[#333] cursor-not-allowed"
+              }`}
+            >
+              {t("downloadButton")} ↓
+            </button>
+          </div>
 
-          <p className="text-[#555] text-xs text-center mt-3">{t("hint")}</p>
+          <div className="border-t border-[#333] mt-8 pt-6">
+            <label className="block text-xs font-mono text-[#888] uppercase tracking-widest mb-3">
+              {t("defaultDownloads")}
+            </label>
+            <div className="grid grid-cols-3 gap-3">
+              {(["sales", "infosheet", "market"] as const).map((type) => (
+                <button
+                  key={type}
+                  onClick={() => {
+                    const path = deckPath(type);
+                    window.open(`/${lang}/${path}?print=true`, "_blank");
+                  }}
+                  className="py-3 rounded-lg border border-[#333] text-[#888] text-sm font-medium hover:border-[#666] hover:text-white transition-all cursor-pointer"
+                >
+                  {type === "sales" ? t("deckSales") : type === "market" ? t("deckMarket") : t("deckInfosheet")} ↓
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <p className="text-[#555] text-xs text-center mt-5">{t("hint")}</p>
         </div>
       </div>
     </div>

@@ -38,13 +38,13 @@ export default function ComparisonTable() {
 
   return (
     <SlideWrapper variant="warm">
-      <motion.p variants={itemVariants} className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4">
+      <motion.p variants={itemVariants} className="text-[#666] text-sm font-mono tracking-[0.15em] uppercase mb-4">
         {t("label")}
       </motion.p>
       <motion.h2 variants={itemVariants} className="text-[28px] md:text-[40px] font-bold leading-[1.15] tracking-tight mb-3">
         {t("headline")}
       </motion.h2>
-      <motion.p variants={itemVariants} className="text-[#888] text-sm md:text-base mb-10 max-w-[600px]">
+      <motion.p variants={itemVariants} className="text-[#666] text-sm md:text-base mb-10 max-w-[600px]">
         {t("description")}
       </motion.p>
 
@@ -98,7 +98,7 @@ export default function ComparisonTable() {
           const values = COMPARISON_HEADERS.map((h) => t(`row${row.key}${h}`));
           return (
             <div key={row.key} className="hover-card bg-[#f5f5f5] rounded-lg p-4 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
-              <p className="text-xs font-mono text-[#999] uppercase tracking-wider mb-2">{t(`row${row.key}`)}</p>
+              <p className="text-sm font-mono text-[#666] uppercase tracking-wider mb-2">{t(`row${row.key}`)}</p>
               <div className="space-y-2">
                 {COMPARISON_HEADERS.map((header, hi) => (
                   <div key={header} className="flex justify-between items-center">
@@ -112,7 +112,7 @@ export default function ComparisonTable() {
         })}
       </motion.div>
 
-      <motion.p variants={itemVariants} className="text-[#888] text-xs font-mono">
+      <motion.p variants={itemVariants} className="text-[#666] text-sm font-mono">
         {t("footnote")}
       </motion.p>
     </SlideWrapper>

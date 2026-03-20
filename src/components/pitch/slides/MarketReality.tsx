@@ -30,13 +30,13 @@ export default function MarketReality() {
 
   return (
     <SlideWrapper variant="warm">
-      <motion.p variants={itemVariants} className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4">
+      <motion.p variants={itemVariants} className="text-[#666] text-sm font-mono tracking-[0.15em] uppercase mb-4">
         {t("label")}
       </motion.p>
       <motion.h2 variants={itemVariants} className="text-[28px] md:text-[40px] font-bold leading-[1.15] tracking-tight mb-10">
         {t("headline1")}
         <br />
-        <span className="text-[#999]">{t("headline2")}</span>
+        <span className="text-[#666]">{t("headline2")}</span>
       </motion.h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 mb-10">
@@ -45,10 +45,10 @@ export default function MarketReality() {
         ))}
       </div>
 
-      <motion.p variants={itemVariants} className="text-[#888] text-sm md:text-base max-w-[700px]">
+      <motion.p variants={itemVariants} className="text-[#666] text-sm md:text-base max-w-[700px]">
         {t("footnote")}
       </motion.p>
-      <motion.p variants={itemVariants} className="text-[#bbb] text-xs font-mono mt-4">
+      <motion.p variants={itemVariants} className="text-[#666] text-sm font-mono mt-4">
         {t("source")}
       </motion.p>
     </SlideWrapper>

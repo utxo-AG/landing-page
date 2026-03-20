@@ -202,12 +202,15 @@
     "logoPlaceholder": "https://example.com/logo.svg",
     "deckLabel": "Deck",
     "deckSales": "Sales Pitch",
-    "deckAgent": "Basic Agent",
+    "deckInfosheet": "Infosheet",
+    "deckMarket": "Markt-Kontext",
     "langLabel": "Sprache",
     "langDe": "Deutsch",
     "langEn": "English",
     "openButton": "Präsentation öffnen",
-    "hint": "Öffnet in neuem Tab mit personalisierter Willkommensfolie"
+    "downloadButton": "PDF herunterladen",
+    "defaultDownloads": "Standard-Decks herunterladen",
+    "hint": "Öffnet in neuem Tab · Doppelklick auf Decktyp für unkustomisierte Version"
   },
   "PitchThankYou": {
     "headline": "Vielen Dank.",
@@ -224,8 +227,8 @@
       "label": "UTXO AG · Zug, Schweiz",
       "headline1": "Das ist Otto.",
       "headline2": "Ihr KI-CoWorker.",
-      "subtitle": "Einfach per E-Mail.",
-      "description": "Otto übernimmt Ihre Routineaufgaben — per E-Mail. Kein neues Tool, keine Schulung. Einfach ein Mitarbeiter, der funktioniert."
+      "subtitle": "Einfach ein neuer Kollege.",
+      "description": ""
     },
     "MarketReality": {
       "label": "Markt",
@@ -281,15 +284,15 @@
     },
     "Conviction": {
       "label": "Unsere Überzeugung",
-      "headline1": "KI ersetzt niemanden.",
-      "headline2": "Sie hebt Ihr Team auf ein neues Level.",
+      "headline1": "Ihr Team, verstärkt.",
+      "headline2": "KI macht Expertise skalierbar.",
       "footnote": "Gesunde KI-Integration: Mitarbeiter empowern, nicht ersetzen.",
       "item1Title": "Mitarbeiter werden zu Entscheidern.",
       "item1Desc": "Routinearbeit übernimmt der Agent. Menschen steuern, prüfen, verbessern.",
       "item2Title": "Expertise wird wertvoller.",
       "item2Desc": "Fachkräfte wachsen in Führungsrollen. KI macht ihr Know-how skalierbar.",
-      "item3Title": "Jeder Mitarbeiter zählt.",
-      "item3Desc": "Deshalb müssen wir jetzt handeln — bevor KI gegen Menschen eingesetzt wird statt für sie."
+      "item3Title": "Wir stehen an Ihrer Seite.",
+      "item3Desc": "Massgeschneiderte Dokumentation für Ihren Anwendungsfall, persönliches Coaching und ein Team, das jederzeit unterstützt, wenn Ergebnisse nachjustiert werden müssen."
     },
     "Solution": {
       "label": "Die Lösung",
@@ -332,8 +335,8 @@
     "EmailArchitecture": {
       "label": "So funktioniert es",
       "headline": "Arbeitet dort, wo Sie arbeiten.",
-      "description": "Kein neues Tool, keine Schulung. Der CoWorker lebt in Outlook.",
-      "footnote": "SAP, Outlook, Teams. Alles integriert. Human-in-the-Loop: Sie behalten die Kontrolle.",
+      "description": "Kein neues Tool, keine Schulung. Ihr CoWorker lebt dort, wo Sie bereits arbeiten.",
+      "footnote": "Alles integriert. Human-in-the-Loop: Sie behalten die Kontrolle.",
       "step1Label": "E-Mail rein",
       "step1Sub": "Kundenanfrage",
       "step2Label": "CoWorker",
@@ -343,7 +346,8 @@
       "step4Label": "Entwurf",
       "step4Sub": "Vorbereiten",
       "step5Label": "Sie entscheiden",
-      "step5Sub": "Freigabe"
+      "step5Sub": "Freigabe",
+      "inboxLabel": "Ihre Inbox"
     },
     "TeamImage": {
       "label": "Ihr Agent-Team",
@@ -351,7 +355,7 @@
     },
     "UseCases": {
       "label": "Anwendungsbereiche",
-      "headline": "Ihre Workflows. Unsere Agents.",
+      "headline": "Ihre Workflows. Voll ausgeschöpft.",
       "description": "Jeder Agent wird auf Ihre Prozesse zugeschnitten. Sie zeigen uns den Workflow — wir bauen den Agenten.",
       "footnote": "KI ersetzt niemanden. Sie gibt Ihren Mitarbeitern die Zeit für das, was wirklich zählt.",
       "item1Title": "Angebotserstellung",
@@ -389,7 +393,7 @@
       "rowEntrySalesforce": "✗✗✗",
       "rowEntryParloa": "✗✗✗",
       "rowLockin": "Lock-in",
-      "rowLockinUtxo": "Keins (monatlich)",
+      "rowLockinUtxo": "Jederzeit kündbar — monatliche Abrechnung",
       "rowLockinCopilot": "M365 erforderlich",
       "rowLockinSalesforce": "Salesforce CRM",
       "rowLockinParloa": "Jahresvertrag",
@@ -419,7 +423,7 @@
       "headline1": "Swiss Trust.",
       "headline2": "Datenschutz ohne Kompromisse.",
       "utxoLabel": "utxo AG (Schweiz)",
-      "utxo1": "Schweizer AG, Sitz in Zug",
+      "utxo1": "DSGVO-konform",
       "utxo2": "Kein US CLOUD Act",
       "utxo3": "EU-Angemessenheitsbeschluss",
       "utxo4": "EU AI Act ready. Ab Werk.",
@@ -461,16 +465,27 @@
       "step4Label": "Go Live",
       "step4Sub": "Betrieb & Optimierung"
     },
-    "ROI": {
-      "label": "Investition",
-      "headline1": "Was würden Sie tun mit",
-      "headline2": "20 Stunden mehr pro Woche?",
-      "item1Title": "Ihre Mitarbeiter beraten statt abzutippen.",
+    "TimeSavings": {
+      "label": "Zeitersparnis",
+      "headline1": "Geben Sie Ihrem Team die Zeit zurück.",
+      "headline2": "Vom Verwaltungsaufwand zum Mehrwert.",
+      "beforeLabel": "Vorher",
+      "afterLabel": "Nachher",
+      "task1Name": "Angebotserstellung",
+      "task1Before": "Manuelle Recherche in 3 Systemen",
+      "task1After": "Ein Klick — prüfen und versenden",
+      "task2Name": "Kundenanfrage",
+      "task2Before": "Copy-Paste aus ERP, CRM, E-Mail",
+      "task2After": "Entwurf liegt im Posteingang",
+      "task3Name": "Monatsbericht",
+      "task3Before": "Halber Tag Excel-Arbeit",
+      "task3After": "Automatisch erstellt, Sie prüfen",
+      "item1Title": "Ihr Team berät statt abzutippen.",
       "item1Desc": "Mehr Zeit für Kundenbeziehungen, die Aufträge bringen.",
-      "item2Title": "Schnellere Antworten, zufriedenere Kunden.",
-      "item2Desc": "Wer zuerst reagiert, bekommt den Auftrag. Nicht wer am günstigsten ist.",
-      "item3Title": "Die Kosten? Ein Bruchteil einer halben Stelle.",
-      "item3Desc": "Wir rechnen gerne mit Ihren echten Zahlen.",
+      "item2Title": "Wer zuerst antwortet, gewinnt den Auftrag.",
+      "item2Desc": "Nicht der Günstigste gewinnt, sondern der Schnellste. Otto sorgt dafür, dass Ihr Team zuerst reagiert.",
+      "item3Title": "Ein Bruchteil einer halben Stelle.",
+      "item3Desc": "Wir rechnen mit Ihren echten Zahlen — keine Schätzungen.",
       "footnote": "Keine Versprechen — konkrete Ergebnisse zeigen wir in der Demo."
     },
     "Pricing": {
@@ -519,14 +534,27 @@
     "HowToWorkWithOtto": {
       "label": "So funktioniert es",
       "headline": "Drei Schritte. Das war's.",
-      "description": "Mit Otto zu arbeiten ist so einfach wie eine E-Mail zu schreiben. Keine Schulung, keine neuen Tools.",
-      "step1Title": "E-Mail senden",
-      "step1Desc": "Schreiben Sie Otto wie einem Kollegen. Beschreiben Sie, was Sie brauchen — in Klartext.",
+      "description": "Mit Otto zu arbeiten ist so intuitiv wie eine Nachricht an einen Kollegen. Keine Schulung, keine neuen Tools.",
+      "step1Title": "Einfach anschreiben",
+      "step1Desc": "Schreiben Sie Otto in Klartext — per E-Mail, Chat oder über Ihre bestehenden Tools.",
       "step2Title": "Otto verarbeitet",
       "step2Desc": "Otto liest Ihre Anfrage, zieht Daten aus Ihren Systemen und bereitet das Ergebnis vor.",
       "step3Title": "Prüfen & freigeben",
-      "step3Desc": "Das Ergebnis landet in Ihrer Inbox. Prüfen, anpassen oder mit einem Klick freigeben.",
-      "footnote": "Kein Dashboard. Kein Login. Nur E-Mail."
+      "step3Desc": "Das Ergebnis wird direkt geliefert. Prüfen, anpassen oder mit einem Klick freigeben.",
+      "footnote": "Kein Dashboard. Kein Login. Funktioniert mit Ihren bestehenden Tools."
+    },
+    "InfosheetCTA": {
+      "label": "Ihr Demo-Termin",
+      "headline1": "Neugierig?",
+      "headline2": "Erleben Sie es live.",
+      "description": "In unserer Demo zeigen wir Ihnen, wie Otto mit Ihren Prozessen arbeitet — keine Folien, echte Ergebnisse.",
+      "demoTitle": "Live-Demo",
+      "demoDesc": "Sehen Sie, wie Otto eine echte Aufgabe aus Ihrer Branche bearbeitet — live, nicht simuliert.",
+      "takeawayTitle": "Ihr Ergebnis",
+      "takeawayDesc": "Ein konkretes Umsetzungskonzept, zugeschnitten auf Ihren grössten Use Case.",
+      "timelineTitle": "Zeitplan",
+      "timelineDesc": "Vom Erstgespräch zum produktiven Agent — in der Regel 2 bis 4 Wochen.",
+      "footnote": "Dammstrasse 16 · 6300 Zug · business@utxo.ag"
     },
     "Deliverables": {
       "label": "Was Ihr Agent liefert",
@@ -550,7 +578,7 @@
       "escalationName": "Eskalations-Alerts",
       "escalationDesc": "Proaktive Warnungen, wenn etwas sofortige Aufmerksamkeit braucht.",
       "escalationExample": "\"⚠ Überfällig: Rechnung #4021 — 14 Tage\"",
-      "footnote": "Alles bleibt in Ihrer E-Mail. Keine separate Plattform nötig."
+      "footnote": "Alle Ergebnisse landen direkt in Ihrem Posteingang — bereit zur Prüfung und Freigabe."
     },
     "QuickReference": {
       "label": "Kurzreferenz",
@@ -573,7 +601,7 @@
     },
     "Limitations": {
       "label": "Transparenz",
-      "headline1": "Was Otto nicht kann.",
+      "headline1": "Was Otto bewusst nicht tut.",
       "headline2": "Und was er am besten kann.",
       "cannotLabel": "Otto wird nicht...",
       "cannot1": "Entscheidungen für Sie treffen — Sie geben immer die Freigabe.",

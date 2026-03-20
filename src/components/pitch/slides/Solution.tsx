@@ -164,7 +164,7 @@ export default function Solution() {
     <SlideWrapper variant="rose">
       <motion.p
         variants={itemVariants}
-        className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4"
+        className="text-[#666] text-sm font-mono tracking-[0.15em] uppercase mb-4"
       >
         {t("label")}
       </motion.p>
@@ -174,7 +174,7 @@ export default function Solution() {
       >
         {t("headline1")}
         <br />
-        <span className="text-[#999]">{t("headline2")}</span>
+        <span className="text-[#666]">{t("headline2")}</span>
       </motion.h2>
 
       <motion.div variants={itemVariants}>
@@ -190,13 +190,13 @@ export default function Solution() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div className="hover-card bg-[#f5f5f5] rounded-lg p-8 md:p-10 transition-[transform,box-shadow] duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
-                    <p className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4">{t("typicalAI")}</p>
+                    <p className="text-[#666] text-sm font-mono tracking-[0.15em] uppercase mb-4">{t("typicalAI")}</p>
                     <p className="text-[#666] text-sm leading-relaxed">
                       {t("typicalAIDesc")}
                     </p>
                   </div>
                   <div className="hover-card bg-[#111] text-white rounded-lg p-8 md:p-10 transition-[transform,box-shadow] duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
-                    <p className="text-[#888] text-xs font-mono tracking-[0.15em] uppercase mb-4">{t("coworker")}</p>
+                    <p className="text-[#666] text-sm font-mono tracking-[0.15em] uppercase mb-4">{t("coworker")}</p>
                     <p className="text-[#ccc] text-sm leading-relaxed">
                       {t("coworkerDesc")}
                     </p>

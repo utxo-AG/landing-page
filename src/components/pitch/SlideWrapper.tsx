@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { type ReactNode } from "react";
+import { usePrintMode } from "./PrintContext";
 
 const containerVariants = {
   hidden: {},
@@ -176,9 +177,16 @@ export default function SlideWrapper({
   layout?: SlideLayout;
   id?: string;
 }) {
+  const isPrint = usePrintMode();
   const resolvedVariant = variant ?? (dark ? "dark" : "default");
   const theme = resolvedVariant === "dark" || resolvedVariant === "glow" ? "dark" : "light";
   const bg = variantBackgrounds[resolvedVariant];
+
+  const innerClassName = `w-full max-w-[1100px] py-16 md:py-20 relative z-10 ${
+    layout === "split"
+      ? "grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center"
+      : ""
+  }`;
 
   return (
     <section
@@ -191,19 +199,19 @@ export default function SlideWrapper({
       {resolvedVariant === "glow" && (
         <div className="absolute inset-0 pointer-events-none" style={{ background: glowOverlay }} />
       )}
-      <motion.div
-        className={`w-full max-w-[1100px] py-16 md:py-20 relative z-10 ${
-          layout === "split"
-            ? "grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center"
-            : ""
-        }`}
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.25 }}
-      >
-        {children}
-      </motion.div>
+      {isPrint ? (
+        <div className={innerClassName}>{children}</div>
+      ) : (
+        <motion.div
+          className={innerClassName}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.25 }}
+        >
+          {children}
+        </motion.div>
+      )}
     </section>
   );
 }

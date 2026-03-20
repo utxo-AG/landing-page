@@ -7,9 +7,11 @@ import {
   useRef,
   useState,
 } from "react";
+import { useSearchParams } from "next/navigation";
 import NavigationDots from "./NavigationDots";
 import ProgressBar from "./ProgressBar";
 import CustomCursor from "./CustomCursor";
+import { PrintContext } from "./PrintContext";
 
 export default function PitchLayout({
   children,
@@ -21,6 +23,16 @@ export default function PitchLayout({
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeSlide, setActiveSlide] = useState(0);
   const [isDark, setIsDark] = useState(false);
+  const searchParams = useSearchParams();
+  const isPrintMode = searchParams.get("print") === "true";
+
+  useEffect(() => {
+    if (!isPrintMode) return;
+    const timer = setTimeout(() => {
+      window.print();
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, [isPrintMode]);
 
   const scrollToSlide = useCallback((index: number) => {
     const container = containerRef.current;
@@ -75,21 +87,29 @@ export default function PitchLayout({
     slideCount > 1 ? (activeSlide / (slideCount - 1)) * 100 : 0;
 
   return (
-    <div className="pitch-container">
-      <CustomCursor dark={isDark} />
-      <ProgressBar progress={progress} />
-      <NavigationDots
-        count={slideCount}
-        active={activeSlide}
-        onDotClick={scrollToSlide}
-        dark={isDark}
-      />
-      <div
-        ref={containerRef}
-        className="h-[100dvh] overflow-y-auto snap-y snap-mandatory scroll-smooth"
-      >
-        {children}
+    <PrintContext.Provider value={isPrintMode}>
+      <div className="pitch-container">
+        <div className="pitch-custom-cursor">
+          <CustomCursor dark={isDark} />
+        </div>
+        <div className="pitch-progress-bar">
+          <ProgressBar progress={progress} />
+        </div>
+        <div className="pitch-nav-dots">
+          <NavigationDots
+            count={slideCount}
+            active={activeSlide}
+            onDotClick={scrollToSlide}
+            dark={isDark}
+          />
+        </div>
+        <div
+          ref={containerRef}
+          className="h-[100dvh] overflow-y-auto snap-y snap-mandatory scroll-smooth"
+        >
+          {children}
+        </div>
       </div>
-    </div>
+    </PrintContext.Provider>
   );
 }

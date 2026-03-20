@@ -10,13 +10,13 @@ export default function Conviction() {
 
   return (
     <SlideWrapper variant="warm">
-      <motion.p variants={itemVariants} className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4">
+      <motion.p variants={itemVariants} className="text-[#666] text-sm font-mono tracking-[0.15em] uppercase mb-4">
         {t("label")}
       </motion.p>
       <motion.h2 variants={itemVariants} className="text-[28px] md:text-[40px] font-bold leading-[1.15] tracking-tight mb-12">
         {t("headline1")}
         <br />
-        <span className="text-[#999]">{t("headline2")}</span>
+        <span className="text-[#666]">{t("headline2")}</span>
       </motion.h2>
 
       <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 items-center">
@@ -35,7 +35,7 @@ export default function Conviction() {
             ))}
           </div>
 
-          <motion.p variants={itemVariants} className="text-[#888] text-xs md:text-sm mt-4">
+          <motion.p variants={itemVariants} className="text-[#666] text-sm mt-4">
             {t("footnote")}
           </motion.p>
         </div>
@@ -49,7 +49,7 @@ export default function Conviction() {
               <span className="text-[10px] md:text-xs font-mono text-[#999] tracking-wide">Emma</span>
               <span className="text-[9px] md:text-[10px] text-[#bbb] uppercase tracking-[0.1em]">Human</span>
             </div>
-            <span className="text-xl md:text-2xl text-[#ccc] mb-8 md:mb-10 font-light">+</span>
+            <span className="text-xl md:text-2xl text-[#ccc] mb-8 md:mb-10 font-normal">+</span>
             <div className="flex flex-col items-center gap-2">
               <div className="relative w-[80px] h-[80px] md:w-[120px] md:h-[120px] rounded-full overflow-hidden ring-2 ring-[#e0d9cf]">
                 <Image src="/images/pitch/otto-pfp.png" alt="Otto" fill className="object-cover" sizes="(max-width: 768px) 80px, 120px" />

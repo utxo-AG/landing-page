@@ -12,7 +12,7 @@ export default function NameYourAgent() {
     <SlideWrapper variant="dark">
       <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 md:gap-16 items-center">
         <div>
-          <motion.p variants={itemVariants} className="text-[#4a5578] text-xs font-mono tracking-[0.15em] uppercase mb-4">
+          <motion.p variants={itemVariants} className="text-[#4a5578] text-sm font-mono tracking-[0.15em] uppercase mb-4">
             {t("label")}
           </motion.p>
           <motion.h2 variants={itemVariants} className="text-[28px] md:text-[44px] font-bold leading-[1.1] tracking-tight mb-6 text-white">
