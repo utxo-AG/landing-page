@@ -167,7 +167,27 @@ export default function DeckLauncher() {
             </button>
           </div>
 
-          <p className="text-[#555] text-xs text-center mt-3">{t("hint")}</p>
+          <div className="border-t border-[#333] mt-8 pt-6">
+            <label className="block text-xs font-mono text-[#888] uppercase tracking-widest mb-3">
+              {t("defaultDownloads")}
+            </label>
+            <div className="grid grid-cols-3 gap-3">
+              {(["sales", "infosheet", "market"] as const).map((type) => (
+                <button
+                  key={type}
+                  onClick={() => {
+                    const path = deckPath(type);
+                    window.open(`/${lang}/${path}?print=true`, "_blank");
+                  }}
+                  className="py-3 rounded-lg border border-[#333] text-[#888] text-sm font-medium hover:border-[#666] hover:text-white transition-all cursor-pointer"
+                >
+                  {type === "sales" ? t("deckSales") : type === "market" ? t("deckMarket") : t("deckInfosheet")} ↓
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <p className="text-[#555] text-xs text-center mt-5">{t("hint")}</p>
         </div>
       </div>
     </div>

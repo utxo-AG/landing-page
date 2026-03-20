@@ -209,6 +209,7 @@
     "langEn": "English",
     "openButton": "Präsentation öffnen",
     "downloadButton": "PDF herunterladen",
+    "defaultDownloads": "Standard-Decks herunterladen",
     "hint": "Öffnet in neuem Tab · Doppelklick auf Decktyp für unkustomisierte Version"
   },
   "PitchThankYou": {
@@ -422,7 +423,7 @@
       "headline1": "Swiss Trust.",
       "headline2": "Datenschutz ohne Kompromisse.",
       "utxoLabel": "utxo AG (Schweiz)",
-      "utxo1": "Schweizer AG, Sitz in Zug",
+      "utxo1": "DSGVO-konform",
       "utxo2": "Kein US CLOUD Act",
       "utxo3": "EU-Angemessenheitsbeschluss",
       "utxo4": "EU AI Act ready. Ab Werk.",
@@ -534,7 +535,7 @@
       "label": "So funktioniert es",
       "headline": "Drei Schritte. Das war's.",
       "description": "Mit Otto zu arbeiten ist so intuitiv wie eine Nachricht an einen Kollegen. Keine Schulung, keine neuen Tools.",
-      "step1Title": "Aufgabe erteilen",
+      "step1Title": "Einfach anschreiben",
       "step1Desc": "Schreiben Sie Otto in Klartext — per E-Mail, Chat oder über Ihre bestehenden Tools.",
       "step2Title": "Otto verarbeitet",
       "step2Desc": "Otto liest Ihre Anfrage, zieht Daten aus Ihren Systemen und bereitet das Ergebnis vor.",

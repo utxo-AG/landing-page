@@ -11,6 +11,7 @@ import { useSearchParams } from "next/navigation";
 import NavigationDots from "./NavigationDots";
 import ProgressBar from "./ProgressBar";
 import CustomCursor from "./CustomCursor";
+import { PrintContext } from "./PrintContext";
 
 export default function PitchLayout({
   children,
@@ -86,38 +87,29 @@ export default function PitchLayout({
     slideCount > 1 ? (activeSlide / (slideCount - 1)) * 100 : 0;
 
   return (
-    <div className="pitch-container">
-      <div className="pitch-custom-cursor">
-        <CustomCursor dark={isDark} />
+    <PrintContext.Provider value={isPrintMode}>
+      <div className="pitch-container">
+        <div className="pitch-custom-cursor">
+          <CustomCursor dark={isDark} />
+        </div>
+        <div className="pitch-progress-bar">
+          <ProgressBar progress={progress} />
+        </div>
+        <div className="pitch-nav-dots">
+          <NavigationDots
+            count={slideCount}
+            active={activeSlide}
+            onDotClick={scrollToSlide}
+            dark={isDark}
+          />
+        </div>
+        <div
+          ref={containerRef}
+          className="h-[100dvh] overflow-y-auto snap-y snap-mandatory scroll-smooth"
+        >
+          {children}
+        </div>
       </div>
-      <div className="pitch-progress-bar">
-        <ProgressBar progress={progress} />
-      </div>
-      <div className="pitch-nav-dots">
-        <NavigationDots
-          count={slideCount}
-          active={activeSlide}
-          onDotClick={scrollToSlide}
-          dark={isDark}
-        />
-      </div>
-      <button
-        onClick={() => window.print()}
-        className="pitch-print-btn fixed bottom-6 right-6 z-50 bg-white/10 backdrop-blur-sm border border-white/20 text-white/60 hover:text-white hover:bg-white/20 rounded-full w-10 h-10 flex items-center justify-center transition-all"
-        aria-label="Download PDF"
-      >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-          <polyline points="7 10 12 15 17 10" />
-          <line x1="12" y1="15" x2="12" y2="3" />
-        </svg>
-      </button>
-      <div
-        ref={containerRef}
-        className="h-[100dvh] overflow-y-auto snap-y snap-mandatory scroll-smooth"
-      >
-        {children}
-      </div>
-    </div>
+    </PrintContext.Provider>
   );
 }

@@ -209,6 +209,7 @@
     "langEn": "English",
     "openButton": "Open Presentation",
     "downloadButton": "Download PDF",
+    "defaultDownloads": "Download default decks",
     "hint": "Opens in a new tab · double-click deck type for uncustomized version"
   },
   "PitchThankYou": {

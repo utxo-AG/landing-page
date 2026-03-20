@@ -25,6 +25,11 @@ body {
   }
 }
 
+@page {
+  size: landscape;
+  margin: 0;
+}
+
 @media print {
   .pitch-container .pitch-nav-dots,
   .pitch-container .pitch-progress-bar,

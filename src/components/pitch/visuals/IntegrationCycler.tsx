@@ -66,12 +66,12 @@ export default function IntegrationCycler({ inboxLabel }: IntegrationCyclerProps
     return () => clearTimeout(timer);
   }, [hasCompleted]);
 
-  const restart = useCallback(() => {
-    if (!hasCompleted) return;
+  const startOrRestart = useCallback(() => {
+    if (isRunning) return;
     setIndex(0);
     setHasCompleted(false);
     setIsRunning(true);
-  }, [hasCompleted]);
+  }, [isRunning]);
 
   const isCycling = index >= 0;
   const current = isCycling ? INTEGRATIONS[index] : null;
@@ -79,8 +79,8 @@ export default function IntegrationCycler({ inboxLabel }: IntegrationCyclerProps
   return (
     <div
       ref={ref}
-      className={`w-full h-full flex flex-col items-center justify-center ${hasCompleted ? "cursor-pointer" : ""}`}
-      onClick={restart}
+      className="w-full h-full flex flex-col items-center justify-center cursor-pointer"
+      onClick={startOrRestart}
     >
       <AnimatePresence mode="wait">
         {!isCycling ? (

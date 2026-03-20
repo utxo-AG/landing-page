@@ -42,9 +42,9 @@ function PitchDeckInner() {
       )}
       <TitleSlide />
       <HowToWorkWithOtto />
-      <Conviction />
-      <Solution />
       <TimeSavings />
+      <Solution />
+      <Conviction />
       <UseCases />
       <EmailArchitecture />
       <TeamImage />
