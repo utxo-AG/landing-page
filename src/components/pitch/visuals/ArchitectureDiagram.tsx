@@ -4,14 +4,24 @@ import { useTranslations } from "next-intl";
 import IntegrationCycler from "./IntegrationCycler";
 import { usePrintMode } from "../PrintContext";
 
-function OttoNode({ clipId }: { clipId: string }) {
+function OttoNode({ clipId, isPrint }: { clipId: string; isPrint: boolean }) {
   return (
     <>
       <rect x="230" y="80" width="160" height="180" rx="16" fill="#111" stroke="#1e2a4a" strokeWidth="1.5" />
-      <clipPath id={clipId}>
-        <circle cx="310" cy="130" r="24" />
-      </clipPath>
-      <image href="/images/pitch/otto-pfp.png" x="286" y="106" width="48" height="48" clipPath={`url(#${clipId})`} preserveAspectRatio="xMidYMid slice" />
+      <circle cx="310" cy="130" r="24" fill="#222" />
+      {isPrint ? (
+        <foreignObject x="286" y="106" width="48" height="48">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/images/pitch/otto-pfp.png" alt="Otto" style={{ width: 48, height: 48, borderRadius: "50%", objectFit: "cover" }} />
+        </foreignObject>
+      ) : (
+        <>
+          <clipPath id={clipId}>
+            <circle cx="310" cy="130" r="24" />
+          </clipPath>
+          <image href="/images/pitch/otto-pfp.png" x="286" y="106" width="48" height="48" clipPath={`url(#${clipId})`} preserveAspectRatio="xMidYMid slice" />
+        </>
+      )}
       <text x="310" y="180" textAnchor="middle" className="text-[15px] font-bold fill-white">Otto</text>
       <text x="310" y="198" textAnchor="middle" className="text-[12px] fill-[#4a5578]">AI CoWorker</text>
       <rect x="265" y="212" width="90" height="6" rx="3" fill="#1e2a4a" />
@@ -74,7 +84,7 @@ export default function ArchitectureDiagram({ className = "" }: { className?: st
 
         <line x1="160" y1="160" x2="230" y2="160" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" />
         <line x1="230" y1="190" x2="160" y2="190" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" strokeDasharray="6 4" />
-        <OttoNode clipId="ottoPfpClip" />
+        <OttoNode clipId="ottoPfpClip" isPrint={isPrint} />
         <line x1="390" y1="130" x2="460" y2="95" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" />
         <line x1="390" y1="170" x2="460" y2="180" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" />
         <line x1="390" y1="210" x2="460" y2="265" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" />
@@ -101,7 +111,7 @@ export default function ArchitectureDiagram({ className = "" }: { className?: st
 
         <line x1="160" y1="160" x2="230" y2="160" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" />
         <line x1="230" y1="190" x2="160" y2="190" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" strokeDasharray="6 4" />
-        <OttoNode clipId="ottoPfpClipMobile" />
+        <OttoNode clipId="ottoPfpClipMobile" isPrint={isPrint} />
         <line x1="390" y1="130" x2="460" y2="95" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" />
         <line x1="390" y1="170" x2="460" y2="180" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" />
         <line x1="390" y1="210" x2="460" y2="265" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" />

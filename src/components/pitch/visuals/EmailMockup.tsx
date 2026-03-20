@@ -1,11 +1,14 @@
 "use client";
 
+import { usePrintMode } from "../PrintContext";
+
 interface EmailMockupProps {
   variant: "inbox" | "draft" | "report";
   className?: string;
 }
 
 export default function EmailMockup({ variant, className = "" }: EmailMockupProps) {
+  const isPrint = usePrintMode();
   return (
     <div className={className}>
       <svg viewBox="0 0 480 320" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
@@ -29,12 +32,19 @@ export default function EmailMockup({ variant, className = "" }: EmailMockupProp
                 <rect x="101" y={37 + i * 56} width="379" height="56" fill={i === 0 ? "rgba(30,42,74,0.04)" : "#fff"} />
                 <line x1="101" y1={37 + (i + 1) * 56} x2="480" y2={37 + (i + 1) * 56} stroke="#f0ede8" strokeWidth="1" />
                 {i === 0 ? (
-                  <>
-                    <clipPath id={`ottoPfpMockup${i}`}>
-                      <circle cx="125" cy={65 + i * 56} r="12" />
-                    </clipPath>
-                    <image href="/images/pitch/otto-pfp.png" x={113} y={53 + i * 56} width="24" height="24" clipPath={`url(#ottoPfpMockup${i})`} preserveAspectRatio="xMidYMid slice" />
-                  </>
+                  isPrint ? (
+                    <foreignObject x={113} y={53} width="24" height="24">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/images/pitch/otto-pfp.png" alt="Otto" style={{ width: 24, height: 24, borderRadius: "50%", objectFit: "cover" }} />
+                    </foreignObject>
+                  ) : (
+                    <>
+                      <clipPath id={`ottoPfpMockup${i}`}>
+                        <circle cx="125" cy={65 + i * 56} r="12" />
+                      </clipPath>
+                      <image href="/images/pitch/otto-pfp.png" x={113} y={53 + i * 56} width="24" height="24" clipPath={`url(#ottoPfpMockup${i})`} preserveAspectRatio="xMidYMid slice" />
+                    </>
+                  )
                 ) : (
                   <circle cx="125" cy={65 + i * 56} r="12" fill="#e8e5df" />
                 )}

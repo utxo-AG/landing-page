@@ -3,8 +3,29 @@
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import SlideWrapper, { itemVariants } from "../SlideWrapper";
+import { usePrintMode } from "../PrintContext";
 
-function GapVisual() {
+function GapVisual({ isPrint }: { isPrint: boolean }) {
+  if (isPrint) {
+    return (
+      <svg viewBox="0 0 280 260" fill="none" className="w-full">
+        <line x1="40" y1="220" x2="260" y2="220" stroke="#ddd" strokeWidth="1" />
+        <line x1="40" y1="220" x2="40" y2="30" stroke="#ddd" strokeWidth="1" />
+        {[220, 172, 125, 78, 30].map((y, i) => (
+          <line key={i} x1="40" y1={y} x2="260" y2={y} stroke="#f0ebe4" strokeWidth="0.5" />
+        ))}
+        <path d="M50,180 C90,175 130,160 170,130 Q210,100 250,55" stroke="#1e2a4a" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+        <path d="M50,185 C90,183 130,180 170,178 Q210,176 250,170" stroke="#b8b0a6" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="6 4" fill="none" />
+        <path d="M250,55 L250,170" stroke="#1e2a4a" strokeWidth="1" strokeDasharray="4 3" fill="none" />
+        <text x="240" y="115" fontSize="10" fill="#1e2a4a" fontWeight="600" textAnchor="end">GAP</text>
+        <circle cx="250" cy="55" r="4" fill="#1e2a4a" />
+        <circle cx="250" cy="170" r="4" fill="#b8b0a6" />
+        <text x="50" y="240" fontSize="9" fill="#bbb" fontFamily="monospace">2024</text>
+        <text x="230" y="240" fontSize="9" fill="#bbb" fontFamily="monospace">2027</text>
+      </svg>
+    );
+  }
+
   return (
     <motion.svg
       viewBox="0 0 280 260"
@@ -102,6 +123,7 @@ function GapVisual() {
 
 export default function CompetitivePressure() {
   const t = useTranslations("Pitch.CompetitivePressure");
+  const isPrint = usePrintMode();
 
   return (
     <SlideWrapper variant="rose">
@@ -122,13 +144,17 @@ export default function CompetitivePressure() {
               <span className="text-sm font-bold text-[#111]">76%</span>
             </div>
             <div className="h-7 bg-[#eee] rounded-md overflow-hidden">
-              <motion.div
-                className="h-full bg-[#1e2a4a] rounded-md"
-                initial={{ width: 0 }}
-                whileInView={{ width: "76%" }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5, duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
-              />
+              {isPrint ? (
+                <div className="h-full bg-[#1e2a4a] rounded-md" style={{ width: "76%" }} />
+              ) : (
+                <motion.div
+                  className="h-full bg-[#1e2a4a] rounded-md"
+                  initial={{ width: 0 }}
+                  whileInView={{ width: "76%" }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5, duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
+                />
+              )}
             </div>
           </div>
 
@@ -138,13 +164,17 @@ export default function CompetitivePressure() {
               <span className="text-sm font-bold text-[#111]">46%</span>
             </div>
             <div className="h-7 bg-[#eee] rounded-md overflow-hidden">
-              <motion.div
-                className="h-full bg-[#b8b0a6] rounded-md"
-                initial={{ width: 0 }}
-                whileInView={{ width: "46%" }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.7, duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
-              />
+              {isPrint ? (
+                <div className="h-full bg-[#b8b0a6] rounded-md" style={{ width: "46%" }} />
+              ) : (
+                <motion.div
+                  className="h-full bg-[#b8b0a6] rounded-md"
+                  initial={{ width: 0 }}
+                  whileInView={{ width: "46%" }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.7, duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
+                />
+              )}
             </div>
           </div>
 
@@ -159,7 +189,7 @@ export default function CompetitivePressure() {
         </motion.div>
 
         <motion.div variants={itemVariants} className="hidden md:flex justify-center">
-          <GapVisual />
+          <GapVisual isPrint={isPrint} />
         </motion.div>
       </div>
     </SlideWrapper>

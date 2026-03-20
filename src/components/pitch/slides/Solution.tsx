@@ -5,6 +5,7 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import SlideWrapper, { itemVariants } from "../SlideWrapper";
+import { usePrintMode } from "../PrintContext";
 import { CHAT_MESSAGES } from "@/lib/pitch-constants";
 
 const TYPING_SPEED = 45;
@@ -39,7 +40,48 @@ function TypeWriter({ text, onDone }: { text: string; onDone?: () => void }) {
   );
 }
 
-function EmailVisual() {
+function EmailVisual({ isPrint }: { isPrint: boolean }) {
+  const rows = [
+    { initials: "O", name: "Otto", bg: "#1e2a4a", textColor: "#333", delay: 0.65 },
+    { initials: "M", name: "M. Weber", bg: "#ddd", textColor: "#bbb", delay: 0.8 },
+    { initials: "S", name: "S. Keller", bg: "#ddd", textColor: "#bbb", delay: 0.95 },
+  ];
+
+  if (isPrint) {
+    return (
+      <div className="hidden md:flex flex-col items-center justify-center">
+        <div className="relative w-[240px] h-[300px]">
+          <div className="absolute top-0 left-0 right-0 bg-white rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-[#e5e5e5] overflow-hidden">
+            <div className="bg-[#fafafa] border-b border-[#eee] px-4 py-2.5 flex items-center gap-2">
+              <div className="flex gap-1">
+                <span className="w-2 h-2 rounded-full bg-[#ddd]" />
+                <span className="w-2 h-2 rounded-full bg-[#ddd]" />
+                <span className="w-2 h-2 rounded-full bg-[#ddd]" />
+              </div>
+              <span className="text-[9px] font-mono text-[#bbb]">inbox</span>
+            </div>
+            {rows.map((row, i) => (
+              <div key={i} className="px-4 py-3 border-b border-[#f5f5f5] last:border-0">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="w-4 h-4 rounded-full flex items-center justify-center" style={{ backgroundColor: row.bg }}>
+                    <span className={`text-[6px] font-bold ${i === 0 ? "text-white" : "text-[#999]"}`}>{row.initials}</span>
+                  </span>
+                  <span className="text-[10px] font-medium" style={{ color: row.textColor }}>{row.name}</span>
+                  <span className="text-[8px] text-[#ccc] ml-auto font-mono">09:{10 + i * 12}</span>
+                </div>
+                <div className="h-[6px] bg-[#f0f0f0] rounded-full w-[85%]" />
+                <div className="h-[6px] bg-[#f5f5f5] rounded-full w-[60%] mt-1" />
+              </div>
+            ))}
+          </div>
+          <div className="absolute bottom-0 right-0 w-[100px] h-[100px] rounded-full overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.1)] border-2 border-white">
+            <Image src="/images/pitch/otto-pfp.png" alt="Otto" fill className="object-cover" sizes="100px" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <motion.div
       variants={itemVariants}
@@ -61,11 +103,7 @@ function EmailVisual() {
             </div>
             <span className="text-[9px] font-mono text-[#bbb]">inbox</span>
           </div>
-          {[
-            { initials: "O", name: "Otto", bg: "#1e2a4a", textColor: "#333", delay: 0.65 },
-            { initials: "M", name: "M. Weber", bg: "#ddd", textColor: "#bbb", delay: 0.8 },
-            { initials: "S", name: "S. Keller", bg: "#ddd", textColor: "#bbb", delay: 0.95 },
-          ].map((row, i) => (
+          {rows.map((row, i) => (
             <motion.div
               key={i}
               className="px-4 py-3 border-b border-[#f5f5f5] last:border-0"
@@ -103,6 +141,7 @@ function EmailVisual() {
 
 export default function Solution() {
   const t = useTranslations("Pitch.Solution");
+  const isPrint = usePrintMode();
   const [visibleCount, setVisibleCount] = useState(0);
   const [typingIndex, setTypingIndex] = useState(-1);
   const [showInbox, setShowInbox] = useState(false);
@@ -186,7 +225,7 @@ export default function Solution() {
               transition={{ duration: 0.4, ease: "easeInOut" }}
             >
               <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-8 md:gap-12 items-center mb-10">
-                <EmailVisual />
+                <EmailVisual isPrint={isPrint} />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div className="hover-card bg-[#f5f5f5] rounded-lg p-8 md:p-10 transition-[transform,box-shadow] duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
