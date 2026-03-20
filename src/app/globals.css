@@ -24,3 +24,29 @@ body {
     cursor: none !important;
   }
 }
+
+@media print {
+  .pitch-container .pitch-nav-dots,
+  .pitch-container .pitch-progress-bar,
+  .pitch-container .pitch-custom-cursor,
+  .pitch-container .pitch-print-btn {
+    display: none !important;
+  }
+
+  .pitch-container > div {
+    overflow: visible !important;
+    height: auto !important;
+    scroll-snap-type: none !important;
+  }
+
+  .pitch-container section {
+    min-height: 100vh !important;
+    page-break-after: always;
+    page-break-inside: avoid;
+    scroll-snap-align: unset !important;
+  }
+
+  .pitch-container section:last-child {
+    page-break-after: auto;
+  }
+}

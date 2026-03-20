@@ -40,9 +40,9 @@ export default function BusinessModel() {
           {[1, 2, 3, 4].map((i) => (
             <div key={i} className="flex items-center gap-3 md:gap-0 flex-1">
               <div className="hover-card bg-white rounded-lg px-4 py-4 text-center flex-1 text-[#111] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(255,255,255,0.1)]">
-                <p className="text-[#999] text-xs font-mono mb-1">{`0${i}`}</p>
+                <p className="text-[#666] text-sm font-mono mb-1">{`0${i}`}</p>
                 <p className="font-bold text-sm">{t(`step${i}Label`)}</p>
-                <p className="text-[#999] text-xs mt-1">{t(`step${i}Sub`)}</p>
+                <p className="text-[#666] text-sm mt-1">{t(`step${i}Sub`)}</p>
               </div>
               {i < 4 && (
                 <span className="hidden md:block text-white/30 text-lg mx-2 flex-shrink-0">&rarr;</span>

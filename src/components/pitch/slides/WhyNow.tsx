@@ -9,13 +9,13 @@ export default function WhyNow() {
 
   return (
     <SlideWrapper variant="rose">
-      <motion.p variants={itemVariants} className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4">
+      <motion.p variants={itemVariants} className="text-[#666] text-sm font-mono tracking-[0.15em] uppercase mb-4">
         {t("label")}
       </motion.p>
       <motion.h2 variants={itemVariants} className="text-[28px] md:text-[40px] font-bold leading-[1.15] tracking-tight mb-12">
         {t("headline1")}
         <br />
-        <span className="text-[#999]">{t("headline2")}</span>
+        <span className="text-[#666]">{t("headline2")}</span>
       </motion.h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-10">
@@ -27,7 +27,7 @@ export default function WhyNow() {
         ))}
       </div>
 
-      <motion.p variants={itemVariants} className="text-[#888] text-sm md:text-base mt-4">
+      <motion.p variants={itemVariants} className="text-[#666] text-sm md:text-base mt-4">
         {t("footnote")}
       </motion.p>
     </SlideWrapper>

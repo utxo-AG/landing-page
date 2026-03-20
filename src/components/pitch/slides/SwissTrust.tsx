@@ -25,19 +25,19 @@ export default function SwissTrust() {
     <SlideWrapper variant="rose">
       <motion.div variants={itemVariants} className="flex items-center gap-3 mb-4">
         <SwissFlag size={28} />
-        <p className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase">
+        <p className="text-[#666] text-sm font-mono tracking-[0.15em] uppercase">
           {t("label")}
         </p>
       </motion.div>
       <motion.h2 variants={itemVariants} className="text-[28px] md:text-[40px] font-bold leading-[1.15] tracking-tight mb-12">
         {t("headline1")}
         <br />
-        <span className="text-[#999]">{t("headline2")}</span>
+        <span className="text-[#666]">{t("headline2")}</span>
       </motion.h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
         <motion.div variants={itemVariants} className="hover-card bg-[#111] text-white rounded-lg p-8 md:p-10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
-          <p className="text-[#888] text-xs font-mono tracking-[0.15em] uppercase mb-5">{t("utxoLabel")}</p>
+          <p className="text-[#666] text-sm font-mono tracking-[0.15em] uppercase mb-5">{t("utxoLabel")}</p>
           <ul className="space-y-3 text-[#ccc] text-sm leading-relaxed">
             {[1, 2, 3, 4].map((i) => (
               <li key={i} className="flex gap-2"><span className="text-white">{"\u2713"}</span> {t(`utxo${i}`)}</li>
@@ -46,7 +46,7 @@ export default function SwissTrust() {
         </motion.div>
 
         <motion.div variants={itemVariants} className="hover-card bg-[#f5f5f5] rounded-lg p-8 md:p-10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
-          <p className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-5">{t("usLabel")}</p>
+          <p className="text-[#666] text-sm font-mono tracking-[0.15em] uppercase mb-5">{t("usLabel")}</p>
           <ul className="space-y-3 text-[#666] text-sm leading-relaxed">
             {[1, 2, 3, 4].map((i) => (
               <li key={i} className="flex gap-2"><span className="text-[#ccc]">{"\u2717"}</span> {t(`us${i}`)}</li>
@@ -55,7 +55,7 @@ export default function SwissTrust() {
         </motion.div>
       </div>
 
-      <motion.p variants={itemVariants} className="text-[#888] text-sm">
+      <motion.p variants={itemVariants} className="text-[#666] text-sm">
         {t("footnote")}
       </motion.p>
     </SlideWrapper>

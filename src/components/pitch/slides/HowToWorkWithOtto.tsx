@@ -11,13 +11,13 @@ export default function HowToWorkWithOtto() {
 
   return (
     <SlideWrapper variant="cool">
-      <motion.p variants={itemVariants} className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4">
+      <motion.p variants={itemVariants} className="text-[#666] text-sm font-mono tracking-[0.15em] uppercase mb-4">
         {t("label")}
       </motion.p>
       <motion.h2 variants={itemVariants} className="text-[28px] md:text-[40px] font-bold leading-[1.15] tracking-tight mb-3">
         {t("headline")}
       </motion.h2>
-      <motion.p variants={itemVariants} className="text-[#888] text-sm md:text-base mb-12 max-w-[600px]">
+      <motion.p variants={itemVariants} className="text-[#666] text-sm md:text-base mb-12 max-w-[600px]">
         {t("description")}
       </motion.p>
 
@@ -38,7 +38,7 @@ export default function HowToWorkWithOtto() {
         ))}
       </div>
 
-      <motion.p variants={itemVariants} className="text-[#888] text-sm">
+      <motion.p variants={itemVariants} className="text-[#666] text-sm">
         {t("footnote")}
       </motion.p>
     </SlideWrapper>

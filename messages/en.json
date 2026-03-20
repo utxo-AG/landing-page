@@ -202,12 +202,14 @@
     "logoPlaceholder": "https://example.com/logo.svg",
     "deckLabel": "Deck",
     "deckSales": "Sales Pitch",
-    "deckAgent": "Basic Agent",
+    "deckInfosheet": "Infosheet",
+    "deckMarket": "Market Context",
     "langLabel": "Language",
     "langDe": "Deutsch",
     "langEn": "English",
     "openButton": "Open Presentation",
-    "hint": "Opens in a new tab with personalized welcome slide"
+    "downloadButton": "Download PDF",
+    "hint": "Opens in a new tab · double-click deck type for uncustomized version"
   },
   "PitchThankYou": {
     "headline": "Thank you.",
@@ -224,8 +226,8 @@
       "label": "UTXO AG · Zug, Switzerland",
       "headline1": "Meet Otto.",
       "headline2": "Your AI CoWorker.",
-      "subtitle": "Just send an email.",
-      "description": "Otto handles your routine tasks — via email. No new tools, no training. Just a coworker that works."
+      "subtitle": "Just a new colleague.",
+      "description": ""
     },
     "MarketReality": {
       "label": "Market",
@@ -281,15 +283,15 @@
     },
     "Conviction": {
       "label": "Our Conviction",
-      "headline1": "AI replaces no one.",
-      "headline2": "It elevates your team to the next level.",
+      "headline1": "Your team, amplified.",
+      "headline2": "AI makes expertise scalable.",
       "footnote": "Healthy AI integration: empowering employees, not replacing them.",
       "item1Title": "Employees become decision-makers.",
       "item1Desc": "The agent handles routine work. People steer, review, improve.",
       "item2Title": "Expertise becomes more valuable.",
       "item2Desc": "Specialists grow into leadership roles. AI makes their know-how scalable.",
-      "item3Title": "Every employee matters.",
-      "item3Desc": "That's why we must act now — before AI is used against people instead of for them."
+      "item3Title": "We've got your back.",
+      "item3Desc": "Custom documentation for your use case, hands-on coaching, and a team that's always there when results need fine-tuning."
     },
     "Solution": {
       "label": "The Solution",
@@ -332,8 +334,8 @@
     "EmailArchitecture": {
       "label": "How It Works",
       "headline": "Works where you work.",
-      "description": "No new tool, no training. The CoWorker lives in Outlook.",
-      "footnote": "SAP, Outlook, Teams. Fully integrated. Human-in-the-loop: you stay in control.",
+      "description": "No new tool, no training. Your CoWorker lives where you already work.",
+      "footnote": "Fully integrated. Human-in-the-loop: you stay in control.",
       "step1Label": "Email in",
       "step1Sub": "Customer inquiry",
       "step2Label": "CoWorker",
@@ -343,7 +345,8 @@
       "step4Label": "Draft",
       "step4Sub": "Prepares",
       "step5Label": "You decide",
-      "step5Sub": "Approval"
+      "step5Sub": "Approval",
+      "inboxLabel": "Your Inbox"
     },
     "TeamImage": {
       "label": "Your Agent Team",
@@ -351,7 +354,7 @@
     },
     "UseCases": {
       "label": "Use Cases",
-      "headline": "Your workflows. Our agents.",
+      "headline": "Your workflows. Efficiently leveraged.",
       "description": "Every agent is tailored to your processes. You show us the workflow — we build the agent.",
       "footnote": "AI replaces no one. It gives your employees time for what truly matters.",
       "item1Title": "Quoting",
@@ -389,7 +392,7 @@
       "rowEntrySalesforce": "✗✗✗",
       "rowEntryParloa": "✗✗✗",
       "rowLockin": "Lock-in",
-      "rowLockinUtxo": "None (monthly)",
+      "rowLockinUtxo": "Cancel anytime — monthly billing",
       "rowLockinCopilot": "M365 required",
       "rowLockinSalesforce": "Salesforce CRM",
       "rowLockinParloa": "Annual contract",
@@ -461,16 +464,27 @@
       "step4Label": "Go Live",
       "step4Sub": "Operations & optimization"
     },
-    "ROI": {
-      "label": "Investment",
-      "headline1": "What would you do with",
-      "headline2": "20 extra hours per week?",
-      "item1Title": "Your employees consult instead of copy-pasting.",
+    "TimeSavings": {
+      "label": "Time Savings",
+      "headline1": "Give your team their time back.",
+      "headline2": "From admin to impact.",
+      "beforeLabel": "Before",
+      "afterLabel": "After",
+      "task1Name": "Quote creation",
+      "task1Before": "Manual research across 3 systems",
+      "task1After": "One-click review, ready to send",
+      "task2Name": "Customer inquiry",
+      "task2Before": "Copy-paste from ERP, CRM, email",
+      "task2After": "Draft ready in your inbox",
+      "task3Name": "Monthly report",
+      "task3Before": "Half-day Excel work",
+      "task3After": "Auto-generated, you verify",
+      "item1Title": "Your team consults instead of copy-pasting.",
       "item1Desc": "More time for customer relationships that drive revenue.",
-      "item2Title": "Faster responses, happier customers.",
-      "item2Desc": "The first to respond wins the deal. Not the cheapest.",
-      "item3Title": "The cost? A fraction of half a position.",
-      "item3Desc": "We're happy to calculate with your real numbers.",
+      "item2Title": "First response wins the deal — speed matters.",
+      "item2Desc": "Not the cheapest wins, but the fastest. Otto ensures your team replies first.",
+      "item3Title": "A fraction of half a position.",
+      "item3Desc": "We calculate with your real numbers — no guesswork.",
       "footnote": "No promises — we show concrete results in the demo."
     },
     "Pricing": {
@@ -519,14 +533,27 @@
     "HowToWorkWithOtto": {
       "label": "How It Works",
       "headline": "Three steps. That's it.",
-      "description": "Working with Otto is as simple as writing an email. No training, no new tools.",
-      "step1Title": "Send an email",
-      "step1Desc": "Write to Otto like a colleague. Describe what you need in plain language.",
+      "description": "Working with Otto is as intuitive as messaging a colleague. No training, no new tools.",
+      "step1Title": "Give a task",
+      "step1Desc": "Write to Otto in plain language — via email, chat, or your existing tools.",
       "step2Title": "Otto processes",
       "step2Desc": "Otto reads your request, pulls data from your systems, and prepares the result.",
       "step3Title": "Review & approve",
-      "step3Desc": "You get the result in your inbox. Review it, refine it, or approve with one click.",
-      "footnote": "No dashboards. No logins. Just email."
+      "step3Desc": "Get the result delivered directly. Review it, refine it, or approve with one click.",
+      "footnote": "No dashboards. No logins. Works with your existing tools."
+    },
+    "InfosheetCTA": {
+      "label": "Your Demo Session",
+      "headline1": "Curious?",
+      "headline2": "See it live.",
+      "description": "In our demo session, we show you exactly how Otto works with your processes — no slides, real results.",
+      "demoTitle": "Live Demo",
+      "demoDesc": "See Otto handle a real task from your industry — live, not simulated.",
+      "takeawayTitle": "Your Takeaway",
+      "takeawayDesc": "A concrete implementation concept tailored to your biggest use case.",
+      "timelineTitle": "Timeline",
+      "timelineDesc": "From first conversation to productive agent — typically 2 to 4 weeks.",
+      "footnote": "Dammstrasse 16 · 6300 Zug · business@utxo.ag"
     },
     "Deliverables": {
       "label": "What Your Agent Delivers",
@@ -550,7 +577,7 @@
       "escalationName": "Escalation alerts",
       "escalationDesc": "Proactive alerts when something needs immediate attention.",
       "escalationExample": "\"⚠ Overdue: Invoice #4021 — 14 days past due\"",
-      "footnote": "All output stays in your email. No separate platform needed."
+      "footnote": "All results land directly in your inbox — ready for review and approval."
     },
     "QuickReference": {
       "label": "Quick Reference",
@@ -573,7 +600,7 @@
     },
     "Limitations": {
       "label": "Transparency",
-      "headline1": "What Otto can't do.",
+      "headline1": "What Otto won't do.",
       "headline2": "And what he does best.",
       "cannotLabel": "Otto won't...",
       "cannot1": "Make decisions on your behalf — you always approve.",

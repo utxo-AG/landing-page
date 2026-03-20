@@ -67,7 +67,7 @@ export default function ThankYouSlide() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.6, duration: 0.6 }}
-            className="text-[#666] text-lg md:text-xl font-light"
+            className="text-[#666] text-lg md:text-xl font-normal"
           >
             {t("subline")}
           </motion.p>
