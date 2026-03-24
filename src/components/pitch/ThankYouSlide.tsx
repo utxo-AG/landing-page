@@ -115,21 +115,7 @@ export default function ThankYouSlide() {
           </motion.div>
         )}
 
-        {isPrint ? (
-          url && (
-            <div className="shrink-0 hidden md:block">
-              <div className="rounded-3xl overflow-hidden bg-white p-5 md:p-6">
-                <QRCodeSVG
-                  value={url}
-                  size={180}
-                  bgColor="#ffffff"
-                  fgColor="#111111"
-                  level="M"
-                />
-              </div>
-            </div>
-          )
-        ) : (
+        {isPrint ? null : (
           <AnimatePresence>
             {showQr && url && (
               <motion.div

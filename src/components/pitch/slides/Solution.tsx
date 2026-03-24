@@ -243,17 +243,19 @@ export default function Solution() {
                 </div>
               </div>
 
-              <div className="flex justify-center">
-                <button
-                  onClick={startDemo}
-                  className="flex items-center gap-2 text-[#999] text-xs font-mono tracking-[0.1em] uppercase hover:text-[#111] transition-colors duration-300 select-none"
-                >
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M3 1.5L12 7L3 12.5V1.5Z" fill="currentColor" />
-                  </svg>
-                  {t("watchDemo")}
-                </button>
-              </div>
+              {!isPrint && (
+                <div className="flex justify-center">
+                  <button
+                    onClick={startDemo}
+                    className="flex items-center gap-2 text-[#999] text-xs font-mono tracking-[0.1em] uppercase hover:text-[#111] transition-colors duration-300 select-none"
+                  >
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <path d="M3 1.5L12 7L3 12.5V1.5Z" fill="currentColor" />
+                    </svg>
+                    {t("watchDemo")}
+                  </button>
+                </div>
+              )}
             </motion.div>
           ) : (
             <motion.div
