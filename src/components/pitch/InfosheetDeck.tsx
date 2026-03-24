@@ -7,6 +7,7 @@ import WelcomeSlide from "./WelcomeSlide";
 import TitleSlide from "./slides/TitleSlide";
 import HowToWorkWithOtto from "./slides/HowToWorkWithOtto";
 import TimeSavings from "./slides/TimeSavings";
+import EmailArchitecture from "./slides/EmailArchitecture";
 import ComparisonTable from "./slides/ComparisonTable";
 import InfosheetCTA from "./slides/InfosheetCTA";
 
@@ -17,7 +18,7 @@ function InfosheetDeckInner() {
   const logo = searchParams.get("logo") ?? undefined;
 
   const hasWelcome = !!company;
-  const slideCount = 5 + (hasWelcome ? 1 : 0);
+  const slideCount = 6 + (hasWelcome ? 1 : 0);
 
   return (
     <PitchLayout slideCount={slideCount} pdfFilename="utxo AG — Infosheet.pdf">
@@ -27,6 +28,7 @@ function InfosheetDeckInner() {
       <TitleSlide />
       <HowToWorkWithOtto />
       <TimeSavings />
+      <EmailArchitecture />
       <ComparisonTable />
       <InfosheetCTA />
     </PitchLayout>

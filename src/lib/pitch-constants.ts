@@ -5,6 +5,7 @@ export const COMPARISON_ROWS = [
   { key: "Standalone", highlight: [true, false, false, false] },
   { key: "SME", highlight: [true, false, false, false] },
   { key: "Approach", highlight: [true, false, false, false] },
+  { key: "Holistic", highlight: [true, false, false, false] },
 ];
 
 export const COMPARISON_HEADERS = ["Utxo", "Copilot", "Salesforce", "Parloa"];

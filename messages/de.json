@@ -382,7 +382,7 @@
       "label": "Wettbewerbsvergleich",
       "headline": "Warum utxo AG?",
       "description": "Was uns von den grossen Plattformen unterscheidet.",
-      "footnote": "Schweizer AG · Kein US CLOUD Act · EU-Datenverarbeitung · Monatlich kündbar",
+      "footnote": "Wir liefern ganzheitlich: Massgeschneiderte Dokumentation für Ihren Anwendungsfall, persönliches Coaching und ein Team, das jederzeit unterstützt, wenn Ergebnisse nachjustiert werden müssen. Fragen?",
       "headerUtxo": "utxo AG",
       "headerCopilot": "MS Copilot Studio",
       "headerSalesforce": "Salesforce AgentForce",
@@ -416,7 +416,12 @@
       "rowApproachUtxo": "✓ CoWorking",
       "rowApproachCopilot": "○ Office-Automatisierung",
       "rowApproachSalesforce": "○ Kunden-Automatisierung",
-      "rowApproachParloa": "○ Kunden-Automatisierung"
+      "rowApproachParloa": "○ Kunden-Automatisierung",
+      "rowHolistic": "Ganzheitlich",
+      "rowHolisticUtxo": "✓ Doku, Coaching & Support",
+      "rowHolisticCopilot": "✗ Self-Service",
+      "rowHolisticSalesforce": "✗ Consulting-pflichtig",
+      "rowHolisticParloa": "✗ Nur Plattform"
     },
     "SwissTrust": {
       "label": "Datenschutz",

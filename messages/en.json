@@ -416,7 +416,12 @@
       "rowApproachUtxo": "✓ CoWorking",
       "rowApproachCopilot": "○ Office automation",
       "rowApproachSalesforce": "○ Customer automation",
-      "rowApproachParloa": "○ Customer automation"
+      "rowApproachParloa": "○ Customer automation",
+      "rowHolistic": "Holistic",
+      "rowHolisticUtxo": "✓ Docs, coaching & support",
+      "rowHolisticCopilot": "✗ Self-service",
+      "rowHolisticSalesforce": "✗ Consulting required",
+      "rowHolisticParloa": "✗ Platform only"
     },
     "SwissTrust": {
       "label": "Data Protection",
