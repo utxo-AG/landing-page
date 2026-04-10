@@ -13,12 +13,11 @@ import UseCases from "./slides/UseCases";
 import EmailArchitecture from "./slides/EmailArchitecture";
 import TeamImage from "./slides/TeamImage";
 import Deliverables from "./slides/Deliverables";
-import QuickReference from "./slides/QuickReference";
 import LiveDemo from "./slides/LiveDemo";
 import Limitations from "./slides/Limitations";
 import ComparisonTable from "./slides/ComparisonTable";
 import SwissTrust from "./slides/SwissTrust";
-import PilotPartner from "./slides/PilotPartner";
+import SecurityArchitecture from "./slides/SecurityArchitecture";
 import Roadmap from "./slides/Roadmap";
 import BusinessModel from "./slides/BusinessModel";
 import Pricing from "./slides/Pricing";
@@ -34,7 +33,7 @@ function PitchDeckInner() {
   const isPrint = searchParams.get("print") === "true";
 
   const hasWelcome = !!company;
-  const slideCount = (hasWelcome ? 1 : 0) + 19 + (isPrint ? 0 : 2);
+  const slideCount = (hasWelcome ? 1 : 0) + 18 + (isPrint ? 0 : 2);
 
   return (
     <PitchLayout slideCount={slideCount} pdfFilename="utxo AG — Pitch Deck.pdf">
@@ -50,12 +49,11 @@ function PitchDeckInner() {
       <EmailArchitecture />
       <TeamImage />
       <Deliverables />
-      <QuickReference />
       {!isPrint && <LiveDemo />}
       <Limitations />
       <ComparisonTable />
       <SwissTrust />
-      <PilotPartner />
+      <SecurityArchitecture />
       <Roadmap />
       <BusinessModel />
       <Pricing />
