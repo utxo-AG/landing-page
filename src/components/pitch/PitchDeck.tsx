@@ -42,8 +42,8 @@ function PitchDeckInner() {
       )}
       <TitleSlide />
       <HowToWorkWithOtto />
-      <TimeSavings />
       <Solution />
+      <TimeSavings />
       <Conviction />
       <UseCases />
       <EmailArchitecture />
