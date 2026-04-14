@@ -3,7 +3,7 @@
 import { useState, useCallback } from "react";
 import { useTranslations } from "next-intl";
 
-const EMAIL = "business@utxo.ag";
+const EMAIL = "business@utxoag.com";
 
 interface CopyEmailProps {
   className?: string;

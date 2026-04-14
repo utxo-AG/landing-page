@@ -16,7 +16,7 @@ Dammstrasse 16
 6300 Zug, Schweiz
 Handelsregister: CH-400.3.450.669-8
 
-Datenschutzkontakt: business@utxo.ag
+Datenschutzkontakt: business@utxoag.com
 
 Bei Fragen zu dieser Datenschutzerklärung oder zur Verarbeitung Ihrer personenbezogenen Daten können Sie uns unter der oben genannten Adresse kontaktieren.
 
@@ -54,7 +54,7 @@ Wenn Sie unser Support-Team unter support@utxoag.com kontaktieren, erheben wir d
 
 2.5 Marketingkommunikation
 
-Mit Ihrer ausdrücklichen Einwilligung können wir Ihnen Marketingmitteilungen zu unseren Dienstleistungen, Produktaktualisierungen oder Veranstaltungen senden. Sie können Ihre Einwilligung jederzeit widerrufen, indem Sie den Abmeldelink in einer Marketingmitteilung nutzen oder uns unter business@utxo.ag kontaktieren. Der Widerruf der Einwilligung berührt nicht die Rechtmässigkeit der vor dem Widerruf erfolgten Verarbeitung.
+Mit Ihrer ausdrücklichen Einwilligung können wir Ihnen Marketingmitteilungen zu unseren Dienstleistungen, Produktaktualisierungen oder Veranstaltungen senden. Sie können Ihre Einwilligung jederzeit widerrufen, indem Sie den Abmeldelink in einer Marketingmitteilung nutzen oder uns unter business@utxoag.com kontaktieren. Der Widerruf der Einwilligung berührt nicht die Rechtmässigkeit der vor dem Widerruf erfolgten Verarbeitung.
 
 2.6 Plattformanalysen und Optimierung
 
@@ -156,7 +156,7 @@ Als betroffene Person stehen Ihnen nach der DSGVO und dem Schweizer DSG folgende
 
 (g) Recht auf Widerruf der Einwilligung (Art. 7(3) DSGVO): Soweit die Verarbeitung auf einer Einwilligung beruht, können Sie diese jederzeit mit Wirkung für die Zukunft widerrufen. Die Rechtmässigkeit der vor dem Widerruf erfolgten Verarbeitung bleibt davon unberührt.
 
-Zur Ausübung dieser Rechte kontaktieren Sie uns bitte unter business@utxo.ag. Wir können vor der Bearbeitung Ihrer Anfrage eine Identitätsprüfung verlangen.
+Zur Ausübung dieser Rechte kontaktieren Sie uns bitte unter business@utxoag.com. Wir können vor der Bearbeitung Ihrer Anfrage eine Identitätsprüfung verlangen.
 
 
 9. AUFSICHTSBEHÖRDEN
@@ -190,5 +190,5 @@ UTXO AG
 Dammstrasse 16
 6300 Zug, Schweiz
 Handelsregister: CH-400.3.450.669-8
-E-Mail: business@utxo.ag
+E-Mail: business@utxoag.com
 Website: https://utxoag.com

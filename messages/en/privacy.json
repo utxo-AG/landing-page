@@ -15,7 +15,7 @@
         "address": "Dammstrasse 16\n6300 Zug, Switzerland",
         "register": "Commercial register: CH-400.3.450.669-8",
         "contactLabel": "Data protection contact:",
-        "contactEmail": "business@utxo.ag",
+        "contactEmail": "business@utxoag.com",
         "contactNote": "If you have any questions about this Privacy Policy or how we handle your personal data, please contact us at the address above."
       },
       "purposesOfProcessing": {
@@ -50,7 +50,7 @@
         },
         "marketing": {
           "title": "2.5 Marketing Communication",
-          "content": "With your explicit consent, we may send you marketing communications related to our services, product updates, or events. You may withdraw consent at any time by using the unsubscribe link in any marketing email or by contacting us at business@utxo.ag. Withdrawal of consent does not affect the lawfulness of processing carried out prior to withdrawal."
+          "content": "With your explicit consent, we may send you marketing communications related to our services, product updates, or events. You may withdraw consent at any time by using the unsubscribe link in any marketing email or by contacting us at business@utxoag.com. Withdrawal of consent does not affect the lawfulness of processing carried out prior to withdrawal."
         },
         "analytics": {
           "title": "2.6 Platform Analytics and Optimisation",
@@ -134,7 +134,7 @@
           "Right to object (Art. 21 GDPR): You may object to processing based on Art. 6(1)(f) GDPR on grounds relating to your particular situation.",
           "Right to withdraw consent (Art. 7(3) GDPR): Where processing is based on consent, you may withdraw consent at any time with future effect. The lawfulness of processing carried out prior to withdrawal remains unaffected."
         ],
-        "contactInfo": "To exercise any of these rights, please contact us at business@utxo.ag. We may require identity verification before processing your request."
+        "contactInfo": "To exercise any of these rights, please contact us at business@utxoag.com. We may require identity verification before processing your request."
       },
       "supervisoryAuthorities": {
         "title": "9. Supervisory Authorities",
@@ -161,7 +161,7 @@
       "company": "UTXO AG",
       "address": "Dammstrasse 16\n6300 Zug, Switzerland",
       "register": "Commercial register: CH-400.3.450.669-8",
-      "email": "business@utxo.ag",
+      "email": "business@utxoag.com",
       "website": "https://utxoag.com"
     },
     "backToHome": "Back to home"

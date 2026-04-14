@@ -268,5 +268,5 @@ UTXO AG
 Dammstrasse 16
 6300 Zug, Switzerland
 Commercial register: CH-400.3.450.669-8
-Email: business@utxo.ag
+Email: business@utxoag.com
 Website: https://utxoag.com

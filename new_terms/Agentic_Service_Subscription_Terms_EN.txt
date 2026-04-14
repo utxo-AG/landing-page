@@ -192,7 +192,7 @@ Neither Party shall be liable for any delay or failure to perform its obligation
 
 15.3 Entire Agreement. These Terms, together with the Acceptable Use Policy, the Privacy Policy, and the Data Processing Agreement, constitute the entire agreement between the Parties with respect to the subject matter hereof and supersede all prior and contemporaneous agreements, representations, and understandings. The Customer's general terms and conditions shall not apply. Amendments to these Terms must be in writing.
 
-15.4 Notices. All notices under these Terms must be in writing and in English or German. Notices may be sent via email to the addresses specified in the subscription or to the following addresses: business@utxo.ag (UTXO AG) or the Customer's email address on file.
+15.4 Notices. All notices under these Terms must be in writing and in English or German. Notices may be sent via email to the addresses specified in the subscription or to the following addresses: business@utxoag.com (UTXO AG) or the Customer's email address on file.
 
 15.5 Independent Contractors. The Parties are independent contractors. Nothing in these Terms shall be construed to create a joint venture, partnership, employment, or agency relationship between the Parties.
 
@@ -207,5 +207,5 @@ UTXO AG
 Dammstrasse 16
 6300 Zug, Switzerland
 Commercial register: CH-400.3.450.669-8
-Email: business@utxo.ag
+Email: business@utxoag.com
 Website: https://utxoag.com

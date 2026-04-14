@@ -99,5 +99,5 @@ The Customer shall promptly notify UTXO AG at support@utxoag.com if it becomes a
 UTXO AG
 Dammstrasse 16
 6300 Zug, Switzerland
-Email: business@utxo.ag
+Email: business@utxoag.com
 Website: https://utxoag.com

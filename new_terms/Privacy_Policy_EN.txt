@@ -16,7 +16,7 @@ Dammstrasse 16
 6300 Zug, Switzerland
 Commercial register: CH-400.3.450.669-8
 
-Data protection contact: business@utxo.ag
+Data protection contact: business@utxoag.com
 
 If you have any questions about this Privacy Policy or how we handle your personal data, please contact us at the address above.
 
@@ -54,7 +54,7 @@ When you contact our support team at support@utxoag.com, we collect the informat
 
 2.5 Marketing Communication
 
-With your explicit consent, we may send you marketing communications related to our services, product updates, or events. You may withdraw consent at any time by using the unsubscribe link in any marketing email or by contacting us at business@utxo.ag. Withdrawal of consent does not affect the lawfulness of processing carried out prior to withdrawal.
+With your explicit consent, we may send you marketing communications related to our services, product updates, or events. You may withdraw consent at any time by using the unsubscribe link in any marketing email or by contacting us at business@utxoag.com. Withdrawal of consent does not affect the lawfulness of processing carried out prior to withdrawal.
 
 2.6 Platform Analytics and Optimisation
 
@@ -156,7 +156,7 @@ As a data subject, you have the following rights under the GDPR and the Swiss FA
 
 (g) Right to withdraw consent (Art. 7(3) GDPR): Where processing is based on consent, you may withdraw consent at any time with future effect. The lawfulness of processing carried out prior to withdrawal remains unaffected.
 
-To exercise any of these rights, please contact us at business@utxo.ag. We may require identity verification before processing your request.
+To exercise any of these rights, please contact us at business@utxoag.com. We may require identity verification before processing your request.
 
 
 9. SUPERVISORY AUTHORITIES
@@ -190,5 +190,5 @@ UTXO AG
 Dammstrasse 16
 6300 Zug, Switzerland
 Commercial register: CH-400.3.450.669-8
-Email: business@utxo.ag
+Email: business@utxoag.com
 Website: https://utxoag.com

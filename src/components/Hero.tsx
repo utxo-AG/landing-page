@@ -105,7 +105,7 @@ export default function Hero() {
           </p>
           <CopyEmail className="inline-flex items-center gap-2 bg-[#111] text-white text-[14px] font-medium px-6 py-3 rounded-full hover:bg-[#333] transition-colors duration-200 cursor-pointer">
             <span className="inline-flex items-center gap-2">
-              business@utxo.ag
+              business@utxoag.com
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="1" y1="7" x2="13" y2="7" />
                 <polyline points="8,2 13,7 8,12" />
