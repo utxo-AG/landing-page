@@ -4,11 +4,21 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { useLocale } from "next-intl";
 
-type DeckType = "sales" | "infosheet" | "market";
+type DeckType = "sales" | "infosheet" | "market" | "short";
 type Lang = "de" | "en";
 
 function deckPath(type: DeckType) {
-  return type === "sales" ? "pitch" : type === "market" ? "pitch-market" : "pitch-infosheet";
+  if (type === "sales") return "pitch";
+  if (type === "market") return "pitch-market";
+  if (type === "short") return "pitch-short";
+  return "pitch-infosheet";
+}
+
+function deckLabel(type: DeckType, t: (key: string) => string) {
+  if (type === "sales") return t("deckSales");
+  if (type === "market") return t("deckMarket");
+  if (type === "short") return t("deckShort");
+  return t("deckInfosheet");
 }
 
 export default function DeckLauncher() {
@@ -103,8 +113,8 @@ export default function DeckLauncher() {
             <label className="block text-xs font-mono text-[#888] uppercase tracking-widest mb-2">
               {t("deckLabel")}
             </label>
-            <div className="grid grid-cols-3 gap-3">
-              {(["sales", "infosheet", "market"] as const).map((type) => (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {(["sales", "infosheet", "market", "short"] as const).map((type) => (
                 <button
                   key={type}
                   onClick={() => setDeck(type)}
@@ -115,7 +125,7 @@ export default function DeckLauncher() {
                       : "bg-[#1a1a1a] text-[#888] border-[#333] hover:border-[#666] hover:text-white"
                   }`}
                 >
-                  {type === "sales" ? t("deckSales") : type === "market" ? t("deckMarket") : t("deckInfosheet")}
+                  {deckLabel(type, t)}
                 </button>
               ))}
             </div>
@@ -171,8 +181,8 @@ export default function DeckLauncher() {
             <label className="block text-xs font-mono text-[#888] uppercase tracking-widest mb-3">
               {t("defaultDownloads")}
             </label>
-            <div className="grid grid-cols-3 gap-3">
-              {(["sales", "infosheet", "market"] as const).map((type) => (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {(["sales", "infosheet", "market", "short"] as const).map((type) => (
                 <button
                   key={type}
                   onClick={() => {
@@ -181,7 +191,7 @@ export default function DeckLauncher() {
                   }}
                   className="py-3 rounded-lg border border-[#333] text-[#888] text-sm font-medium hover:border-[#666] hover:text-white transition-all cursor-pointer"
                 >
-                  {type === "sales" ? t("deckSales") : type === "market" ? t("deckMarket") : t("deckInfosheet")} ↓
+                  {deckLabel(type, t)} ↓
                 </button>
               ))}
             </div>

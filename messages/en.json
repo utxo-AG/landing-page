@@ -204,6 +204,7 @@
     "deckSales": "Sales Pitch",
     "deckInfosheet": "Infosheet",
     "deckMarket": "Market Context",
+    "deckShort": "Short Pitch",
     "langLabel": "Language",
     "langDe": "Deutsch",
     "langEn": "English",
@@ -522,9 +523,9 @@
       "item1Desc": "More time for customer relationships that drive revenue.",
       "item2Title": "First response wins the deal — speed matters.",
       "item2Desc": "Not the cheapest wins, but the fastest. Otto ensures your team replies first.",
-      "item3Title": "A fraction of half a position.",
-      "item3Desc": "We calculate with your real numbers — no guesswork.",
-      "footnote": "No promises — we show concrete results in the demo."
+      "item3Title": "Capacity without headcount.",
+      "item3Desc": "Volume spikes stop being a hiring problem. Otto absorbs the routine — your team stays focused on the work that matters.",
+      "footnote": "The real proof is the first week of use — not a slide."
     },
     "Pricing": {
       "label": "Pricing",

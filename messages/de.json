@@ -204,6 +204,7 @@
     "deckSales": "Sales Pitch",
     "deckInfosheet": "Infosheet",
     "deckMarket": "Markt-Kontext",
+    "deckShort": "Kurz-Pitch",
     "langLabel": "Sprache",
     "langDe": "Deutsch",
     "langEn": "English",
@@ -522,9 +523,9 @@
       "item1Desc": "Mehr Zeit für Kundenbeziehungen, die Aufträge bringen.",
       "item2Title": "Wer zuerst antwortet, gewinnt den Auftrag.",
       "item2Desc": "Nicht der Günstigste gewinnt, sondern der Schnellste. Otto sorgt dafür, dass Ihr Team zuerst reagiert.",
-      "item3Title": "Ein Bruchteil einer halben Stelle.",
-      "item3Desc": "Wir rechnen mit Ihren echten Zahlen — keine Schätzungen.",
-      "footnote": "Keine Versprechen — konkrete Ergebnisse zeigen wir in der Demo."
+      "item3Title": "Kapazität ohne Neueinstellung.",
+      "item3Desc": "Lastspitzen werden keine Personalfrage mehr. Otto übernimmt die Routine — Ihr Team bleibt bei der Arbeit, auf die es ankommt.",
+      "footnote": "Der eigentliche Beweis ist die erste Woche im Einsatz — nicht eine Folie."
     },
     "Pricing": {
       "label": "Pricing",
