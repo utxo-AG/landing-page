@@ -61,7 +61,7 @@ export default function ArchitectureDiagram({ className = "" }: { className?: st
   return (
     <div className={className}>
       {/* Desktop */}
-      <svg viewBox="0 0 800 370" fill="none" xmlns="http://www.w3.org/2000/svg" className="hidden md:block w-full h-auto">
+      <svg viewBox="0 0 800 370" fill="none" xmlns="http://www.w3.org/2000/svg" className={`${isPrint ? "block" : "hidden md:block"} w-full h-auto`}>
         {/* Inbox node */}
         <rect x="20" y="80" width="140" height="180" rx="16" fill="#111827" stroke="#1e2a4a" strokeWidth="1" />
         {isPrint ? (
@@ -89,7 +89,7 @@ export default function ArchitectureDiagram({ className = "" }: { className?: st
       </svg>
 
       {/* Mobile */}
-      <svg viewBox="0 0 620 500" fill="none" xmlns="http://www.w3.org/2000/svg" className="block md:hidden w-full h-auto">
+      <svg viewBox="0 0 620 500" fill="none" xmlns="http://www.w3.org/2000/svg" className={`${isPrint ? "hidden" : "block md:hidden"} w-full h-auto`}>
         <rect x="20" y="80" width="140" height="180" rx="16" fill="#111827" stroke="#1e2a4a" strokeWidth="1" />
         {isPrint ? (
           <StaticInboxNode x={20} y={80} label={t("inboxLabel")} />
