@@ -33,7 +33,7 @@ function PitchDeckInner() {
   const isPrint = searchParams.get("print") === "true";
 
   const hasWelcome = !!company;
-  const slideCount = (hasWelcome ? 1 : 0) + 18 + (isPrint ? 0 : 2);
+  const slideCount = (hasWelcome ? 1 : 0) + 18 + (isPrint ? 1 : 2);
 
   return (
     <PitchLayout slideCount={slideCount} pdfFilename="utxo AG — Pitch Deck.pdf">

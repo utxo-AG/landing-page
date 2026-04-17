@@ -137,12 +137,41 @@ function IconForKey({ iconKey, className }: { iconKey: string; className?: strin
   }
 }
 
-export default function SecurityArchitecture() {
-  const t = useTranslations("Pitch.SecurityArchitecture");
-  const isPrint = usePrintMode();
-  const [showTechnical, setShowTechnical] = useState(false);
+function SlideHeader({
+  t,
+  tabLabel,
+}: {
+  t: ReturnType<typeof useTranslations>;
+  tabLabel?: string;
+}) {
+  return (
+    <>
+      <motion.div variants={itemVariants} className="flex items-center gap-3 mb-4">
+        <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-[#1e2a4a] text-white">
+          <ShieldIcon size={16} />
+        </span>
+        <p className="text-[#666] text-sm font-mono tracking-[0.15em] uppercase">
+          {t("label")}
+        </p>
+        {tabLabel && (
+          <span className="px-2.5 py-0.5 rounded-full bg-[#1e2a4a] text-white text-[10px] font-mono tracking-wider">
+            {tabLabel}
+          </span>
+        )}
+      </motion.div>
 
-  const businessView = (
+      <motion.h2 variants={itemVariants} className="text-[24px] md:text-[36px] font-bold leading-[1.15] tracking-tight mb-2">
+        {t("headline")}
+      </motion.h2>
+      <motion.p variants={itemVariants} className="text-[#666] text-sm md:text-base max-w-[700px] mb-6">
+        {t("subline")}
+      </motion.p>
+    </>
+  );
+}
+
+function BusinessView({ t }: { t: ReturnType<typeof useTranslations> }) {
+  return (
     <motion.div key="overview" variants={fadeVariants} initial="hidden" animate="visible" exit="exit">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         {SECURITY_FEATURES.map((feat) => (
@@ -167,8 +196,16 @@ export default function SecurityArchitecture() {
       </div>
     </motion.div>
   );
+}
 
-  const technicalView = (
+function TechnicalView({
+  t,
+  isPrint,
+}: {
+  t: ReturnType<typeof useTranslations>;
+  isPrint: boolean;
+}) {
+  return (
     <motion.div key="technical" variants={fadeVariants} initial="hidden" animate="visible" exit="exit">
       <div className="mb-6">
         <ArchDiagram isPrint={isPrint} />
@@ -219,60 +256,64 @@ export default function SecurityArchitecture() {
       </div>
     </motion.div>
   );
+}
+
+export default function SecurityArchitecture() {
+  const t = useTranslations("Pitch.SecurityArchitecture");
+  const isPrint = usePrintMode();
+  const [showTechnical, setShowTechnical] = useState(false);
+
+  if (isPrint) {
+    return (
+      <>
+        <SlideWrapper variant="cool">
+          <SlideHeader t={t} tabLabel={t("tabOverview")} />
+          <BusinessView t={t} />
+          <motion.p variants={itemVariants} className="text-[#999] text-[11px]">
+            {t("footnote")}
+          </motion.p>
+        </SlideWrapper>
+        <SlideWrapper variant="cool">
+          <SlideHeader t={t} tabLabel={t("tabTechnical")} />
+          <TechnicalView t={t} isPrint={isPrint} />
+          <motion.p variants={itemVariants} className="text-[#999] text-[11px]">
+            {t("footnote")}
+          </motion.p>
+        </SlideWrapper>
+      </>
+    );
+  }
 
   return (
     <SlideWrapper variant="cool">
-      <motion.div variants={itemVariants} className="flex items-center gap-3 mb-4">
-        <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-[#1e2a4a] text-white">
-          <ShieldIcon size={16} />
-        </span>
-        <p className="text-[#666] text-sm font-mono tracking-[0.15em] uppercase">
-          {t("label")}
-        </p>
+      <SlideHeader t={t} />
+
+      <motion.div variants={itemVariants} className="flex gap-1 mb-6">
+        <button
+          onClick={() => setShowTechnical(false)}
+          className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all duration-300 cursor-pointer ${
+            !showTechnical
+              ? "bg-[#1e2a4a] text-white"
+              : "bg-[#f0f2f8] text-[#666] hover:bg-[#e4e8f0]"
+          }`}
+        >
+          {t("tabOverview")}
+        </button>
+        <button
+          onClick={() => setShowTechnical(true)}
+          className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all duration-300 cursor-pointer ${
+            showTechnical
+              ? "bg-[#1e2a4a] text-white"
+              : "bg-[#f0f2f8] text-[#666] hover:bg-[#e4e8f0]"
+          }`}
+        >
+          {t("tabTechnical")}
+        </button>
       </motion.div>
 
-      <motion.h2 variants={itemVariants} className="text-[24px] md:text-[36px] font-bold leading-[1.15] tracking-tight mb-2">
-        {t("headline")}
-      </motion.h2>
-      <motion.p variants={itemVariants} className="text-[#666] text-sm md:text-base max-w-[700px] mb-6">
-        {t("subline")}
-      </motion.p>
-
-      {!isPrint && (
-        <motion.div variants={itemVariants} className="flex gap-1 mb-6">
-          <button
-            onClick={() => setShowTechnical(false)}
-            className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all duration-300 cursor-pointer ${
-              !showTechnical
-                ? "bg-[#1e2a4a] text-white"
-                : "bg-[#f0f2f8] text-[#666] hover:bg-[#e4e8f0]"
-            }`}
-          >
-            {t("tabOverview")}
-          </button>
-          <button
-            onClick={() => setShowTechnical(true)}
-            className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all duration-300 cursor-pointer ${
-              showTechnical
-                ? "bg-[#1e2a4a] text-white"
-                : "bg-[#f0f2f8] text-[#666] hover:bg-[#e4e8f0]"
-            }`}
-          >
-            {t("tabTechnical")}
-          </button>
-        </motion.div>
-      )}
-
-      {isPrint ? (
-        <>
-          {businessView}
-          {technicalView}
-        </>
-      ) : (
-        <AnimatePresence mode="wait">
-          {showTechnical ? technicalView : businessView}
-        </AnimatePresence>
-      )}
+      <AnimatePresence mode="wait">
+        {showTechnical ? <TechnicalView t={t} isPrint={isPrint} /> : <BusinessView t={t} />}
+      </AnimatePresence>
 
       <motion.p variants={itemVariants} className="text-[#999] text-[11px]">
         {t("footnote")}
