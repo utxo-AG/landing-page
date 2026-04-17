@@ -50,6 +50,9 @@ async function inlineSvgImages(container: HTMLElement) {
   );
 }
 
+const PDF_WIDTH = 1600;
+const PDF_HEIGHT = 900;
+
 export async function generatePitchPdf(
   container: HTMLElement,
   filename = "utxo-AG-deck.pdf",
@@ -60,21 +63,28 @@ export async function generatePitchPdf(
 
   onProgress?.(0, sections.length);
 
-  // Pre-process: inline all SVG <image> hrefs as base64 data URLs
   await inlineSvgImages(container);
-
-  const vw = window.innerWidth;
-  const vh = window.innerHeight;
 
   const pdf = new jsPDF({
     orientation: "landscape",
     unit: "px",
-    format: [vw, vh],
+    format: [PDF_WIDTH, PDF_HEIGHT],
   });
 
   for (let i = 0; i < sections.length; i++) {
     const section = sections[i];
     onProgress?.(i + 1, sections.length);
+
+    const original = {
+      width: section.style.width,
+      height: section.style.height,
+      minHeight: section.style.minHeight,
+      maxHeight: section.style.maxHeight,
+    };
+    section.style.width = `${PDF_WIDTH}px`;
+    section.style.height = `${PDF_HEIGHT}px`;
+    section.style.minHeight = `${PDF_HEIGHT}px`;
+    section.style.maxHeight = `${PDF_HEIGHT}px`;
 
     section.scrollIntoView({ behavior: "instant" as ScrollBehavior });
     await waitForImages(section);
@@ -85,18 +95,23 @@ export async function generatePitchPdf(
       useCORS: true,
       allowTaint: true,
       backgroundColor: null,
-      width: vw,
-      height: vh,
+      width: PDF_WIDTH,
+      height: PDF_HEIGHT,
       scrollX: 0,
       scrollY: 0,
-      windowWidth: vw,
-      windowHeight: vh,
+      windowWidth: PDF_WIDTH,
+      windowHeight: PDF_HEIGHT,
     });
+
+    section.style.width = original.width;
+    section.style.height = original.height;
+    section.style.minHeight = original.minHeight;
+    section.style.maxHeight = original.maxHeight;
 
     const imgData = canvas.toDataURL("image/jpeg", 0.92);
 
     if (i > 0) pdf.addPage();
-    pdf.addImage(imgData, "JPEG", 0, 0, vw, vh);
+    pdf.addImage(imgData, "JPEG", 0, 0, PDF_WIDTH, PDF_HEIGHT);
   }
 
   pdf.save(filename);
