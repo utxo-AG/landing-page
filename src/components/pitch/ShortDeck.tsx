@@ -4,6 +4,8 @@ import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import PitchLayout from "./PitchLayout";
 import WelcomeSlide from "./WelcomeSlide";
+import WhoWeAre from "./slides/WhoWeAre";
+import WhyUtxoAG from "./slides/WhyUtxoAG";
 import TitleSlide from "./slides/TitleSlide";
 import HowToWorkWithOtto from "./slides/HowToWorkWithOtto";
 import TimeSavings from "./slides/TimeSavings";
@@ -23,20 +25,22 @@ function ShortDeckInner() {
   const isPrint = searchParams.get("print") === "true";
 
   const hasWelcome = !!company;
-  const slideCount = 9 + (hasWelcome ? 1 : 0) + (isPrint ? 0 : 1);
+  const slideCount = 11 + (hasWelcome ? 1 : 0) + (isPrint ? 0 : 1);
 
   return (
     <PitchLayout slideCount={slideCount} pdfFilename="utxo AG — Short.pdf">
       {hasWelcome && (
         <WelcomeSlide company={company} contact={contact} logo={logo} />
       )}
+      <WhoWeAre />
+      <WhyUtxoAG />
       <TitleSlide />
       <HowToWorkWithOtto />
       <EmailArchitecture />
       <TimeSavings />
+      {!isPrint && <LiveDemo />}
       <SecurityArchitecture />
       <Deliverables />
-      {!isPrint && <LiveDemo />}
       <BusinessModel />
       <Pricing />
       <CTASlide />

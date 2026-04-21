@@ -28,12 +28,12 @@ function BeforeAfterVisual({ t, isPrint }: { t: (key: string) => string; isPrint
 
   return (
     <Wrapper className="hidden md:block" {...wrapperProps}>
-      <div className="w-[300px] bg-white rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-[#e5e5e5] overflow-hidden">
-        <div className="bg-[#fafafa] border-b border-[#eee] px-5 py-3 flex justify-between">
-          <span className="text-[11px] font-mono text-[#666] tracking-wider uppercase">{t("beforeLabel")}</span>
-          <span className="text-[11px] font-mono text-[#666] tracking-wider uppercase">{t("afterLabel")}</span>
+      <div className="w-[420px] bg-white rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-[#e5e5e5] overflow-hidden">
+        <div className="bg-[#fafafa] border-b border-[#eee] px-6 py-3.5 flex justify-between">
+          <span className="text-[12px] font-mono text-[#666] tracking-[0.12em] uppercase">{t("beforeLabel")}</span>
+          <span className="text-[12px] font-mono text-[#666] tracking-[0.12em] uppercase">{t("afterLabel")}</span>
         </div>
-        <div className="p-5 space-y-5">
+        <div className="p-6 space-y-6">
           {TASKS.map((task, i) => {
             const ItemWrapper = isPrint ? "div" : motion.div;
             const itemProps = isPrint ? {} : {
@@ -44,11 +44,11 @@ function BeforeAfterVisual({ t, isPrint }: { t: (key: string) => string; isPrint
             };
             return (
               <ItemWrapper key={task.key} {...itemProps}>
-                <p className="text-sm font-bold text-[#333] mb-2">{t(`${task.key}Name`)}</p>
+                <p className="text-base font-bold text-[#333] mb-2">{t(`${task.key}Name`)}</p>
                 <div className="flex items-center gap-3">
-                  <span className="text-sm text-[#999] line-through flex-1">{t(`${task.key}Before`)}</span>
+                  <span className="text-[15px] text-[#999] line-through flex-1">{t(`${task.key}Before`)}</span>
                   <span className="text-[#ccc]">→</span>
-                  <span className="text-sm font-medium text-[#1e2a4a] flex-1 text-right">{t(`${task.key}After`)}</span>
+                  <span className="text-[15px] font-medium text-[#1e2a4a] flex-1 text-right">{t(`${task.key}After`)}</span>
                 </div>
               </ItemWrapper>
             );
@@ -65,7 +65,7 @@ export default function TimeSavings() {
 
   return (
     <SlideWrapper variant="rose">
-      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-8 md:gap-16 items-center">
+      <div className="grid grid-cols-1 md:grid-cols-[420px_1fr] gap-8 md:gap-12 items-center">
         <motion.div variants={itemVariants}>
           <BeforeAfterVisual t={t} isPrint={isPrint} />
         </motion.div>

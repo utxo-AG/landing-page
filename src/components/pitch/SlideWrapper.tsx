@@ -182,7 +182,7 @@ export default function SlideWrapper({
   const theme = resolvedVariant === "dark" || resolvedVariant === "glow" ? "dark" : "light";
   const bg = variantBackgrounds[resolvedVariant];
 
-  const innerClassName = `w-full max-w-[1100px] py-16 md:py-20 relative z-10 ${
+  const innerClassName = `w-full max-w-[1240px] py-16 md:py-20 relative z-10 ${
     layout === "split"
       ? "grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center"
       : ""
@@ -192,7 +192,7 @@ export default function SlideWrapper({
     <section
       id={id}
       data-slide-theme={theme}
-      className={`min-h-[100dvh] w-full snap-start flex items-center justify-center px-6 md:px-12 lg:px-20 relative overflow-hidden ${variantClasses[resolvedVariant]} ${className}`}
+      className={`min-h-[100dvh] w-full snap-start flex items-center justify-center px-6 md:px-10 lg:px-14 relative overflow-hidden ${variantClasses[resolvedVariant]} ${className}`}
       style={bg ? { background: bg } : undefined}
     >
       <GeometricPattern variant={resolvedVariant} />

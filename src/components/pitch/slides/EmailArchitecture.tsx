@@ -26,7 +26,7 @@ export default function EmailArchitecture() {
         <ArchitectureDiagram className="w-full" />
       </motion.div>
 
-      <motion.p variants={itemVariants} className="text-white/40 text-sm">
+      <motion.p variants={itemVariants} className="text-white/90 text-sm md:text-base font-medium">
         {t("footnote")}
       </motion.p>
     </SlideWrapper>

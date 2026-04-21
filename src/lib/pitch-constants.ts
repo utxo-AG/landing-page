@@ -51,9 +51,12 @@ export const HOW_TO_STEPS = [
 export const DELIVERABLE_FORMATS = [
   { key: "email", icon: "email" },
   { key: "excel", icon: "excel" },
-  { key: "summary", icon: "summary" },
-  { key: "status", icon: "status" },
+  { key: "pdf", icon: "pdf" },
+  { key: "proposal", icon: "proposal" },
+  { key: "monitoring", icon: "monitoring" },
   { key: "escalation", icon: "escalation" },
+  { key: "landing", icon: "landing" },
+  { key: "marketing", icon: "marketing" },
 ];
 
 export const QUICK_REFERENCE_ITEMS = [
