@@ -6,15 +6,15 @@ import PitchLayout from "./PitchLayout";
 import WelcomeSlide from "./WelcomeSlide";
 import WhoWeAreMarketing from "./slides/WhoWeAreMarketing";
 import WhyUtxoAGMarketing from "./slides/WhyUtxoAGMarketing";
-import TitleSlide from "./slides/TitleSlide";
-import HowToWorkWithOtto from "./slides/HowToWorkWithOtto";
+import CoworkerIntro from "./slides/CoworkerIntro";
+import HowToWorkWithCoworker from "./slides/HowToWorkWithCoworker";
 import OttoAsCoworker from "./slides/OttoAsCoworker";
 import MarketingUseCases from "./slides/MarketingUseCases";
 import SecurityArchitecture from "./slides/SecurityArchitecture";
 import LiveDemo from "./slides/LiveDemo";
 import DeliverablesMarketing from "./slides/DeliverablesMarketing";
 import BusinessModel from "./slides/BusinessModel";
-import CTASlide from "./slides/CTASlide";
+import CTAMarketing from "./slides/CTAMarketing";
 
 function EmilFreyDeckInner() {
   const searchParams = useSearchParams();
@@ -31,15 +31,15 @@ function EmilFreyDeckInner() {
       />
       <WhoWeAreMarketing />
       <WhyUtxoAGMarketing />
-      <TitleSlide />
-      <HowToWorkWithOtto />
+      <CoworkerIntro />
+      <HowToWorkWithCoworker />
       <OttoAsCoworker />
       <MarketingUseCases />
       <SecurityArchitecture />
-      {!isPrint && <LiveDemo />}
       <DeliverablesMarketing />
+      {!isPrint && <LiveDemo />}
       <BusinessModel />
-      <CTASlide />
+      <CTAMarketing />
     </PitchLayout>
   );
 }

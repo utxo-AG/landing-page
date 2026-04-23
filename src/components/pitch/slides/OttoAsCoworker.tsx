@@ -34,7 +34,7 @@ export default function OttoAsCoworker() {
         variants={itemVariants}
         className="text-[#666] text-sm font-mono tracking-[0.15em] uppercase mb-4"
       >
-        Otto im Unternehmen
+        Der Coworker im Unternehmen
       </motion.p>
       <motion.h2
         variants={itemVariants}
@@ -46,9 +46,9 @@ export default function OttoAsCoworker() {
         variants={itemVariants}
         className="text-[#555] text-base md:text-lg mb-10 max-w-[760px] leading-relaxed"
       >
-        Otto ist nicht nur ein Kunden-Chatbot. Je nach Rechtescope wird er zum
-        Team-Kollegen oder zum autonomen Mitarbeiter — mit Gedächtnis über
-        Zeit und klaren Grenzen je Rolle.
+        Ein Coworker ist nicht nur ein Kunden-Chatbot. Je nach Rechtescope
+        wird er zum Team-Kollegen oder zum autonomen Mitarbeiter — mit
+        Gedächtnis über Zeit und klaren Grenzen je Rolle.
       </motion.p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mb-10">
@@ -92,8 +92,8 @@ export default function OttoAsCoworker() {
             Persistent Memory über alle Rollen.
           </span>{" "}
           <span className="text-[#555]">
-            Otto erinnert sich an Kampagnen, Kund:innen und Kontext — über
-            Gespräche, Tage und Kanäle hinweg.
+            Ihr Coworker erinnert sich an Kampagnen, Kund:innen und Kontext —
+            über Gespräche, Tage und Kanäle hinweg.
           </span>
         </p>
       </motion.div>
