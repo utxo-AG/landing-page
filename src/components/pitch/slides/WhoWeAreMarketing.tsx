@@ -79,7 +79,7 @@ export default function WhoWeAreMarketing() {
             <motion.div
               key={m.brand}
               variants={itemVariants}
-              className="flex flex-col items-center text-center"
+              className="flex flex-col items-center text-center h-full"
             >
               <div className="mb-6 w-16 h-16 rounded-full bg-white border-2 border-[#1e2a4a] flex items-center justify-center shadow-[0_4px_16px_rgba(30,42,74,0.08)] relative z-10">
                 <span className="font-mono font-bold text-[15px] text-[#1e2a4a] tracking-tight">
@@ -87,7 +87,7 @@ export default function WhoWeAreMarketing() {
                 </span>
               </div>
 
-              <div className="hover-card w-full bg-white rounded-xl p-6 md:p-7 shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-[#ebe4d8] transition-[transform,box-shadow] duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:-translate-y-0.5">
+              <div className="hover-card w-full flex-1 bg-white rounded-xl p-6 md:p-7 shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-[#ebe4d8] transition-[transform,box-shadow] duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:-translate-y-0.5">
                 <div className="h-8 mb-4 flex items-center justify-center">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
