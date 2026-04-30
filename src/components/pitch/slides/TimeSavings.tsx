@@ -4,14 +4,59 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import SlideWrapper, { itemVariants } from "../SlideWrapper";
 
-const LEVERS = [
-  { key: "lever1" },
-  { key: "lever2" },
-  { key: "lever3" },
-  { key: "lever4" },
-] as const;
+const iconProps = {
+  width: 28,
+  height: 28,
+  viewBox: "0 0 32 32",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.5,
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+} as const;
 
-const METRICS = ["metric1", "metric2"] as const;
+function ProcessIcon() {
+  return (
+    <svg {...iconProps}>
+      <path d="M27 16a11 11 0 1 1-3.2-7.8" />
+      <path d="M27 4v6h-6" />
+    </svg>
+  );
+}
+
+function CreativityIcon() {
+  return (
+    <svg {...iconProps}>
+      <path d="M16 4 L18 14 L28 16 L18 18 L16 28 L14 18 L4 16 L14 14 Z" />
+    </svg>
+  );
+}
+
+function SpeedIcon() {
+  return (
+    <svg {...iconProps}>
+      <path d="M19 3 L8 18 H15 L13 29 L24 14 H17 Z" />
+    </svg>
+  );
+}
+
+function TeamIcon() {
+  return (
+    <svg {...iconProps}>
+      <circle cx="12" cy="11" r="4" />
+      <circle cx="22" cy="13" r="3" />
+      <path d="M4 26c0-4 3.5-7 8-7s8 3 8 7" />
+      <path d="M20 26c0-2.5 2-4.5 5-4.5" />
+    </svg>
+  );
+}
+
+const LEVERS = [
+  { key: "lever1", Icon: ProcessIcon },
+  { key: "lever2", Icon: CreativityIcon },
+  { key: "lever3", Icon: SpeedIcon },
+  { key: "lever4", Icon: TeamIcon },
+] as const;
 
 export default function TimeSavings() {
   const t = useTranslations("Pitch.TimeSavings");
@@ -28,57 +73,39 @@ export default function TimeSavings() {
         variants={itemVariants}
         className="text-[28px] md:text-[40px] font-bold leading-[1.1] tracking-tight mb-3"
       >
-        {t("headline1")}
-        <br />
-        <span className="text-[#666]">{t("headline2")}</span>
+        {t("headline")}
       </motion.h2>
       <motion.p
         variants={itemVariants}
-        className="text-[#555] text-base md:text-lg mb-10 max-w-[820px] leading-relaxed"
+        className="text-[#555] text-base md:text-lg mb-10 max-w-[760px] leading-relaxed"
       >
         {t("intro")}
       </motion.p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 mb-8">
-        {LEVERS.map((lever, i) => (
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 mb-8">
+        {LEVERS.map(({ key, Icon }, i) => (
           <motion.div
-            key={lever.key}
+            key={key}
             variants={itemVariants}
-            className="hover-card bg-white rounded-xl p-6 md:p-7 shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-[#ebe4d8] transition-[transform,box-shadow] duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:-translate-y-0.5"
+            className="hover-card bg-white rounded-xl p-5 md:p-6 shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-[#ebe4d8] transition-[transform,box-shadow] duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:-translate-y-0.5"
           >
-            <span className="inline-flex items-center justify-center px-3 h-7 rounded-full bg-[#1e2a4a] text-white text-[11px] font-mono uppercase tracking-wider mb-4">
-              0{i + 1} · {t(`${lever.key}Tag`)}
-            </span>
-            <p className="text-[#111] font-bold text-lg md:text-xl mb-3 leading-tight">
-              {t(`${lever.key}Title`)}
+            <div className="flex items-center justify-between mb-5 text-[#1e2a4a]">
+              <Icon />
+              <span className="font-mono text-[10px] uppercase tracking-wider text-[#999]">
+                0{i + 1}
+              </span>
+            </div>
+            <p className="font-bold text-[#111] text-[18px] md:text-[20px] leading-[1.2] tracking-tight mb-3">
+              {t(`${key}Title`)}
             </p>
-            <p className="text-[#555] text-[14px] md:text-[15px] leading-relaxed mb-5">
-              {t(`${lever.key}Desc`)}
+            <p className="text-[#555] text-[13px] leading-snug">
+              {t(`${key}Caption`)}
             </p>
-            <ul className="space-y-3 pt-4 border-t border-[#ebe4d8]">
-              {METRICS.map((m) => (
-                <li
-                  key={m}
-                  className="flex items-center gap-3 text-[13px]"
-                >
-                  <span className="text-[#999] line-through flex-1">
-                    {t(`${lever.key}${m}Before`)}
-                  </span>
-                  <span className="text-[#ccc] shrink-0">→</span>
-                  <span className="text-[#1e2a4a] font-medium flex-1 text-right">
-                    {t(`${lever.key}${m}After`)}
-                  </span>
-                </li>
-              ))}
-            </ul>
           </motion.div>
         ))}
       </div>
 
-      <motion.p
-        variants={itemVariants}
-        className="text-[#666] text-sm md:text-base"
-      >
+      <motion.p variants={itemVariants} className="text-[#666] text-sm">
         {t("footnote")}
       </motion.p>
     </SlideWrapper>
