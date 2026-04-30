@@ -541,7 +541,7 @@
     "TimeSavings": {
       "label": "Four levers",
       "headline": "Where an AI co-worker actually moves the needle.",
-      "intro": "Each use case typically pays into two of these four levers significantly.",
+      "intro": "A use case is worth running when it clearly moves at least two of these levers.",
       "lever1Title": "Cross-cutting process optimization.",
       "lever1Caption": "Cuts duplicate work. Unifies recurring tasks. Closes gaps between tools and teams.",
       "lever2Title": "Sharper creativity & customer experience.",
