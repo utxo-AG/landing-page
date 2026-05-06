@@ -11,10 +11,10 @@
     "bookCall": "Book a call"
   },
   "Hero": {
-    "label": "Mid-Market · Zug, Switzerland",
+    "label": "Zug, Switzerland",
     "titleBlack": "Full order books.",
     "titleGray": "No skilled labor to handle them.",
-    "description": "We build AI coworkers tailored to your mid-market business — from quoting to system monitoring. They handle routine independently, learn with your team, and integrate into your existing systems.",
+    "description": "Custom AI coworkers for your business. They handle routine independently — from quoting to system monitoring.",
     "trust1": "GDPR-compliant",
     "trust2": "Hosted in EU/CH",
     "trust3": "No US Cloud Act",
@@ -106,7 +106,7 @@
   },
   "Agents": {
     "label": "Agents",
-    "title": "Coworkers across three domains.",
+    "title": "Coworkers for every role in your team.",
     "description": "We build every agent custom for your processes. Whether customer-facing, employee support, or management insights — they integrate into your existing systems and become part of your team.",
     "categoryCustomer": "Customer-facing",
     "categoryEmployee": "Employee support",
@@ -193,14 +193,21 @@
       "outcome": "Faster response, fewer escalations, support team relieved."
     }
   },
-  "Founder": {
-    "alt": "Patrick Tobler",
-    "quote": "A good coworker integrates with the team. That's why we build agents that grow with your business, remember context, and act on their own.",
-    "name": "Patrick Tobler",
-    "role": "Founder & CEO · Speaker at the World Economic Forum"
-  },
-  "TrustBar": {
-    "partnersLabel": "Trusted by and partnered with"
+  "Heritage": {
+    "label": "Background",
+    "title": "Three years of building the AI agent ecosystem.",
+    "description": "Under the NMKR brand, we built the AI agent infrastructure Masumi and the platform Sokosumi together with Serviceplan Group. As utxo AG, we bring that experience into AI coworkers built for our customers.",
+    "partnerTag": "With Serviceplan Group",
+    "masumi": {
+      "subline": "Payment and discovery layer for autonomous AI agents",
+      "url": "masumi.network",
+      "href": "https://masumi.network"
+    },
+    "sokosumi": {
+      "subline": "AI marketing platform with Agentic Coworkers",
+      "url": "sokosumi.com",
+      "href": "https://sokosumi.com"
+    }
   },
   "BookingSection": {
     "title": "Let's talk.",

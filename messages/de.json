@@ -11,10 +11,10 @@
     "bookCall": "Termin buchen"
   },
   "Hero": {
-    "label": "Mittelstand · Zug, Schweiz",
+    "label": "Zug, Schweiz",
     "titleBlack": "Volle Auftragsbücher.",
     "titleGray": "Keine Fachkräfte zum Bearbeiten.",
-    "description": "Wir bauen KI-Coworker individuell für Ihren Mittelstand — von Angebotserstellung bis Systemmonitoring. Sie übernehmen Routine eigenständig, lernen mit Ihrem Team und integrieren sich in Ihre bestehenden Systeme.",
+    "description": "Individuelle KI-Coworker für Ihr Unternehmen. Sie übernehmen Routine eigenständig — von Angebotserstellung bis Systemmonitoring.",
     "trust1": "DSGVO-konform",
     "trust2": "Hosting in EU/CH",
     "trust3": "Kein US-Cloud-Act",
@@ -106,7 +106,7 @@
   },
   "Agents": {
     "label": "Agents",
-    "title": "Coworker für drei Bereiche.",
+    "title": "Coworker für jede Rolle in Ihrem Team.",
     "description": "Wir entwickeln jeden Agent individuell für Ihre Prozesse. Ob Kundenkontakt, Mitarbeiter-Support oder Management-Insights — er integriert sich in Ihre bestehenden Systeme und wird Teil Ihres Teams.",
     "categoryCustomer": "Kundenkontakt",
     "categoryEmployee": "Mitarbeiter-Support",
@@ -193,14 +193,21 @@
       "outcome": "Schnellere Reaktion, weniger Eskalationen, entlasteter Support."
     }
   },
-  "Founder": {
-    "alt": "Patrick Tobler",
-    "quote": "Ein guter Coworker integriert sich ins Team. Deshalb bauen wir Agenten, die mit Ihrem Unternehmen mitwachsen, sich erinnern und eigenständig handeln.",
-    "name": "Patrick Tobler",
-    "role": "Gründer & CEO · Speaker am World Economic Forum"
-  },
-  "TrustBar": {
-    "partnersLabel": "Unterstützt und begleitet von"
+  "Heritage": {
+    "label": "Hintergrund",
+    "title": "Drei Jahre Aufbau im KI-Agent-Ökosystem.",
+    "description": "Unter der Brand NMKR entwickelten wir mit der Serviceplan Group die AI-Agent-Infrastruktur Masumi und die Plattform Sokosumi. Mit utxo AG bringen wir diese Erfahrung als KI-Coworker in unsere Kundenprojekte.",
+    "partnerTag": "Mit Serviceplan Group",
+    "masumi": {
+      "subline": "Zahlungs- und Discovery-Layer für autonome KI-Agenten",
+      "url": "masumi.network",
+      "href": "https://masumi.network"
+    },
+    "sokosumi": {
+      "subline": "KI-Marketing-Plattform mit Agentic Coworkers",
+      "url": "sokosumi.com",
+      "href": "https://sokosumi.com"
+    }
   },
   "BookingSection": {
     "title": "Lernen wir uns kennen.",
