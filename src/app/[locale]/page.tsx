@@ -1,12 +1,11 @@
 import { setRequestLocale } from "next-intl/server";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import TrustBar from "@/components/TrustBar";
 import Founder from "@/components/Founder";
 import Agents from "@/components/Agents";
 import HowItWorks from "@/components/HowItWorks";
-import Portfolio from "@/components/Portfolio";
-import CTABar from "@/components/CTABar";
+import CustomerStories from "@/components/CustomerStories";
+import BookingSection from "@/components/BookingSection";
 import Footer from "@/components/Footer";
 
 export default async function Home({
@@ -25,10 +24,9 @@ export default async function Home({
         <Agents />
         <Founder />
         <HowItWorks />
-        <Portfolio />
-        <TrustBar />
+        <CustomerStories />
       </main>
-      <CTABar />
+      <BookingSection />
       <Footer />
     </>
   );

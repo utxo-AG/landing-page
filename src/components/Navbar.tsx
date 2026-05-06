@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { NAV_ITEMS } from "@/lib/constants";
 import { Link } from "@/i18n/navigation";
-import CopyEmail from "@/components/CopyEmail";
 import LocaleSwitcher from "@/components/LocaleSwitcher";
 
 function Logo() {
@@ -53,7 +52,12 @@ export default function Navbar() {
               {t(item.key)}
             </a>
           ))}
-          <CopyEmail className="text-[13px] font-medium text-[#111] bg-[#f5f5f5] px-4 py-1.5 rounded-full hover:bg-[#eee] transition-colors duration-200 cursor-pointer" />
+          <a
+            href="#booking"
+            className="text-[13px] font-medium text-white bg-[#111] px-4 py-1.5 rounded-full hover:bg-[#333] transition-colors duration-200 cursor-pointer"
+          >
+            {t("bookCall")}
+          </a>
           <LocaleSwitcher />
         </div>
 
@@ -90,7 +94,13 @@ export default function Navbar() {
               {t(item.key)}
             </a>
           ))}
-          <CopyEmail className="block py-2.5 text-[14px] font-medium text-[#111] cursor-pointer" />
+          <a
+            href="#booking"
+            className="block py-2.5 text-[14px] font-medium text-[#111]"
+            onClick={() => setOpen(false)}
+          >
+            {t("bookCall")}
+          </a>
           <div className="py-2.5">
             <LocaleSwitcher />
           </div>

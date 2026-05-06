@@ -7,11 +7,11 @@ export default async function Founder() {
     <section className="px-6 py-24">
       <div className="max-w-[1120px] mx-auto">
         <div className="max-w-[760px] mx-auto flex flex-col md:flex-row items-center gap-10">
-          <div className="shrink-0">
+          <div className="shrink-0 w-[120px] h-[120px] rounded-full overflow-hidden border border-[#e8e8e8]">
             <img
               src="/patrick.jpg"
               alt={t("alt")}
-              className="w-[120px] h-[120px] rounded-full object-cover border border-[#e8e8e8]"
+              className="w-full h-full object-cover scale-[1.35] origin-center"
             />
           </div>
 

@@ -1,181 +1,235 @@
 {
   "Metadata": {
-    "title": "utxo AG — Email-First AI Agents",
-    "description": "We build agentic coworkers. You hire them by email. utxo AG is a product studio focused on Email-First AI Agents that integrate into your existing workflows."
+    "title": "utxo AG — AI Coworkers for Your Business",
+    "description": "utxo AG builds AI coworkers for SMEs. Custom-built, autonomous or semi-autonomous, with persistent memory — integrated into your systems. GDPR-compliant, hosted in EU/CH."
   },
   "Navbar": {
     "toggleMenu": "Toggle menu",
     "agents": "Agents",
     "howItWorks": "How It Works",
-    "portfolio": "Portfolio"
+    "customerStories": "Customer Stories",
+    "bookCall": "Book a call"
   },
   "Hero": {
-    "label": "Product Studio",
-    "titleBlack": "AI agents that read,",
-    "titleGray": "reply, and get things done.",
-    "description": "No new tools. No training. Just forward an email — your AI coworker handles the rest. Deeply integrated with SAP, Outlook, Teams, and more.",
-    "inboxLabel": "Inbox — AI Agents",
-    "toYou": "to: you"
+    "label": "Mid-Market · Zug, Switzerland",
+    "titleBlack": "Full order books.",
+    "titleGray": "No skilled labor to handle them.",
+    "description": "We build AI coworkers tailored to your mid-market business — from quoting to system monitoring. They handle routine independently, learn with your team, and integrate into your existing systems.",
+    "trust1": "GDPR-compliant",
+    "trust2": "Hosted in EU/CH",
+    "trust3": "No US Cloud Act",
+    "inboxLabel": "Inbox — Your Coworkers",
+    "toYou": "to: you",
+    "ctaPrimary": "Book a free consultation",
+    "ctaSecondary": "Request a callback",
+    "actionTrailLabel": "What your coworker did:",
+    "customBannerText": "Your use case isn't in the list?",
+    "customBannerCta": "Let's talk"
   },
   "HeroDemos": {
-    "data": {
-      "name": "Data Analysis Agent",
-      "preview": "Re: Q4 revenue breakdown",
-      "subject": "Re: Q4 revenue breakdown by region",
-      "body1": "Here's the Q4 revenue breakdown you requested. I pulled the numbers directly from your SAP system and cross-referenced them with the CRM pipeline data.",
-      "body2": "Key findings: DACH region grew 18% QoQ, driven by 3 new enterprise accounts. Southern Europe underperformed target by 6%, mainly due to delayed onboarding of the Milan contract.",
-      "closing": "Want me to break this down further by product line? Just reply and I'll pull the SKU-level data.",
-      "rowTotal": "Total Revenue",
-      "rowDach": "DACH Region",
-      "rowWest": "Western Europe",
-      "rowSouth": "Southern Europe",
-      "footer": "vs. Q3: +12.4%"
+    "angebot": {
+      "name": "Quoting Coworker",
+      "preview": "Quote for Bauer Landtechnik prepared",
+      "subject": "Re: Inquiry 50 hydraulic valves — quote prepared",
+      "body1": "Good morning. The inquiry from Bauer Landtechnik came in. I've reviewed it, cross-checked with our ERP, and prepared the quote.",
+      "body2": "Material and effort calculated based on the last 6 orders with Bauer. Terms: existing customer, delivery in 4 weeks — fits your standard margin.",
+      "closing": "Reply 'approve' and I'll send the quote out. Or adjust the price first.",
+      "rowItem": "Item",
+      "rowItemVal": "50× Hydraulic Valve HV-220",
+      "rowMargin": "Margin after effort",
+      "rowMarginVal": "32% · CHF 4,820",
+      "rowDelivery": "Delivery date",
+      "rowDeliveryVal": "Jun 12, 2026",
+      "footer": "Quote draft saved in your CRM · History: 6 orders",
+      "trail1": "ERP inventory queried",
+      "trail2": "6 prior orders analyzed",
+      "trail3": "Calculation prepared",
+      "trail4": "Quote saved to CRM"
     },
-    "crm": {
-      "name": "CRM Coworker Agent",
-      "preview": "3 new leads flagged",
-      "subject": "Daily lead summary — 3 new, 2 follow-ups due",
-      "body1": "Good morning. I scanned your inbox and CRM overnight. Here's what needs attention today.",
-      "body2": "3 new inbound leads came in from the website contact form. I've already created records in HubSpot and enriched them with LinkedIn data.",
-      "closing": "I've drafted personalized replies for each lead based on their industry. Reply 'send' to approve, or edit them in HubSpot first.",
-      "footer": "2 follow-ups due today (Schneider AG, TechVentures)"
+    "rezeption": {
+      "name": "Reception Coworker",
+      "preview": "Call answered at 09:42",
+      "subject": "Call handled — Müller GmbH, callback requested",
+      "body1": "Call from Ms. Schmidt, Müller GmbH, at 09:42 came in. I took the call, captured all details, and classified the request.",
+      "body2": "It's about a delivery delay on order #4712. Ms. Schmidt requests a callback by 14:00. I've blocked your calendar and opened the order in our ERP.",
+      "closing": "Should I send a status update mail to Müller GmbH first? Reply 'yes' or 'no'.",
+      "rowCaller": "Caller",
+      "rowCallerVal": "Müller GmbH · 09:42",
+      "rowReason": "Topic",
+      "rowReasonVal": "Delivery delay on order #4712",
+      "rowRequest": "Request",
+      "rowRequestVal": "Callback by 14:00",
+      "footer": "Calls today: 7 · Mails: 12 · Status: all handled",
+      "trail1": "Call handled",
+      "trail2": "ERP order #4712 opened",
+      "trail3": "Calendar block 13:30 created",
+      "trail4": "Note added to CRM"
     },
-    "research": {
-      "name": "Research Agent",
-      "preview": "Market analysis complete",
-      "subject": "Re: Competitor analysis — AI agents in DACH",
-      "body1": "I've completed the competitive landscape analysis for AI agent providers in the DACH region. I reviewed 14 companies, cross-referenced Crunchbase funding data, and analyzed their product positioning.",
-      "body2": "The market is still early. Most competitors focus on chat-based interfaces or dashboards. Only 2 others offer email-based interaction, but neither supports SAP integration.",
-      "closing": "I also found 3 potential partnership opportunities. Want me to draft outreach emails?",
-      "rowCompanies": "Companies analyzed",
-      "rowFunding": "Total funding (combined)",
-      "rowEmail": "Email-first approach",
-      "rowSap": "SAP integration",
-      "footer": "Your positioning: strong differentiation"
+    "monitoring": {
+      "name": "Monitoring Coworker",
+      "preview": "Anomaly detected: Server SRV-04",
+      "subject": "Proactive alert — Server SRV-04 showing anomalies",
+      "body1": "Just noticed overnight: Server SRV-04 has shown unusual behavior since 03:14 — CPU load constantly above 85%, normally under 30%. I've analyzed your logs.",
+      "body2": "Cause: a cron job from the last deployment is running in an infinite loop. Compared historically, the pattern is identical to the incident on March 18. Back then, you stopped the job manually.",
+      "closing": "I can stop the cron job and notify the team automatically. Should I? Otherwise I'll keep watching and report at 09:00.",
+      "rowServer": "SRV-04 CPU load",
+      "rowServerVal": "87%",
+      "rowDuration": "Duration of anomaly",
+      "rowDurationVal": "5h 23 min",
+      "rowSimilar": "Similar incident",
+      "rowSimilarVal": "Mar 18, 2026, 03:08",
+      "footer": "Detected: 03:14 · Escalation not yet required",
+      "trail1": "Last 8h of logs analyzed",
+      "trail2": "Comparable pattern found (Mar 18)",
+      "trail3": "Action proposal prepared",
+      "trail4": "Awaiting your approval"
     },
-    "invoice": {
-      "name": "Invoice Agent",
-      "preview": "12 invoices processed",
-      "subject": "Invoice batch processed — 12 done, 1 flagged",
-      "body1": "I processed the 13 invoices you forwarded this morning. 12 matched existing purchase orders in SAP and have been routed for approval.",
-      "body2": "1 invoice from DataStream GmbH (€14,200) doesn't match any open PO. The amount is also 22% higher than their last 3 invoices. I've flagged it for manual review.",
-      "closing": "The approved invoices are queued for payment on Feb 3. Reply to adjust the payment date or approve the flagged one.",
-      "rowProcessed": "Processed",
-      "rowTotal": "Total amount",
-      "rowFlagged": "Flagged for review",
-      "footer": "Avg. processing time: 8 seconds per invoice"
+    "disposition": {
+      "name": "Dispatching Coworker",
+      "preview": "Wednesday tour optimized · 3 orders assigned",
+      "subject": "Tour planning Wednesday — 3 new orders slotted in",
+      "body1": "Three new orders came in today. I've slotted them into the existing Wednesday tour, with minimal detour and without breaking time windows.",
+      "body2": "Order optimized: order #4801 (Schmitt) before #4789 (Becker) — saves 42 km and keeps the 10–12 delivery window for Becker. Driver Müller is assigned.",
+      "closing": "Tour plan updated, driver app synced. Only reply if you want changes.",
+      "rowRoute": "Wednesday tour",
+      "rowRouteVal": "5 stops · 248 km",
+      "rowSavings": "Saved vs. original",
+      "rowSavingsVal": "42 km · 38 min",
+      "rowDriver": "Driver",
+      "rowDriverVal": "M. Müller",
+      "footer": "3 orders assigned · 0 time-window violations · Resources: optimal",
+      "trail1": "Tour matrix recalculated",
+      "trail2": "Driver availability checked",
+      "trail3": "Tour plan updated in ERP",
+      "trail4": "Driver app synced"
     }
   },
   "Agents": {
     "label": "Agents",
-    "title": "Agentic coworkers, ready to work.",
-    "description": "Some are available instantly. Others are custom-built for your company — with deep integrations into SAP, Microsoft 365, Slack, and your existing tools.",
-    "available": "Available",
-    "custom": "Custom",
-    "getStarted": "Get started",
-    "requestAgent": "Request this agent",
-    "hireInstantly": "Hire instantly",
-    "customDeployment": "Custom deployment",
-    "showLess": "Show less",
-    "showAll": "Show all {count}"
+    "title": "Coworkers across three domains.",
+    "description": "We build every agent custom for your processes. Whether customer-facing, employee support, or management insights — they integrate into your existing systems and become part of your team.",
+    "categoryCustomer": "Customer-facing",
+    "categoryEmployee": "Employee support",
+    "categoryManagement": "Management insights",
+    "custom": "Custom-built",
+    "requestAgent": "Discuss use case"
   },
   "AgentsList": {
-    "teacherSupport": {
-      "name": "Teacher Support Agent",
-      "description": "Lesson planning, curriculum alignment, and teaching support — entirely via email."
+    "angebotserstellung": {
+      "name": "Quoting Coworker",
+      "description": "Receives inquiries, clarifies questions, calculates by material and effort, aligns with engineering — your team approves."
     },
-    "adVisuals": {
-      "name": "Ad Visuals Generator",
-      "description": "Turns short briefs into campaign-ready visuals. Send a one-liner, get back designs."
-    },
-    "brandCi": {
-      "name": "Brand & CI Extraction Agent",
-      "description": "Analyzes existing material and extracts brand rules, tone, and visual logic."
-    },
-    "dataAnalysis": {
-      "name": "Data Analysis Agent",
-      "description": "Ask business questions in plain English. Get answers from your data."
-    },
-    "meetingNotes": {
-      "name": "Meeting Notes Agent",
-      "description": "Forward meeting recordings or transcripts. Get structured summaries, action items, and follow-ups."
-    },
-    "invoiceProcessing": {
-      "name": "Invoice Processing Agent",
-      "description": "Send invoices as attachments. Gets them categorized, validated, and ready for approval."
-    },
-    "crmCoworker": {
-      "name": "CRM Coworker Agent",
-      "description": "Reads inbound emails, updates CRM records, drafts replies, flags deals."
+    "rezeption": {
+      "name": "Reception Coworker",
+      "description": "Answers calls and emails, classifies requests, opens tickets, responds based on priority — day and night."
     },
     "supportTriage": {
-      "name": "Support Triage Agent",
-      "description": "Classifies, prioritizes, and routes support requests automatically."
+      "name": "Support Triage Coworker",
+      "description": "Classifies incoming support requests, prioritizes by SLA, drafts replies, escalates critical cases."
     },
-    "internalOps": {
-      "name": "Internal Ops Agent",
-      "description": "Handles repetitive operational workflows across teams and tools."
-    },
-    "evaluationQa": {
-      "name": "Evaluation & QA Agent",
-      "description": "Scores outputs, checks quality, and logs every decision for audit."
-    },
-    "complianceMonitor": {
-      "name": "Compliance Monitor Agent",
-      "description": "Continuously checks processes against regulatory requirements and flags violations."
+    "dokumentation": {
+      "name": "Documentation Coworker",
+      "description": "Builds structured documentation from meetings, tickets, and workflows. Keeps knowledge current — without anyone needing to remember."
     },
     "onboarding": {
-      "name": "Onboarding Agent",
-      "description": "Guides new hires through setup, documentation, and team introductions via email."
+      "name": "Onboarding Coworker",
+      "description": "Guides new hires through setup, documentation, and team introductions. Answers standard questions around the clock."
+    },
+    "internalKnowledge": {
+      "name": "Knowledge Coworker",
+      "description": "Answers questions from internal documents, ERP, and SharePoint. With persistent memory for your process specifics."
+    },
+    "systemMonitoring": {
+      "name": "Monitoring Coworker",
+      "description": "Watches systems proactively, detects anomalies based on historical patterns, suggests actions — before something breaks."
+    },
+    "disposition": {
+      "name": "Dispatching Coworker",
+      "description": "Optimizes tours, staff, and resource planning. Considers time windows, capacity, and real-time changes."
+    },
+    "rechnung": {
+      "name": "Invoice Coworker",
+      "description": "Verifies incoming invoices against orders, flags anomalies, prepares approvals — DATEV/SAP-ready."
     }
   },
   "HowItWorks": {
-    "label": "How It Works",
-    "title": "Three steps. No onboarding.",
-    "step1Title": "Send an email",
-    "step1Description": "Write to the agent like you'd write to a colleague. Plain language, attachments, whatever you need.",
-    "step2Title": "The agent does the work",
-    "step2Description": "It reads your request, connects to your systems — CRM, databases, APIs — and executes the task.",
-    "step3Title": "You get the result",
-    "step3Description": "A reply lands in your inbox with the completed work. Review it, reply to refine, or move on.",
-    "graphicTo": "To:",
-    "graphicSubject": "Subject:",
-    "graphicSubjectText": "Q4 revenue by region",
-    "graphicSend": "Send",
-    "graphicDatabase": "Database",
-    "graphicDataAgent": "Data Analysis Agent",
-    "graphicToYou": "to: you"
+    "label": "How we build your coworker",
+    "title": "From first call to a coworker in production — in 2 to 4 weeks.",
+    "description": "We build every coworker custom. With a discovery workshop, custom development on your systems, and continuous coaching in production.",
+    "step1Title": "Discovery",
+    "step1Description": "In a free intro call we identify the two or three use cases with the biggest leverage in your business.",
+    "step1Meta": "30–60 min · free",
+    "step2Title": "Workshop & Custom Build",
+    "step2Description": "We capture your workflows and systems, then build the coworker specifically for your processes — with integrations to ERP, CRM, and email.",
+    "step2Meta": "2–4 weeks",
+    "step3Title": "Go-Live & Optimization",
+    "step3Description": "Your coworker runs in production. We stay involved: coaching, documentation, continuous improvement.",
+    "step3Meta": "Cancel monthly"
   },
-  "Portfolio": {
-    "label": "Portfolio",
-    "title": "Also built by utxo AG",
-    "description": "Products and protocols we've built from scratch — now used by thousands.",
-    "nmkr": {
-      "description": "The largest NFT infrastructure on Cardano. 2.4M+ tokens minted, multi-chain support across Cardano, Solana, Aptos, and Midnight. Backed by EMURGO."
+  "CustomerStories": {
+    "label": "Customer Stories",
+    "title": "Real SMEs. Real outcomes.",
+    "description": "Three coworkers running in production today — built for the specific demands of our customers.",
+    "anonymousLabel": "Anonymous on request",
+    "hohenloher": {
+      "company": "Hohenlohe Machinery",
+      "industry": "Mechanical engineering · Hohenlohe",
+      "problem": "Manually checking dimensions and DIN standards on technical drawings costs engineers hours — and errors slip through.",
+      "solution": "Coworker reviews incoming technical drawings for dimensional consistency and DIN compliance, flags deviations, documents an audit trail.",
+      "outcome": "Engineers review results instead of manually checking."
     },
-    "finest": {
-      "description": "BaFin-compliant tokenization launchpad for real-world assets. Fractional ownership of real estate, diamonds, and commodities. Built with FluidTokens and IAMX."
+    "maschinenbauer": {
+      "company": "Machine Builder",
+      "industry": "Mechanical engineering · DACH",
+      "problem": "Technicians receive schematics and need to compile information from multiple documents before they can even start work.",
+      "solution": "Coworker reads schematics, identifies relevant components, prepares a structured info briefing for the technician — including data sheets and prior data.",
+      "outcome": "Technicians start with full context instead of research."
     },
-    "masumi": {
-      "description": "Decentralized protocol for the AI agent economy. Identity, payments, and discovery for autonomous agents. Co-developed with Serviceplan Group."
+    "rstDatentechnik": {
+      "company": "RST Datentechnik",
+      "industry": "Internet provider · regional",
+      "problem": "Outages get detected too late, reports handled too late, customers informed too late. Classic SME support bottleneck.",
+      "solution": "Coworker monitors systems proactively, takes incident reports, classifies by severity, coordinates with technicians, keeps customers informed.",
+      "outcome": "Faster response, fewer escalations, support team relieved."
     }
   },
   "Founder": {
     "alt": "Patrick Tobler",
-    "quote": "We believe the best AI tools disappear into workflows you already use. No dashboards to learn, no apps to install — just email. That's how work should be.",
+    "quote": "A good coworker integrates with the team. That's why we build agents that grow with your business, remember context, and act on their own.",
     "name": "Patrick Tobler",
-    "role": "Founder & CEO · Speaker at Cardano Summit & World Economic Forum"
+    "role": "Founder & CEO · Speaker at the World Economic Forum"
   },
   "TrustBar": {
-    "partnersLabel": "Trusted by and partnered with",
-    "grantsLabel": "Over $3M in development grants received from",
-    "catalystFund": "Catalyst Fund",
-    "ecosystemGrant": "Ecosystem Grant",
-    "developmentGrant": "Development Grant"
+    "partnersLabel": "Trusted by and partnered with"
   },
-  "CTABar": {
-    "title": "Want your own AI agent?",
-    "description": "Tell us what you need. We'll take it from there."
+  "BookingSection": {
+    "title": "Let's talk.",
+    "description": "30 minutes, free, no commitment. We discuss your use case and show you what's technically possible.",
+    "calendarTitle": "Discovery call",
+    "bookingCardTitle": "Book a discovery call",
+    "bookingBullet1": "30 minutes · Online via Google Meet",
+    "bookingBullet2": "Free & no obligation",
+    "bookingCta": "Choose a time",
+    "callbackTitle": "Prefer a callback?",
+    "callbackDescription": "Leave your details and we'll get back to you within one business day."
+  },
+  "CallbackForm": {
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "company": "Company",
+    "companyPlaceholder": "Your company",
+    "phone": "Phone",
+    "phonePlaceholder": "+49 …",
+    "email": "Email",
+    "emailPlaceholder": "you@company.com",
+    "preferredTime": "Preferred time (optional)",
+    "preferredTimePlaceholder": "e.g. weekdays 14:00–17:00",
+    "message": "What's it about? (optional)",
+    "messagePlaceholder": "One line is enough",
+    "submit": "Request callback",
+    "submitting": "Sending…",
+    "success": "Thanks! We'll get back to you within one business day.",
+    "error": "Something went wrong. Please write to business@utxoag.com directly."
   },
   "Footer": {
     "copyright": "© {year} utxo AG",
@@ -234,11 +288,11 @@
     "WhoWeAre": {
       "label": "Who we are",
       "headline": "Four years of digital infrastructure.",
-      "subheadline": "From blockchain to autonomous agents.",
+      "subheadline": "From infrastructure to autonomous agents.",
       "description": "We are technology builders. Since 2021, we have been building digital infrastructure — with global partners and on enterprise standards.",
       "year1": "2021",
       "brand1": "NMKR",
-      "brand1Desc": "Blockchain infrastructure. Global partners across tech, finance and enterprise.",
+      "brand1Desc": "Infrastructure. Global partners across tech, finance and enterprise.",
       "year2": "2024",
       "brand2": "Masumi",
       "brand2Partner": "with Serviceplan",

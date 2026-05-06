@@ -1,181 +1,235 @@
 {
   "Metadata": {
-    "title": "utxo AG — Email-First KI-Agenten",
-    "description": "Wir entwickeln KI-Agenten — beauftragt per E-Mail. utxo AG ist ein Produktstudio für Email-First KI-Agenten, die sich direkt in Ihre bestehenden Workflows integrieren."
+    "title": "utxo AG — KI-Coworker für Ihr Unternehmen",
+    "description": "utxo AG entwickelt KI-Coworker für KMU. Individuell gebaut, autonom oder teilautonom, mit dauerhaftem Gedächtnis — integriert in Ihre Systeme. DSGVO-konform, Hosting in EU/CH."
   },
   "Navbar": {
     "toggleMenu": "Menü öffnen",
     "agents": "Agents",
     "howItWorks": "So funktioniert es",
-    "portfolio": "Portfolio"
+    "customerStories": "Kundenprojekte",
+    "bookCall": "Termin buchen"
   },
   "Hero": {
-    "label": "Produktstudio",
-    "titleBlack": "KI-Agenten, die lesen,",
-    "titleGray": "antworten und erledigen.",
-    "description": "Keine neuen Tools. Keine Schulung. Einfach eine E-Mail weiterleiten — Ihr KI-Mitarbeiter erledigt den Rest. Direkt integriert in SAP, Outlook, Teams und mehr.",
-    "inboxLabel": "Inbox — KI-Agenten",
-    "toYou": "An: Sie"
+    "label": "Mittelstand · Zug, Schweiz",
+    "titleBlack": "Volle Auftragsbücher.",
+    "titleGray": "Keine Fachkräfte zum Bearbeiten.",
+    "description": "Wir bauen KI-Coworker individuell für Ihren Mittelstand — von Angebotserstellung bis Systemmonitoring. Sie übernehmen Routine eigenständig, lernen mit Ihrem Team und integrieren sich in Ihre bestehenden Systeme.",
+    "trust1": "DSGVO-konform",
+    "trust2": "Hosting in EU/CH",
+    "trust3": "Kein US-Cloud-Act",
+    "inboxLabel": "Posteingang — Ihre Coworker",
+    "toYou": "An: Sie",
+    "ctaPrimary": "Kostenloses Beratungsgespräch buchen",
+    "ctaSecondary": "Rückruf anfragen",
+    "actionTrailLabel": "Was Ihr Coworker getan hat:",
+    "customBannerText": "Ihr Use-Case ist nicht dabei?",
+    "customBannerCta": "Lass uns reden"
   },
   "HeroDemos": {
-    "data": {
-      "name": "Datenanalyse-Agent",
-      "preview": "Re: Q4-Umsatz nach Region",
-      "subject": "Re: Q4-Umsatz nach Region",
-      "body1": "Hier ist die gewünschte Aufschlüsselung der Q4-Umsätze. Die Zahlen stammen direkt aus Ihrem SAP-System, abgeglichen mit den CRM-Pipeline-Daten.",
-      "body2": "Wichtigste Ergebnisse: DACH ist um 18 % gegenüber Q3 gewachsen, dank 3 neuer Enterprise-Kunden. Südeuropa lag 6 % unter dem Ziel — hauptsächlich wegen verzögertem Onboarding des Mailand-Vertrags.",
-      "closing": "Soll ich das zusätzlich nach Produktlinie aufschlüsseln? Antworten Sie einfach, ich ziehe die Daten auf SKU-Ebene.",
-      "rowTotal": "Gesamtumsatz",
-      "rowDach": "DACH-Region",
-      "rowWest": "Westeuropa",
-      "rowSouth": "Südeuropa",
-      "footer": "ggü. Q3: +12.4 %"
+    "angebot": {
+      "name": "Angebots-Coworker",
+      "preview": "Angebot Bauer Landtechnik vorbereitet",
+      "subject": "Re: Anfrage 50 Hydraulikventile — Angebot vorbereitet",
+      "body1": "Guten Morgen. Die Anfrage von Bauer Landtechnik ist eingegangen. Ich habe sie geprüft, mit unserem ERP abgeglichen und das Angebot vorbereitet.",
+      "body2": "Material- und Aufwandskalkulation auf Basis der letzten 6 Aufträge mit Bauer. Konditionen: Bestandskunde, Liefertermin in 4 Wochen — passt zu Ihrer Standard-Marge.",
+      "closing": "Antworten Sie mit „freigeben“, dann sende ich das Angebot raus. Oder Sie passen den Preis vorher an.",
+      "rowItem": "Position",
+      "rowItemVal": "50× Hydraulikventil HV-220",
+      "rowMargin": "Marge nach Aufwand",
+      "rowMarginVal": "32% · CHF 4'820",
+      "rowDelivery": "Liefertermin",
+      "rowDeliveryVal": "12.06.2026",
+      "footer": "Angebotsentwurf in Ihrem CRM gespeichert · Verlauf: 6 Aufträge",
+      "trail1": "ERP-Lagerbestand abgefragt",
+      "trail2": "6 Vor-Aufträge analysiert",
+      "trail3": "Kalkulation erstellt",
+      "trail4": "Angebot in CRM hinterlegt"
     },
-    "crm": {
-      "name": "CRM-Kollege",
-      "preview": "3 neue Leads markiert",
-      "subject": "Tägliche Lead-Übersicht — 3 neue, 2 Follow-ups fällig",
-      "body1": "Guten Morgen. Ich habe über Nacht Ihre Inbox und Ihr CRM geprüft. Das steht heute an.",
-      "body2": "3 neue Leads über das Website-Kontaktformular. Einträge in HubSpot sind bereits erstellt und mit LinkedIn-Daten angereichert.",
-      "closing": "Ich habe für jeden Lead eine individuelle Antwort entworfen. Antworten Sie mit «senden» zur Freigabe — oder bearbeiten Sie sie zuerst in HubSpot.",
-      "footer": "2 Follow-ups heute fällig (Schneider AG, TechVentures)"
+    "rezeption": {
+      "name": "Rezeptions-Coworker",
+      "preview": "Anruf 09:42 entgegengenommen",
+      "subject": "Anruf entgegengenommen — Müller GmbH, Rückruf gewünscht",
+      "body1": "Anruf von Frau Schmidt, Müller GmbH, um 09:42 ist eingegangen. Ich habe das Gespräch geführt, alle Informationen aufgenommen und das Anliegen klassifiziert.",
+      "body2": "Es geht um eine Lieferverzögerung bei Auftrag #4712. Frau Schmidt bittet um Rückruf bis 14 Uhr. Ich habe den Termin in Ihrem Kalender vorgemerkt und den Auftrag in unserem ERP geöffnet.",
+      "closing": "Soll ich vorab eine Antwort-Mail mit dem aktuellen Lieferstatus an Müller GmbH senden? Antworten Sie kurz mit „ja“ oder „nein“.",
+      "rowCaller": "Anrufer",
+      "rowCallerVal": "Müller GmbH · 09:42",
+      "rowReason": "Anliegen",
+      "rowReasonVal": "Lieferverzögerung Auftrag #4712",
+      "rowRequest": "Wunsch",
+      "rowRequestVal": "Rückruf bis 14:00",
+      "footer": "Eingehende Anrufe heute: 7 · Mails: 12 · Aktueller Status: alle erledigt",
+      "trail1": "Anruf entgegengenommen",
+      "trail2": "ERP-Auftrag #4712 geöffnet",
+      "trail3": "Kalender-Block 13:30 erstellt",
+      "trail4": "Notiz im CRM hinterlegt"
     },
-    "research": {
-      "name": "Recherche-Agent",
-      "preview": "Marktanalyse abgeschlossen",
-      "subject": "Re: Wettbewerbsanalyse — KI-Agenten im DACH-Raum",
-      "body1": "Die Wettbewerbsanalyse für KI-Agent-Anbieter in der DACH-Region ist fertig. 14 Unternehmen geprüft, Crunchbase-Finanzierungsdaten abgeglichen und Produktpositionierung analysiert.",
-      "body2": "Der Markt ist noch jung. Die meisten Anbieter setzen auf Chat-Oberflächen oder Dashboards. Nur 2 bieten E-Mail-basierte Interaktion — keiner davon mit SAP-Integration.",
-      "closing": "Ausserdem habe ich 3 mögliche Partner gefunden. Soll ich Outreach-E-Mails entwerfen?",
-      "rowCompanies": "Unternehmen analysiert",
-      "rowFunding": "Gesamtfinanzierung (kombiniert)",
-      "rowEmail": "Email-First-Ansatz",
-      "rowSap": "SAP-Integration",
-      "footer": "Ihre Positionierung: starke Differenzierung"
+    "monitoring": {
+      "name": "Monitoring-Coworker",
+      "preview": "Anomalie erkannt: Server SRV-04",
+      "subject": "Proaktive Warnung — Server SRV-04 zeigt Auffälligkeiten",
+      "body1": "Gerade über Nacht aufgefallen: Server SRV-04 zeigt seit 03:14 ungewöhnliches Verhalten — CPU-Last konstant über 85%, normalerweise unter 30%. Ich habe Ihre Logs analysiert.",
+      "body2": "Ursache: ein Cron-Job aus dem letzten Deployment läuft in Endlosschleife. Im historischen Vergleich ist das Muster identisch zum Vorfall vom 18.03. Damals haben Sie den Job manuell gestoppt.",
+      "closing": "Ich kann den Cron-Job stoppen und das Team automatisch informieren. Soll ich? Sonst weiter beobachten und um 09:00 erneut Status melden.",
+      "rowServer": "Server SRV-04 CPU-Last",
+      "rowServerVal": "87%",
+      "rowDuration": "Dauer der Auffälligkeit",
+      "rowDurationVal": "5h 23 min",
+      "rowSimilar": "Ähnlicher Vorfall",
+      "rowSimilarVal": "18.03.2026, 03:08 Uhr",
+      "footer": "Erkannt: 03:14 · Eskalation noch nicht erforderlich",
+      "trail1": "Logs der letzten 8h analysiert",
+      "trail2": "Vergleichsmuster gefunden (18.03.)",
+      "trail3": "Maßnahmen-Vorschlag erstellt",
+      "trail4": "Auf Ihre Freigabe wartend"
     },
-    "invoice": {
-      "name": "Rechnungs-Agent",
-      "preview": "12 Rechnungen verarbeitet",
-      "subject": "Rechnungslauf abgeschlossen — 12 erledigt, 1 markiert",
-      "body1": "Die 13 Rechnungen, die Sie heute Morgen weitergeleitet haben, sind verarbeitet. 12 stimmen mit bestehenden Bestellungen in SAP überein und wurden zur Freigabe weitergeleitet.",
-      "body2": "1 Rechnung von DataStream GmbH (14'200 €) passt zu keiner offenen Bestellung. Der Betrag liegt zudem 22 % über den letzten 3 Rechnungen. Zur manuellen Prüfung markiert.",
-      "closing": "Die freigegebenen Rechnungen sind zur Zahlung am 3. Feb. eingeplant. Antworten Sie, um das Zahlungsdatum zu ändern oder die markierte Rechnung freizugeben.",
-      "rowProcessed": "Verarbeitet",
-      "rowTotal": "Gesamtbetrag",
-      "rowFlagged": "Zur Prüfung markiert",
-      "footer": "Ø Verarbeitungszeit: 8 Sekunden pro Rechnung"
+    "disposition": {
+      "name": "Dispositions-Coworker",
+      "preview": "Tour Mittwoch optimiert · 3 Aufträge zugeordnet",
+      "subject": "Tourenplanung Mittwoch — 3 neue Aufträge eingeordnet",
+      "body1": "Drei neue Aufträge sind heute eingegangen. Ich habe sie in die bestehende Tour Mittwoch eingeplant, mit minimalem Umweg und ohne Zeitfenster zu verletzen.",
+      "body2": "Reihenfolge optimiert: Auftrag #4801 (Schmitt) wird vor #4789 (Becker) bedient — spart 42 km und hält das Lieferfenster 10–12 Uhr für Becker. Fahrer Müller ist eingeteilt.",
+      "closing": "Tourenplan ist im System aktualisiert, Fahrer-App synchronisiert. Antworten Sie nur, wenn Sie eine Anpassung wünschen.",
+      "rowRoute": "Tour Mittwoch",
+      "rowRouteVal": "5 Stops · 248 km",
+      "rowSavings": "Eingespart vs. ursprünglich",
+      "rowSavingsVal": "42 km · 38 min",
+      "rowDriver": "Fahrer",
+      "rowDriverVal": "M. Müller",
+      "footer": "3 Aufträge zugeordnet · 0 Zeitfenster-Verletzungen · Ressource: optimal",
+      "trail1": "Tourenmatrix neu berechnet",
+      "trail2": "Fahrer-Verfügbarkeit geprüft",
+      "trail3": "Tourenplan im ERP aktualisiert",
+      "trail4": "Fahrer-App synchronisiert"
     }
   },
   "Agents": {
     "label": "Agents",
-    "title": "Wie Kollegen. Nur schneller.",
-    "description": "Einige Agents stehen sofort bereit. Andere entwickeln wir speziell für Ihr Unternehmen — mit direkter Integration in SAP, Microsoft 365, Slack und Ihre bestehenden Tools.",
-    "available": "Verfügbar",
-    "custom": "Individuell",
-    "getStarted": "Jetzt starten",
-    "requestAgent": "Agent anfragen",
-    "hireInstantly": "Sofort einsetzbar",
-    "customDeployment": "Für Sie entwickelt",
-    "showLess": "Weniger anzeigen",
-    "showAll": "Alle {count} anzeigen"
+    "title": "Coworker für drei Bereiche.",
+    "description": "Wir entwickeln jeden Agent individuell für Ihre Prozesse. Ob Kundenkontakt, Mitarbeiter-Support oder Management-Insights — er integriert sich in Ihre bestehenden Systeme und wird Teil Ihres Teams.",
+    "categoryCustomer": "Kundenkontakt",
+    "categoryEmployee": "Mitarbeiter-Support",
+    "categoryManagement": "Management-Insights",
+    "custom": "Individuell entwickelt",
+    "requestAgent": "Use-Case besprechen"
   },
   "AgentsList": {
-    "teacherSupport": {
-      "name": "Unterrichts-Agent",
-      "description": "Unterrichtsplanung, Lehrplanabstimmung und didaktische Unterstützung — komplett per E-Mail."
+    "angebotserstellung": {
+      "name": "Angebots-Coworker",
+      "description": "Empfängt Anfragen, klärt Rückfragen, kalkuliert nach Material und Aufwand, stimmt mit Konstruktion ab — Sachbearbeiter gibt frei."
     },
-    "adVisuals": {
-      "name": "Werbedesign-Agent",
-      "description": "Aus kurzen Briefings werden kampagnenfertige Visuals. Einzeiler senden, Designs erhalten."
-    },
-    "brandCi": {
-      "name": "Markenidentitäts-Agent",
-      "description": "Analysiert bestehendes Material und extrahiert Markenregeln, Tonalität und visuelle Logik."
-    },
-    "dataAnalysis": {
-      "name": "Datenanalyse-Agent",
-      "description": "Geschäftsfragen in Klartext stellen. Antworten direkt aus Ihren Daten."
-    },
-    "meetingNotes": {
-      "name": "Protokoll-Agent",
-      "description": "Meeting-Aufnahmen oder Transkripte weiterleiten. Strukturierte Zusammenfassungen, Aufgaben und Follow-ups erhalten."
-    },
-    "invoiceProcessing": {
-      "name": "Rechnungs-Agent",
-      "description": "Rechnungen als Anhang senden. Werden automatisch kategorisiert, geprüft und zur Freigabe vorbereitet."
-    },
-    "crmCoworker": {
-      "name": "CRM-Kollege",
-      "description": "Liest eingehende E-Mails, aktualisiert CRM-Einträge, entwirft Antworten, markiert Deals."
+    "rezeption": {
+      "name": "Rezeptions-Coworker",
+      "description": "Beantwortet Anrufe und E-Mails, klassifiziert Anliegen, legt Tickets an und reagiert je nach Priorität — Tag und Nacht."
     },
     "supportTriage": {
-      "name": "Support-Triage-Agent",
-      "description": "Klassifiziert, priorisiert und leitet Support-Anfragen automatisch weiter."
+      "name": "Support-Triage-Coworker",
+      "description": "Klassifiziert eingehende Support-Anfragen, priorisiert nach SLA, entwirft Antworten und eskaliert kritische Fälle."
     },
-    "internalOps": {
-      "name": "Betriebsabläufe-Agent",
-      "description": "Übernimmt wiederkehrende operative Workflows über Teams und Tools hinweg."
-    },
-    "evaluationQa": {
-      "name": "Qualitätsprüfungs-Agent",
-      "description": "Bewertet Ergebnisse, prüft Qualität und protokolliert jede Entscheidung für Audits."
-    },
-    "complianceMonitor": {
-      "name": "Compliance-Agent",
-      "description": "Prüft Prozesse laufend gegen regulatorische Vorgaben und meldet Verstösse."
+    "dokumentation": {
+      "name": "Dokumentations-Coworker",
+      "description": "Erstellt strukturierte Doku aus Meetings, Tickets und Workflows. Hält Wissen aktuell — ohne dass jemand daran denken muss."
     },
     "onboarding": {
-      "name": "Onboarding-Agent",
-      "description": "Begleitet neue Mitarbeiter durch Setup, Dokumentation und Teamvorstellungen — per E-Mail."
+      "name": "Onboarding-Coworker",
+      "description": "Begleitet neue Mitarbeiter durch Setup, Dokumentation und Teamvorstellung. Beantwortet Standard-Fragen rund um die Uhr."
+    },
+    "internalKnowledge": {
+      "name": "Wissens-Coworker",
+      "description": "Beantwortet Fragen aus internen Dokumenten, ERP und SharePoint. Mit dauerhaftem Gedächtnis für Ihre Prozess-Eigenheiten."
+    },
+    "systemMonitoring": {
+      "name": "Monitoring-Coworker",
+      "description": "Beobachtet Systeme proaktiv, erkennt Anomalien anhand historischer Muster und schlägt Maßnahmen vor — bevor etwas ausfällt."
+    },
+    "disposition": {
+      "name": "Dispositions-Coworker",
+      "description": "Optimiert Touren, Personal- und Ressourcenplanung. Berücksichtigt Zeitfenster, Auslastung und Echtzeit-Änderungen."
+    },
+    "rechnung": {
+      "name": "Rechnungs-Coworker",
+      "description": "Prüft eingehende Rechnungen gegen Bestellungen, markiert Auffälligkeiten und bereitet Freigaben vor — DATEV/SAP-tauglich."
     }
   },
   "HowItWorks": {
-    "label": "So funktioniert es",
-    "title": "Drei Schritte. Kein Onboarding.",
-    "step1Title": "E-Mail schreiben",
-    "step1Description": "Schreiben Sie dem Agent wie einem Kollegen. Klartext, Anhänge — was immer Sie brauchen.",
-    "step2Title": "Der Agent erledigt die Arbeit",
-    "step2Description": "Er liest Ihre Anfrage, verbindet sich mit Ihren Systemen — CRM, Datenbanken, APIs — und erledigt die Aufgabe.",
-    "step3Title": "Ergebnis in der Inbox",
-    "step3Description": "Die fertige Arbeit landet direkt in Ihrer Inbox. Prüfen, antworten, anpassen — oder einfach weiterarbeiten.",
-    "graphicTo": "An:",
-    "graphicSubject": "Betreff:",
-    "graphicSubjectText": "Umsatz Q4 nach Region",
-    "graphicSend": "Senden",
-    "graphicDatabase": "Datenbank",
-    "graphicDataAgent": "Datenanalyse-Agent",
-    "graphicToYou": "An: Sie"
+    "label": "So bauen wir Ihren Coworker",
+    "title": "Vom Erstgespräch zum produktiven Coworker — in 2 bis 4 Wochen.",
+    "description": "Wir bauen jeden Coworker individuell. Mit Discovery-Workshop, Custom-Development auf Ihre Systeme und laufendem Coaching im Betrieb.",
+    "step1Title": "Discovery",
+    "step1Description": "Im kostenlosen Erstgespräch identifizieren wir gemeinsam die zwei bis drei Use-Cases mit dem grössten Hebel in Ihrem Unternehmen.",
+    "step1Meta": "30–60 Min · kostenlos",
+    "step2Title": "Workshop & Custom Build",
+    "step2Description": "Wir nehmen Ihre Workflows und Systeme auf und bauen den Coworker spezifisch auf Ihre Prozesse — mit Anbindung an ERP, CRM und E-Mail.",
+    "step2Meta": "2–4 Wochen",
+    "step3Title": "Go-Live & Optimierung",
+    "step3Description": "Ihr Coworker läuft produktiv. Wir bleiben dran: Coaching, Dokumentation, laufende Verbesserung.",
+    "step3Meta": "Monatlich kündbar"
   },
-  "Portfolio": {
-    "label": "Portfolio",
-    "title": "Ebenfalls von utxo AG",
-    "description": "Produkte und Protokolle, die wir von Grund auf entwickelt haben — heute von Tausenden genutzt.",
-    "nmkr": {
-      "description": "Die grösste NFT-Infrastruktur auf Cardano. Über 2.4 Mio. Tokens geprägt, Multi-Chain-Support für Cardano, Solana, Aptos und Midnight. Unterstützt von EMURGO."
+  "CustomerStories": {
+    "label": "Kundenprojekte",
+    "title": "Echte KMU. Echte Ergebnisse.",
+    "description": "Drei Coworker, die heute in produktiven Prozessen laufen — gebaut für die spezifischen Anforderungen unserer Kunden.",
+    "anonymousLabel": "Auf Wunsch nicht namentlich genannt",
+    "hohenloher": {
+      "company": "Hohenloher Maschinenbau",
+      "industry": "Maschinenbau · Hohenlohe",
+      "problem": "Bemaßungen und DIN-Normen auf technischen Zeichnungen manuell zu prüfen kostet Konstrukteure Stunden — und Fehler rutschen durch.",
+      "solution": "Coworker prüft eingehende technische Zeichnungen automatisiert auf Bemaßungs-Konsistenz und DIN-Normen-Konformität, markiert Abweichungen, dokumentiert Prüfprotokoll.",
+      "outcome": "Konstrukteure prüfen Ergebnisse statt manuell zu kontrollieren."
     },
-    "finest": {
-      "description": "BaFin-konforme Tokenization-Plattform für Real-World-Assets. Fraktionalisiertes Eigentum an Immobilien, Diamanten und Rohstoffen. Entwickelt mit FluidTokens und IAMX."
+    "maschinenbauer": {
+      "company": "Maschinenbauer",
+      "industry": "Maschinenbau · DACH",
+      "problem": "Techniker bekommen Schaltpläne und müssen Informationen aus mehreren Dokumenten zusammentragen, bevor sie überhaupt mit der Arbeit beginnen können.",
+      "solution": "Coworker liest Schaltpläne ein, identifiziert relevante Komponenten und bereitet eine strukturierte Info-Mappe für den Techniker auf — inklusive Datenblättern und Vorgängerdaten.",
+      "outcome": "Techniker starten mit vollständigem Kontext statt mit Recherche."
     },
-    "masumi": {
-      "description": "Dezentrales Protokoll für die AI-Agent-Economy. Identität, Zahlungen und Discovery für autonome Agents. Mitentwickelt mit Serviceplan Group."
+    "rstDatentechnik": {
+      "company": "RST Datentechnik",
+      "industry": "Internetanbieter · regional",
+      "problem": "Störungen werden zu spät erkannt, Meldungen zu spät bearbeitet, Kunden zu spät informiert. Klassisches Engpass-Problem im KMU-Support.",
+      "solution": "Coworker monitort Systeme proaktiv, nimmt Störungsmeldungen entgegen, klassifiziert nach Schweregrad, koordiniert mit Technikern und hält Kunden auf dem Laufenden.",
+      "outcome": "Schnellere Reaktion, weniger Eskalationen, entlasteter Support."
     }
   },
   "Founder": {
     "alt": "Patrick Tobler",
-    "quote": "Die besten AI-Tools verschwinden in Workflows, die Sie schon nutzen. Keine Dashboards, keine neuen Apps — nur E-Mail. So soll Arbeit sein.",
+    "quote": "Ein guter Coworker integriert sich ins Team. Deshalb bauen wir Agenten, die mit Ihrem Unternehmen mitwachsen, sich erinnern und eigenständig handeln.",
     "name": "Patrick Tobler",
-    "role": "Gründer & CEO · Speaker am Cardano Summit & World Economic Forum"
+    "role": "Gründer & CEO · Speaker am World Economic Forum"
   },
   "TrustBar": {
-    "partnersLabel": "Unterstützt und begleitet von",
-    "grantsLabel": "Über $3M an Fördermitteln erhalten von",
-    "catalystFund": "Catalyst Fund",
-    "ecosystemGrant": "Ecosystem Grant",
-    "developmentGrant": "Development Grant"
+    "partnersLabel": "Unterstützt und begleitet von"
   },
-  "CTABar": {
-    "title": "Ihr eigener KI-Agent??",
-    "description": "Sagen Sie uns, was Sie brauchen. Den Rest übernehmen wir."
+  "BookingSection": {
+    "title": "Lernen wir uns kennen.",
+    "description": "30 Minuten, kostenlos, unverbindlich. Wir besprechen Ihren Use-Case und zeigen, was technisch geht.",
+    "calendarTitle": "Erstgespräch",
+    "bookingCardTitle": "Erstgespräch buchen",
+    "bookingBullet1": "30 Minuten · Online via Google Meet",
+    "bookingBullet2": "Kostenlos & unverbindlich",
+    "bookingCta": "Termin auswählen",
+    "callbackTitle": "Lieber Rückruf?",
+    "callbackDescription": "Hinterlassen Sie Ihre Daten, wir melden uns innerhalb eines Werktags."
+  },
+  "CallbackForm": {
+    "name": "Name",
+    "namePlaceholder": "Ihr Name",
+    "company": "Firma",
+    "companyPlaceholder": "Ihre Firma",
+    "phone": "Telefon",
+    "phonePlaceholder": "+49 …",
+    "email": "E-Mail",
+    "emailPlaceholder": "ihre@firma.com",
+    "preferredTime": "Wunschzeit (optional)",
+    "preferredTimePlaceholder": "z.B. werktags 14–17 Uhr",
+    "message": "Worum geht's? (optional)",
+    "messagePlaceholder": "Kurz, in einem Satz",
+    "submit": "Rückruf anfragen",
+    "submitting": "Wird gesendet…",
+    "success": "Danke! Wir melden uns innerhalb eines Werktags.",
+    "error": "Hat nicht funktioniert. Bitte direkt an business@utxoag.com schreiben."
   },
   "Footer": {
     "copyright": "© {year} utxo AG",
@@ -234,11 +288,11 @@
     "WhoWeAre": {
       "label": "Wer wir sind",
       "headline": "Vier Jahre digitale Infrastruktur.",
-      "subheadline": "Von Blockchain zu autonomen Agenten.",
+      "subheadline": "Von Infrastruktur zu autonomen Agenten.",
       "description": "Wir sind Technologieentwickler. Seit 2021 bauen wir digitale Infrastruktur — mit globalen Partnern und auf Enterprise-Niveau.",
       "year1": "2021",
       "brand1": "NMKR",
-      "brand1Desc": "Blockchain-Infrastruktur. Globale Partner aus Tech, Finance und Konzernen.",
+      "brand1Desc": "Infrastruktur. Globale Partner aus Tech, Finance und Konzernen.",
       "year2": "2024",
       "brand2": "Masumi",
       "brand2Partner": "mit Serviceplan",

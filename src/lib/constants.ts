@@ -1,50 +1,26 @@
 export const NAV_ITEMS = [
   { key: "agents" as const, href: "#agents" },
   { key: "howItWorks" as const, href: "#how-it-works" },
-  { key: "portfolio" as const, href: "#portfolio" },
+  { key: "customerStories" as const, href: "#customer-stories" },
 ];
 
-export const AGENT_KEYS = {
-  public: [
-    "teacherSupport",
-    "adVisuals",
-    "brandCi",
-    "dataAnalysis",
-    "meetingNotes",
-    "invoiceProcessing",
-  ] as const,
-  private: [
-    "crmCoworker",
-    "supportTriage",
-    "internalOps",
-    "evaluationQa",
-    "complianceMonitor",
-    "onboarding",
-  ] as const,
-};
+export type AgentCategory = "customer" | "employee" | "management";
 
-export const HOW_IT_WORKS_STEPS = ["01", "02", "03"] as const;
+export const AGENT_CATEGORIES: AgentCategory[] = ["customer", "employee", "management"];
 
-export const PORTFOLIO = [
-  {
-    key: "nmkr" as const,
-    name: "NMKR",
-    url: "https://nmkr.io",
-    tag: "Tokenization",
-  },
-  {
-    key: "finest" as const,
-    name: "Finest Investments",
-    url: "https://finest.investments",
-    tag: "RWA",
-  },
-  {
-    key: "masumi" as const,
-    name: "Masumi Network",
-    url: "https://masumi.network",
-    tag: "AI Agents",
-  },
+export const AGENTS: { key: string; category: AgentCategory }[] = [
+  { key: "angebotserstellung", category: "customer" },
+  { key: "rezeption", category: "customer" },
+  { key: "supportTriage", category: "customer" },
+  { key: "dokumentation", category: "employee" },
+  { key: "onboarding", category: "employee" },
+  { key: "internalKnowledge", category: "employee" },
+  { key: "systemMonitoring", category: "management" },
+  { key: "disposition", category: "management" },
+  { key: "rechnung", category: "management" },
 ];
+
+export const CUSTOMER_STORIES = ["hohenloher", "maschinenbauer", "rstDatentechnik"] as const;
 
 export const FOOTER_LINKS = {
   connect: [

@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@calcom/embed-react": "^1.5.3",
     "framer-motion": "^12.36.0",
     "html2canvas-pro": "^2.0.2",
     "jspdf": "^4.2.1",
