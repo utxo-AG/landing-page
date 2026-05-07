@@ -41,6 +41,8 @@
       "rowDelivery": "Liefertermin",
       "rowDeliveryVal": "12.06.2026",
       "footer": "Angebotsentwurf in Ihrem CRM gespeichert · Verlauf: 6 Aufträge",
+      "attachmentName": "Angebot-Bauer-Landtechnik-2026-05-07.pdf",
+      "attachmentSize": "1.2 MB",
       "trail1": "ERP-Lagerbestand abgefragt",
       "trail2": "6 Vor-Aufträge analysiert",
       "trail3": "Kalkulation erstellt",
@@ -102,6 +104,27 @@
       "trail2": "Fahrer-Verfügbarkeit geprüft",
       "trail3": "Tourenplan im ERP aktualisiert",
       "trail4": "Fahrer-App synchronisiert"
+    },
+    "leadResearch": {
+      "name": "Lead-Research-Coworker",
+      "preview": "12 qualifizierte Leads — Vollanalyse",
+      "subject": "Lead-Research Maschinenbau DACH — 12 Treffer",
+      "body1": "Über Nacht habe ich Ihre drei Zielbranchen — Maschinenbau, Sondermaschinenbau und Werkzeugbau — gegen Ihren Filter (50–250 MA, DACH) gescreent.",
+      "body2": "12 qualifizierte Unternehmen identifiziert. Pro Lead: Firmenprofil, Entscheider, aktueller Tech-Stack, Pain Points aus Stellenanzeigen und LinkedIn-Aktivität, Outreach-Hook. Vollständiger Report im Anhang.",
+      "closing": "Antworten Sie mit der Lead-Nummer, dann entwerfe ich für diesen Lead eine personalisierte Outreach-Mail.",
+      "rowQualified": "Qualifizierte Leads",
+      "rowQualifiedVal": "12 von 47",
+      "rowSources": "Quellen analysiert",
+      "rowSourcesVal": "47",
+      "rowTime": "Aufgewendete Zeit",
+      "rowTimeVal": "4h 12 min · über Nacht",
+      "footer": "Datenstand 07.05.2026 · Vollständiger Report im Anhang",
+      "trail1": "47 Branchenquellen durchsucht",
+      "trail2": "Pro Lead Tiefenrecherche",
+      "trail3": "Stellenanzeigen + LinkedIn ausgewertet",
+      "trail4": "Report (PDF) erstellt",
+      "attachmentName": "Lead-Research-Maschinenbau-DACH-2026.pdf",
+      "attachmentSize": "3.8 MB"
     }
   },
   "Agents": {

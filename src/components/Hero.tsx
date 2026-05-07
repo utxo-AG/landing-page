@@ -3,12 +3,13 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 
-const DEMO_KEYS = ["angebot", "rezeption", "monitoring", "disposition"] as const;
+const DEMO_KEYS = ["leadResearch", "angebot", "rezeption", "monitoring", "disposition"] as const;
 type DemoKey = typeof DEMO_KEYS[number];
 
 const DEMO_DATA: Record<DemoKey, {
   rows: { labelKey: string; valueKey: string; bar: number }[];
   trailKeys: string[];
+  hasAttachment?: boolean;
 }> = {
   angebot: {
     rows: [
@@ -17,6 +18,7 @@ const DEMO_DATA: Record<DemoKey, {
       { labelKey: "rowDelivery", valueKey: "rowDeliveryVal", bar: 0 },
     ],
     trailKeys: ["trail1", "trail2", "trail3", "trail4"],
+    hasAttachment: true,
   },
   rezeption: {
     rows: [
@@ -25,6 +27,15 @@ const DEMO_DATA: Record<DemoKey, {
       { labelKey: "rowRequest", valueKey: "rowRequestVal", bar: 0 },
     ],
     trailKeys: ["trail1", "trail2", "trail3", "trail4"],
+  },
+  leadResearch: {
+    rows: [
+      { labelKey: "rowQualified", valueKey: "rowQualifiedVal", bar: 0 },
+      { labelKey: "rowSources", valueKey: "rowSourcesVal", bar: 0 },
+      { labelKey: "rowTime", valueKey: "rowTimeVal", bar: 0 },
+    ],
+    trailKeys: ["trail1", "trail2", "trail3", "trail4"],
+    hasAttachment: true,
   },
   monitoring: {
     rows: [
@@ -45,7 +56,7 @@ const DEMO_DATA: Record<DemoKey, {
 };
 
 export default function Hero() {
-  const [active, setActive] = useState<DemoKey>("angebot");
+  const [active, setActive] = useState<DemoKey>("leadResearch");
   const t = useTranslations("Hero");
   const td = useTranslations("HeroDemos");
   const demo = DEMO_DATA[active];
@@ -218,6 +229,13 @@ export default function Hero() {
                   </div>
                 </div>
 
+                {demo.hasAttachment && (
+                  <AttachmentBadge
+                    name={td(`${active}.attachmentName`)}
+                    size={td(`${active}.attachmentSize`)}
+                  />
+                )}
+
                 <ActionTrail
                   label={t("actionTrailLabel")}
                   items={demo.trailKeys.map((k) => td(`${active}.${k}`))}
@@ -260,6 +278,24 @@ function TrustBadge({ label }: { label: string }) {
       </svg>
       {label}
     </span>
+  );
+}
+
+function AttachmentBadge({ name, size }: { name: string; size: string }) {
+  return (
+    <div className="inline-flex items-center gap-2.5 bg-white border border-[#e5e5e5] rounded-lg px-3 py-2.5 max-w-full">
+      <span className="w-7 h-7 rounded-md bg-[#fef2f2] border border-[#fecaca] flex items-center justify-center shrink-0">
+        <span className="text-[8px] font-bold text-[#b91c1c] tracking-tight">PDF</span>
+      </span>
+      <div className="flex flex-col min-w-0">
+        <span className="text-[12px] font-medium text-[#333] truncate">{name}</span>
+        <span className="text-[10px] text-[#999]">{size}</span>
+      </div>
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#999" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 ml-1">
+        <path d="M7 1v9M4 7l3 3 3-3"/>
+        <path d="M2 11v1.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V11"/>
+      </svg>
+    </div>
   );
 }
 

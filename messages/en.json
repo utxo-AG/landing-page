@@ -41,6 +41,8 @@
       "rowDelivery": "Delivery date",
       "rowDeliveryVal": "Jun 12, 2026",
       "footer": "Quote draft saved in your CRM · History: 6 orders",
+      "attachmentName": "Quote-Bauer-Landtechnik-2026-05-07.pdf",
+      "attachmentSize": "1.2 MB",
       "trail1": "ERP inventory queried",
       "trail2": "6 prior orders analyzed",
       "trail3": "Calculation prepared",
@@ -102,6 +104,27 @@
       "trail2": "Driver availability checked",
       "trail3": "Tour plan updated in ERP",
       "trail4": "Driver app synced"
+    },
+    "leadResearch": {
+      "name": "Lead Research Coworker",
+      "preview": "12 qualified leads — full report",
+      "subject": "Lead research machinery DACH — 12 matches",
+      "body1": "Overnight I screened your three target verticals — machinery, special machinery, tool building — against your filter (50–250 employees, DACH).",
+      "body2": "12 qualified companies identified. Per lead: company profile, decision makers, current tech stack, pain points from job postings and LinkedIn activity, outreach hook. Full report attached.",
+      "closing": "Reply with a lead number and I'll draft a personalized outreach email for that lead.",
+      "rowQualified": "Qualified leads",
+      "rowQualifiedVal": "12 of 47",
+      "rowSources": "Sources analyzed",
+      "rowSourcesVal": "47",
+      "rowTime": "Time spent",
+      "rowTimeVal": "4h 12 min · overnight",
+      "footer": "Data as of 2026-05-07 · Full report attached",
+      "trail1": "47 industry sources crawled",
+      "trail2": "Per-lead deep research",
+      "trail3": "Job postings + LinkedIn analyzed",
+      "trail4": "Report (PDF) generated",
+      "attachmentName": "Lead-Research-Machinery-DACH-2026.pdf",
+      "attachmentSize": "3.8 MB"
     }
   },
   "Agents": {
