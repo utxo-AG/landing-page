@@ -1,7 +1,7 @@
 {
   "Metadata": {
     "title": "utxo AG — KI-Coworker für Ihr Unternehmen",
-    "description": "utxo AG entwickelt KI-Coworker für KMU. Individuell gebaut, autonom oder teilautonom, mit dauerhaftem Gedächtnis — integriert in Ihre Systeme. DSGVO-konform, Hosting in EU/CH."
+    "description": "utxo AG entwickelt KI-Coworker für KMU. Individuell entwickelt, autonom oder teilautonom, mit dauerhaftem Gedächtnis — integriert in Ihre Systeme. DSGVO-konform, Hosting in EU/CH."
   },
   "Navbar": {
     "toggleMenu": "Menü öffnen",
@@ -12,9 +12,9 @@
   },
   "Hero": {
     "label": "Zug, Schweiz",
-    "titleBlack": "Volle Auftragsbücher.",
-    "titleGray": "Keine Fachkräfte zum Bearbeiten.",
-    "description": "Individuelle KI-Coworker für Ihr Unternehmen. Sie übernehmen Routine eigenständig — von Angebotserstellung bis Systemmonitoring.",
+    "titleBlack": "Die neue Generation von Mitarbeitern",
+    "titleGray": "ist digital.",
+    "description": "Individuelle KI-Mitarbeiter für Ihr Unternehmen die eigenständig Routineaufgaben übernehmen — von Angebotserstellung bis Systemmonitoring.",
     "trust1": "DSGVO-konform",
     "trust2": "Hosting in EU/CH",
     "trust3": "Kein US-Cloud-Act",
@@ -129,7 +129,7 @@
   },
   "Agents": {
     "label": "Agents",
-    "title": "Wir bauen den Coworker, der fehlt.",
+    "title": "Wir entwickeln den Coworker, der fehlt.",
     "description": "Wir entwickeln jeden Agent individuell für Ihre Prozesse. Ob Kundenkontakt, Mitarbeiter-Support oder Management-Insights — er integriert sich in Ihre bestehenden Systeme und wird Teil Ihres Teams.",
     "categoryCustomer": "Kundenkontakt",
     "categoryEmployee": "Mitarbeiter-Support",
@@ -176,14 +176,14 @@
     }
   },
   "HowItWorks": {
-    "label": "So bauen wir Ihren Coworker",
+    "label": "So entwickeln wir Ihren Coworker",
     "title": "Vom Erstgespräch zum produktiven Coworker — in 2 bis 4 Wochen.",
-    "description": "Wir bauen jeden Coworker individuell. Mit Discovery-Workshop, Custom-Development auf Ihre Systeme und laufendem Coaching im Betrieb.",
+    "description": "Wir entwickeln jeden Coworker individuell. Mit Discovery-Workshop, Custom-Development auf Ihre Systeme und laufendem Coaching im Betrieb.",
     "step1Title": "Discovery",
     "step1Description": "Im kostenlosen Erstgespräch identifizieren wir gemeinsam die zwei bis drei Use-Cases mit dem grössten Hebel in Ihrem Unternehmen.",
     "step1Meta": "30–60 Min · kostenlos",
     "step2Title": "Workshop & Custom Build",
-    "step2Description": "Wir nehmen Ihre Workflows und Systeme auf und bauen den Coworker spezifisch auf Ihre Prozesse — mit Anbindung an ERP, CRM und E-Mail.",
+    "step2Description": "Wir nehmen Ihre Workflows und Systeme auf und entwickeln den Coworker spezifisch auf Ihre Prozesse — mit Anbindung an ERP, CRM und E-Mail.",
     "step2Meta": "2–4 Wochen",
     "step3Title": "Go-Live & Optimierung",
     "step3Description": "Ihr Coworker läuft produktiv. Wir bleiben dran: Coaching, Dokumentation, laufende Verbesserung.",
@@ -192,7 +192,7 @@
   "CustomerStories": {
     "label": "Kundenprojekte",
     "title": "Echte KMU. Echte Ergebnisse.",
-    "description": "Drei Coworker, die heute in produktiven Prozessen laufen — gebaut für die spezifischen Anforderungen unserer Kunden.",
+    "description": "Drei Coworker, die heute in produktiven Prozessen laufen — entwickelt für die spezifischen Anforderungen unserer Kunden.",
     "anonymousLabel": "Auf Wunsch nicht namentlich genannt",
     "hohenloher": {
       "company": "Hohenloher Maschinenbau",
@@ -319,7 +319,7 @@
       "label": "Wer wir sind",
       "headline": "Vier Jahre digitale Infrastruktur.",
       "subheadline": "Von Infrastruktur zu autonomen Agenten.",
-      "description": "Wir sind Technologieentwickler. Seit 2021 bauen wir digitale Infrastruktur — mit globalen Partnern und auf Enterprise-Niveau.",
+      "description": "Wir sind Technologieentwickler. Seit 2021 entwickeln wir digitale Infrastruktur — mit globalen Partnern und auf Enterprise-Niveau.",
       "year1": "2021",
       "brand1": "NMKR",
       "brand1Desc": "Infrastruktur. Globale Partner aus Tech, Finance und Konzernen.",
@@ -475,7 +475,7 @@
     "UseCases": {
       "label": "Anwendungsbereiche",
       "headline": "Ihre Workflows. Voll ausgeschöpft.",
-      "description": "Jeder Agent wird auf Ihre Prozesse zugeschnitten. Sie zeigen uns den Workflow — wir bauen den Agenten.",
+      "description": "Jeder Agent wird auf Ihre Prozesse zugeschnitten. Sie zeigen uns den Workflow — wir entwickeln den Agenten.",
       "footnote": "KI ersetzt niemanden. Sie gibt Ihren Mitarbeitern die Zeit für das, was wirklich zählt.",
       "item1Title": "Angebotserstellung",
       "item1Desc": "Anfragen prüfen, kalkulieren, Angebot vorbereiten. Der Mitarbeiter gibt frei.",
@@ -612,13 +612,13 @@
       "subscriptionTitle": "Subscription",
       "subscriptionDesc": "Ein Plan, pro Agent. Monatlich kündbar. Kurzfristig einsatzbereit.",
       "customTitle": "Custom Development",
-      "customDesc": "Wir analysieren Ihre Workflows gemeinsam im Discovery Workshop. Dann bauen wir den Agent auf Ihre Prozesse. Inkl. 6 Monate Subscription.",
+      "customDesc": "Wir analysieren Ihre Workflows gemeinsam im Discovery Workshop. Dann entwickeln wir den Agent auf Ihre Prozesse. Inkl. 6 Monate Subscription.",
       "step1Label": "Kennenlernen",
       "step1Sub": "Use Cases erkunden",
       "step2Label": "Workshop",
       "step2Sub": "Workflows abgleichen",
       "step3Label": "Entwicklung",
-      "step3Sub": "Agent bauen & testen",
+      "step3Sub": "Agent entwickeln & testen",
       "step4Label": "Go Live",
       "step4Sub": "Betrieb & Optimierung"
     },
@@ -725,7 +725,7 @@
       "marketingName": "Marketing-Text",
       "marketingExample": "Newsletter April 2026",
       "footnoteLead": "Das sind nur Beispiele.",
-      "footnote": "Sagen Sie was Sie brauchen — Ihre Agenten bauen es."
+      "footnote": "Sagen Sie was Sie brauchen — Ihre Agenten entwickeln es."
     },
     "QuickReference": {
       "label": "Kurzreferenz",
@@ -765,7 +765,7 @@
     "NameYourAgent": {
       "label": "Ihr KI-Mitarbeiter",
       "headline": "Und wie soll Ihr\nKI-Mitarbeiter heissen?",
-      "description": "Otto, Lena, Kai — jeder für eine andere Rolle gebaut. Ihrer bekommt einen eigenen Namen, eigene Fähigkeiten, einen eigenen Fokus. Wer fehlt in Ihrem Team?",
+      "description": "Otto, Lena, Kai — jeder für eine andere Rolle entwickelt. Ihrer bekommt einen eigenen Namen, eigene Fähigkeiten, einen eigenen Fokus. Wer fehlt in Ihrem Team?",
       "moreAgents": "Ihr nächster Mitarbeiter"
     }
   },
