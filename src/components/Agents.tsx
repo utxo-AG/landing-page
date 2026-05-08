@@ -80,10 +80,10 @@ export default function Agents() {
                   y: isActive ? -2 : 0,
                 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
-                className={`bg-white border rounded-2xl p-6 flex flex-col transition-colors duration-300 ${
+                className={`bg-white border rounded-2xl p-6 flex-col transition-colors duration-300 ${
                   isActive
-                    ? "border-[#ccc] shadow-[0_4px_18px_rgba(0,0,0,0.06)]"
-                    : "border-[#eee]"
+                    ? "flex border-[#ccc] shadow-[0_4px_18px_rgba(0,0,0,0.06)]"
+                    : "hidden md:flex border-[#eee]"
                 }`}
               >
                 <div className="flex items-start justify-between gap-3 mb-3">
