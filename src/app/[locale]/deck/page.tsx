@@ -1,25 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
-import { useLocale } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
-type DeckType = "sales" | "infosheet" | "market" | "short";
 type Lang = "de" | "en";
-
-function deckPath(type: DeckType) {
-  if (type === "sales") return "pitch";
-  if (type === "market") return "pitch-market";
-  if (type === "short") return "pitch-short";
-  return "pitch-infosheet";
-}
-
-function deckLabel(type: DeckType, t: (key: string) => string) {
-  if (type === "sales") return t("deckSales");
-  if (type === "market") return t("deckMarket");
-  if (type === "short") return t("deckShort");
-  return t("deckInfosheet");
-}
 
 export default function DeckLauncher() {
   const t = useTranslations("DeckLauncher");
@@ -28,33 +12,25 @@ export default function DeckLauncher() {
   const [company, setCompany] = useState("");
   const [contact, setContact] = useState("");
   const [logo, setLogo] = useState("");
-  const [deck, setDeck] = useState<DeckType>("sales");
   const [lang, setLang] = useState<Lang>(currentLocale as Lang);
 
-  function buildUrl(raw = false) {
-    const path = deckPath(deck);
-    if (raw) return `/${lang}/${path}`;
-
+  function buildUrl(print = false) {
     const params = new URLSearchParams();
     if (company.trim()) params.set("company", company.trim());
     if (contact.trim()) params.set("contact", contact.trim());
     if (logo.trim()) params.set("logo", logo.trim());
+    if (print) params.set("print", "true");
 
     const query = params.toString();
-    return `/${lang}/${path}${query ? `?${query}` : ""}`;
+    return `/${lang}/pitch-short${query ? `?${query}` : ""}`;
   }
 
   function handleOpen() {
     window.open(buildUrl(), "_blank");
   }
 
-  function handleOpenRaw(type: DeckType) {
-    window.open(`/${lang}/${deckPath(type)}`, "_blank");
-  }
-
   function handleDownloadPdf() {
-    const url = buildUrl() + (buildUrl().includes("?") ? "&" : "?") + "print=true";
-    window.open(url, "_blank");
+    window.open(buildUrl(true), "_blank");
   }
 
   const isValid = company.trim().length > 0;
@@ -111,28 +87,6 @@ export default function DeckLauncher() {
 
           <div>
             <label className="block text-xs font-mono text-[#888] uppercase tracking-widest mb-2">
-              {t("deckLabel")}
-            </label>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {(["sales", "infosheet", "market", "short"] as const).map((type) => (
-                <button
-                  key={type}
-                  onClick={() => setDeck(type)}
-                  onDoubleClick={() => handleOpenRaw(type)}
-                  className={`px-4 py-3 rounded-lg border text-sm font-medium transition-all select-none ${
-                    deck === type
-                      ? "bg-white text-[#111] border-white"
-                      : "bg-[#1a1a1a] text-[#888] border-[#333] hover:border-[#666] hover:text-white"
-                  }`}
-                >
-                  {deckLabel(type, t)}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <label className="block text-xs font-mono text-[#888] uppercase tracking-widest mb-2">
               {t("langLabel")}
             </label>
             <div className="grid grid-cols-2 gap-3">
@@ -175,26 +129,6 @@ export default function DeckLauncher() {
             >
               {t("downloadButton")} ↓
             </button>
-          </div>
-
-          <div className="border-t border-[#333] mt-8 pt-6">
-            <label className="block text-xs font-mono text-[#888] uppercase tracking-widest mb-3">
-              {t("defaultDownloads")}
-            </label>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {(["sales", "infosheet", "market", "short"] as const).map((type) => (
-                <button
-                  key={type}
-                  onClick={() => {
-                    const path = deckPath(type);
-                    window.open(`/${lang}/${path}?print=true`, "_blank");
-                  }}
-                  className="py-3 rounded-lg border border-[#333] text-[#888] text-sm font-medium hover:border-[#666] hover:text-white transition-all cursor-pointer"
-                >
-                  {deckLabel(type, t)} ↓
-                </button>
-              ))}
-            </div>
           </div>
 
           <p className="text-[#555] text-xs text-center mt-5">{t("hint")}</p>

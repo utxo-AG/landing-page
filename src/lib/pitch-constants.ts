@@ -1,39 +1,7 @@
-export const COMPARISON_ROWS = [
-  { key: "Entry", highlight: [true, false, false, false] },
-  { key: "Lockin", highlight: [true, false, false, false] },
-  { key: "Setup", highlight: [true, false, false, false] },
-  { key: "Standalone", highlight: [true, false, false, false] },
-  { key: "SME", highlight: [true, false, false, false] },
-  { key: "Approach", highlight: [true, false, false, false] },
-  { key: "Holistic", highlight: [true, false, false, false] },
-];
-
-export const COMPARISON_HEADERS = ["Utxo", "Copilot", "Salesforce", "Parloa"];
-
 export const PRICING_TIERS = [
   { key: "tier1", price: "99", recommended: false },
   { key: "tier2", price: "249", recommended: true },
   { key: "tier3", price: "499", recommended: false },
-];
-
-export const MARKET_STATS = [
-  { key: "stat1", value: "6–17%" },
-  { key: "stat2", value: "79%" },
-  { key: "stat3", value: "53%" },
-];
-
-export const EMAIL_FLOW_STEPS = [
-  { key: "step1" },
-  { key: "step2" },
-  { key: "step3" },
-  { key: "step4" },
-  { key: "step5", highlighted: true },
-];
-
-export const ROADMAP_PROJECTS = [
-  { key: "project1" },
-  { key: "project2", highlighted: true },
-  { key: "project3" },
 ];
 
 export const CTA_STEPS = [
@@ -42,48 +10,20 @@ export const CTA_STEPS = [
   { num: "03", key: "step3" },
 ];
 
-export const HOW_TO_STEPS = [
-  { num: 1, key: "step1" },
-  { num: 2, key: "step2" },
-  { num: 3, key: "step3" },
-];
-
 export const DELIVERABLE_FORMATS = [
-  { key: "email", icon: "email" },
-  { key: "excel", icon: "excel" },
-  { key: "pdf", icon: "pdf" },
-  { key: "proposal", icon: "proposal" },
-  { key: "monitoring", icon: "monitoring" },
-  { key: "escalation", icon: "escalation" },
-  { key: "landing", icon: "landing" },
-  { key: "marketing", icon: "marketing" },
+  { key: "email", icon: "email", category: "comm", color: "#c4a882" },
+  { key: "excel", icon: "excel", category: "doc", color: "#1e2a4a" },
+  { key: "pdf", icon: "pdf", category: "doc", color: "#1e2a4a" },
+  { key: "proposal", icon: "proposal", category: "doc", color: "#1e2a4a" },
+  { key: "monitoring", icon: "monitoring", category: "monitor", color: "#10b981" },
+  { key: "escalation", icon: "escalation", category: "monitor", color: "#10b981" },
+  { key: "landing", icon: "landing", category: "web", color: "#7c5cbf" },
+  { key: "marketing", icon: "marketing", category: "comm", color: "#c4a882" },
 ];
 
-export const QUICK_REFERENCE_ITEMS = [
-  { key: "quote" },
-  { key: "complaint" },
-  { key: "report" },
-  { key: "followup" },
-  { key: "translation" },
-  { key: "status" },
-];
-
-export const LIMITATIONS = [
-  { key: "cannot1", type: "cannot" as const },
-  { key: "cannot2", type: "cannot" as const },
-  { key: "cannot3", type: "cannot" as const },
-  { key: "cannot4", type: "cannot" as const },
-  { key: "best1", type: "best" as const },
-  { key: "best2", type: "best" as const },
-  { key: "best3", type: "best" as const },
-  { key: "best4", type: "best" as const },
-];
-
-export const CHAT_MESSAGES = [
-  { sender: "agent" as const, key: "chat1", time: "09:12", actionCount: 3 },
-  { sender: "agent" as const, key: "chat2", time: "09:12", actionCount: 2 },
-  { sender: "human" as const, key: "chat3", time: "09:14", actionCount: 0 },
-  { sender: "agent" as const, key: "chat4", time: "09:14", actionCount: 2 },
-  { sender: "human" as const, key: "chat5", time: "09:15", actionCount: 0 },
-  { sender: "agent" as const, key: "chat6", time: "09:15", actionCount: 4 },
-];
+export const WORKFLOW_STAGES = [
+  { num: 1, key: "stage1", accent: "#4a5578" },
+  { num: 2, key: "stage2", accent: "#1e2a4a" },
+  { num: 3, key: "stage3", accent: "#c4a882" },
+  { num: 4, key: "stage4", accent: "#10b981" },
+] as const;

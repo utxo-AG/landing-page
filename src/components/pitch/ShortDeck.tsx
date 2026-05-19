@@ -6,10 +6,9 @@ import PitchLayout from "./PitchLayout";
 import WelcomeSlide from "./WelcomeSlide";
 import WhoWeAre from "./slides/WhoWeAre";
 import WhyUtxoAG from "./slides/WhyUtxoAG";
-import TitleSlide from "./slides/TitleSlide";
-import HowToWorkWithOtto from "./slides/HowToWorkWithOtto";
+import WhatWeDo from "./slides/WhatWeDo";
+import Workflow from "./slides/Workflow";
 import TimeSavings from "./slides/TimeSavings";
-import EmailArchitecture from "./slides/EmailArchitecture";
 import SecurityArchitecture from "./slides/SecurityArchitecture";
 import Deliverables from "./slides/Deliverables";
 import LiveDemo from "./slides/LiveDemo";
@@ -25,7 +24,7 @@ function ShortDeckInner() {
   const isPrint = searchParams.get("print") === "true";
 
   const hasWelcome = !!company;
-  const slideCount = 11 + (hasWelcome ? 1 : 0) + (isPrint ? 0 : 1);
+  const slideCount = 10 + (hasWelcome ? 1 : 0) + (isPrint ? 0 : 1);
 
   return (
     <PitchLayout slideCount={slideCount} pdfFilename="utxo AG — Short.pdf">
@@ -34,9 +33,8 @@ function ShortDeckInner() {
       )}
       <WhoWeAre />
       <WhyUtxoAG />
-      <TitleSlide />
-      <HowToWorkWithOtto />
-      <EmailArchitecture />
+      <WhatWeDo />
+      <Workflow />
       <TimeSavings />
       {!isPrint && <LiveDemo />}
       <SecurityArchitecture />

@@ -52,10 +52,10 @@ function TeamIcon() {
 }
 
 const LEVERS = [
-  { key: "lever1", Icon: ProcessIcon },
-  { key: "lever2", Icon: CreativityIcon },
-  { key: "lever3", Icon: SpeedIcon },
-  { key: "lever4", Icon: TeamIcon },
+  { key: "lever1", Icon: ProcessIcon, color: "#1e2a4a" },
+  { key: "lever2", Icon: CreativityIcon, color: "#c4a882" },
+  { key: "lever3", Icon: SpeedIcon, color: "#10b981" },
+  { key: "lever4", Icon: TeamIcon, color: "#7c5cbf" },
 ] as const;
 
 export default function TimeSavings() {
@@ -83,15 +83,21 @@ export default function TimeSavings() {
       </motion.p>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 mb-8">
-        {LEVERS.map(({ key, Icon }, i) => (
+        {LEVERS.map(({ key, Icon, color }, i) => (
           <motion.div
             key={key}
             variants={itemVariants}
-            className="hover-card bg-white rounded-xl p-5 md:p-6 shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-[#ebe4d8] transition-[transform,box-shadow] duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:-translate-y-0.5"
+            className="hover-card relative bg-white rounded-xl p-5 md:p-6 shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-[#ebe4d8] transition-[transform,box-shadow] duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 overflow-hidden"
           >
-            <div className="flex items-center justify-between mb-5 text-[#1e2a4a]">
-              <Icon />
-              <span className="font-mono text-[10px] uppercase tracking-wider text-[#999]">
+            <div className="absolute top-0 left-0 right-0 h-[3px]" style={{ background: color }} />
+            <div className="flex items-center justify-between mb-5">
+              <span
+                className="inline-flex items-center justify-center w-11 h-11 rounded-xl"
+                style={{ background: `${color}1A`, color }}
+              >
+                <Icon />
+              </span>
+              <span className="font-mono text-[10px] uppercase tracking-wider" style={{ color }}>
                 0{i + 1}
               </span>
             </div>
