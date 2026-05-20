@@ -40,13 +40,12 @@ export default function ThankYouSlide() {
         {isPrint ? (
           <div className="text-center max-md:!transform-none">
             <div className="mb-12 flex justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className="w-16 h-16 md:w-20 md:h-20">
-                <rect width="48" height="48" rx="10" fill="#fff" />
-                <path d="M12 8 L12 30 Q12 42 22 42 L26 42 Q36 42 36 30 L36 22" stroke="#111" strokeWidth="3.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                <path d="M24 8 L24 26 Q24 33 30 33 L36 33" stroke="#111" strokeWidth="3.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                <circle cx="40" cy="22" r="3.8" fill="#111" />
-                <circle cx="40" cy="33" r="3.8" fill="#111" />
-              </svg>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/brand/utxo-wordmark-inverse.svg"
+                alt="utxo AG"
+                className="h-16 md:h-20 w-auto"
+              />
             </div>
 
             <h1 className="text-[40px] md:text-[56px] lg:text-[64px] font-bold leading-[1.1] tracking-tight mb-6">
@@ -74,13 +73,12 @@ export default function ThankYouSlide() {
               transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
               className="mb-12 flex justify-center"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className="w-16 h-16 md:w-20 md:h-20">
-                <rect width="48" height="48" rx="10" fill="#fff" />
-                <path d="M12 8 L12 30 Q12 42 22 42 L26 42 Q36 42 36 30 L36 22" stroke="#111" strokeWidth="3.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                <path d="M24 8 L24 26 Q24 33 30 33 L36 33" stroke="#111" strokeWidth="3.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                <circle cx="40" cy="22" r="3.8" fill="#111" />
-                <circle cx="40" cy="33" r="3.8" fill="#111" />
-              </svg>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/brand/utxo-wordmark-inverse.svg"
+                alt="utxo AG"
+                className="h-16 md:h-20 w-auto"
+              />
             </motion.div>
 
             <motion.h1
@@ -142,13 +140,13 @@ export default function ThankYouSlide() {
       <div className="absolute bottom-0 left-0 right-0 px-6 py-8">
         <div className="max-w-[1120px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <svg width="16" height="19" viewBox="6 4.5 37 39" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M10 8 L10 30 Q10 40 20 40 L24 40 Q34 40 34 30 L34 22" stroke="#fff" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M22 8 L22 26 Q22 32 28 32 L34 32" stroke="#fff" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <circle cx="38" cy="22" r="3.5" fill="#fff"/>
-              <circle cx="38" cy="32" r="3.5" fill="#fff"/>
-            </svg>
-            <span className="text-[13px] text-white/40">{f("copyright", { year: new Date().getFullYear() })}</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/brand/utxo-wordmark-inverse.svg"
+              alt="utxo AG"
+              className="h-6 w-auto opacity-60"
+            />
+            <span className="text-[13px] font-mono text-white/40">{f("copyright", { year: new Date().getFullYear() })}</span>
           </div>
           <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-[12px] text-white/30">
             <Link href="/imprint" className="hover:text-white/60 transition-colors duration-200">{f("imprint")}</Link>

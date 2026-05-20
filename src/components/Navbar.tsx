@@ -6,17 +6,6 @@ import { NAV_ITEMS } from "@/lib/constants";
 import { Link } from "@/i18n/navigation";
 import LocaleSwitcher from "@/components/LocaleSwitcher";
 
-function Logo() {
-  return (
-    <svg width="26" height="30" viewBox="6 4.5 37 39" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M10 8 L10 30 Q10 40 20 40 L24 40 Q34 40 34 30 L34 22" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M22 8 L22 26 Q22 32 28 32 L34 32" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
-      <circle cx="38" cy="22" r="3.5" fill="currentColor"/>
-      <circle cx="38" cy="32" r="3.5" fill="currentColor"/>
-    </svg>
-  );
-}
-
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -37,9 +26,13 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex h-[60px] max-w-[1120px] items-center justify-between px-6">
-        <Link href="/" className="flex items-center gap-2">
-          <Logo />
-          <span className="text-[16px] font-bold tracking-[-0.4px]">utxo AG</span>
+        <Link href="/" className="flex items-center" aria-label="utxo AG home">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/brand/utxo-wordmark.svg"
+            alt="utxo AG"
+            className="h-9 md:h-10 w-auto"
+          />
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
@@ -47,14 +40,14 @@ export default function Navbar() {
             <a
               key={item.href}
               href={item.href}
-              className="text-[13px] text-[#888] hover:text-[#111] transition-colors duration-200"
+              className="font-display text-[13px] font-medium text-[#696969] hover:text-[#111] transition-colors duration-200"
             >
               {t(item.key)}
             </a>
           ))}
           <a
             href="#booking"
-            className="text-[13px] font-medium text-white bg-[#111] px-4 py-1.5 rounded-full hover:bg-[#333] transition-colors duration-200 cursor-pointer"
+            className="text-[13px] font-medium text-[#111] bg-stone hover:bg-[#d4d4d4] px-4 py-1.5 rounded-full transition-colors duration-200 cursor-pointer"
           >
             {t("bookCall")}
           </a>
@@ -88,7 +81,7 @@ export default function Navbar() {
             <a
               key={item.href}
               href={item.href}
-              className="block py-2.5 text-[14px] text-[#888] hover:text-[#111]"
+              className="block py-2.5 font-display text-[14px] text-[#696969] hover:text-[#111]"
               onClick={() => setOpen(false)}
             >
               {t(item.key)}

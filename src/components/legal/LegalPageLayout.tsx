@@ -14,21 +14,21 @@ export default function LegalPageLayout({
   return (
     <main className="px-6 py-32">
       <div className="max-w-[640px] mx-auto">
-        <h1 className="text-[36px] font-extrabold tracking-[-1.5px] leading-[1.1] mb-4">
+        <h1 className="font-display text-[36px] md:text-[48px] font-semibold tracking-[-0.028em] leading-[1] mb-4">
           {heading}
         </h1>
         {lastUpdated && (
-          <p className="text-[14px] text-[#999] mb-12">{lastUpdated}</p>
+          <p className="text-[13px] font-mono text-[#696969] mb-12">{lastUpdated}</p>
         )}
 
-        <div className="text-[15px] text-[#555] leading-[1.75]">
+        <div className="text-[15px] text-[#3f3f3f] leading-[1.75]">
           {children}
         </div>
 
-        <div className="mt-16 pt-8 border-t border-[#eee]">
+        <div className="mt-16 pt-8 border-t border-[#e5e4e2]">
           <Link
             href="/"
-            className="text-[13px] text-[#999] hover:text-[#111] transition-colors"
+            className="text-[13px] text-[#696969] hover:text-[#111] transition-colors"
           >
             {backToHomeLabel}
           </Link>

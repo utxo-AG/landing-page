@@ -66,10 +66,10 @@ export default function Hero() {
       <div className="max-w-[1120px] mx-auto">
         <div className="max-w-[760px]">
           <div className="flex items-center gap-3 mb-8">
-            <p className="text-[12px] font-mono uppercase tracking-[0.14em] text-[#999]">
+            <p className="text-[12px] font-mono font-medium uppercase tracking-[0.08em] text-[#696969]">
               {t("label")}
             </p>
-            <span className="text-[#ddd]">·</span>
+            <span className="text-[#d4d4d4]">·</span>
             <span className="inline-flex items-center gap-1.5">
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="German flag">
                 <clipPath id="de-clip"><rect width="14" height="14" rx="2"/></clipPath>
@@ -87,12 +87,12 @@ export default function Hero() {
             </span>
           </div>
 
-          <h1 className="text-[44px] md:text-[64px] lg:text-[76px] font-extrabold tracking-[-3px] leading-[1.02] mb-8">
+          <h1 className="font-display text-[44px] md:text-[64px] lg:text-[76px] font-semibold tracking-[-0.028em] leading-[1] mb-8">
             {t("titleBlack")}{" "}
-            <span className="text-[#bbb]">{t("titleGray")}</span>
+            <span className="text-[#a3a3a3]">{t("titleGray")}</span>
           </h1>
 
-          <p className="text-[17px] md:text-[19px] leading-[1.65] text-[#777] max-w-[560px] mb-8">
+          <p className="text-[17px] md:text-[19px] leading-[1.65] text-[#696969] max-w-[560px] mb-8">
             {t("description")}
           </p>
 
@@ -105,7 +105,7 @@ export default function Hero() {
           <div className="flex flex-wrap items-center gap-3">
             <a
               href="#booking"
-              className="inline-flex items-center gap-2 bg-[#111] text-white text-[14px] font-medium px-6 py-3 rounded-full hover:bg-[#333] transition-colors duration-200 cursor-pointer"
+              className="inline-flex items-center gap-2 bg-[#111] text-white text-[14px] font-medium px-6 py-3 rounded-lg hover:bg-[#3f3f3f] transition-colors duration-200 cursor-pointer"
             >
               {t("ctaPrimary")}
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -115,21 +115,21 @@ export default function Hero() {
             </a>
             <a
               href="#callback"
-              className="inline-flex items-center gap-2 bg-white border border-[#e5e5e5] text-[#111] text-[14px] font-medium px-6 py-3 rounded-full hover:border-[#111] transition-colors duration-200 cursor-pointer"
+              className="inline-flex items-center gap-2 bg-white border border-[#d4d4d4] text-[#111] text-[14px] font-medium px-6 py-3 rounded-lg hover:border-[#111] transition-colors duration-200 cursor-pointer"
             >
               {t("ctaSecondary")}
             </a>
           </div>
         </div>
 
-        <div className="mt-20 bg-[#fafafa] border border-[#eee] rounded-2xl overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.04)]">
-          <div className="border-b border-[#eee] px-6 py-3 flex items-center gap-2">
+        <div className="mt-20 bg-[#fafafa] border border-[#e5e4e2] rounded-2xl overflow-hidden shadow-[0_12px_32px_-8px_rgba(0,0,0,0.10)]">
+          <div className="border-b border-[#e5e4e2] px-6 py-3 flex items-center gap-2">
             <div className="flex gap-1.5">
-              <div className="w-2.5 h-2.5 rounded-full bg-[#e8e8e8]"/>
-              <div className="w-2.5 h-2.5 rounded-full bg-[#e8e8e8]"/>
-              <div className="w-2.5 h-2.5 rounded-full bg-[#e8e8e8]"/>
+              <div className="w-2.5 h-2.5 rounded-full bg-[#d4d4d4]"/>
+              <div className="w-2.5 h-2.5 rounded-full bg-[#d4d4d4]"/>
+              <div className="w-2.5 h-2.5 rounded-full bg-[#d4d4d4]"/>
             </div>
-            <div className="ml-4 flex items-center gap-2 text-[11px] text-[#bbb]">
+            <div className="ml-4 flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.06em] text-[#a3a3a3]">
               <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.2">
                 <rect x="1" y="3" width="12" height="9" rx="1.5"/>
                 <path d="M1 5l6 4 6-4"/>
@@ -139,33 +139,33 @@ export default function Hero() {
           </div>
 
           <div className="grid md:grid-cols-[260px_1fr]">
-            <div className="hidden md:block border-r border-[#eee] p-3 space-y-1">
+            <div className="hidden md:block border-r border-[#e5e4e2] p-3 space-y-1">
               {DEMO_KEYS.map((key) => (
                 <button
                   key={key}
                   onClick={() => setActive(key)}
                   className={`w-full text-left rounded-lg px-3 py-2.5 transition-all duration-150 ${
                     active === key
-                      ? "bg-white border border-[#eee] shadow-[0_1px_4px_rgba(0,0,0,0.04)]"
-                      : "hover:bg-[#f5f5f5]"
+                      ? "bg-white border border-[#e5e4e2] shadow-[0_1px_4px_rgba(0,0,0,0.04)]"
+                      : "hover:bg-[#f4f4f4]"
                   }`}
                 >
                   <div className="flex items-center gap-2 mb-1">
                     <div
-                      className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 ${
-                        active === key ? "bg-[#111]" : "bg-[#ddd]"
+                      className={`w-5 h-5 rounded flex items-center justify-center shrink-0 ${
+                        active === key ? "bg-[#111]" : "bg-[#d4d4d4]"
                       }`}
                     >
                       <span className="text-[7px] text-white font-bold">AI</span>
                     </div>
                     <span className={`text-[11px] font-semibold truncate ${
-                      active === key ? "text-[#111]" : "text-[#bbb]"
+                      active === key ? "text-[#111]" : "text-[#a3a3a3]"
                     }`}>
                       {td(`${key}.name`)}
                     </span>
                   </div>
                   <p className={`text-[10px] truncate pl-7 ${
-                    active === key ? "text-[#999]" : "text-[#ccc]"
+                    active === key ? "text-[#696969]" : "text-[#a3a3a3]"
                   }`}>
                     {td(`${key}.preview`)}
                   </p>
@@ -173,7 +173,7 @@ export default function Hero() {
               ))}
             </div>
 
-            <div className="md:hidden flex border-b border-[#eee] overflow-x-auto">
+            <div className="md:hidden flex border-b border-[#e5e4e2] overflow-x-auto">
               {DEMO_KEYS.map((key) => (
                 <button
                   key={key}
@@ -181,7 +181,7 @@ export default function Hero() {
                   className={`shrink-0 px-4 py-2.5 text-[11px] font-medium border-b-2 transition-colors ${
                     active === key
                       ? "border-[#111] text-[#111]"
-                      : "border-transparent text-[#bbb]"
+                      : "border-transparent text-[#a3a3a3]"
                   }`}
                 >
                   {td(`${key}.name`)}
@@ -191,31 +191,31 @@ export default function Hero() {
 
             <div className="p-6 md:p-8 h-[640px] overflow-y-auto">
               <div className="flex items-center gap-3 mb-1">
-                <div className="w-8 h-8 rounded-full bg-[#111] flex items-center justify-center shrink-0">
+                <div className="w-8 h-8 rounded bg-[#111] flex items-center justify-center shrink-0">
                   <span className="text-[9px] text-white font-bold">AI</span>
                 </div>
                 <div className="min-w-0">
                   <div className="flex items-center gap-2">
                     <span className="text-[13px] font-semibold">{td(`${active}.name`)}</span>
-                    <span className="text-[11px] text-[#bbb]">{t("toYou")}</span>
+                    <span className="text-[11px] text-[#a3a3a3]">{t("toYou")}</span>
                   </div>
-                  <p className="text-[12px] text-[#999] truncate">{td(`${active}.subject`)}</p>
+                  <p className="text-[12px] text-[#696969] truncate">{td(`${active}.subject`)}</p>
                 </div>
               </div>
 
               <div className="ml-11 mt-4 space-y-4">
-                <p className="text-[13px] text-[#555] leading-[1.7]">{td(`${active}.body1`)}</p>
-                <p className="text-[13px] text-[#555] leading-[1.7]">{td(`${active}.body2`)}</p>
+                <p className="text-[13px] text-[#3f3f3f] leading-[1.7]">{td(`${active}.body1`)}</p>
+                <p className="text-[13px] text-[#3f3f3f] leading-[1.7]">{td(`${active}.body2`)}</p>
 
-                <div className="bg-white border border-[#eee] rounded-lg p-4 space-y-2.5">
+                <div className="bg-white border border-[#e5e4e2] rounded-xl p-4 space-y-2.5">
                   {demo.rows.map((row) => (
                     <div key={row.labelKey}>
                       <div className="flex justify-between text-[12px] mb-1 gap-3">
-                        <span className="text-[#888] shrink-0">{td(`${active}.${row.labelKey}`)}</span>
-                        <span className="font-semibold text-[#333] text-right truncate">{td(`${active}.${row.valueKey}`)}</span>
+                        <span className="text-[#696969] shrink-0">{td(`${active}.${row.labelKey}`)}</span>
+                        <span className="font-mono font-medium text-[#111] text-right truncate tabular-nums">{td(`${active}.${row.valueKey}`)}</span>
                       </div>
                       {row.bar > 0 && (
-                        <div className="w-full bg-[#f0f0f0] rounded-full h-1.5">
+                        <div className="w-full bg-[#f4f4f4] rounded-full h-1.5">
                           <div
                             className="bg-[#111] h-1.5 rounded-full transition-all duration-500"
                             style={{ width: `${row.bar}%` }}
@@ -224,7 +224,7 @@ export default function Hero() {
                       )}
                     </div>
                   ))}
-                  <div className="pt-2 border-t border-[#f0f0f0] text-[11px] text-[#999]">
+                  <div className="pt-2 border-t border-[#f4f4f4] text-[11px] font-mono text-[#696969]">
                     {td(`${active}.footer`)}
                   </div>
                 </div>
@@ -241,7 +241,7 @@ export default function Hero() {
                   items={demo.trailKeys.map((k) => td(`${active}.${k}`))}
                 />
 
-                <p className="text-[13px] text-[#555] leading-[1.7]">{td(`${active}.closing`)}</p>
+                <p className="text-[13px] text-[#3f3f3f] leading-[1.7]">{td(`${active}.closing`)}</p>
               </div>
             </div>
           </div>
@@ -249,18 +249,18 @@ export default function Hero() {
 
         <a
           href="#booking"
-          className="mt-4 group flex items-center justify-between gap-4 bg-white border border-dashed border-[#ccc] rounded-2xl px-6 py-4 hover:border-[#111] hover:bg-[#fafafa] transition-colors duration-200"
+          className="mt-4 group flex items-center justify-between gap-4 bg-white border border-dashed border-[#d4d4d4] rounded-xl px-6 py-4 hover:border-[#111] hover:bg-[#fafafa] transition-colors duration-200"
         >
           <div className="flex items-center gap-3 min-w-0">
-            <span className="w-8 h-8 rounded-full bg-white border-2 border-dashed border-[#111] flex items-center justify-center shrink-0">
+            <span className="w-8 h-8 rounded bg-white border-2 border-dashed border-[#111] flex items-center justify-center shrink-0">
               <span className="text-[12px] font-bold text-[#111]">+</span>
             </span>
-            <p className="text-[14px] text-[#555] truncate">
+            <p className="text-[14px] text-[#3f3f3f] truncate">
               <span className="font-semibold text-[#111]">{t("customBannerText")}</span>{" "}
-              <span className="text-[#777]">{t("customBannerCta")}</span>
+              <span className="text-[#696969]">{t("customBannerCta")}</span>
             </p>
           </div>
-          <svg className="text-[#999] group-hover:text-[#111] group-hover:translate-x-0.5 transition-all duration-200 shrink-0" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg className="text-[#a3a3a3] group-hover:text-[#111] group-hover:translate-x-0.5 transition-all duration-200 shrink-0" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <line x1="1" y1="7" x2="13" y2="7" />
             <polyline points="8,2 13,7 8,12" />
           </svg>
@@ -272,7 +272,7 @@ export default function Hero() {
 
 function TrustBadge({ label }: { label: string }) {
   return (
-    <span className="inline-flex items-center gap-1.5 text-[11px] font-mono text-[#666] bg-[#f5f5f5] border border-[#eee] px-3 py-1 rounded-full">
+    <span className="inline-flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-[0.04em] text-[#3f3f3f] bg-stone border border-[#e5e4e2] px-3 py-1 rounded-full">
       <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#111" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="2,5 4,7 8,3" />
       </svg>
@@ -283,15 +283,15 @@ function TrustBadge({ label }: { label: string }) {
 
 function AttachmentBadge({ name, size }: { name: string; size: string }) {
   return (
-    <div className="inline-flex items-center gap-2.5 bg-white border border-[#e5e5e5] rounded-lg px-3 py-2.5 max-w-full">
-      <span className="w-7 h-7 rounded-md bg-[#fef2f2] border border-[#fecaca] flex items-center justify-center shrink-0">
-        <span className="text-[8px] font-bold text-[#b91c1c] tracking-tight">PDF</span>
+    <div className="inline-flex items-center gap-2.5 bg-white border border-[#e5e4e2] rounded-lg px-3 py-2.5 max-w-full">
+      <span className="w-7 h-7 rounded bg-[#111] flex items-center justify-center shrink-0">
+        <span className="text-[8px] font-bold text-white tracking-tight">PDF</span>
       </span>
       <div className="flex flex-col min-w-0">
-        <span className="text-[12px] font-medium text-[#333] truncate">{name}</span>
-        <span className="text-[10px] text-[#999]">{size}</span>
+        <span className="text-[12px] font-medium text-[#111] truncate">{name}</span>
+        <span className="text-[10px] font-mono text-[#696969]">{size}</span>
       </div>
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#999" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 ml-1">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#a3a3a3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 ml-1">
         <path d="M7 1v9M4 7l3 3 3-3"/>
         <path d="M2 11v1.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V11"/>
       </svg>
@@ -307,13 +307,13 @@ function ActionTrail({
   items: string[];
 }) {
   return (
-    <div className="bg-[#f5f5f5] border border-[#eee] rounded-lg p-3">
-      <p className="text-[10px] font-mono uppercase tracking-[0.1em] text-[#999] mb-2">
+    <div className="bg-[#fafafa] border border-[#e5e4e2] rounded-lg p-3">
+      <p className="text-[10px] font-mono uppercase tracking-[0.08em] text-[#696969] mb-2">
         {label}
       </p>
       <ul className="space-y-1.5">
         {items.map((item, i) => (
-          <li key={i} className="flex items-center gap-2 text-[12px] text-[#555]">
+          <li key={i} className="flex items-center gap-2 text-[12px] text-[#3f3f3f]">
             <span className="w-3.5 h-3.5 rounded-full bg-[#111] flex items-center justify-center shrink-0">
               <svg width="7" height="7" viewBox="0 0 7 7" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="1,3.5 2.8,5 6,1.8" />

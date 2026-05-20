@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# Brand source assets — only the processed copies in public/brand/ + BRAND.md ship
+UTXO AG Brand Assets/
+
 # ralph / agent session files
 .ralph_session
 .ralph_session_history

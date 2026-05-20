@@ -37,13 +37,13 @@ export default function CallbackForm() {
 
   if (status === "success") {
     return (
-      <div className="bg-white border border-[#eee] rounded-2xl p-8 text-center">
+      <div className="bg-white border border-[#e5e4e2] rounded-xl p-8 text-center">
         <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-[#111] flex items-center justify-center">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="4,10 8,14 16,6" />
           </svg>
         </div>
-        <p className="text-[15px] text-[#333] leading-[1.6]">{t("success")}</p>
+        <p className="text-[15px] text-[#3f3f3f] leading-[1.6]">{t("success")}</p>
       </div>
     );
   }
@@ -60,12 +60,12 @@ export default function CallbackForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="w-full bg-[#111] text-white text-[14px] font-medium px-6 py-3 rounded-full hover:bg-[#333] transition-colors duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full bg-[#111] text-white text-[14px] font-medium px-6 py-3 rounded-lg hover:bg-[#3f3f3f] transition-colors duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {status === "submitting" ? t("submitting") : t("submit")}
       </button>
       {status === "error" && (
-        <p className="text-[13px] text-[#c33] text-center mt-2">{t("error")}</p>
+        <p className="text-[13px] text-[#b42318] text-center mt-2">{t("error")}</p>
       )}
     </form>
   );
@@ -86,16 +86,16 @@ function Field({
 }) {
   return (
     <div>
-      <label className="block text-[12px] font-mono uppercase tracking-[0.08em] text-[#999] mb-1.5">
+      <label className="block text-[12px] font-mono font-medium uppercase tracking-[0.08em] text-[#696969] mb-1.5">
         {label}
-        {required && <span className="text-[#c33] ml-1">*</span>}
+        {required && <span className="text-[#b42318] ml-1">*</span>}
       </label>
       <input
         type={type}
         name={name}
         placeholder={placeholder}
         required={required}
-        className="w-full bg-white border border-[#e5e5e5] rounded-xl px-4 py-2.5 text-[14px] text-[#333] placeholder-[#bbb] focus:outline-none focus:border-[#111] transition-colors"
+        className="w-full bg-white border border-[#d4d4d4] rounded-md px-4 py-2.5 text-[14px] text-[#111] placeholder-[#a3a3a3] focus:outline-none focus:border-[#111] transition-colors"
       />
     </div>
   );

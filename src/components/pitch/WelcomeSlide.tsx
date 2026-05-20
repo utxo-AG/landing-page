@@ -17,7 +17,7 @@ export default function WelcomeSlide({
   const isPrint = usePrintMode();
 
   return (
-    <section className="min-h-[100dvh] w-full snap-start flex items-center justify-center bg-[#111] text-white px-6">
+    <section className="min-h-[100dvh] w-full snap-start flex items-center justify-center bg-[#111] text-white px-6 relative">
       <div className="text-center max-w-[800px]">
         {logo && (
           isPrint ? (
@@ -62,7 +62,7 @@ export default function WelcomeSlide({
         )}
 
         {isPrint ? (
-          <h1 className="text-[40px] md:text-[56px] lg:text-[64px] font-bold leading-[1.1] tracking-tight mb-6">
+          <h1 className="font-display text-[40px] md:text-[56px] lg:text-[64px] font-semibold leading-[1.1] tracking-tight mb-6">
             {company}
           </h1>
         ) : (
@@ -70,7 +70,7 @@ export default function WelcomeSlide({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-            className="text-[40px] md:text-[56px] lg:text-[64px] font-bold leading-[1.1] tracking-tight mb-6"
+            className="font-display text-[40px] md:text-[56px] lg:text-[64px] font-semibold leading-[1.1] tracking-tight mb-6"
           >
             {company}
           </motion.h1>
@@ -93,21 +93,6 @@ export default function WelcomeSlide({
           )
         )}
 
-        {isPrint ? (
-          <div className="mt-16 flex items-center justify-center gap-3 text-[#555] text-xs font-mono">
-            <span>{t("footer")}</span>
-          </div>
-        ) : (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.4, duration: 0.8 }}
-            className="mt-16 flex items-center justify-center gap-3 text-[#555] text-xs font-mono"
-          >
-            <span>{t("footer")}</span>
-          </motion.div>
-        )}
-
         {isPrint ? null : (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -119,6 +104,34 @@ export default function WelcomeSlide({
           </motion.div>
         )}
       </div>
+
+      {/* utxo brand identity — bottom centered, kept separate from customer logo */}
+      {isPrint ? (
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/brand/utxo-wordmark-inverse.svg"
+            alt="utxo AG"
+            className="h-8 w-auto opacity-80"
+          />
+          <span className="text-[#555] text-xs font-mono">{t("footer")}</span>
+        </div>
+      ) : (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.4, duration: 0.8 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/brand/utxo-wordmark-inverse.svg"
+            alt="utxo AG"
+            className="h-8 w-auto opacity-80"
+          />
+          <span className="text-[#555] text-xs font-mono">{t("footer")}</span>
+        </motion.div>
+      )}
     </section>
   );
 }
