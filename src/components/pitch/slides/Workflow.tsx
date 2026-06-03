@@ -118,11 +118,9 @@ function ProgressBar({
 function StageCardContent({
   stage,
   t,
-  printLayout = false,
 }: {
   stage: StageNum;
   t: (k: string) => string;
-  printLayout?: boolean;
 }) {
   const accent = WORKFLOW_STAGES[stage - 1].accent;
 
@@ -150,15 +148,6 @@ function StageCardContent({
     </div>
   );
 
-  if (printLayout) {
-    return (
-      <>
-        {TextBlock}
-        <div className="mt-5">{Diagram}</div>
-      </>
-    );
-  }
-
   return (
     <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-7 items-center">
       <div className="md:col-span-5">{TextBlock}</div>
@@ -167,24 +156,36 @@ function StageCardContent({
   );
 }
 
-function PrintStageSection({
+function PrintStageSlide({
   stage,
   t,
-  breakBefore,
 }: {
   stage: StageNum;
   t: (k: string) => string;
-  breakBefore: boolean;
 }) {
   const accent = WORKFLOW_STAGES[stage - 1].accent;
   return (
-    <div
-      style={breakBefore ? { breakBefore: "page" } : undefined}
-      className="relative bg-white border border-[#ebe4d8] rounded-2xl p-7 md:p-10 mb-8 overflow-hidden"
-    >
-      <div className="absolute top-0 left-0 right-0 h-[4px]" style={{ background: accent }} />
-      <StageCardContent stage={stage} t={t} printLayout />
-    </div>
+    <SlideWrapper variant="warm">
+      <div className="flex items-center gap-3 mb-5">
+        <p className="text-[#666] text-sm font-mono tracking-[0.15em] uppercase">
+          {t("label")}
+        </p>
+        <span
+          className="px-2.5 py-0.5 rounded-full text-[10px] font-mono tracking-wider"
+          style={{ background: accent, color: stage === 4 ? "#0b1426" : "#fff" }}
+        >
+          {String(stage).padStart(2, "0")} / 04
+        </span>
+      </div>
+      <h2 className="text-[26px] md:text-[36px] font-bold leading-[1.15] tracking-tight mb-6">
+        {t("headline")}
+      </h2>
+      <div className="relative bg-white border border-[#ebe4d8] rounded-2xl p-7 md:p-9 overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-[4px]" style={{ background: accent }} />
+        <StageCardContent stage={stage} t={t} />
+      </div>
+      <p className="text-[#666] text-sm mt-5">{t("footnote")}</p>
+    </SlideWrapper>
   );
 }
 
@@ -193,44 +194,14 @@ export default function Workflow() {
   const isPrint = usePrintMode();
   const [activeStage, setActiveStage] = useState<StageNum>(1);
 
-  // ------- Print mode: all four stages stacked, each on its own page -------
+  // ------- Print mode: each stage on its own page (1 section = 1 page) -------
   if (isPrint) {
     return (
-      <SlideWrapper variant="warm">
-        <div className="max-w-[760px] mb-10">
-          <motion.p
-            variants={itemVariants}
-            className="text-[#666] text-sm font-mono tracking-[0.15em] uppercase mb-4"
-          >
-            {t("label")}
-          </motion.p>
-          <motion.h2
-            variants={itemVariants}
-            className="text-[32px] md:text-[48px] font-bold leading-[1.1] tracking-tight mb-4"
-          >
-            {t("headline")}
-          </motion.h2>
-          <motion.p
-            variants={itemVariants}
-            className="text-[#555] text-base md:text-lg leading-relaxed max-w-[700px]"
-          >
-            {t("description")}
-          </motion.p>
-        </div>
-
-        <div>
-          {[1, 2, 3, 4].map((n) => (
-            <PrintStageSection
-              key={n}
-              stage={n as StageNum}
-              t={t}
-              breakBefore={n !== 1}
-            />
-          ))}
-        </div>
-
-        <p className="text-[#666] text-sm mt-4">{t("footnote")}</p>
-      </SlideWrapper>
+      <>
+        {[1, 2, 3, 4].map((n) => (
+          <PrintStageSlide key={n} stage={n as StageNum} t={t} />
+        ))}
+      </>
     );
   }
 

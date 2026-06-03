@@ -85,9 +85,9 @@ function ArchDiagram({ isPrint }: { isPrint: boolean }) {
         <text x="640" y="127" textAnchor="middle" fill="#666" fontSize="11" fontWeight="600" fontFamily="system-ui">Automation Session</text>
 
         {/* Connecting lines from orchestrator */}
-        <line x1="340" y1="62" x2="160" y2="100" stroke="#ccc" strokeWidth="1.5" />
-        <line x1="400" y1="62" x2="400" y2="100" stroke="#ccc" strokeWidth="1.5" />
-        <line x1="460" y1="62" x2="640" y2="100" stroke="#ccc" strokeWidth="1.5" />
+        <line x1="340" y1="64" x2="160" y2="100" stroke="#ccc" strokeWidth="1.5" />
+        <line x1="400" y1="64" x2="400" y2="100" stroke="#ccc" strokeWidth="1.5" />
+        <line x1="460" y1="64" x2="640" y2="100" stroke="#ccc" strokeWidth="1.5" />
 
         {/* Task Sessions row */}
         {[0, 1, 2, 3, 4].map((i) => {

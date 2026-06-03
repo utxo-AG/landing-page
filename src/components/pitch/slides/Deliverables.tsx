@@ -237,24 +237,29 @@ const mockups: Record<string, (color: string) => React.ReactNode> = {
 
 type Item = (typeof DELIVERABLE_FORMATS)[number];
 
-function Mockup({ item }: { item: Item }) {
+function Mockup({ item, compact = false }: { item: Item; compact?: boolean }) {
   return (
     <div
-      className="w-full rounded-md border overflow-hidden"
-      style={{ background: NEUTRAL_BG, borderColor: NEUTRAL_LINE, aspectRatio: "150 / 100" }}
+      className="w-full rounded-md border overflow-hidden mx-auto"
+      style={{
+        background: NEUTRAL_BG,
+        borderColor: NEUTRAL_LINE,
+        aspectRatio: "150 / 100",
+        maxWidth: compact ? 150 : undefined,
+      }}
     >
       {mockups[item.icon](item.color)}
     </div>
   );
 }
 
-function CardBody({ item, t }: { item: Item; t: (k: string) => string }) {
+function CardBody({ item, t, compact = false }: { item: Item; t: (k: string) => string; compact?: boolean }) {
   const color = item.color;
   return (
     <>
       <div className="absolute top-0 left-0 right-0 h-[4px] rounded-t-2xl" style={{ background: color }} />
-      <div className="mt-5 mb-3">
-        <Mockup item={item} />
+      <div className={compact ? "mt-3 mb-2" : "mt-5 mb-3"}>
+        <Mockup item={item} compact={compact} />
       </div>
       <p className="font-bold text-[14px] md:text-[15px] text-[#111] leading-tight mb-1.5">
         {t(`${item.key}Name`)}
@@ -332,7 +337,7 @@ export default function Deliverables() {
 
   return (
     <SlideWrapper variant="rose">
-      <div className="max-w-[760px] mb-10 md:mb-14">
+      <div className={`max-w-[760px] ${isPrint ? "mb-6" : "mb-10 md:mb-14"}`}>
         <motion.p variants={itemVariants} className="text-[#999] text-xs font-mono tracking-[0.15em] uppercase mb-4">
           {t("label")}
         </motion.p>
@@ -345,13 +350,13 @@ export default function Deliverables() {
       </div>
 
       {isPrint ? (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
           {DELIVERABLE_FORMATS.map((item) => (
             <div
               key={item.key}
-              className="relative bg-white border border-[#ebe4d8] rounded-2xl p-5 pt-6 shadow-[0_4px_12px_rgba(0,0,0,0.04)] overflow-hidden"
+              className="relative bg-white border border-[#ebe4d8] rounded-2xl p-4 pt-5 shadow-[0_4px_12px_rgba(0,0,0,0.04)] overflow-hidden"
             >
-              <CardBody item={item} t={t} />
+              <CardBody item={item} t={t} compact />
             </div>
           ))}
         </div>
