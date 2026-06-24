@@ -12,9 +12,8 @@ import TimeSavings from "./slides/TimeSavings";
 import SecurityArchitecture from "./slides/SecurityArchitecture";
 import Deliverables from "./slides/Deliverables";
 import LiveDemo from "./slides/LiveDemo";
-import BusinessModel from "./slides/BusinessModel";
-import Pricing from "./slides/Pricing";
-import CTASlide from "./slides/CTASlide";
+import CustomerJourney from "./slides/CustomerJourney";
+import WorkshopCTA from "./slides/WorkshopCTA";
 
 function ShortDeckInner() {
   const searchParams = useSearchParams();
@@ -24,7 +23,9 @@ function ShortDeckInner() {
   const isPrint = searchParams.get("print") === "true";
 
   const hasWelcome = !!company;
-  const slideCount = 10 + (hasWelcome ? 1 : 0) + (isPrint ? 0 : 1);
+  // 8 always-on slides + CustomerJourney + WorkshopCTA = 10 base (interactive);
+  // LiveDemo only shows when !isPrint, Welcome only when a company is set.
+  const slideCount = 9 + (hasWelcome ? 1 : 0) + (isPrint ? 0 : 1);
 
   return (
     <PitchLayout slideCount={slideCount} pdfFilename="utxo AG — Short.pdf">
@@ -39,9 +40,8 @@ function ShortDeckInner() {
       {!isPrint && <LiveDemo />}
       <SecurityArchitecture />
       <Deliverables />
-      <BusinessModel />
-      <Pricing />
-      <CTASlide />
+      <CustomerJourney />
+      <WorkshopCTA />
     </PitchLayout>
   );
 }
