@@ -118,6 +118,59 @@ const App = {
     this._initBooking(root);
     this._initSecurity(root);
     this._initForms(root);
+    this._initCarousel(root);
+    this._initTeamScroll(root);
+  },
+
+  _initTeamScroll(root) {
+    const track = root.querySelector('[data-team-grid]');
+    if (!track) return;
+    const prev = root.querySelector('[data-team-prev]');
+    const next = root.querySelector('[data-team-next]');
+    const step = (dir) => {
+      const card = track.querySelector('figure');
+      if (!card) return;
+      const gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || '0') || 0;
+      const size = card.getBoundingClientRect().width + gap;
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      let target = track.scrollLeft + dir * size;
+      if (target < 1) target = maxScroll;
+      else if (target > maxScroll - 1) target = 0;
+      track.scrollTo({ left: target, behavior: 'smooth' });
+    };
+    if (prev) prev.addEventListener('click', () => step(-1));
+    if (next) next.addEventListener('click', () => step(1));
+  },
+
+  _initCarousel(root) {
+    Array.prototype.slice.call(root.querySelectorAll('[data-carousel]')).forEach(carousel => {
+      const track = carousel.querySelector('[data-carousel-track]');
+      const slides = Array.prototype.slice.call(carousel.querySelectorAll('[data-carousel-slide]'));
+      const prev = carousel.querySelector('[data-carousel-prev]');
+      const next = carousel.querySelector('[data-carousel-next]');
+      const dots = Array.prototype.slice.call(carousel.querySelectorAll('[data-carousel-dot]'));
+      if (!track || !slides.length) return;
+      track.style.overflowY = 'hidden';
+      let index = 0;
+      const setActive = (i) => {
+        index = Math.max(0, Math.min(i, slides.length - 1));
+        dots.forEach((d, di) => { d.style.background = di === index ? 'var(--text-primary)' : 'var(--border-strong)'; });
+      };
+      const goTo = (i) => {
+        const target = Math.max(0, Math.min(i, slides.length - 1));
+        track.scrollTo({ left: slides[target].offsetLeft, behavior: 'smooth' });
+        setActive(target);
+      };
+      if (prev) prev.addEventListener('click', () => goTo(index - 1));
+      if (next) next.addEventListener('click', () => goTo(index + 1));
+      dots.forEach((d, di) => d.addEventListener('click', () => goTo(di)));
+      let scrollTimer = null;
+      track.addEventListener('scroll', () => {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => { setActive(Math.round(track.scrollLeft / track.clientWidth)); }, 80);
+      }, { passive: true });
+      setActive(0);
+    });
   },
 
   _initForms(root) {
