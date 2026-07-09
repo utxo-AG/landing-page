@@ -1,5 +1,83 @@
 # Changes
 
+## de-translation — 2026-07-09 UTC
+
+- Translated "index.html" all copy German
+- Translated "agents.html" all copy German
+- Updated "partials/header.html" nav German
+- Updated "partials/footer.html" links German
+- Set html lang attribute "de" both pages
+- Swapped DE EN toggle DE now active
+- Translated titles meta descriptions German
+
+## hero-tile-res — 2026-07-07 UTC
+
+- Hero grid tile resolution up 10 percent
+- Hero grid tile resolution up 10 more
+- Hero grid divisor set to 8
+- Hero grid tile res reset original
+
+## project-card-masumi — 2026-07-07 UTC
+
+- Replaced first "stories" project card
+- Now shows Masumi Sokosumi Serviceplan story
+- Swapped image for Masumi wordmark logo
+- Reverted white bg dual logo change
+- Renamed Sokosumi resource add png ext
+- Card image now Sokosumi product screenshot
+- Symbol above heading now Serviceplan logo
+- Rewrote description from Masumi Sokosumi sites
+- Removed pill Serviceplan logo now bare svg
+- Serviceplan logo aligned left not centered
+- Masumi card now dark bg white text
+- Serviceplan logo inverted white on dark card
+- Rewrote description Serviceplan noticed shift
+- Serviceplan logo now colored not inverted
+- Card background changed black to dark grey
+- Card background lightened to medium grey
+- Card background now white text reverted
+- Serviceplan logo moved top right absolute
+- Narrowed text column max-width 42ch
+- Card width reduced to two thirds slide
+- Swapped Sokosumi image for dark version
+
+## security-compliance — 2026-07-07 UTC
+
+- Added new "compliance" section agents.html
+- Placed between "security" and "pricing"
+- Added EU AI Act GDPR ISMS checklist
+- Added badge icon top-right compliance heading
+- Compliance cards now vertical list
+- Removed borders backgrounds compliance items
+- Single big badge symbol right side
+- Removed top-right heading badge icon
+- Compliance list rows made compact
+- Compliance heading shortened one line
+- Swapped symbol left list right
+- Shortened compliance item descriptions
+- Pushed compliance list further right
+- Compliance list now real bullet list
+- Merged guideline name text one line
+- Widened compliance list shift left
+- Removed heading compliance section
+- Darkened compliance symbol fill color
+- Matched compliance text size security
+- Merged compliance into "security" bottom
+- Removed standalone "compliance" section
+- Reduced compliance list text size again
+- More padding above compliance info block
+- Doubled that padding above compliance
+
+## hero-image-grid — 2026-07-07 UTC
+
+- Renamed hero anim images .webp
+- Hero grid driven by images
+- Removed Gaussian spotlight hero grid
+- Grid density quadrupled hero canvas
+- Restored spotlight multiplied with image luma
+- Hero cycle uses all 4 images
+- Doubled hero spotlight size
+
 ## pricing-grants-remove — 2026-07-07 UTC
 
 - Removed "Eligible for grants" line pricing

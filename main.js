@@ -408,8 +408,19 @@ const App = {
     if (!cv) return;
     const ctx = cv.getContext('2d');
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const IMAGE_SRCS = ['resources/agent_hero_anim/group.webp', 'resources/agent_hero_anim/head_1.webp', 'resources/agent_hero_anim/group_crop.webp', 'resources/agent_hero_anim/head_1_crop.webp'];
+    const CYCLE_MS = 6000, FADE_MS = 700;
     let W = 0, H = 0, cols = 0, rows = 0, cell = 0, gut = 0, rad = 0, sigma = 0;
     let phase = [], noise = [];
+    const sampleCv = document.createElement('canvas');
+    const sampleCtx = sampleCv.getContext('2d', { willReadFrequently: true });
+    sampleCtx.imageSmoothingQuality = 'high';
+    const images = IMAGE_SRCS.map(src => {
+      const rec = { src, el: new Image(), ready: false, luma: null };
+      rec.el.onload = () => { rec.ready = true; if (cols && rows) resampleImage(rec); };
+      rec.el.src = src;
+      return rec;
+    });
     const rrect = (x, y, w, h, r) => {
       ctx.beginPath();
       ctx.moveTo(x + r, y);
@@ -419,25 +430,52 @@ const App = {
       ctx.arcTo(x, y, x + w, y, r);
       ctx.closePath();
     };
+    const resampleImage = (rec) => {
+      if (!rec.ready || !cols || !rows) return;
+      sampleCv.width = cols; sampleCv.height = rows;
+      const iw = rec.el.naturalWidth, ih = rec.el.naturalHeight;
+      const scale = Math.max(cols / iw, rows / ih);
+      const dw = iw * scale, dh = ih * scale;
+      const dx = (cols - dw) / 2, dy = (rows - dh) / 2;
+      sampleCtx.clearRect(0, 0, cols, rows);
+      sampleCtx.drawImage(rec.el, dx, dy, dw, dh);
+      const data = sampleCtx.getImageData(0, 0, cols, rows).data;
+      const luma = new Float32Array(cols * rows);
+      for (let k = 0; k < luma.length; k++) {
+        const p = k * 4;
+        luma[k] = (0.2126 * data[p] + 0.7152 * data[p + 1] + 0.0722 * data[p + 2]) / 255;
+      }
+      rec.luma = luma;
+    };
+    const lumaAt = (idx, k) => {
+      const rec = images[idx];
+      return rec && rec.luma ? rec.luma[k] : 0;
+    };
     const build = () => {
       const r = cv.getBoundingClientRect();
       W = r.width; H = r.height;
       if (W < 2 || H < 2) return;
       cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
-      cols = Math.max(9, Math.min(20, Math.round(W / 46)));
+      cols = Math.max(36, Math.min(80, Math.round(W / 11.5)));
       cell = W / cols;
       rows = Math.ceil(H / cell);
       gut = Math.max(1.5, cell * 0.1);
       rad = Math.max(1, (cell - gut) * 0.16);
-      sigma = cell * cols * 0.095;
+      sigma = cell * cols * 0.19;
       const n = cols * rows;
       phase = new Array(n); noise = new Array(n);
       for (let k = 0; k < n; k++) { phase[k] = Math.random() * Math.PI * 2; noise[k] = Math.random(); }
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      images.forEach(resampleImage);
     };
     const draw = (t) => {
       if (W < 2) { build(); if (W < 2) return; }
       ctx.clearRect(0, 0, W, H);
+      const n = images.length;
+      const cyclePos = (t / CYCLE_MS) % n;
+      const curIdx = Math.floor(cyclePos);
+      const prevIdx = (curIdx - 1 + n) % n;
+      const fadeT = Math.min(1, (t % CYCLE_MS) / FADE_MS);
       const cx = W * (0.66 + 0.05 * Math.sin(t * 0.00016));
       const cy = H * (0.40 + 0.06 * Math.cos(t * 0.00013));
       const s2 = 2 * sigma * sigma;
@@ -448,8 +486,9 @@ const App = {
           const ex = x + cell / 2, ey = y + cell / 2;
           const dx = ex - cx, dy = ey - cy;
           const g = Math.exp(-(dx * dx + dy * dy) / s2);
+          const L = (lumaAt(prevIdx, k) * (1 - fadeT) + lumaAt(curIdx, k) * fadeT) * g;
           const shim = 0.55 + 0.45 * Math.sin(t * 0.0012 + phase[k]);
-          let v = g * (0.34 + 0.5 * shim) + noise[k] * 0.04 * g;
+          let v = L * (0.34 + 0.5 * shim) + noise[k] * 0.04 * L;
           if (v < 0.018) continue;
           if (v > 1) v = 1;
           const a = (v * 0.6).toFixed(3);

@@ -14,7 +14,7 @@ partials/header.html  canonical copy of the header + mobile nav overlay markup (
 partials/footer.html  canonical copy of the footer markup (matches agents.html's current footer — same caveat)
 removed-sections.html backup of sections cut from the original one-pager (see below) — not linked/served, archive only
 changes.md             per-session changelog, see Change tracking below
-hero-image-grid-plan.md  working plan for driving hero pixel-grid off resources/agent_hero_anim/ images — not yet implemented (see Notes)
+hero-image-grid-plan.md  plan for driving hero pixel-grid off resources/agent_hero_anim/ images — implemented (see Notes)
 ```
 
 ## Page split
@@ -46,4 +46,4 @@ After every change made to this project, append a bullet point to `changes.md` d
 
 - `style-hover="..."` attributes on elements are a leftover convention from the old bundler (inline hover styles without real CSS classes). `main.js` applies them generically via mouseenter/mouseleave — no CSS `:hover` rules exist for them. Keep using this pattern (or migrate to real CSS classes) when touching those elements.
 - Kept sections still carry the original copy and inline styles verbatim, just de-bundled — no rewrite/reduction of the surviving content itself.
-- `hero-image-grid-plan.md` describes swapping the hero `<canvas data-pixelgrid>` (`_initPixelGrid` in `main.js`) from a procedural Gaussian spotlight to per-cell luminance sampled from `resources/agent_hero_anim/` images, crossfading between them. Not implemented yet — `main.js` still has no `IMAGE_SRCS`/image-driven code. The two source images in that folder (`group`, `head_1`) are saved without extensions; the plan calls for renaming them to `.webp` before wiring them in.
+- `hero-image-grid-plan.md` describes swapping the hero `<canvas data-pixelgrid>` (`_initPixelGrid` in `main.js`) from a procedural Gaussian spotlight to per-cell luminance sampled from `resources/agent_hero_anim/` images, crossfading between them. Implemented — `IMAGE_SRCS` in `main.js` points at `resources/agent_hero_anim/group.webp` and `head_1.webp` (renamed from extensionless originals), cols/rows quadrupled vs the old spotlight grid, images crossfade every `CYCLE_MS`=6000ms over `FADE_MS`=700ms, shimmer/noise kept on top of sampled luminance.
