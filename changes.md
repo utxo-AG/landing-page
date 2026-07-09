@@ -2,6 +2,15 @@
 
 ## caveman-session — 2026-07-09 UTC
 
+- Shrunk footer horizontal gap kept vertical
+- Moved logo to bottom line both footers
+- Removed tagline text both footers
+- Removed Produkt column agents.html footer
+- Removed section links from agents.html nav
+- Removed stray localhost text mobile nav
+- Renamed "Mitarbeiter" to "Agent" agents.html
+- Bumped LCX marquee logo to 48px
+- Bumped RSTDSL marquee logo to 40px
 - Fixed "biten" typo to "bieten"
 - Fixed stray "user" to "unser"
 - Capitalized formal "Ihre" in hero
