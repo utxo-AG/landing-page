@@ -1,5 +1,41 @@
 # Changes
 
+## f8eddc4d-274b-47d2-93dc-34e2fc9bdfe7 — 2026-07-09 UTC
+
+- Hero image luma fades in slowly
+
+## 9ceb4775-9291-45a6-99be-d26dc3ff7696 — 2026-07-09 20:33 UTC
+
+- Added LCX NMKR rstdsl to marquee
+- Bumped marquee duration to 40s
+- Matched RST card layout to others
+- Swapped RST card image to rsthaus
+- Added rstdsl logo to RST card
+- Rewrote RST card copy
+- Sized RST logo 1.5x
+- Swapped Sokosumi card image
+- Sokosumi image container bg white
+- Shortened Sokosumi card copy
+- "how" heading text left aligned
+- "how" case walkthrough now row layout
+- Connector line now horizontal
+- Capability pills moved right of card
+- Pills scattered in circle formation
+- Fixed reveal transform wiping position
+- Pills now even right semicircle
+- Pills randomly scattered right of card
+- Clamped pill vertical scatter to card height
+- Fixed pill scatter true card height 348px
+- Pills straighten rotation on hover
+- Re-scattered pills within same bounds
+- Re-scattered pills again same bounds
+- Re-scattered pills third time same bounds
+- Re-scattered pills fourth time same bounds
+- Unscattered pills into two column grid
+- Centered each pill column vertically
+- Pills shrink to text centered in column
+- Reverted pill column centering
+
 ## hero-banner-link — 2026-07-09 UTC
 
 - Removed button from hero banner

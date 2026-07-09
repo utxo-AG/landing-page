@@ -426,7 +426,7 @@ const App = {
     const TILE_SCALE = parseFloat(cv.getAttribute('data-tile-scale')) || 1;
     const MAX_OPACITY = parseFloat(cv.getAttribute('data-max-opacity')) || 0.8;
     const IMAGE_SRCS = SPOTLIGHT_ONLY ? [] : ['resources/agent_hero_anim/head_1_crop.webp'];
-    const CYCLE_MS = 6000, FADE_MS = 700;
+    const CYCLE_MS = 6000, FADE_MS = 700, IMG_FADE_IN_MS = 1800;
     let W = 0, H = 0, cols = 0, rows = 0, cell = 0, gut = 0, rad = 0, sigma = 0;
     let phase = [];
     const sampleCv = document.createElement('canvas');
@@ -434,7 +434,7 @@ const App = {
     sampleCtx.imageSmoothingQuality = 'high';
     const images = IMAGE_SRCS.map(src => {
       const rec = { src, el: new Image(), ready: false, luma: null };
-      rec.el.onload = () => { rec.ready = true; if (cols && rows) resampleImage(rec); };
+      rec.el.onload = () => { rec.ready = true; rec.readyAt = performance.now(); if (cols && rows) resampleImage(rec); };
       rec.el.src = src;
       return rec;
     });
@@ -464,9 +464,11 @@ const App = {
       }
       rec.luma = luma;
     };
-    const lumaAt = (idx, k) => {
+    const lumaAt = (idx, k, t) => {
       const rec = images[idx];
-      return rec && rec.luma ? rec.luma[k] : 0;
+      if (!rec || !rec.luma) return 0;
+      const fadeIn = rec.readyAt ? Math.min(1, (t - rec.readyAt) / IMG_FADE_IN_MS) : 0;
+      return rec.luma[k] * fadeIn;
     };
     const build = () => {
       const r = cv.getBoundingClientRect();
@@ -511,7 +513,7 @@ const App = {
             const g = Math.exp(-(dx * dx + dy * dy) / s2);
             v = g * 0.34 + (0.1 + 0.4 * g) * shim;
           } else {
-            const L = lumaAt(prevIdx, k) * (1 - fadeT) + lumaAt(curIdx, k) * fadeT;
+            const L = lumaAt(prevIdx, k, t) * (1 - fadeT) + lumaAt(curIdx, k, t) * fadeT;
             v = L * 0.34 + (0.1 + 0.4 * L) * shim;
           }
           if (v < 0.018) continue;
