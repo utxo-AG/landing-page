@@ -1,5 +1,14 @@
 # Changes
 
+## caveman-session — 2026-07-09 UTC
+
+- Fixed "biten" typo to "bieten"
+- Fixed stray "user" to "unser"
+- Capitalized formal "Ihre" in hero
+- Capitalized formal "Ihr" in banner
+- Added comma to "agents" hero h1
+- Added period to "agents" hero copy
+
 ## f8eddc4d-274b-47d2-93dc-34e2fc9bdfe7 — 2026-07-09 UTC
 
 - Hero image luma fades in slowly
