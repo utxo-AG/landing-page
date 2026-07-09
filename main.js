@@ -155,10 +155,12 @@ const App = {
       const setActive = (i) => {
         index = Math.max(0, Math.min(i, slides.length - 1));
         dots.forEach((d, di) => { d.style.background = di === index ? 'var(--text-primary)' : 'var(--border-strong)'; });
+        slides.forEach((s, si) => { s.style.opacity = si === index ? '1' : '.5'; });
       };
+      const centerLeft = (slide) => slide.offsetLeft + slide.offsetWidth / 2 - track.clientWidth / 2;
       const goTo = (i) => {
         const target = Math.max(0, Math.min(i, slides.length - 1));
-        track.scrollTo({ left: slides[target].offsetLeft, behavior: 'smooth' });
+        track.scrollTo({ left: centerLeft(slides[target]), behavior: 'smooth' });
         setActive(target);
       };
       if (prev) prev.addEventListener('click', () => goTo(index - 1));
@@ -167,8 +169,18 @@ const App = {
       let scrollTimer = null;
       track.addEventListener('scroll', () => {
         clearTimeout(scrollTimer);
-        scrollTimer = setTimeout(() => { setActive(Math.round(track.scrollLeft / track.clientWidth)); }, 80);
+        scrollTimer = setTimeout(() => {
+          const trackCenter = track.scrollLeft + track.clientWidth / 2;
+          let closest = 0, closestDist = Infinity;
+          slides.forEach((s, si) => {
+            const dist = Math.abs((s.offsetLeft + s.offsetWidth / 2) - trackCenter);
+            if (dist < closestDist) { closestDist = dist; closest = si; }
+          });
+          setActive(closest);
+        }, 80);
       }, { passive: true });
+      track.scrollLeft = centerLeft(slides[0]);
+      setActive(0);
       setActive(0);
     });
   },
@@ -350,7 +362,9 @@ const App = {
   _initSecurity(root) {
     const sec = root.querySelector('#security');
     if (!sec) return;
-    Array.prototype.slice.call(sec.querySelectorAll('[data-reveal][data-delay]')).forEach(card => {
+    const grid = sec.querySelector('[data-sec-grid]');
+    if (!grid) return;
+    Array.prototype.slice.call(grid.querySelectorAll('[data-reveal][data-delay]')).forEach(card => {
       card.style.position = 'relative';
       card.style.overflow = 'hidden';
       const line = document.createElement('div');
@@ -408,10 +422,13 @@ const App = {
     if (!cv) return;
     const ctx = cv.getContext('2d');
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const IMAGE_SRCS = ['resources/agent_hero_anim/group.webp', 'resources/agent_hero_anim/head_1.webp', 'resources/agent_hero_anim/group_crop.webp', 'resources/agent_hero_anim/head_1_crop.webp'];
+    const SPOTLIGHT_ONLY = cv.hasAttribute('data-spotlight-only');
+    const TILE_SCALE = parseFloat(cv.getAttribute('data-tile-scale')) || 1;
+    const MAX_OPACITY = parseFloat(cv.getAttribute('data-max-opacity')) || 0.8;
+    const IMAGE_SRCS = SPOTLIGHT_ONLY ? [] : ['resources/agent_hero_anim/head_1_crop.webp'];
     const CYCLE_MS = 6000, FADE_MS = 700;
     let W = 0, H = 0, cols = 0, rows = 0, cell = 0, gut = 0, rad = 0, sigma = 0;
-    let phase = [], noise = [];
+    let phase = [];
     const sampleCv = document.createElement('canvas');
     const sampleCtx = sampleCv.getContext('2d', { willReadFrequently: true });
     sampleCtx.imageSmoothingQuality = 'high';
@@ -456,45 +473,53 @@ const App = {
       W = r.width; H = r.height;
       if (W < 2 || H < 2) return;
       cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
-      cols = Math.max(36, Math.min(80, Math.round(W / 11.5)));
+      cols = Math.max(9, Math.min(80, Math.round(W / (11.5 * TILE_SCALE))));
       cell = W / cols;
       rows = Math.ceil(H / cell);
-      gut = Math.max(1.5, cell * 0.1);
+      gut = Math.max(1.5, cell * 0.05);
       rad = Math.max(1, (cell - gut) * 0.16);
-      sigma = cell * cols * 0.19;
+      sigma = cell * cols * 0.13;
       const n = cols * rows;
-      phase = new Array(n); noise = new Array(n);
-      for (let k = 0; k < n; k++) { phase[k] = Math.random() * Math.PI * 2; noise[k] = Math.random(); }
+      phase = new Array(n);
+      for (let k = 0; k < n; k++) { phase[k] = Math.random() * Math.PI * 2; }
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       images.forEach(resampleImage);
     };
     const draw = (t) => {
       if (W < 2) { build(); if (W < 2) return; }
       ctx.clearRect(0, 0, W, H);
+      let cx, cy, s2;
+      if (SPOTLIGHT_ONLY) {
+        cx = W * (0.66 + 0.05 * Math.sin(t * 0.00016));
+        cy = H * (0.40 + 0.06 * Math.cos(t * 0.00013));
+        s2 = 2 * sigma * sigma;
+      }
       const n = images.length;
-      const cyclePos = (t / CYCLE_MS) % n;
+      const cyclePos = n ? (t / CYCLE_MS) % n : 0;
       const curIdx = Math.floor(cyclePos);
-      const prevIdx = (curIdx - 1 + n) % n;
+      const prevIdx = n ? (curIdx - 1 + n) % n : 0;
       const fadeT = Math.min(1, (t % CYCLE_MS) / FADE_MS);
-      const cx = W * (0.66 + 0.05 * Math.sin(t * 0.00016));
-      const cy = H * (0.40 + 0.06 * Math.cos(t * 0.00013));
-      const s2 = 2 * sigma * sigma;
       for (let j = 0; j < rows; j++) {
         for (let i = 0; i < cols; i++) {
           const k = j * cols + i;
           const x = i * cell, y = j * cell;
-          const ex = x + cell / 2, ey = y + cell / 2;
-          const dx = ex - cx, dy = ey - cy;
-          const g = Math.exp(-(dx * dx + dy * dy) / s2);
-          const L = (lumaAt(prevIdx, k) * (1 - fadeT) + lumaAt(curIdx, k) * fadeT) * g;
           const shim = 0.55 + 0.45 * Math.sin(t * 0.0012 + phase[k]);
-          let v = L * (0.34 + 0.5 * shim) + noise[k] * 0.04 * L;
+          let v;
+          if (SPOTLIGHT_ONLY) {
+            const ex = x + cell / 2, ey = y + cell / 2;
+            const dx = ex - cx, dy = ey - cy;
+            const g = Math.exp(-(dx * dx + dy * dy) / s2);
+            v = g * 0.34 + (0.1 + 0.4 * g) * shim;
+          } else {
+            const L = lumaAt(prevIdx, k) * (1 - fadeT) + lumaAt(curIdx, k) * fadeT;
+            v = L * 0.34 + (0.1 + 0.4 * L) * shim;
+          }
           if (v < 0.018) continue;
           if (v > 1) v = 1;
-          const a = (v * 0.6).toFixed(3);
-          const cr = Math.round(150 + 86 * v);
-          const cg = Math.round(166 + 74 * v);
-          const cb = Math.round(206 + 46 * v);
+          const a = (v * MAX_OPACITY).toFixed(3);
+          const cr = 0;
+          const cg = cr;
+          const cb = cr;
           ctx.fillStyle = 'rgba(' + cr + ',' + cg + ',' + cb + ',' + a + ')';
           rrect(x + gut / 2, y + gut / 2, cell - gut, cell - gut, rad);
           ctx.fill();

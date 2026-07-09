@@ -1,5 +1,123 @@
 # Changes
 
+## hero-banner-link — 2026-07-09 UTC
+
+- Removed button from hero banner
+- Whole banner now links to "agents.html"
+- Added arrow at end of banner text
+
+## hero-banner-added — 2026-07-09 UTC
+
+- Added black banner above "index.html" hero
+- Banner text "Braucht ihr Unternehmen KI?"
+- Banner button links to "agents.html"
+
+## compliance-hover-removed — 2026-07-09 UTC
+
+- Scoped security card hover to "sec-grid" only
+- Compliance bullet list no longer gets hover
+
+## eyebrows-removed — 2026-07-09 UTC
+
+- Removed 6 section eyebrow labels
+- "team" "stories" "how" "process" sections
+- "security" "pricing" sections too
+
+## team-dots-removed — 2026-07-09 UTC
+
+- Removed colored dots from "team" cards
+
+## nmkr-logo-card — 2026-07-09 UTC
+
+- Second "stories" card icon swapped for NMKR logo
+- Second card now matches first card layout pattern
+- NMKR logo absolute top-right dropped eyebrow icon box
+- Second card width matched to first card's 66.666%
+- First card bg matched to others' "bg-secondary"
+- NMKR logo enlarged 32px to 56px height
+- NMKR logo 4x again now 224px height
+- NMKR logo halved now 112px height
+- NMKR logo now width fixed height auto
+- NMKR logo 3x again now 336px width
+- NMKR logo set to 200px width
+- Second card image swapped to "resources/Projects/NMKR"
+- Carousel arrow buttons font-size bumped to 24px
+- Project cards scroll-snap-align changed to center
+- Carousel goTo and scroll detect now center active slide
+- Added spacer before first card fixes centering clamp
+- Track scrollLeft initialized to center first card
+- Non active project cards now dim to 50 opacity
+
+## pixelgrid-noise-range — 2026-07-09 UTC
+
+- Reverted black pixel opacity floor
+- Pixelgrid noise now adds "-0.2" to "0.2"
+- Noise no longer scaled by luma so black areas show grain
+
+## pixelgrid-shim-black — 2026-07-09 UTC
+
+- Removed noise from pixelgrid entirely
+- Shim no longer scaled by luma lifts black areas
+
+## pixelgrid-shim-intensity — 2026-07-09 UTC
+
+- Shim weight lowered "0.5" to "0.25"
+- Shim weight lowered again "0.25" to "0.1"
+- Shim weight now scales with luma "0.1" to "0.5"
+
+## hero-opacity-agents — 2026-07-09 UTC
+
+- "agents.html" hero max-opacity raised 0.4 to 0.65
+
+## prose-line-height — 2026-07-09 UTC
+
+- "p" line-height set to 1.4 in style.css
+- Inline "p" line-height 1.13 replaced to 1.4
+
+## team-copy-human — 2026-07-09 UTC
+
+- "team" heading now "Die Menschen dahinter"
+- "team" intro text describe human team not AI hiring
+
+## hero-tile-scale-index — 2026-07-09 UTC
+
+- Added "data-tile-scale" attribute to pixelgrid
+- Set "index.html" tiles 4x bigger via scale 4
+
+## hero-spotlight-index — 2026-07-09 UTC
+
+- Tile alpha now darker 90 to 0 range
+- Tile color pure black not grey
+- "index.html" hero now uses spotlight only
+- Added "data-spotlight-only" flag on its canvas
+- "agents.html" hero animation unchanged image-based
+
+## hero-invert-white — 2026-07-09 UTC
+
+- Inverted "top" hero bg to white on both pages
+- Flipped hero text button colors to match
+- Inverted pixel-grid tile colors for light bg
+- Changed pixel-grid tiles from blue tint to grey
+
+## hero-single-image — 2026-07-09 UTC
+
+- Hero grid now uses only "head_1_crop.webp"
+- Removed moving spotlight gaussian falloff
+
+## typography-brand-kit — 2026-07-09 UTC
+
+- Confirmed fonts already match brand kit Manrope IBM Plex Sans
+- H1 hero now 64px Semibold per brand scale
+- H2 section headers now 48px Medium per brand scale
+- Heading line-height 100 percent letter-spacing -2.8 percent
+- Body paragraph line-height tightened to 113 percent
+- Added responsive H1 scale 36px tablet 24px mobile
+- Removed stale fixed width height on "30 Tagen" heading
+
+## hero-pill-remove — 2026-07-09 UTC
+
+- Removed pill above hero heading "index.html"
+
 ## de-translation — 2026-07-09 UTC
 
 - Translated "index.html" all copy German
