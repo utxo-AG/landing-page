@@ -1,16 +1,17 @@
 # utxo.ag landing page
 
-Plain static site. No build step, no framework, no bundler. Two pages: `index.html` (main/home) and `agents.html` (deep-dive). Open either directly or serve with any static file server.
+Plain static site. No build step, no framework, no bundler. Three pages: `index.html` (main/home), `agents.html` (CoWorker deep-dive), `usecases.html` (use-case gallery). Open any directly or serve with any static file server. Site copy is German (`lang="de"` on all pages).
 
 ## Structure
 
 ```
-index.html            main page — sections: top (hero, links to agents.html), partners (logo marquee), team (Meet the coworkers), stories (Projects, id="stories")
-agents.html            agents page — sections: top (hero), how (One coworker...), process (ready in 30 days), security, pricing, contact (booking widget). Formerly index.html, renamed when the main page was split out.
+index.html            main page — sections: top (hero, links to agents.html), partners (logo marquee), about (Über uns, Zug map), team (Meet the coworkers), stories (Projects, id="stories")
+agents.html            agents page — sections: top (hero), how (One coworker...), process (ready in 30 days), security, whitepapers (3 whitepaper cards, Google Drive links), pricing, contact (booking widget). Formerly index.html, renamed when the main page was split out.
+usecases.html          use-case gallery page — sections: top (hero, own pixel-grid canvas), cases (id="cases", numbered/iconed use-case cards), cta. Newer page, added after the index/agents split.
 style.css             :root design tokens, resets, keyframes, responsive breakpoints
-main.js               all interactive behavior (mobile menu, scroll reveals, pixel-grid canvas, hover effects, case-study/orchestration animations, booking widget, team-row scroll, project carousel) — shared by both pages, all DOM lookups are null-guarded so missing sections on either page are fine
-resources/            images. Old files are resources/<uuid>.<ext>; newer additions use plain names in subfolders: resources/Team/ (staff photos), resources/logos/ (partner marquee), resources/agent_hero_anim/ (hero pixel-grid source images, see hero-image-grid-plan.md)
-partials/header.html  canonical copy of the header + mobile nav overlay markup (matches agents.html's current header — copy and adapt nav links per page, they differ between index.html and agents.html)
+main.js               all interactive behavior (mobile menu, scroll reveals, pixel-grid canvas, hover effects, case-study/orchestration animations, booking widget, team-row scroll, project carousel) — shared by all pages, all DOM lookups are null-guarded so missing sections on any page are fine
+resources/            images. Old files are resources/<uuid>.<ext>; newer additions use plain names in subfolders: resources/Team/ (staff photos), resources/logos/ (partner marquee + resources/logos/small-web-logo-500.svg, standalone small web logo asset), resources/agent_hero_anim/ (hero pixel-grid source images, see hero-image-grid-plan.md)
+partials/header.html  canonical copy of the header + mobile nav overlay markup (matches agents.html's current header — copy and adapt nav links per page, they differ between index.html, agents.html, and usecases.html)
 partials/footer.html  canonical copy of the footer markup (matches agents.html's current footer — same caveat)
 removed-sections.html backup of sections cut from the original one-pager (see below) — not linked/served, archive only
 changes.md             per-session changelog, see Change tracking below
@@ -19,7 +20,14 @@ hero-image-grid-plan.md  plan for driving hero pixel-grid off resources/agent_he
 
 ## Page split
 
-`index.html` used to contain everything (see History below). It was split: the original file was renamed to `agents.html`, and a new `index.html` was created as the main/home page. `partners`, `team`, and `stories` sections moved from `agents.html` to the new `index.html`. `index.html`'s hero has new copy and a single CTA linking to `agents.html`; `agents.html` kept its original hero copy unchanged. Nav (header/mobile overlay/footer) is split per page: `index.html` nav has Team/Stories anchors plus an "Agents" link to `agents.html`; `agents.html` nav has How/Security/Pricing anchors plus the logo links back to `index.html`. Book-a-call links on `index.html` point to `agents.html#contact` since the contact section only lives on `agents.html`.
+`index.html` used to contain everything (see History below). It was split: the original file was renamed to `agents.html`, and a new `index.html` was created as the main/home page. `partners`, `team`, and `stories` sections moved from `agents.html` to the new `index.html`. `index.html`'s hero has new copy and a single CTA linking to `agents.html`; `agents.html` kept its original hero copy unchanged. Nav (header/mobile overlay/footer) is split per page: `index.html` nav has Team/Stories anchors plus a "CoWorker" link to `agents.html`; `agents.html` nav has How/Security/Pricing anchors plus the logo links back to `index.html`. Book-a-call links on `index.html` point to `agents.html#contact` since the contact section only lives on `agents.html`. Both nav sets later gained a "Use Cases" link to `usecases.html` (header, mobile overlay, and `index.html`'s footer "Produkt" column); `agents.html`'s footer nav was not given a Use Cases link.
+
+## Later additions (CoWorker rename, German copy, about/whitepapers sections, usecases.html)
+
+- Sitewide: every visible "Agent"/"Agenten" label was renamed to "CoWorker" (nav links, hero copy, footer tagline, etc). Site copy switched to German across all pages (`lang="de"`).
+- `index.html` gained an `about` section ("Über uns") between `partners` and `team`: two-column layout, company copy on the left, an inline SVG map of Switzerland with an animated pin at Zug on the right.
+- `agents.html` gained a `whitepapers` section between `security` and `pricing`: 3 cards linking out to Google Drive-hosted PDFs (not local files).
+- `usecases.html` is a new third page (use-case gallery): hero with its own pixel-grid canvas, a `cases` section of numbered/iconed use-case cards with hover-lift, and a closing `cta` section. Built the same way as the other pages — copy header/footer partials, adjust nav.
 
 ## History
 
@@ -36,7 +44,7 @@ A new `partners` section (logo marquee, not from the archive) was added right af
 
 ## Adding a new page
 
-There's no templating/include mechanism — copy the header and footer markup from `partials/header.html` and `partials/footer.html` directly into the new page's `<body>`, link the same `style.css` and `main.js`, and match the `<head>` boilerplate (Google Fonts links, viewport meta) from `agents.html`. Adjust nav links/hrefs to fit which sections actually live on the new page (see Page split above for how `index.html` vs `agents.html` diverge). If nav links change, update `partials/*.html` AND every page that copied them — nothing keeps them in sync automatically.
+There's no templating/include mechanism — copy the header and footer markup from `partials/header.html` and `partials/footer.html` directly into the new page's `<body>`, link the same `style.css` and `main.js`, and match the `<head>` boilerplate (Google Fonts links, viewport meta) from `agents.html`. Adjust nav links/hrefs to fit which sections actually live on the new page (see Page split above for how `index.html`, `agents.html`, and `usecases.html` diverge). If nav links change, update `partials/*.html` AND every page that copied them — nothing keeps them in sync automatically.
 
 ## Change tracking
 

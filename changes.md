@@ -1,5 +1,42 @@
 # Changes
 
+## en-translation-session — 2026-07-10 UTC
+
+- Added "index.en.html" full English translation
+- Added "agents.en.html" full English translation
+- DE/EN toggle now links real page pairs
+- Fixed working DE/EN toggle on DE pages too
+- Cross-page hrefs on EN pages point to ".en.html"
+- External links unchanged same on both languages
+
+## usecases-copy-reorder-session — 2026-07-10 UTC
+
+- Moved "cases" intro paragraph below heading
+
+## usecases-heading-session — 2026-07-10 UTC
+
+- Added "cases" section heading agents.html
+- Heading text "Wo KI helfen kann"
+
+## usecases-merge-session — 2026-07-10 UTC
+
+- Moved "cases" section to agents.html
+- Placed right below hero section
+- "Wie das funktioniert" link now points "#process"
+- Deleted "usecases.html" entirely
+- Removed all "Use Cases" nav links everywhere
+
+## agents-how-removal-session — 2026-07-10 UTC
+
+- Removed "how" section from agents.html
+- Started at "Ein CoWorker. Genau die..."
+
+## hero-swap-session — 2026-07-10 UTC
+
+- "top" hero section swapped for master's
+- Kept single "Termin Buchen" CTA
+- Hero banner above unchanged
+
 ## git-push-session — 2026-07-10 UTC
 
 - Repo initialisiert und remote verbunden
