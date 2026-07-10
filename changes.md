@@ -1,5 +1,11 @@
 # Changes
 
+## booking-link-session — 2026-07-10 UTC
+
+- Booking link now uses cal.com
+- Updated DE "agents.html" contact section
+- Updated EN "agents.en.html" contact section
+
 ## en-translation-session — 2026-07-10 UTC
 
 - Added "index.en.html" full English translation
