@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>utxo.ag — KI-Agent für mittelständische Unternehmen</title>
-<meta name="description" content="Wir entwickeln Ihren individuellen KI-Agenten — trainiert auf Ihre Prozesse, integriert in Ihre Systeme, produktiv in 30 Tagen.">
+<title>utxo.ag — CoWorker: digitale KI-Mitarbeiter für Mittelstand und Konzerne</title>
+<meta name="description" content="Wir entwickeln Ihren individuellen CoWorker — einen digitalen KI-Mitarbeiter, trainiert auf Ihre Prozesse, integriert in Ihre Systeme, produktiv in 30 Tagen.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -20,6 +20,10 @@
         <img src="resources/eced9d8c-21a5-41da-89fd-cf06ff0cfa5a.png" alt="UTXO.AG" style="height: 68px; width: 76px; display: block; object-fit: contain">
       </a>
       <div style="display:flex;align-items:center;gap:28px;">
+        <nav data-desktop-nav="" style="display:flex;align-items:center;gap:28px;font-size:16px;color:var(--text-secondary);">
+          <a href="usecases.html" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Use Cases</a>
+        </nav>
+        <span data-desktop-nav="" style="width:1px;height:20px;background:var(--border-strong);"></span>
         <span data-desktop-nav="" style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--text-muted);"><a href="#" style="color:var(--text-primary);">DE</a> <span style="opacity:.5;">/</span> <a href="#" style="color:var(--text-muted);">EN</a></span>
         <a href="#contact" data-desktop-nav="" style="display:inline-flex;align-items:center;height:38px;padding:0 18px;color:#fff;border-radius:8px;font-size:14px;font-weight:500;background:#000;transition:opacity .2s var(--ease);" style-hover="opacity:.85">Termin</a>
         <button data-hamburger="" aria-label="Menü öffnen" style="display:none;width:38px;height:38px;align-items:center;justify-content:center;border:1px solid var(--border-strong);background:transparent;border-radius:8px;color:var(--text-primary);cursor:pointer;">
@@ -33,10 +37,13 @@
   <div data-mobile-overlay="" style="position:fixed;inset:0;z-index:60;background:#000;color:#fff;display:none;flex-direction:column;padding:24px clamp(20px,6vw,40px);">
     <div style="display:flex;align-items:center;justify-content:space-between;height:48px;">
       <span style="font-family:var(--font-display);font-weight:600;font-size:20px;letter-spacing:-.02em;">utxo<span style="opacity:.5;">.ag</span></span>
-      <button data-overlay-close="" aria-label="Menü schließen" style="width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.2);background:transparent;border-radius:8px;color:#fff;cursor:pointer;">
+      <button data-overlay-close="" aria-label="Menü schliessen" style="width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.2);background:transparent;border-radius:8px;color:#fff;cursor:pointer;">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="1.5"></path></svg>
       </button>
     </div>
+    <nav style="display:flex;flex-direction:column;gap:8px;margin-top:48px;">
+      <a href="usecases.html" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Use Cases</a>
+    </nav>
     <a href="#contact" style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;height:52px;background:#fff;color:#000;border-radius:8px;font-size:16px;font-weight:500;">Termin vereinbaren</a>
   </div>
 
@@ -45,7 +52,7 @@
     <canvas data-pixelgrid="" data-max-opacity="0.65" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;display:block;-webkit-mask-image:linear-gradient(100deg, transparent 0%, transparent 18%, #000 50%);mask-image:linear-gradient(100deg, transparent 0%, transparent 18%, #000 50%);"></canvas>
     <div style="position:relative;z-index:1;max-width:1200px;margin:0 auto;width:100%;">
       <div style="max-width:680px;">
-        <h1 data-reveal="" style="transition: opacity .7s var(--ease) .06s,transform .7s var(--ease) .06s; font-weight: 600; font-size: 64px; line-height: 1; letter-spacing: -.028em; max-width: 17ch; margin-top: 24px">KI, die Sinn hat</h1>
+        <h1 data-reveal="" style="transition: opacity .7s var(--ease) .06s,transform .7s var(--ease) .06s; font-weight: 600; font-size: 64px; line-height: 1; letter-spacing: -.028em; max-width: 17ch; margin-top: 24px">KI, individuell entwickelt für Ihren Prozess</h1>
         <p data-reveal="" style="transition:opacity .7s var(--ease) .12s,transform .7s var(--ease) .12s;margin-top:26px;max-width:52ch;font-size:clamp(1.1rem,1rem+.4vw,1.3rem);line-height:1.4;color:rgba(0,0,0,.68);">Nicht jeder Prozess braucht KI. <br/> Wir implementieren mit Sorgfalt und Vernunft.</p>
         <div data-reveal="" style="transition:opacity .7s var(--ease) .18s,transform .7s var(--ease) .18s;display:flex;gap:12px;flex-wrap:wrap;margin-top:38px;">
           <a href="#contact" style="display:inline-flex;align-items:center;height:52px;padding:0 26px;background:#000;color:#fff;border-radius:8px;font-size:15px;font-weight:500;transition:opacity .2s var(--ease);" style-hover="opacity:.88">Beratung buchen</a>
@@ -59,8 +66,9 @@
   <section id="how" style="background:var(--bg-secondary);border-top:1px solid var(--border-subtle);padding:clamp(64px,9vw,120px) clamp(20px,5vw,64px);scroll-margin-top:88px;">
     <div style="max-width:1200px;margin:0 auto;" data-comment-anchor="ae726b86c6-div">
       <div data-reveal="" style="transition: opacity .7s var(--ease),transform .7s var(--ease); max-width: 62ch; margin: 0; text-align: left;">
-        <h2 style="font-weight: 500; font-size: 48px; line-height: 1; letter-spacing: -.028em; max-width: 20ch;">Ein Agent.Genau die Fähigkeiten, die Ihr Prozess braucht.</h2>
-        <p style="margin-top: 20px; font-size: clamp(1.1rem,1rem+.4vw,1.3rem); line-height:1.4; color: var(--text-secondary)">Jeder Agent startet mit demselben sicheren Kern — Gedächtnis, Urteilsvermögen und eine menschliche Freigabe, wo immer eine Entscheidung Gewicht hat. Um diesen Kern herum integrieren wir nur die Fähigkeitsmodule, die Ihr Prozess braucht. Nicht mehr.</p>
+        <h2 style="font-weight: 500; font-size: 48px; line-height: 1; letter-spacing: -.028em; max-width: 20ch;">Ein CoWorker. Genau die Fähigkeiten, die Ihr Prozess braucht.</h2>
+        <p style="margin-top: 20px; font-size: clamp(1.1rem,1rem+.4vw,1.3rem); line-height:1.4; color: var(--text-secondary)">Jeder CoWorker ist ein digitaler Mitarbeiter. Er startet mit demselben sicheren Kern: Gedächtnis, Urteilsvermögen, freie Modellwahl und eine menschliche Freigabe, wo immer eine Entscheidung Gewicht hat. Um diesen Kern herum integrieren wir nur die Fähigkeitsmodule, die Ihr Prozess braucht. Nicht mehr.</p>
+        <a href="usecases.html" style="display:inline-flex;align-items:center;margin-top:28px;height:48px;padding:0 22px;background:rgba(0,0,0,.03);color:var(--text-primary);border:1px solid var(--border-strong);border-radius:8px;font-size:15px;font-weight:500;transition:border-color .2s var(--ease),background .2s var(--ease);" style-hover="border-color:var(--text-primary);background:rgba(0,0,0,.06)">Beispiel Use-Cases ansehen →</a>
       </div>
 
       <!-- modules visual -->
@@ -75,9 +83,9 @@
             <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px clamp(20px,3vw,28px);border-bottom:1px solid var(--border-subtle);">
               <div style="display:flex;align-items:center;gap:12px;">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="color:var(--text-primary);"><rect x="0" y="0" width="10" height="10" rx="2.5" fill="currentColor"></rect><rect x="14" y="0" width="10" height="10" rx="2.5" fill="currentColor"></rect><rect x="0" y="14" width="10" height="10" rx="2.5" fill="currentColor"></rect><rect x="14" y="14" width="10" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"></rect></svg>
-                <span style="font-family:var(--font-display);font-weight:600;font-size:19px;letter-spacing:-.01em;">Der Agenten-Kern</span>
+                <span style="font-family:var(--font-display);font-weight:600;font-size:19px;letter-spacing:-.01em;">Der CoWorker-Kern</span>
               </div>
-              <span style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);">In jedem Agenten</span>
+              <span style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);">In jedem CoWorker</span>
             </div>
             <div style="display:flex;align-items:flex-start;gap:16px;padding:18px clamp(20px,3vw,28px);border-bottom:1px solid var(--border-subtle);">
               <span style="flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;background:#000;color:#fff;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 21c-5 0-9-3.6-9-8s4-8 9-8 9 3.6 9 8c0 1.9-.7 3.6-2 5l.6 3-3.2-1.2c-1.3.8-2.8 1.2-4.4 1.2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></span>
@@ -87,9 +95,13 @@
               <span style="flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;background:#000;color:#fff;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M3 12h3M18 12h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.5"></circle></svg></span>
               <div><div style="font-family:var(--font-display);font-weight:600;font-size:17px;letter-spacing:-.01em;">Urteilsvermögen</div><p style="margin-top:4px;font-size:15px;line-height:1.4;color:var(--text-secondary);">Fehlen Fakten, fragt er nach oder eskaliert — geraten wird nie.</p></div>
             </div>
-            <div style="display:flex;align-items:flex-start;gap:16px;padding:18px clamp(20px,3vw,28px);">
+            <div style="display:flex;align-items:flex-start;gap:16px;padding:18px clamp(20px,3vw,28px);border-bottom:1px solid var(--border-subtle);">
               <span style="flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;background:#000;color:#fff;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.5"></circle><path d="M5 20c1.2-3 3.8-4.5 7-4.5s5.8 1.5 7 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></span>
               <div><div style="font-family:var(--font-display);font-weight:600;font-size:17px;letter-spacing:-.01em;">Menschliche Freigabe</div><p style="margin-top:4px;font-size:15px;line-height:1.4;color:var(--text-secondary);">Entscheidungen mit Gewicht warten auf Ihre Freigabe — Sie bestimmen, welche.</p></div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:16px;padding:18px clamp(20px,3vw,28px);">
+              <span style="flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;background:#000;color:#fff;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4-8 4-8-4 8-4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path><path d="M4 12l8 4 8-4M4 17l8 4 8-4" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg></span>
+              <div><div style="font-family:var(--font-display);font-weight:600;font-size:17px;letter-spacing:-.01em;">Freie Modellwahl</div><p style="margin-top:4px;font-size:15px;line-height:1.4;color:var(--text-secondary);">Für jede Aufgabe das beste KI-Modell, auf Wunsch vollständig lokal. Ihre Daten verlassen Ihr Unternehmen nicht.</p></div>
             </div>
           </div>
         </div>
@@ -105,11 +117,13 @@
           <div style="display:flex;flex-direction:column;justify-content:center;gap:10px;">
             <span data-chip="" data-reveal="" data-delay="60" style="transition:opacity .5s var(--ease),transform .5s var(--ease);display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border:1px solid var(--border-strong);border-radius:999px;background:var(--bg-primary);font-family:var(--mono);font-size:13px;letter-spacing:.01em;white-space:nowrap;"><span style="width:5px;height:5px;border-radius:50%;background:var(--text-primary);"></span>Telefon &amp; Sprache</span>
             <span data-chip="" data-reveal="" data-delay="180" style="transition:opacity .5s var(--ease),transform .5s var(--ease);display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border:1px solid var(--border-strong);border-radius:999px;background:var(--bg-primary);font-family:var(--mono);font-size:13px;letter-spacing:.01em;white-space:nowrap;"><span style="width:5px;height:5px;border-radius:50%;background:var(--text-primary);"></span>CRM-Abfrage</span>
-            <span data-chip="" data-reveal="" data-delay="300" style="transition:opacity .5s var(--ease),transform .5s var(--ease);display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border:1px solid var(--border-strong);border-radius:999px;background:var(--bg-primary);font-family:var(--mono);font-size:13px;letter-spacing:.01em;white-space:nowrap;"><span style="width:5px;height:5px;border-radius:50%;background:var(--text-primary);"></span>Dokumente lesen</span>
+            <span data-chip="" data-reveal="" data-delay="300" style="transition:opacity .5s var(--ease),transform .5s var(--ease);display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border:1px solid var(--border-strong);border-radius:999px;background:var(--bg-primary);font-family:var(--mono);font-size:13px;letter-spacing:.01em;white-space:nowrap;"><span style="width:5px;height:5px;border-radius:50%;background:var(--text-primary);"></span>Dokumente managen</span>
             <span data-chip="" data-reveal="" data-delay="420" style="transition:opacity .5s var(--ease),transform .5s var(--ease);display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border:1px solid var(--border-strong);border-radius:999px;background:var(--bg-primary);font-family:var(--mono);font-size:13px;letter-spacing:.01em;white-space:nowrap;"><span style="width:5px;height:5px;border-radius:50%;background:var(--text-primary);"></span>Berichte</span>
           </div>
         </div>
       </div>
+
+      <p data-reveal="" style="transition:opacity .7s var(--ease),transform .7s var(--ease);margin-top:clamp(36px,5vw,52px);font-size:clamp(1.05rem,1rem+.3vw,1.2rem);line-height:1.4;color:var(--text-secondary);max-width:62ch;">Das Modell dahinter: einmalige Entwicklung zum Festpreis, danach ein planbares Abonnement für den Betrieb. <a href="#pricing" style="color:var(--text-primary);text-decoration:underline;text-underline-offset:3px;">Details zum Geschäftsmodell</a></p>
     </div>
   </section>
 
@@ -117,7 +131,7 @@
   <section id="process" style="background:#000;color:#fff;padding:clamp(64px,9vw,120px) clamp(20px,5vw,64px);scroll-margin-top:88px;">
     <div style="max-width:1100px;margin:0 auto;">
       <div data-reveal="" style="transition:opacity .7s var(--ease),transform .7s var(--ease);max-width:60ch;">
-        <h2 style="font-weight: 500; font-size: 48px; line-height: 1; letter-spacing: -.028em;">Ihr Agent, einsatzbereit in 30 Tagen.</h2>
+        <h2 style="font-weight: 500; font-size: 48px; line-height: 1; letter-spacing: -.028em;">Ihr CoWorker, einsatzbereit in 30 Tagen.</h2>
         <p style="margin-top:20px;font-size:clamp(1.1rem,1rem+.4vw,1.3rem);line-height:1.4;color:rgba(255,255,255,.7);"><span style="color:#fff;font-weight:500;">Und so funktioniert das genau:</span> ein fester Ablauf, ein fester Preis und ein Erfolgskriterium, das Sie selbst festlegen. Keine ergebnisoffenen Pilotprojekte.</p>
       </div>
 
@@ -138,7 +152,7 @@
             <div>
               <div style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:rgba(255,255,255,.5);">TAG 0</div>
               <h3 style="font-weight:500;font-size:1.4rem;letter-spacing:-.01em;margin-top:4px;">Use-Case-Workshop.</h3>
-              <p style="margin-top:6px;font-size:16px;line-height:1.4;color:rgba(255,255,255,.66);max-width:54ch;">90 Minuten, remote. Wir finden gemeinsam den Prozess mit dem größten Hebel und legen das Erfolgskriterium fest.</p><div style="margin-top:12px;display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#fff;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" style="flex:0 0 auto;"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"></path></svg>Wir verstehen Ihre Arbeitsabläufe</div>
+              <p style="margin-top:6px;font-size:16px;line-height:1.4;color:rgba(255,255,255,.66);max-width:54ch;">90 Minuten, remote. Wir finden gemeinsam den Prozess mit dem grössten Hebel und legen das Erfolgskriterium fest.</p><div style="margin-top:12px;display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#fff;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" style="flex:0 0 auto;"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"></path></svg>Wir verstehen Ihre Arbeitsabläufe</div>
             </div>
           </li>
           <li data-station="" style="position:relative;display:grid;grid-template-columns:24px 1fr;gap:20px;align-items:start;">
@@ -154,7 +168,7 @@
             <div>
               <div style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:rgba(255,255,255,.5);">TAG 6–19</div>
               <h3 style="font-weight:500;font-size:1.4rem;letter-spacing:-.01em;margin-top:4px;">Entwicklung.</h3>
-              <p style="margin-top:6px;font-size:16px;line-height:1.4;color:rgba(255,255,255,.66);max-width:54ch;">Auf halbem Weg sehen Sie eine funktionierende Version mit Ihren echten Daten — kein Demo-Beispiel.</p><div style="margin-top:12px;display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#fff;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" style="flex:0 0 auto;"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"></path></svg>Ihr Agent wird gebaut</div>
+              <p style="margin-top:6px;font-size:16px;line-height:1.4;color:rgba(255,255,255,.66);max-width:54ch;">Auf halbem Weg sehen Sie eine funktionierende Version mit Ihren echten Daten — kein Demo-Beispiel.</p><div style="margin-top:12px;display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#fff;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" style="flex:0 0 auto;"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"></path></svg>Ihr CoWorker wird gebaut</div>
             </div>
           </li>
           <li data-station="" style="position:relative;display:grid;grid-template-columns:24px 1fr;gap:20px;align-items:start;">
@@ -162,7 +176,7 @@
             <div>
               <div style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:rgba(255,255,255,.5);">TAG 20–25</div>
               <h3 style="font-weight:500;font-size:1.4rem;letter-spacing:-.01em;margin-top:4px;">Test &amp; Review.</h3>
-              <p style="margin-top:6px;font-size:16px;line-height:1.4;color:rgba(255,255,255,.66);max-width:54ch;">Der Agent läuft parallel zu Ihrem aktuellen Prozess. Ihr Team prüft, wir feinjustieren.</p><div style="margin-top:12px;display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#fff;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" style="flex:0 0 auto;"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"></path></svg>Verbunden mit Ihren Systemen</div>
+              <p style="margin-top:6px;font-size:16px;line-height:1.4;color:rgba(255,255,255,.66);max-width:54ch;">Der CoWorker läuft parallel zu Ihrem aktuellen Prozess. Ihr Team prüft, wir feinjustieren.</p><div style="margin-top:12px;display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#fff;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" style="flex:0 0 auto;"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"></path></svg>Verbunden mit Ihren Systemen</div>
             </div>
           </li>
           <li data-station="" style="position:relative;display:grid;grid-template-columns:24px 1fr;gap:20px;align-items:start;">
@@ -183,7 +197,7 @@
         </div>
         <div data-reveal="" data-delay="80" style="transition:opacity .6s var(--ease),transform .6s var(--ease);padding:clamp(24px,3vw,30px);border:1px solid rgba(255,255,255,.16);border-radius:14px;background:rgba(255,255,255,.03);">
           <div style="font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);">Was Sie erhalten</div>
-          <p style="margin-top:12px;font-size:17px;line-height:1.4;color:rgba(255,255,255,.85);">Einen produktiven KI-Agenten im Live-Betrieb, gemessen an dem Kriterium, das Sie an Tag 0 festgelegt haben.</p>
+          <p style="margin-top:12px;font-size:17px;line-height:1.4;color:rgba(255,255,255,.85);">Einen produktiven CoWorker im Live-Betrieb, gemessen an dem Kriterium, das Sie an Tag 0 festgelegt haben.</p>
         </div>
       </div>
     </div>
@@ -194,7 +208,7 @@
     <div style="max-width:1200px;margin:0 auto;">
       <div data-reveal="" style="transition:opacity .7s var(--ease),transform .7s var(--ease);max-width:62ch;">
         <h2 style="font-weight: 500; font-size: 48px; line-height: 1; letter-spacing: -.028em; max-width: 22ch">Sicherheit ist von Anfang an Teil der Architektur.</h2>
-        <p style="margin-top:16px;font-size:clamp(1.05rem,1rem+.3vw,1.2rem);line-height:1.4;color:var(--text-secondary);">Ein Agent handelt innerhalb Ihres Unternehmens. Deshalb ist er so gebaut, dass er nur das tut, was er soll — und nichts anderes.</p>
+        <p style="margin-top:16px;font-size:clamp(1.05rem,1rem+.3vw,1.2rem);line-height:1.4;color:var(--text-secondary);">Ein CoWorker handelt innerhalb Ihres Unternehmens. Deshalb ist er so gebaut, dass er nur das tut, was er soll — und nichts anderes. Die Grundlage ist ein Orchestrator-Modell: Jede Teilaufgabe läuft in einer isolierten Session mit eng begrenzten Rechten.</p>
       </div>
       <div data-sec-grid="" style="display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2vw,20px);margin-top:clamp(32px,4vw,44px);align-items:stretch;">
         <div data-reveal="" data-delay="0" style="transition:opacity .6s var(--ease),transform .35s var(--ease),border-color .35s var(--ease);display:flex;flex-direction:column;padding:clamp(22px,2.5vw,28px);border:1px solid var(--border-subtle);border-radius:12px;background:var(--bg-primary);">
@@ -228,15 +242,49 @@
           </li>
           <li data-reveal="" data-delay="80" style="display:flex;align-items:flex-start;gap:10px;">
             <span style="flex:0 0 auto;width:7px;height:7px;border-radius:2px;background:var(--text-primary);margin-top:8px;"></span>
-            <p style="font-size:14px;line-height:1.4;color:var(--text-secondary);"><strong style="font-weight:500;color:var(--text-primary);">DSGVO —</strong> Daten werden vollständig gemäß DSGVO in der EU verarbeitet und gehostet.</p>
+            <p style="font-size:14px;line-height:1.4;color:var(--text-secondary);"><strong style="font-weight:500;color:var(--text-primary);">DSGVO —</strong> Daten werden vollständig gemäss DSGVO in der EU verarbeitet und gehostet.</p>
           </li>
           <li data-reveal="" data-delay="160" style="display:flex;align-items:flex-start;gap:10px;">
             <span style="flex:0 0 auto;width:7px;height:7px;border-radius:2px;background:var(--text-primary);margin-top:8px;"></span>
-            <p style="font-size:14px;line-height:1.4;color:var(--text-secondary);"><strong style="font-weight:500;color:var(--text-primary);">ISMS —</strong> Abgesichert durch ein formales, geprüftes Informationssicherheits-Managementsystem.</p>
+            <p style="font-size:14px;line-height:1.4;color:var(--text-secondary);"><strong style="font-weight:500;color:var(--text-primary);">ISMS —</strong> Informationssicherheits-Managementsystem, ausgerichtet an ISO/IEC 27001:2022.</p>
+          </li>
+          <li data-reveal="" data-delay="240" style="display:flex;align-items:flex-start;gap:10px;">
+            <span style="flex:0 0 auto;width:7px;height:7px;border-radius:2px;background:var(--text-primary);margin-top:8px;"></span>
+            <p style="font-size:14px;line-height:1.4;color:var(--text-secondary);"><strong style="font-weight:500;color:var(--text-primary);">Datenhoheit —</strong> Auf Wunsch privates oder vollständig lokales Hosting, bis hin zu lokalen Open-Source-Modellen.</p>
           </li>
         </ul>
       </div>
 
+    </div>
+  </section>
+
+  <!-- ============ WHITEPAPERS ============ -->
+  <section id="whitepapers" style="background:var(--bg-primary);border-top:1px solid var(--border-subtle);padding:clamp(64px,9vw,120px) clamp(20px,5vw,64px);scroll-margin-top:88px;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div data-reveal="" style="transition:opacity .7s var(--ease),transform .7s var(--ease);max-width:62ch;">
+        <h2 style="font-weight:500;font-size:48px;line-height:1;letter-spacing:-.028em;max-width:20ch;">Zum Nachlesen: unsere Whitepaper.</h2>
+        <p style="margin-top:16px;font-size:clamp(1.05rem,1rem+.3vw,1.2rem);line-height:1.4;color:var(--text-secondary);">Alles hier Beschriebene im Detail — Funktionsweise, Sicherheit, Geschäftsmodell und die Infrastruktur dahinter.</p>
+      </div>
+      <div data-2col="" style="display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,20px);margin-top:clamp(32px,4vw,44px);align-items:stretch;">
+        <a href="https://drive.google.com/file/d/1aMJSU8Wb-sWO9-1WX63u79SDVXPPCTWH/view" target="_blank" rel="noopener" data-reveal="" data-delay="0" style="transition:opacity .6s var(--ease),transform .35s var(--ease),border-color .35s var(--ease);display:flex;flex-direction:column;padding:clamp(22px,2.5vw,28px);border:1px solid var(--border-subtle);border-radius:12px;background:var(--bg-secondary);color:var(--text-primary);" style-hover="border-color:var(--text-primary)">
+          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);">Whitepaper 01</div>
+          <h3 style="font-weight:500;font-size:1.3rem;letter-spacing:-.01em;margin-top:14px;">utxo AG in der KI-Agenten-Ökonomie</h3>
+          <p style="margin-top:10px;font-size:15px;line-height:1.4;color:var(--text-secondary);">Wer wir sind, woher unsere Kompetenz kommt, Geschäftsmodell und die 30-Tage-Roadmap.</p>
+          <span style="margin-top:auto;padding-top:18px;font-family:var(--mono);font-size:13px;letter-spacing:.04em;">PDF öffnen ↗</span>
+        </a>
+        <a href="https://drive.google.com/file/d/1wxs4Mf2u7zLrPtF8jertk76Xuqbc6bBh/view" target="_blank" rel="noopener" data-reveal="" data-delay="80" style="transition:opacity .6s var(--ease),transform .35s var(--ease),border-color .35s var(--ease);display:flex;flex-direction:column;padding:clamp(22px,2.5vw,28px);border:1px solid var(--border-subtle);border-radius:12px;background:var(--bg-secondary);color:var(--text-primary);" style-hover="border-color:var(--text-primary)">
+          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);">Whitepaper 02</div>
+          <h3 style="font-weight:500;font-size:1.3rem;letter-spacing:-.01em;margin-top:14px;">Der CoWorker</h3>
+          <p style="margin-top:10px;font-size:15px;line-height:1.4;color:var(--text-secondary);">Funktionsweise, Sicherheit und Betrieb eines digitalen Mitarbeiters.</p>
+          <span style="margin-top:auto;padding-top:18px;font-family:var(--mono);font-size:13px;letter-spacing:.04em;">PDF öffnen ↗</span>
+        </a>
+        <a href="https://drive.google.com/file/d/17VruvoGWodsQiOsXou0MRlPvSSY4U4mW/view" target="_blank" rel="noopener" data-reveal="" data-delay="160" style="transition:opacity .6s var(--ease),transform .35s var(--ease),border-color .35s var(--ease);display:flex;flex-direction:column;padding:clamp(22px,2.5vw,28px);border:1px solid var(--border-subtle);border-radius:12px;background:var(--bg-secondary);color:var(--text-primary);" style-hover="border-color:var(--text-primary)">
+          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);">Whitepaper 03</div>
+          <h3 style="font-weight:500;font-size:1.3rem;letter-spacing:-.01em;margin-top:14px;">Die KI-Agenten-Ökonomie</h3>
+          <p style="margin-top:10px;font-size:15px;line-height:1.4;color:var(--text-secondary);">Sokosumi, Masumi und die Rolle des CoWorkers im grösseren Bild.</p>
+          <span style="margin-top:auto;padding-top:18px;font-family:var(--mono);font-size:13px;letter-spacing:.04em;">PDF öffnen ↗</span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -250,7 +298,7 @@
         <div data-reveal="" style="transition:opacity .6s var(--ease),transform .6s var(--ease);padding:clamp(24px,3vw,34px);border:1px solid var(--border-subtle);border-radius:14px;background:var(--bg-secondary);">
           <div style="font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);">Einmalig</div>
           <h3 style="font-weight:500;font-size:1.4rem;letter-spacing:-.015em;margin-top:12px;">Individuelle Entwicklung</h3>
-          <p style="margin-top:12px;font-size:17px;line-height:1.4;color:var(--text-secondary);">Ihr Agent, gebaut für Ihren Prozess, zum Festpreis, der vor Projektstart vereinbart wird. Sie kennen die Kosten, bevor die Entwicklung beginnt.</p>
+          <p style="margin-top:12px;font-size:17px;line-height:1.4;color:var(--text-secondary);">Ihr CoWorker, gebaut für Ihren Prozess, zum Festpreis, der vor Projektstart vereinbart wird. Sie kennen die Kosten, bevor die Entwicklung beginnt.</p>
           <ul style="list-style:none;margin:18px 0 0;padding:18px 0 0;border-top:1px solid var(--border-subtle);display:flex;flex-direction:column;gap:10px;">
             <li style="display:flex;align-items:flex-start;gap:10px;font-size:16px;line-height:1.4;color:var(--text-secondary);"><span style="flex:0 0 auto;width:7px;height:7px;border-radius:2px;background:var(--text-primary);margin-top:7px;"></span>Analyse und Use-Case-Workshop</li>
             <li style="display:flex;align-items:flex-start;gap:10px;font-size:16px;line-height:1.4;color:var(--text-secondary);"><span style="flex:0 0 auto;width:7px;height:7px;border-radius:2px;background:var(--text-primary);margin-top:7px;"></span>Entwicklung für Ihren Prozess und Ihre Systeme</li>
@@ -260,7 +308,7 @@
         <div data-reveal="" data-delay="80" style="transition:opacity .6s var(--ease),transform .6s var(--ease);padding:clamp(24px,3vw,34px);border:1px solid var(--border-subtle);border-radius:14px;background:var(--bg-secondary);">
           <div style="font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);">Monatlich</div>
           <h3 style="font-weight:500;font-size:1.4rem;letter-spacing:-.015em;margin-top:12px;">Abonnement</h3>
-          <p style="margin-top:12px;font-size:17px;line-height:1.4;color:var(--text-secondary);">Der komplette Betrieb — zugeschnitten auf Ihren Agenten und Ihr Nutzungsprofil, vollständig abgedeckt.</p>
+          <p style="margin-top:12px;font-size:17px;line-height:1.4;color:var(--text-secondary);">Der komplette Betrieb — zugeschnitten auf Ihren CoWorker und Ihr Nutzungsprofil, vollständig abgedeckt.</p>
           <ul style="list-style:none;margin:18px 0 0;padding:18px 0 0;border-top:1px solid var(--border-subtle);display:flex;flex-direction:column;gap:10px;">
             <li style="display:flex;align-items:flex-start;gap:10px;font-size:16px;line-height:1.4;color:var(--text-secondary);"><span style="flex:0 0 auto;width:7px;height:7px;border-radius:2px;background:var(--text-primary);margin-top:7px;"></span>Hosting, Nutzung und Wartung</li>
             <li style="display:flex;align-items:flex-start;gap:10px;font-size:16px;line-height:1.4;color:var(--text-secondary);"><span style="flex:0 0 auto;width:7px;height:7px;border-radius:2px;background:var(--text-primary);margin-top:7px;"></span>Modell-Updates und Weiterentwicklung</li>
@@ -276,8 +324,8 @@
   <section id="contact" style="background:#000;color:#fff;padding:clamp(64px,9vw,120px) clamp(20px,5vw,64px);scroll-margin-top:88px;">
     <div style="max-width:1200px;margin:0 auto;">
       <div data-reveal="" style="transition:opacity .7s var(--ease),transform .7s var(--ease);max-width:60ch;">
-        <h2 style="font-weight: 500; font-size: 48px; line-height: 1; letter-spacing: -.028em">Ihr nächster Agent braucht keinen Schreibtisch.</h2>
-        <p style="margin-top:20px;font-size:clamp(1.1rem,1rem+.4vw,1.3rem);line-height:1.4;color:rgba(255,255,255,.7);">Entdecken Sie, was ein KI-Agent in Ihrem Unternehmen automatisieren könnte.</p>
+        <h2 style="font-weight: 500; font-size: 48px; line-height: 1; letter-spacing: -.028em">Ihr nächster Mitarbeiter braucht keinen Schreibtisch.</h2>
+        <p style="margin-top:20px;font-size:clamp(1.1rem,1rem+.4vw,1.3rem);line-height:1.4;color:rgba(255,255,255,.7);">Entdecken Sie, was ein CoWorker in Ihrem Unternehmen automatisieren könnte.</p>
       </div>
       <div data-2col="" style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.5vw,28px);margin-top:clamp(40px,5vw,56px);align-items:stretch;">
         <!-- calendly-style card -->
@@ -326,6 +374,7 @@
           <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
             <a href="https://masumi.network" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">masumi ↗</a>
             <a href="https://sokosumi.com" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">sokosumi ↗</a>
+            <a href="https://www.nmkr.io" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">NMKR ↗</a>
           </div>
         </div>
         <div>

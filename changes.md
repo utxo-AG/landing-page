@@ -1,5 +1,63 @@
 # Changes
 
+## fable-relaunch-session — 2026-07-10 UTC
+
+- Chip now says "Dokumente managen"
+- Map pin label now "utxo AG"
+- Map outline now geodata based
+- Added Swiss flag to map
+- "about" logo replaced by map
+- Map shows pin at Zug
+- Pricing link copy now Geschäftsmodell
+- "about" copy now "Die utxo AG"
+- Use case button moved up
+- "about" logo shrunk to 220px
+- "about" fact card now logo
+- Added small web logo asset
+- Whitepaper links now Google Drive
+- Use case button copy adjusted
+- agents h1 now "individuell entwickelt"
+- Main hero primary CTA agents
+- Termin now secondary hero CTA
+- Banner copy now more concrete
+- "about" now two column layout
+- Added fact card to "about"
+- Removed use case link "about"
+- Use case link now button
+- Removed emdashes from "about" copy
+- Removed remote line from "about"
+- Added "about" use case link
+- Fixed "kein Datum" Modellwahl copy
+- Added use case link "how"
+- Use case cards got icons
+- Use case cards got numbers
+- Use case cards hover lift
+- Added pixel canvas usecases hero
+- Reworded "Ergebnis" as label block
+
+- Renamed "Agent" to "CoWorker" sitewide
+- Main hero CTA now books
+- Added secondary hero CTA main
+- Added "about" section to main
+- Nav label "KI" now "CoWorker"
+- Added new "usecases.html" page
+- Added "Use Cases" nav links
+- Added "whitepapers" section to agents
+- Created empty "whitepapers" folder
+- Added core row "Freie Modellwahl"
+- Fixed missing space "how" heading
+- agents hero h1 rewritten
+- Security intro mentions Orchestrator-Modell
+- ISMS bullet now ISO-ausgerichtet
+- Added "Datenhoheit" security bullet
+- Added pricing teaser in "how"
+- Fixed NMKR project card typos
+- Swapped "ß" for Swiss "ss"
+- Added NMKR link all footers
+- Peter role now "CoWorker-Entwickler"
+- Contact heading now says "Mitarbeiter"
+- Updated agents title and meta
+
 ## caveman-session — 2026-07-09 UTC
 
 - Shrunk footer horizontal gap kept vertical
