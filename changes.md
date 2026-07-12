@@ -1,5 +1,14 @@
 # Changes
 
+## contact-section-index-session — 2026-07-10 UTC
+
+- Added "contact" section to "index.html"
+- Added "contact" section to "index.en.html"
+- New heading generalized not CoWorker specific
+- Nav "Termin" links now point to "#contact"
+- Hero "Termin Buchen" button points to "#contact"
+- Same changes mirrored on English page
+
 ## booking-link-session — 2026-07-10 UTC
 
 - Booking link now uses cal.com
