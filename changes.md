@@ -1,5 +1,27 @@
 # Changes
 
+## clean-urls-session — 2026-07-15 UTC
+
+- Added Caddyfile for Railway static deploy
+- Caddyfile strips html extension from routes
+- Redirects foo.html to foo permanently
+- index.html route redirects to root
+- Stripped html from all internal hrefs
+- Root index links now point to slash
+
+## legal-pages-session — 2026-07-15 UTC
+
+- Ported Imprint from old React app
+- Ported Privacy Policy from old React app
+- Ported Terms from old React app
+- Added Acceptable Use Policy page
+- Added Data Processing Agreement page
+- All five pages bilingual EN/DE
+- New pages reuse header footer chrome
+- Footer legal links point to local pages
+- Removed external utxoag.com legal links
+- Cross-linked Terms Privacy AUP DPA
+
 ## nav-banner-margin-session — 2026-07-15 UTC
 
 - Removed max-width centering on header row

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<script>(function(){try{var CUR='de',SIBLING='acceptable-use.html',s=localStorage.getItem('utxo_lang');if(!s){s=((navigator.language||'').toLowerCase().indexOf('de')===0)?'de':'en';localStorage.setItem('utxo_lang',s);}if(s!==CUR){location.replace(SIBLING+location.search+location.hash);}}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Richtlinie zur akzeptablen Nutzung — utxo AG</title>
+<meta name="description" content="Nutzungsrichtlinie für den AI Coworker / Agentic Service der utxo AG.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="resources/FAVICONS/icon.svg" type="image/svg+xml">
+<link rel="icon" href="resources/FAVICONS/favicon-96x96.png" sizes="96x96" type="image/png">
+<link rel="apple-touch-icon" href="resources/FAVICONS/apple-touch-icon-180x180.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="utxo-root" style="background:var(--bg-primary);color:var(--text-primary);min-height:100vh;">
+
+  <!-- ============ HEADER ============ -->
+  <header id="hdr" style="position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--bg-primary) 84%, transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border-subtle);transition:box-shadow .3s var(--ease);">
+    <div style="max-width:1200px;margin:0 auto;height:72px;padding:0 clamp(20px,5vw,64px);display:flex;align-items:center;justify-content:space-between;gap:24px;">
+      <a href="/index.de" aria-label="UTXO.AG" style="display:flex;align-items:center;">
+        <img src="resources/logos/utxo-logo-header.png" alt="UTXO.AG" style="height: 68px; width: 66px; display: block; object-fit: contain">
+      </a>
+      <div style="display:flex;align-items:center;gap:28px;">
+        <nav data-desktop-nav="" style="display:flex;align-items:center;gap:28px;font-size:16px;color:var(--text-secondary);">
+          <a href="/agents.de" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">CoWorker</a>
+        </nav>
+        <span data-desktop-nav="" style="width:1px;height:20px;background:var(--border-strong);"></span>
+        <span data-desktop-nav="" style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--text-muted);"><a href="/acceptable-use.de" data-set-lang="de" style="color:var(--text-primary);">DE</a> <span style="opacity:.5;">/</span> <a href="/acceptable-use" data-set-lang="en" style="color:var(--text-muted);">EN</a></span>
+        <a href="/agents.de#contact" data-desktop-nav="" style="display:inline-flex;align-items:center;height:38px;padding:0 18px;color:#fff;border-radius:8px;font-size:14px;font-weight:500;background:#000;transition:opacity .2s var(--ease);" style-hover="opacity:.85">Termin</a>
+        <button data-hamburger="" aria-label="Menü öffnen" style="display:none;width:38px;height:38px;align-items:center;justify-content:center;border:1px solid var(--border-strong);background:transparent;border-radius:8px;color:var(--text-primary);cursor:pointer;">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M1 4h16M1 9h16M1 14h16" stroke="currentColor" stroke-width="1.5"></path></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ MOBILE OVERLAY ============ -->
+  <div data-mobile-overlay="" style="position:fixed;inset:0;z-index:60;background:#000;color:#fff;display:none;flex-direction:column;padding:24px clamp(20px,6vw,40px);">
+    <div style="display:flex;align-items:center;justify-content:space-between;height:48px;">
+      <span style="font-family:var(--font-display);font-weight:600;font-size:20px;letter-spacing:-.02em;">utxo<span style="opacity:.5;">.ag</span></span>
+      <button data-overlay-close="" aria-label="Menü schliessen" style="width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.2);background:transparent;border-radius:8px;color:#fff;cursor:pointer;">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="1.5"></path></svg>
+      </button>
+    </div>
+    <nav style="display:flex;flex-direction:column;gap:8px;margin-top:48px;">
+      <a href="/agents.de" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">CoWorker</a>
+    </nav>
+    <a href="/agents.de#contact" style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;height:52px;background:#fff;color:#000;border-radius:8px;font-size:16px;font-weight:500;">Termin vereinbaren</a>
+  </div>
+
+  <!-- ============ NUTZUNGSRICHTLINIE ============ -->
+  <main style="max-width:760px;margin:0 auto;padding:clamp(64px,9vw,120px) clamp(20px,5vw,64px) clamp(48px,6vw,80px);">
+    <h1 style="font-family:var(--font-display);font-weight:600;font-size:clamp(32px,5vw,44px);letter-spacing:-.02em;line-height:1.05;margin-bottom:8px;">Richtlinie zur akzeptablen Nutzung</h1>
+    <p style="font-family:var(--mono);font-size:13px;color:var(--text-muted);margin-bottom:48px;">Letzte Aktualisierung: 10. März 2026</p>
+
+    <div style="font-size:15px;line-height:1.75;color:var(--text-secondary);">
+      <p>Diese Richtlinie zur akzeptablen Nutzung («Richtlinie») regelt die Nutzung der KI-Agent-Dienste («AI Coworkers» oder «Agentic Service»), die von der UTXO AG, Dammstrasse 16, 6300 Zug, Schweiz («UTXO AG») dem abonnierenden Unternehmen («Kunde») bereitgestellt werden. Diese Richtlinie bildet einen integralen Bestandteil der <a href="/terms.de" style="text-decoration:underline;text-underline-offset:2px;color:var(--text-secondary);">Agentic Service Subscription Terms</a>.</p>
+
+      <hr style="margin:32px 0;border:none;border-top:1px solid var(--border-subtle);">
+
+      <section>
+        <h2 style="font-family:var(--font-display);font-weight:600;font-size:19px;color:var(--text-primary);margin-bottom:12px;">1. Allgemeine Pflichten</h2>
+        <p>1.1 Der Kunde hat den Agentic Service ausschliesslich für rechtmässige Zwecke und in Übereinstimmung mit diesen Bestimmungen, den Agentic Service Subscription Terms sowie allen anwendbaren Gesetzen und Vorschriften zu nutzen.</p>
+        <p style="margin-top:12px;">1.2 Der Kunde ist allein dafür verantwortlich sicherzustellen, dass seine Nutzung des Agentic Service, einschliesslich aller durch den AI Coworker verarbeiteten Daten oder erzeugten Ergebnisse, allen Gesetzen, Vorschriften und branchenspezifischen Anforderungen entspricht, die auf den Kunden anwendbar sind.</p>
+      </section>
+
+      <hr style="margin:32px 0;border:none;border-top:1px solid var(--border-subtle);">
+
+      <section>
+        <h2 style="font-family:var(--font-display);font-weight:600;font-size:19px;color:var(--text-primary);margin-bottom:12px;">2. Verbotene Nutzungen</h2>
+        <p>Der Kunde darf den Agentic Service nicht verwenden, um:</p>
+        <ul style="list-style:disc;padding-left:20px;margin-top:8px;display:flex;flex-direction:column;gap:8px;">
+          <li>rechtswidrige Handlungen zu begehen, zu fördern oder zu erleichtern;</li>
+          <li>Personen zu verleumden, zu beschimpfen, zu belästigen, zu verfolgen, zu bedrohen oder deren Rechte anderweitig zu verletzen;</li>
+          <li>obszönes, schädliches oder rechtswidriges Material zu verarbeiten, zu veröffentlichen, zu verbreiten oder zu verteilen;</li>
+          <li>Schadsoftware, Viren, Würmer, Trojaner oder anderen schädlichen Code, Dateien, Skripte oder Programme zu erzeugen, hochzuladen oder zu verbreiten;</li>
+          <li>Material hochzuladen, das urheberrechtlich, markenrechtlich, patentrechtlich oder anderweitig rechtlich geschützte Inhalte enthält, ohne über die erforderlichen Rechte, Lizenzen oder Zustimmungen zu verfügen;</li>
+          <li>Desinformation oder irreführende Inhalte zu erzeugen, zu fördern oder zu verbreiten;</li>
+          <li>den Agentic Service oder die damit verbundenen Netzwerke, Server oder Infrastrukturen zu stören, zu beeinträchtigen oder deren Leistung zu mindern;</li>
+          <li>sich unbefugten Zugang zum Agentic Service oder zu den damit verbundenen Systemen zu verschaffen;</li>
+          <li>vertragliche Nutzungsbeschränkungen oder von UTXO AG auferlegte technische Einschränkungen zu umgehen;</li>
+          <li>auf geistiges Eigentum von UTXO AG zuzugreifen, dieses zu kopieren oder zu nutzen, es sei denn, dies ist gemäss den Agentic Service Subscription Terms ausdrücklich gestattet;</li>
+          <li>den Agentic Service zur Entwicklung, zum Training oder zur Verbesserung eines konkurrierenden Produkts oder Dienstes zu verwenden oder den Agentic Service zu Wettbewerbszwecken einem Benchmark zu unterziehen; oder</li>
+          <li>den Agentic Service unter Verstoss gegen anwendbare Exportkontrollgesetze oder Sanktionsvorschriften zu nutzen.</li>
+        </ul>
+      </section>
+
+      <hr style="margin:32px 0;border:none;border-top:1px solid var(--border-subtle);">
+
+      <section>
+        <h2 style="font-family:var(--font-display);font-weight:600;font-size:19px;color:var(--text-primary);margin-bottom:12px;">3. KI-Verordnung der EU — Verbotene Praktiken</h2>
+        <p>In Übereinstimmung mit der KI-Verordnung (Verordnung (EU) 2024/1689) darf der Kunde den Agentic Service nicht für oder im Zusammenhang mit verbotenen KI-Praktiken verwenden. Insbesondere darf der Kunde nicht:</p>
+        <ul style="list-style:disc;padding-left:20px;margin-top:8px;display:flex;flex-direction:column;gap:8px;">
+          <li>unterschwellige, manipulative oder täuschende Techniken einsetzen, die das Verhalten einer Person in einer Weise verzerren, die dieser Person oder einer anderen Person physischen oder psychischen Schaden zufügt oder voraussichtlich zufügen wird;</li>
+          <li>Schwachstellen einer Person oder Gruppe ausnutzen, die sich aus dem Alter, einer Behinderung oder den sozioökonomischen Umständen ergeben, um deren Verhalten in einer Weise wesentlich zu verzerren, die Schaden verursacht oder voraussichtlich verursachen wird;</li>
+          <li>Personen auf der Grundlage ihres Sozialverhaltens oder ihrer persönlichen Eigenschaften bewerten oder klassifizieren (Social Scoring), wenn eine solche Bewertung zu einer nachteiligen oder ungünstigen Behandlung führt, die in keinem Zusammenhang mit dem Kontext steht, in dem die Daten ursprünglich erhoben wurden;</li>
+          <li>das Risiko bewerten oder vorhersagen, dass eine Person eine Straftat begeht, allein auf der Grundlage von Profiling oder persönlichen Merkmalen;</li>
+          <li>Gesichtserkennungsdatenbanken durch ungezieltes Sammeln von Gesichtsbildern erstellen oder erweitern;</li>
+          <li>biometrische Echtzeit-Fernidentifizierung in öffentlich zugänglichen Räumen zum Zwecke der Strafverfolgung durchführen;</li>
+          <li>die Emotionen von Personen am Arbeitsplatz oder in Bildungseinrichtungen ableiten, es sei denn, eine solche Nutzung ist aus medizinischen oder sicherheitstechnischen Gründen erforderlich; oder</li>
+          <li>Personen auf der Grundlage biometrischer Daten kategorisieren, um sensible Merkmale wie Rasse, politische Überzeugungen, Gewerkschaftszugehörigkeit, religiöse oder weltanschauliche Überzeugungen, Sexualleben oder sexuelle Orientierung abzuleiten oder zu erschliessen.</li>
+        </ul>
+      </section>
+
+      <hr style="margin:32px 0;border:none;border-top:1px solid var(--border-subtle);">
+
+      <section>
+        <h2 style="font-family:var(--font-display);font-weight:600;font-size:19px;color:var(--text-primary);margin-bottom:12px;">4. Verbot von Hochrisiko-KI-Systemen</h2>
+        <p>Der Kunde darf den Agentic Service nicht in einer Weise verändern, konfigurieren oder nutzen, die ihn in ein Hochrisiko-KI-System im Sinne von Art. 6 der KI-Verordnung (Verordnung (EU) 2024/1689) umwandelt, oder ihn als solches verwenden, ohne vorgängige schriftliche Vereinbarung mit UTXO AG.</p>
+      </section>
+
+      <hr style="margin:32px 0;border:none;border-top:1px solid var(--border-subtle);">
+
+      <section>
+        <h2 style="font-family:var(--font-display);font-weight:600;font-size:19px;color:var(--text-primary);margin-bottom:12px;">5. Reverse Engineering und geistiges Eigentum</h2>
+        <p>5.1 Der Kunde darf den Agentic Service oder Bestandteile davon nicht dekompilieren, disassemblieren, einem Reverse Engineering unterziehen oder auf andere Weise versuchen, den Quellcode, die zugrunde liegenden Algorithmen oder die Architektur des Agentic Service zu ermitteln, es sei denn, dies ist nach zwingendem anwendbarem Recht ausdrücklich gestattet.</p>
+        <p style="margin-top:12px;">5.2 Der Kunde darf den Agentic Service oder daran bestehende Rechte nicht vermieten, verkaufen, verleasen, unterlizenzieren, abtreten, verbreiten, in Frames einbetten, spiegeln oder anderweitig an Dritte übertragen.</p>
+        <p style="margin-top:12px;">5.3 Der Kunde darf unbefugten Dritten weder direkt noch indirekt Zugang zum Agentic Service gewähren. Der Kunde darf seinen Mitarbeitenden und Auftragnehmern Zugang nur in dem Umfang gewähren, der für die bestimmungsgemässe Nutzung des Agentic Service erforderlich ist, wobei der Kunde für die Einhaltung dieser Richtlinie durch diese Personen uneingeschränkt verantwortlich bleibt.</p>
+      </section>
+
+      <hr style="margin:32px 0;border:none;border-top:1px solid var(--border-subtle);">
+
+      <section>
+        <h2 style="font-family:var(--font-display);font-weight:600;font-size:19px;color:var(--text-primary);margin-bottom:12px;">6. Durchsetzung</h2>
+        <p>6.1 UTXO AG behält sich das Recht vor, jeden mutmasslichen Verstoss gegen diese Richtlinie zu untersuchen.</p>
+        <p style="margin-top:12px;">6.2 Stellt UTXO AG nach eigenem vernünftigem Ermessen fest, dass der Kunde gegen diese Richtlinie verstossen hat, kann UTXO AG:</p>
+        <ul style="list-style:disc;padding-left:20px;margin-top:8px;display:flex;flex-direction:column;gap:8px;">
+          <li>eine Verwarnung aussprechen und den Kunden auffordern, die verstossende Handlung einzustellen;</li>
+          <li>den Zugang des Kunden zum Agentic Service vorübergehend aussetzen; oder</li>
+          <li>das Abonnement mit sofortiger Wirkung gemäss den Agentic Service Subscription Terms kündigen.</li>
+        </ul>
+        <p style="margin-top:12px;">6.3 UTXO AG hat den Kunden über jede gemäss diesem Abschnitt 6 ergriffene Durchsetzungsmassnahme zu benachrichtigen, es sei denn, die Offenlegung wäre gesetzlich untersagt oder würde eine laufende Untersuchung gefährden.</p>
+      </section>
+
+      <hr style="margin:32px 0;border:none;border-top:1px solid var(--border-subtle);">
+
+      <section>
+        <h2 style="font-family:var(--font-display);font-weight:600;font-size:19px;color:var(--text-primary);margin-bottom:12px;">7. Meldepflicht</h2>
+        <p>Der Kunde hat UTXO AG unverzüglich unter <a href="mailto:support@utxoag.com" style="text-decoration:underline;text-underline-offset:2px;color:var(--text-secondary);">support@utxoag.com</a> zu benachrichtigen, wenn ihm ein Verstoss gegen diese Richtlinie, ein den Agentic Service betreffender Sicherheitsvorfall oder eine Nutzung des Agentic Service bekannt wird, die eine verbotene Praktik im Sinne der KI-Verordnung der EU darstellen könnte.</p>
+      </section>
+
+      <hr style="margin:32px 0;border:none;border-top:1px solid var(--border-subtle);">
+
+      <section>
+        <p style="font-weight:600;color:var(--text-primary);">UTXO AG</p>
+        <p>Dammstrasse 16<br>6300 Zug, Schweiz</p>
+        <p><a href="mailto:business@utxoag.com" style="text-decoration:underline;text-underline-offset:2px;color:var(--text-secondary);">business@utxoag.com</a></p>
+      </section>
+    </div>
+
+    <div style="margin-top:64px;padding-top:24px;border-top:1px solid var(--border-subtle);">
+      <a href="/index.de" style="font-size:13px;color:var(--text-muted);transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">← Zurück zur Startseite</a>
+    </div>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="background:#000;color:#fff;padding:clamp(56px,8vw,80px) clamp(20px,5vw,64px) clamp(36px,4vw,48px);border-top:1px solid rgba(255,255,255,.12);">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));row-gap:clamp(32px,5vw,64px);column-gap:clamp(8px,1.25vw,16px);">
+        <div>
+          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);">Unternehmen</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
+            <a href="https://masumi.network" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">masumi ↗</a>
+            <a href="https://sokosumi.com" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">sokosumi ↗</a>
+            <a href="https://www.nmkr.io" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">NMKR ↗</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);">Rechtliches</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
+            <a href="/imprint.de" style="transition:color .2s var(--ease);" style-hover="color:#fff">Impressum</a>
+            <a href="/privacy.de" style="transition:color .2s var(--ease);" style-hover="color:#fff">Datenschutz</a>
+            <a href="/terms.de" style="transition:color .2s var(--ease);" style-hover="color:#fff">AGB</a>
+            <a href="/acceptable-use.de" style="transition:color .2s var(--ease);" style-hover="color:#fff">Nutzungsrichtlinie</a>
+            <a href="/dpa.de" style="transition:color .2s var(--ease);" style-hover="color:#fff">Auftragsverarbeitungsvertrag</a>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:clamp(40px,6vw,64px);padding-top:24px;border-top:1px solid rgba(255,255,255,.12);font-family:var(--mono);font-size:12px;letter-spacing:.03em;color:rgba(255,255,255,.5);">
+        <img src="resources/e74b90dc-3a43-4724-a31f-41fca9e2fccc.png" alt="utxo.ag" style="height:20px;width:auto;display:block;object-fit:contain;">
+        <span>© 2026 utxo AG · Dammstrasse 16 · 6300 Zug · Schweiz</span>
+        <span>GEHOSTET IN EU/CH · DSGVO · EU-KI-VERORDNUNG</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+<script src="main.js"></script>
+</body></html>

@@ -1,0 +1,19 @@
+{
+	admin off
+}
+
+:{$PORT}
+
+root * .
+encode gzip zstd
+
+@indexfile path /index.html
+redir @indexfile / permanent
+
+@htmlfile {
+	path_regexp htmlext ^/(.+)\.html$
+}
+redir @htmlfile /{re.htmlext.1} permanent
+
+try_files {path} {path}.html {path}/ =404
+file_server

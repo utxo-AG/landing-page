@@ -16,6 +16,7 @@ partials/footer.html  canonical copy of the footer markup (matches agents.html's
 removed-sections.html backup of sections cut from the original one-pager (see below) — not linked/served, archive only
 changes.md             per-session changelog, see Change tracking below
 hero-image-grid-plan.md  plan for driving hero pixel-grid off resources/agent_hero_anim/ images — implemented (see Notes)
+Caddyfile              deploy config for Railway (static site, auto-detected). Strips .html from routes: redirects foo.html → foo (301), serves foo.html content at extensionless /foo via try_files. index.html → / . All internal <a href> across every page/partial use the extensionless form (e.g. href="/agents", href="/imprint.de") — keep new links extensionless too.
 ```
 
 ## Page split
