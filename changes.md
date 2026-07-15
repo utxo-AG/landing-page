@@ -1,5 +1,34 @@
 # Changes
 
+## nav-banner-margin-session — 2026-07-15 UTC
+
+- Removed max-width centering on header row
+- Removed max-width centering on banner row
+- Logo nav banner now hug true edge
+- Applied across all four html pages
+
+- Header nav padding fixed 2rem not clamp
+- Hero banner padding fixed 2rem not clamp
+- Applied across all four html pages
+
+## en-default-favicon-session — 2026-07-15 UTC
+
+- Renamed old "index.html" to "index.de.html"
+- Renamed old "agents.html" to "agents.de.html"
+- Renamed "index.en.html" to "index.html"
+- Renamed "agents.en.html" to "agents.html"
+- EN is now default site language
+- Fixed all cross page links post swap
+- Added browser language auto redirect script
+- Redirect script added to all four heads
+- Manual DE EN choice persists via localStorage
+- Added "data-set-lang" click handler in "main.js"
+- Wired favicon links into all pages
+- Renamed messy filenames in "FAVICONS" folder
+- Cropped header logo fixing uneven padding
+- New "utxo-logo-header.png" replaces old logo asset
+- Adjusted logo width to match new aspect
+
 ## contact-section-index-session — 2026-07-10 UTC
 
 - Added "contact" section to "index.html"

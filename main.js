@@ -23,6 +23,13 @@ const App = {
       });
     }
 
+    // ---- Language switch (persists manual choice, see head redirect script) ----
+    root.querySelectorAll('[data-set-lang]').forEach((el) => {
+      el.addEventListener('click', () => {
+        try { localStorage.setItem('utxo_lang', el.getAttribute('data-set-lang')); } catch (e) {}
+      });
+    });
+
     // ---- Mobile menu ----
     const burger = root.querySelector('[data-hamburger]');
     const overlay = root.querySelector('[data-mobile-overlay]');
