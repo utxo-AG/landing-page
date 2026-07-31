@@ -1,5 +1,35 @@
 # Changes
 
+## seo-landing-pages — 2026-07-31 UTC
+
+- Rebuilt "vergleich" hero as split comparison
+- Centered headline with marker highlight
+- Assistant chat card vs CoWorker card
+- Animated tasks and typing dots
+- Black header on CoWorker table column
+- Tinted CoWorker column in table
+- Same hero on EN version
+- Aligned navbar width with sections
+- Renamed "vergleich" pages to "comparison"
+- Reduced comparison hero top padding
+- Added "problem" split illustration
+- Trimmed "problem" and "unterschiede" copy
+- Added illustrated "ablauf" flow section
+- Hero H1 marker highlight fix
+
+## seo-landing-pages — 2026-07-30 UTC
+
+- Added "vergleich.html" comparison landing page
+- Added "vergleich.en.html" English version
+- Fixed DE/EN toggle on both vergleich pages
+- CoWorker vs enterprise AI comparison table
+- SEO meta tags targeting Copilot alternative queries
+- Rewrote both pages with whitepaper content
+- Added memory row to comparison table
+- Accurate certs ISO 27001 SOC 2 ISO 42001 C5
+- Model-agnostic Anthropic Mistral detail added
+- Data sovereignty EU hosting local option added
+
 ## en-translation-session — 2026-07-10 UTC
 
 - Added "index.en.html" full English translation
