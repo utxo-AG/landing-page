@@ -1,5 +1,14 @@
 # Changes
 
+## seo-landing-pages — 2026-08-03 UTC
+
+- Slimmed "unterschiede" copy further
+- Flat numbered layout replacing cards
+- Removed "contact" section from comparison
+- CTAs now target agents "contact"
+- Fixed 404 footer legal links
+- Booking button now mailto link
+
 ## seo-landing-pages — 2026-07-31 UTC
 
 - Rebuilt "vergleich" hero as split comparison
