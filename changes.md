@@ -8,6 +8,9 @@
 - CTAs now target agents "contact"
 - Fixed 404 footer legal links
 - Booking button now mailto link
+- Removed hero consultation button comparison
+- Unified navbar across all pages
+- Standardized nav CTA labels
 
 ## seo-landing-pages — 2026-07-31 UTC
 
