@@ -11,6 +11,21 @@
 - Removed hero consultation button comparison
 - Unified navbar across all pages
 - Standardized nav CTA labels
+- Added notification banner all pages
+- Aligned banner content with navbar
+- Redesigned comparison table spotlight column
+- Added table criterion icons and badge
+- Made navbar and banner full-width
+- Narrowed table criterion column width
+- Top-aligned table cell icons
+- Redrew flow step illustrations meaningfully
+- Replaced flow illustrations with labeled mockups
+- Redesigned "four differences" as icon cards
+- Redesigned "when each fits" contrasting cards
+- Fixed comparison hero headline mobile size
+- Made comparison design more professional
+- Kept comparison section headings one line
+- Removed all em dashes from copy
 
 ## seo-landing-pages — 2026-07-31 UTC
 
