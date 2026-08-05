@@ -26,6 +26,8 @@
 - Made comparison design more professional
 - Kept comparison section headings one line
 - Removed all em dashes from copy
+- Added "ai-in-business" landing page
+- Built DE and EN versions
 
 ## seo-landing-pages — 2026-07-31 UTC
 

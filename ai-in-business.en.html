@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Integrate AI into Your Business Processes | utxo.ag</title>
+<meta name="description" content="A practical guide to using AI in your business: how to integrate AI into existing processes, where it fits, what to avoid, and how to reach measurable results in 30 days.">
+<meta name="keywords" content="how to use AI in business, integrate AI into business processes, AI for business processes, AI automation SME, AI adoption strategy, AI in operations, GDPR compliant AI">
+<link rel="canonical" href="https://utxo.ag/ai-in-business.en.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="utxo-root" style="background:var(--bg-primary);color:var(--text-primary);min-height:100vh;">
+
+  <!-- ============ HEADER ============ -->
+  <header id="hdr" style="position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--bg-primary) 84%, transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border-subtle);transition:box-shadow .3s var(--ease);padding:0 clamp(20px,5vw,64px);">
+    <div style="margin:0 auto;height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+      <a href="index.en.html" aria-label="UTXO.AG" style="display:flex;align-items:center;">
+        <img src="resources/eced9d8c-21a5-41da-89fd-cf06ff0cfa5a.png" alt="UTXO.AG" style="height:68px;width:76px;display:block;object-fit:contain">
+      </a>
+      <div style="display:flex;align-items:center;gap:28px;">
+        <nav data-desktop-nav="" style="display:flex;align-items:center;gap:28px;font-size:16px;color:var(--text-secondary);">
+          <a href="index.en.html#team" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Team</a>
+          <a href="index.en.html#stories" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Projects</a>
+          <a href="agents.en.html" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">AI</a>
+        </nav>
+        <span data-desktop-nav="" style="width:1px;height:20px;background:var(--border-strong);"></span>
+        <span data-desktop-nav="" style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--text-muted);"><a href="ai-in-business.html" style="color:var(--text-muted);">DE</a> <span style="opacity:.5;">/</span> <a href="ai-in-business.en.html" style="color:var(--text-primary);">EN</a></span>
+        <a href="agents.en.html#contact" data-desktop-nav="" style="display:inline-flex;align-items:center;height:38px;padding:0 18px;color:#fff;border-radius:8px;font-size:14px;font-weight:500;background:#000;transition:opacity .2s var(--ease);" style-hover="opacity:.85">Book a call</a>
+        <button data-hamburger="" aria-label="Open menu" style="display:none;width:38px;height:38px;align-items:center;justify-content:center;border:1px solid var(--border-strong);background:transparent;border-radius:8px;color:var(--text-primary);cursor:pointer;">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M1 4h16M1 9h16M1 14h16" stroke="currentColor" stroke-width="1.5"></path></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ MOBILE OVERLAY ============ -->
+  <div data-mobile-overlay="" style="position:fixed;inset:0;z-index:60;background:#000;color:#fff;display:none;flex-direction:column;padding:24px clamp(20px,6vw,40px);">
+    <div style="display:flex;align-items:center;justify-content:space-between;height:48px;">
+      <span style="font-family:var(--font-display);font-weight:600;font-size:20px;letter-spacing:-.02em;">utxo<span style="opacity:.5;">.ag</span></span>
+      <button data-overlay-close="" aria-label="Close menu" style="width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.2);background:transparent;border-radius:8px;color:#fff;cursor:pointer;">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="1.5"></path></svg>
+      </button>
+    </div>
+    <nav style="display:flex;flex-direction:column;gap:8px;margin-top:48px;">
+      <a href="index.en.html#team" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Team</a>
+      <a href="index.en.html#stories" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Projects</a>
+      <a href="agents.en.html" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">CoWorker</a>
+    </nav>
+    <a href="agents.en.html#contact" style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;height:52px;background:#fff;color:#000;border-radius:8px;font-size:16px;font-weight:500;">Book a call</a>
+  </div>
+
+  <!-- ============ HERO BANNER ============ -->
+  <a href="agents.en.html" style="display:block;background:#000;color:#fff;padding:0 clamp(20px,5vw,64px);transition:opacity .2s var(--ease);" style-hover="opacity:.85">
+    <div style="margin:0 auto;padding:14px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+      <span style="font-size:15px;font-weight:400;">Does your company need AI? Custom CoWorkers, productive in 30 days.</span>
+      <span style="display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:500;white-space:nowrap;">Explore AI CoWorkers <span aria-hidden="true">&rarr;</span></span>
+    </div>
+  </a>
+
+  <!-- ============ HERO ============ -->
+  <section id="top" style="position:relative;overflow:hidden;background:#fff;color:#000;padding:clamp(72px,11vw,128px) clamp(20px,5vw,64px) clamp(56px,8vw,96px);border-bottom:1px solid var(--border-subtle);">
+    <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(0,0,0,.14) 1px,transparent 1.4px);background-size:26px 26px;-webkit-mask-image:radial-gradient(70% 70% at 78% 18%,#000,transparent 72%);mask-image:radial-gradient(70% 70% at 78% 18%,#000,transparent 72%);opacity:.4;"></div>
+    <div style="position:relative;z-index:1;max-width:1200px;margin:0 auto;">
+      <div style="max-width:60ch;">
+        <div style="font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);">AI in business</div>
+        <h1 data-reveal="" style="transition:opacity .7s var(--ease) .06s,transform .7s var(--ease) .06s;font-weight:600;font-size:clamp(40px,5.4vw,68px);line-height:1.05;letter-spacing:-.03em;margin-top:18px;max-width:19ch;">Put AI to work inside the processes you already run.</h1>
+        <p data-reveal="" style="transition:opacity .7s var(--ease) .12s,transform .7s var(--ease) .12s;margin-top:22px;max-width:58ch;font-size:clamp(1.05rem,1rem+.35vw,1.25rem);line-height:1.5;color:var(--text-secondary);">Most businesses do not need more tools. They need their day-to-day work to run with less manual effort. This is a practical guide to integrating AI into your operations, from the first assessment to measurable results.</p>
+        <div data-reveal="" style="transition:opacity .7s var(--ease) .18s,transform .7s var(--ease) .18s;display:flex;gap:12px;flex-wrap:wrap;margin-top:34px;">
+          <a href="agents.en.html" style="display:inline-flex;align-items:center;height:52px;padding:0 26px;background:#000;color:#fff;border-radius:8px;font-size:15px;font-weight:500;transition:opacity .2s var(--ease);" style-hover="opacity:.88">Explore the CoWorker</a>
+          <a href="#path" style="display:inline-flex;align-items:center;height:52px;padding:0 24px;background:rgba(0,0,0,.04);color:#000;border:1px solid rgba(0,0,0,.22);border-radius:8px;font-size:15px;font-weight:500;transition:border-color .2s var(--ease),background .2s var(--ease);" style-hover="border-color:rgba(0,0,0,.5);background:rgba(0,0,0,.08)">See the four steps</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHY IT STALLS ============ -->
+  <section id="problem" style="background:var(--bg-secondary);border-top:1px solid var(--border-subtle);padding:clamp(64px,9vw,120px) clamp(20px,5vw,64px);scroll-margin-top:88px;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div data-reveal="" style="transition:opacity .7s var(--ease),transform .7s var(--ease);max-width:62ch;">
+        <div style="font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);">Why most AI initiatives stall</div>
+        <h2 style="font-weight:500;font-size:clamp(32px,4vw,48px);line-height:1.05;letter-spacing:-.028em;margin-top:16px;">Buying AI is easy. Creating value is not.</h2>
+        <p style="margin-top:20px;font-size:clamp(1.05rem,1rem+.3vw,1.2rem);line-height:1.5;color:var(--text-secondary);">Tools are everywhere. Yet most pilots never reach production, and licences quietly add cost without changing how the work gets done. Three patterns explain why.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(16px,2vw,20px);margin-top:clamp(40px,5vw,56px);">
+
+        <div data-reveal="" data-delay="0" style="transition:opacity .6s var(--ease),transform .6s var(--ease);padding:clamp(24px,3vw,32px);border:1px solid var(--border-subtle);border-radius:10px;background:var(--bg-primary);">
+          <div style="width:44px;height:44px;border-radius:10px;background:#0b0b0b;color:#fff;display:flex;align-items:center;justify-content:center;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"></path><path d="M22 2l-7 20-4-9-9-4 20-7z"></path></svg>
+          </div>
+          <h3 style="font-weight:500;font-size:1.2rem;letter-spacing:-.01em;margin-top:18px;">Pilots that never ship</h3>
+          <p style="margin-top:10px;font-size:15px;line-height:1.5;color:var(--text-secondary);">A demo impresses in a workshop, then stalls the moment it meets real data, real exceptions and real systems.</p>
+        </div>
+
+        <div data-reveal="" data-delay="80" style="transition:opacity .6s var(--ease),transform .6s var(--ease);padding:clamp(24px,3vw,32px);border:1px solid var(--border-subtle);border-radius:10px;background:var(--bg-primary);">
+          <div style="width:44px;height:44px;border-radius:10px;background:#0b0b0b;color:#fff;display:flex;align-items:center;justify-content:center;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"></path></svg>
+          </div>
+          <h3 style="font-weight:500;font-size:1.2rem;letter-spacing:-.01em;margin-top:18px;">Tools without a process</h3>
+          <p style="margin-top:10px;font-size:15px;line-height:1.5;color:var(--text-secondary);">Generic assistants speed up typing. They do not own a workflow, so the actual task still lands on a person.</p>
+        </div>
+
+        <div data-reveal="" data-delay="160" style="transition:opacity .6s var(--ease),transform .6s var(--ease);padding:clamp(24px,3vw,32px);border:1px solid var(--border-subtle);border-radius:10px;background:var(--bg-primary);">
+          <div style="width:44px;height:44px;border-radius:10px;background:#0b0b0b;color:#fff;display:flex;align-items:center;justify-content:center;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4l-7.2 7.2a2 2 0 01-2.8 0l-6.2-6.2A2 2 0 014 13V5.5A1.5 1.5 0 015.5 4H13a2 2 0 011.4.6l6.2 6.2a2 2 0 010 2.6z"></path><circle cx="8.5" cy="8.5" r="1.3"></circle></svg>
+          </div>
+          <h3 style="font-weight:500;font-size:1.2rem;letter-spacing:-.01em;margin-top:18px;">Licences, not outcomes</h3>
+          <p style="margin-top:10px;font-size:15px;line-height:1.5;color:var(--text-secondary);">Per-seat pricing grows with the team while measurable improvement stays flat.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE PATH ============ -->
+  <section id="path" style="background:var(--bg-primary);border-top:1px solid var(--border-subtle);padding:clamp(64px,9vw,120px) clamp(20px,5vw,64px);scroll-margin-top:88px;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div data-reveal="" style="transition:opacity .7s var(--ease),transform .7s var(--ease);max-width:62ch;">
+        <div style="font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);">A practical path</div>
+        <h2 style="font-weight:500;font-size:clamp(32px,4vw,48px);line-height:1.05;letter-spacing:-.028em;margin-top:16px;">Four steps to integrate AI that lasts.</h2>
+        <p style="margin-top:20px;font-size:clamp(1.05rem,1rem+.3vw,1.2rem);line-height:1.5;color:var(--text-secondary);">Integration is less about the model and more about the fit. This is the sequence we use with every client.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(16px,2vw,20px);margin-top:clamp(40px,5vw,56px);">
+
+        <div data-reveal="" data-delay="0" style="transition:opacity .6s var(--ease),transform .6s var(--ease);display:flex;flex-direction:column;padding:clamp(24px,3vw,30px);border:1px solid var(--border-subtle);border-radius:10px;background:var(--bg-primary);">
+          <div style="font-family:var(--font-display);font-weight:600;font-size:34px;line-height:1;letter-spacing:-.03em;color:var(--text-primary);">01</div>
+          <h3 style="font-weight:500;font-size:1.18rem;letter-spacing:-.012em;margin-top:16px;">Assess</h3>
+          <p style="margin-top:10px;font-size:15px;line-height:1.5;color:var(--text-secondary);">Identify one process that is repetitive, rule-heavy and costs real time. Start where the return is clear.</p>
+        </div>
+
+        <div data-reveal="" data-delay="80" style="transition:opacity .6s var(--ease),transform .6s var(--ease);display:flex;flex-direction:column;padding:clamp(24px,3vw,30px);border:1px solid var(--border-subtle);border-radius:10px;background:var(--bg-primary);">
+          <div style="font-family:var(--font-display);font-weight:600;font-size:34px;line-height:1;letter-spacing:-.03em;color:var(--text-primary);">02</div>
+          <h3 style="font-weight:500;font-size:1.18rem;letter-spacing:-.012em;margin-top:16px;">Pilot</h3>
+          <p style="margin-top:10px;font-size:15px;line-height:1.5;color:var(--text-secondary);">Build a working version on that single workflow and prove it against real cases, not slides.</p>
+        </div>
+
+        <div data-reveal="" data-delay="160" style="transition:opacity .6s var(--ease),transform .6s var(--ease);display:flex;flex-direction:column;padding:clamp(24px,3vw,30px);border:1px solid var(--border-subtle);border-radius:10px;background:var(--bg-primary);">
+          <div style="font-family:var(--font-display);font-weight:600;font-size:34px;line-height:1;letter-spacing:-.03em;color:var(--text-primary);">03</div>
+          <h3 style="font-weight:500;font-size:1.18rem;letter-spacing:-.012em;margin-top:16px;">Integrate</h3>
+          <p style="margin-top:10px;font-size:15px;line-height:1.5;color:var(--text-secondary);">Connect it to the systems the work already lives in: CRM, ERP, inbox and files.</p>
+        </div>
+
+        <div data-reveal="" data-delay="240" style="transition:opacity .6s var(--ease),transform .6s var(--ease);display:flex;flex-direction:column;padding:clamp(24px,3vw,30px);border:1px solid var(--border-subtle);border-radius:10px;background:var(--bg-primary);">
+          <div style="font-family:var(--font-display);font-weight:600;font-size:34px;line-height:1;letter-spacing:-.03em;color:var(--text-primary);">04</div>
+          <h3 style="font-weight:500;font-size:1.18rem;letter-spacing:-.012em;margin-top:16px;">Scale &amp; measure</h3>
+          <p style="margin-top:10px;font-size:15px;line-height:1.5;color:var(--text-secondary);">Expand to the next process against a success metric agreed before you start.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHERE IT FITS ============ -->
+  <section id="where" style="background:var(--bg-secondary);border-top:1px solid var(--border-subtle);padding:clamp(64px,9vw,120px) clamp(20px,5vw,64px);scroll-margin-top:88px;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div data-reveal="" style="transition:opacity .7s var(--ease),transform .7s var(--ease);max-width:62ch;">
+        <div style="font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);">Where it fits</div>
+        <h2 style="font-weight:500;font-size:clamp(32px,4vw,48px);line-height:1.05;letter-spacing:-.028em;margin-top:16px;">Where AI earns its place in daily operations.</h2>
+        <p style="margin-top:20px;font-size:clamp(1.05rem,1rem+.3vw,1.2rem);line-height:1.5;color:var(--text-secondary);">The best candidates are repeatable, describable and system-bound. A few common examples.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(16px,2vw,20px);margin-top:clamp(40px,5vw,56px);">
+
+        <div data-reveal="" data-delay="0" style="transition:opacity .6s var(--ease),transform .6s var(--ease);padding:clamp(22px,2.6vw,28px);border:1px solid var(--border-subtle);border-radius:10px;background:var(--bg-primary);">
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:9px;border:1px solid var(--border-subtle);color:var(--text-primary);"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"></path><path d="M5.5 5h13l3.5 7v6a1 1 0 01-1 1H3a1 1 0 01-1-1v-6z"></path></svg></span>
+          <h3 style="font-weight:500;font-size:1.1rem;letter-spacing:-.01em;margin-top:16px;">Inbox &amp; correspondence</h3>
+          <p style="margin-top:8px;font-size:14.5px;line-height:1.5;color:var(--text-secondary);">Triage, draft and route replies with full context.</p>
+        </div>
+
+        <div data-reveal="" data-delay="60" style="transition:opacity .6s var(--ease),transform .6s var(--ease);padding:clamp(22px,2.6vw,28px);border:1px solid var(--border-subtle);border-radius:10px;background:var(--bg-primary);">
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:9px;border:1px solid var(--border-subtle);color:var(--text-primary);"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14a1 1 0 01-1 1H6a1 1 0 01-1-1V4a1 1 0 011-1z"></path><path d="M14 3v5h5M9 14h6M9 17h4"></path></svg></span>
+          <h3 style="font-weight:500;font-size:1.1rem;letter-spacing:-.01em;margin-top:16px;">Quotes &amp; offers</h3>
+          <p style="margin-top:8px;font-size:14.5px;line-height:1.5;color:var(--text-secondary);">Assemble accurate offers from your catalogue and rules.</p>
+        </div>
+
+        <div data-reveal="" data-delay="120" style="transition:opacity .6s var(--ease),transform .6s var(--ease);padding:clamp(22px,2.6vw,28px);border:1px solid var(--border-subtle);border-radius:10px;background:var(--bg-primary);">
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:9px;border:1px solid var(--border-subtle);color:var(--text-primary);"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"></ellipse><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"></path><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"></path></svg></span>
+          <h3 style="font-weight:500;font-size:1.1rem;letter-spacing:-.01em;margin-top:16px;">CRM &amp; data entry</h3>
+          <p style="margin-top:8px;font-size:14.5px;line-height:1.5;color:var(--text-secondary);">Keep records current without manual copy and paste.</p>
+        </div>
+
+        <div data-reveal="" data-delay="180" style="transition:opacity .6s var(--ease),transform .6s var(--ease);padding:clamp(22px,2.6vw,28px);border:1px solid var(--border-subtle);border-radius:10px;background:var(--bg-primary);">
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:9px;border:1px solid var(--border-subtle);color:var(--text-primary);"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14a1 1 0 01-1 1H6a1 1 0 01-1-1V4a1 1 0 011-1z"></path><path d="M14 3v5h5"></path><path d="M8.5 14.5l2 2 4-4.5"></path></svg></span>
+          <h3 style="font-weight:500;font-size:1.1rem;letter-spacing:-.01em;margin-top:16px;">Document processing</h3>
+          <p style="margin-top:8px;font-size:14.5px;line-height:1.5;color:var(--text-secondary);">Extract, check and file information from PDFs and forms.</p>
+        </div>
+
+        <div data-reveal="" data-delay="240" style="transition:opacity .6s var(--ease),transform .6s var(--ease);padding:clamp(22px,2.6vw,28px);border:1px solid var(--border-subtle);border-radius:10px;background:var(--bg-primary);">
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:9px;border:1px solid var(--border-subtle);color:var(--text-primary);"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg></span>
+          <h3 style="font-weight:500;font-size:1.1rem;letter-spacing:-.01em;margin-top:16px;">Research &amp; summaries</h3>
+          <p style="margin-top:8px;font-size:14.5px;line-height:1.5;color:var(--text-secondary);">Turn scattered sources into a short, sourced brief.</p>
+        </div>
+
+        <div data-reveal="" data-delay="300" style="transition:opacity .6s var(--ease),transform .6s var(--ease);padding:clamp(22px,2.6vw,28px);border:1px solid var(--border-subtle);border-radius:10px;background:var(--bg-primary);">
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:9px;border:1px solid var(--border-subtle);color:var(--text-primary);"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 9h18M8 3v4M16 3v4"></path></svg></span>
+          <h3 style="font-weight:500;font-size:1.1rem;letter-spacing:-.01em;margin-top:16px;">Scheduling &amp; follow-ups</h3>
+          <p style="margin-top:8px;font-size:14.5px;line-height:1.5;color:var(--text-secondary);">Book, confirm and chase without dropping threads.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHAT TO WATCH ============ -->
+  <section id="watch" style="background:var(--bg-primary);border-top:1px solid var(--border-subtle);padding:clamp(64px,9vw,120px) clamp(20px,5vw,64px);scroll-margin-top:88px;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div data-reveal="" style="transition:opacity .7s var(--ease),transform .7s var(--ease);max-width:62ch;">
+        <div style="font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);">Before you start</div>
+        <h2 style="font-weight:500;font-size:clamp(32px,4vw,48px);line-height:1.05;letter-spacing:-.028em;margin-top:16px;">What separates a useful rollout from a costly one.</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,48px) clamp(32px,5vw,72px);margin-top:clamp(40px,5vw,56px);">
+
+        <div data-reveal="" data-delay="0" style="transition:opacity .6s var(--ease),transform .6s var(--ease);border-top:1px solid var(--border-strong);padding-top:20px;">
+          <h3 style="font-weight:500;font-size:1.22rem;letter-spacing:-.012em;">Data sovereignty</h3>
+          <p style="margin-top:10px;font-size:15px;line-height:1.55;color:var(--text-secondary);">Know where your data lives and whether it trains someone else's model. In the EU this is not optional.</p>
+        </div>
+
+        <div data-reveal="" data-delay="80" style="transition:opacity .6s var(--ease),transform .6s var(--ease);border-top:1px solid var(--border-strong);padding-top:20px;">
+          <h3 style="font-weight:500;font-size:1.22rem;letter-spacing:-.012em;">Change management</h3>
+          <p style="margin-top:10px;font-size:15px;line-height:1.55;color:var(--text-secondary);">A tool no one adopts delivers nothing. Fit the workflow to the team, not the team to the tool.</p>
+        </div>
+
+        <div data-reveal="" data-delay="160" style="transition:opacity .6s var(--ease),transform .6s var(--ease);border-top:1px solid var(--border-strong);padding-top:20px;">
+          <h3 style="font-weight:500;font-size:1.22rem;letter-spacing:-.012em;">Vendor lock-in</h3>
+          <p style="margin-top:10px;font-size:15px;line-height:1.55;color:var(--text-secondary);">Favour approaches that stay portable across models and systems, so you keep the freedom to change.</p>
+        </div>
+
+        <div data-reveal="" data-delay="240" style="transition:opacity .6s var(--ease),transform .6s var(--ease);border-top:1px solid var(--border-strong);padding-top:20px;">
+          <h3 style="font-weight:500;font-size:1.22rem;letter-spacing:-.012em;">A defined success metric</h3>
+          <p style="margin-top:10px;font-size:15px;line-height:1.55;color:var(--text-secondary);">Agree what working means, and how you will measure it, before the build begins.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE UTXO APPROACH ============ -->
+  <section id="approach" style="background:#000;color:#fff;padding:clamp(64px,9vw,120px) clamp(20px,5vw,64px);scroll-margin-top:88px;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,88px);align-items:start;" data-2col="">
+        <div data-reveal="" style="transition:opacity .7s var(--ease),transform .7s var(--ease);">
+          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45);">How we do it</div>
+          <h2 style="font-weight:500;font-size:clamp(32px,4vw,48px);line-height:1.05;letter-spacing:-.028em;margin-top:16px;">From first conversation to production in 30 days.</h2>
+          <p style="margin-top:20px;font-size:1.1rem;line-height:1.6;color:rgba(255,255,255,.68);">A utxo CoWorker is a digital employee built for one of your processes. It understands your context, works inside your systems and delivers finished results, not chat transcripts.</p>
+          <div style="margin-top:34px;">
+            <a href="agents.en.html" style="display:inline-flex;align-items:center;gap:10px;height:54px;padding:0 26px;background:#fff;color:#000;border-radius:8px;font-size:16px;font-weight:500;transition:opacity .2s var(--ease);" style-hover="opacity:.88">Explore the CoWorker <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+          </div>
+        </div>
+        <ul data-reveal="" data-delay="80" style="transition:opacity .7s var(--ease) .08s,transform .7s var(--ease) .08s;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0;">
+          <li style="display:flex;align-items:flex-start;gap:14px;padding:18px 0;border-top:1px solid rgba(255,255,255,.14);font-size:16px;line-height:1.5;color:rgba(255,255,255,.85);"><span style="flex:0 0 auto;width:20px;height:20px;border-radius:6px;background:#fff;color:#000;display:inline-flex;align-items:center;justify-content:center;margin-top:1px;"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6.4l2.6 2.6 5-5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Custom-built for one of your processes, not a generic tool</li>
+          <li style="display:flex;align-items:flex-start;gap:14px;padding:18px 0;border-top:1px solid rgba(255,255,255,.14);font-size:16px;line-height:1.5;color:rgba(255,255,255,.85);"><span style="flex:0 0 auto;width:20px;height:20px;border-radius:6px;background:#fff;color:#000;display:inline-flex;align-items:center;justify-content:center;margin-top:1px;"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6.4l2.6 2.6 5-5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Hosted in the EU or Switzerland, GDPR-compliant, or fully on your own infrastructure</li>
+          <li style="display:flex;align-items:flex-start;gap:14px;padding:18px 0;border-top:1px solid rgba(255,255,255,.14);font-size:16px;line-height:1.5;color:rgba(255,255,255,.85);"><span style="flex:0 0 auto;width:20px;height:20px;border-radius:6px;background:#fff;color:#000;display:inline-flex;align-items:center;justify-content:center;margin-top:1px;"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6.4l2.6 2.6 5-5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Fixed price for the build, a predictable subscription for operation</li>
+          <li style="display:flex;align-items:flex-start;gap:14px;padding:18px 0;border-top:1px solid rgba(255,255,255,.14);border-bottom:1px solid rgba(255,255,255,.14);font-size:16px;line-height:1.5;color:rgba(255,255,255,.85);"><span style="flex:0 0 auto;width:20px;height:20px;border-radius:6px;background:#fff;color:#000;display:inline-flex;align-items:center;justify-content:center;margin-top:1px;"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6.4l2.6 2.6 5-5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>A measurable success criterion, agreed before the project starts</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="background:#000;color:#fff;padding:clamp(56px,8vw,80px) clamp(20px,5vw,64px) clamp(36px,4vw,48px);border-top:1px solid rgba(255,255,255,.12);">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:clamp(32px,5vw,64px);">
+        <div style="grid-column:1 / -1;max-width:34ch;">
+          <img src="resources/e74b90dc-3a43-4724-a31f-41fca9e2fccc.png" alt="utxo.ag" style="height:30px;width:auto;display:block;object-fit:contain;">
+          <p style="margin-top:18px;font-size:17px;line-height:1.6;color:rgba(255,255,255,.6);">CoWorker: digital employees, custom-built for SMEs and enterprises. GDPR-compliant, hosted in EU/CH.</p>
+        </div>
+        <div>
+          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);">Guide</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
+            <a href="#problem" style="transition:color .2s var(--ease);" style-hover="color:#fff">Why AI stalls</a>
+            <a href="#path" style="transition:color .2s var(--ease);" style-hover="color:#fff">The four steps</a>
+            <a href="#where" style="transition:color .2s var(--ease);" style-hover="color:#fff">Where AI fits</a>
+            <a href="#watch" style="transition:color .2s var(--ease);" style-hover="color:#fff">What to watch for</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);">Product</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
+            <a href="agents.en.html" style="transition:color .2s var(--ease);" style-hover="color:#fff">CoWorker</a>
+            <a href="comparison.en.html" style="transition:color .2s var(--ease);" style-hover="color:#fff">Comparison</a>
+            <a href="agents.en.html#pricing" style="transition:color .2s var(--ease);" style-hover="color:#fff">Pricing</a>
+            <a href="agents.en.html#contact" style="transition:color .2s var(--ease);" style-hover="color:#fff">Contact</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);">Company</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
+            <a href="https://masumi.network" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">masumi ↗</a>
+            <a href="https://sokosumi.com" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">sokosumi ↗</a>
+            <a href="https://www.nmkr.io" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">NMKR ↗</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);">Legal</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
+            <a href="https://utxoag.com/imprint" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">Imprint</a>
+            <a href="https://utxoag.com/privacy" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">Privacy policy</a>
+            <a href="https://utxoag.com/terms" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">Terms</a>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:clamp(40px,6vw,64px);padding-top:24px;border-top:1px solid rgba(255,255,255,.12);font-family:var(--mono);font-size:12px;letter-spacing:.03em;color:rgba(255,255,255,.5);">
+        <span>© 2026 utxo AG · Dammstrasse 16 · 6300 Zug · Switzerland</span>
+        <span>HOSTED IN EU/CH · GDPR · EU AI ACT</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+<script src="main.js"></script>
+</body>
+</html>
