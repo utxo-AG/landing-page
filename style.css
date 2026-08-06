@@ -24,6 +24,10 @@ input,textarea{font-family:var(--font-body);}
 @keyframes utxofloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
 @keyframes utxospin{to{transform:rotate(360deg);}}
 @keyframes utxomarquee{to{transform:translateX(-50%);}}
+@keyframes aibcheck{0%,4%{opacity:0;transform:scale(.4);}10%{opacity:1;transform:scale(1.12);}14%{transform:scale(1);}92%{opacity:1;}100%{opacity:0;transform:scale(.4);}}
+@keyframes aibtask{0%,9%{opacity:.34;}14%{opacity:1;}92%{opacity:1;}100%{opacity:.34;}}
+@keyframes aibprog{0%{width:5%;}88%,100%{width:100%;}}
+@keyframes aibwire{to{stroke-dashoffset:-12;}}
 [data-pulse]{animation:utxopulse 2.4s ease-in-out infinite;}
 [data-marquee]:hover [data-track]{animation-play-state:paused;}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}

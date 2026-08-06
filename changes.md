@@ -1,5 +1,16 @@
 # Changes
 
+## seo-landing-pages — 2026-08-06 UTC
+
+- Added hero illustration "ai-in-business" pages
+- Two-column hero with orchestration diagram
+- Animated pulses via "aibflow" keyframe
+- Synced illustration to EN twin
+- Redesigned hero into live CoWorker panel
+- Task checklist cascades with progress bar
+- Added depth shadow and float
+- Synced new panel to EN
+
 ## seo-landing-pages — 2026-08-03 UTC
 
 - Slimmed "unterschiede" copy further
