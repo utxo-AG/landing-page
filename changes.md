@@ -36,6 +36,15 @@
 - Replaced navy accent with black
 - Made "watch" background pure black
 - Synced black palette to EN
+- Redesigned "approach" with black panel
+- Added "what you get" list
+- Synced approach panel to EN
+- Improved "where" matrix cells
+- Added icon chips indices
+- Synced matrix cells to EN
+- Removed matrix index numbers
+- Made icons solid black chips
+- Synced icon chips to EN
 
 ## seo-landing-pages — 2026-08-06 UTC
 
