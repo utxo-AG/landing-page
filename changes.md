@@ -1,5 +1,42 @@
 # Changes
 
+## seo-landing-pages — 2026-08-07 UTC
+
+- Redesigned "path" steps into stepper
+- Added navy number badges connector
+- Added hover-lift to steps
+- Synced steps to EN
+- Rebuilt "path" into connected timeline
+- Added continuous rail through badges
+- Added scoped "aibp-" style block
+- Added vertical rail mobile layout
+- Synced timeline to EN
+- Turned "path" into dark band
+- Added flowing light rail
+- Added glowing pulsing number nodes
+- Added dark glass step cards
+- Synced dark timeline to EN
+- Reverted "path" to restrained enterprise
+- Removed animation glow and cards
+- Used ruled columns navy numerals
+- Synced enterprise steps to EN
+- Rebuilt "where" into unified matrix
+- Three per row hairline dividers
+- Flat navy line icons
+- Synced matrix to EN
+- Redesigned "watch" into editorial split
+- Left heading right numbered list
+- Sticky heading navy indices
+- Synced split to EN
+- Broke "problem" heading onto lines
+- Broke "path" heading onto lines
+- Made "watch" section dark navy
+- Made "approach" section light
+- Synced both to EN
+- Replaced navy accent with black
+- Made "watch" background pure black
+- Synced black palette to EN
+
 ## seo-landing-pages — 2026-08-06 UTC
 
 - Added hero illustration "ai-in-business" pages
@@ -10,6 +47,10 @@
 - Task checklist cascades with progress bar
 - Added depth shadow and float
 - Synced new panel to EN
+- Redesigned "problem" section cards
+- Simplified card copy both languages
+- Replaced icons with mock illustrations
+- Stalled demo chat and cost illustrations
 
 ## seo-landing-pages — 2026-08-03 UTC
 
