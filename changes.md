@@ -1,5 +1,12 @@
 # Changes
 
+## seo-landing-pages — 2026-08-10 UTC
+
+- Added closing CTA section
+- Book-a-call for process review
+- Added own-CoWorker CTA card
+- Synced CTA to EN
+
 ## seo-landing-pages — 2026-08-07 UTC
 
 - Redesigned "path" steps into stepper

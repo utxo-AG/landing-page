@@ -53,6 +53,16 @@
   .aibp-appr-item{display:flex;align-items:flex-start;gap:14px;padding:clamp(15px,1.6vw,18px) 0;border-top:1px solid rgba(255,255,255,.14);font-size:16px;line-height:1.5;color:rgba(255,255,255,.9);}
   .aibp-appr-check{flex:0 0 auto;width:22px;height:22px;border-radius:6px;background:#fff;color:#000;display:inline-flex;align-items:center;justify-content:center;margin-top:1px;}
   @media(max-width:820px){.aibp-appr{grid-template-columns:1fr;gap:clamp(28px,6vw,40px);}}
+  /* closing CTA: two cards */
+  .aibp-cta{display:grid;grid-template-columns:1.12fr .88fr;gap:clamp(20px,2.4vw,28px);margin-top:clamp(40px,5vw,56px);}
+  .aibp-cta-card{display:flex;flex-direction:column;border-radius:16px;padding:clamp(28px,3.4vw,44px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
+  .aibp-cta-dark{background:#000;color:#fff;}
+  .aibp-cta-light{background:var(--bg-primary);border:1px solid var(--border-strong);}
+  .aibp-cta-kicker{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;}
+  .aibp-cta-title{font-family:var(--font-display);font-weight:600;font-size:clamp(24px,2.6vw,32px);line-height:1.08;letter-spacing:-.02em;margin-top:14px;}
+  .aibp-cta-desc{margin-top:14px;font-size:16px;line-height:1.6;}
+  .aibp-cta-btn{display:inline-flex;align-items:center;gap:10px;height:54px;padding:0 26px;border-radius:8px;font-size:16px;font-weight:500;transition:opacity .2s var(--ease);}
+  @media(max-width:820px){.aibp-cta{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -450,6 +460,38 @@
             <li class="aibp-appr-item"><span class="aibp-appr-check"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6.4l2.6 2.6 5-5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Ein messbares Erfolgskriterium, vereinbart vor Projektstart</li>
           </ul>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CLOSING CTA ============ -->
+  <section id="cta" style="background:var(--bg-primary);border-top:1px solid var(--border-subtle);padding:clamp(64px,9vw,120px) clamp(20px,5vw,64px);scroll-margin-top:88px;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div data-reveal="" style="transition:opacity .7s var(--ease),transform .7s var(--ease);max-width:62ch;">
+        <div style="font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);">Loslegen</div>
+        <h2 style="font-weight:500;font-size:clamp(32px,4vw,48px);line-height:1.05;letter-spacing:-.028em;margin-top:16px;">Wir begleiten Sie durch diese digitale Transformation.</h2>
+        <p style="margin-top:20px;font-size:clamp(1.05rem,1rem+.3vw,1.2rem);line-height:1.5;color:var(--text-secondary);">Von der ersten Analyse bis zum CoWorker im Produktivbetrieb: Wir helfen Ihnen, KI dort einzusetzen, wo sie die tägliche Arbeit wirklich verändert.</p>
+      </div>
+      <div class="aibp-cta">
+
+        <div class="aibp-cta-card aibp-cta-dark" data-reveal="">
+          <div class="aibp-cta-kicker" style="color:rgba(255,255,255,.55);">Prozess-Check</div>
+          <h3 class="aibp-cta-title">Verbessern Sie Ihre Prozesse mit KI</h3>
+          <p class="aibp-cta-desc" style="color:rgba(255,255,255,.7);">Möchten Sie wissen, wie wir Ihre Prozesse mit KI verbessern würden? Buchen Sie ein Gespräch und wir schauen uns Ihre Prozesse gemeinsam an.</p>
+          <div style="margin-top:auto;padding-top:30px;">
+            <a href="agents.html#contact" class="aibp-cta-btn" style="background:#fff;color:#000;" style-hover="opacity:.88">Beratung buchen <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+          </div>
+        </div>
+
+        <div class="aibp-cta-card aibp-cta-light" data-reveal="" data-delay="80">
+          <div class="aibp-cta-kicker" style="color:var(--text-muted);">CoWorker</div>
+          <h3 class="aibp-cta-title">Möchten Sie Ihren eigenen CoWorker?</h3>
+          <p class="aibp-cta-desc" style="color:var(--text-secondary);">Ein digitaler Mitarbeiter, gebaut für einen Ihrer Prozesse, produktiv in 30 Tagen.</p>
+          <div style="margin-top:auto;padding-top:30px;">
+            <a href="agents.html" class="aibp-cta-btn" style="background:#000;color:#fff;" style-hover="opacity:.88">CoWorker entdecken <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
