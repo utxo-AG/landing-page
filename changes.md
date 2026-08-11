@@ -17,6 +17,9 @@
 - Changed H1 verb to "Accelerate"
 - Reverted hero illustration to original
 - Redesigned "path" steps as timeline
+- Added booking calendar section
+- Wired confirm button to cal.com
+- Pointed top CTAs to booking section
 - Synced hero to EN
 
 ## seo-landing-pages — 2026-08-10 UTC
