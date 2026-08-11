@@ -120,6 +120,23 @@ const App = {
     this._initForms(root);
     this._initCarousel(root);
     this._initTeamScroll(root);
+    this._initHeroRotator(root, reduce);
+  },
+
+  _initHeroRotator(root, reduce) {
+    const el = root.querySelector('[data-rotate]');
+    if (!el) return;
+    const words = (el.getAttribute('data-words') || '').split('|').map(w => w.trim()).filter(Boolean);
+    if (reduce || words.length < 2) return;
+    let i = 0;
+    setInterval(() => {
+      el.style.opacity = '0';
+      setTimeout(() => {
+        i = (i + 1) % words.length;
+        el.textContent = words[i];
+        el.style.opacity = '1';
+      }, 300);
+    }, 2600);
   },
 
   _initTeamScroll(root) {

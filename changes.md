@@ -1,11 +1,39 @@
 # Changes
 
+## seo-landing-pages — 2026-08-11 UTC
+
+- Rewrote hero to rotating headline
+- Added rotating-word "top" section
+- Collapsed hero into single paragraph
+- Added "_initHeroRotator" to main.js
+- Rewrote hero paragraph tighter
+- Rotated hero word to departments
+- Added scale-your-business H1
+- Shortened H1 to department line
+- Reframed hero around coworker agents
+- Shortened hero paragraph bolded setup
+- Changed rotating words to work types
+- Set rotating words to real disciplines
+- Changed H1 verb to "Accelerate"
+- Reverted hero illustration to original
+- Redesigned "path" steps as timeline
+- Synced hero to EN
+
 ## seo-landing-pages — 2026-08-10 UTC
 
 - Added closing CTA section
 - Book-a-call for process review
 - Added own-CoWorker CTA card
 - Synced CTA to EN
+- Made hero book-a-call primary
+- Added hero process-review line
+- Added digital-transformation hero copy
+- Synced hero to EN
+- Wired cal.com booking popup
+- Book-a-call buttons open cal.com
+- Added cal.com embed script
+- Kept direct link fallback
+- Synced booking to EN
 
 ## seo-landing-pages — 2026-08-07 UTC
 
