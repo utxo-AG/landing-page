@@ -328,40 +328,41 @@ const App = {
   },
 
   _initBooking(root) {
-    Array.prototype.slice.call(root.querySelectorAll('[data-cal-days]')).forEach(days => {
-      if (days.children.length) return;
-      const blanks = 1, total = 30, selected = 16;
-      const unavailable = { 5:1, 6:1, 7:1, 12:1, 13:1, 14:1, 19:1, 20:1, 26:1, 27:1 };
-      let html = '';
-      for (let b = 0; b < blanks; b++) html += '<div></div>';
-      for (let d = 1; d <= total; d++) {
-        const sel = d === selected;
-        const off = !!unavailable[d] && !sel;
-        const base = 'aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:7px;cursor:' + (off ? 'default' : 'pointer') + ';transition:background .15s ease,color .15s ease;';
-        const style = sel ? base + 'background:#000;color:#fff;' : off ? base + 'color:#cfcfcf;' : base + 'color:#1a1a1a;';
-        html += '<div data-day="' + d + '"' + (off ? ' data-off' : '') + ' style="' + style + '">' + d + '</div>';
-      }
-      days.innerHTML = html;
-      days.addEventListener('click', (e) => {
-        const t = e.target.closest('[data-day]');
-        if (!t || t.hasAttribute('data-off')) return;
-        days.querySelectorAll('[data-day]').forEach(n => { if (n.hasAttribute('data-off')) return; n.style.background = 'transparent'; n.style.color = '#1a1a1a'; });
-        t.style.background = '#000'; t.style.color = '#fff';
-      });
-    });
-    Array.prototype.slice.call(root.querySelectorAll('[data-cal-slots]')).forEach(slots => {
-      if (slots.children.length) return;
-      const times = ['09:00', '11:30', '14:00', '16:30'];
-      slots.innerHTML = times.map((tm, i) => {
-        const sel = i === 2;
-        const base = 'height:36px;display:flex;align-items:center;justify-content:center;border-radius:7px;cursor:pointer;transition:background .15s ease,color .15s ease,border-color .15s ease;border:1px solid ' + (sel ? '#000' : '#e3e3e3') + ';';
-        return '<div data-slot style="' + base + (sel ? 'background:#000;color:#fff;' : 'color:#1a1a1a;') + '">' + tm + '</div>';
-      }).join('');
-      slots.addEventListener('click', (e) => {
-        const t = e.target.closest('[data-slot]');
-        if (!t) return;
-        slots.querySelectorAll('[data-slot]').forEach(n => { n.style.background = 'transparent'; n.style.color = '#1a1a1a'; n.style.borderColor = '#e3e3e3'; });
-        t.style.background = '#000'; t.style.color = '#fff'; t.style.borderColor = '#000';
+    const containers = Array.prototype.slice.call(root.querySelectorAll('[data-cal-inline]'));
+    if (!containers.length) return;
+    (function (C, A, L) {
+      const p = function (a, ar) { a.q.push(ar); };
+      const d = C.document;
+      C.Cal = C.Cal || function () {
+        const cal = C.Cal;
+        const ar = arguments;
+        if (!cal.loaded) {
+          cal.ns = {};
+          cal.q = cal.q || [];
+          d.head.appendChild(d.createElement('script')).src = A;
+          cal.loaded = true;
+        }
+        if (ar[0] === L) {
+          const api = function () { p(api, arguments); };
+          const namespace = ar[1];
+          api.q = api.q || [];
+          if (typeof namespace === 'string') {
+            cal.ns[namespace] = cal.ns[namespace] || api;
+            p(cal.ns[namespace], ar);
+            p(cal, ['initNamespace', namespace]);
+          } else p(cal, ar);
+          return;
+        }
+        p(cal, ar);
+      };
+    })(window, 'https://app.cal.com/embed/embed.js', 'init');
+    window.Cal('init', { origin: 'https://cal.com' });
+    containers.forEach((el, i) => {
+      if (!el.id) el.id = 'cal-inline-' + i;
+      window.Cal('inline', {
+        elementOrSelector: '#' + el.id,
+        calLink: 'philip-isenmann-utxoag/30-min-meeting',
+        config: { layout: 'month_view' }
       });
     });
   },

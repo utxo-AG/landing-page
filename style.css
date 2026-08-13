@@ -26,6 +26,7 @@ input,textarea{font-family:var(--font-body);}
 @keyframes utxomarquee{to{transform:translateX(-50%);}}
 [data-pulse]{animation:utxopulse 2.4s ease-in-out infinite;}
 [data-marquee]:hover [data-track]{animation-play-state:paused;}
+[data-cal-inline] iframe{overflow:hidden!important;}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
 @media (max-width:900px){
   [data-desktop-nav]{display:none!important;}

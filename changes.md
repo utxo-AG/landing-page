@@ -1,5 +1,18 @@
 # Changes
 
+## cal-embed-session — 2026-08-13 UTC
+
+- Replaced fake calendar with real cal.com embed
+- Removed hardcoded days and time slots
+- Removed static "Confirm — Book a call" link
+- Added "data-cal-inline" embed container
+- Rewrote "_initBooking" to load cal.com widget
+- Applied fix to index and agents EN and DE
+- Cal.com panel height now auto grows
+- Kept cal.com and callback panels side by side
+- Callback panel no longer stretches full height
+- Hid scrollbar on cal.com embed iframe
+
 ## clean-urls-session — 2026-07-15 UTC
 
 - Added Caddyfile for Railway static deploy
