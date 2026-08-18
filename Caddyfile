@@ -15,5 +15,8 @@ redir @indexfile / permanent
 }
 redir @htmlfile /{re.htmlext.1} permanent
 
+@staticassets path *.js *.css
+header @staticassets Cache-Control "no-cache, must-revalidate"
+
 try_files {path} {path}.html {path}/ =404
 file_server

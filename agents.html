@@ -370,11 +370,12 @@
         <!-- callback form -->
         <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:clamp(24px,3vw,34px);display:flex;flex-direction:column;">
           <h3 style="font-weight:500;font-size:1.6rem;letter-spacing:-.02em;">Prefer a callback?</h3>
-          <form data-form="" style="display:flex;flex-direction:column;gap:13px;margin-top:20px;">
-            <input type="text" required="" placeholder="Name" style="width:100%;height:46px;padding:0 14px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(255,255,255,.04);font-size:16px;color:#fff;">
-            <input type="text" placeholder="Company" style="width:100%;height:46px;padding:0 14px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(255,255,255,.04);font-size:16px;color:#fff;">
-            <input type="text" required="" placeholder="Email or phone" style="width:100%;height:46px;padding:0 14px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(255,255,255,.04);font-size:16px;color:#fff;">
-            <textarea placeholder="Message (optional)" rows="3" style="width:100%;padding:12px 14px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(255,255,255,.04);font-size:16px;color:#fff;resize:vertical;"></textarea>
+          <form data-form="" action="https://formspree.io/f/xnpaonga" method="POST" style="display:flex;flex-direction:column;gap:13px;margin-top:20px;">
+            <input type="text" name="name" required="" placeholder="Name" style="width:100%;height:46px;padding:0 14px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(255,255,255,.04);font-size:16px;color:#fff;">
+            <input type="text" name="company" placeholder="Company" style="width:100%;height:46px;padding:0 14px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(255,255,255,.04);font-size:16px;color:#fff;">
+            <input type="email" name="email" required="" placeholder="Email" style="width:100%;height:46px;padding:0 14px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(255,255,255,.04);font-size:16px;color:#fff;">
+            <input type="tel" name="phone" placeholder="Phone" style="width:100%;height:46px;padding:0 14px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(255,255,255,.04);font-size:16px;color:#fff;">
+            <textarea name="message" placeholder="Message (optional)" rows="3" style="width:100%;padding:12px 14px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(255,255,255,.04);font-size:16px;color:#fff;resize:vertical;"></textarea>
             <button type="submit" style="height:50px;background:#fff;color:#000;border:none;border-radius:8px;font-size:15px;font-weight:500;cursor:pointer;transition:opacity .2s var(--ease);" style-hover="opacity:.88">Request a callback</button>
           </form>
           <div data-form-done="" style="display:none;flex-direction:column;align-items:flex-start;gap:10px;margin-top:20px;">

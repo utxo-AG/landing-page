@@ -1,5 +1,17 @@
 # Changes
 
+## callback-form-session — 2026-08-18 UTC
+
+- Wired callback form to Formspree endpoint
+- Added "action" and "method" to "data-form"
+- Added "name" attributes to all form fields
+- Split "email or phone" into two fields
+- Added new "phone" input field
+- Changed "email" field type to email
+- Applied to "agents.html" and "agents.de.html"
+- Rewrote "_initForms" to fetch-submit form
+- Form still shows "done" state on success
+
 ## cal-embed-session — 2026-08-13 UTC
 
 - Replaced fake calendar with real cal.com embed

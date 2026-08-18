@@ -197,8 +197,15 @@ const App = {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
         const done = form.parentElement.querySelector('[data-form-done]');
-        form.style.display = 'none';
-        if (done) done.style.display = 'flex';
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' }
+        }).then(res => {
+          if (!res.ok) throw new Error('submit failed');
+          form.style.display = 'none';
+          if (done) done.style.display = 'flex';
+        }).catch(() => {});
       });
     });
   },
