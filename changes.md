@@ -1,5 +1,21 @@
 # Changes
 
+## call-assistant-demo-page-session — 2026-08-25 UTC
+
+- Added "call_assistant.html" new page
+- Embeds live demo iframe from call.bauberichte.com
+- Linked "Demo" in nav on index pages
+- Linked "Demo" in nav on agents pages
+- Linked from "Intro call with live demo" line
+
+## callback-form-phone-session — 2026-08-21 UTC
+
+- Switched callback form to new Formspree endpoint
+- Applied to "index.html" and "index.de.html" too
+- Fixed missing "action" on those two forms
+- Fixed missing "name" attrs on those two forms
+- Added "phone" field to index pages' forms
+
 ## callback-form-session — 2026-08-18 UTC
 
 - Wired callback form to Formspree endpoint

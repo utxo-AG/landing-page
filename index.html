@@ -27,6 +27,7 @@
         <nav data-desktop-nav="" style="display:flex;align-items:center;gap:28px;font-size:16px;color:var(--text-secondary);">
           <a href="#team" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Team</a>
           <a href="#stories" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Projects</a>
+          <a href="/call_assistant" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Demo</a>
           <a href="/agents" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">AI</a>
         </nav>
         <span data-desktop-nav="" style="width:1px;height:20px;background:var(--border-strong);"></span>
@@ -50,6 +51,7 @@
     <nav style="display:flex;flex-direction:column;gap:8px;margin-top:48px;">
       <a href="#team" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Team</a>
       <a href="#stories" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Projects</a>
+      <a href="/call_assistant" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Demo</a>
       <a href="/agents" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">CoWorker</a>
     </nav>
     <a href="#contact" style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;height:52px;background:#fff;color:#000;border-radius:8px;font-size:16px;font-weight:500;">Book a call</a>
@@ -331,11 +333,12 @@
         <!-- callback form -->
         <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:clamp(24px,3vw,34px);display:flex;flex-direction:column;">
           <h3 style="font-weight:500;font-size:1.6rem;letter-spacing:-.02em;">Prefer a callback?</h3>
-          <form data-form="" style="display:flex;flex-direction:column;gap:13px;margin-top:20px;">
-            <input type="text" required="" placeholder="Name" style="width:100%;height:46px;padding:0 14px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(255,255,255,.04);font-size:16px;color:#fff;">
-            <input type="text" placeholder="Company" style="width:100%;height:46px;padding:0 14px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(255,255,255,.04);font-size:16px;color:#fff;">
-            <input type="text" required="" placeholder="Email or phone" style="width:100%;height:46px;padding:0 14px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(255,255,255,.04);font-size:16px;color:#fff;">
-            <textarea placeholder="Message (optional)" rows="3" style="width:100%;padding:12px 14px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(255,255,255,.04);font-size:16px;color:#fff;resize:vertical;"></textarea>
+          <form data-form="" action="https://formspree.io/f/mppabeng" method="POST" style="display:flex;flex-direction:column;gap:13px;margin-top:20px;">
+            <input type="text" name="name" required="" placeholder="Name" style="width:100%;height:46px;padding:0 14px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(255,255,255,.04);font-size:16px;color:#fff;">
+            <input type="text" name="company" placeholder="Company" style="width:100%;height:46px;padding:0 14px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(255,255,255,.04);font-size:16px;color:#fff;">
+            <input type="email" name="email" required="" placeholder="Email" style="width:100%;height:46px;padding:0 14px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(255,255,255,.04);font-size:16px;color:#fff;">
+            <input type="tel" name="phone" placeholder="Phone" style="width:100%;height:46px;padding:0 14px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(255,255,255,.04);font-size:16px;color:#fff;">
+            <textarea name="message" placeholder="Message (optional)" rows="3" style="width:100%;padding:12px 14px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(255,255,255,.04);font-size:16px;color:#fff;resize:vertical;"></textarea>
             <button type="submit" style="height:50px;background:#fff;color:#000;border:none;border-radius:8px;font-size:15px;font-weight:500;cursor:pointer;transition:opacity .2s var(--ease);" style-hover="opacity:.88">Request a callback</button>
           </form>
           <div data-form-done="" style="display:none;flex-direction:column;align-items:flex-start;gap:10px;margin-top:20px;">
@@ -358,6 +361,7 @@
           <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
             <a href="#team" style="transition:color .2s var(--ease);" style-hover="color:#fff">Team</a>
             <a href="#stories" style="transition:color .2s var(--ease);" style-hover="color:#fff">Projects</a>
+            <a href="/call_assistant" style="transition:color .2s var(--ease);" style-hover="color:#fff">Demo</a>
             <a href="/agents" style="transition:color .2s var(--ease);" style-hover="color:#fff">CoWorker</a>
           </div>
         </div>

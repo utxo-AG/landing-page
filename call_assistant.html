@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>utxo.ag — Live demo: the intelligent call assistant</title>
+<meta name="description" content="Try our intelligent call assistant CoWorker live — call in, book an appointment, and watch the ticket appear in real time.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="resources/FAVICONS/icon.svg" type="image/svg+xml">
+<link rel="icon" href="resources/FAVICONS/favicon-96x96.png" sizes="96x96" type="image/png">
+<link rel="apple-touch-icon" href="resources/FAVICONS/apple-touch-icon-180x180.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="utxo-root" style="background:var(--bg-primary);color:var(--text-primary);min-height:100vh;">
+
+  <!-- ============ HEADER ============ -->
+  <header id="hdr" style="position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--bg-primary) 84%, transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border-subtle);transition:box-shadow .3s var(--ease);">
+    <div style="padding:0 2rem;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+      <a href="/" aria-label="UTXO.AG" style="display:flex;align-items:center;">
+        <img src="resources/logos/utxo-logo-header.png" alt="UTXO.AG" style="height: 68px; width: 66px; display: block; object-fit: contain">
+      </a>
+      <div style="display:flex;align-items:center;gap:28px;">
+        <nav data-desktop-nav="" style="display:flex;align-items:center;gap:28px;font-size:16px;color:var(--text-secondary);">
+          <a href="/agents" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">AI</a>
+        </nav>
+        <span data-desktop-nav="" style="width:1px;height:20px;background:var(--border-strong);"></span>
+        <a href="/agents#contact" data-desktop-nav="" style="display:inline-flex;align-items:center;height:38px;padding:0 18px;color:#fff;border-radius:8px;font-size:14px;font-weight:500;background:#000;transition:opacity .2s var(--ease);" style-hover="opacity:.85">Book a call</a>
+        <button data-hamburger="" aria-label="Open menu" style="display:none;width:38px;height:38px;align-items:center;justify-content:center;border:1px solid var(--border-strong);background:transparent;border-radius:8px;color:var(--text-primary);cursor:pointer;">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M1 4h16M1 9h16M1 14h16" stroke="currentColor" stroke-width="1.5"></path></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ MOBILE OVERLAY ============ -->
+  <div data-mobile-overlay="" style="position:fixed;inset:0;z-index:60;background:#000;color:#fff;display:none;flex-direction:column;padding:24px clamp(20px,6vw,40px);">
+    <div style="display:flex;align-items:center;justify-content:space-between;height:48px;">
+      <span style="font-family:var(--font-display);font-weight:600;font-size:20px;letter-spacing:-.02em;">utxo<span style="opacity:.5;">.ag</span></span>
+      <button data-overlay-close="" aria-label="Close menu" style="width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.2);background:transparent;border-radius:8px;color:#fff;cursor:pointer;">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="1.5"></path></svg>
+      </button>
+    </div>
+    <nav style="display:flex;flex-direction:column;gap:8px;margin-top:48px;">
+      <a href="/agents" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">CoWorker</a>
+    </nav>
+    <a href="/agents#contact" style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;height:52px;background:#fff;color:#000;border-radius:8px;font-size:16px;font-weight:500;">Book a call</a>
+  </div>
+
+  <!-- ============ INTRO ============ -->
+  <section id="top" style="padding:clamp(120px,15vw,160px) clamp(20px,5vw,64px) clamp(56px,7vw,80px);background:#fff;color:#000;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div style="max-width:680px;">
+        <h1 style="font-weight:600;font-size:clamp(38px,5vw,56px);line-height:1.05;letter-spacing:-.028em;">Try the call assistant yourself.</h1>
+        <p style="margin-top:20px;font-size:clamp(1.05rem,1rem+.3vw,1.2rem);line-height:1.4;color:var(--text-secondary);">This is a live CoWorker running on real infrastructure — an intelligent answering machine that takes calls, books appointments, and files tickets automatically. Start the demo below, then call the number it gives you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DEMO EMBED ============ -->
+  <section style="border-top:1px solid var(--border-subtle);padding:0 clamp(20px,5vw,64px) clamp(64px,9vw,120px);background:var(--bg-secondary);">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div style="border-radius:16px;overflow:hidden;border:1px solid var(--border-subtle);background:#fff;">
+        <iframe src="https://call.bauberichte.com" title="Intelligent call assistant — live demo" style="display:block;width:100%;height:800px;border:0;"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="background:#000;color:#fff;padding:clamp(56px,8vw,80px) clamp(20px,5vw,64px) clamp(36px,4vw,48px);border-top:1px solid rgba(255,255,255,.12);">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));row-gap:clamp(32px,5vw,64px);column-gap:clamp(8px,1.25vw,16px);">
+        <div>
+          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);">Company</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
+            <a href="https://masumi.network" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">masumi ↗</a>
+            <a href="https://sokosumi.com" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">sokosumi ↗</a>
+            <a href="https://www.nmkr.io" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">NMKR ↗</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);">Legal</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
+            <a href="/imprint" style="transition:color .2s var(--ease);" style-hover="color:#fff">Imprint</a>
+            <a href="/privacy" style="transition:color .2s var(--ease);" style-hover="color:#fff">Privacy Policy</a>
+            <a href="/terms" style="transition:color .2s var(--ease);" style-hover="color:#fff">Terms</a>
+            <a href="/acceptable-use" style="transition:color .2s var(--ease);" style-hover="color:#fff">Acceptable Use Policy</a>
+            <a href="/dpa" style="transition:color .2s var(--ease);" style-hover="color:#fff">Data Processing Agreement</a>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:clamp(40px,6vw,64px);padding-top:24px;border-top:1px solid rgba(255,255,255,.12);font-family:var(--mono);font-size:12px;letter-spacing:.03em;color:rgba(255,255,255,.5);">
+        <img src="resources/e74b90dc-3a43-4724-a31f-41fca9e2fccc.png" alt="utxo.ag" style="height:20px;width:auto;display:block;object-fit:contain;">
+        <span>© 2026 utxo AG · Dammstrasse 16 · 6300 Zug · Switzerland</span>
+        <span>HOSTED IN EU/CH · GDPR · EU AI ACT</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+<script src="main.js"></script>
+</body></html>
