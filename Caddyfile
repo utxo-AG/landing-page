@@ -18,5 +18,10 @@ redir @htmlfile /{re.htmlext.1} permanent
 @staticassets path *.js *.css
 header @staticassets Cache-Control "no-cache, must-revalidate"
 
+@pages {
+	not path *.js *.css *.svg *.png *.jpg *.jpeg *.webp *.ico *.woff *.woff2 *.pdf
+}
+header @pages Cache-Control "no-cache, must-revalidate"
+
 try_files {path} {path}.html {path}/ =404
 file_server
