@@ -378,7 +378,7 @@ const App = {
       for (let d = 1; d <= total; d++) {
         const sel = d === selected;
         const off = !!unavailable[d] && !sel;
-        const base = 'aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:7px;cursor:' + (off ? 'default' : 'pointer') + ';transition:background .15s ease,color .15s ease;';
+        const base = 'height:34px;display:flex;align-items:center;justify-content:center;border-radius:7px;cursor:' + (off ? 'default' : 'pointer') + ';transition:background .15s ease,color .15s ease;';
         const style = sel ? base + 'background:#000;color:#fff;' : off ? base + 'color:#cfcfcf;' : base + 'color:#1a1a1a;';
         html += '<div data-day="' + d + '"' + (off ? ' data-off' : '') + ' style="' + style + '">' + d + '</div>';
       }

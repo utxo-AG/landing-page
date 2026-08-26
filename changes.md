@@ -1,5 +1,10 @@
 # Changes
 
+## seo-landing-pages — 2026-08-26 UTC
+
+- Flattened calendar day cells height
+- Trimmed booking section vertical spacing
+
 ## seo-landing-pages — 2026-08-25 UTC
 
 - Rebuilt hero background as blueprint grid
