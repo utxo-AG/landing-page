@@ -121,6 +121,37 @@ const App = {
     this._initCarousel(root);
     this._initTeamScroll(root);
     this._initHeroRotator(root, reduce);
+    this._initCoworkerCycle(root, reduce);
+  },
+
+  _initCoworkerCycle(root, reduce) {
+    const wrap = root.querySelector('[data-coworker]');
+    if (!wrap) return;
+    let list;
+    try { list = JSON.parse(wrap.getAttribute('data-coworker') || '[]'); } catch (e) { return; }
+    if (!Array.isArray(list) || list.length < 2) return;
+    const img = wrap.querySelector('[data-cw-avatar]');
+    const txt = wrap.querySelector('[data-cw-text]');
+    const name = wrap.querySelector('[data-cw-name]');
+    const role = wrap.querySelector('[data-cw-role]');
+    if (!img || !name || !role) return;
+    list.forEach(c => { const p = new Image(); p.src = c.img; });
+    if (reduce) return;
+    let i = 0;
+    setInterval(() => {
+      img.style.opacity = '0';
+      if (txt) txt.style.opacity = '0';
+      setTimeout(() => {
+        i = (i + 1) % list.length;
+        const c = list[i];
+        img.src = c.img;
+        img.alt = c.name;
+        name.textContent = c.name;
+        role.textContent = c.role;
+        img.style.opacity = '1';
+        if (txt) txt.style.opacity = '1';
+      }, 350);
+    }, 2800);
   },
 
   _initHeroRotator(root, reduce) {

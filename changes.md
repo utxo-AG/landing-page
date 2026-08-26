@@ -1,5 +1,36 @@
 # Changes
 
+## seo-landing-pages — 2026-08-25 UTC
+
+- Rebuilt hero background as blueprint grid
+- Added slow drift keyframe "aibgrid"
+- Added coworker avatars to hero card
+- Added CoWorker team roster strip
+- Cycled hero card coworker persona
+- Redesigned comparison problem section illustration
+- Gave problem cards personalised mockup illustrations
+- Removed problem section side illustration
+- Refined key-differences cards design
+- Gave key-differences cards own illustrations
+- Removed index numerals from difference cards
+- Accent-coloured difference takeaway pills
+- Fixed spacing above takeaway pill
+- Simplified difference cards to icon illustrations
+- Removed text and takeaway from difference cards
+- Added dot-grid halo badge to difference icons
+- Reworked difference cards to editorial style
+- Rebuilt how-it-works as numbered timeline
+- Bold numerals dashed route staggered reveal
+
+## seo-landing-pages — 2026-08-19 UTC
+
+- Replaced hero dots with pixel-grid
+- Unified hero pixel-grid across all pages
+- Built connected-systems network hero background
+- Wired system nodes into card
+- Reverted hero to pixel-grid
+- Rebuilt hero sokosumi-style with video
+
 ## seo-landing-pages — 2026-08-11 UTC
 
 - Rewrote hero to rotating headline

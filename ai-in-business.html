@@ -117,7 +117,9 @@
 
   <!-- ============ HERO ============ -->
   <section id="top" style="position:relative;overflow:hidden;background:#fff;color:#000;padding:clamp(72px,11vw,128px) clamp(20px,5vw,64px) clamp(56px,8vw,96px);border-bottom:1px solid var(--border-subtle);">
-    <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(0,0,0,.14) 1px,transparent 1.4px);background-size:26px 26px;-webkit-mask-image:radial-gradient(70% 70% at 78% 18%,#000,transparent 72%);mask-image:radial-gradient(70% 70% at 78% 18%,#000,transparent 72%);opacity:.4;"></div>
+    <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;-webkit-mask-image:radial-gradient(115% 88% at 80% 4%,#000 0%,#000 38%,transparent 74%);mask-image:radial-gradient(115% 88% at 80% 4%,#000 0%,#000 38%,transparent 74%);">
+      <div style="position:absolute;inset:-64px;background-image:radial-gradient(rgba(0,0,0,.15) 1px,transparent 1.6px),linear-gradient(rgba(0,0,0,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.05) 1px,transparent 1px);background-size:32px 32px;animation:aibgrid 32s linear infinite;"></div>
+    </div>
     <div style="position:relative;z-index:1;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,72px);align-items:center;" data-2col="">
       <div>
         <div style="font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);">KI im Unternehmen</div>
@@ -131,17 +133,16 @@
 
       <!-- Hero illustration: a CoWorker completing a live workflow -->
       <div data-reveal="" style="transition:opacity .8s var(--ease) .2s,transform .8s var(--ease) .2s;position:relative;max-width:440px;margin-left:auto;">
+        <div style="position:relative;">
         <div aria-hidden="true" style="position:absolute;inset:0;transform:translate(16px,22px);border-radius:20px;background:#f1f1f2;border:1px solid var(--border-subtle);"></div>
         <div style="position:relative;background:#fff;border:1px solid var(--border-strong);border-radius:20px;box-shadow:0 34px 72px -34px rgba(0,0,0,.42);padding:22px 22px 24px;animation:utxofloat 6s ease-in-out infinite;">
 
           <!-- header -->
-          <div style="display:flex;align-items:center;gap:12px;">
-            <span style="width:44px;height:44px;flex:0 0 auto;border-radius:13px;background:#0b0b0b;display:inline-flex;align-items:center;justify-content:center;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="9" r="2.4"></circle><circle cx="6" cy="6.5" r="1.5"></circle><circle cx="18" cy="6.5" r="1.5"></circle><circle cx="6" cy="15" r="1.5"></circle><circle cx="18" cy="15" r="1.5"></circle><path d="M12 9L6 6.5M12 9l6-2.5M12 9l-6 6M12 9l6 6" stroke="#fff" stroke-width="1.2" stroke-opacity=".5" fill="none"></path></svg>
-            </span>
-            <div style="flex:1;min-width:0;">
-              <div style="font-weight:600;font-size:15px;letter-spacing:-.01em;">CoWorker</div>
-              <div style="font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--text-muted);">Empfangs-CoWorker</div>
+          <div data-coworker='[{"img":"resources/coworkers/hepha.webp","name":"Hepha","role":"Claude Code"},{"img":"resources/coworkers/dite.webp","name":"Dite","role":"Designer"},{"img":"resources/coworkers/pheme.webp","name":"Pheme","role":"Social Media"},{"img":"resources/coworkers/vulc.webp","name":"Vulc","role":"Grok Build"},{"img":"resources/coworkers/bront.webp","name":"Bront","role":"OpenAI Codex"},{"img":"resources/coworkers/apol.webp","name":"Apol","role":"Foto & Retusche"},{"img":"resources/coworkers/igni.webp","name":"Igni","role":"Cline"}]' style="display:flex;align-items:center;gap:12px;">
+            <img data-cw-avatar src="resources/coworkers/hepha.webp" alt="Ihr CoWorker" width="44" height="44" style="width:44px;height:44px;flex:0 0 auto;border-radius:13px;object-fit:cover;background:#0b0b0b;transition:opacity .35s var(--ease);">
+            <div data-cw-text style="flex:1;min-width:0;transition:opacity .35s var(--ease);">
+              <div data-cw-name style="font-weight:600;font-size:15px;letter-spacing:-.01em;">Hepha</div>
+              <div data-cw-role style="font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--text-muted);">Claude Code</div>
             </div>
             <span style="display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--text-muted);">
               <span style="width:7px;height:7px;border-radius:50%;background:#0b0b0b;animation:utxopulse 1.8s ease-in-out infinite;"></span>LIVE
@@ -211,6 +212,19 @@
             </div>
           </div>
 
+        </div>
+        </div>
+
+        <!-- team roster -->
+        <div style="display:flex;align-items:center;gap:12px;margin-top:22px;padding-left:2px;">
+          <div style="display:flex;align-items:center;">
+            <img src="resources/coworkers/hepha.webp" alt="" width="34" height="34" style="width:34px;height:34px;border-radius:50%;border:2px solid #fff;object-fit:cover;background:#eee;box-shadow:0 3px 8px -3px rgba(0,0,0,.35);">
+            <img src="resources/coworkers/dite.webp" alt="" width="34" height="34" style="width:34px;height:34px;border-radius:50%;border:2px solid #fff;object-fit:cover;background:#eee;box-shadow:0 3px 8px -3px rgba(0,0,0,.35);margin-left:-11px;">
+            <img src="resources/coworkers/pheme.webp" alt="" width="34" height="34" style="width:34px;height:34px;border-radius:50%;border:2px solid #fff;object-fit:cover;background:#eee;box-shadow:0 3px 8px -3px rgba(0,0,0,.35);margin-left:-11px;">
+            <img src="resources/coworkers/vulc.webp" alt="" width="34" height="34" style="width:34px;height:34px;border-radius:50%;border:2px solid #fff;object-fit:cover;background:#eee;box-shadow:0 3px 8px -3px rgba(0,0,0,.35);margin-left:-11px;">
+            <img src="resources/coworkers/bront.webp" alt="" width="34" height="34" style="width:34px;height:34px;border-radius:50%;border:2px solid #fff;object-fit:cover;background:#eee;box-shadow:0 3px 8px -3px rgba(0,0,0,.35);margin-left:-11px;">
+          </div>
+          <span style="font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--text-muted);">Ihr Team aus <strong style="color:var(--text-primary);font-weight:600;">8 CoWorkern</strong></span>
         </div>
       </div>
     </div>
