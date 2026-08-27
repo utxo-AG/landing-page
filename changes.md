@@ -1,5 +1,15 @@
 # Changes
 
+## deploy-session — 2026-08-27 UTC
+
+- Added "products" section to "index.html" pages
+- Removed "Demo" nav link sitewide
+- Added Team Projects Products nav links
+- Legal pages gained same nav links
+- Redesigned "call_assistant.html" 3 step layout
+- Localized "call_assistant.html" to German
+- Deployed committed changes to production
+
 ## callback-form-html-cache-session — 2026-08-25 UTC
 
 - Callback form markup already matched across pages
