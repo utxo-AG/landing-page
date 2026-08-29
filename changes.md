@@ -1,5 +1,199 @@
 # Changes
 
+## seo-landing-pages — 2026-08-26 UTC
+
+- Flattened calendar day cells height
+- Trimmed booking section vertical spacing
+
+## seo-landing-pages — 2026-08-25 UTC
+
+- Rebuilt hero background as blueprint grid
+- Added slow drift keyframe "aibgrid"
+- Added coworker avatars to hero card
+- Added CoWorker team roster strip
+- Cycled hero card coworker persona
+- Redesigned comparison problem section illustration
+- Gave problem cards personalised mockup illustrations
+- Removed problem section side illustration
+- Refined key-differences cards design
+- Gave key-differences cards own illustrations
+- Removed index numerals from difference cards
+- Accent-coloured difference takeaway pills
+- Fixed spacing above takeaway pill
+- Simplified difference cards to icon illustrations
+- Removed text and takeaway from difference cards
+- Added dot-grid halo badge to difference icons
+- Reworked difference cards to editorial style
+- Rebuilt how-it-works as numbered timeline
+- Bold numerals dashed route staggered reveal
+
+## seo-landing-pages — 2026-08-19 UTC
+
+- Replaced hero dots with pixel-grid
+- Unified hero pixel-grid across all pages
+- Built connected-systems network hero background
+- Wired system nodes into card
+- Reverted hero to pixel-grid
+- Rebuilt hero sokosumi-style with video
+
+## seo-landing-pages — 2026-08-11 UTC
+
+- Rewrote hero to rotating headline
+- Added rotating-word "top" section
+- Collapsed hero into single paragraph
+- Added "_initHeroRotator" to main.js
+- Rewrote hero paragraph tighter
+- Rotated hero word to departments
+- Added scale-your-business H1
+- Shortened H1 to department line
+- Reframed hero around coworker agents
+- Shortened hero paragraph bolded setup
+- Changed rotating words to work types
+- Set rotating words to real disciplines
+- Changed H1 verb to "Accelerate"
+- Reverted hero illustration to original
+- Redesigned "path" steps as timeline
+- Added booking calendar section
+- Wired confirm button to cal.com
+- Pointed top CTAs to booking section
+- Synced hero to EN
+
+## seo-landing-pages — 2026-08-10 UTC
+
+- Added closing CTA section
+- Book-a-call for process review
+- Added own-CoWorker CTA card
+- Synced CTA to EN
+- Made hero book-a-call primary
+- Added hero process-review line
+- Added digital-transformation hero copy
+- Synced hero to EN
+- Wired cal.com booking popup
+- Book-a-call buttons open cal.com
+- Added cal.com embed script
+- Kept direct link fallback
+- Synced booking to EN
+
+## seo-landing-pages — 2026-08-07 UTC
+
+- Redesigned "path" steps into stepper
+- Added navy number badges connector
+- Added hover-lift to steps
+- Synced steps to EN
+- Rebuilt "path" into connected timeline
+- Added continuous rail through badges
+- Added scoped "aibp-" style block
+- Added vertical rail mobile layout
+- Synced timeline to EN
+- Turned "path" into dark band
+- Added flowing light rail
+- Added glowing pulsing number nodes
+- Added dark glass step cards
+- Synced dark timeline to EN
+- Reverted "path" to restrained enterprise
+- Removed animation glow and cards
+- Used ruled columns navy numerals
+- Synced enterprise steps to EN
+- Rebuilt "where" into unified matrix
+- Three per row hairline dividers
+- Flat navy line icons
+- Synced matrix to EN
+- Redesigned "watch" into editorial split
+- Left heading right numbered list
+- Sticky heading navy indices
+- Synced split to EN
+- Broke "problem" heading onto lines
+- Broke "path" heading onto lines
+- Made "watch" section dark navy
+- Made "approach" section light
+- Synced both to EN
+- Replaced navy accent with black
+- Made "watch" background pure black
+- Synced black palette to EN
+- Redesigned "approach" with black panel
+- Added "what you get" list
+- Synced approach panel to EN
+- Improved "where" matrix cells
+- Added icon chips indices
+- Synced matrix cells to EN
+- Removed matrix index numbers
+- Made icons solid black chips
+- Synced icon chips to EN
+
+## seo-landing-pages — 2026-08-06 UTC
+
+- Added hero illustration "ai-in-business" pages
+- Two-column hero with orchestration diagram
+- Animated pulses via "aibflow" keyframe
+- Synced illustration to EN twin
+- Redesigned hero into live CoWorker panel
+- Task checklist cascades with progress bar
+- Added depth shadow and float
+- Synced new panel to EN
+- Redesigned "problem" section cards
+- Simplified card copy both languages
+- Replaced icons with mock illustrations
+- Stalled demo chat and cost illustrations
+
+## seo-landing-pages — 2026-08-03 UTC
+
+- Slimmed "unterschiede" copy further
+- Flat numbered layout replacing cards
+- Removed "contact" section from comparison
+- CTAs now target agents "contact"
+- Fixed 404 footer legal links
+- Booking button now mailto link
+- Removed hero consultation button comparison
+- Unified navbar across all pages
+- Standardized nav CTA labels
+- Added notification banner all pages
+- Aligned banner content with navbar
+- Redesigned comparison table spotlight column
+- Added table criterion icons and badge
+- Made navbar and banner full-width
+- Narrowed table criterion column width
+- Top-aligned table cell icons
+- Redrew flow step illustrations meaningfully
+- Replaced flow illustrations with labeled mockups
+- Redesigned "four differences" as icon cards
+- Redesigned "when each fits" contrasting cards
+- Fixed comparison hero headline mobile size
+- Made comparison design more professional
+- Kept comparison section headings one line
+- Removed all em dashes from copy
+- Added "ai-in-business" landing page
+- Built DE and EN versions
+
+## seo-landing-pages — 2026-07-31 UTC
+
+- Rebuilt "vergleich" hero as split comparison
+- Centered headline with marker highlight
+- Assistant chat card vs CoWorker card
+- Animated tasks and typing dots
+- Black header on CoWorker table column
+- Tinted CoWorker column in table
+- Same hero on EN version
+- Aligned navbar width with sections
+- Renamed "vergleich" pages to "comparison"
+- Reduced comparison hero top padding
+- Added "problem" split illustration
+- Trimmed "problem" and "unterschiede" copy
+- Added illustrated "ablauf" flow section
+- Hero H1 marker highlight fix
+
+## seo-landing-pages — 2026-07-30 UTC
+
+- Added "vergleich.html" comparison landing page
+- Added "vergleich.en.html" English version
+- Fixed DE/EN toggle on both vergleich pages
+- CoWorker vs enterprise AI comparison table
+- SEO meta tags targeting Copilot alternative queries
+- Rewrote both pages with whitepaper content
+- Added memory row to comparison table
+- Accurate certs ISO 27001 SOC 2 ISO 42001 C5
+- Model-agnostic Anthropic Mistral detail added
+- Data sovereignty EU hosting local option added
+
 ## en-translation-session — 2026-07-10 UTC
 
 - Added "index.en.html" full English translation

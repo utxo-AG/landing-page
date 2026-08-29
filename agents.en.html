@@ -14,13 +14,16 @@
 <div id="utxo-root" style="background:var(--bg-primary);color:var(--text-primary);min-height:100vh;">
 
   <!-- ============ HEADER ============ -->
-  <header id="hdr" style="position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--bg-primary) 84%, transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border-subtle);transition:box-shadow .3s var(--ease);">
-    <div style="max-width:1200px;margin:0 auto;height:72px;padding:0 clamp(20px,5vw,64px);display:flex;align-items:center;justify-content:space-between;gap:24px;">
+  <header id="hdr" style="position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--bg-primary) 84%, transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border-subtle);transition:box-shadow .3s var(--ease);padding:0 clamp(20px,5vw,64px);">
+    <div style="margin:0 auto;height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
       <a href="index.en.html" aria-label="UTXO.AG" style="display:flex;align-items:center;">
         <img src="resources/eced9d8c-21a5-41da-89fd-cf06ff0cfa5a.png" alt="UTXO.AG" style="height: 68px; width: 76px; display: block; object-fit: contain">
       </a>
       <div style="display:flex;align-items:center;gap:28px;">
         <nav data-desktop-nav="" style="display:flex;align-items:center;gap:28px;font-size:16px;color:var(--text-secondary);">
+          <a href="index.en.html#team" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Team</a>
+          <a href="index.en.html#stories" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Projects</a>
+          <a href="agents.en.html" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">AI</a>
         </nav>
         <span data-desktop-nav="" style="width:1px;height:20px;background:var(--border-strong);"></span>
         <span data-desktop-nav="" style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--text-muted);"><a href="agents.html" style="color:var(--text-muted);">DE</a> <span style="opacity:.5;">/</span> <a href="agents.en.html" style="color:var(--text-primary);">EN</a></span>
@@ -41,13 +44,24 @@
       </button>
     </div>
     <nav style="display:flex;flex-direction:column;gap:8px;margin-top:48px;">
+      <a href="index.en.html#team" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Team</a>
+      <a href="index.en.html#stories" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Projects</a>
+      <a href="agents.en.html" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">CoWorker</a>
     </nav>
-    <a href="#contact" style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;height:52px;background:#fff;color:#000;border-radius:8px;font-size:16px;font-weight:500;">Schedule a call</a>
+    <a href="#contact" style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;height:52px;background:#fff;color:#000;border-radius:8px;font-size:16px;font-weight:500;">Book a call</a>
   </div>
+
+  <!-- ============ HERO BANNER ============ -->
+  <a href="agents.en.html" style="display:block;background:#000;color:#fff;padding:0 clamp(20px,5vw,64px);transition:opacity .2s var(--ease);" style-hover="opacity:.85">
+    <div style="margin:0 auto;padding:14px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+      <span style="font-size:15px;font-weight:400;">Does your company need AI? Custom CoWorkers, productive in 30 days.</span>
+      <span style="display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:500;white-space:nowrap;">Explore AI CoWorkers <span aria-hidden="true">→</span></span>
+    </div>
+  </a>
 
   <!-- ============ FOLD 1 · HERO ============ -->
   <section id="top" style="position:relative;overflow:hidden;background:#fff;color:#000;min-height:clamp(600px,88vh,880px);display:flex;align-items:flex-end;padding:clamp(96px,14vw,140px) clamp(20px,5vw,64px) clamp(52px,7vw,88px);">
-    <canvas data-pixelgrid="" data-max-opacity="0.65" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;display:block;-webkit-mask-image:linear-gradient(100deg, transparent 0%, transparent 18%, #000 50%);mask-image:linear-gradient(100deg, transparent 0%, transparent 18%, #000 50%);"></canvas>
+    <canvas data-pixelgrid="" data-spotlight-only="" data-tile-scale="9" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;display:block;-webkit-mask-image:linear-gradient(100deg, transparent 0%, transparent 18%, #000 50%);mask-image:linear-gradient(100deg, transparent 0%, transparent 18%, #000 50%);"></canvas>
     <div style="position:relative;z-index:1;max-width:1200px;margin:0 auto;width:100%;">
       <div style="max-width:680px;">
         <h1 data-reveal="" style="transition: opacity .7s var(--ease) .06s,transform .7s var(--ease) .06s; font-weight: 600; font-size: 64px; line-height: 1; letter-spacing: -.028em; max-width: 17ch; margin-top: 24px">AI, custom-built for your process</h1>
@@ -371,7 +385,7 @@
           <div style="height:1px;background:#ededed;margin:18px 0;"></div>
           <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#a3a3a3;">Tuesday, 16 · Available times</div>
           <div data-cal-slots="" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px;font-family:var(--mono);font-size:13px;"></div>
-          <a data-book="" href="https://calendly.com/utxo-ag/intro-call" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;height:48px;margin-top:20px;background:#000;color:#fff;border-radius:8px;font-size:15px;font-weight:500;transition:opacity .2s var(--ease);" style-hover="opacity:.85">Confirm — Book a call</a>
+          <a data-book="" href="mailto:business@utxo.ag" style="display:flex;align-items:center;justify-content:center;height:48px;margin-top:20px;background:#000;color:#fff;border-radius:8px;font-size:15px;font-weight:500;transition:opacity .2s var(--ease);" style-hover="opacity:.85">Confirm — Book a call</a>
           <div style="margin-top:16px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:#9a9a9a;text-align:center;">01 INTRO CALL → 02 WORKSHOP → 03 DETAILED CONCEPT</div>
         </div>
         <!-- callback form -->
@@ -410,9 +424,9 @@
         <div>
           <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);">Legal</div>
           <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
-            <a href="https://utxoag.com/en/imprint" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">Imprint</a>
-            <a href="https://utxoag.com/en/privacy" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">Privacy Policy</a>
-            <a href="https://utxoag.com/en/terms" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">Terms</a>
+            <a href="https://utxoag.com/imprint" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">Imprint</a>
+            <a href="https://utxoag.com/privacy" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">Privacy Policy</a>
+            <a href="https://utxoag.com/terms" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">Terms</a>
           </div>
         </div>
       </div>

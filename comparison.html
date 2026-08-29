@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CoWorker vs. Microsoft Copilot & Co. – KI-Vergleich für Unternehmen | utxo.ag</title>
+<meta name="description" content="Individuell entwickelter KI-CoWorker oder Standardlösung wie Microsoft Copilot? Wir erklären die Unterschiede ehrlich, und wann welcher Ansatz wirklich passt.">
+<meta name="keywords" content="Microsoft Copilot Alternative, individuelle KI Lösung Unternehmen, KI Assistent Vergleich, KI Software Mittelstand, DSGVO-konform KI, KI Geschäftsprozesse automatisieren, KI Chatbot Unterschied">
+<link rel="canonical" href="https://utxo.ag/comparison.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="utxo-root" style="background:var(--bg-primary);color:var(--text-primary);min-height:100vh;">
+
+  <!-- ============ HEADER ============ -->
+  <header id="hdr" style="position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--bg-primary) 84%, transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border-subtle);transition:box-shadow .3s var(--ease);padding:0 clamp(20px,5vw,64px);">
+    <div style="margin:0 auto;height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+      <a href="index.html" aria-label="UTXO.AG" style="display:flex;align-items:center;">
+        <img src="resources/eced9d8c-21a5-41da-89fd-cf06ff0cfa5a.png" alt="UTXO.AG" style="height:68px;width:76px;display:block;object-fit:contain">
+      </a>
+      <div style="display:flex;align-items:center;gap:28px;">
+        <nav data-desktop-nav="" style="display:flex;align-items:center;gap:28px;font-size:16px;color:var(--text-secondary);">
+          <a href="index.html#team" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Team</a>
+          <a href="index.html#stories" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Projekte</a>
+          <a href="agents.html" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">KI</a>
+        </nav>
+        <span data-desktop-nav="" style="width:1px;height:20px;background:var(--border-strong);"></span>
+        <span data-desktop-nav="" style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--text-muted);"><a href="comparison.html" style="color:var(--text-primary);">DE</a> <span style="opacity:.5;">/</span> <a href="comparison.en.html" style="color:var(--text-muted);">EN</a></span>
+        <a href="agents.html#contact" data-desktop-nav="" style="display:inline-flex;align-items:center;height:38px;padding:0 18px;color:#fff;border-radius:8px;font-size:14px;font-weight:500;background:#000;transition:opacity .2s var(--ease);" style-hover="opacity:.85">Termin</a>
+        <button data-hamburger="" aria-label="Menü öffnen" style="display:none;width:38px;height:38px;align-items:center;justify-content:center;border:1px solid var(--border-strong);background:transparent;border-radius:8px;color:var(--text-primary);cursor:pointer;">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M1 4h16M1 9h16M1 14h16" stroke="currentColor" stroke-width="1.5"></path></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ MOBILE OVERLAY ============ -->
+  <div data-mobile-overlay="" style="position:fixed;inset:0;z-index:60;background:#000;color:#fff;display:none;flex-direction:column;padding:24px clamp(20px,6vw,40px);">
+    <div style="display:flex;align-items:center;justify-content:space-between;height:48px;">
+      <span style="font-family:var(--font-display);font-weight:600;font-size:20px;letter-spacing:-.02em;">utxo<span style="opacity:.5;">.ag</span></span>
+      <button data-overlay-close="" aria-label="Menü schliessen" style="width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.2);background:transparent;border-radius:8px;color:#fff;cursor:pointer;">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="1.5"></path></svg>
+      </button>
+    </div>
+    <nav style="display:flex;flex-direction:column;gap:8px;margin-top:48px;">
+      <a href="index.html#team" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Team</a>
+      <a href="index.html#stories" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Projekte</a>
+      <a href="agents.html" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">CoWorker</a>
+    </nav>
+    <a href="agents.html#contact" style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;height:52px;background:#fff;color:#000;border-radius:8px;font-size:16px;font-weight:500;">Termin</a>
+  </div>
+
+  <!-- ============ HERO BANNER ============ -->
+  <a href="agents.html" style="display:block;background:#000;color:#fff;padding:0 clamp(20px,5vw,64px);transition:opacity .2s var(--ease);" style-hover="opacity:.85">
+    <div style="margin:0 auto;padding:14px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+      <span style="font-size:15px;font-weight:400;">Braucht Ihr Unternehmen KI? Individuelle CoWorker, produktiv in 30 Tagen.</span>
+      <span style="display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:500;white-space:nowrap;">Zu den KI-CoWorkern <span aria-hidden="true">→</span></span>
+    </div>
+  </a>
+
+  <!-- ============ HERO ============ -->
+  <section id="top" class="cmpv-hero">
+    <div class="cmpv-bg" aria-hidden="true"></div>
+    <div class="cmpv-wrap">
+      <div class="cmpv-kicker" data-reveal="" style="transition:opacity .6s var(--ease) .04s,transform .6s var(--ease) .04s;">KI-Vergleich für Unternehmen</div>
+      <h1 class="cmpv-h1" data-reveal="" style="transition:opacity .7s var(--ease) .08s,transform .7s var(--ease) .08s;">Copilot hilft beim Tippen.<br><span class="cmpv-hl">Der CoWorker erledigt die Arbeit.</span></h1>
+      <p class="cmpv-sub" data-reveal="" style="transition:opacity .7s var(--ease) .14s,transform .7s var(--ease) .14s;">Microsoft Copilot, Google Gemini und ähnliche Lösungen machen bestehende Werkzeuge komfortabler. Ein utxo-CoWorker übernimmt Aufgaben vollständig, mit persistentem Gedächtnis, direktem Zugriff auf Ihre Systeme und echten Ergebnissen statt Chat-Protokollen.</p>
+      <div class="cmpv-ctas" data-reveal="" style="transition:opacity .7s var(--ease) .2s,transform .7s var(--ease) .2s;">
+        <a href="#vergleich" style="display:inline-flex;align-items:center;height:52px;padding:0 26px;background:#000;color:#fff;border-radius:8px;font-size:15px;font-weight:500;transition:opacity .2s var(--ease);" style-hover="opacity:.88">Zum Vergleich</a>
+      </div>
+      <div class="cmpv-cards" data-reveal="" style="transition:opacity .8s var(--ease) .28s,transform .8s var(--ease) .28s;">
+        <div class="cmpv-card cmpv-card--muted">
+          <div class="cmpv-card-head"><span>Standard-KI · Assistent</span><span>wartet auf Input</span></div>
+          <div class="cmpv-chat">
+            <div class="cmpv-bubble cmpv-bubble--user">Formuliere eine Antwort an Herrn Meier: Angebot, Liefertermin, freundlich.</div>
+            <div class="cmpv-bubble cmpv-bubble--ai">Gerne! Hier ist ein Entwurf, den Sie prüfen, anpassen und selbst versenden können …</div>
+            <div class="cmpv-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+          </div>
+          <div class="cmpv-foot">Senden, ablegen, nachfassen, bleibt bei Ihnen</div>
+        </div>
+        <div class="cmpv-vs" aria-hidden="true">VS</div>
+        <div class="cmpv-card cmpv-card--dark">
+          <div class="cmpv-card-head"><span>utxo CoWorker</span><span class="cmpv-live">Aktiv</span></div>
+          <div class="cmpv-tasks">
+            <div class="cmpv-task" style="animation-delay:.5s"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="8.25" fill="#fff"></circle><path d="M5.6 9.3l2.2 2.2 4.4-4.6" fill="none" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>Antwort an Herrn Meier gesendet<span class="t">09:41</span></div>
+            <div class="cmpv-task" style="animation-delay:1.3s"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="8.25" fill="#fff"></circle><path d="M5.6 9.3l2.2 2.2 4.4-4.6" fill="none" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>CRM-Eintrag aktualisiert<span class="t">09:41</span></div>
+            <div class="cmpv-task" style="animation-delay:2.1s"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="8.25" fill="#fff"></circle><path d="M5.6 9.3l2.2 2.2 4.4-4.6" fill="none" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>Folgetermin für Dienstag gebucht<span class="t">09:42</span></div>
+          </div>
+          <div class="cmpv-foot">3 Aufgaben erledigt, dokumentiert und nachvollziehbar</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DAS PROBLEM ============ -->
+  <section id="problem" style="background:var(--bg-secondary);border-top:1px solid var(--border-subtle);padding:clamp(64px,9vw,120px) clamp(20px,5vw,64px);scroll-margin-top:88px;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div data-reveal="" style="transition:opacity .7s var(--ease),transform .7s var(--ease);max-width:62ch;">
+        <div style="font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);">Warum bestehende Werkzeuge scheitern</div>
+        <h2 style="font-weight:500;font-size:clamp(32px,4vw,48px);line-height:1.05;letter-spacing:-.028em;margin-top:16px;">KI-Lizenzen gekauft.<br>Prozesse unverändert.</h2>
+        <p style="margin-top:20px;font-size:clamp(1.05rem,1rem+.3vw,1.2rem);line-height:1.5;color:var(--text-secondary);max-width:52ch;">Standardlösungen wie Copilot machen bestehende Werkzeuge komfortabler. Der Chatbot sitzt neben Ihren Systemen. Er kommt nicht hinein. Die eigentliche Arbeit bleibt liegen.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(16px,2vw,20px);margin-top:clamp(40px,5vw,56px);">
+
+        <div data-reveal="" data-delay="0" style="transition:opacity .6s var(--ease),transform .6s var(--ease);padding:clamp(24px,3vw,32px);border:1px solid var(--border-subtle);border-radius:14px;background:var(--bg-primary);">
+          <div style="background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px;">
+            <div style="font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);">Workflow-Regel</div>
+            <div style="display:flex;align-items:center;gap:9px;background:var(--bg-primary);border:1px solid var(--border-subtle);border-radius:8px;padding:8px 11px;font-size:12.5px;color:var(--text-primary);">Standardfall<span style="margin-left:auto;width:17px;height:17px;border-radius:5px;background:#0b0b0b;color:#fff;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6.4l2.6 2.6 5-5.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></div>
+            <div style="display:flex;align-items:center;gap:9px;background:var(--bg-primary);border:1px solid var(--border-subtle);border-radius:8px;padding:8px 11px;font-size:12.5px;color:var(--text-primary);">Unerwartete Formulierung<span style="margin-left:auto;width:17px;height:17px;border-radius:5px;border:1.5px solid var(--border-strong);color:var(--text-muted);display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M3 3l6 6M9 3l-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg></span></div>
+            <div style="display:flex;align-items:center;justify-content:center;gap:7px;border:1px dashed var(--border-strong);border-radius:8px;padding:7px 11px;font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 16H3z"></path><path d="M12 10v4M12 16.5v.5"></path></svg>Ablauf bricht ab</div>
+          </div>
+          <h3 style="font-weight:500;font-size:1.2rem;letter-spacing:-.01em;margin-top:18px;">Regeln statt Verstehen</h3>
+          <p style="margin-top:10px;font-size:15px;line-height:1.5;color:var(--text-secondary);">Klassische Automatisierung greift nur, solange der Fall exakt ins Muster passt. Andere Formulierung, fehlender Kontext, eine Ausnahme, und der Ablauf bricht ab.</p>
+        </div>
+
+        <div data-reveal="" data-delay="80" style="transition:opacity .6s var(--ease),transform .6s var(--ease);padding:clamp(24px,3vw,32px);border:1px solid var(--border-subtle);border-radius:14px;background:var(--bg-primary);">
+          <div style="background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span style="width:18px;height:18px;border-radius:50%;background:#0b0b0b;flex:0 0 auto;"></span>
+              <span style="font-size:12.5px;font-weight:600;letter-spacing:-.01em;">Chat-Sitzung</span>
+              <span style="margin-left:auto;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);">Neu</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:9px;background:var(--bg-primary);border:1px solid var(--border-subtle);border-radius:8px;padding:8px 11px;font-size:12.5px;color:var(--text-primary);">Speicher<span style="margin-left:auto;display:inline-flex;align-items:center;gap:5px;"><span style="width:7px;height:7px;border-radius:50%;border:1.5px solid var(--border-strong);"></span><span style="width:7px;height:7px;border-radius:50%;border:1.5px solid var(--border-strong);"></span><span style="width:7px;height:7px;border-radius:50%;border:1.5px solid var(--border-strong);"></span><span style="font-family:var(--mono);font-size:10px;color:var(--text-muted);margin-left:3px;">leer</span></span></div>
+            <div style="display:flex;align-items:center;gap:9px;background:var(--bg-primary);border:1px solid var(--border-subtle);border-radius:8px;padding:8px 11px;font-size:12.5px;color:var(--text-primary);">Systemzugriff<span style="margin-left:auto;width:17px;height:17px;border-radius:5px;border:1.5px solid var(--border-strong);color:var(--text-muted);display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M3 3l6 6M9 3l-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg></span></div>
+            <div style="display:flex;align-items:center;gap:9px;background:var(--bg-primary);border:1px solid var(--border-subtle);border-radius:8px;padding:8px 11px;font-size:12.5px;color:var(--text-primary);">Aufgabe erledigt<span style="margin-left:auto;width:17px;height:17px;border-radius:5px;border:1.5px solid var(--border-strong);color:var(--text-muted);display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M3 3l6 6M9 3l-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg></span></div>
+          </div>
+          <h3 style="font-weight:500;font-size:1.2rem;letter-spacing:-.01em;margin-top:18px;">Chatbots vergessen und handeln nicht</h3>
+          <p style="margin-top:10px;font-size:15px;line-height:1.5;color:var(--text-secondary);">Jede Sitzung beginnt bei null, ganz ohne Zugriff auf Ihre Systeme. Und sie liefern lieber eine plausible Vermutung als eine ehrliche Rückfrage.</p>
+        </div>
+
+        <div data-reveal="" data-delay="160" style="transition:opacity .6s var(--ease),transform .6s var(--ease);padding:clamp(24px,3vw,32px);border:1px solid var(--border-subtle);border-radius:14px;background:var(--bg-primary);">
+          <div style="background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);">Lizenz pro Nutzer<span style="margin-left:auto;display:inline-flex;align-items:center;gap:4px;">Kosten<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18l6-6 4 4 6-8"></path><path d="M20 8h-4M20 8v4"></path></svg></span></div>
+            <div style="display:flex;align-items:center;gap:9px;background:var(--bg-primary);border:1px solid var(--border-subtle);border-radius:8px;padding:8px 11px;font-size:12.5px;color:var(--text-primary);"><span style="width:18px;height:18px;border-radius:50%;border:1.5px solid var(--border-strong);display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;color:var(--text-muted);"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"></circle><path d="M5.5 20c.5-3.3 3.2-5 6.5-5s6 1.7 6.5 5"></path></svg></span>Platz 1<span style="margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--text-muted);">€ / Mt.</span></div>
+            <div style="display:flex;align-items:center;gap:9px;background:var(--bg-primary);border:1px solid var(--border-subtle);border-radius:8px;padding:8px 11px;font-size:12.5px;color:var(--text-primary);"><span style="width:18px;height:18px;border-radius:50%;border:1.5px solid var(--border-strong);display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;color:var(--text-muted);"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"></circle><path d="M5.5 20c.5-3.3 3.2-5 6.5-5s6 1.7 6.5 5"></path></svg></span>Platz 2<span style="margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--text-muted);">€ / Mt.</span></div>
+            <div style="display:flex;align-items:center;gap:9px;background:var(--bg-primary);border:1px solid var(--border-subtle);border-radius:8px;padding:8px 11px;font-size:12.5px;color:var(--text-primary);"><span style="width:18px;height:18px;border-radius:50%;border:1.5px solid var(--border-strong);display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;color:var(--text-muted);"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"></circle><path d="M5.5 20c.5-3.3 3.2-5 6.5-5s6 1.7 6.5 5"></path></svg></span>Platz 3<span style="margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--text-muted);">€ / Mt.</span></div>
+          </div>
+          <h3 style="font-weight:500;font-size:1.2rem;letter-spacing:-.01em;margin-top:18px;">Lizenzen pro Nutzer, Ergebnisse pro Niemand</h3>
+          <p style="margin-top:10px;font-size:15px;line-height:1.5;color:var(--text-secondary);">Pro-Nutzer-Preise wachsen mit dem Team, auch für alle, die das Tool kaum öffnen. Laufende Kosten sofort, messbare Verbesserung selten.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VERGLEICH ============ -->
+  <section id="vergleich" style="background:var(--bg-primary);border-top:1px solid var(--border-subtle);padding:clamp(64px,9vw,120px) clamp(20px,5vw,64px);scroll-margin-top:88px;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div data-reveal="" style="transition:opacity .7s var(--ease),transform .7s var(--ease);max-width:62ch;">
+        <div style="font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);">Direkter Vergleich</div>
+        <h2 class="cmpv-nowrap-h2" style="font-weight:500;font-size:clamp(32px,4vw,48px);line-height:1.05;letter-spacing:-.028em;margin-top:16px;">CoWorker vs. Standardlösung</h2>
+        <p style="margin-top:20px;font-size:clamp(1.05rem,1rem+.3vw,1.2rem);line-height:1.5;color:var(--text-secondary);">Kein Ansatz ist per se besser. Sie lösen unterschiedliche Probleme. Die entscheidende Frage: Was wollen Sie erreichen?</p>
+      </div>
+
+      <div class="cmpv-tbl" data-reveal="" style="transition:opacity .7s var(--ease),transform .7s var(--ease);">
+        <div class="cmpv-tr cmpv-tr--head">
+          <div class="cmpv-c1">Kriterium</div>
+          <div class="cmpv-c2"><span class="cmpv-badge">Empfohlen</span><span class="cmpv-th-name">utxo CoWorker</span><span class="cmpv-th-sub">Individuell entwickelt</span></div>
+          <div class="cmpv-c3"><span class="cmpv-th-name">MS Copilot / Google AI / SAP</span><span class="cmpv-th-sub">Standardlösung</span></div>
+        </div>
+
+        <div class="cmpv-tr cmpv-tr--body">
+          <div class="cmpv-c1"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h9M17 8h3M4 16h3M11 16h9"></path><circle cx="15" cy="8" r="2.3"></circle><circle cx="9" cy="16" r="2.3"></circle></svg>Anpassung an Ihren Prozess</div>
+          <div class="cmpv-c2"><span class="cmpv-yes"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.4l2.6 2.6 5-5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Vollständig: für einen spezifischen Prozess und ein spezifisches Unternehmen gebaut</div>
+          <div class="cmpv-c3"><span class="cmpv-no"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg></span>Konfigurierbar, aber das Verhalten ist vom Anbieter vorgegeben</div>
+        </div>
+
+        <div class="cmpv-tr cmpv-tr--body">
+          <div class="cmpv-c1"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"></path><path d="M3 13l9 5 9-5"></path></svg>Gedächtnis &amp; Kontext</div>
+          <div class="cmpv-c2"><span class="cmpv-yes"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.4l2.6 2.6 5-5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Persistent: kennt Ihr Unternehmen, Ihre Kunden und offene Vorgänge; wächst mit jeder Nutzung</div>
+          <div class="cmpv-c3"><span class="cmpv-no"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg></span>Jede Sitzung beginnt bei null, ohne Gedächtnis über Sessions hinweg</div>
+        </div>
+
+        <div class="cmpv-tr cmpv-tr--body">
+          <div class="cmpv-c1"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 13.5a3.5 3.5 0 004.9 0l2.8-2.8a3.5 3.5 0 00-4.9-4.9l-1.3 1.3"></path><path d="M13.5 10.5a3.5 3.5 0 00-4.9 0l-2.8 2.8a3.5 3.5 0 004.9 4.9l1.3-1.3"></path></svg>Systemintegration</div>
+          <div class="cmpv-c2"><span class="cmpv-yes"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.4l2.6 2.6 5-5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Tief: ERP, CRM, Dateien, E-Mail, interne APIs; modellunabhängig (Anthropic + Mistral)</div>
+          <div class="cmpv-c3"><span class="cmpv-no"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg></span>Oberflächlich: primär Microsoft- oder Google-Ökosystem; Anbieterabhängigkeit</div>
+        </div>
+
+        <div class="cmpv-tr cmpv-tr--body">
+          <div class="cmpv-c1"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.6-3.1 7.4-7 8.9C8.1 19.4 5 16.6 5 12V6l7-3z"></path></svg>Datenschutz &amp; Hosting</div>
+          <div class="cmpv-c2"><span class="cmpv-yes"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.4l2.6 2.6 5-5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Nicht für Training verwendet; EU-Speicherung (Azure/AWS Frankfurt); lokales Hosting bis Open-Source-Modelle</div>
+          <div class="cmpv-c3"><span class="cmpv-no"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg></span>Primär US-Cloud; Prompt-Inhalte können für Modelle genutzt werden; EU-Optionen eingeschränkt</div>
+        </div>
+
+        <div class="cmpv-tr cmpv-tr--body">
+          <div class="cmpv-c1"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></svg>Time to Value</div>
+          <div class="cmpv-c2"><span class="cmpv-yes"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.4l2.6 2.6 5-5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>30 Tage bis zur produktiven Erstversion; Erfolgskriterium vor Projektstart definiert</div>
+          <div class="cmpv-c3"><span class="cmpv-no"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg></span>Lizenz sofort; realer Nutzen nach Wochen bis Monaten Change Management</div>
+        </div>
+
+        <div class="cmpv-tr cmpv-tr--body">
+          <div class="cmpv-c1"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4l-7.2 7.2a2 2 0 01-2.8 0l-6.2-6.2A2 2 0 014 13V5.5A1.5 1.5 0 015.5 4H13a2 2 0 011.4.6l6.2 6.2a2 2 0 010 2.6z"></path><circle cx="8.5" cy="8.5" r="1.3"></circle></svg>Kostenstruktur</div>
+          <div class="cmpv-c2"><span class="cmpv-yes"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.4l2.6 2.6 5-5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Einmaliger Festpreis + planbares Monatsabonnement für den Betrieb</div>
+          <div class="cmpv-c3"><span class="cmpv-no"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg></span>Pro-Nutzer-Lizenz, skaliert mit Teamgrösse, auch für kaum genutzte Plätze</div>
+        </div>
+
+        <div class="cmpv-tr cmpv-tr--body">
+          <div class="cmpv-c1"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7.5l-8-4.5-8 4.5v9l8 4.5 8-4.5v-9z"></path><path d="M8.5 11.8l2.4 2.4 4.4-4.6"></path></svg>Was am Ende herauskommt</div>
+          <div class="cmpv-c2"><span class="cmpv-yes"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.4l2.6 2.6 5-5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Fertiges Arbeitsergebnis: erledigte Aufgaben, ausgelöste Aktionen, aktualisierte Systeme</div>
+          <div class="cmpv-c3"><span class="cmpv-no"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg></span>Komfortablere Erstellung von Texten und Zusammenfassungen. Der Mensch erledigt die Aufgabe</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABLAUF ============ -->
+  <section id="ablauf" style="background:var(--bg-primary);border-top:1px solid var(--border-subtle);padding:clamp(64px,9vw,120px) clamp(20px,5vw,64px);scroll-margin-top:88px;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div data-reveal="" style="transition:opacity .7s var(--ease),transform .7s var(--ease);max-width:62ch;">
+        <div style="font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);">Vom Auftrag zum Ergebnis</div>
+        <h2 class="cmpv-nowrap-h2" style="font-weight:500;font-size:clamp(32px,4vw,48px);line-height:1.05;letter-spacing:-.028em;margin-top:16px;">Drei Schritte statt drei Chatfenster.</h2>
+        <p style="margin-top:20px;font-size:clamp(1.05rem,1rem+.3vw,1.2rem);line-height:1.5;color:var(--text-secondary);">Kein Prompt-Handwerk, kein Copy-Paste. Der CoWorker nimmt die Aufgabe an, arbeitet in Ihren Systemen und übergibt ein fertiges Ergebnis.</p>
+      </div>
+
+      <div class="cmpv-flow">
+
+        <div class="cmpv-step" data-reveal="" data-delay="0" style="transition:opacity .6s var(--ease),transform .6s var(--ease);">
+          <span class="cmpv-step-num">01</span>
+          <h3>Aufgabe kommt rein</h3>
+          <p>E-Mail, Anfrage oder Vorgang, in natürlicher Sprache. Kein Formular, kein Spezialkommando.</p>
+        </div>
+
+        <div class="cmpv-step" data-reveal="" data-delay="130" style="transition:opacity .6s var(--ease),transform .6s var(--ease);">
+          <span class="cmpv-step-num">02</span>
+          <h3>Versteht &amp; handelt</h3>
+          <p>Der CoWorker kennt Ihr Unternehmen, greift auf CRM, ERP und Postfach zu und führt den Vorgang eigenständig weiter.</p>
+        </div>
+
+        <div class="cmpv-step" data-reveal="" data-delay="260" style="transition:opacity .6s var(--ease),transform .6s var(--ease);">
+          <span class="cmpv-step-num">03</span>
+          <h3>Ergebnis ist erledigt</h3>
+          <p>Antwort gesendet, System aktualisiert, Termin gebucht, dokumentiert und jederzeit nachvollziehbar.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ UNTERSCHIEDE ============ -->
+  <section id="unterschiede" style="background:var(--bg-secondary);border-top:1px solid var(--border-subtle);padding:clamp(64px,9vw,120px) clamp(20px,5vw,64px);scroll-margin-top:88px;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div data-reveal="" style="transition:opacity .7s var(--ease),transform .7s var(--ease);max-width:62ch;">
+        <div style="font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);">Die entscheidenden Unterschiede</div>
+        <h2 class="cmpv-nowrap-h2" style="font-weight:500;font-size:clamp(32px,4vw,48px);line-height:1.05;letter-spacing:-.028em;margin-top:16px;">Vier Punkte, die den Unterschied machen.</h2>
+      </div>
+
+      <div class="cmpv-diffs">
+
+        <article class="cmpv-diff" data-reveal="">
+          <div class="cmpv-diff-illu"><svg width="60" height="60" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="17"></circle><path d="M16 24.5l5.5 5.5L33 18.5"></path></svg></div>
+          <h3>Erledigt statt assistiert</h3>
+          <p>Ein Assistent hilft beim Formulieren. Die Arbeit bleibt bei Ihnen. Der CoWorker kennt Ihr Unternehmen und erledigt den Vorgang selbst.</p>
+        </article>
+
+        <article class="cmpv-diff" data-reveal="" data-delay="80">
+          <div class="cmpv-diff-illu"><svg width="60" height="60" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 7l16 8-16 8-16-8 16-8z"></path><path d="M8 23l16 8 16-8"></path><path d="M8 31l16 8 16-8"></path></svg></div>
+          <h3>Gedächtnis statt Sitzung bei null</h3>
+          <p>Der CoWorker merkt sich Kunden, Vorgänge und Tonalität. Ein Chatbot beginnt jede Sitzung von vorne.</p>
+        </article>
+
+        <article class="cmpv-diff" data-reveal="" data-delay="160">
+          <div class="cmpv-diff-illu"><svg width="60" height="60" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5l15 6v9c0 9-6.2 15-15 17.5C15.2 35 9 29 9 20v-9l15-6z"></path><path d="M17 23.5l4.5 4.5L31 18.5"></path></svg></div>
+          <h3>Datensouveränität, vertraglich gesichert</h3>
+          <p>Ihre Daten werden nicht für Training verwendet. EU-Hosting, auf Wunsch vollständig lokal mit Open-Source-Modellen.</p>
+        </article>
+
+        <article class="cmpv-diff" data-reveal="" data-delay="240">
+          <div class="cmpv-diff-illu"><svg width="60" height="60" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40h32"></path><rect x="12" y="27" width="6" height="11" rx="1.5"></rect><rect x="21" y="19" width="6" height="19" rx="1.5"></rect><rect x="30" y="11" width="6" height="27" rx="1.5"></rect></svg></div>
+          <h3>Planbare Kosten, messbarer Nutzen</h3>
+          <p>Festpreis für die Entwicklung, planbares Abo für den Betrieb. Das Erfolgskriterium steht vor Projektstart fest.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FÜR WEN ============ -->
+  <section id="fuer-wen" style="background:var(--bg-primary);border-top:1px solid var(--border-subtle);padding:clamp(64px,9vw,120px) clamp(20px,5vw,64px);scroll-margin-top:88px;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div data-reveal="" style="transition:opacity .7s var(--ease),transform .7s var(--ease);max-width:62ch;">
+        <div style="font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);">Ehrliche Einschätzung</div>
+        <h2 class="cmpv-nowrap-h2" style="font-weight:500;font-size:clamp(32px,4vw,48px);line-height:1.05;letter-spacing:-.028em;margin-top:16px;">Wann ist welcher Ansatz richtig?</h2>
+        <p style="margin-top:20px;font-size:clamp(1.05rem,1rem+.3vw,1.2rem);line-height:1.5;color:var(--text-secondary);">Nicht jedes Unternehmen braucht einen CoWorker. Nicht jedes Problem rechtfertigt einen individuellen Entwicklungsaufwand. Hier ist unsere ehrliche Einschätzung.</p>
+      </div>
+      <div class="cmpv-fits">
+
+        <div class="cmpv-fit" data-reveal="">
+          <div class="cmpv-fit-h"><span class="cmpv-fit-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7.5l-8-4.5-8 4.5v9l8 4.5 8-4.5v-9z"></path><path d="M4 7.5l8 4.5 8-4.5M12 12v9"></path></svg></span>Standardlösung passt, wenn</div>
+          <ul class="cmpv-fit-list">
+            <li><span class="cmpv-fit-mk"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6.4l2.6 2.6 5-5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Primär Microsoft 365, schnelleres Schreiben</li>
+            <li><span class="cmpv-fit-mk"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6.4l2.6 2.6 5-5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Kein spezifischer Prozess zu automatisieren</li>
+            <li><span class="cmpv-fit-mk"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6.4l2.6 2.6 5-5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Texte, Präsentationen, Notizen: kein Systembezug</li>
+            <li><span class="cmpv-fit-mk"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6.4l2.6 2.6 5-5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Datensouveränität ist nicht kritisch</li>
+          </ul>
+          <div class="cmpv-fit-verdict"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"></path></svg>Eine Standardlizenz genügt.</div>
+        </div>
+
+        <div class="cmpv-fit cmpv-fit--you" data-reveal="" data-delay="80">
+          <div class="cmpv-fit-h"><span class="cmpv-fit-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.9L21 11l-6.6 2.1L12 20l-2.4-6.9L3 11l6.6-2.1L12 2z"></path></svg></span>CoWorker passt, wenn</div>
+          <ul class="cmpv-fit-list">
+            <li><span class="cmpv-fit-mk"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6.4l2.6 2.6 5-5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Ein wiederkehrender Prozess kostet täglich Zeit</li>
+            <li><span class="cmpv-fit-mk"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6.4l2.6 2.6 5-5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Ihre Daten liegen in CRM, ERP, Datenbanken</li>
+            <li><span class="cmpv-fit-mk"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6.4l2.6 2.6 5-5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>DSGVO und Souveränität nicht verhandelbar</li>
+            <li><span class="cmpv-fit-mk"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6.4l2.6 2.6 5-5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Sie wollen Ergebnisse, kein Chat-Protokoll</li>
+          </ul>
+          <div class="cmpv-fit-verdict"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"></path></svg>Ein eigener CoWorker lohnt sich.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="background:#000;color:#fff;padding:clamp(56px,8vw,80px) clamp(20px,5vw,64px) clamp(36px,4vw,48px);border-top:1px solid rgba(255,255,255,.12);">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:clamp(32px,5vw,64px);">
+        <div style="grid-column:1 / -1;max-width:34ch;">
+          <img src="resources/e74b90dc-3a43-4724-a31f-41fca9e2fccc.png" alt="utxo.ag" style="height:30px;width:auto;display:block;object-fit:contain;">
+          <p style="margin-top:18px;font-size:17px;line-height:1.6;color:rgba(255,255,255,.6);">CoWorker: digitale Mitarbeiter, individuell entwickelt für Mittelstand und Konzerne. DSGVO-konform, gehostet in EU/CH.</p>
+        </div>
+        <div>
+          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);">Vergleich</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
+            <a href="#problem" style="transition:color .2s var(--ease);" style-hover="color:#fff">Das Problem</a>
+            <a href="#vergleich" style="transition:color .2s var(--ease);" style-hover="color:#fff">Vergleichstabelle</a>
+            <a href="#ablauf" style="transition:color .2s var(--ease);" style-hover="color:#fff">Ablauf</a>
+            <a href="#unterschiede" style="transition:color .2s var(--ease);" style-hover="color:#fff">Unterschiede</a>
+            <a href="#fuer-wen" style="transition:color .2s var(--ease);" style-hover="color:#fff">Für wen</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);">Produkt</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
+            <a href="agents.html" style="transition:color .2s var(--ease);" style-hover="color:#fff">CoWorker</a>
+            <a href="agents.html#how" style="transition:color .2s var(--ease);" style-hover="color:#fff">So funktioniert's</a>
+            <a href="agents.html#pricing" style="transition:color .2s var(--ease);" style-hover="color:#fff">Preise</a>
+            <a href="agents.html#contact" style="transition:color .2s var(--ease);" style-hover="color:#fff">Kontakt</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);">Unternehmen</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
+            <a href="https://masumi.network" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">masumi ↗</a>
+            <a href="https://sokosumi.com" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">sokosumi ↗</a>
+            <a href="https://www.nmkr.io" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">NMKR ↗</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);">Rechtliches</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
+            <a href="https://utxoag.com/imprint" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">Impressum</a>
+            <a href="https://utxoag.com/privacy" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">Datenschutz</a>
+            <a href="https://utxoag.com/terms" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">AGB</a>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:clamp(40px,6vw,64px);padding-top:24px;border-top:1px solid rgba(255,255,255,.12);font-family:var(--mono);font-size:12px;letter-spacing:.03em;color:rgba(255,255,255,.5);">
+        <span>© 2026 utxo AG · Dammstrasse 16 · 6300 Zug · Schweiz</span>
+        <span>GEHOSTET IN EU/CH · DSGVO · EU-KI-VERORDNUNG</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+<script src="main.js"></script>
+</body>
+</html>

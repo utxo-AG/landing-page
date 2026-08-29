@@ -120,6 +120,54 @@ const App = {
     this._initForms(root);
     this._initCarousel(root);
     this._initTeamScroll(root);
+    this._initHeroRotator(root, reduce);
+    this._initCoworkerCycle(root, reduce);
+  },
+
+  _initCoworkerCycle(root, reduce) {
+    const wrap = root.querySelector('[data-coworker]');
+    if (!wrap) return;
+    let list;
+    try { list = JSON.parse(wrap.getAttribute('data-coworker') || '[]'); } catch (e) { return; }
+    if (!Array.isArray(list) || list.length < 2) return;
+    const img = wrap.querySelector('[data-cw-avatar]');
+    const txt = wrap.querySelector('[data-cw-text]');
+    const name = wrap.querySelector('[data-cw-name]');
+    const role = wrap.querySelector('[data-cw-role]');
+    if (!img || !name || !role) return;
+    list.forEach(c => { const p = new Image(); p.src = c.img; });
+    if (reduce) return;
+    let i = 0;
+    setInterval(() => {
+      img.style.opacity = '0';
+      if (txt) txt.style.opacity = '0';
+      setTimeout(() => {
+        i = (i + 1) % list.length;
+        const c = list[i];
+        img.src = c.img;
+        img.alt = c.name;
+        name.textContent = c.name;
+        role.textContent = c.role;
+        img.style.opacity = '1';
+        if (txt) txt.style.opacity = '1';
+      }, 350);
+    }, 2800);
+  },
+
+  _initHeroRotator(root, reduce) {
+    const el = root.querySelector('[data-rotate]');
+    if (!el) return;
+    const words = (el.getAttribute('data-words') || '').split('|').map(w => w.trim()).filter(Boolean);
+    if (reduce || words.length < 2) return;
+    let i = 0;
+    setInterval(() => {
+      el.style.opacity = '0';
+      setTimeout(() => {
+        i = (i + 1) % words.length;
+        el.textContent = words[i];
+        el.style.opacity = '1';
+      }, 300);
+    }, 2600);
   },
 
   _initTeamScroll(root) {
@@ -330,7 +378,7 @@ const App = {
       for (let d = 1; d <= total; d++) {
         const sel = d === selected;
         const off = !!unavailable[d] && !sel;
-        const base = 'aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:7px;cursor:' + (off ? 'default' : 'pointer') + ';transition:background .15s ease,color .15s ease;';
+        const base = 'height:34px;display:flex;align-items:center;justify-content:center;border-radius:7px;cursor:' + (off ? 'default' : 'pointer') + ';transition:background .15s ease,color .15s ease;';
         const style = sel ? base + 'background:#000;color:#fff;' : off ? base + 'color:#cfcfcf;' : base + 'color:#1a1a1a;';
         html += '<div data-day="' + d + '"' + (off ? ' data-off' : '') + ' style="' + style + '">' + d + '</div>';
       }
