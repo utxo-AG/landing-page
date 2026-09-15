@@ -12,6 +12,7 @@ agents(.de).html           custom CoWorker deep-dive: top, cases, process (roadm
 call_assistant(.de).html   Call Assistant product page with live demo embed
 comparison(.de).html       SEO content page "CoWorker vs. Copilot", linked only from the footer "Guides" column
 ai-in-business(.de).html   SEO content page "AI in business" guide, linked only from the footer "Guides" column
+eu-ai-act(.de).html        SEO guide "EU AI Act" (neutral, sources, as of 2026-09-15), footer "Guides" only, review quarterly
 imprint / privacy / terms / acceptable-use / dpa (.de)   legal pages
 press(.de).html            press page: outlet logo grid, full coverage list, media contact; linked from the home teaser and the footer
 removed-sections.html      archive of sections cut from the original one-pager, not linked, not maintained
@@ -21,7 +22,7 @@ removed-sections.html      archive of sections cut from the original one-pager, 
 
 ```
 style.css        @font-face (self-hosted), design tokens, shared component classes (.kicker .btn .prod-* .stage-* .press-* .consent .footer-link)
-pages.css        classes only used by comparison + ai-in-business (.cmpv-* .aibp-*), loaded only there
+pages.css        classes only used by the SEO guide pages (.cmpv-* .aibp-* and .gd-* for eu-ai-act), loaded only there
 main.js          all behavior in one App object; every init is null-guarded so a page only runs what it contains
 config.js        single place for runtime config: gaMeasurementId, callDemoUrl
 press.js         single source for press mentions (window.UTXO_PRESS) and outlet logos (window.UTXO_PRESS_LOGOS)

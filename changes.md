@@ -1,5 +1,13 @@
 # Changes
 
+## seo-subpages-session — 2026-09-15 UTC
+
+- New page "eu-ai-act" DE EN
+- Guide classes ".gd-*" in "pages.css"
+- Footer "Guides" links on all pages
+- Sitemap entries for new guides
+- JSON-LD Article Breadcrumb FAQPage added
+
 ## live-fix-session — 2026-09-15 UTC
 
 - Home language negotiated in Caddy
