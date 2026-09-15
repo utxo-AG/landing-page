@@ -26,7 +26,9 @@ const App = {
     // ---- Language switch (persists manual choice, see head redirect script) ----
     root.querySelectorAll('[data-set-lang]').forEach((el) => {
       el.addEventListener('click', () => {
-        try { localStorage.setItem('utxo_lang', el.getAttribute('data-set-lang')); } catch (e) {}
+        const lang = el.getAttribute('data-set-lang');
+        document.cookie = 'utxo_lang=' + lang + '; path=/; max-age=31536000; SameSite=Lax';
+        try { localStorage.setItem('utxo_lang', lang); } catch (e) {}
       });
     });
 

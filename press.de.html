@@ -6,7 +6,7 @@
 <link rel="alternate" hreflang="en" href="https://utxo.ag/press">
 <link rel="alternate" hreflang="de" href="https://utxo.ag/press.de">
 <link rel="alternate" hreflang="x-default" href="https://utxo.ag/press">
-<script>(function(){try{var h=document.documentElement.lang,s=localStorage.getItem('utxo_lang');if(!s&&h==='en'&&/^de\b/i.test(navigator.language||''))s='de';if(s&&s!==h){var a=document.querySelector('link[rel="alternate"][hreflang="'+s+'"]');if(a)location.replace(new URL(a.href).pathname+location.search+location.hash);}}catch(e){}})();</script>
+<script>(function(){try{var h=document.documentElement.lang,c=(document.cookie.match(/(?:^|; )utxo_lang=(de|en)/)||[])[1],s=c||localStorage.getItem('utxo_lang');if(h==='de'&&!c){document.cookie='utxo_lang=de; path=/; max-age=31536000; SameSite=Lax';}if(location.pathname==='/')return;if(!s&&h==='en'&&/^de\b/i.test(navigator.language||''))s='de';if(s&&s!==h){var a=document.querySelector('link[rel="alternate"][hreflang="'+s+'"]');if(a)location.replace(new URL(a.href).pathname+location.search+location.hash);}}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Presseberichte zu Masumi und Sokosumi | utxo AG</title>
 <meta name="description" content="Presseberichte zu Masumi und Sokosumi, entwickelt von der utxo AG für die Serviceplan Group: Handelsblatt, Forbes, t3n, Horizont, W&V und weitere.">
@@ -33,19 +33,19 @@
   <!-- ============ HEADER ============ -->
   <header id="hdr" style="position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--bg-primary) 84%, transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border-subtle);transition:box-shadow .3s var(--ease);">
     <div style="padding:0 2rem;display:flex;align-items:center;justify-content:space-between;gap:24px;">
-      <a href="/index.de#top" aria-label="UTXO.AG" style="display:flex;align-items:center;">
+      <a href="/#top" aria-label="UTXO.AG" style="display:flex;align-items:center;">
         <img src="resources/logos/utxo-logo-header.webp" alt="UTXO.AG" style="height: 68px; width: 66px; display: block; object-fit: contain">
       </a>
       <div style="display:flex;align-items:center;gap:28px;">
         <nav data-desktop-nav="" style="display:flex;align-items:center;gap:28px;font-size:16px;color:var(--text-secondary);">
-          <a href="/index.de#products" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Produkte</a>
-          <a href="/index.de#stories" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Projekte</a>
-          <a href="/index.de#team" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Team</a>
+          <a href="/#products" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Produkte</a>
+          <a href="/#stories" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Projekte</a>
+          <a href="/#team" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Team</a>
           <a href="/agents.de" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Individuelle KI</a>
         </nav>
         <span data-desktop-nav="" style="width:1px;height:20px;background:var(--border-strong);"></span>
         <span data-desktop-nav="" style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--text-muted);"><a href="/press.de" data-set-lang="de" style="color:var(--text-primary);">DE</a> <span style="opacity:.5;">/</span> <a href="/press" data-set-lang="en" style="color:var(--text-muted);">EN</a></span>
-        <a href="/index.de#contact" data-desktop-nav="" style="display:inline-flex;align-items:center;height:38px;padding:0 18px;color:#fff;border-radius:8px;font-size:14px;font-weight:500;background:#000;transition:opacity .2s var(--ease);" style-hover="opacity:.85">Erstgespräch buchen</a>
+        <a href="/#contact" data-desktop-nav="" style="display:inline-flex;align-items:center;height:38px;padding:0 18px;color:#fff;border-radius:8px;font-size:14px;font-weight:500;background:#000;transition:opacity .2s var(--ease);" style-hover="opacity:.85">Erstgespräch buchen</a>
         <button data-hamburger="" aria-label="Menü öffnen" style="display:none;width:38px;height:38px;align-items:center;justify-content:center;border:1px solid var(--border-strong);background:transparent;border-radius:8px;color:var(--text-primary);cursor:pointer;">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M1 4h16M1 9h16M1 14h16" stroke="currentColor" stroke-width="1.5"></path></svg>
         </button>
@@ -62,19 +62,19 @@
       </button>
     </div>
     <nav style="display:flex;flex-direction:column;gap:8px;margin-top:48px;">
-      <a href="/index.de#products" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Produkte</a>
-      <a href="/index.de#stories" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Projekte</a>
-      <a href="/index.de#team" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Team</a>
+      <a href="/#products" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Produkte</a>
+      <a href="/#stories" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Projekte</a>
+      <a href="/#team" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Team</a>
       <a href="/agents.de" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Individuelle KI</a>
     </nav>
-    <a href="/index.de#contact" style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;height:52px;background:#fff;color:#000;border-radius:8px;font-size:16px;font-weight:500;">Erstgespräch buchen</a>
+    <a href="/#contact" style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;height:52px;background:#fff;color:#000;border-radius:8px;font-size:16px;font-weight:500;">Erstgespräch buchen</a>
   </div>
 
   <!-- ============ PRESS HERO ============ -->
   <section id="top" style="background:#fff;color:#000;padding:clamp(64px,9vw,120px) clamp(20px,5vw,64px) clamp(40px,5vw,64px);">
     <div style="max-width:1200px;margin:0 auto;">
       <div style="max-width:760px;">
-        <a class="back-link" href="/index.de">← Zurück zur Startseite</a>
+        <a class="back-link" href="/">← Zurück zur Startseite</a>
         <span class="kicker dot-petrol">Presse</span>
         <h1 style="font-weight:600;font-size:clamp(38px,5vw,56px);line-height:1.05;letter-spacing:-.028em;margin-top:16px;">Unsere Projekte in den Medien.</h1>
         <p style="margin-top:20px;font-size:clamp(1.05rem,1rem + .3vw,1.2rem);line-height:1.5;color:var(--text-secondary);">Für die Serviceplan Group entwickeln wir Masumi, ein Zahlungs- und Identitätsnetzwerk für KI-Agenten, und Sokosumi, einen Marktplatz für KI-Agenten, und betreiben beide gemeinsam mit ihr. Das schreibt die Presse darüber.</p>
@@ -114,9 +114,9 @@
         <div>
           <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.58);">Produkt</div>
           <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
-            <a href="/index.de#team" style="transition:color .2s var(--ease);" style-hover="color:#fff">Team</a>
-            <a href="/index.de#stories" style="transition:color .2s var(--ease);" style-hover="color:#fff">Projekte</a>
-            <a href="/index.de#products" style="transition:color .2s var(--ease);" style-hover="color:#fff">Produkte</a>
+            <a href="/#team" style="transition:color .2s var(--ease);" style-hover="color:#fff">Team</a>
+            <a href="/#stories" style="transition:color .2s var(--ease);" style-hover="color:#fff">Projekte</a>
+            <a href="/#products" style="transition:color .2s var(--ease);" style-hover="color:#fff">Produkte</a>
             <a href="/call_assistant.de" style="transition:color .2s var(--ease);" style-hover="color:#fff">Anrufassistent</a>
             <a href="/agents.de" style="transition:color .2s var(--ease);" style-hover="color:#fff">Individuelle KI</a>
           </div>

@@ -12,6 +12,12 @@ header {
 	Referrer-Policy "strict-origin-when-cross-origin"
 }
 
+@home_de expression `{path} == "/" && ({http.request.cookie.utxo_lang} == "de" || ({http.request.cookie.utxo_lang} != "en" && {http.request.header.Accept-Language}.matches("^de")))`
+rewrite @home_de /index.de.html
+
+@home path /
+header @home Vary "Accept-Language, Cookie"
+
 @indexfile path /index.html
 redir @indexfile / permanent
 

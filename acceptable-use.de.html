@@ -6,7 +6,7 @@
 <link rel="alternate" hreflang="en" href="https://utxo.ag/acceptable-use">
 <link rel="alternate" hreflang="de" href="https://utxo.ag/acceptable-use.de">
 <link rel="alternate" hreflang="x-default" href="https://utxo.ag/acceptable-use">
-<script>(function(){try{var h=document.documentElement.lang,s=localStorage.getItem('utxo_lang');if(!s&&h==='en'&&/^de\b/i.test(navigator.language||''))s='de';if(s&&s!==h){var a=document.querySelector('link[rel="alternate"][hreflang="'+s+'"]');if(a)location.replace(new URL(a.href).pathname+location.search+location.hash);}}catch(e){}})();</script>
+<script>(function(){try{var h=document.documentElement.lang,c=(document.cookie.match(/(?:^|; )utxo_lang=(de|en)/)||[])[1],s=c||localStorage.getItem('utxo_lang');if(h==='de'&&!c){document.cookie='utxo_lang=de; path=/; max-age=31536000; SameSite=Lax';}if(location.pathname==='/')return;if(!s&&h==='en'&&/^de\b/i.test(navigator.language||''))s='de';if(s&&s!==h){var a=document.querySelector('link[rel="alternate"][hreflang="'+s+'"]');if(a)location.replace(new URL(a.href).pathname+location.search+location.hash);}}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Richtlinie zur akzeptablen Nutzung | utxo AG</title>
 <meta name="description" content="Nutzungsrichtlinie für den AI Coworker / Agentic Service der utxo AG.">
@@ -33,14 +33,14 @@
   <!-- ============ HEADER ============ -->
   <header id="hdr" style="position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--bg-primary) 84%, transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border-subtle);transition:box-shadow .3s var(--ease);">
     <div style="max-width:1200px;margin:0 auto;height:72px;padding:0 clamp(20px,5vw,64px);display:flex;align-items:center;justify-content:space-between;gap:24px;">
-      <a href="/index.de" aria-label="UTXO.AG" style="display:flex;align-items:center;">
+      <a href="/" aria-label="UTXO.AG" style="display:flex;align-items:center;">
         <img src="resources/logos/utxo-logo-header.webp" alt="UTXO.AG" style="height: 68px; width: 66px; display: block; object-fit: contain">
       </a>
       <div style="display:flex;align-items:center;gap:28px;">
         <nav data-desktop-nav="" style="display:flex;align-items:center;gap:28px;font-size:16px;color:var(--text-secondary);">
-          <a href="/index.de#products" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Produkte</a>
-          <a href="/index.de#stories" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Projekte</a>
-          <a href="/index.de#team" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Team</a>
+          <a href="/#products" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Produkte</a>
+          <a href="/#stories" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Projekte</a>
+          <a href="/#team" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Team</a>
           <a href="/agents.de" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Individuelle KI</a>
         </nav>
         <span data-desktop-nav="" style="width:1px;height:20px;background:var(--border-strong);"></span>
@@ -62,9 +62,9 @@
       </button>
     </div>
     <nav style="display:flex;flex-direction:column;gap:8px;margin-top:48px;">
-      <a href="/index.de#products" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Produkte</a>
-      <a href="/index.de#stories" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Projekte</a>
-      <a href="/index.de#team" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Team</a>
+      <a href="/#products" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Produkte</a>
+      <a href="/#stories" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Projekte</a>
+      <a href="/#team" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Team</a>
       <a href="/agents.de" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Individuelle KI</a>
     </nav>
     <a href="/agents.de#contact" style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;height:52px;background:#fff;color:#000;border-radius:8px;font-size:16px;font-weight:500;">Erstgespräch buchen</a>
@@ -171,7 +171,7 @@
     </div>
 
     <div style="margin-top:64px;padding-top:24px;border-top:1px solid var(--border-subtle);">
-      <a href="/index.de" style="font-size:13px;color:var(--text-muted);transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">← Zurück zur Startseite</a>
+      <a href="/" style="font-size:13px;color:var(--text-muted);transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">← Zurück zur Startseite</a>
     </div>
   </main>
 
@@ -182,9 +182,9 @@
         <div>
           <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.58);">Produkt</div>
           <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
-            <a href="/index.de#team" style="transition:color .2s var(--ease);" style-hover="color:#fff">Team</a>
-            <a href="/index.de#stories" style="transition:color .2s var(--ease);" style-hover="color:#fff">Projekte</a>
-            <a href="/index.de#products" style="transition:color .2s var(--ease);" style-hover="color:#fff">Produkte</a>
+            <a href="/#team" style="transition:color .2s var(--ease);" style-hover="color:#fff">Team</a>
+            <a href="/#stories" style="transition:color .2s var(--ease);" style-hover="color:#fff">Projekte</a>
+            <a href="/#products" style="transition:color .2s var(--ease);" style-hover="color:#fff">Produkte</a>
             <a href="/call_assistant.de" style="transition:color .2s var(--ease);" style-hover="color:#fff">Anrufassistent</a>
             <a href="/agents.de" style="transition:color .2s var(--ease);" style-hover="color:#fff">Individuelle KI</a>
           </div>

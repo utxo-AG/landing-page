@@ -1,5 +1,13 @@
 # Changes
 
+## live-fix-session — 2026-09-15 UTC
+
+- Home language negotiated in Caddy
+- Address stays utxo.ag for German
+- Language choice stored in cookie
+- German home links point to root
+- Team order Sascha Sandro Peter Florian
+
 ## redesign-2026-09-session-4 — 2026-09-14 UTC
 
 - New hero subline and CTA pair
