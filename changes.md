@@ -1,5 +1,11 @@
 # Changes
 
+## demo-height-session — 2026-09-15 UTC
+
+- "stage-call" height 720 650 mobile
+- Removed inline height "call_assistant"
+- "call-orb" rings no longer block clicks
+
 ## seo-subpages-session — 2026-09-15 UTC
 
 - New page "eu-ai-act" DE EN
