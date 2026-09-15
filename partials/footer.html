@@ -1,40 +1,49 @@
-  <footer style="background:#000;color:#fff;padding:clamp(56px,8vw,80px) clamp(20px,5vw,64px) clamp(36px,4vw,48px);border-top:1px solid rgba(255,255,255,.12);">
+  <!-- ============ FOOTER ============ -->
+  <footer data-surface="ink" style="background:#000;color:#fff;padding:clamp(56px,8vw,80px) clamp(20px,5vw,64px) clamp(36px,4vw,48px);border-top:1px solid rgba(255,255,255,.12);">
     <div style="max-width:1200px;margin:0 auto;">
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:clamp(32px,5vw,64px);">
-        <div style="grid-column:1 / -1;max-width:34ch;">
-          <img src="resources/e74b90dc-3a43-4724-a31f-41fca9e2fccc.png" alt="utxo.ag" style="height:30px;width:auto;display:block;object-fit:contain;">
-          <p style="margin-top:18px;font-size:17px;line-height:1.6;color:rgba(255,255,255,.6);">CoWorker — digitale Mitarbeiter, individuell entwickelt für Mittelstand und Konzerne. DSGVO-konform, gehostet in EU/CH.</p>
-        </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));row-gap:clamp(32px,5vw,64px);column-gap:clamp(8px,1.25vw,16px);">
         <div>
-          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);">Produkt</div>
+          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.58);">Product</div>
           <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
-            <a href="#how" style="transition:color .2s var(--ease);" style-hover="color:#fff">So funktioniert's</a>
-            <a href="#security" style="transition:color .2s var(--ease);" style-hover="color:#fff">Sicherheit</a>
-            <a href="#pricing" style="transition:color .2s var(--ease);" style-hover="color:#fff">Preise</a>
+            <a href="/#team" style="transition:color .2s var(--ease);" style-hover="color:#fff">Team</a>
+            <a href="/#stories" style="transition:color .2s var(--ease);" style-hover="color:#fff">Projects</a>
+            <a href="/#products" style="transition:color .2s var(--ease);" style-hover="color:#fff">Products</a>
+            <a href="/call_assistant" style="transition:color .2s var(--ease);" style-hover="color:#fff">Call Assistant</a>
+            <a href="/agents" style="transition:color .2s var(--ease);" style-hover="color:#fff">Custom AI</a>
           </div>
         </div>
         <div>
-          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);">Unternehmen</div>
+          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.58);">Guides</div>
           <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
+            <a href="/comparison" style="transition:color .2s var(--ease);" style-hover="color:#fff">CoWorker vs. Copilot</a>
+            <a href="/ai-in-business" style="transition:color .2s var(--ease);" style-hover="color:#fff">AI in business</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.58);">Company</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
+            <a href="/press" style="transition:color .2s var(--ease);" style-hover="color:#fff">Press</a>
             <a href="https://masumi.network" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">masumi ↗</a>
             <a href="https://sokosumi.com" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">sokosumi ↗</a>
             <a href="https://www.nmkr.io" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">NMKR ↗</a>
           </div>
         </div>
         <div>
-          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);">Rechtliches</div>
+          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.58);">Legal</div>
           <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
             <a href="/imprint" style="transition:color .2s var(--ease);" style-hover="color:#fff">Imprint</a>
             <a href="/privacy" style="transition:color .2s var(--ease);" style-hover="color:#fff">Privacy Policy</a>
             <a href="/terms" style="transition:color .2s var(--ease);" style-hover="color:#fff">Terms</a>
             <a href="/acceptable-use" style="transition:color .2s var(--ease);" style-hover="color:#fff">Acceptable Use Policy</a>
             <a href="/dpa" style="transition:color .2s var(--ease);" style-hover="color:#fff">Data Processing Agreement</a>
+            <button type="button" class="footer-link" data-consent-open="" hidden>Cookie settings</button>
           </div>
         </div>
       </div>
-      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:clamp(40px,6vw,64px);padding-top:24px;border-top:1px solid rgba(255,255,255,.12);font-family:var(--mono);font-size:12px;letter-spacing:.03em;color:rgba(255,255,255,.5);">
-        <span>© 2026 utxo AG · Dammstrasse 16 · 6300 Zug · Schweiz</span>
-        <span>GEHOSTET IN EU/CH · DSGVO · EU-KI-VERORDNUNG</span>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:clamp(40px,6vw,64px);padding-top:24px;border-top:1px solid rgba(255,255,255,.12);font-family:var(--mono);font-size:12px;letter-spacing:.03em;color:rgba(255,255,255,.5);">
+        <img loading="lazy" decoding="async" src="resources/logos/utxo-wordmark-footer.webp" alt="utxo AG" width="40" height="40" style="height:20px;width:auto;display:block;object-fit:contain;">
+        <span>© 2026 utxo AG · Dammstrasse 16 · 6300 Zug · Switzerland</span>
+        <span>HOSTED IN EU/CH · GDPR · EU AI ACT</span>
       </div>
     </div>
   </footer>

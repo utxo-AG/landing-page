@@ -2,13 +2,26 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<script>(function(){try{var CUR='de',SIBLING='privacy.html',s=localStorage.getItem('utxo_lang');if(!s){s=((navigator.language||'').toLowerCase().indexOf('de')===0)?'de':'en';localStorage.setItem('utxo_lang',s);}if(s!==CUR){location.replace(SIBLING+location.search+location.hash);}}catch(e){}})();</script>
+<link rel="canonical" href="https://utxo.ag/privacy.de">
+<link rel="alternate" hreflang="en" href="https://utxo.ag/privacy">
+<link rel="alternate" hreflang="de" href="https://utxo.ag/privacy.de">
+<link rel="alternate" hreflang="x-default" href="https://utxo.ag/privacy">
+<script>(function(){try{var h=document.documentElement.lang,s=localStorage.getItem('utxo_lang');if(!s&&h==='en'&&/^de\b/i.test(navigator.language||''))s='de';if(s&&s!==h){var a=document.querySelector('link[rel="alternate"][hreflang="'+s+'"]');if(a)location.replace(new URL(a.href).pathname+location.search+location.hash);}}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Datenschutzerklärung — utxo AG</title>
+<title>Datenschutzerklärung | utxo AG</title>
 <meta name="description" content="Wie die utxo AG personenbezogene Daten erhebt, nutzt, speichert und weitergibt.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="utxo AG">
+<meta property="og:locale" content="de_CH">
+<meta property="og:title" content="Datenschutzerklärung | utxo AG">
+<meta property="og:description" content="Wie die utxo AG personenbezogene Daten erhebt, nutzt, speichert und weitergibt.">
+<meta property="og:url" content="https://utxo.ag/privacy.de">
+<meta property="og:image" content="https://utxo.ag/resources/og/og-de.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="fonts/manrope-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/ibm-plex-sans-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="resources/FAVICONS/icon.svg" type="image/svg+xml">
 <link rel="icon" href="resources/FAVICONS/favicon-96x96.png" sizes="96x96" type="image/png">
 <link rel="apple-touch-icon" href="resources/FAVICONS/apple-touch-icon-180x180.png">
@@ -21,18 +34,18 @@
   <header id="hdr" style="position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--bg-primary) 84%, transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border-subtle);transition:box-shadow .3s var(--ease);">
     <div style="max-width:1200px;margin:0 auto;height:72px;padding:0 clamp(20px,5vw,64px);display:flex;align-items:center;justify-content:space-between;gap:24px;">
       <a href="/index.de" aria-label="UTXO.AG" style="display:flex;align-items:center;">
-        <img src="resources/logos/utxo-logo-header.png" alt="UTXO.AG" style="height: 68px; width: 66px; display: block; object-fit: contain">
+        <img src="resources/logos/utxo-logo-header.webp" alt="UTXO.AG" style="height: 68px; width: 66px; display: block; object-fit: contain">
       </a>
       <div style="display:flex;align-items:center;gap:28px;">
         <nav data-desktop-nav="" style="display:flex;align-items:center;gap:28px;font-size:16px;color:var(--text-secondary);">
-          <a href="/index.de#team" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Team</a>
-          <a href="/index.de#stories" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Projekte</a>
           <a href="/index.de#products" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Produkte</a>
+          <a href="/index.de#stories" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Projekte</a>
+          <a href="/index.de#team" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Team</a>
           <a href="/agents.de" style="transition:color .2s var(--ease);" style-hover="color:var(--text-primary)">Individuelle KI</a>
         </nav>
         <span data-desktop-nav="" style="width:1px;height:20px;background:var(--border-strong);"></span>
         <span data-desktop-nav="" style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--text-muted);"><a href="/privacy.de" data-set-lang="de" style="color:var(--text-primary);">DE</a> <span style="opacity:.5;">/</span> <a href="/privacy" data-set-lang="en" style="color:var(--text-muted);">EN</a></span>
-        <a href="/agents.de#contact" data-desktop-nav="" style="display:inline-flex;align-items:center;height:38px;padding:0 18px;color:#fff;border-radius:8px;font-size:14px;font-weight:500;background:#000;transition:opacity .2s var(--ease);" style-hover="opacity:.85">Termin</a>
+        <a href="/agents.de#contact" data-desktop-nav="" style="display:inline-flex;align-items:center;height:38px;padding:0 18px;color:#fff;border-radius:8px;font-size:14px;font-weight:500;background:#000;transition:opacity .2s var(--ease);" style-hover="opacity:.85">Erstgespräch buchen</a>
         <button data-hamburger="" aria-label="Menü öffnen" style="display:none;width:38px;height:38px;align-items:center;justify-content:center;border:1px solid var(--border-strong);background:transparent;border-radius:8px;color:var(--text-primary);cursor:pointer;">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M1 4h16M1 9h16M1 14h16" stroke="currentColor" stroke-width="1.5"></path></svg>
         </button>
@@ -41,7 +54,7 @@
   </header>
 
   <!-- ============ MOBILE OVERLAY ============ -->
-  <div data-mobile-overlay="" style="position:fixed;inset:0;z-index:60;background:#000;color:#fff;display:none;flex-direction:column;padding:24px clamp(20px,6vw,40px);">
+  <div data-mobile-overlay="" data-surface="ink" style="position:fixed;inset:0;z-index:60;background:#000;color:#fff;display:none;flex-direction:column;padding:24px clamp(20px,6vw,40px);">
     <div style="display:flex;align-items:center;justify-content:space-between;height:48px;">
       <span style="font-family:var(--font-display);font-weight:600;font-size:20px;letter-spacing:-.02em;">utxo<span style="opacity:.5;">.ag</span></span>
       <button data-overlay-close="" aria-label="Menü schliessen" style="width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.2);background:transparent;border-radius:8px;color:#fff;cursor:pointer;">
@@ -49,21 +62,21 @@
       </button>
     </div>
     <nav style="display:flex;flex-direction:column;gap:8px;margin-top:48px;">
-      <a href="/index.de#team" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Team</a>
-      <a href="/index.de#stories" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Projekte</a>
       <a href="/index.de#products" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Produkte</a>
-      <a href="/agents.de" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">CoWorker</a>
+      <a href="/index.de#stories" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Projekte</a>
+      <a href="/index.de#team" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Team</a>
+      <a href="/agents.de" style="font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);">Individuelle KI</a>
     </nav>
-    <a href="/agents.de#contact" style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;height:52px;background:#fff;color:#000;border-radius:8px;font-size:16px;font-weight:500;">Termin vereinbaren</a>
+    <a href="/agents.de#contact" style="margin-top:auto;display:inline-flex;align-items:center;justify-content:center;height:52px;background:#fff;color:#000;border-radius:8px;font-size:16px;font-weight:500;">Erstgespräch buchen</a>
   </div>
 
   <!-- ============ DATENSCHUTZ ============ -->
   <main style="max-width:760px;margin:0 auto;padding:clamp(64px,9vw,120px) clamp(20px,5vw,64px) clamp(48px,6vw,80px);">
     <h1 style="font-family:var(--font-display);font-weight:600;font-size:clamp(32px,5vw,44px);letter-spacing:-.02em;line-height:1.05;margin-bottom:8px;">Datenschutzerklärung</h1>
-    <p style="font-family:var(--mono);font-size:13px;color:var(--text-muted);margin-bottom:48px;">Letzte Aktualisierung: 10. März 2026</p>
+    <p style="font-family:var(--mono);font-size:13px;color:var(--text-muted);margin-bottom:48px;">Letzte Aktualisierung: 15. September 2026</p>
 
     <div style="font-size:15px;line-height:1.75;color:var(--text-secondary);">
-      <p>UTXO AG («UTXO AG», «wir», «uns», «unser») nimmt den Schutz Ihrer personenbezogenen Daten ernst. Diese Datenschutzerklärung erläutert, wie wir personenbezogene Daten im Zusammenhang mit unserer Website (https://utxoag.com) und unseren AI-Agent-Dienstleistungen («AI Coworkers» oder «Agentic Service») erheben, verwenden, speichern und weitergeben.</p>
+      <p>UTXO AG («UTXO AG», «wir», «uns», «unser») nimmt den Schutz Ihrer personenbezogenen Daten ernst. Diese Datenschutzerklärung erläutert, wie wir personenbezogene Daten im Zusammenhang mit unserer Website (https://utxo.ag) und unseren AI-Agent-Dienstleistungen («AI Coworkers» oder «Agentic Service») erheben, verwenden, speichern und weitergeben.</p>
       <p style="margin-top:12px;">Wir verarbeiten personenbezogene Daten in Übereinstimmung mit der Datenschutz-Grundverordnung (EU) 2016/679 («DSGVO»), dem Bundesgesetz über den Datenschutz («DSG») und weiteren anwendbaren Datenschutzgesetzen.</p>
 
       <hr style="margin:32px 0;border:none;border-top:1px solid var(--border-subtle);">
@@ -96,7 +109,7 @@
               <tr><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Abrechnung und Zahlungsabwicklung (über Stripe)</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Name, Firmenname, Rechnungsadresse, Zahlungsinformationen (Kartenmarke, gekürzte Kartennummer, Ablaufdatum), Transaktions-ID, Rechnungsdaten</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Art. 6(1)(b) DSGVO — Vertragserfüllung</td></tr>
               <tr><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Support und Problemlösung</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Name, E-Mail-Adresse, Anfrageinhalt, Kommunikationsverlauf, relevante technische Protokolle</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Art. 6(1)(b) und Art. 6(1)(f) DSGVO — Vertragserfüllung / berechtigtes Interesse</td></tr>
               <tr><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Marketingkommunikation</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">E-Mail-Adresse, Präferenzen, Einwilligungsprotokolle</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Art. 6(1)(a) DSGVO — Einwilligung</td></tr>
-              <tr><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Plattformanalysen und Optimierung</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Gerätedaten, anonymisierte/pseudonymisierte IP-Adresse, Nutzungsmuster, Seitenaufrufe, Cookies</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Art. 6(1)(a) DSGVO — Einwilligung (Cookie-basiert); Art. 6(1)(f) DSGVO — berechtigtes Interesse (aggregierte Analysen)</td></tr>
+              <tr><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Website-Analyse (Google Analytics)</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Seitenaufrufe, Nutzungsmuster, Geräte- und Browserdaten, ungefährer Standort, pseudonyme Nutzerkennung, Cookies</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Art. 6(1)(a) DSGVO: Einwilligung</td></tr>
               <tr><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Einhaltung gesetzlicher Vorschriften</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Nutzungsdaten, Identitätsdaten, Finanz- und Steuerinformationen</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Art. 6(1)(c) DSGVO — gesetzliche Verpflichtung</td></tr>
             </tbody>
           </table>
@@ -141,9 +154,27 @@
       <hr style="margin:32px 0;border:none;border-top:1px solid var(--border-subtle);">
 
       <section>
-        <h2 style="font-family:var(--font-display);font-weight:600;font-size:19px;color:var(--text-primary);margin-bottom:12px;">4. Cookies und Tracking-Technologien</h2>
-        <p>Wir verwenden Cookies und ähnliche Technologien auf unserer Website, um Ihr Nutzererlebnis zu verbessern, den Datenverkehr zu analysieren und die Plattformfunktionalität zu unterstützen. Sie können Cookies über Ihre Browsereinstellungen verwalten oder deaktivieren; die Deaktivierung bestimmter Cookies kann jedoch die Funktionalität der Website beeinträchtigen.</p>
-        <p style="margin-top:12px;">Soweit gesetzlich vorgeschrieben, holen wir Ihre Einwilligung ein, bevor nicht wesentliche Cookies gesetzt werden.</p>
+        <h2 style="font-family:var(--font-display);font-weight:600;font-size:19px;color:var(--text-primary);margin-bottom:12px;">4. Nutzung unserer Website, Cookies und Demos</h2>
+        <p>Dieser Abschnitt beschreibt die Datenverarbeitung beim Besuch unserer Website https://utxo.ag.</p>
+        <h3 style="font-family:var(--font-display);font-weight:600;font-size:16px;color:var(--text-primary);margin:20px 0 8px;">4.1 Hosting und Server-Logdaten</h3>
+        <p>Unsere Website wird bei Railway (Railway Corp., USA) betrieben und über das Netzwerk von Cloudflare (Cloudflare, Inc., USA) ausgeliefert, das auch dem Schutz vor Angriffen dient. Beim Aufruf der Website werden technisch notwendige Daten verarbeitet, insbesondere IP-Adresse, Datum und Uhrzeit, aufgerufene Seite und Browserinformationen. Rechtsgrundlage ist unser berechtigtes Interesse an einem sicheren und stabilen Betrieb (Art. 6(1)(f) DSGVO).</p>
+        <h3 style="font-family:var(--font-display);font-weight:600;font-size:16px;color:var(--text-primary);margin:20px 0 8px;">4.2 Lokale Speicherung und Cookie-Einstellungen</h3>
+        <p>Ohne Ihre Einwilligung setzen wir keine Cookies für Analysezwecke. In Ihrem Browser (Local Storage) speichern wir lediglich Ihre Sprachwahl sowie Ihre Entscheidung zu Google Analytics für 12 Monate; für einen Seitenübergang wird ein Hinweis kurzzeitig im Session Storage abgelegt. Diese Angaben werden nicht an uns übermittelt.</p>
+        <p style="margin-top:12px;">Ihre Entscheidung zu Google Analytics können Sie jederzeit über den Link «Cookie-Einstellungen» im Footer der Website ändern oder widerrufen.</p>
+        <h3 style="font-family:var(--font-display);font-weight:600;font-size:16px;color:var(--text-primary);margin:20px 0 8px;">4.3 Google Analytics</h3>
+        <p>Mit Ihrer Einwilligung verwenden wir Google Analytics 4, einen Webanalysedienst der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland, sowie der Google LLC, USA. Google Analytics wird erst geladen, nachdem Sie im Hinweis auf «Akzeptieren» geklickt haben. Wir nutzen den Einwilligungsmodus von Google, Werbefunktionen sind deaktiviert.</p>
+        <p style="margin-top:12px;">Verarbeitet werden insbesondere aufgerufene Seiten, Verweildauer, ungefährer Standort, Geräte- und Browserinformationen sowie eine pseudonyme Nutzerkennung. Dazu werden die Cookies «_ga» und «_ga_&lt;ID&gt;» mit einer Laufzeit von bis zu 2 Jahren gesetzt. Nach Angaben von Google speichert Google Analytics 4 keine IP-Adressen. Die Analysedaten werden nach 2 Monaten gelöscht.</p>
+        <p style="margin-top:12px;">Rechtsgrundlage ist Ihre Einwilligung (Art. 6(1)(a) DSGVO), die Sie jederzeit mit Wirkung für die Zukunft widerrufen können. Eine Übermittlung in die USA ist möglich; Google LLC ist unter dem EU-US Data Privacy Framework sowie dem Swiss-US Data Privacy Framework zertifiziert.</p>
+        <h3 style="font-family:var(--font-display);font-weight:600;font-size:16px;color:var(--text-primary);margin:20px 0 8px;">4.4 Terminbuchung</h3>
+        <p>Für die Buchung von Gesprächsterminen binden wir den Kalender von Cal.com (Cal.com, Inc., USA) ein. Der Kalender wird geladen, sobald Sie zum Kontaktbereich scrollen; dabei werden Ihre IP-Adresse und technische Daten an Cal.com übermittelt. Wenn Sie einen Termin buchen, verarbeitet Cal.com die von Ihnen eingegebenen Angaben wie Name und E-Mail-Adresse. Rechtsgrundlage sind unser berechtigtes Interesse an einer einfachen Terminvereinbarung (Art. 6(1)(f) DSGVO) sowie vorvertragliche Massnahmen (Art. 6(1)(b) DSGVO).</p>
+        <h3 style="font-family:var(--font-display);font-weight:600;font-size:16px;color:var(--text-primary);margin:20px 0 8px;">4.5 Rückruf-Formular</h3>
+        <p>Wenn Sie das Rückruf-Formular nutzen, werden Ihre Angaben (Name, Unternehmen, E-Mail-Adresse, Telefonnummer und Nachricht) über den Dienst Formspree (Formspree, Inc., USA) an uns übermittelt, damit wir Ihre Anfrage bearbeiten können. Rechtsgrundlage sind vorvertragliche Massnahmen (Art. 6(1)(b) DSGVO) und unser berechtigtes Interesse an der Beantwortung von Anfragen (Art. 6(1)(f) DSGVO). Die Aufbewahrung richtet sich nach Abschnitt 7.</p>
+        <h3 style="font-family:var(--font-display);font-weight:600;font-size:16px;color:var(--text-primary);margin:20px 0 8px;">4.6 Live-Demo des Anrufassistenten</h3>
+        <p>Die Live-Demo des Anrufassistenten wird erst geladen, wenn Sie auf «Live-Demo starten» klicken, und von der utxo AG unter demo.anruf-guru.de bereitgestellt. Wenn Sie in der Demo auf «Anrufen» klicken und die Mikrofonfreigabe erteilen, wird Ihre Sprache in Echtzeit an OpenAI (OpenAI, LLC, USA) übertragen und dort verarbeitet, um die Antworten des Assistenten zu erzeugen. Rechtsgrundlage ist Ihre Einwilligung durch das aktive Starten der Demo (Art. 6(1)(a) DSGVO). Bitte machen Sie in der Demo keine vertraulichen oder gesundheitsbezogenen Angaben.</p>
+        <h3 style="font-family:var(--font-display);font-weight:600;font-size:16px;color:var(--text-primary);margin:20px 0 8px;">4.7 Demo des Doc Indexers</h3>
+        <p>Die Demo des Doc Indexers läuft vollständig in Ihrem Browser und verwendet ausschliesslich Beispieldaten. Eingaben in dieser Demo werden nicht an uns oder Dritte übermittelt.</p>
+        <h3 style="font-family:var(--font-display);font-weight:600;font-size:16px;color:var(--text-primary);margin:20px 0 8px;">4.8 Schriftarten</h3>
+        <p>Die auf unserer Website verwendeten Schriftarten werden von unserem eigenen Server geladen. Es wird dabei keine Verbindung zu Servern von Google Fonts oder anderen Anbietern hergestellt.</p>
       </section>
 
       <hr style="margin:32px 0;border:none;border-top:1px solid var(--border-subtle);">
@@ -167,7 +198,7 @@
               <tr><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Railway (Railway Corp.)</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Anwendungshosting</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">USA</td></tr>
               <tr><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">DigitalOcean (DigitalOcean, LLC)</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Anwendungshosting</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">USA/EU</td></tr>
               <tr><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Stripe (Stripe, Inc.)</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Zahlungsabwicklung</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">USA/EU</td></tr>
-              <tr><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Google (Google LLC)</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Website-Analyse (Google Analytics)</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">USA/EU</td></tr>
+              <tr><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Google (Google Ireland Limited, Google LLC)</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Website-Analyse (Google Analytics 4), nur mit Einwilligung</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">EU/USA</td></tr><tr><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Cloudflare (Cloudflare, Inc.)</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Auslieferung und Schutz der Website</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">USA/weltweit</td></tr><tr><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Cal.com (Cal.com, Inc.)</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Terminbuchung</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">USA</td></tr><tr><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Formspree (Formspree, Inc.)</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">Übermittlung des Rückruf-Formulars</td><td style="padding:8px 16px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;">USA</td></tr>
             </tbody>
           </table>
         </div>
@@ -278,30 +309,49 @@
   </main>
 
   <!-- ============ FOOTER ============ -->
-  <footer style="background:#000;color:#fff;padding:clamp(56px,8vw,80px) clamp(20px,5vw,64px) clamp(36px,4vw,48px);border-top:1px solid rgba(255,255,255,.12);">
+  <footer data-surface="ink" style="background:#000;color:#fff;padding:clamp(56px,8vw,80px) clamp(20px,5vw,64px) clamp(36px,4vw,48px);border-top:1px solid rgba(255,255,255,.12);">
     <div style="max-width:1200px;margin:0 auto;">
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));row-gap:clamp(32px,5vw,64px);column-gap:clamp(8px,1.25vw,16px);">
         <div>
-          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);">Unternehmen</div>
+          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.58);">Produkt</div>
           <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
+            <a href="/index.de#team" style="transition:color .2s var(--ease);" style-hover="color:#fff">Team</a>
+            <a href="/index.de#stories" style="transition:color .2s var(--ease);" style-hover="color:#fff">Projekte</a>
+            <a href="/index.de#products" style="transition:color .2s var(--ease);" style-hover="color:#fff">Produkte</a>
+            <a href="/call_assistant.de" style="transition:color .2s var(--ease);" style-hover="color:#fff">Anrufassistent</a>
+            <a href="/agents.de" style="transition:color .2s var(--ease);" style-hover="color:#fff">Individuelle KI</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.58);">Ratgeber</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
+            <a href="/comparison.de" style="transition:color .2s var(--ease);" style-hover="color:#fff">CoWorker vs. Copilot</a>
+            <a href="/ai-in-business.de" style="transition:color .2s var(--ease);" style-hover="color:#fff">KI im Unternehmen</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.58);">Unternehmen</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
+            <a href="/press.de" style="transition:color .2s var(--ease);" style-hover="color:#fff">Presse</a>
             <a href="https://masumi.network" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">masumi ↗</a>
             <a href="https://sokosumi.com" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">sokosumi ↗</a>
             <a href="https://www.nmkr.io" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">NMKR ↗</a>
           </div>
         </div>
         <div>
-          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);">Rechtliches</div>
+          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.58);">Rechtliches</div>
           <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
             <a href="/imprint.de" style="transition:color .2s var(--ease);" style-hover="color:#fff">Impressum</a>
             <a href="/privacy.de" style="transition:color .2s var(--ease);" style-hover="color:#fff">Datenschutz</a>
             <a href="/terms.de" style="transition:color .2s var(--ease);" style-hover="color:#fff">AGB</a>
             <a href="/acceptable-use.de" style="transition:color .2s var(--ease);" style-hover="color:#fff">Nutzungsrichtlinie</a>
             <a href="/dpa.de" style="transition:color .2s var(--ease);" style-hover="color:#fff">Auftragsverarbeitungsvertrag</a>
+            <button type="button" class="footer-link" data-consent-open="" hidden>Cookie-Einstellungen</button>
           </div>
         </div>
       </div>
       <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:clamp(40px,6vw,64px);padding-top:24px;border-top:1px solid rgba(255,255,255,.12);font-family:var(--mono);font-size:12px;letter-spacing:.03em;color:rgba(255,255,255,.5);">
-        <img src="resources/e74b90dc-3a43-4724-a31f-41fca9e2fccc.png" alt="utxo.ag" style="height:20px;width:auto;display:block;object-fit:contain;">
+        <img loading="lazy" decoding="async" src="resources/logos/utxo-wordmark-footer.webp" alt="utxo AG" width="40" height="40" style="height:20px;width:auto;display:block;object-fit:contain;">
         <span>© 2026 utxo AG · Dammstrasse 16 · 6300 Zug · Schweiz</span>
         <span>GEHOSTET IN EU/CH · DSGVO · EU-KI-VERORDNUNG</span>
       </div>
@@ -309,5 +359,6 @@
   </footer>
 
 </div>
+<script src="config.js"></script>
 <script src="main.js"></script>
 </body></html>

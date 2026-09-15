@@ -7,6 +7,11 @@
 root * .
 encode gzip zstd
 
+header {
+	X-Content-Type-Options "nosniff"
+	Referrer-Policy "strict-origin-when-cross-origin"
+}
+
 @indexfile path /index.html
 redir @indexfile / permanent
 
@@ -18,10 +23,16 @@ redir @htmlfile /{re.htmlext.1} permanent
 @staticassets path *.js *.css
 header @staticassets Cache-Control "no-cache, must-revalidate"
 
+@media path *.svg *.png *.jpg *.jpeg *.webp *.ico *.woff2
+header @media Cache-Control "public, max-age=604800"
+
 @pages {
 	not path *.js *.css *.svg *.png *.jpg *.jpeg *.webp *.ico *.woff *.woff2 *.pdf
 }
 header @pages Cache-Control "no-cache, must-revalidate"
+
+@internal path /docs/* /partials/* *.md /removed-sections /removed-sections.html *.blend *.blend1
+respond @internal 404
 
 try_files {path} {path}.html {path}/ =404
 file_server

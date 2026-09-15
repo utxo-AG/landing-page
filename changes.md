@@ -1,5 +1,142 @@
 # Changes
 
+## redesign-2026-09-session-4 — 2026-09-14 UTC
+
+- New hero subline and CTA pair
+- Products moved after partners
+- Shorter "about" copy
+- Sokosumi user count added
+- Removed agent avatars "ai-in-business"
+- Deleted "resources/coworkers"
+- Removed coworker cycle script
+- Removed dashes "ai-in-business"
+- Build wording replaced in products
+- No home trust block
+- Security list hosting agnostic
+- Added model agnostic item
+- Hosting DE or EU servers
+- Comparison hosting aligned
+- Build wording replaced sitewide
+- KI-CoWorker terminology on AI pages
+- Nav label Individuelle KI everywhere
+- Nav order follows home page
+- Header CTA Erstgespräch buchen
+- New rotation words "ai-in-business"
+- Removed closing CTA "ai-in-business"
+- Fixed call assistant link agents
+- Fixed max-width unit agents
+- Removed dashes agents comparison index
+- Form privacy and response note
+- Agents hero second CTA examples
+- Mobile heading sizes
+- Mobile hero copy backdrop
+- Mobile permission chips demo
+- Mobile form before calendar
+- Calendar loading placeholder
+- Products copy situation framing
+- Removed product bullet lists
+- Doc Indexer lead names permissions
+- Fixed oversized carousel dots
+- Demo upload table stable height
+- Products as tabbed section
+- Custom AI slim bar
+- Tab switch stops call demo
+- Products as overlapping card stack
+- Removed tab component
+- Back card overhangs top and right
+- Demo counters on cards
+- Smaller offset cards both white
+- Cards animate positions on swap
+- Whole back card clickable
+- Back card shows demo UI
+- Doc demo reduced to 5 documents
+- Lower demo heights
+- Answer blocks renumbered per role
+- Tenant role wording Mieter
+- Technician role Gebäudetechniker
+- Roles named as persons
+- Suggestions collapse after question
+- Fixed chat height while asking
+- Removed same question as buttons
+- Chat scrolls to answer start
+- GA4 measurement ID configured
+- Call demo points to demo.anruf-guru.de
+- Privacy policy website section rewritten
+- Added Cloudflare Cal.com Formspree processors
+- Demo operator utxo AG in policy
+- Products as expanding duo cards
+- Collapsed card becomes side rail
+- Removed card stack and picker
+- Caddy hides internal files
+- Back link on press page
+- Questions phrased per role
+- Demo subtext names building documents
+
+## redesign-2026-09-session-3 — 2026-09-14 UTC
+
+- Rebuilt Doc Indexer demo from prototype
+- AI permission suggestion editable
+- Answers computed from permissions
+- Chat composer with typed suggestions
+- Full original document viewer
+- Doc Indexer copy names other domains
+- Custom CoWorker headline updated
+- Hero accent tiles now wander
+- Added "hero-swipe" edge link
+- Removed home hero banner
+- Arrow button on "hero-swipe"
+- Custom CoWorker CTA books call
+- Smaller "team" cards
+- Removed team description texts
+
+## redesign-2026-09-session-2 — 2026-09-14 UTC
+
+- Replaced home "press" block with teaser
+- Added outlet logo carousel
+- Added "press.html" page pair
+- Added "resources/press" outlet logos
+- Rebuilt Doc Indexer as guided demo
+- Added "docdemo.js" demo content
+- Removed "demo/docindex.html" snapshot
+- Added role comparison chips
+- Accent kickers on home sections
+- Tinted hero pixel grid cells
+- Petrol Zug pin on map
+- Press link in footer
+- Updated "sitemap.xml" and "robots.txt"
+
+## redesign-2026-09-session — 2026-09-14 UTC
+
+- Removed "Ann-Kristin" from "team"
+- Fixed hreflang aware language redirect
+- Added canonical and hreflang tags
+- Self-hosted fonts replaced Google Fonts
+- Converted images to WebP
+- Deleted unused team photos
+- Added deck accent color tokens
+- Accent fills on "cases" icons
+- Petrol roadmap fill on "process"
+- Fixed invalid clamp whitespace sitewide
+- Rebuilt "products" section with demos
+- Added "config.js" runtime config
+- Added click-to-load demo facade
+- Added "demo/docindex.html" prototype snapshot
+- Bilingual "call_assistant" page pair
+- Added "press" block in "stories"
+- Added "press.js" verified press data
+- Corrected Masumi Sokosumi role copy
+- Ported "comparison" SEO pages
+- Ported "ai-in-business" SEO pages
+- Added "pages.css" for SEO pages
+- Unified footer with Guides column
+- Added GA4 consent banner logic
+- Added Open Graph and JSON-LD
+- Added "sitemap.xml" and "robots.txt"
+- Lazy loaded cal.com embed
+- Added media cache headers
+- Improved contrast and tap targets
+- Rewrote "CLAUDE.md" to current state
+
 ## deploy-session — 2026-08-27 UTC
 
 - Added "products" section to "index.html" pages

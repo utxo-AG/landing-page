@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 250 66"><defs><style>
+      .cls-1 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        stroke-width: 0px;
+      }
+
+      .cls-3 {
+        fill: #df1852;
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+    </style><clipPath id="clippath"><rect class="cls-2" x="-.11" y=".23" width="250" height="65.88"/></clipPath></defs><g class="cls-1"><g><path class="cls-3" d="M249.89.23H-.11v65.88h250V.23Z"/><path class="cls-4" d="M55.22,55.56h-11.2v-14.49l-11.03,13.01h-.49l-11.03-13.18v14.49h-11.03V9.94h.16l22.23,26.52,22.23-26.52h.16v45.62Z"/><path class="cls-4" d="M92.44,20.81h-16.96v7.08h14v9.72h-14v7.58h17.46v10.38h-28.33V10.77h27.83s0,10.05,0,10.05Z"/><path class="cls-4" d="M150.74,21.31v23.72h2.64c8.4,0,12.52-4.45,12.52-11.86s-4.12-11.86-12.52-11.86h-2.64ZM176.77,33.17c0,14.16-8.56,22.56-23.06,22.56h-13.83V10.77h13.67c14.49,0,23.22,8.23,23.22,22.4Z"/><path class="cls-4" d="M193.73,10.77h-10.87v44.96h10.87V10.77Z"/><path class="cls-4" d="M219.09,9.94h-.16l-20.26,45.78h11.69l1.32-3.13h14.66l1.32,3.13h11.69l-20.26-45.78ZM215.3,44.36l3.79-8.73h.16l3.79,8.73h-7.74Z"/><path class="cls-4" d="M129.99,20.81h-16.96v7.08h14v9.72h-14v7.58h17.46v10.38h-28.16V10.77h27.67v10.05Z"/></g></g></svg>

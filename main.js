@@ -96,8 +96,8 @@ const App = {
       dots.forEach((dot, i) => {
         const thr = i / (dots.length - 1);
         if (p >= thr - 0.001) {
-          dot.style.background = '#fff';
-          dot.style.borderColor = '#fff';
+          dot.style.background = 'var(--fill-petrol)';
+          dot.style.borderColor = 'var(--fill-petrol)';
           dot.style.transform = 'scale(1.1)';
         } else {
           dot.style.background = '#000';
@@ -127,6 +127,490 @@ const App = {
     this._initForms(root);
     this._initCarousel(root);
     this._initTeamScroll(root);
+    this._initDemos(root);
+    this._initDuo(root);
+    this._initDocDemo(root);
+    this._initSwipe(root);
+    this._initPress(root);
+    this._initPressLogos(root);
+    this._initHeroRotator(root, reduce);
+    this._initConsent(root);
+  },
+
+  _initConsent(root) {
+    const id = (window.UTXO_CONFIG || {}).gaMeasurementId;
+    if (!id) return;
+    const KEY = 'utxo_consent';
+    const MAX_AGE = 365 * 24 * 60 * 60 * 1000;
+    const de = document.documentElement.lang === 'de';
+    const text = de
+      ? { msg: 'Wir möchten mit Google Analytics verstehen, wie unsere Website genutzt wird. Die Daten helfen uns, Inhalte zu verbessern. Sie können Ihre Wahl jederzeit im Footer ändern.', privacy: 'Datenschutz', href: '/privacy.de', deny: 'Ablehnen', accept: 'Akzeptieren' }
+      : { msg: 'We would like to use Google Analytics to understand how our website is used. The data helps us improve our content. You can change your choice at any time in the footer.', privacy: 'Privacy Policy', href: '/privacy', deny: 'Decline', accept: 'Accept' };
+    const read = () => {
+      try {
+        const v = JSON.parse(localStorage.getItem(KEY) || 'null');
+        return v && Date.now() - v.t < MAX_AGE ? v.v : null;
+      } catch (e) { return null; }
+    };
+    const save = (v) => { try { localStorage.setItem(KEY, JSON.stringify({ v: v, t: Date.now() })); } catch (e) {} };
+    let loaded = false;
+    const load = () => {
+      if (loaded) return;
+      loaded = true;
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+      window.gtag('consent', 'update', { analytics_storage: 'granted' });
+      window.gtag('js', new Date());
+      window.gtag('config', id);
+      const tag = document.createElement('script');
+      tag.async = true;
+      tag.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(id);
+      document.head.appendChild(tag);
+    };
+    let banner = null;
+    const close = () => { if (banner) { banner.remove(); banner = null; } };
+    const open = () => {
+      if (banner) return;
+      banner = document.createElement('div');
+      banner.className = 'consent';
+      banner.setAttribute('role', 'dialog');
+      banner.setAttribute('aria-label', 'Cookies');
+      const p = document.createElement('p');
+      p.textContent = text.msg + ' ';
+      const a = document.createElement('a');
+      a.href = text.href;
+      a.textContent = text.privacy;
+      p.appendChild(a);
+      const actions = document.createElement('div');
+      actions.className = 'consent-actions';
+      [['denied', text.deny], ['granted', text.accept]].forEach(([value, label]) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'btn btn-ghost';
+        b.textContent = label;
+        b.addEventListener('click', () => {
+          const revoked = read() === 'granted' && value === 'denied';
+          save(value);
+          close();
+          if (value === 'granted') load();
+          if (revoked) location.reload();
+        });
+        actions.appendChild(b);
+      });
+      banner.appendChild(p);
+      banner.appendChild(actions);
+      root.appendChild(banner);
+    };
+    root.querySelectorAll('[data-consent-open]').forEach(el => {
+      el.hidden = false;
+      el.addEventListener('click', open);
+    });
+    const choice = read();
+    if (choice === 'granted') load();
+    else if (choice !== 'denied') open();
+  },
+
+  _initHeroRotator(root, reduce) {
+    const el = root.querySelector('[data-rotate]');
+    if (!el) return;
+    const words = (el.getAttribute('data-words') || '').split('|').map(w => w.trim()).filter(Boolean);
+    if (reduce || words.length < 2) return;
+    let i = 0;
+    setInterval(() => {
+      el.style.opacity = '0';
+      setTimeout(() => {
+        i = (i + 1) % words.length;
+        el.textContent = words[i];
+        el.style.opacity = '1';
+      }, 300);
+    }, 2600);
+  },
+
+  _initPressLogos(root) {
+    const logos = window.UTXO_PRESS_LOGOS;
+    if (!Array.isArray(logos)) return;
+    const img = (l) => '<img src="' + l.src + '" alt="' + l.name.replace(/&/g, '&amp;').replace(/"/g, '&quot;') + '"' + (l.stacked ? ' class="is-stacked"' : '') + ' decoding="async">';
+    root.querySelectorAll('[data-press-logos]').forEach(el => {
+      const set = logos.map(img).join('');
+      if (el.getAttribute('data-press-logos') === 'marquee') {
+        el.innerHTML = '<div class="press-logos-track">' + set + '<span aria-hidden="true" class="press-logos-dup">' + set + '</span></div>';
+      } else {
+        el.innerHTML = set;
+      }
+    });
+  },
+
+  _initPress(root) {
+    const wrap = root.querySelector('[data-press]');
+    const items = window.UTXO_PRESS;
+    if (!wrap || !Array.isArray(items)) return;
+    const lang = wrap.getAttribute('data-lang') || 'en';
+    const untitled = wrap.getAttribute('data-label-untitled') || '';
+    const dots = { 'Masumi': 'navy', 'Sokosumi': 'petrol', 'utxo AG': 'moss', 'Patrick Tobler': 'clay', 'NMKR': 'plum' };
+    const fmtDate = (value) => {
+      const [y, m] = value.split('-');
+      if (!m) return y;
+      return new Date(Number(y), Number(m) - 1, 1).toLocaleDateString(lang === 'de' ? 'de-CH' : 'en-GB', { month: 'short', year: 'numeric' });
+    };
+    const row = (item) => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = item.url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      const add = (cls, text) => { const el = document.createElement('span'); el.className = cls; el.textContent = text; a.appendChild(el); return el; };
+      add('press-outlet', item.outlet);
+      add('press-date', fmtDate(item.date));
+      const title = add('press-title', item.title || untitled + ' ↗');
+      if (item.title) title.lang = item.lang === 'DE' ? 'de' : item.lang === 'FR' ? 'fr' : 'en';
+      const entity = add('press-entity', item.entity);
+      if (dots[item.entity]) entity.classList.add('dot-' + dots[item.entity]);
+      li.appendChild(a);
+      return li;
+    };
+    const list = wrap.querySelector('[data-press-list]');
+    const more = wrap.querySelector('[data-press-more]');
+    const toggle = wrap.querySelector('[data-press-toggle]');
+    const extra = items.filter(i => i.tier !== 'featured');
+    items.filter(i => i.tier === 'featured').forEach(i => list.appendChild(row(i)));
+    extra.forEach(i => more.appendChild(row(i)));
+    if (!extra.length || !toggle) return;
+    const labelMore = (wrap.getAttribute('data-label-more') || '').replace('{n}', extra.length);
+    const labelLess = wrap.getAttribute('data-label-less') || '';
+    toggle.textContent = labelMore;
+    toggle.hidden = false;
+    toggle.addEventListener('click', () => {
+      const open = more.hidden;
+      more.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.textContent = open ? labelLess : labelMore;
+    });
+  },
+
+  _initDocDemo(root) {
+    const wrap = root.querySelector('[data-docdemo]');
+    const data = window.UTXO_DOCDEMO;
+    if (!wrap || !data) return;
+    const lang = wrap.getAttribute('data-lang') === 'de' ? 'de' : 'en';
+    const t = data.ui[lang];
+    const L = (v) => (v && typeof v === 'object' && !Array.isArray(v) ? v[lang] : v);
+    const esc = (v) => String(v).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    const docById = (id) => data.docs.find(d => d.id === id);
+    const roleById = (id) => data.roles.find(r => r.id === id);
+    const svg = (p, size) => '<svg width="' + (size || 16) + '" height="' + (size || 16) + '" viewBox="0 0 24 24" fill="none" aria-hidden="true">' + p + '</svg>';
+    const icon = {
+      doc: svg('<path d="M7 3h7l5 5v13H7z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M14 3v5h5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>'),
+      lock: svg('<rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.6"/>', 14),
+      building: svg('<path d="M4 21V5l8-2v18M12 8h8v13M8 8h.01M8 12h.01M8 16h.01M16 12h.01M16 16h.01" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>', 18),
+      upload: svg('<path d="M12 16V4M7 9l5-5 5 5M4 20h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>', 22),
+      spark: svg('<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>', 14),
+      check: svg('<path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>', 14),
+      send: svg('<path d="M12 19V5M6 11l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>', 18),
+      warn: svg('<path d="M12 4l9 16H3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 10v4M12 17h.01" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>', 14)
+    };
+
+    const fresh = () => ({ step: 0, analyzed: 0, uploading: false, perms: {}, role: null, thread: [], busy: false, draft: '', viewer: null, suggestOpen: false });
+    let state = fresh();
+    let timers = [];
+    const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+    const clearTimers = () => { timers.forEach(clearTimeout); timers = []; };
+    const visible = (roleId) => data.docs.filter(d => (state.perms[d.id] || []).includes(roleId)).map(d => d.id);
+    const fill = (s, vars) => Object.keys(vars).reduce((out, k) => out.replace('{' + k + '}', vars[k]), s);
+
+    const answerFor = (q, roleId) => {
+      const seen = visible(roleId);
+      const blocks = q.blocks.filter(b => b.requires.every(id => seen.includes(id)));
+      const needed = Array.from(new Set([].concat.apply([], q.blocks.map(b => b.requires))));
+      return { blocks, hidden: needed.filter(id => !seen.includes(id)).length, seen };
+    };
+
+    const avatar = (r) => '<span class="dd-avatar dot-' + r.dot + '">' + esc(r.initials) + '</span>';
+
+    const uploadView = () => {
+      if (!state.uploading && state.analyzed === 0) {
+        return '<div class="dd-panel dd-upload"><div class="dd-drop">' + icon.upload + '<h4>' + esc(t.upload.title) + '</h4><p>' + esc(t.upload.text) + '</p>' +
+          '<button type="button" class="btn btn-primary" data-dd-upload="">' + esc(t.upload.button) + '</button></div></div>';
+      }
+      const head = '<div class="dd-perm-row dd-perm-head"><span>' + esc(t.upload.table) + '</span>' + data.roles.map(r => '<span class="dd-perm-role" title="' + esc(L(r.label)) + '">' + avatar(r) + '<small>' + esc(L(r.label)) + '</small></span>').join('') + '</div>';
+      const rows = data.docs.map((d, i) => {
+        const ready = i < state.analyzed;
+        const perms = state.perms[d.id] || [];
+        const changed = ready && (perms.length !== d.roles.length || perms.some(r => !d.roles.includes(r)));
+        const meta = ready
+          ? '<small class="dd-ai">' + icon.spark + esc(L(d.ai)) + (changed ? ' · <b>' + esc(t.upload.changed) + '</b>' : '') + '</small>'
+          : i === state.analyzed
+            ? '<small class="dd-ai is-busy">' + esc(t.upload.analyzing) + '<i></i><i></i><i></i></small>'
+            : '<small class="dd-ai is-queued">' + esc(t.upload.queued) + '</small>';
+        const cells = data.roles.map(r => ready
+          ? '<button type="button" class="dd-perm' + (perms.includes(r.id) ? ' is-on' : '') + '" data-dd-perm="' + d.id + ':' + r.id + '" aria-pressed="' + perms.includes(r.id) + '" aria-label="' + esc(L(d.title) + ': ' + L(r.label)) + '">' + icon.check + '<span class="dd-perm-label">' + esc(L(r.label)) + '</span></button>'
+          : '<span class="dd-perm is-wait"><span class="dd-perm-label">' + esc(L(r.label)) + '</span></span>').join('');
+        return '<div class="dd-perm-row' + (ready ? ' is-ready' : '') + '"><span class="dd-perm-doc">' + icon.doc + '<span><b>' + esc(L(d.title)) + '</b>' + meta + '</span></span>' + cells + '</div>';
+      }).join('');
+      const done = state.analyzed === data.docs.length;
+      return '<div class="dd-panel dd-perms"><div class="dd-perm-table">' + head + rows + '</div>' +
+        '<div class="dd-perm-foot"><small>' + icon.spark + esc(t.upload.suggest) + ' · ' + esc(t.upload.hint) + '</small><button type="button" class="btn btn-primary" data-dd-go="1"' + (done ? '' : ' disabled') + '>' + esc(t.upload.done) + ' →</button></div></div>';
+    };
+
+    const sidebar = () => {
+      const r = state.role ? roleById(state.role) : null;
+      const seen = r ? visible(r.id) : data.docs.map(d => d.id);
+      return '<aside class="dd-files"><div class="dd-files-head">' + icon.building + '<span>' + esc(t.folder) + '<small>' + esc(t.building) + '</small></span></div><ul>' +
+        data.docs.map(d => {
+          const ok = seen.includes(d.id);
+          return '<li class="dd-file' + (ok ? '' : ' is-locked') + '"><span class="dd-file-ic">' + (ok ? icon.doc : icon.lock) + '</span><span class="dd-file-txt"><b>' + esc(L(d.title)) + '</b><small>' + (ok ? esc(d.file) : esc(t.locked)) + '</small></span></li>';
+        }).join('') + '</ul></aside>';
+    };
+
+    const roleView = () => '<div class="dd-panel"><h4 class="dd-title">' + esc(t.role.title) + '</h4><p class="dd-sub">' + esc(t.role.text) + '</p><div class="dd-roles">' +
+      data.roles.map(r => '<button type="button" class="dd-role dot-' + r.dot + (state.role === r.id ? ' is-active' : '') + '" data-dd-role="' + r.id + '">' + avatar(r) +
+        '<b>' + esc(L(r.label)) + '</b><small>' + esc(r.person + ' · ' + L(r.scope)) + '</small><em>' + esc(fill(t.role.sees, { n: visible(r.id).length, t: data.docs.length })) + '</em></button>').join('') + '</div></div>';
+
+    const chip = (c) => '<button type="button" class="dd-source" data-dd-open="' + c.doc + ':' + c.page + '">' + icon.doc + esc(L(c.label)) + '</button>';
+
+    const renderAnswer = (turn) => {
+      if (turn.free) return '<div class="dd-answer"><p>' + esc(t.chat.free) + '</p></div>';
+      const q = data.questions.find(x => x.id === turn.q);
+      const a = answerFor(q, turn.role);
+      const hidden = a.hidden ? '<p class="dd-hidden">' + icon.lock + esc(a.hidden === 1 ? t.chat.hiddenOne : fill(t.chat.hidden, { n: a.hidden })) + '</p>' : '';
+      if (!a.blocks.length) {
+        const docs = a.seen.map(id => docById(id));
+        return '<div class="dd-answer"><p>' + esc(t.chat.denial) + '</p>' + (docs.length ? '<small class="dd-avail">' + esc(t.chat.available) + '</small><div class="dd-chips">' +
+          docs.map(d => chip({ doc: d.id, page: d.pages[0].p, label: d.title })).join('') + '</div>' : '') + '</div>';
+      }
+      return '<div class="dd-answer"><p class="dd-ans-head">' + esc(L(q.header)) + '</p>' +
+        a.blocks.map((b, i) => '<div class="dd-blk"><h5>' + (i + 1) + ' · ' + esc(L(b.title).replace(/^\d+\s·\s/, '')) + '</h5>' + L(b.lines).map(l => '<p>' + esc(l) + '</p>').join('') +
+          '<div class="dd-chips">' + b.cites.filter(c => a.seen.includes(c.doc)).map(chip).join('') + '</div>' +
+          (b.warn ? '<p class="dd-warn">' + icon.warn + esc(L(b.warn)) + '</p>' : '') + '</div>').join('') +
+        (q.gap ? '<p class="dd-gap">' + esc(t.chat.gap) + ' <span>' + esc(L(q.gap)) + '</span></p>' : '') + hidden + '</div>';
+    };
+
+    const chatView = () => {
+      const role = roleById(state.role);
+      let thread = '';
+      if (!state.thread.length) thread = '<div class="dd-hello">' + icon.building + '<h4>' + esc(t.chat.hello) + '</h4><p>' + esc(t.building) + '</p></div>';
+      state.thread.forEach(turn => {
+        const r = roleById(turn.role);
+        thread += '<div class="dd-turn"><div class="dd-ask-bubble"><small class="dot-' + r.dot + '">' + esc(L(r.label)) + '</small><p>' + esc(turn.text) + '</p></div>' +
+          '<div class="dd-reply"><span class="dd-bot">' + icon.building + '</span>' + (turn.pending ? '<div class="dd-typing"><i></i><i></i><i></i></div>' : renderAnswer(turn)) + '</div></div>';
+      });
+      const asked = state.thread.filter(x => x.role === state.role && x.q).map(x => x.q);
+      const suggestions = data.questions.filter(q => !asked.includes(q.id)).map(q => '<button type="button" class="dd-chip" data-dd-ask="' + q.id + '">' + esc(L(q.q)) + '</button>');
+      const off = state.busy ? ' disabled' : '';
+      const items = suggestions;
+      const collapsed = state.thread.length > 0 && !state.suggestOpen;
+      const sugg = collapsed
+        ? '<button type="button" class="dd-sugg-toggle" data-dd-sugg="open"' + off + '>' + esc(t.chat.more) + ' <span>(' + items.length + ')</span> <i aria-hidden="true">▾</i></button>'
+        : '<div class="dd-sugg-row"><small>' + esc(state.thread.length ? t.chat.more : t.chat.suggest) + '</small>' + (state.thread.length ? '<button type="button" class="dd-sugg-toggle is-inline" data-dd-sugg="close">' + esc(t.chat.hide) + ' <i aria-hidden="true">▴</i></button>' : '') + '</div><div class="dd-sugg">' + items.join('').replace(/<button /g, '<button' + off + ' ') + '</div>';
+      return '<div class="dd-panel dd-chat' + (collapsed ? ' is-collapsed' : '') + '"><div class="dd-chat-head"><span class="dot-' + role.dot + '">' + esc(t.chat.as) + ' <b>' + esc(L(role.label)) + '</b></span><button type="button" data-dd-go="1">' + esc(t.chat.change) + '</button></div>' +
+        '<div class="dd-thread">' + thread + '</div>' +
+        '<div class="dd-composer">' + sugg +
+        '<form class="dd-box" data-dd-form=""><textarea rows="1" data-dd-input="" placeholder="' + esc(t.chat.placeholder) + '"' + off + '>' + esc(state.draft) + '</textarea><button type="submit" class="dd-send" aria-label="' + esc(t.chat.send) + '"' + off + '>' + icon.send + '</button></form></div></div>';
+    };
+
+    const viewerView = () => {
+      const d = docById(state.viewer.doc);
+      const current = state.viewer.page;
+      const rail = d.pages.map(p => '<button type="button" data-dd-page="' + p.p + '"' + (p.p === current ? ' aria-current="true"' : '') + '><span class="dd-mini"><i class="t"></i><i></i><i></i>' + (p.p === current ? '<i class="hl"></i><i class="hl"></i>' : '<i></i><i></i>') + '<i></i><i></i></span><small>' + p.p + '</small></button>').join('');
+      const pages = d.pages.map(p => '<article class="dd-page' + (p.p === current ? ' is-cited' : '') + '" data-dd-pageno="' + p.p + '"><div class="dd-page-head"><span>' + esc(p.head) + '</span><span>' + esc(t.viewer.page) + ' ' + p.p + ' / ' + d.total + '</span></div>' +
+        (p.status ? '<p class="dd-page-status' + (p.status.ok ? '' : ' is-void') + '">' + esc(p.status.text) + '</p>' : '') + p.html + '</article>').join('');
+      return '<div class="dd-viewer"><div class="dd-viewer-bar"><button type="button" data-dd-close="">← ' + esc(t.viewer.back) + '</button><span class="dd-viewer-file">' + icon.doc + '<b>' + esc(d.file) + '</b></span>' +
+        '<span class="dd-viewer-meta">' + esc(t.viewer.original) + ' · ' + esc(fill(t.viewer.stored, { n: d.pages.length, t: d.total })) + '</span></div>' +
+        '<div class="dd-viewer-body"><nav class="dd-rail">' + rail + '</nav><div class="dd-pages">' + pages + '</div></div></div>';
+    };
+
+    const render = () => {
+      const steps = t.steps.map((label, i) => '<li class="' + (i === state.step ? 'is-active' : i < state.step ? 'is-done' : '') + '"><span>' + (i + 1) + '</span>' + esc(label) + '</li>').join('');
+      let body;
+      if (state.step === 0) body = '<div class="dd-body is-full">' + uploadView() + '</div>';
+      else body = '<div class="dd-body">' + sidebar() + '<div class="dd-main">' + (state.step === 1 ? roleView() : chatView()) + '</div>' + (state.viewer ? viewerView() : '') + '</div>';
+      wrap.innerHTML = '<div class="stage-bar"><span>' + esc(t.bar) + '</span><button type="button" data-dd-restart="">' + esc(t.restart) + '</button></div><ol class="dd-steps">' + steps + '</ol>' + body;
+      const thread = wrap.querySelector('.dd-thread');
+      const turns = thread ? thread.querySelectorAll('.dd-turn') : [];
+      if (turns.length) thread.scrollTop = turns[turns.length - 1].offsetTop - thread.offsetTop - 12;
+      if (state.viewer) {
+        const cited = wrap.querySelector('.dd-page.is-cited');
+        const pagesEl = wrap.querySelector('.dd-pages');
+        if (cited && pagesEl) {
+          const mark = cited.querySelector('mark, tr.hl') || cited;
+          pagesEl.scrollTop = mark.getBoundingClientRect().top - pagesEl.getBoundingClientRect().top + pagesEl.scrollTop - 120;
+        }
+      }
+    };
+
+    const ask = (qid, roleId) => {
+      const q = data.questions.find(x => x.id === qid);
+      state.busy = true;
+      state.draft = '';
+      state.role = roleId;
+      render();
+      const text = L(q.q);
+      const input = wrap.querySelector('[data-dd-input]');
+      let i = 0;
+      const step = Math.max(1, Math.ceil(text.length / 40));
+      const type = () => {
+        i = Math.min(text.length, i + step);
+        if (input) input.value = text.slice(0, i);
+        if (i < text.length) return later(type, 22);
+        later(() => {
+          state.thread.push({ q: qid, role: roleId, text, pending: true });
+          render();
+          later(() => { state.thread[state.thread.length - 1].pending = false; state.busy = false; render(); }, 1000);
+        }, 250);
+      };
+      type();
+    };
+
+    wrap.addEventListener('submit', (e) => {
+      if (!e.target.matches('[data-dd-form]')) return;
+      e.preventDefault();
+      const input = wrap.querySelector('[data-dd-input]');
+      const text = input ? input.value.trim() : '';
+      if (!text || state.busy) return;
+      const hit = data.questions.find(q => L(q.q).toLowerCase() === text.toLowerCase());
+      if (hit) return ask(hit.id, state.role);
+      state.busy = true;
+      state.draft = '';
+      state.thread.push({ free: true, role: state.role, text, pending: true });
+      render();
+      later(() => { state.thread[state.thread.length - 1].pending = false; state.busy = false; render(); }, 700);
+    });
+
+    wrap.addEventListener('keydown', (e) => {
+      if (e.target.matches('[data-dd-input]') && e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        e.target.form.requestSubmit();
+      }
+    });
+
+    wrap.addEventListener('input', (e) => { if (e.target.matches('[data-dd-input]')) state.draft = e.target.value; });
+
+    wrap.addEventListener('click', (e) => {
+      const el = e.target.closest('button');
+      if (!el || !wrap.contains(el) || el.disabled || el.type === 'submit') return;
+      if (el.hasAttribute('data-dd-restart')) { clearTimers(); state = fresh(); return render(); }
+      if (el.hasAttribute('data-dd-upload')) {
+        state.uploading = true;
+        render();
+        data.docs.forEach((d, i) => later(() => { state.perms[d.id] = d.roles.slice(); state.analyzed = i + 1; render(); }, 500 + i * 420));
+        return;
+      }
+      if (el.hasAttribute('data-dd-perm')) {
+        const [doc, role] = el.getAttribute('data-dd-perm').split(':');
+        const list = state.perms[doc];
+        const idx = list.indexOf(role);
+        if (idx < 0) list.push(role); else list.splice(idx, 1);
+        return render();
+      }
+      if (el.hasAttribute('data-dd-go')) { state.step = Number(el.getAttribute('data-dd-go')); state.viewer = null; return render(); }
+      if (el.hasAttribute('data-dd-role')) {
+        state.role = el.getAttribute('data-dd-role');
+        render();
+        return later(() => { state.step = 2; render(); }, 450);
+      }
+      if (el.hasAttribute('data-dd-sugg')) { state.suggestOpen = el.getAttribute('data-dd-sugg') === 'open'; return render(); }
+      if (el.hasAttribute('data-dd-ask')) { state.suggestOpen = false; return ask(el.getAttribute('data-dd-ask'), state.role); }
+      if (el.hasAttribute('data-dd-open')) {
+        const [doc, page] = el.getAttribute('data-dd-open').split(':');
+        state.viewer = { doc, page: Number(page) };
+        render();
+        if (wrap.getBoundingClientRect().top < 0) wrap.scrollIntoView({ behavior: this._reduce ? 'auto' : 'smooth', block: 'start' });
+        return;
+      }
+      if (el.hasAttribute('data-dd-page')) {
+        state.viewer.page = Number(el.getAttribute('data-dd-page'));
+        return render();
+      }
+      if (el.hasAttribute('data-dd-close')) { state.viewer = null; return render(); }
+    });
+    render();
+  },
+
+  _initSwipe(root) {
+    const KEY = 'utxo_swipe';
+    const cover = () => { const el = document.createElement('div'); el.className = 'swipe-cover'; el.setAttribute('aria-hidden', 'true'); document.body.appendChild(el); return el; };
+    let arrived = false;
+    try { arrived = sessionStorage.getItem(KEY) === '1'; sessionStorage.removeItem(KEY); } catch (e) {}
+    if (arrived && !this._reduce) {
+      const el = cover();
+      el.style.transition = 'none';
+      el.classList.add('is-in');
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        el.style.transition = '';
+        el.classList.add('is-out');
+        el.addEventListener('transitionend', () => el.remove(), { once: true });
+      }));
+    }
+    window.addEventListener('pageshow', (e) => { if (e.persisted) document.querySelectorAll('.swipe-cover').forEach(el => el.remove()); });
+    root.querySelectorAll('[data-swipe]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0 || this._reduce) return;
+        e.preventDefault();
+        try { sessionStorage.setItem(KEY, '1'); } catch (err) {}
+        const el = cover();
+        requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('is-in')));
+        setTimeout(() => { location.href = link.href; }, 520);
+      });
+    });
+  },
+
+  _initDuo(root) {
+    root.querySelectorAll('[data-duo]').forEach(duo => {
+      const open = (key) => {
+        if (duo.getAttribute('data-open') === key) return;
+        duo.querySelectorAll('[data-duo-card]').forEach(card => {
+          if (card.getAttribute('data-duo-card') !== key) card.querySelectorAll('[data-demo-stop]:not([hidden])').forEach(b => b.click());
+        });
+        duo.setAttribute('data-open', key);
+        if (duo.getBoundingClientRect().top < 0) duo.scrollIntoView({ behavior: this._reduce ? 'auto' : 'smooth', block: 'start' });
+      };
+      duo.querySelectorAll('[data-duo-open]').forEach(el => {
+        el.addEventListener('click', () => open(el.getAttribute('data-duo-open')));
+        if (el.getAttribute('role') === 'button') el.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(el.getAttribute('data-duo-open')); }
+        });
+      });
+    });
+  },
+
+  _initDemos(root) {
+    const config = window.UTXO_CONFIG || {};
+    const urls = { call: config.callDemoUrl };
+    Array.prototype.slice.call(root.querySelectorAll('[data-demo]')).forEach(stage => {
+      const kind = stage.getAttribute('data-demo');
+      const url = urls[kind];
+      const body = stage.querySelector('.stage-body');
+      const idle = stage.querySelector('[data-demo-idle]');
+      const stop = stage.querySelector('[data-demo-stop]');
+      const starts = Array.prototype.slice.call(root.querySelectorAll('[data-demo-start="' + kind + '"]'));
+      if (!url) {
+        starts.forEach(b => { b.hidden = true; });
+        const note = stage.querySelector('[data-demo-unavailable]');
+        if (note) note.hidden = false;
+        return;
+      }
+      let frame = null;
+      const start = (e) => {
+        if (frame) return;
+        frame = document.createElement('iframe');
+        frame.src = url;
+        frame.title = stage.getAttribute('data-demo-title') || '';
+        frame.allow = 'microphone; autoplay';
+        body.appendChild(frame);
+        if (idle) idle.hidden = true;
+        if (stop) stop.hidden = false;
+        if (e && !stage.contains(e.currentTarget)) stage.scrollIntoView({ behavior: this._reduce ? 'auto' : 'smooth', block: 'center' });
+      };
+      const end = () => {
+        if (!frame) return;
+        frame.remove();
+        frame = null;
+        if (idle) idle.hidden = false;
+        if (stop) stop.hidden = true;
+      };
+      starts.forEach(b => b.addEventListener('click', start));
+      if (stop) stop.addEventListener('click', end);
+    });
   },
 
   _initTeamScroll(root) {
@@ -161,7 +645,7 @@ const App = {
       let index = 0;
       const setActive = (i) => {
         index = Math.max(0, Math.min(i, slides.length - 1));
-        dots.forEach((d, di) => { d.style.background = di === index ? 'var(--text-primary)' : 'var(--border-strong)'; });
+        dots.forEach((d, di) => { d.style.backgroundColor = di === index ? 'var(--text-primary)' : 'var(--border-strong)'; });
         slides.forEach((s, si) => { s.style.opacity = si === index ? '1' : '.5'; });
       };
       const centerLeft = (slide) => slide.offsetLeft + slide.offsetWidth / 2 - track.clientWidth / 2;
@@ -337,6 +821,16 @@ const App = {
   _initBooking(root) {
     const containers = Array.prototype.slice.call(root.querySelectorAll('[data-cal-inline]'));
     if (!containers.length) return;
+    if (!('IntersectionObserver' in window)) { this._loadCal(containers); return; }
+    const io = new IntersectionObserver((entries) => {
+      if (!entries.some(e => e.isIntersecting)) return;
+      io.disconnect();
+      this._loadCal(containers);
+    }, { rootMargin: '800px 0px' });
+    containers.forEach(el => io.observe(el));
+  },
+
+  _loadCal(containers) {
     (function (C, A, L) {
       const p = function (a, ar) { a.q.push(ar); };
       const d = C.document;
@@ -485,6 +979,20 @@ const App = {
       const fadeIn = rec.readyAt ? Math.min(1, (t - rec.readyAt) / IMG_FADE_IN_MS) : 0;
       return rec.luma[k] * fadeIn;
     };
+    const accentVars = ['--accent-navy-soft', '--accent-petrol-soft', '--accent-moss-soft', '--accent-clay-soft', '--accent-plum-soft'];
+    const hexToRgb = (hex) => { const n = parseInt(hex.replace('#', ''), 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; };
+    const accents = accentVars.map(v => getComputedStyle(document.documentElement).getPropertyValue(v).trim()).filter(Boolean).map(hexToRgb);
+    const TINT_SHARE = 0.09, TINT_FADE_MS = 900;
+    let spots = [], tintColor = [], tintLevel = null;
+    const spawn = (spot, t, n) => {
+      let k;
+      do { k = Math.floor(Math.random() * n); } while (tintColor[k] && spots.length > 1);
+      spot.k = k;
+      spot.c = accents[Math.floor(Math.random() * accents.length)];
+      spot.born = t;
+      spot.life = 3200 + Math.random() * 4200;
+      tintColor[k] = spot.c;
+    };
     const build = () => {
       const r = cv.getBoundingClientRect();
       W = r.width; H = r.height;
@@ -499,6 +1007,18 @@ const App = {
       const n = cols * rows;
       phase = new Array(n);
       for (let k = 0; k < n; k++) { phase[k] = Math.random() * Math.PI * 2; }
+      tintColor = new Array(n);
+      tintLevel = new Float32Array(n);
+      spots = [];
+      if (accents.length) {
+        const now = performance.now();
+        for (let s = 0; s < Math.round(n * TINT_SHARE); s++) {
+          const spot = {};
+          spots.push(spot);
+          spawn(spot, now, n);
+          spot.born = now - Math.random() * spot.life;
+        }
+      }
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       images.forEach(resampleImage);
     };
@@ -516,6 +1036,13 @@ const App = {
       const curIdx = Math.floor(cyclePos);
       const prevIdx = n ? (curIdx - 1 + n) % n : 0;
       const fadeT = Math.min(1, (t % CYCLE_MS) / FADE_MS);
+      const total = cols * rows;
+      spots.forEach(spot => {
+        tintLevel[spot.k] = 0;
+        if (!reduce && t - spot.born > spot.life) { tintColor[spot.k] = null; spawn(spot, t, total); }
+        const age = t - spot.born;
+        tintLevel[spot.k] = reduce ? 1 : Math.max(0, Math.min(1, age / TINT_FADE_MS, (spot.life - age) / TINT_FADE_MS));
+      });
       for (let j = 0; j < rows; j++) {
         for (let i = 0; i < cols; i++) {
           const k = j * cols + i;
@@ -533,11 +1060,10 @@ const App = {
           }
           if (v < 0.018) continue;
           if (v > 1) v = 1;
-          const a = (v * MAX_OPACITY).toFixed(3);
-          const cr = 0;
-          const cg = cr;
-          const cb = cr;
-          ctx.fillStyle = 'rgba(' + cr + ',' + cg + ',' + cb + ',' + a + ')';
+          const c = tintColor[k];
+          const f = c ? tintLevel[k] : 0;
+          const a = (v * MAX_OPACITY * (1 - f) + Math.min(1, v * 2.4) * f).toFixed(3);
+          ctx.fillStyle = f ? 'rgba(' + Math.round(c[0] * f) + ',' + Math.round(c[1] * f) + ',' + Math.round(c[2] * f) + ',' + a + ')' : 'rgba(0,0,0,' + a + ')';
           rrect(x + gut / 2, y + gut / 2, cell - gut, cell - gut, rad);
           ctx.fill();
         }
