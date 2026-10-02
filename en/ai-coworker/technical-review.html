@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="canonical" href="https://utxo.ag/en/ai-coworker/technical-review">
+<link rel="alternate" hreflang="de" href="https://utxo.ag/de/ki-coworker/technische-pruefung">
+<link rel="alternate" hreflang="en" href="https://utxo.ag/en/ai-coworker/technical-review">
+<link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/ai-coworker/technical-review">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Technical drawing review with an AI CoWorker | utxo AG</title>
+<meta name="description" content="The AI CoWorker for technical review checks drawings, parts lists and specifications against your rules or applicable standards and marks every deviation at its exact location.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="utxo AG">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Technical drawing review with an AI CoWorker | utxo AG">
+<meta property="og:description" content="The AI CoWorker for technical review checks drawings, parts lists and specifications against your rules or applicable standards and marks every deviation at its exact location.">
+<meta property="og:url" content="https://utxo.ag/en/ai-coworker/technical-review">
+<meta property="og:image" content="https://utxo.ag/resources/og/og-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Service","@id":"https://utxo.ag/en/ai-coworker/technical-review#service","name":"Technical Review CoWorker","alternateName":"AI CoWorker for technical drawing review","serviceType":"AI-assisted review of technical documents, custom developed","description":"The AI CoWorker for technical review checks drawings, parts lists and specifications against your rules or applicable standards and marks every deviation at its exact location.","url":"https://utxo.ag/en/ai-coworker/technical-review","inLanguage":"en","provider":{"@type":"Organization","@id":"https://utxo.ag/#org","name":"utxo AG","url":"https://utxo.ag/"},"areaServed":["CH","DE","AT"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utxo.ag/en"},{"@type":"ListItem","position":2,"name":"AI CoWorker","item":"https://utxo.ag/en/ai-coworker"},{"@type":"ListItem","position":3,"name":"Technical review","item":"https://utxo.ag/en/ai-coworker/technical-review"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Which documents does the CoWorker review?","acceptedAnswer":{"@type":"Answer","text":"Technical drawings, parts lists, specifications, test reports and technical documentation. We clarify with you before the start which document types and systems are involved."}},{"@type":"Question","name":"Which standards does it check against?","acceptedAnswer":{"@type":"Answer","text":"Against your own rules if you provide them: in-house standards, internal guidelines and checklists. Without your own rules it checks against the standards and rules that apply to technical drawings. The review report does not replace a certification or a confirmation of conformity."}},{"@type":"Question","name":"Does it replace the review by our engineers?","acceptedAnswer":{"@type":"Answer","text":"No. It takes over the recurring review work and prepares every finding with its location and rule. Whether a finding applies and how it is resolved is decided by your engineers."}},{"@type":"Question","name":"How traceable are the findings?","acceptedAnswer":{"@type":"Answer","text":"Every finding names the exact location and the rule it was checked against, so it can be verified directly in the document. Because the same rules are applied the same way every time, the review is reproducible."}},{"@type":"Question","name":"Does it work with our systems?","acceptedAnswer":{"@type":"Answer","text":"Yes. The CoWorker works with the systems where your documents are kept. We set up the connection as part of the development."}},{"@type":"Question","name":"What does the CoWorker cost?","acceptedAnswer":{"@type":"Answer","text":"It depends on the scope, so we don’t quote flat rates. Developing it for your company is a one-off fixed price that you know before the start. Operation is covered by a subscription."}},{"@type":"Question","name":"Where is the data processed?","acceptedAnswer":{"@type":"Answer","text":"We set the storage location per project to your requirements: Germany, the EU or on-premise. Your data never trains third-party models, as set out in the data processing agreement, which we draft per project for your stack and requirements."}}]}]}</script>
+<link rel="preload" href="/fonts/manrope-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibm-plex-sans-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibm-plex-mono-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="/resources/FAVICONS/icon.svg" type="image/svg+xml">
+<link rel="icon" href="/resources/FAVICONS/favicon-96x96.png" sizes="96x96" type="image/png">
+<link rel="apple-touch-icon" href="/resources/FAVICONS/apple-touch-icon-180x180.png">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/products.css">
+</head>
+<body>
+<div id="utxo-root">
+
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap site-header-inner">
+      <a class="brand" href="/en" aria-label="utxo AG, home"><img src="/resources/logos/utxo-logo-header.webp" alt="utxo AG" width="136" height="141"></a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="/en#services" aria-current="true">Services</a>
+        <a href="/en#products">Products</a>
+        <a href="/en#projects">Projects</a>
+        <a href="/en#about">About</a>
+      </nav>
+      <div class="header-actions">
+        <span class="lang"><a href="/de/ki-coworker/technische-pruefung" hreflang="de" lang="de" data-set-lang="de">DE</a><span aria-hidden="true">/</span><a href="/en/ai-coworker/technical-review" hreflang="en" lang="en" data-set-lang="en" aria-current="page">EN</a></span>
+        <a class="btn btn-primary btn-sm" href="#contact">Book an intro call</a>
+        <button type="button" class="menu-btn" data-menu-open aria-expanded="false" aria-controls="menu" aria-label="Open menu"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M1 5h16M1 13h16" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="menu" id="menu" data-menu data-surface="ink" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+    <div class="menu-top">
+      <img src="/resources/logos/utxo-logo-header.webp" alt="utxo AG" width="136" height="141">
+      <button type="button" class="menu-close" data-menu-close aria-label="Close menu"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div>
+    <nav class="menu-nav" aria-label="Main navigation">
+      <a href="/en#services">Services</a>
+      <a href="/en#products">Products</a>
+      <a href="/en#projects">Projects</a>
+      <a href="/en#about">About</a>
+    </nav>
+    <nav class="menu-sub" aria-label="Services">
+      <a href="/en/ai-coworker" aria-current="true">AI CoWorker</a>
+      <a href="/en/ai-phone-assistant">AI Phone Assistant</a>
+      <a href="/en/doc-indexer">Doc Indexer</a>
+    </nav>
+    <div class="menu-foot">
+      <span class="lang"><a href="/de/ki-coworker/technische-pruefung" hreflang="de" lang="de" data-set-lang="de">DE</a><span aria-hidden="true">/</span><a href="/en/ai-coworker/technical-review" hreflang="en" lang="en" data-set-lang="en" aria-current="page">EN</a></span>
+      <a class="btn btn-light" href="#contact">Book an intro call</a>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <section id="top" class="hero-product hero-product--stack pp-hero tr-hero">
+      <div class="wrap hero-product-inner">
+        <div class="hero-product-copy">
+          <nav class="lr-crumb" aria-label="Breadcrumb"><a href="/en/ai-coworker">AI CoWorker</a><span aria-hidden="true">/</span><span aria-current="page">Technical review</span></nav>
+          <p class="kicker dot-navy">AI CoWorker · technical review</p>
+          <h1 class="tr-h1"><span>Every deviation.</span> <span>Precisely marked.</span></h1>
+          <p class="lede">The CoWorker checks drawings, parts lists and specifications against your rules and marks every deviation at its exact location.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="#contact">Book an intro call</a>
+            <a class="link-arrow" href="#how">How it works</a>
+          </div>
+        </div>
+        <div class="tr-check" data-play role="img" aria-label="Animation with sample data: the CoWorker reviews section A-A of the drawing for the fictional part Bearing cover LD-120, revision C, of the fictional Muster Maschinenbau GmbH. It marks three locations: the tolerance on the Ø80 spigot is missing, the overall length of 26 mm differs from the parts list with 24 mm, and the material EN-GJL-250 contradicts the parts list with S235JR. The review log works through seven checkpoints and reports three findings for engineering to decide on.">
+          <div class="tr-check-sheet">
+            <p class="tr-check-head"><b>Drawing LD-120</b><span>Sample data · Rev. C</span></p>
+            <svg class="tr-dwg" viewBox="0 0 400 424" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="tr-hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" class="tr-hl"/></pattern>
+                <marker id="tr-ar" viewBox="0 0 8 6" refX="8" refY="3" markerWidth="8" markerHeight="6" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0 0L8 3L0 6z" class="tr-arh"/></marker>
+                <linearGradient id="tr-scan-g" x1="0" x2="1" y1="0" y2="0"><stop offset="0" class="tr-sg0"/><stop offset=".85" class="tr-sg1"/><stop offset="1" class="tr-sg2"/></linearGradient>
+              </defs>
+              <rect x="4" y="4" width="392" height="416" rx="2" class="tr-frame"/>
+              <rect x="12" y="12" width="376" height="400" class="tr-frame2"/>
+              <g>
+                <path d="M60 50H80V90H112V108H76V140H60ZM60 290H80V250H112V232H76V200H60Z" class="tr-sec"/>
+                <path d="M76 140V200" class="tr-l"/>
+                <line x1="40" y1="170" x2="128" y2="170" class="tr-ctr"/>
+                <path d="M60 46V22M80 46V22" class="tr-dim"/><line x1="60" y1="28" x2="80" y2="28" class="tr-dim" marker-start="url(#tr-ar)" marker-end="url(#tr-ar)"/><text x="70" y="20" class="tr-t" text-anchor="middle">10</text>
+                <path d="M60 294V328M112 254V328" class="tr-dim"/><line x1="60" y1="322" x2="112" y2="322" class="tr-dim" marker-start="url(#tr-ar)" marker-end="url(#tr-ar)"/><text x="86" y="316" class="tr-t" text-anchor="middle">26</text>
+                <path d="M116 90H148M116 250H148" class="tr-dim"/><line x1="142" y1="90" x2="142" y2="250" class="tr-dim" marker-start="url(#tr-ar)" marker-end="url(#tr-ar)"/><text x="137" y="170" class="tr-t" text-anchor="middle" transform="rotate(-90 137 170)">Ø80</text>
+                <line x1="100" y1="108" x2="100" y2="232" class="tr-dim" marker-start="url(#tr-ar)" marker-end="url(#tr-ar)"/><text x="95" y="206" class="tr-t" text-anchor="middle" transform="rotate(-90 95 206)">Ø62 H7</text>
+                <text x="86" y="358" class="tr-t tr-t--b" text-anchor="middle">A-A</text>
+              </g>
+              <g class="tr-tb">
+                <rect x="176" y="318" width="212" height="94"/>
+                <path d="M176 338H388M176 366H388M286 366V412M326 366V412"/>
+                <text x="184" y="332" class="tr-t tr-t--s">Muster Maschinenbau GmbH</text>
+                <text x="184" y="358" class="tr-t tr-t--n">Bearing cover LD-120</text>
+                <text x="184" y="380" class="tr-t tr-t--xs">Material</text><text x="184" y="398" class="tr-t">EN-GJL-250</text>
+                <text x="294" y="380" class="tr-t tr-t--xs">Rev.</text><text x="294" y="398" class="tr-t">C</text>
+                <text x="334" y="380" class="tr-t tr-t--xs">Sheet</text><text x="334" y="398" class="tr-t">1/1</text>
+              </g>
+              <rect x="-60" y="12" width="60" height="400" class="tr-scan" fill="url(#tr-scan-g)"/>
+              <g class="tr-ann">
+                <path d="M157 150L176 72" class="tr-lead tr-a1"/>
+                <path d="M107 302H158L176 210" class="tr-lead tr-a2"/>
+                <path d="M180 388H168V283H176" class="tr-lead tr-a3"/>
+                <circle cx="137" cy="170" r="19" class="tr-ring tr-a1"/>
+                <rect x="72" y="304" width="28" height="18" rx="9" class="tr-ring tr-a2"/>
+                <rect x="180" y="370" width="92" height="36" rx="7" class="tr-ring tr-a3"/>
+                <g class="tr-badge tr-a1"><circle cx="153" cy="155" r="8"/><text x="153" y="158.5" text-anchor="middle">1</text></g>
+                <g class="tr-badge tr-a2"><circle cx="102" cy="302" r="8"/><text x="102" y="305.5" text-anchor="middle">2</text></g>
+                <g class="tr-badge tr-a3"><circle cx="272" cy="370" r="8"/><text x="272" y="373.5" text-anchor="middle">3</text></g>
+                <g class="tr-call tr-a1"><rect x="176" y="48" width="208" height="46" rx="8"/><circle cx="191" cy="65" r="3.5"/><text x="201" y="69" class="tr-ct">Tolerance missing</text><text x="201" y="84" class="tr-cs">Ø80 spigot, mating surface</text></g>
+                <g class="tr-call tr-a2"><rect x="176" y="188" width="208" height="46" rx="8"/><circle cx="191" cy="205" r="3.5"/><text x="201" y="209" class="tr-ct">Length differs from parts list</text><text x="201" y="224" class="tr-cs">Drawing 26 mm, parts list 24</text></g>
+                <g class="tr-call tr-a3"><rect x="176" y="260" width="208" height="46" rx="8"/><circle cx="191" cy="277" r="3.5"/><text x="201" y="281" class="tr-ct">Material inconsistent</text><text x="201" y="296" class="tr-cs">EN-GJL-250, parts list S235JR</text></g>
+              </g>
+            </svg>
+          </div>
+          <div class="tr-check-log">
+            <p class="tr-panel-h"><b>Review log</b><span>WN 1001 · Checklist v3</span></p>
+            <ol class="tr-list">
+                <li class="is-ok"><span>Title block</span><em>ok</em></li>
+                <li class="is-hit" data-n="1"><span>Fit tolerances</span><em>missing</em></li>
+                <li class="is-hit" data-n="2"><span>Dims vs. parts list</span><em>deviation</em></li>
+                <li class="is-hit" data-n="3"><span>Material</span><em>deviation</em></li>
+                <li class="is-ok"><span>Hole pattern</span><em>ok</em></li>
+                <li class="is-ok"><span>General tolerances</span><em>ok</em></li>
+                <li class="is-ok"><span>Surfaces</span><em>ok</em></li>
+            </ol>
+            <div class="tr-prog"><p><span>Checkpoints</span><b>7 of 7</b></p><i></i></div>
+            <p class="tr-sum"><b>3 findings</b><span>for engineering to decide on</span></p>
+            <p class="glass mock-float tr-float tr-check-float"><i></i><b>Review report prepared</b><span>Approval stays with your team</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="drawing" class="section section--cream">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="kicker dot-navy">Drawing review</p>
+          <h2>A second, thorough look at every document.</h2>
+          <p class="lede">The CoWorker checks technical documents against your own rules or against the standards that apply to technical drawings. It marks deviations, contradictions and missing information at their exact location.</p>
+        </header>
+
+        <article class="showcase">
+          <div class="showcase-media">
+            <div class="pfield pfield--navy mock-stage tr-find-stage" data-play>
+              <div class="mock tr-find" role="img" aria-label="Example with sample data: finding 1 of 3 on drawing LD-120. Detail of section A-A with the Ø80 spigot marked. Finding: tolerance missing, severity high. Location: sheet 1, section A-A, Ø80 spigot. Rule: in-house standard WN 1001, section 4.3, mating surfaces carry a tolerance. Specification SP-120 states Ø80 f7. Recommendation: add the fit. Status open.">
+                <div class="mock-bar"><b>Finding 1 of 3</b><span>Sample data · LD-120</span></div>
+                <div class="tr-find-body">
+                  <div class="tr-zoom">
+                    <svg class="tr-dwg tr-dwg--zoom" viewBox="404 40 132 236" aria-hidden="true" focusable="false">
+                      <rect x="404" y="40" width="132" height="236" class="tr-zbg"/>
+                      <path d="M430 80H450V120H482V138H446V170H430ZM430 320H450V280H482V262H446V230H430Z" class="tr-sec"/>
+                      <path d="M446 170V230" class="tr-l"/>
+                      <line x1="414" y1="200" x2="498" y2="200" class="tr-ctr"/>
+                      <path d="M430 76V52M450 76V52" class="tr-dim"/><line x1="430" y1="58" x2="450" y2="58" class="tr-dim" marker-start="url(#tr-ar)" marker-end="url(#tr-ar)"/><text x="440" y="50" class="tr-t" text-anchor="middle">10</text>
+                      <path d="M486 120H518M486 280H518" class="tr-dim"/><line x1="512" y1="120" x2="512" y2="280" class="tr-dim" marker-start="url(#tr-ar)" marker-end="url(#tr-ar)"/><text x="508" y="200" class="tr-t" text-anchor="middle" transform="rotate(-90 508 200)">Ø80</text>
+                      <line x1="470" y1="138" x2="470" y2="262" class="tr-dim" marker-start="url(#tr-ar)" marker-end="url(#tr-ar)"/><text x="466" y="236" class="tr-t" text-anchor="middle" transform="rotate(-90 466 236)">Ø62 H7</text>
+                      <circle cx="508" cy="200" r="15" class="tr-ring"/>
+                      <g class="tr-badge"><circle cx="521" cy="187" r="6"/><text x="521" y="189.6" text-anchor="middle">1</text></g>
+                    </svg>
+                    <span class="tr-zoom-tag">Detail section A-A</span>
+                  </div>
+                  <div class="tr-card">
+                    <div class="tr-card-top"><span class="tr-sev tr-sev--3"><i></i><i></i><i></i>high</span><span class="tr-stat">open</span></div>
+                    <p class="tr-card-h">Tolerance missing</p>
+                    <dl class="lr-kv tr-kv">
+                      <div><dt>Location</dt><dd>Sheet 1 · Section A-A · Ø80</dd></div>
+                      <div><dt>Rule</dt><dd>WN 1001, 4.3 Mating surfaces</dd></div>
+                      <div><dt>Expected</dt><dd>Tolerance on every mating surface</dd></div>
+                      <div><dt>Found</dt><dd>Ø80 without tolerance</dd></div>
+                      <div><dt>Reference</dt><dd>SP-120 states Ø80 f7</dd></div>
+                    </dl>
+                    <p class="tr-rec"><span>Recommendation</span>Add the fit to the spigot, Ø80 f7 according to the specification.</p>
+                    <div class="tr-card-foot" aria-hidden="true"><span class="tr-btn">Send for correction</span><span class="tr-btn tr-btn--dark">Accept finding</span></div>
+                  </div>
+                </div>
+              </div>
+              <p class="glass mock-float tr-float tr-float--find" aria-hidden="true"><i></i><b>Location marked</b><span>Sheet 1, section A-A</span></p>
+            </div>
+          </div>
+          <div class="showcase-text">
+            <p class="kicker">Sample data</p>
+            <h3>Every finding at its exact location.</h3>
+            <p>The CoWorker shows where the deviation is and names the rule it checked against. Your engineer sees straight away what needs clarifying, and decides.</p>
+          </div>
+        </article>
+
+        <ul class="pp-points tr-points" aria-label="What the CoWorker checks">
+          <li><h3>Drawings</h3><p>Dimensions, tolerances, title block and entries according to your drawing rules.</p></li>
+          <li><h3>Parts lists</h3><p>Items, designations and materials, cross-checked with the drawing.</p></li>
+          <li><h3>Specifications</h3><p>Requirements and references, cross-checked with drawing and parts list.</p></li>
+          <li><h3>Test reports and documentation</h3><p>Completeness and consistency according to the requirements you set.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="crosscheck" class="section">
+      <div class="wrap">
+        <header class="section-head">
+          <h2>Drawing, parts list, specification. One version.</h2>
+          <p class="lede">Many errors arise between documents. The CoWorker cross-checks the details of a part across all documents and shows where they diverge.</p>
+        </header>
+        <div class="pfield pfield--navy mock-stage tr-mx-stage" data-play>
+          <div class="mock tr-mx" role="img" aria-label="Example with sample data: cross-check of seven attributes of the fictional part LD-120 across drawing Rev. C, parts list SL-4410 and specification SP-120. Designation, hole pattern and weight are consistent. The revision differs, the specification still refers to Rev. B, as do the material, EN-GJL-250 against S235JR in the parts list, and the overall length, 26 mm against 24 mm. The drawing is missing the tolerance on the Ø80 spigot, the specification states f7.">
+            <div class="mock-bar"><b>Document cross-check</b><span>Sample data · Bearing cover LD-120</span></div>
+            <div class="tr-mx-body">
+              <ul class="tr-mx-sum">
+                <li><b>7</b><span>attributes checked</span></li>
+                <li class="is-ok"><b>3</b><span>consistent</span></li>
+                <li class="is-off"><b>3</b><span>deviating</span></li>
+                <li class="is-miss"><b>1</b><span>entry missing</span></li>
+              </ul>
+              <div class="tr-mx-grid">
+                <div class="tr-mx-row tr-mx-head">
+                  <span>Attribute</span>
+                  <span class="tr-doc"><i class="tr-doc-ic"></i><b>Drawing</b><small>LD-120 Rev. C</small></span>
+                  <span class="tr-doc"><i class="tr-doc-ic tr-doc-ic--list"></i><b>Parts list</b><small>SL-4410 item 1</small></span>
+                  <span class="tr-doc"><i class="tr-doc-ic tr-doc-ic--spec"></i><b>Specification</b><small>SP-120</small></span>
+                  <span>Result</span>
+                </div>
+                <div class="tr-mx-row"><b>Designation</b><span data-l="Drawing">Bearing cover</span><span data-l="Parts list">Bearing cover</span><span data-l="Spec">Bearing cover</span><em class="pp-st">consistent</em></div>
+                <div class="tr-mx-row"><b>Revision</b><span data-l="Drawing">C</span><span data-l="Parts list">C</span><span data-l="Spec" class="is-off">B</span><em class="pp-st pp-st--warn">deviating</em></div>
+                <div class="tr-mx-row"><b>Material</b><span data-l="Drawing">EN-GJL-250</span><span data-l="Parts list" class="is-off">S235JR</span><span data-l="Spec">EN-GJL-250</span><em class="pp-st pp-st--warn">deviating</em></div>
+                <div class="tr-mx-row"><b>Overall length</b><span data-l="Drawing">26 mm</span><span data-l="Parts list" class="is-off">24 mm</span><span data-l="Spec" class="is-na">not stated</span><em class="pp-st pp-st--warn">deviating</em></div>
+                <div class="tr-mx-row"><b>Spigot</b><span data-l="Drawing" class="is-miss">Ø80 no tolerance</span><span data-l="Parts list" class="is-na">not listed</span><span data-l="Spec">Ø80 f7</span><em class="pp-st pp-st--wait">entry missing</em></div>
+                <div class="tr-mx-row"><b>Hole pattern</b><span data-l="Drawing">4x Ø9, PCD Ø95</span><span data-l="Parts list" class="is-na">not listed</span><span data-l="Spec">4x Ø9, PCD Ø95</span><em class="pp-st">consistent</em></div>
+                <div class="tr-mx-row"><b>Weight</b><span data-l="Drawing">0.92 kg</span><span data-l="Parts list">0.92 kg</span><span data-l="Spec" class="is-na">not stated</span><em class="pp-st">consistent</em></div>
+              </div>
+            </div>
+          </div>
+          <p class="glass mock-float tr-float tr-float--mx" aria-hidden="true"><i></i><b>Revision inconsistent</b><span>SP-120 still refers to Rev. B</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="report" class="section section--cream">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="kicker dot-navy">Review report</p>
+          <h2>A report your team can work with.</h2>
+          <p class="lede">All findings in one place, with location, severity, recommendation and status. Your engineers accept, correct or dismiss each one.</p>
+        </header>
+        <div class="pfield pfield--navy mock-stage tr-rep-stage" data-play>
+          <div class="mock tr-rep" role="img" aria-label="Example with sample data: review report for the fictional part Bearing cover LD-120, revision C, checked against in-house standard WN 1001, drawing review checklist v3, parts list SL-4410 and specification SP-120. Four findings, two of high severity, three open and one accepted. Finding 1: tolerance on the Ø80 spigot missing, high, open. Finding 2: overall length differs from the parts list, high, open. Finding 3: material inconsistent, medium, accepted, the parts list will be corrected. Finding 4: specification refers to revision B, low, open. Approval of the drawing lies with engineering.">
+            <div class="mock-bar"><b>Review report</b><span>Sample data · created 02.10.2026, 09:14</span></div>
+            <div class="tr-rep-body">
+              <div class="tr-rep-head">
+                <div class="tr-rep-id">
+                  <span class="tr-rep-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="9.5"/><circle cx="12" cy="12" r="3.5"/><circle cx="12" cy="5.6" r="1.1"/><circle cx="12" cy="18.4" r="1.1"/><circle cx="5.6" cy="12" r="1.1"/><circle cx="18.4" cy="12" r="1.1"/></svg></span>
+                  <p><b>Bearing cover LD-120 · Rev. C</b><span>Muster Maschinenbau GmbH · Engineering</span></p>
+                </div>
+                <div class="tr-rep-basis"><span>Checked against</span><ul class="lr-chips"><li>WN 1001</li><li>Checklist v3</li><li>SL-4410</li><li>SP-120</li></ul></div>
+              </div>
+              <dl class="tr-kpi">
+                <div><dt>Findings</dt><dd>4</dd></div>
+                <div><dt>High severity</dt><dd>2</dd></div>
+                <div><dt>Open</dt><dd>3</dd></div>
+                <div><dt>Accepted</dt><dd>1</dd></div>
+              </dl>
+              <div class="tr-rep-grid">
+                <div class="tr-rep-row tr-rep-th"><span>No.</span><span>Finding</span><span>Location</span><span>Severity</span><span>Recommendation</span><span>Status</span></div>
+                <div class="tr-rep-row"><span class="tr-no">1</span><p class="tr-f"><b>Tolerance missing</b><small>WN 1001, 4.3 Mating surfaces</small></p><span class="tr-loc">Sheet 1 · A-A · Ø80</span><span class="tr-sev tr-sev--3"><i></i><i></i><i></i>high</span><p class="tr-r">Add the fit, Ø80 f7 according to SP-120.</p><span class="tr-stat">open</span></div>
+                <div class="tr-rep-row"><span class="tr-no">2</span><p class="tr-f"><b>Overall length differs</b><small>Parts list cross-check</small></p><span class="tr-loc">Sheet 1 · A-A · Dim. 26</span><span class="tr-sev tr-sev--3"><i></i><i></i><i></i>high</span><p class="tr-r">Clarify the valid version with the parts list.</p><span class="tr-stat">open</span></div>
+                <div class="tr-rep-row"><span class="tr-no">3</span><p class="tr-f"><b>Material inconsistent</b><small>Parts list cross-check</small></p><span class="tr-loc">Title block · SL-4410 item 1</span><span class="tr-sev tr-sev--2"><i></i><i></i><i></i>medium</span><p class="tr-r">Correct the parts list to EN-GJL-250.</p><span class="tr-stat tr-stat--ok">accepted</span></div>
+                <div class="tr-rep-row"><span class="tr-no">4</span><p class="tr-f"><b>Outdated drawing reference</b><small>Revision status</small></p><span class="tr-loc">SP-120 · Section 2</span><span class="tr-sev tr-sev--1"><i></i><i></i><i></i>low</span><p class="tr-r">Update the reference to Rev. C.</p><span class="tr-stat">open</span></div>
+              </div>
+              <div class="tr-rep-foot">
+                <p><span>Drawing approval</span><b>Decision lies with engineering</b></p>
+                <div class="tr-rep-act" aria-hidden="true"><span class="tr-btn">Send for correction</span><span class="tr-btn tr-btn--dark">Accept finding</span></div>
+              </div>
+            </div>
+          </div>
+          <p class="glass mock-float tr-float tr-float--rep" aria-hidden="true"><i></i><b>Finding 3 accepted</b><span>Parts list will be corrected</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="rules" class="section">
+      <div class="wrap">
+        <header class="section-head">
+          <h2>Your rules or applicable standards.</h2>
+          <p class="lede">You can provide your own rules, in-house standards and checklists. Without them the CoWorker checks against the standards and rules for technical drawings.</p>
+        </header>
+        <div class="showcase">
+          <div class="showcase-media">
+            <div class="pfield pfield--navy mock-stage tr-rules-stage" data-play>
+              <div class="mock tr-rules" role="img" aria-label="Example with sample data: the CoWorker's rule set. Active are the in-house standards WN 1001 drawing rules with 42 rules and WN 1004 fits with 18 rules, the applicable standards for technical drawings as a baseline, the drawing review checklist v3 with 24 points and a supplier specification. The first article inspection checklist is not active. Open is rule 4.3 of WN 1001: mating surfaces carry a tolerance or fit. It applies to spigots, bearing seats and fitted bores, severity high.">
+                <div class="mock-bar"><b>Rule set</b><span>Sample data · Muster Maschinenbau GmbH</span></div>
+                <div class="tr-rules-body">
+                  <div class="tr-rset">
+                    <p class="tr-rset-h">Own in-house standards</p>
+                    <ul>
+                      <li class="is-sel"><p><b>WN 1001 Drawing rules</b><small>42 rules</small></p><i class="tr-tg is-on"></i></li>
+                      <li><p><b>WN 1004 Fits</b><small>18 rules</small></p><i class="tr-tg is-on"></i></li>
+                    </ul>
+                    <p class="tr-rset-h">Standards</p>
+                    <ul>
+                      <li><p><b>Drawing standards</b><small>Baseline without own rules</small></p><i class="tr-tg is-on"></i></li>
+                    </ul>
+                    <p class="tr-rset-h">Checklists</p>
+                    <ul>
+                      <li><p><b>Drawing review v3</b><small>24 points</small></p><i class="tr-tg is-on"></i></li>
+                      <li><p><b>First article inspection</b><small>31 points</small></p><i class="tr-tg"></i></li>
+                    </ul>
+                    <p class="tr-rset-h">Customer requirements</p>
+                    <ul>
+                      <li><p><b>Supplier spec Muster AG</b><small>9 rules</small></p><i class="tr-tg is-on"></i></li>
+                    </ul>
+                  </div>
+                  <div class="tr-rule">
+                    <p class="tr-rule-ref">WN 1001 · 4.3</p>
+                    <p class="tr-rule-h">Mating surfaces carry a tolerance or fit.</p>
+                    <div class="tr-rule-f"><span>Applies to</span><ul class="lr-chips"><li>Spigots</li><li>Bearing seats</li><li>Fitted bores</li></ul></div>
+                    <dl class="lr-kv">
+                      <div><dt>Severity</dt><dd><span class="tr-sev tr-sev--3"><i></i><i></i><i></i>high</span></dd></div>
+                      <div><dt>On deviation</dt><dd>Finding with location</dd></div>
+                      <div><dt>Recommendation from</dt><dd>Specification</dd></div>
+                      <div><dt>Source</dt><dd>WN 1001, page 12</dd></div>
+                    </dl>
+                    <p class="tr-rule-foot">Set up with engineering · 14.08.2026</p>
+                  </div>
+                </div>
+              </div>
+              <p class="glass mock-float tr-float tr-float--rules" aria-hidden="true"><i></i><b>Checklist v3 active</b><span>24 checkpoints in your order</span></p>
+            </div>
+          </div>
+          <div class="showcase-text">
+            <dl class="facts">
+              <div><dt>Standards</dt><dd>Without your own rules, the standards and rules that apply to technical drawings.</dd></div>
+              <div><dt>Own rules</dt><dd>In-house standards, internal drawing rules, customer requirements and checklists.</dd></div>
+              <div><dt>Severity</dt><dd>You define what counts as critical.</dd></div>
+              <div><dt>Systems</dt><dd>It works with the systems where your documents are kept.</dd></div>
+              <div><dt>Report</dt><dd>Structure and format your team works with.</dd></div>
+            </dl>
+            <a class="link-arrow" href="/en/ai-coworker#process">Process and fixed price</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="section section--cream">
+      <div class="wrap">
+        <header class="section-head">
+          <h2>From your rules to the finished review report.</h2>
+          <p class="lede">You define what is checked. The CoWorker reviews every incoming document against the same rules and hands the result to your team.</p>
+        </header>
+        <ol class="pp-flow" data-play>
+          <li>
+            <div class="pfield pfield--navy pp-flow-vis" aria-hidden="true">
+              <div class="pp-mini pp-detect">
+                <p class="pp-mini-head"><b>Rule set</b><span class="pp-mono">Sample data</span></p>
+                <dl>
+                  <div><dt>In-house</dt><dd>2</dd></div>
+                  <div><dt>Standards</dt><dd>Baseline</dd></div>
+                  <div><dt>Checklists</dt><dd>2</dd></div>
+                  <div><dt>Customer</dt><dd>1</dd></div>
+                </dl>
+              </div>
+            </div>
+            <span class="when">Rules</span>
+            <h3>Your rules or applicable standards.</h3>
+            <p>Your in-house standards, checklists and requirements. Without them the standards for technical drawings apply.</p>
+          </li>
+          <li>
+            <div class="pfield pfield--navy pp-flow-vis" aria-hidden="true">
+              <div class="pp-mini lr-srcs">
+                <p class="pp-mini-head"><b>Incoming</b><span class="pp-mono">LD-120</span></p>
+                <ul>
+                  <li><b>Drawing Rev. C</b><span class="pp-st">received</span></li>
+                  <li><b>Parts list SL-4410</b><span class="pp-st">received</span></li>
+                  <li><b>Specification SP-120</b><span class="pp-st">received</span></li>
+                </ul>
+              </div>
+            </div>
+            <span class="when">Intake</span>
+            <h3>Documents come from your systems.</h3>
+            <p>Drawing, parts list and specification, as your team files them.</p>
+          </li>
+          <li>
+            <div class="pfield pfield--navy pp-flow-vis" aria-hidden="true">
+              <div class="pp-mini tr-mini-run">
+                <p class="pp-mini-head"><b>Review</b><span class="pp-mono">24 of 24</span></p>
+                <span class="tr-mini-bar"><i></i></span>
+                <ul>
+                  <li><b>Drawing</b><span class="pp-st pp-st--warn">2 findings</span></li>
+                  <li><b>Cross-check</b><span class="pp-st pp-st--warn">2 findings</span></li>
+                  <li><b>Title block</b><span class="pp-st">ok</span></li>
+                </ul>
+              </div>
+            </div>
+            <span class="when">Review</span>
+            <h3>It checks and cross-checks.</h3>
+            <p>Every document against your rules and all documents against each other.</p>
+          </li>
+          <li>
+            <div class="pfield pfield--navy pp-flow-vis" aria-hidden="true">
+              <div class="pp-mini">
+                <div class="pp-note-app"><i></i><b>Review report to engineering</b><span>09:14</span></div>
+                <p class="pp-mini-line"><b>4 findings, 2 of them high</b><span>Each with location, rule and recommendation</span></p>
+                <span class="pp-pill">Decision stays with your team</span>
+              </div>
+            </div>
+            <span class="when">Decision</span>
+            <h3>Your engineers decide.</h3>
+            <p>They accept, correct or dismiss, and the report records it.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="data" class="section pp-has-eu">
+      <svg class="pp-eu" viewBox="0 0 200 200" fill="currentColor" aria-hidden="true" focusable="false"><path transform="translate(100.0 30.0) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(135.0 39.4) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(160.6 65.0) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(170.0 100.0) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(160.6 135.0) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(135.0 160.6) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(100.0 170.0) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(65.0 160.6) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(39.4 135.0) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(30.0 100.0) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(39.4 65.0) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(65.0 39.4) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/></svg>
+      <div class="wrap">
+        <header class="section-head">
+          <h2>Data and responsibility.</h2>
+          <p class="lede">Technical documents are the core of your know-how. That is why clear rules apply, which we agree with you before the start.</p>
+        </header>
+        <ul class="pp-comp">
+          <li><span class="pp-comp-ref">Responsibility</span><h3>The decision stays with your engineers</h3><p>The CoWorker marks and explains. Approval, correction and sign-off lie with your team.</p></li>
+          <li><span class="pp-comp-ref">Traceability</span><h3>Every finding with location and rule</h3><p>You see where a deviation is and which requirement it was checked against, so every finding can be verified in the document.</p></li>
+          <li><span class="pp-comp-ref">Basis</span><h3>Your rules or applicable standards</h3><p>The review checks against your rules, or without them against the standards for technical drawings. The report does not replace a certification or a confirmation of conformity.</p></li>
+          <li><span class="pp-comp-ref">Systems</span><h3>With your systems</h3><p>The CoWorker works with the systems where your documents are kept. We set up the connection.</p></li>
+          <li><span class="pp-comp-ref">Data storage</span><h3>To your requirements</h3><p>Germany, the EU or on-premise in your environment, set per project.</p></li>
+          <li><span class="pp-comp-ref">GDPR · Art. 28</span><h3>Data processing agreement</h3><p>Drafted per project for your stack and requirements. Your data is not used to train third-party models.</p><a class="link-arrow" href="/en/dpa">More on data processing</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="section" data-surface="ink">
+      <div class="wrap">
+        <header class="section-head">
+          <h2>Which review task should we take over?</h2>
+          <p class="lede">30 minutes, no obligation. You describe a typical review from your daily work, we show you how the CoWorker takes it over for you.</p>
+        </header>
+        <div class="booking">
+          <div class="booking-main">
+            <div class="booking-cal" data-cal-inline data-cal-theme="dark" data-cal-compact data-loading="Loading calendar"></div>
+            <div class="booking-popup">
+              <p>Pick a time directly in the calendar.</p>
+              <button type="button" class="btn btn-light btn-lg" data-cal-popup>Choose a time</button>
+            </div>
+          </div>
+          <div class="booking-side">
+            <h3>Prefer a callback?</h3>
+            <p class="booking-mail"><a href="mailto:business@utxo.ag">business@utxo.ag</a></p>
+            <form class="form" data-form action="https://formspree.io/f/mppabeng" method="POST">
+              <label class="field"><span>Name</span><input type="text" name="name" required autocomplete="name"></label>
+              <label class="field"><span>Email</span><input type="email" name="email" required autocomplete="email"></label>
+              <label class="field"><span>Phone (optional)</span><input type="tel" name="phone" autocomplete="tel"></label>
+              <button type="submit" class="btn btn-light">Request a callback</button>
+              <p class="form-note" data-form-note>We get back to you within one business day. By submitting you accept our <a href="/en/privacy">privacy policy</a>.</p>
+            </form>
+            <div class="form-done" data-form-done hidden role="status">
+              <h4>Thank you, we’ll be in touch.</h4>
+              <p>We get back to you within one business day to arrange your callback.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section section--cream">
+      <div class="wrap faq-layout">
+        <header class="section-head">
+          <h2>Frequently asked questions.</h2>
+        </header>
+        <div class="faq">
+          <details><summary>Which documents does the CoWorker review?</summary><p>Technical drawings, parts lists, specifications, test reports and technical documentation. We clarify with you before the start which document types and systems are involved.</p></details>
+          <details><summary>Which standards does it check against?</summary><p>Against your own rules if you provide them: in-house standards, internal guidelines and checklists. Without your own rules it checks against the standards and rules that apply to technical drawings. The review report does not replace a certification or a confirmation of conformity.</p></details>
+          <details><summary>Does it replace the review by our engineers?</summary><p>No. It takes over the recurring review work and prepares every finding with its location and rule. Whether a finding applies and how it is resolved is decided by your engineers.</p></details>
+          <details><summary>How traceable are the findings?</summary><p>Every finding names the exact location and the rule it was checked against, so it can be verified directly in the document. Because the same rules are applied the same way every time, the review is reproducible.</p></details>
+          <details><summary>Does it work with our systems?</summary><p>Yes. The CoWorker works with the systems where your documents are kept. We set up the connection as part of the development.</p></details>
+          <details><summary>What does the CoWorker cost?</summary><p>It depends on the scope, so we don’t quote flat rates. Developing it for your company is a one-off fixed price that you know before the start. Operation is covered by a subscription.</p></details>
+          <details><summary>Where is the data processed?</summary><p>We set the storage location per project to your requirements: Germany, the EU or on-premise. Your data never trains third-party models, as set out in the data processing agreement, which we draft per project for your stack and requirements.</p></details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" data-surface="ink">
+    <div class="wrap">
+      <div class="footer-top">
+        <div>
+          <img src="/resources/logos/utxo-logo-header.webp" alt="utxo AG" width="136" height="141" loading="lazy" decoding="async">
+          <p class="footer-claim">AI software and AI CoWorkers for businesses.</p>
+        </div>
+      </div>
+      <div class="footer-cols">
+      <div>
+        <p class="footer-title">Services</p>
+        <ul>
+          <li><a href="/en/ai-coworker">AI CoWorker</a></li>
+          <li><a href="/en/ai-coworker/compliance">Compliance CoWorker</a></li>
+          <li><a href="/en/ai-coworker/lead-research">Lead research</a></li>
+          <li><a href="/en/ai-coworker/sales">Sales CoWorker</a></li>
+          <li><a href="/en/ai-coworker/technical-review">Technical review</a></li>
+          <li><a href="/en/ai-phone-assistant">AI Phone Assistant</a></li>
+          <li><a href="/en/doc-indexer">Doc Indexer</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Products</p>
+        <ul>
+          <li><a href="https://anruf.guru" target="_blank" rel="noopener" aria-label="anruf.guru (opens in a new window)">anruf.guru ↗</a></li>
+          <li><a href="https://www.sokosumi.com" target="_blank" rel="noopener" aria-label="Sokosumi (opens in a new window)">Sokosumi ↗</a></li>
+          <li><a href="https://www.masumi.network" target="_blank" rel="noopener" aria-label="Masumi (opens in a new window)">Masumi ↗</a></li>
+          <li><a href="https://www.nmkr.io" target="_blank" rel="noopener" aria-label="NMKR (opens in a new window)">NMKR ↗</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Guides</p>
+        <ul>
+          <li><a href="/en/coworker-vs-copilot">CoWorker vs. Copilot</a></li>
+          <li><a href="/en/ai-in-business">AI in business</a></li>
+          <li><a href="/en/eu-ai-act">EU AI Act</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Company</p>
+        <ul>
+          <li><a href="/en#about">About</a></li>
+          <li><a href="/en#projects">Projects</a></li>
+          <li><a href="/en/press">Press</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Legal</p>
+        <ul>
+          <li><a href="/en/imprint">Imprint</a></li>
+          <li><a href="/en/privacy">Privacy Policy</a></li>
+          <li><a href="/en/terms">Terms</a></li>
+          <li><a href="/en/acceptable-use">Acceptable Use Policy</a></li>
+          <li><a href="/en/dpa">DPA</a></li>
+          <li><button type="button" class="footer-link" data-consent-open hidden>Cookie settings</button></li>
+        </ul>
+      </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 utxo AG · Dammstrasse 16 · 6300 Zug · Switzerland</span>
+        <span>Hosting to your requirements · GDPR</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+<script src="/config.js"></script>
+<script src="/main.js"></script>
+</body>
+</html>

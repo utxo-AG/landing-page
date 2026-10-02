@@ -5,13 +5,37 @@ window.UTXO_DOCDEMO = {
    "restart": "Neu starten",
    "building": "Hardturmstrasse 128, Zürich",
    "steps": [
-    "Dokumente hochladen",
+    "Hochladen und indexieren",
+    "Rechte prüfen",
     "Rolle wählen",
-    "Das Gebäude fragen"
+    "Fragen"
    ],
+   "stepOf": "Schritt {n} von {t}",
+   "help": [
+    "Der Doc Indexer liest jedes Dokument, erkennt die Art und übernimmt es in einen gemeinsamen Index. Ihre Ablage bleibt, wie sie ist.",
+    "Die KI schlägt pro Dokument vor, welche Rolle es sehen darf. Klicken Sie auf ein Feld, um eine Freigabe zu ändern.",
+    "Alle Rollen fragen dieselbe Quelle. Jede Rolle sieht nur die Dokumente, die ihr freigegeben sind.",
+    "Die Antwort entsteht nur aus freigegebenen Dokumenten. Jede Aussage nennt ihre Quelle: Klicken Sie darauf, um die markierte Stelle im Original zu sehen."
+   ],
+   "index": {
+    "title": "Gemeinsamer Index",
+    "reading": "liest Seite {p} von {t}",
+    "done": "indexiert",
+    "docs": "Dokumente",
+    "pages": "Seiten",
+    "next": "Weiter: Rechte prüfen"
+   },
+   "assemble": {
+    "title": "Suche in den freigegebenen Dokumenten",
+    "hit": "Treffer",
+    "miss": "durchsucht, kein Treffer",
+    "skip": "nicht freigegeben, übersprungen",
+    "built": "Zusammengefasst aus {n} freigegebenen Dokumenten",
+    "builtOne": "Zusammengefasst aus 1 freigegebenen Dokument"
+   },
    "upload": {
     "title": "Laden Sie die Gebäudeakte einmal hoch.",
-    "text": "Die KI ordnet jedes Dokument ein und schlägt vor, welche Rolle es sehen darf. Sie können jede Freigabe ändern.",
+    "text": "Der Doc Indexer liest die Dokumente und übernimmt sie in einen gemeinsamen Index. Danach schlägt die KI vor, welche Rolle welches Dokument sehen darf.",
     "button": "5 Dokumente hochladen",
     "analyzing": "KI analysiert",
     "queued": "In der Warteschlange",
@@ -58,13 +82,37 @@ window.UTXO_DOCDEMO = {
    "restart": "Start over",
    "building": "Hardturmstrasse 128, Zurich",
    "steps": [
-    "Upload documents",
+    "Upload and index",
+    "Review permissions",
     "Choose a role",
-    "Ask the building"
+    "Ask"
    ],
+   "stepOf": "Step {n} of {t}",
+   "help": [
+    "The Doc Indexer reads every document, recognises its type and adds it to one shared index. Your file storage stays as it is.",
+    "The AI suggests which role may see each document. Click a field to change a permission.",
+    "All roles ask the same source. Each role only sees the documents shared with it.",
+    "The answer is built only from shared documents. Every statement names its source: click it to see the highlighted passage in the original."
+   ],
+   "index": {
+    "title": "Shared index",
+    "reading": "reading page {p} of {t}",
+    "done": "indexed",
+    "docs": "Documents",
+    "pages": "Pages",
+    "next": "Next: review permissions"
+   },
+   "assemble": {
+    "title": "Searching the shared documents",
+    "hit": "Match",
+    "miss": "searched, no match",
+    "skip": "not shared, skipped",
+    "built": "Summarised from {n} shared documents",
+    "builtOne": "Summarised from 1 shared document"
+   },
    "upload": {
     "title": "Upload the building file once.",
-    "text": "The AI classifies every document and suggests which role may see it. You can change every permission.",
+    "text": "The Doc Indexer reads the documents and adds them to one shared index. Then the AI suggests which role may see which document.",
     "button": "Upload 5 documents",
     "analyzing": "AI is analysing",
     "queued": "Queued",

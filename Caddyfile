@@ -12,19 +12,42 @@ header {
 	Referrer-Policy "strict-origin-when-cross-origin"
 }
 
-@home_de expression `{path} == "/" && ({http.request.cookie.utxo_lang} == "de" || ({http.request.cookie.utxo_lang} != "en" && {http.request.header.Accept-Language}.matches("^de")))`
-rewrite @home_de /index.de.html
-
-@home path /
-header @home Vary "Accept-Language, Cookie"
-
-@indexfile path /index.html
-redir @indexfile / permanent
-
-@htmlfile {
-	path_regexp htmlext ^/(.+)\.html$
+map {path} {legacy} {
+	~^/index(\.html)?$                       /en
+	~^/index\.de(\.html)?$                   /de
+	~^/agents(\.html)?$                      /en/ai-coworker
+	~^/agents\.de(\.html)?$                  /de/ki-coworker
+	~^/call_assistant(\.html)?$              /en/ai-phone-assistant
+	~^/call_assistant\.de(\.html)?$          /de/ki-telefonassistent
+	~^/doc_indexer(\.html)?$                 /en/doc-indexer
+	~^/doc_indexer\.de(\.html)?$             /de/doc-indexer
+	~^/comparison(\.html)?$                  /en/coworker-vs-copilot
+	~^/comparison\.de(\.html)?$              /de/coworker-vs-copilot
+	~^/ai-in-business(\.html)?$              /en/ai-in-business
+	~^/ai-in-business\.de(\.html)?$          /de/ki-im-unternehmen
+	~^/eu-ai-act(\.html)?$                   /en/eu-ai-act
+	~^/eu-ai-act\.de(\.html)?$               /de/eu-ai-act
+	~^/ai-customer-acquisition(\.html)?$     /en/ai-customer-acquisition
+	~^/ai-customer-acquisition\.de(\.html)?$ /de/kundenakquise-mit-ki
+	~^/press(\.html)?$                       /en/press
+	~^/press\.de(\.html)?$                   /de/presse
+	~^/imprint(\.html)?$                     /en/imprint
+	~^/imprint\.de(\.html)?$                 /de/impressum
+	~^/privacy(\.html)?$                     /en/privacy
+	~^/privacy\.de(\.html)?$                 /de/datenschutz
+	~^/terms(\.html)?$                       /en/terms
+	~^/terms\.de(\.html)?$                   /de/agb
+	~^/acceptable-use(\.html)?$              /en/acceptable-use
+	~^/acceptable-use\.de(\.html)?$          /de/nutzungsrichtlinie
+	~^/dpa(\.html)?$                         /en/dpa
+	~^/dpa\.de(\.html)?$                     /de/avv
+	~^/(de|en)/index(\.html)?$               /${1}
+	default                                  ""
 }
-redir @htmlfile /{re.htmlext.1} permanent
+
+@root path /
+header @root Vary "Accept-Language, Cookie"
+header @root Cache-Control "private, no-store"
 
 @staticassets path *.js *.css
 header @staticassets Cache-Control "no-cache, must-revalidate"
@@ -33,12 +56,31 @@ header @staticassets Cache-Control "no-cache, must-revalidate"
 header @media Cache-Control "public, max-age=604800"
 
 @pages {
-	not path *.js *.css *.svg *.png *.jpg *.jpeg *.webp *.ico *.woff *.woff2 *.pdf
+	not path / *.js *.css *.svg *.png *.jpg *.jpeg *.webp *.ico *.woff *.woff2 *.pdf
 }
 header @pages Cache-Control "no-cache, must-revalidate"
 
-@internal path /docs/* /partials/* *.md /removed-sections /removed-sections.html *.blend *.blend1
-respond @internal 404
+route {
+	@internal path /docs/* /partials/* *.md /removed-sections /removed-sections.html *.blend *.blend1 /Caddyfile /Staticfile /.railwayignore /.gitignore
+	respond @internal 404
 
-try_files {path} {path}.html {path}/ =404
+	@root_de expression `{path} == "/" && ({http.request.cookie.utxo_lang} == "de" || ({http.request.cookie.utxo_lang} != "en" && {http.request.header.Accept-Language}.matches("^de")))`
+	redir @root_de /de 302
+	redir @root /en 302
+
+	@legacy expression `{legacy} != ""`
+	redir @legacy {legacy}{?query} 301
+
+	@htmlfile path_regexp htmlext ^/(.+)\.html$
+	redir @htmlfile /{re.htmlext.1}{?query} 301
+
+	@trailing path_regexp trailing ^(/.+)/$
+	redir @trailing {re.trailing.1}{?query} 301
+
+	rewrite /de /de/index.html
+	rewrite /en /en/index.html
+
+	try_files {path} {path}.html =404
+}
+
 file_server

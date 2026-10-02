@@ -1,195 +1,267 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://utxo.ag/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/index.de"/>
+    <loc>https://utxo.ag/en</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/"/>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://utxo.ag/index.de</loc>
-    <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/index.de"/>
+    <loc>https://utxo.ag/de</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/"/>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://utxo.ag/agents</loc>
-    <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/agents"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/agents.de"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/agents"/>
+    <loc>https://utxo.ag/en/ai-coworker</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/ki-coworker"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/ai-coworker"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/ai-coworker"/>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://utxo.ag/agents.de</loc>
-    <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/agents"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/agents.de"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/agents"/>
+    <loc>https://utxo.ag/de/ki-coworker</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/ki-coworker"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/ai-coworker"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/ai-coworker"/>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://utxo.ag/call_assistant</loc>
-    <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/call_assistant"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/call_assistant.de"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/call_assistant"/>
+    <loc>https://utxo.ag/en/ai-phone-assistant</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/ki-telefonassistent"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/ai-phone-assistant"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/ai-phone-assistant"/>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://utxo.ag/call_assistant.de</loc>
-    <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/call_assistant"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/call_assistant.de"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/call_assistant"/>
+    <loc>https://utxo.ag/de/ki-telefonassistent</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/ki-telefonassistent"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/ai-phone-assistant"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/ai-phone-assistant"/>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://utxo.ag/comparison</loc>
-    <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/comparison"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/comparison.de"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/comparison"/>
+    <loc>https://utxo.ag/en/doc-indexer</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/doc-indexer"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/doc-indexer"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/doc-indexer"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://utxo.ag/de/doc-indexer</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/doc-indexer"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/doc-indexer"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/doc-indexer"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://utxo.ag/en/coworker-vs-copilot</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/coworker-vs-copilot"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/coworker-vs-copilot"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/coworker-vs-copilot"/>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://utxo.ag/comparison.de</loc>
-    <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/comparison"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/comparison.de"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/comparison"/>
+    <loc>https://utxo.ag/de/coworker-vs-copilot</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/coworker-vs-copilot"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/coworker-vs-copilot"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/coworker-vs-copilot"/>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://utxo.ag/ai-in-business</loc>
-    <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/ai-in-business"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/ai-in-business.de"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/ai-in-business"/>
+    <loc>https://utxo.ag/en/ai-in-business</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/ki-im-unternehmen"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/ai-in-business"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/ai-in-business"/>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://utxo.ag/ai-in-business.de</loc>
-    <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/ai-in-business"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/ai-in-business.de"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/ai-in-business"/>
+    <loc>https://utxo.ag/de/ki-im-unternehmen</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/ki-im-unternehmen"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/ai-in-business"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/ai-in-business"/>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://utxo.ag/eu-ai-act</loc>
-    <lastmod>2026-09-15</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/eu-ai-act"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/eu-ai-act.de"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/eu-ai-act"/>
+    <loc>https://utxo.ag/en/eu-ai-act</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/eu-ai-act"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/eu-ai-act"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/eu-ai-act"/>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://utxo.ag/eu-ai-act.de</loc>
-    <lastmod>2026-09-15</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/eu-ai-act"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/eu-ai-act.de"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/eu-ai-act"/>
+    <loc>https://utxo.ag/de/eu-ai-act</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/eu-ai-act"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/eu-ai-act"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/eu-ai-act"/>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://utxo.ag/imprint</loc>
-    <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/imprint"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/imprint.de"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/imprint"/>
+    <loc>https://utxo.ag/en/imprint</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/impressum"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/imprint"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/imprint"/>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://utxo.ag/imprint.de</loc>
-    <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/imprint"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/imprint.de"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/imprint"/>
+    <loc>https://utxo.ag/de/impressum</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/impressum"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/imprint"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/imprint"/>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://utxo.ag/privacy</loc>
-    <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/privacy"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/privacy.de"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/privacy"/>
+    <loc>https://utxo.ag/en/privacy</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/datenschutz"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/privacy"/>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://utxo.ag/privacy.de</loc>
-    <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/privacy"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/privacy.de"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/privacy"/>
+    <loc>https://utxo.ag/de/datenschutz</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/datenschutz"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/privacy"/>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://utxo.ag/terms</loc>
-    <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/terms"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/terms.de"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/terms"/>
+    <loc>https://utxo.ag/en/terms</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/agb"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/terms"/>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://utxo.ag/terms.de</loc>
-    <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/terms"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/terms.de"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/terms"/>
+    <loc>https://utxo.ag/de/agb</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/agb"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/terms"/>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://utxo.ag/acceptable-use</loc>
-    <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/acceptable-use"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/acceptable-use.de"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/acceptable-use"/>
+    <loc>https://utxo.ag/en/acceptable-use</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/nutzungsrichtlinie"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/acceptable-use"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/acceptable-use"/>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://utxo.ag/acceptable-use.de</loc>
-    <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/acceptable-use"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/acceptable-use.de"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/acceptable-use"/>
+    <loc>https://utxo.ag/de/nutzungsrichtlinie</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/nutzungsrichtlinie"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/acceptable-use"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/acceptable-use"/>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://utxo.ag/dpa</loc>
-    <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/dpa"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/dpa.de"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/dpa"/>
+    <loc>https://utxo.ag/en/dpa</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/avv"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/dpa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/dpa"/>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://utxo.ag/dpa.de</loc>
-    <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/dpa"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/dpa.de"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/dpa"/>
+    <loc>https://utxo.ag/de/avv</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/avv"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/dpa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/dpa"/>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://utxo.ag/press</loc>
-    <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/press"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/press.de"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/press"/>
+    <loc>https://utxo.ag/en/press</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/presse"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/press"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/press"/>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://utxo.ag/press.de</loc>
-    <lastmod>2026-09-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/press"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/press.de"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/press"/>
+    <loc>https://utxo.ag/de/presse</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/presse"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/press"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/press"/>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://utxo.ag/de/ki-coworker/compliance</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/ki-coworker/compliance"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/ai-coworker/compliance"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/ai-coworker/compliance"/>
+  </url>
+  <url>
+    <loc>https://utxo.ag/en/ai-coworker/compliance</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/ki-coworker/compliance"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/ai-coworker/compliance"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/ai-coworker/compliance"/>
+  </url>
+  <url>
+    <loc>https://utxo.ag/de/ki-coworker/lead-recherche</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/ki-coworker/lead-recherche"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/ai-coworker/lead-research"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/ai-coworker/lead-research"/>
+  </url>
+  <url>
+    <loc>https://utxo.ag/en/ai-coworker/lead-research</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/ki-coworker/lead-recherche"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/ai-coworker/lead-research"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/ai-coworker/lead-research"/>
+  </url>
+  <url>
+    <loc>https://utxo.ag/de/ki-coworker/vertrieb</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/ki-coworker/vertrieb"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/ai-coworker/sales"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/ai-coworker/sales"/>
+  </url>
+  <url>
+    <loc>https://utxo.ag/en/ai-coworker/sales</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/ki-coworker/vertrieb"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/ai-coworker/sales"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/ai-coworker/sales"/>
+  </url>
+  <url>
+    <loc>https://utxo.ag/de/ki-coworker/technische-pruefung</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/ki-coworker/technische-pruefung"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/ai-coworker/technical-review"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/ai-coworker/technical-review"/>
+  </url>
+  <url>
+    <loc>https://utxo.ag/en/ai-coworker/technical-review</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://utxo.ag/de/ki-coworker/technische-pruefung"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://utxo.ag/en/ai-coworker/technical-review"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/ai-coworker/technical-review"/>
   </url>
 </urlset>
