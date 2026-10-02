@@ -1,50 +1,65 @@
-  <!-- ============ FOOTER ============ -->
-  <footer data-surface="ink" style="background:#000;color:#fff;padding:clamp(56px,8vw,80px) clamp(20px,5vw,64px) clamp(36px,4vw,48px);border-top:1px solid rgba(255,255,255,.12);">
-    <div style="max-width:1200px;margin:0 auto;">
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));row-gap:clamp(32px,5vw,64px);column-gap:clamp(8px,1.25vw,16px);">
+  <footer class="site-footer" data-surface="ink">
+    <div class="wrap">
+      <div class="footer-top">
         <div>
-          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.58);">Product</div>
-          <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
-            <a href="/#team" style="transition:color .2s var(--ease);" style-hover="color:#fff">Team</a>
-            <a href="/#stories" style="transition:color .2s var(--ease);" style-hover="color:#fff">Projects</a>
-            <a href="/#products" style="transition:color .2s var(--ease);" style-hover="color:#fff">Products</a>
-            <a href="/call_assistant" style="transition:color .2s var(--ease);" style-hover="color:#fff">Call Assistant</a>
-            <a href="/agents" style="transition:color .2s var(--ease);" style-hover="color:#fff">Custom AI</a>
-          </div>
-        </div>
-        <div>
-          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.58);">Guides</div>
-          <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
-            <a href="/comparison" style="transition:color .2s var(--ease);" style-hover="color:#fff">CoWorker vs. Copilot</a>
-            <a href="/ai-in-business" style="transition:color .2s var(--ease);" style-hover="color:#fff">AI in business</a>
-            <a href="/eu-ai-act" style="transition:color .2s var(--ease);" style-hover="color:#fff">EU AI Act</a>
-          </div>
-        </div>
-        <div>
-          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.58);">Company</div>
-          <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
-            <a href="/press" style="transition:color .2s var(--ease);" style-hover="color:#fff">Press</a>
-            <a href="https://masumi.network" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">masumi ↗</a>
-            <a href="https://sokosumi.com" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">sokosumi ↗</a>
-            <a href="https://www.nmkr.io" target="_blank" rel="noopener" style="transition:color .2s var(--ease);" style-hover="color:#fff">NMKR ↗</a>
-          </div>
-        </div>
-        <div>
-          <div style="font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.58);">Legal</div>
-          <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:15px;color:rgba(255,255,255,.75);">
-            <a href="/imprint" style="transition:color .2s var(--ease);" style-hover="color:#fff">Imprint</a>
-            <a href="/privacy" style="transition:color .2s var(--ease);" style-hover="color:#fff">Privacy Policy</a>
-            <a href="/terms" style="transition:color .2s var(--ease);" style-hover="color:#fff">Terms</a>
-            <a href="/acceptable-use" style="transition:color .2s var(--ease);" style-hover="color:#fff">Acceptable Use Policy</a>
-            <a href="/dpa" style="transition:color .2s var(--ease);" style-hover="color:#fff">Data Processing Agreement</a>
-            <button type="button" class="footer-link" data-consent-open="" hidden>Cookie settings</button>
-          </div>
+          <img src="/resources/logos/utxo-logo-header.webp" alt="utxo AG" width="136" height="141" loading="lazy" decoding="async">
+          <p class="footer-claim">AI software and AI CoWorkers for businesses.</p>
         </div>
       </div>
-      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:clamp(40px,6vw,64px);padding-top:24px;border-top:1px solid rgba(255,255,255,.12);font-family:var(--mono);font-size:12px;letter-spacing:.03em;color:rgba(255,255,255,.5);">
-        <img loading="lazy" decoding="async" src="resources/logos/utxo-wordmark-footer.webp" alt="utxo AG" width="40" height="40" style="height:20px;width:auto;display:block;object-fit:contain;">
+      <div class="footer-cols">
+      <div>
+        <p class="footer-title">Services</p>
+        <ul>
+          <li><a href="/en/ai-coworker">AI CoWorker</a></li>
+          <li><a href="/en/ai-coworker/compliance">Compliance CoWorker</a></li>
+          <li><a href="/en/ai-coworker/lead-research">Lead research</a></li>
+          <li><a href="/en/ai-coworker/sales">Sales CoWorker</a></li>
+          <li><a href="/en/ai-coworker/technical-review">Technical review</a></li>
+          <li><a href="/en/ai-phone-assistant">AI Phone Assistant</a></li>
+          <li><a href="/en/doc-indexer">Doc Indexer</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Products</p>
+        <ul>
+          <li><a href="https://anruf.guru" target="_blank" rel="noopener" aria-label="anruf.guru (opens in a new window)">anruf.guru ↗</a></li>
+          <li><a href="https://www.sokosumi.com" target="_blank" rel="noopener" aria-label="Sokosumi (opens in a new window)">Sokosumi ↗</a></li>
+          <li><a href="https://www.masumi.network" target="_blank" rel="noopener" aria-label="Masumi (opens in a new window)">Masumi ↗</a></li>
+          <li><a href="https://www.nmkr.io" target="_blank" rel="noopener" aria-label="NMKR (opens in a new window)">NMKR ↗</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Guides</p>
+        <ul>
+          <li><a href="/en/coworker-vs-copilot">CoWorker vs. Copilot</a></li>
+          <li><a href="/en/ai-in-business">AI in business</a></li>
+          <li><a href="/en/eu-ai-act">EU AI Act</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Company</p>
+        <ul>
+          <li><a href="/en#about">About</a></li>
+          <li><a href="/en#projects">Projects</a></li>
+          <li><a href="/en/press">Press</a></li>
+          <li><a href="/en#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Legal</p>
+        <ul>
+          <li><a href="/en/imprint">Imprint</a></li>
+          <li><a href="/en/privacy">Privacy Policy</a></li>
+          <li><a href="/en/terms">Terms</a></li>
+          <li><a href="/en/acceptable-use">Acceptable Use Policy</a></li>
+          <li><a href="/en/dpa">DPA</a></li>
+          <li><button type="button" class="footer-link" data-consent-open hidden>Cookie settings</button></li>
+        </ul>
+      </div>
+      </div>
+      <div class="footer-bottom">
         <span>© 2026 utxo AG · Dammstrasse 16 · 6300 Zug · Switzerland</span>
-        <span>HOSTED IN EU/CH · GDPR · EU AI ACT</span>
+        <span>Hosting to your requirements · GDPR</span>
       </div>
     </div>
   </footer>

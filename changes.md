@@ -1,5 +1,274 @@
 # Changes
 
+## 2eae75d4 — 2026-10-02 UTC
+
+- Pages moved to "de/" "en/"
+- Translated slugs per language
+- Language head script removed
+- Root redirects 302 by language
+- Legacy URLs 301 redirect map
+- ".html" and trailing slash 301
+- Query strings kept on redirects
+- Root-absolute asset and link paths
+- Sitemap rebuilt with new URLs
+- Subpages added to "sitemap.xml"
+- New editorial system "style.css"
+- Cream surface replaces grey
+- Shared section padding
+- Glass header after scroll
+- Header ink over dark sections
+- Dark glass "btn-primary" sitewide
+- Light glass "btn-light" sitewide
+- Glass video play button
+- Pixel field soft falloff
+- Blue document highlights
+- New header footer partials
+- New footer claim
+- Footer rule aligned
+- Mobile menu with Escape
+- Home rebuilt nine calm blocks
+- Hero link and trust removed
+- Hero index list removed
+- Smoked glass "hero-swipe" panel
+- Pixel grid under swipe
+- CoWorker avatars in panel
+- Hero grid pauses off screen
+- Logo row equal grid
+- NMKR logo in references
+- HTML product mockups added
+- Doc mockup reads "docdemo.js"
+- Call float below board
+- Products heading "Live im Betrieb"
+- Products tiles under ink
+- Joint Serviceplan products block
+- Sokosumi app mockup "mock-soko"
+- Masumi payment mockup "mock-masumi"
+- Video click to play
+- Serviceplan text reference case
+- RST flow removed
+- Press band German headlines
+- Minimal control with EU watermark
+- Static team grid
+- Team photos uniform crop
+- Shreya removed from team
+- Duo carousel marquee code removed
+- FAQ after contact
+- Home ported to English
+- English mockups mail board call
+- Video labelled in German
+- Press band filters English
+- Calendar height reserved and widened
+- Calendar dark compact CLS zero
+- Mobile calendar opens popup
+- Calendar card unified
+- Calendar skeleton placeholder
+- Callback form message removed
+- Form aligned with calendar
+- Booking block on product pages
+- Launch video web encode added
+- Poster "anruf-guru-launch-poster.webp" added
+- German subtitles "anruf-guru-launch.de.vtt"
+- Logos "masumi.webp" "rst.webp" "lcx.webp"
+- "nmkr.svg" copy without space
+- "anruf-guru-mark.svg" from anruf.guru
+- Light Serviceplan logo added
+- Sokosumi mock avatars added
+- Lena avatar asset added
+- "themis-avatar.webp" added
+- Whitepaper cover thumbnails added
+- New "products.css" component sheet
+- "_initDocViz" renders doc mockups
+- "Service" JSON-LD product pages
+- CoWorker pages rebuilt per plan
+- Sales quote hero mockup
+- Pixel face kept in hero
+- Memory diagram on "difference"
+- Six tiles with micro-mockups
+- RST reference card reworded
+- Thirty-day timeline on "process"
+- Audit log mockup added
+- Calm compliance rows added
+- EU stars watermark once
+- Pricing as two cards
+- Compliance wording corrected
+- Phone assistant pages rebuilt
+- Practice board hero mockup
+- Live demo on "#demo"
+- Demo bar names utxo AG
+- Call flow with cards
+- Capabilities as "ref-lines"
+- Integration diagram on "custom"
+- anruf.guru crosslink section
+- Compact transcript demo idle
+- Phone hero float uncovered
+- FAQ with anruf.guru difference
+- Hosting and AVV facts
+- Doc Indexer pages rebuilt
+- Hero mockup tenant lease question
+- Permission matrix from "docdemo.js"
+- Role comparison from "docdemo.js"
+- Document strip above demo
+- Raster screenshots replaced
+- Use cases with example questions
+- Doc Indexer FAQ added
+- Compliance subpage added
+- Regulatory Watch report mockup
+- Source catalog market cards
+- Onboarding chat with plan
+- Finding deep-dive mockup
+- Pipeline funnel diagram added
+- Legal note no advice
+- New "th-" CSS block
+- Lead research subpage added
+- Dossier hero mockup
+- Website detail mockup
+- Competitor benchmark mockup
+- Lead card mockup
+- "FAQPage" JSON-LD on lead
+- New "lr-" CSS block
+- Subpage links in footer
+- Guides use new partials
+- Guide sections on tokens
+- Guides get "booking" block
+- "cmpv-hl" band removed
+- "cmpv" mockups moved to classes
+- "aibp" mockups moved to classes
+- Rotating word stable size
+- CTA "Erstgespräch buchen" on guide
+- EU tables stack on mobile
+- EU TOC collapsible on mobile
+- TOC active state
+- EU sources cream band
+- EU closing ink CTA band
+- Press pages calm rebuild
+- Press logos optically normalised
+- Press logos in hero
+- LBBOnline headline added
+- Sokosumi called marketing platform
+- Hosting wording Germany or EU
+- Dead "pages.css" classes removed
+- Legal pages new chrome
+- Exclusion clauses for products
+- Privacy video note added
+- Email unified business@utxo.ag
+- Imprint EN register label
+- Legal dates 2026-10-02
+- Legal typography refined
+- Legal tables stack mobile
+- Legal dashes replaced
+- "utxo AG" spelling in legal
+- Impressum facts list
+- "CLAUDE.md" rewritten for relaunch
+- Relaunch plan status note
+- Shorter "hero" subtext
+- Multi-CoWorker inbox mockup
+- "Rückfrage" float repositioned
+- "Werkzeuge" replaced with "Tools"
+- Tile links to subpages
+- Tile badges added
+- "RST" reference below tiles
+- Kennenlernen entry card added
+- Glass timeline on pastel
+- Compact effort row
+- "Netzwerk" float repositioned
+- "whitepapers" top spacing restored
+- Footer label "Compliance-CoWorker"
+- Guide pages "Tools" wording
+- Subpages in footer and sitemap
+- Hero panel fades downward
+- Kai added to panel
+- Logo caption below logos
+- Logo row above fold
+- Call card landscape layout
+- Doc mockup shorter
+- anruf.guru logo larger
+- Press logo marquee added
+- Press section gradient surface
+- EU stars more visible
+- Sales CoWorker subpage added
+- Deal journey hero mockup
+- Quote mockup with origins
+- Negotiation briefing mockup
+- Special cases check mockup
+- Pipeline follow-up board mockup
+- Lena portrait WebP added
+- New "sl-" CSS block
+- Technical review subpage added
+- Drawing hero with annotations
+- Finding detail mockup added
+- Document consistency matrix added
+- Review report mockup added
+- Rule set mockup added
+- New "tr-" CSS block
+- Lead hero research run animation
+- Lead hero lede shortened
+- Lead badges overlap mock edges
+- Benchmark badge moved bottom left
+- Themis name removed from pages
+- Compliance headline on two lines
+- Compliance hero radar animation
+- Source suggestion badge added
+- Own and new sources copy
+- Doc Indexer hero animation added
+- Hero headline and lede shortened
+- Shared source section added
+- Role filtered index visual
+- Summary showcase uses docquote
+- Demo now four steps
+- Indexing view with progress
+- Answer scan before reply
+- Viewer highlight sweep added
+- All document types copy
+- Real estate FAQ added
+- Sales hero deal desk added
+- Quote assembles line by line
+- Hero headline two lines
+- Journey shows negotiation day
+- Hero drawing check beside headline
+- Duplicate hero mockup removed
+- Headline shortened to two lines
+- Shortened all subpage hero headlines
+- Hero ledes one sentence
+- EU AI Act H1 shortened
+- Unused assets deleted
+- "Francis.webp" renamed
+- EN team roles translated
+- CoWorker avatars removed from panel
+- Hero grid fade matches panel
+- Home hero two lines desktop
+- Hosting wording per project
+- AVV individuell sitewide
+- Pilot in rund 30 Tagen
+- Telefonassistent KI-Hinweis FAQ
+- CRM Bestandskunden klar formuliert
+- Prüfung Regeln oder Normen
+- AGB renamed and individualised
+- AGB price list references removed
+- AGB hosting per contract
+- AVV marked as template
+- Legal naming aligned sitewide
+- Lawyer review list added
+- Doc Indexer local storage option
+- Home H1 two lines only
+- "Wir entwickeln sie" removed
+- Hero panel copy centred
+- Serviceplan logo in references
+- CoWorker tiles lede reworded
+- Demo box fits viewport
+- Compact demo spacing
+- Demo anchor on box
+- Demo scroll respects header
+
+## doc-indexer-page-session — 2026-09-23 UTC
+
+- New page "doc_indexer" DE EN
+- "SoftwareApplication" JSON-LD product pages
+- Footer link "Doc Indexer" everywhere
+- Home doc card "Mehr erfahren"
+- CTA "Termin vereinbaren" "call_assistant.de"
+- Sitemap "doc_indexer" lastmod bumped
+- CTA "Book a meeting" "call_assistant"
+
 ## demo-height-session — 2026-09-15 UTC
 
 - "stage-call" height 720 650 mobile
@@ -9,6 +278,7 @@
 ## seo-subpages-session — 2026-09-15 UTC
 
 - New page "eu-ai-act" DE EN
+- New page "ai-customer-acquisition" DE EN
 - Guide classes ".gd-*" in "pages.css"
 - Footer "Guides" links on all pages
 - Sitemap entries for new guides

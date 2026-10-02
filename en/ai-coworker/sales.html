@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="canonical" href="https://utxo.ag/en/ai-coworker/sales">
+<link rel="alternate" hreflang="de" href="https://utxo.ag/de/ki-coworker/vertrieb">
+<link rel="alternate" hreflang="en" href="https://utxo.ag/en/ai-coworker/sales">
+<link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/ai-coworker/sales">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sales CoWorker: AI for quotes and negotiations | utxo AG</title>
+<meta name="description" content="The sales CoWorker supports your sales team from quote to closing: conditions, price rules and framework agreements looked up, next step prepared, approval by your team.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="utxo AG">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Sales CoWorker: AI for quotes and negotiations | utxo AG">
+<meta property="og:description" content="The sales CoWorker supports your sales team from quote to closing: conditions, price rules and framework agreements looked up, next step prepared, approval by your team.">
+<meta property="og:url" content="https://utxo.ag/en/ai-coworker/sales">
+<meta property="og:image" content="https://utxo.ag/resources/og/og-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Service","@id":"https://utxo.ag/en/ai-coworker/sales#service","name":"Sales CoWorker","alternateName":"AI CoWorker for sales and quotes","serviceType":"AI-assisted quoting and sales preparation, custom developed","description":"The sales CoWorker supports your sales team from quote to closing: conditions, price rules and framework agreements looked up, next step prepared, approval by your team.","url":"https://utxo.ag/en/ai-coworker/sales","inLanguage":"en","provider":{"@type":"Organization","@id":"https://utxo.ag/#org","name":"utxo AG","url":"https://utxo.ag/"},"areaServed":["CH","DE","AT"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utxo.ag/en"},{"@type":"ListItem","position":2,"name":"AI CoWorker","item":"https://utxo.ag/en/ai-coworker"},{"@type":"ListItem","position":3,"name":"Sales","item":"https://utxo.ag/en/ai-coworker/sales"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does the CoWorker send quotes on its own?","acceptedAnswer":{"@type":"Answer","text":"No, not without approval. It prepares quotes, briefings and follow-up emails as drafts. Whatever goes to customers is approved by a person on your team."}},{"@type":"Question","name":"What happens if an inquiry is missing information?","acceptedAnswer":{"@type":"Answer","text":"It asks instead of guessing. Missing details such as material, quantity or delivery date are requested from the customer or your team before it calculates."}},{"@type":"Question","name":"Which systems does it work with?","acceptedAnswer":{"@type":"Answer","text":"With the systems your sales team uses, such as ERP, CRM, price lists, contracts and email. Which systems are connected, and with which permissions, is agreed with you per use case. Missing interfaces are developed to fit."}},{"@type":"Question","name":"How does it know our conditions and special cases?","acceptedAnswer":{"@type":"Answer","text":"From your systems and from the rules we define together: price rules, discount limits, framework agreements and exceptions. Anything outside these rules is flagged for approval."}},{"@type":"Question","name":"Does it replace our sales team?","acceptedAnswer":{"@type":"Answer","text":"No. It takes over lookups, calculation and preparation. Conversations, negotiation and decisions stay with your team."}},{"@type":"Question","name":"What does the CoWorker cost?","acceptedAnswer":{"@type":"Answer","text":"It depends on the scope, so we don’t quote flat rates. Development for your company is a one-off fixed price that you know before the start. Operation is covered by a subscription."}},{"@type":"Question","name":"How quickly is it ready?","acceptedAnswer":{"@type":"Answer","text":"Typically as a pilot in about 30 days: workshop, fixed-price offer, development on your real data, a test run alongside your existing process, and go-live. We give you the exact schedule in the offer."}},{"@type":"Question","name":"Where is the data processed?","acceptedAnswer":{"@type":"Answer","text":"We set the storage location per project to your requirements: Germany, the EU or on-premise. Your data never trains third-party models, as set out in the data processing agreement, which we draft per project for your stack and requirements."}}]}]}</script>
+<link rel="preload" href="/fonts/manrope-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibm-plex-sans-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibm-plex-mono-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="/resources/FAVICONS/icon.svg" type="image/svg+xml">
+<link rel="icon" href="/resources/FAVICONS/favicon-96x96.png" sizes="96x96" type="image/png">
+<link rel="apple-touch-icon" href="/resources/FAVICONS/apple-touch-icon-180x180.png">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/products.css">
+</head>
+<body>
+<div id="utxo-root">
+
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap site-header-inner">
+      <a class="brand" href="/en" aria-label="utxo AG, home"><img src="/resources/logos/utxo-logo-header.webp" alt="utxo AG" width="136" height="141"></a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="/en#services" aria-current="true">Services</a>
+        <a href="/en#products">Products</a>
+        <a href="/en#projects">Projects</a>
+        <a href="/en#about">About</a>
+      </nav>
+      <div class="header-actions">
+        <span class="lang"><a href="/de/ki-coworker/vertrieb" hreflang="de" lang="de" data-set-lang="de">DE</a><span aria-hidden="true">/</span><a href="/en/ai-coworker/sales" hreflang="en" lang="en" data-set-lang="en" aria-current="page">EN</a></span>
+        <a class="btn btn-primary btn-sm" href="#contact">Book an intro call</a>
+        <button type="button" class="menu-btn" data-menu-open aria-expanded="false" aria-controls="menu" aria-label="Open menu"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M1 5h16M1 13h16" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="menu" id="menu" data-menu data-surface="ink" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+    <div class="menu-top">
+      <img src="/resources/logos/utxo-logo-header.webp" alt="utxo AG" width="136" height="141">
+      <button type="button" class="menu-close" data-menu-close aria-label="Close menu"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div>
+    <nav class="menu-nav" aria-label="Main navigation">
+      <a href="/en#services">Services</a>
+      <a href="/en#products">Products</a>
+      <a href="/en#projects">Projects</a>
+      <a href="/en#about">About</a>
+    </nav>
+    <nav class="menu-sub" aria-label="Services">
+      <a href="/en/ai-coworker" aria-current="true">AI CoWorker</a>
+      <a href="/en/ai-phone-assistant">AI Phone Assistant</a>
+      <a href="/en/doc-indexer">Doc Indexer</a>
+    </nav>
+    <div class="menu-foot">
+      <span class="lang"><a href="/de/ki-coworker/vertrieb" hreflang="de" lang="de" data-set-lang="de">DE</a><span aria-hidden="true">/</span><a href="/en/ai-coworker/sales" hreflang="en" lang="en" data-set-lang="en" aria-current="page">EN</a></span>
+      <a class="btn btn-light" href="#contact">Book an intro call</a>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <section id="top" class="hero-product hero-product--stack pp-hero sl-hero">
+      <div class="wrap hero-product-inner">
+        <div class="hero-product-copy">
+          <nav class="lr-crumb" aria-label="Breadcrumb"><a href="/en/ai-coworker">AI CoWorker</a><span aria-hidden="true">/</span><span aria-current="page">Sales</span></nav>
+          <p class="kicker dot-plum">AI CoWorker · Sales</p>
+          <h1>From first inquiry to closed deal.</h1>
+          <p class="lede">Lena prepares quotes and negotiations with data from your systems, and your team approves.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="#contact">Book an intro call</a>
+            <a class="link-arrow" href="#how">How Lena works</a>
+          </div>
+        </div>
+        <div class="sl-desk" data-play role="img" aria-label="Animation with sample data: an inquiry from the fictional Beispiel Anlagenbau AG for 240 stainless steel bearing blocks arrives. Lena checks four items in the systems of the fictional Muster Maschinenbau GmbH: conditions in the ERP, the 2025 framework agreement, the customer history and a special case, the stainless steel surcharge. Then quote AN-2026-0418 for a net 9,964.80 EUR is assembled line by line, the deal moves from inquiry to quote and waits for approval by the head of sales.">
+          <div class="sl-desk-l">
+            <div class="sl-in">
+              <p class="sl-in-head"><span class="sl-in-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" fill="none"><rect x="1.8" y="3.2" width="12.4" height="9.6" rx="1.6" stroke="currentColor" stroke-width="1.2"/><path d="M2.4 4.2L8 8.6l5.6-4.4" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg></span><b>New inquiry</b><time>08:47</time></p>
+              <p class="sl-in-from">Sandra Muster · Beispiel Anlagenbau AG</p>
+              <p class="sl-in-text">Please send a quote for 240 bearing blocks LB-60 in stainless steel, delivery CW 46.</p>
+            </div>
+            <div class="sl-look">
+              <p class="sl-look-h"><img src="/resources/coworkers/lena-avatar.webp" alt="" width="160" height="160" decoding="async"><b>Lena</b><span class="sl-look-state"><span class="sl-look-live">checking</span><span class="sl-look-done">4 items checked</span></span></p>
+              <ul>
+                <li><span class="sl-look-src">ERP</span><p><b>Conditions</b><span>Price list 2026, from 200 units</span></p><i></i></li>
+                <li><span class="sl-look-src">CRM</span><p><b>Framework agreement</b><span>2025, 4 %, 30 days net</span></p><i></i></li>
+                <li><span class="sl-look-src">CRM</span><p><b>Customer history</b><span>6 orders since 2021</span></p><i></i></li>
+                <li class="is-flag"><span class="sl-look-src">Rule</span><p><b>Special case</b><span>Stainless steel surcharge</span></p><i></i></li>
+              </ul>
+            </div>
+          </div>
+          <div class="sl-desk-r">
+            <div class="sl-qd">
+              <p class="sl-qd-stage"><span class="is-a">Inquiry</span><i aria-hidden="true"><b></b></i><span class="is-b">Quote</span></p>
+              <p class="sl-qd-h"><b>Quote AN-2026-0418</b><span>Muster Maschinenbau GmbH · Sample data</span></p>
+              <ul class="sl-qd-lines">
+                <li><b>240 × Bearing block LB-60</b><span>9,216.00</span></li>
+                <li><b>Stainless steel surcharge</b><span>984.00</span></li>
+                <li><b>Packaging and shipping</b><span>180.00</span></li>
+                <li class="is-disc"><b>Framework 2025, 4 %</b><span>less 415.20</span></li>
+              </ul>
+              <p class="sl-qd-total"><span>Net, EUR</span><b>9,964.80</b></p>
+            </div>
+            <p class="glass mock-float sl-qd-chip"><i></i><b>Approval, head of sales</b><span>pending</span></p>
+          </div>
+        </div>
+        <div class="hero-product-media">
+          <div class="pfield pfield--plum mock-stage sl-hero-stage" data-play>
+            <div class="mock sl-deal" role="img" aria-label="Example with sample data: the same deal AN-2026-0418 twelve days later, on 14 October. Inquiry done. Quote approved by the head of sales on 2 October and sent to the customer. Negotiation today at 10:00 with a finished briefing, three open points and your limits. Closing as the next step with a prepared order confirmation.">
+              <div class="mock-bar"><b><img src="/resources/coworkers/lena-avatar.webp" alt="" width="160" height="160" loading="lazy" decoding="async"><i class="sl-bar-y">Lena ·</i>Deal AN-2026-0418</b><span>Sample data<i class="sl-bar-x"> · As of 14 Oct, 08:00</i></span></div>
+              <div class="sl-deal-head">
+                <div class="sl-deal-who">
+                  <span class="sl-logo" aria-hidden="true">BA</span>
+                  <p><b>Beispiel Anlagenbau AG</b><span>240 bearing blocks LB-60, stainless steel · Purchasing: Sandra Muster</span></p>
+                </div>
+                <dl class="sl-deal-kv">
+                  <div><dt>Quote value, net</dt><dd>9,964.80 EUR</dd></div>
+                  <div><dt>Today</dt><dd>Negotiation, 10:00</dd></div>
+                </dl>
+              </div>
+              <ol class="sl-track">
+                <li class="sl-stage is-done">
+                  <p class="sl-stage-h"><i aria-hidden="true"></i><b>Inquiry</b><time>2 Oct</time></p>
+                  <p class="sl-stage-st">Done</p>
+                  <ul class="sl-prep">
+                    <li class="is-ok">Missing details requested</li>
+                    <li class="is-ok">Conditions looked up</li>
+                  </ul>
+                </li>
+                <li class="sl-stage is-done">
+                  <p class="sl-stage-h"><i aria-hidden="true"></i><b>Quote</b><time>2 Oct</time></p>
+                  <p class="sl-stage-st">Approved</p>
+                  <ul class="sl-prep">
+                    <li class="is-ok">Approved by head of sales, 11:04</li>
+                    <li class="is-ok">Sent to Sandra Muster</li>
+                    <li class="is-ok">Followed up on 9 Oct</li>
+                  </ul>
+                </li>
+                <li class="sl-stage is-now">
+                  <p class="sl-stage-h"><i aria-hidden="true"></i><b>Negotiation</b><time>10:00</time></p>
+                  <p class="sl-stage-st">Today</p>
+                  <span class="file-chip"><i>PDF</i><b>Briefing_AN-2026-0418.pdf</b><small>2 pages</small></span>
+                  <ul class="sl-prep">
+                    <li class="is-ok">3 open points, arguments</li>
+                    <li class="is-ok">Your limits on file</li>
+                  </ul>
+                </li>
+                <li class="sl-stage">
+                  <p class="sl-stage-h"><i aria-hidden="true"></i><b>Closing</b><time>open</time></p>
+                  <p class="sl-stage-st">Up next</p>
+                  <ul class="sl-prep">
+                    <li>Order confirmation as a draft</li>
+                    <li>Approval before sending</li>
+                  </ul>
+                </li>
+              </ol>
+            </div>
+            <p class="glass mock-float sl-float sl-float--hero" aria-hidden="true"><i></i><b>Briefing ready</b><span>Meeting today 10:00, 3 open points</span></p>
+            <p class="glass mock-float sl-float sl-float--ask" aria-hidden="true"><i></i><b>Quote approved</b><span>Head of sales, 2 Oct</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="quote" class="section section--cream">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="kicker dot-plum">Inquiry and quote</p>
+          <h2>From inquiry to quote. No guesswork.</h2>
+          <p class="lede">Lena reads the customer inquiry, asks for missing details and calculates with the data from your ERP and CRM. The finished quote is ready for approval.</p>
+        </header>
+
+        <article class="showcase">
+          <div class="showcase-media">
+            <div class="pfield pfield--plum mock-stage sl-quote-stage" data-play>
+              <div class="mock sl-quote" role="img" aria-label="Example with sample data: draft quote AN-2026-0418 from the fictional Muster Maschinenbau GmbH to the fictional Beispiel Anlagenbau AG. Three line items: 240 stainless steel bearing blocks LB-60 at 38.40 EUR, a stainless steel surcharge of 4.10 EUR per unit, packaging and shipping at a flat 180 EUR. Less a 4 percent framework agreement discount, net 9,964.80 EUR, payment within 30 days, delivery in calendar week 46. Next to it, the origin of every figure from ERP, CRM and the customer's reply. Approval by the head of sales pending.">
+                <div class="mock-bar"><b>Quote AN-2026-0418<i class="sl-bar-x"> · Draft</i></b><span>Sample data</span></div>
+                <div class="sl-q-body">
+                  <div class="sl-doc">
+                    <div class="sl-doc-head">
+                      <p class="sl-doc-firm"><b>Muster Maschinenbau GmbH</b><span>Musterweg 4 · Musterstadt</span></p>
+                      <p class="sl-doc-title">Quote</p>
+                    </div>
+                    <dl class="sl-doc-meta">
+                      <div><dt>Customer</dt><dd>Beispiel Anlagenbau AG</dd></div>
+                      <div><dt>Date</dt><dd>02/10/2026</dd></div>
+                      <div><dt>Valid until</dt><dd>30/10/2026</dd></div>
+                      <div><dt>Delivery</dt><dd>CW 46</dd></div>
+                    </dl>
+                    <table class="sl-pos">
+                      <thead><tr><th scope="col">Item</th><th scope="col">Article</th><th scope="col">Qty</th><th scope="col">Price</th><th scope="col">Total</th></tr></thead>
+                      <tbody>
+                        <tr><td>1</td><td><b>Bearing block LB-60</b><small>Stainless steel 1.4301</small></td><td>240</td><td>38.40</td><td>9,216.00</td></tr>
+                        <tr><td>2</td><td><b>Material surcharge</b><small>Stainless steel, as of 1 Oct</small></td><td>240</td><td>4.10</td><td>984.00</td></tr>
+                        <tr><td>3</td><td><b>Packaging and shipping</b><small>flat rate</small></td><td>1</td><td>180.00</td><td>180.00</td></tr>
+                      </tbody>
+                    </table>
+                    <dl class="sl-sum">
+                      <div><dt>Subtotal</dt><dd>10,380.00</dd></div>
+                      <div><dt>Framework 4 %</dt><dd>less 415.20</dd></div>
+                      <div class="is-total"><dt>Net, EUR</dt><dd>9,964.80</dd></div>
+                    </dl>
+                    <p class="sl-doc-terms">Payment within 30 days net, as per framework agreement RV-2025-07.</p>
+                  </div>
+                  <div class="sl-q-side">
+                    <p class="sl-sub">Origin</p>
+                    <ul class="sl-origin">
+                      <li><span class="sl-src sl-src--erp">ERP</span><p><b>Price list 2026</b><small>Unit price, tier from 200</small></p></li>
+                      <li><span class="sl-src sl-src--erp">ERP</span><p><b>Material surcharge</b><small>As of 01/10/2026</small></p></li>
+                      <li><span class="sl-src sl-src--crm">CRM</span><p><b>Framework agreement RV-2025-07</b><small>4 %, 30 days payment</small></p></li>
+                      <li><span class="sl-src sl-src--mail">Customer</span><p><b>Material, delivery date</b><small>Reply to question, 10:21</small></p></li>
+                    </ul>
+                    <div class="sl-approve">
+                      <p><b>Approval</b><span>Head of sales, pending</span></p>
+                      <p class="sl-btns" aria-hidden="true"><span class="sl-btn sl-btn--on">Approve</span><span class="sl-btn">Edit</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p class="glass mock-float sl-float sl-float--quote" aria-hidden="true"><i></i><b>Asked, not assumed</b><span>Material and delivery date were missing</span></p>
+            </div>
+          </div>
+          <div class="showcase-text">
+            <p class="kicker">Sample data</p>
+            <h3>Every figure with its origin.</h3>
+            <p>Price, surcharge, discount and payment terms come from your systems, not from an estimate. Next to the quote you see where each figure comes from. Your head of sales checks it in minutes instead of recalculating.</p>
+          </div>
+        </article>
+
+        <ul class="pp-points">
+          <li><h3>Asks instead of guessing</h3><p>If material, quantity or date are missing, Lena asks the customer before she calculates.</p></li>
+          <li><h3>Data from ERP and CRM</h3><p>Price lists, surcharges, contracts and customer history, straight from your systems.</p></li>
+          <li><h3>In your layout</h3><p>The quote is created in your template, with your standard texts.</p></li>
+          <li><h3>Approval before sending</h3><p>The quote only goes to the customer after your yes.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="negotiation" class="section">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="kicker dot-plum">Negotiation</p>
+          <h2>Well prepared for every conversation.</h2>
+          <p class="lede">Before a negotiation, Lena puts together what your team needs to know: customer history, open points, arguments and the limits you have set. You lead the conversation.</p>
+        </header>
+
+        <article class="showcase showcase--flip">
+          <div class="showcase-media">
+            <div class="pfield pfield--plum mock-stage sl-brief-stage" data-play>
+              <div class="mock sl-brief" role="img" aria-label="Example with sample data: negotiation briefing on the fictional Beispiel Anlagenbau AG for the meeting on 14 October. Customer history: customer since 2021, 6 orders, most recently in March 2026, payments on time. Three open points: requested week 44 instead of week 46, payment terms of 60 instead of 30 days, an extra 3 percent discount. Arguments with sources, including a possible partial delivery of 120 units in week 44. Your limits: total discount at most 6 percent, payment terms at most 45 days without approval by management.">
+                <div class="mock-bar"><b><img src="/resources/coworkers/lena-avatar.webp" alt="" width="160" height="160" loading="lazy" decoding="async">Negotiation briefing</b><span>Sample data<i class="sl-bar-x"> · Meeting 14 Oct</i></span></div>
+                <div class="sl-brief-body">
+                  <div class="sl-brief-cust">
+                    <p class="sl-brief-name"><b>Beispiel Anlagenbau AG</b><span>Sandra Muster, Purchasing</span></p>
+                    <dl class="sl-mini-kv">
+                      <div><dt>Customer since</dt><dd>2021</dd></div>
+                      <div><dt>Orders</dt><dd>6</dd></div>
+                      <div><dt>Last</dt><dd>03/2026</dd></div>
+                      <div><dt>Payments</dt><dd>on time</dd></div>
+                    </dl>
+                  </div>
+                  <div class="sl-brief-grid">
+                    <div class="sl-brief-col">
+                      <p class="sl-sub">Open points</p>
+                      <ol class="sl-open">
+                        <li><b>Delivery date</b><span>Wants CW 44, planned CW 46</span></li>
+                        <li><b>Payment terms</b><span>Wants 60 days, contract 30 days</span></li>
+                        <li><b>Discount</b><span>extra 3 % requested</span></li>
+                      </ol>
+                    </div>
+                    <div class="sl-brief-col">
+                      <p class="sl-sub">Arguments</p>
+                      <ul class="sl-args">
+                        <li>The 4 % framework discount is already included.<small>CRM · RV-2025-07</small></li>
+                        <li>A partial delivery of 120 units in CW 44 is possible.<small>ERP · Blank stock</small></li>
+                        <li>Stainless steel matches the customer's specification.<small>Email · 10:21</small></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="sl-limits">
+                    <p class="sl-limits-h"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" stroke="currentColor" stroke-width="1.8"/></svg>Your limits</p>
+                    <ul>
+                      <li>Total discount up to 6 %</li>
+                      <li>Payment terms up to 45 days</li>
+                      <li>Beyond that: management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <p class="glass mock-float sl-float sl-float--brief" aria-hidden="true"><i></i><b>Proposed solution</b><span>Partial delivery, 120 units in CW 44</span></p>
+            </div>
+          </div>
+          <div class="showcase-text">
+            <p class="kicker">Sample data, fictional people</p>
+            <h3>Prepared by Lena. Decided by you.</h3>
+            <p>The briefing shows what the customer wants, what your contract says and where your room to move ends. Every argument names its source. You set the limits, Lena only applies them.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="rules" class="section section--cream">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="kicker dot-plum">Conditions and special cases</p>
+          <h2>Special cases caught before they get expensive.</h2>
+          <p class="lede">Discount tiers, surcharges, framework agreements and exceptions: Lena checks every quote against your rules. Anything beyond them is flagged and sent to the right person.</p>
+        </header>
+
+        <article class="showcase">
+          <div class="showcase-media">
+            <div class="pfield pfield--plum mock-stage sl-rules-stage" data-play>
+              <div class="mock sl-rules" role="img" aria-label="Example with sample data: condition check for quote AN-2026-0418. Four rules applied: price list 2026, quantity tier from 200 units, framework agreement RV-2025-07 with 4 percent, and the stainless steel surcharge. Two exceptions flagged for approval: an extra 3 percent discount would total 7 percent, above the 6 percent limit, approval by the head of sales. Payment terms of 60 days exceed 45 days, approval by management. One note: partial delivery in week 44 is possible.">
+                <div class="mock-bar"><b>Condition check<i class="sl-bar-x"> · AN-2026-0418</i></b><span>Sample data</span></div>
+                <div class="sl-rules-body">
+                  <ul class="sl-checks">
+                    <li class="is-ok"><p><b>Price list 2026</b><span>Bearing block LB-60, 38.40 EUR</span></p><em>applied</em></li>
+                    <li class="is-ok"><p><b>Quantity tier from 200 units</b><span>240 units ordered</span></p><em>applied</em></li>
+                    <li class="is-ok"><p><b>Framework agreement RV-2025-07</b><span>4 % discount, 30 days net</span></p><em>applied</em></li>
+                    <li class="is-ok"><p><b>Stainless steel surcharge</b><span>valid since 01/10/2026</span></p><em>applied</em></li>
+                    <li class="is-flag"><p><b>Extra 3 % discount, customer request</b><span>total 7 %, limit 6 %</span></p><em>Head of sales</em></li>
+                    <li class="is-flag"><p><b>60 days payment, customer request</b><span>limit 45 days</span></p><em>Management</em></li>
+                    <li class="is-info"><p><b>Partial delivery CW 44</b><span>120 units possible from stock</span></p><em>Note</em></li>
+                  </ul>
+                  <p class="sl-rules-foot"><b>4 rules applied, 2 exceptions flagged.</b> Nothing goes to the customer without approval.</p>
+                </div>
+              </div>
+              <p class="glass mock-float sl-float sl-float--rules" aria-hidden="true"><i></i><b>Exception for approval</b><span>Payment terms 60 days</span></p>
+            </div>
+          </div>
+          <div class="showcase-text">
+            <p class="kicker">Sample data</p>
+            <h3>Your rules. Applied every time.</h3>
+            <p>What your sales team keeps in their heads or in scattered files becomes a fixed rule: who may grant which discount, which contract applies, when a surcharge kicks in. Lena sticks to it and shows every exception openly.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="pipeline" class="section">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="kicker dot-plum">Follow-up and closing</p>
+          <h2>No quote gets left behind.</h2>
+          <p class="lede">Lena keeps track of open deals, reminds you of deadlines and prepares the follow-up. Every morning your team sees what is due today.</p>
+        </header>
+        <div class="pfield pfield--plum mock-stage sl-pipe-stage" data-play>
+          <div class="mock sl-pipe" role="img" aria-label="Example with sample data: sales overview of the fictional Muster Maschinenbau GmbH with four columns. Inquiry: two deals, one with an open question. Quote: three deals, including AN-2026-0418 for approval and AN-2026-0415, 7 days without a reply. Negotiation: one deal with a finished briefing. Closing: AN-2026-0411 accepted. Next to it, four prepared next steps for today: a follow-up email as a draft, a follow-up on 14 October with briefing, renewal of an expiring framework agreement and an order confirmation as a draft.">
+            <div class="mock-bar"><b><img src="/resources/coworkers/lena-avatar.webp" alt="" width="160" height="160" loading="lazy" decoding="async">Sales · open deals</b><span>Sample data<i class="sl-bar-x"> · Friday, 2 Oct</i></span></div>
+            <div class="sl-pipe-body">
+              <div class="sl-board">
+                <div class="sl-col">
+                  <p class="sl-col-h"><b>Inquiry</b><span>2</span></p>
+                  <div class="sl-card"><b>Muster Werkzeugbau KG</b><span>60 clamping blocks</span><em class="sl-tag sl-tag--wait">Question open</em></div>
+                  <div class="sl-card"><b>Muster Hydraulik AG</b><span>Spare parts, 14 items</span><em class="sl-tag">new</em></div>
+                </div>
+                <div class="sl-col">
+                  <p class="sl-col-h"><b>Quote</b><span>3</span></p>
+                  <div class="sl-card is-focus"><b>Beispiel Anlagenbau AG</b><span>AN-2026-0418</span><em class="sl-tag sl-tag--plum">for approval</em></div>
+                  <div class="sl-card"><b>Muster Pumpen AG</b><span>AN-2026-0415</span><em class="sl-tag sl-tag--warn">7 days, no reply</em></div>
+                  <div class="sl-card"><b>Beispiel Stahlbau GmbH</b><span>AN-2026-0409</span><em class="sl-tag">sent</em></div>
+                </div>
+                <div class="sl-col">
+                  <p class="sl-col-h"><b>Negotiation</b><span>1</span></p>
+                  <div class="sl-card"><b>Muster Antriebe GmbH</b><span>AN-2026-0397</span><em class="sl-tag sl-tag--plum">Briefing ready</em></div>
+                </div>
+                <div class="sl-col">
+                  <p class="sl-col-h"><b>Closing</b><span>1</span></p>
+                  <div class="sl-card"><b>Beispiel Verpackung AG</b><span>AN-2026-0411</span><em class="sl-tag sl-tag--ok">accepted</em></div>
+                </div>
+              </div>
+              <div class="sl-today">
+                <p class="sl-sub">Prepared today<span>4 steps</span></p>
+                <ol>
+                  <li><time>08:10</time><p><b>Follow up with Muster Pumpen AG</b><span>Email draft on AN-2026-0415</span></p></li>
+                  <li><time>08:12</time><p><b>Follow-up Beispiel Anlagenbau AG</b><span>Meeting 14 Oct, briefing attached</span></p></li>
+                  <li><time>08:15</time><p><b>Framework agreement Muster Antriebe</b><span>expires 31 Dec, prepare renewal</span></p></li>
+                  <li><time>08:20</time><p><b>Order confirmation AN-2026-0411</b><span>Draft, approval pending</span></p></li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <p class="glass mock-float sl-float sl-float--pipe" aria-hidden="true"><i></i><b>Reminder</b><span>Quote AN-2026-0415 open for 7 days</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="section section--cream">
+      <div class="wrap">
+        <header class="section-head">
+          <h2>From connection to approval.</h2>
+          <p class="lede">We connect your systems, you set the rules. Then Lena works with your team, and every decision stays with you.</p>
+        </header>
+        <ol class="pp-flow" data-play>
+          <li>
+            <div class="pfield pfield--plum pp-flow-vis" aria-hidden="true">
+              <div class="pp-mini sl-mini-sys">
+                <p class="pp-mini-head"><b>Connected systems</b><span class="pp-mono">Example</span></p>
+                <ul>
+                  <li><b>ERP</b><span>read</span></li>
+                  <li><b>CRM</b><span>read</span></li>
+                  <li><b>Contracts</b><span>read</span></li>
+                  <li><b>Email</b><span>draft</span></li>
+                </ul>
+              </div>
+            </div>
+            <span class="when">Connection</span>
+            <h3>We connect your systems.</h3>
+            <p>ERP, CRM, price lists, contracts and mailbox, with fixed permissions per system.</p>
+          </li>
+          <li>
+            <div class="pfield pfield--plum pp-flow-vis" aria-hidden="true">
+              <div class="pp-mini pp-detect">
+                <p class="pp-mini-head"><b>Rules</b><span class="pp-mono">Sample data</span></p>
+                <dl>
+                  <div><dt>Discount</dt><dd>up to 6 % without approval</dd></div>
+                  <div><dt>Payment</dt><dd>up to 45 days</dd></div>
+                  <div><dt>Beyond</dt><dd>management</dd></div>
+                  <div><dt>Sending</dt><dd>only with approval</dd></div>
+                </dl>
+              </div>
+            </div>
+            <span class="when">Rules</span>
+            <h3>You set the rules.</h3>
+            <p>Price rules, discount limits, exceptions and who approves what.</p>
+          </li>
+          <li>
+            <div class="pfield pfield--plum pp-flow-vis" aria-hidden="true">
+              <div class="pp-mini sl-mini-chat">
+                <p class="sl-mini-from"><img src="/resources/coworkers/lena-avatar.webp" alt="" width="160" height="160" loading="lazy" decoding="async"><b>Lena</b><span>08:49</span></p>
+                <p class="sl-bubble">The inquiry from Beispiel Anlagenbau is missing material and delivery date. I’ll ask the customer.</p>
+                <span class="pp-pill pp-pill--plum">Question sent</span>
+              </div>
+            </div>
+            <span class="when">Teamwork</span>
+            <h3>Lena works with your team.</h3>
+            <p>In the mailbox and in your systems. Where details are missing, she asks.</p>
+          </li>
+          <li>
+            <div class="pfield pfield--plum pp-flow-vis" aria-hidden="true">
+              <div class="pp-mini sl-mini-ok">
+                <div class="pp-note-app"><i></i><b>For approval</b><span>10:52</span></div>
+                <p class="pp-mini-line"><b>Quote AN-2026-0418</b><span>Beispiel Anlagenbau AG, 3 line items</span></p>
+                <p class="sl-btns"><span class="sl-btn sl-btn--on">Approve</span><span class="sl-btn">Edit</span></p>
+              </div>
+            </div>
+            <span class="when">Approval</span>
+            <h3>Your team approves.</h3>
+            <p>Quotes, conditions and emails only go to customers after your yes.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="custom" class="section">
+      <div class="wrap">
+        <header class="section-head">
+          <h2>Your sales. Your rules.</h2>
+          <p class="lede">Lena is developed individually for your company: for your products, your systems and the way your sales team works.</p>
+        </header>
+        <div class="showcase">
+          <div class="showcase-media">
+            <div class="pfield pfield--plum mock-stage sl-id-stage" data-play>
+              <div class="sl-id">
+                <figure class="sl-id-photo"><img src="/resources/coworkers/lena-portrait.webp" alt="Illustration of Lena, the sales CoWorker" width="480" height="600" loading="lazy" decoding="async"></figure>
+                <div class="mock sl-id-card">
+                  <p class="sl-id-name"><b>Lena</b><span>AI CoWorker, Sales</span></p>
+                  <dl class="sl-id-mem">
+                    <div><dt>Company knowledge</dt><dd>Price lists, framework agreements, product data, quote templates</dd></div>
+                    <div><dt>Case memory</dt><dd>Customer history, open deals, agreements</dd></div>
+                    <div><dt>Permissions</dt><dd>Read ERP and CRM, email as draft, sending only with approval</dd></div>
+                  </dl>
+                  <small>Her memory grows with every deal.</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-text">
+            <dl class="facts">
+              <div><dt>Systems</dt><dd>ERP, CRM, price lists, contracts and mailbox. Missing interfaces are developed to fit.</dd></div>
+              <div><dt>Rules</dt><dd>Price rules, discount limits, framework agreements and exceptions, the way your sales team works today.</dd></div>
+              <div><dt>Approvals</dt><dd>You decide who approves what, per deal and threshold.</dd></div>
+              <div><dt>Templates</dt><dd>Quotes, briefings and emails in your layout and with your standard texts.</dd></div>
+              <div><dt>Name and tone</dt><dd>Lena is our example. You choose the name, tone and signature.</dd></div>
+            </dl>
+            <a class="link-arrow" href="/en/ai-coworker#process">Process and fixed price</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="data" class="section section--cream pp-has-eu">
+      <svg class="pp-eu" viewBox="0 0 200 200" fill="currentColor" aria-hidden="true" focusable="false"><path transform="translate(100.0 30.0) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(135.0 39.4) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(160.6 65.0) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(170.0 100.0) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(160.6 135.0) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(135.0 160.6) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(100.0 170.0) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(65.0 160.6) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(39.4 135.0) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(30.0 100.0) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(39.4 65.0) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(65.0 39.4) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/></svg>
+      <div class="wrap">
+        <header class="section-head">
+          <h2>Lena prepares. You decide.</h2>
+          <p class="lede">Sales is about prices, contracts and customer data. That is why clear rules apply, and we agree them with you before the start.</p>
+        </header>
+        <ul class="pp-comp">
+          <li><span class="pp-comp-ref">Approval</span><h3>Nothing sent without your yes</h3><p>Quotes, conditions and emails only go to customers after approval by your team.</p></li>
+          <li><span class="pp-comp-ref">Permissions</span><h3>Set per system</h3><p>Read access in ERP and CRM, drafts in the mailbox. Each interface is granted per use case.</p></li>
+          <li><span class="pp-comp-ref">Traceability</span><h3>Every figure with its origin</h3><p>You see which price list, contract or customer reply a value comes from. Every action is logged.</p></li>
+          <li><span class="pp-comp-ref">Manipulation protection</span><h3>Customer emails are data</h3><p>Content from inquiries and emails is treated as data, never as an instruction. An email cannot order Lena to grant a discount.</p></li>
+          <li><span class="pp-comp-ref">Data storage</span><h3>To your requirements</h3><p>Germany, the EU or on-premise in your environment, set per project.</p></li>
+          <li><span class="pp-comp-ref">GDPR · Art. 28</span><h3>Data processing agreement</h3><p>Drafted per project for your stack and requirements. Your data is not used to train third-party models.</p><a class="link-arrow" href="/en/dpa">More on data processing</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="section" data-surface="ink">
+      <div class="wrap">
+        <header class="section-head">
+          <h2>Which inquiry should Lena prepare first?</h2>
+          <p class="lede">30 minutes, no obligation. You show us how your sales team works today, we show you how a sales CoWorker supports your team.</p>
+        </header>
+        <div class="booking">
+          <div class="booking-main">
+            <div class="booking-cal" data-cal-inline data-cal-theme="dark" data-cal-compact data-loading="Loading calendar"></div>
+            <div class="booking-popup">
+              <p>Pick a time directly in the calendar.</p>
+              <button type="button" class="btn btn-light btn-lg" data-cal-popup>Choose a time</button>
+            </div>
+          </div>
+          <div class="booking-side">
+            <h3>Prefer a callback?</h3>
+            <p class="booking-mail"><a href="mailto:business@utxo.ag">business@utxo.ag</a></p>
+            <form class="form" data-form action="https://formspree.io/f/mppabeng" method="POST">
+              <label class="field"><span>Name</span><input type="text" name="name" required autocomplete="name"></label>
+              <label class="field"><span>Email</span><input type="email" name="email" required autocomplete="email"></label>
+              <label class="field"><span>Phone (optional)</span><input type="tel" name="phone" autocomplete="tel"></label>
+              <button type="submit" class="btn btn-light">Request a callback</button>
+              <p class="form-note" data-form-note>We get back to you within one business day. By submitting you accept our <a href="/en/privacy">privacy policy</a>.</p>
+            </form>
+            <div class="form-done" data-form-done hidden role="status">
+              <h4>Thank you, we’ll be in touch.</h4>
+              <p>We get back to you within one business day to arrange your callback.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section section--cream">
+      <div class="wrap faq-layout">
+        <header class="section-head">
+          <h2>Frequently asked questions.</h2>
+        </header>
+        <div class="faq">
+          <details><summary>Does the CoWorker send quotes on its own?</summary><p>No, not without approval. It prepares quotes, briefings and follow-up emails as drafts. Whatever goes to customers is approved by a person on your team.</p></details>
+          <details><summary>What happens if an inquiry is missing information?</summary><p>It asks instead of guessing. Missing details such as material, quantity or delivery date are requested from the customer or your team before it calculates.</p></details>
+          <details><summary>Which systems does it work with?</summary><p>With the systems your sales team uses, such as ERP, CRM, price lists, contracts and email. Which systems are connected, and with which permissions, is agreed with you per use case. Missing interfaces are developed to fit.</p></details>
+          <details><summary>How does it know our conditions and special cases?</summary><p>From your systems and from the rules we define together: price rules, discount limits, framework agreements and exceptions. Anything outside these rules is flagged for approval.</p></details>
+          <details><summary>Does it replace our sales team?</summary><p>No. It takes over lookups, calculation and preparation. Conversations, negotiation and decisions stay with your team.</p></details>
+          <details><summary>What does the CoWorker cost?</summary><p>It depends on the scope, so we don’t quote flat rates. Development for your company is a one-off fixed price that you know before the start. Operation is covered by a subscription.</p></details>
+          <details><summary>How quickly is it ready?</summary><p>Typically as a pilot in about 30 days: workshop, fixed-price offer, development on your real data, a test run alongside your existing process, and go-live. We give you the exact schedule in the offer.</p></details>
+          <details><summary>Where is the data processed?</summary><p>We set the storage location per project to your requirements: Germany, the EU or on-premise. Your data never trains third-party models, as set out in the data processing agreement, which we draft per project for your stack and requirements.</p></details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" data-surface="ink">
+    <div class="wrap">
+      <div class="footer-top">
+        <div>
+          <img src="/resources/logos/utxo-logo-header.webp" alt="utxo AG" width="136" height="141" loading="lazy" decoding="async">
+          <p class="footer-claim">AI software and AI CoWorkers for businesses.</p>
+        </div>
+      </div>
+      <div class="footer-cols">
+      <div>
+        <p class="footer-title">Services</p>
+        <ul>
+          <li><a href="/en/ai-coworker">AI CoWorker</a></li>
+          <li><a href="/en/ai-coworker/compliance">Compliance CoWorker</a></li>
+          <li><a href="/en/ai-coworker/lead-research">Lead research</a></li>
+          <li><a href="/en/ai-coworker/sales" aria-current="page">Sales CoWorker</a></li>
+          <li><a href="/en/ai-coworker/technical-review">Technical review</a></li>
+          <li><a href="/en/ai-phone-assistant">AI Phone Assistant</a></li>
+          <li><a href="/en/doc-indexer">Doc Indexer</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Products</p>
+        <ul>
+          <li><a href="https://anruf.guru" target="_blank" rel="noopener" aria-label="anruf.guru (opens in a new window)">anruf.guru ↗</a></li>
+          <li><a href="https://www.sokosumi.com" target="_blank" rel="noopener" aria-label="Sokosumi (opens in a new window)">Sokosumi ↗</a></li>
+          <li><a href="https://www.masumi.network" target="_blank" rel="noopener" aria-label="Masumi (opens in a new window)">Masumi ↗</a></li>
+          <li><a href="https://www.nmkr.io" target="_blank" rel="noopener" aria-label="NMKR (opens in a new window)">NMKR ↗</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Guides</p>
+        <ul>
+          <li><a href="/en/coworker-vs-copilot">CoWorker vs. Copilot</a></li>
+          <li><a href="/en/ai-in-business">AI in business</a></li>
+          <li><a href="/en/eu-ai-act">EU AI Act</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Company</p>
+        <ul>
+          <li><a href="/en#about">About</a></li>
+          <li><a href="/en#projects">Projects</a></li>
+          <li><a href="/en/press">Press</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Legal</p>
+        <ul>
+          <li><a href="/en/imprint">Imprint</a></li>
+          <li><a href="/en/privacy">Privacy Policy</a></li>
+          <li><a href="/en/terms">Terms</a></li>
+          <li><a href="/en/acceptable-use">Acceptable Use Policy</a></li>
+          <li><a href="/en/dpa">DPA</a></li>
+          <li><button type="button" class="footer-link" data-consent-open hidden>Cookie settings</button></li>
+        </ul>
+      </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 utxo AG · Dammstrasse 16 · 6300 Zug · Switzerland</span>
+        <span>Hosting to your requirements · GDPR</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+<script src="/config.js"></script>
+<script src="/main.js"></script>
+</body>
+</html>

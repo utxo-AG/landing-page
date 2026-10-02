@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="canonical" href="https://utxo.ag/en/doc-indexer">
+<link rel="alternate" hreflang="de" href="https://utxo.ag/de/doc-indexer">
+<link rel="alternate" hreflang="en" href="https://utxo.ag/en/doc-indexer">
+<link rel="alternate" hreflang="x-default" href="https://utxo.ag/en/doc-indexer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Doc Indexer: AI document search with sources and permissions | utxo AG</title>
+<meta name="description" content="Ask your documents in your own words. Doc Indexer answers with a link to the original page and shows every role only what it may see.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="utxo AG">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Doc Indexer: AI document search with sources and permissions | utxo AG">
+<meta property="og:description" content="Ask your documents in your own words. Doc Indexer answers with a link to the original page and shows every role only what it may see.">
+<meta property="og:url" content="https://utxo.ag/en/doc-indexer">
+<meta property="og:image" content="https://utxo.ag/resources/og/og-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Doc Indexer","url":"https://utxo.ag/en/doc-indexer","applicationCategory":"BusinessApplication","operatingSystem":"Web","inLanguage":"en","description":"Ask your documents in your own words. Doc Indexer answers with a link to the original page and shows every role only what it may see.","featureList":["Answers questions in plain language straight from your documents","One shared source for contracts, handbooks, operating manuals, reports and policies","Short summaries with numbered sources","Links every statement to the cited original page and highlights the passage","Permissions per document and role, everyone sees only what is shared with them","AI suggestion for permissions, reviewed and adjusted by you","Names missing information and unshared documents instead of guessing","No migration, your file structure stays as it is","Hosting to your requirements: Germany, the EU or on-premise"],"provider":{"@type":"Organization","@id":"https://utxo.ag/#org","name":"utxo AG","url":"https://utxo.ag/"}}</script>
+<link rel="preload" href="/fonts/manrope-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibm-plex-sans-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibm-plex-mono-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="/resources/FAVICONS/icon.svg" type="image/svg+xml">
+<link rel="icon" href="/resources/FAVICONS/favicon-96x96.png" sizes="96x96" type="image/png">
+<link rel="apple-touch-icon" href="/resources/FAVICONS/apple-touch-icon-180x180.png">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/products.css">
+</head>
+<body>
+<div id="utxo-root">
+
+
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap site-header-inner">
+      <a class="brand" href="/en" aria-label="utxo AG, home"><img src="/resources/logos/utxo-logo-header.webp" alt="utxo AG" width="136" height="141"></a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="/en#services">Services</a>
+        <a href="/en#products">Products</a>
+        <a href="/en#projects">Projects</a>
+        <a href="/en#about">About</a>
+      </nav>
+      <div class="header-actions">
+        <span class="lang"><a href="/de/doc-indexer" hreflang="de" lang="de" data-set-lang="de">DE</a><span aria-hidden="true">/</span><a href="/en/doc-indexer" hreflang="en" lang="en" data-set-lang="en" aria-current="page">EN</a></span>
+        <a class="btn btn-primary btn-sm" href="#contact">Book an intro call</a>
+        <button type="button" class="menu-btn" data-menu-open aria-expanded="false" aria-controls="menu" aria-label="Open menu"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M1 5h16M1 13h16" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="menu" id="menu" data-menu data-surface="ink" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+    <div class="menu-top">
+      <img src="/resources/logos/utxo-logo-header.webp" alt="utxo AG" width="136" height="141">
+      <button type="button" class="menu-close" data-menu-close aria-label="Close menu"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div>
+    <nav class="menu-nav" aria-label="Main navigation">
+      <a href="/en#services">Services</a>
+      <a href="/en#products">Products</a>
+      <a href="/en#projects">Projects</a>
+      <a href="/en#about">About</a>
+    </nav>
+    <nav class="menu-sub" aria-label="Services">
+      <a href="/en/ai-coworker">AI CoWorker</a>
+      <a href="/en/ai-phone-assistant">AI Phone Assistant</a>
+      <a href="/en/doc-indexer" aria-current="page">Doc Indexer</a>
+    </nav>
+    <div class="menu-foot">
+      <span class="lang"><a href="/de/doc-indexer" hreflang="de" lang="de" data-set-lang="de">DE</a><span aria-hidden="true">/</span><a href="/en/doc-indexer" hreflang="en" lang="en" data-set-lang="en" aria-current="page">EN</a></span>
+      <a class="btn btn-light" href="#contact">Book an intro call</a>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <section id="top" class="hero-product pp-hero dxh-hero">
+      <div class="wrap hero-product-inner">
+        <div class="hero-product-copy">
+          <p class="kicker dot-navy">AI software · Doc Indexer</p>
+          <h1>Ask your documents.</h1>
+          <p class="lede">Answers from every kind of document, cited in the original and filtered by role.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="#contact">Book an intro call</a>
+            <a class="link-arrow" href="#demo">Try the demo</a>
+          </div>
+        </div>
+        <div class="hero-product-media">
+          <div class="pfield pfield--navy mock-stage dxh-stage" data-play>
+            <div class="dxh" role="img" aria-label="Illustration with sample data: contracts, handbooks, operating manuals, reports, policies and drawings flow into one shared source used by four roles. A service technician asks about the hydraulic service interval and gets a short summary with two numbered sources. The cited passage is highlighted on the original page of the operating manual.">
+              <ul class="dxh-docs"><li class="dot-plum"><svg class="dxh-glyph" viewBox="0 0 36 44" aria-hidden="true"><path class="pp" d="M4 2.5h19l9 9v30H4z"/><path class="pf" d="M23 2.5v9h9"/><path class="ln" d="M9 14h12M9 18h18M9 22h18M9 26h13"/><path class="acs" d="M9 34c2.5-3.5 4 1.5 6-.8s3.5 1.8 6 .2"/><circle class="ac" cx="27" cy="34" r="2.6"/></svg><b>Contract</b></li><li class="dot-petrol"><svg class="dxh-glyph" viewBox="0 0 36 44" aria-hidden="true"><path class="pp" d="M4 2.5h19l9 9v30H4z"/><path class="pf" d="M23 2.5v9h9"/><rect class="ac" x="9" y="11" width="12" height="3" rx="1"/><path class="ln" d="M9 18h18M9 22h18M13 27h13M13 31h11M13 35h12"/><circle class="ac" cx="10" cy="27" r="1.2"/><circle class="ac" cx="10" cy="31" r="1.2"/><circle class="ac" cx="10" cy="35" r="1.2"/></svg><b>Handbook</b></li><li class="dot-navy"><svg class="dxh-glyph" viewBox="0 0 36 44" aria-hidden="true"><path class="pp" d="M4 2.5h19l9 9v30H4z"/><path class="pf" d="M23 2.5v9h9"/><rect class="acf" x="9" y="11" width="18" height="11" rx="2"/><circle cx="14.5" cy="16.5" r="2.6" fill="#fff"/><path class="lnw" d="M20 15h4M20 18h3"/><path class="ln" d="M9 27h18M9 31h14M9 35h16"/></svg><b>Operating manual</b></li><li class="dot-moss"><svg class="dxh-glyph" viewBox="0 0 36 44" aria-hidden="true"><path class="pp" d="M4 2.5h19l9 9v30H4z"/><path class="pf" d="M23 2.5v9h9"/><rect class="ac" x="9" y="12" width="4" height="4" rx="1"/><rect class="ac" x="9" y="19" width="4" height="4" rx="1"/><rect class="box" x="9.5" y="26.5" width="3" height="3" rx=".8"/><path class="ln" d="M16 14h11M16 21h9M16 28h10M9 35h18"/></svg><b>Report</b></li><li class="dot-clay"><svg class="dxh-glyph" viewBox="0 0 36 44" aria-hidden="true"><path class="pp" d="M4 2.5h19l9 9v30H4z"/><path class="pf" d="M23 2.5v9h9"/><rect class="ac" x="9" y="11" width="2" height="11" rx="1"/><rect class="ac" x="9" y="25" width="2" height="11" rx="1"/><path class="ln" d="M14 13h13M14 17h10M14 21h12M14 27h13M14 31h9M14 35h11"/></svg><b>Policy</b></li><li class="dot-navy"><svg class="dxh-glyph" viewBox="0 0 36 44" aria-hidden="true"><path class="pp" d="M4 2.5h19l9 9v30H4z"/><path class="pf" d="M23 2.5v9h9"/><path class="thin" d="M18 11v20M8 21h20"/><circle class="acs" cx="18" cy="21" r="6.5"/><circle class="acs" cx="18" cy="21" r="2.4"/><path class="thin" d="M8 36h20M8 34v4M28 34v4"/></svg><b>Drawing</b></li></ul>
+              <svg class="dxh-flow dxh-flow--6" viewBox="0 0 600 56" preserveAspectRatio="none" aria-hidden="true"><path d="M50.0 0C50.0 30.8 300.0 25.2 300.0 56" pathLength="1"/><path d="M150.0 0C150.0 30.8 300.0 25.2 300.0 56" pathLength="1"/><path d="M250.0 0C250.0 30.8 300.0 25.2 300.0 56" pathLength="1"/><path d="M350.0 0C350.0 30.8 300.0 25.2 300.0 56" pathLength="1"/><path d="M450.0 0C450.0 30.8 300.0 25.2 300.0 56" pathLength="1"/><path d="M550.0 0C550.0 30.8 300.0 25.2 300.0 56" pathLength="1"/></svg>
+              <svg class="dxh-flow dxh-flow--3" viewBox="0 0 300 44" preserveAspectRatio="none" aria-hidden="true"><path d="M50.0 0C50.0 24.2 150.0 19.8 150.0 44" pathLength="1"/><path d="M150.0 0C150.0 24.2 150.0 19.8 150.0 44" pathLength="1"/><path d="M250.0 0C250.0 24.2 150.0 19.8 150.0 44" pathLength="1"/></svg>
+              <div class="dxh-core"><span class="dxh-orb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3.5l8.5 4.5-8.5 4.5-8.5-4.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M3.5 12l8.5 4.5 8.5-4.5M3.5 16l8.5 4.5 8.5-4.5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span><p><b>One shared source</b><small>Indexed · permissions per role</small></p><span class="dxh-roles" aria-hidden="true"><i class="dot-navy">MG</i><i class="dot-moss is-ask">ST</i><i class="dot-clay">PU</i><i class="dot-plum">QA</i></span></div>
+              <svg class="dxh-flow dxh-flow--out" viewBox="0 0 600 36" preserveAspectRatio="none" aria-hidden="true"><path d="M300 0V36" pathLength="1"/></svg>
+              <div class="dxh-out">
+                <div class="mock dxh-answer">
+                  <p class="mock-bar"><b>Doc Indexer</b><span>Example · sample data</span></p>
+                  <div class="dxh-chat">
+                    <p class="dq-ask">Which service interval applies to the hydraulics of press P-200?</p>
+                    <p class="dxh-meta"><i class="dot-moss"></i>Service technician · from 2 shared documents</p>
+                    <p class="dxh-sum">Change hydraulic oil and pressure filter every 2,000 operating hours, at the latest after 12 months.<sup>1</sup> Last serviced on 12 March 2026 at 6,140 h, next due at 8,140 h.<sup>2</sup></p>
+                    <p class="dxh-cites"><span class="dq-cite is-open"><b>1</b>Operating manual, p. 112</span><span class="dq-cite"><b>2</b>Service log 03/2026</span></p>
+                  </div>
+                </div>
+                <div class="dxh-page">
+                  <p class="dxh-page-bar"><b>Operating manual P-200</b><span>Page 112 of 240</span></p>
+                  <div class="dxh-sheet">
+                    <p class="dxh-sheet-head"><span>Chapter 9 · Maintenance</span><span>112</span></p>
+                    <p class="dxh-num">9.4 Hydraulic system</p>
+                    <p>Before any work, depressurise the system and secure it against being switched back on.</p>
+                    <p class="dxh-hit"><mark>Hydraulic oil and pressure filter must be changed every 2,000 operating hours, but no later than after 12 months.</mark><i class="dxh-pin">1</i></p>
+                    <p>Use hydraulic oil HLP 46. The filling quantity is 180 litres.</p>
+                  </div>
+                  <p class="glass dxh-float"><i></i>Cited passage highlighted</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="problem" class="section section--cream">
+      <div class="wrap">
+        <header class="section-head">
+          <h2>Knowledge nobody can find isn’t knowledge.</h2>
+          <p class="lede">Almost every answer is already written down somewhere: on page 88 of a contract, in an amendment, in last autumn’s service report. Doc Indexer finds it, in every kind of document: from the operating manual to the quality record.</p>
+        </header>
+        <ul class="pp-qtiles">
+          <li>
+            <p class="kicker dot-navy">Real estate and buildings</p>
+            <p class="pp-q">Who pays if the cooling plant has to be replaced?</p>
+            <span class="pp-src"><b>1</b>Addendum No. 3, clause 2</span>
+            <p>Leases, addenda, statements and service reports in one file. Anyone who reads only the lease gets it wrong.</p>
+          </li>
+          <li>
+            <p class="kicker dot-navy">Machine documentation</p>
+            <p class="pp-q">Which service interval applies to the press hydraulics?</p>
+            <span class="pp-src"><b>1</b>Operating manual, maintenance chapter</span>
+            <p>Service staff find the section without leafing through a manual several hundred pages long.</p>
+          </li>
+          <li>
+            <p class="kicker dot-navy">Contracts and amendments</p>
+            <p class="pp-q">By when can we terminate, and how is the price adjusted?</p>
+            <span class="pp-src"><b>1</b>Framework agreement, term clause</span>
+            <p>Deadlines and price adjustments across many contracts, with a note when an amendment replaces a clause.</p>
+          </li>
+          <li>
+            <p class="kicker dot-navy">Manuals and policies</p>
+            <p class="pp-q">What do we do when an alarm goes off in the warehouse?</p>
+            <span class="pp-src"><b>1</b>Emergency manual, alarm procedure</span>
+            <p>New employees ask in their own words and check the passage in the original.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="source" class="section">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="kicker dot-navy">One source for everyone</p>
+          <h2>One shared knowledge base. Every role sees only its part.</h2>
+          <p class="lede">All documents sit in one shared index instead of being spread across folders, inboxes and people’s heads. Management, service and purchasing ask the same source. Whatever a role may not see never makes it into its answer.</p>
+        </header>
+        <div class="pfield pfield--navy mock-stage dxu-stage" data-play>
+          <div class="dxu" role="img" aria-label="Illustration with sample data: one shared index with six documents, including an operating manual, service logs, a framework agreement, a test report, an occupational safety policy and a drawing. Management sees all six, the service technician four, purchasing three. Documents that are not shared are locked.">
+            <div class="mock dxu-src">
+              <p class="mock-bar"><b>Shared index</b><span>6 documents · sample data</span></p>
+              <ul><li class="dot-navy"><i></i><b>Operating manual P-200</b><span>Manual</span></li><li class="dot-moss"><i></i><b>Service logs 2026</b><span>Log</span></li><li class="dot-plum"><i></i><b>Framework agreement hydraulics</b><span>Contract</span></li><li class="dot-petrol"><i></i><b>Test report batch 26-118</b><span>Quality</span></li><li class="dot-clay"><i></i><b>Occupational safety policy</b><span>Policy</span></li><li class="dot-navy"><i></i><b>Drawing tool holder</b><span>Drawing</span></li></ul>
+            </div>
+            <svg class="dxu-lines" viewBox="0 0 100 600" preserveAspectRatio="none" aria-hidden="true"><path d="M0 300C50 300 50 100 100 100" pathLength="1"/><path d="M0 300C50 300 50 300 100 300" pathLength="1"/><path d="M0 300C50 300 50 500 100 500" pathLength="1"/></svg>
+            <ul class="dxu-roles"><li class="mock dxu-role"><p class="dxu-role-head"><span class="pp-avatar dot-navy">MG</span><b>Management</b><small>sees 6 of 6</small></p><ul class="dxu-chips"><li>Manual</li><li>Service logs</li><li>Contract</li><li>Test report</li><li>Policy</li><li>Drawing</li></ul></li><li class="mock dxu-role"><p class="dxu-role-head"><span class="pp-avatar dot-moss">ST</span><b>Service technician</b><small>sees 4 of 6</small></p><ul class="dxu-chips"><li>Manual</li><li>Service logs</li><li class="is-off"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2"/></svg>Contract</li><li class="is-off"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2"/></svg>Test report</li><li>Policy</li><li>Drawing</li></ul></li><li class="mock dxu-role"><p class="dxu-role-head"><span class="pp-avatar dot-clay">PU</span><b>Purchasing</b><small>sees 3 of 6</small></p><ul class="dxu-chips"><li class="is-off"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2"/></svg>Manual</li><li class="is-off"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2"/></svg>Service logs</li><li>Contract</li><li>Test report</li><li>Policy</li><li class="is-off"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2"/></svg>Drawing</li></ul></li></ul>
+          </div>
+        </div>
+        <ul class="pp-points"><li><svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="5" y="5" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.4"/><path d="M9.5 10.5h9M9.5 14h9M9.5 17.5h6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><h3>One index instead of scattered storage</h3><p>Contracts, manuals, logs and policies sit in one searchable source. Your file storage stays in place.</p></li><li><svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="6.5" y="12.5" width="15" height="11" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M9.5 12.5v-3a4.5 4.5 0 0 1 9 0v3" stroke="currentColor" stroke-width="1.4"/><circle cx="14" cy="18" r="1.2" fill="currentColor"/></svg><h3>Permissions per document and role</h3><p>The AI suggests permissions, you decide. Each role only queries the documents shared with it.</p></li><li><svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><circle cx="14" cy="14" r="8.5" stroke="currentColor" stroke-width="1.4"/><path d="M8 20L20 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><h3>Locked stays locked</h3><p>Content from documents that are not shared appears neither in answers nor in summaries.</p></li><li><svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M7.5 5.5h7l4 4v11h-11z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M11.5 8.5v-3M10.5 22.5h10v-12" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><h3>For every kind of document</h3><p>Machine documentation, handbooks, contracts, policies and quality records: the principle is always the same.</p></li></ul>
+      </div>
+    </section>
+
+    <section id="how" class="section">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="kicker">How it works</p>
+          <h2>Upload once. Then just ask.</h2>
+          <p class="lede">Doc Indexer reads your documents, classifies them and answers only from what the person asking is allowed to see.</p>
+        </header>
+        <ol class="control-grid">
+          <li>
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M8.5 4.5h8l5 5v14h-13z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M16.5 4.5v5h5" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M15 20.5v-7M12 16.5l3-3 3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h3>Upload documents</h3>
+            <p>Contracts, manuals, reports, policies or test reports are read in once and added to one shared index.</p>
+          </li>
+          <li>
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="6.5" y="12.5" width="15" height="11" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M9.5 12.5v-3a4.5 4.5 0 0 1 9 0v3" stroke="currentColor" stroke-width="1.4"/><circle cx="14" cy="18" r="1.2" fill="currentColor"/></svg>
+            <h3>Set permissions</h3>
+            <p>The AI suggests which role may see each document. You review it and can change every permission.</p>
+          </li>
+          <li>
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M4.5 6.5h19v12h-11l-5.5 4.5v-4.5h-2.5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M9.5 11h9M9.5 14.5h6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            <h3>Ask in your own words</h3>
+            <p>No keywords, and no need to know which document holds the answer.</p>
+          </li>
+          <li>
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="5.5" y="4.5" width="17" height="19" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M9.5 9h9M9.5 19h6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><rect x="8.5" y="12" width="11" height="4" rx="1" fill="currentColor" opacity=".22"/><path d="M9.5 14h9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            <h3>Answer with source</h3>
+            <p>Every statement points to the original page, with the cited passage highlighted.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="features" class="section section--cream">
+      <div class="wrap">
+        <header class="section-head">
+          <h2>Answers you can trust.</h2>
+          <p class="lede">A language model sounds convincing even when it is guessing. Doc Indexer backs every statement with a source, respects permissions and says plainly what it is missing.</p>
+        </header>
+
+        <article class="showcase dxq">
+          <div class="showcase-media">
+            <div class="pfield pfield--navy mock-stage" data-play>
+              <div class="mock mock-doc" data-docquote data-q="option" data-role="mieter" data-lang="en" role="img" aria-label="Example from the Doc Indexer demo: a tenant asks about the deadline for renewing the lease and gets a summary with numbered sources and the highlighted passage in the lease"></div>
+              <p class="glass mock-float mock-float--doc" data-docquote-role aria-hidden="true"></p>
+            </div>
+          </div>
+          <div class="showcase-text">
+            <p class="kicker dot-navy">Summary with sources</p>
+            <h3>Summarised briefly. Cited exactly.</h3>
+            <p>Doc Indexer sums up the answer in a few sentences, even across several documents. Every statement carries a number. One click opens the original page with the cited passage highlighted.</p>
+          </div>
+        </article>
+
+        <article class="showcase showcase--flip">
+          <div class="showcase-media">
+            <div class="pfield pfield--navy mock-stage" data-play>
+              <div class="mock pp-matrix" data-docmatrix data-lang="en" data-changed="BSO:mieter" role="img" aria-label="Permissions in the demo building file: five documents and four roles. The asset manager and the property manager see all documents, the building technician the technical ones, the tenant the lease, the addendum and the statement. One permission was changed by hand."></div>
+            </div>
+          </div>
+          <div class="showcase-text">
+            <p class="kicker dot-navy">Permissions per role</p>
+            <h3>The AI suggests. You decide.</h3>
+            <p>On upload, the AI classifies each document and suggests which role may see it. You review every permission and change it with one click. Settings that work well can be reused as a preset.</p>
+          </div>
+        </article>
+
+        <article class="showcase">
+          <div class="showcase-media">
+            <div class="pfield pfield--navy mock-stage" data-play>
+              <div class="pp-roles" data-docroles data-lang="en" data-q="service" data-a="bewirt" data-b="mieter" role="img" aria-label="The same question about the ventilation service, asked twice. The property manager gets the answer with sources from the service report and the fire safety regulations. The tenant learns that the documents on this are not shared with his role and sees which documents he can use."></div>
+            </div>
+          </div>
+          <div class="showcase-text">
+            <p class="kicker dot-navy">Same question, different role</p>
+            <h3>Everyone sees only what they are allowed to see.</h3>
+            <p>If someone asks about content that is not shared with their role, Doc Indexer says so openly and lists the documents they can see. It does not guess and it reveals nothing.</p>
+          </div>
+        </article>
+
+        <div class="services-foot">
+          <p>No migration: your file structure stays as it is. If you prefer, Doc Indexer works directly on your local storage.</p>
+          <a class="link-arrow" href="#demo">Try the demo</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dd-section">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="kicker">Interactive demo</p>
+          <h2>Try it yourself.</h2>
+          <p class="lede">Real estate is just the example: five documents, four roles, sample data. Doc Indexer works the same way with machine documentation, handbooks, contracts and policies. The demo runs entirely in your browser; the original pages are in German.</p>
+        </header>
+        <div class="pp-docbar">
+          <p data-docfolder>Building file</p>
+          <ul class="pp-docstrip" data-docfiles data-lang="en" data-unit="pages"></ul>
+        </div>
+        <div id="demo" class="stage dd" data-docdemo data-lang="en"></div>
+      </div>
+    </section>
+
+    <section id="data" class="section section--cream pp-has-eu">
+      <svg class="pp-eu" viewBox="0 0 200 200" fill="currentColor" aria-hidden="true" focusable="false"><path transform="translate(100.0 30.0) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(135.0 39.4) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(160.6 65.0) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(170.0 100.0) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(160.6 135.0) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(135.0 160.6) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(100.0 170.0) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(65.0 160.6) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(39.4 135.0) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(30.0 100.0) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(39.4 65.0) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/><path transform="translate(65.0 39.4) scale(9)" d="M0,-1 L0.2245,-0.309 L0.951,-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951,-0.309 L-0.2245,-0.309 Z"/></svg>
+      <div class="wrap">
+        <header class="section-head">
+          <h2>Confidential documents stay under your control.</h2>
+          <p class="lede">Stored to your requirements: Germany, the EU or on-premise. We choose the language model to fit your requirements.</p>
+        </header>
+        <ul class="pp-comp">
+          <li><span class="pp-comp-ref">Data storage</span><h3>To your requirements</h3><p>On servers in Germany, the EU or in your own infrastructure, set per project.</p></li>
+          <li><span class="pp-comp-ref">Access</span><h3>Permissions per document and role</h3><p>Answers draw only on shared content.</p></li>
+          <li><span class="pp-comp-ref">GDPR · Art. 28</span><h3>Data processing agreement</h3><p>Drafted per project for your stack and requirements. Your documents are not used to train AI models.</p><a class="link-arrow" href="/en/dpa">More on data processing</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="section" data-surface="ink">
+      <div class="wrap">
+        <header class="section-head">
+          <h2>Show us your documents.</h2>
+          <p class="lede">30 minutes, no obligation. We look at your documents and typical questions and show you how Doc Indexer works with them.</p>
+        </header>
+        <div class="booking">
+          <div class="booking-main">
+            <div class="booking-cal" data-cal-inline data-cal-theme="dark" data-cal-compact data-loading="Loading calendar"></div>
+            <div class="booking-popup">
+              <p>Pick a time directly in the calendar.</p>
+              <button type="button" class="btn btn-light btn-lg" data-cal-popup>Choose a time</button>
+            </div>
+          </div>
+          <div class="booking-side">
+            <h3>Prefer a callback?</h3>
+            <p class="booking-mail"><a href="mailto:business@utxo.ag">business@utxo.ag</a></p>
+            <form class="form" data-form action="https://formspree.io/f/mppabeng" method="POST">
+              <label class="field"><span>Name</span><input type="text" name="name" required autocomplete="name"></label>
+              <label class="field"><span>Email</span><input type="email" name="email" required autocomplete="email"></label>
+              <label class="field"><span>Phone (optional)</span><input type="tel" name="phone" autocomplete="tel"></label>
+              <button type="submit" class="btn btn-light">Request a callback</button>
+              <p class="form-note" data-form-note>We get back to you within one business day. By submitting you accept our <a href="/en/privacy">privacy policy</a>.</p>
+            </form>
+            <div class="form-done" data-form-done hidden role="status">
+              <h4>Thanks, we'll be in touch.</h4>
+              <p>We'll reach out within one business day to schedule your callback.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section">
+      <div class="wrap faq-layout">
+        <header class="section-head">
+          <h2>Frequently asked questions.</h2>
+        </header>
+        <div class="faq">
+          <details><summary>Does Doc Indexer only work for real estate?</summary><p>No. The demo uses a building file as an example. The principle is the same for any document collection: machine documentation, operating manuals, handbooks, contracts, policies or quality records.</p></details>
+          <details><summary>Which documents can Doc Indexer read?</summary><p>PDF documents such as contracts, reports and manuals, as in the demo. Which other formats and sources you need is something we clarify in the intro call.</p></details>
+          <details><summary>Where are our documents stored?</summary><p>Wherever you decide: on servers in Germany, the EU or on-premise in your own infrastructure. We set out the location in the data processing agreement, which we draft per project for your stack and requirements.</p></details>
+          <details><summary>How are permissions managed?</summary><p>On upload, the AI suggests which roles may see each document. You review the suggestion and change any permission with one click. Settings that work well can be saved as a preset and reused for further documents.</p></details>
+          <details><summary>Can it connect to our existing file storage?</summary><p>Yes, that is what it is designed for: nothing needs to be migrated, your folder structure stays as it is, and it can work directly on your local storage. We agree in the intro call which systems to connect. If an interface is missing, we develop it.</p></details>
+          <details><summary>What happens if the answer is not in the documents?</summary><p>Then it says so. If a detail is missing, it flags it as open instead of guessing. If a relevant document is not shared with your role, you are told, without any of its content reaching the answer.</p></details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" data-surface="ink">
+    <div class="wrap">
+      <div class="footer-top">
+        <div>
+          <img src="/resources/logos/utxo-logo-header.webp" alt="utxo AG" width="136" height="141" loading="lazy" decoding="async">
+          <p class="footer-claim">AI software and AI CoWorkers for businesses.</p>
+        </div>
+      </div>
+      <div class="footer-cols">
+      <div>
+        <p class="footer-title">Services</p>
+        <ul>
+          <li><a href="/en/ai-coworker">AI CoWorker</a></li>
+          <li><a href="/en/ai-coworker/compliance">Compliance CoWorker</a></li>
+          <li><a href="/en/ai-coworker/lead-research">Lead research</a></li>
+          <li><a href="/en/ai-coworker/sales">Sales CoWorker</a></li>
+          <li><a href="/en/ai-coworker/technical-review">Technical review</a></li>
+          <li><a href="/en/ai-phone-assistant">AI Phone Assistant</a></li>
+          <li><a href="/en/doc-indexer">Doc Indexer</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Products</p>
+        <ul>
+          <li><a href="https://anruf.guru" target="_blank" rel="noopener" aria-label="anruf.guru (opens in a new window)">anruf.guru ↗</a></li>
+          <li><a href="https://www.sokosumi.com" target="_blank" rel="noopener" aria-label="Sokosumi (opens in a new window)">Sokosumi ↗</a></li>
+          <li><a href="https://www.masumi.network" target="_blank" rel="noopener" aria-label="Masumi (opens in a new window)">Masumi ↗</a></li>
+          <li><a href="https://www.nmkr.io" target="_blank" rel="noopener" aria-label="NMKR (opens in a new window)">NMKR ↗</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Guides</p>
+        <ul>
+          <li><a href="/en/coworker-vs-copilot">CoWorker vs. Copilot</a></li>
+          <li><a href="/en/ai-in-business">AI in business</a></li>
+          <li><a href="/en/eu-ai-act">EU AI Act</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Company</p>
+        <ul>
+          <li><a href="/en#about">About</a></li>
+          <li><a href="/en#projects">Projects</a></li>
+          <li><a href="/en/press">Press</a></li>
+          <li><a href="/en#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Legal</p>
+        <ul>
+          <li><a href="/en/imprint">Imprint</a></li>
+          <li><a href="/en/privacy">Privacy Policy</a></li>
+          <li><a href="/en/terms">Terms</a></li>
+          <li><a href="/en/acceptable-use">Acceptable Use Policy</a></li>
+          <li><a href="/en/dpa">DPA</a></li>
+          <li><button type="button" class="footer-link" data-consent-open hidden>Cookie settings</button></li>
+        </ul>
+      </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 utxo AG · Dammstrasse 16 · 6300 Zug · Switzerland</span>
+        <span>Hosting to your requirements · GDPR</span>
+      </div>
+    </div>
+  </footer>
+
+
+</div>
+<script src="/config.js"></script>
+<script src="/docdemo.js"></script>
+<script src="/main.js"></script>
+</body>
+</html>

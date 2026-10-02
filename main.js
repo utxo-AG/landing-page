@@ -5,7 +5,6 @@ const App = {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     this._reduce = reduce;
 
-    // ---- Hover styles (style-hover attribute) ----
     root.querySelectorAll('[style-hover]').forEach((el) => {
       const base = el.getAttribute('style') || '';
       const hover = el.getAttribute('style-hover');
@@ -13,130 +12,238 @@ const App = {
       el.addEventListener('mouseleave', () => { el.style.cssText = base; });
     });
 
-    // ---- Coworker emblem hover motion ----
-    if (!reduce) {
-      root.querySelectorAll('[data-team-grid] figure').forEach((fig) => {
-        const parts = fig.querySelectorAll('[data-hover-tf]');
-        if (!parts.length) return;
-        fig.addEventListener('mouseenter', () => parts.forEach(p => { p.style.transform = p.getAttribute('data-hover-tf'); }));
-        fig.addEventListener('mouseleave', () => parts.forEach(p => { p.style.transform = ''; }));
-      });
-    }
-
-    // ---- Language switch (persists manual choice, see head redirect script) ----
     root.querySelectorAll('[data-set-lang]').forEach((el) => {
       el.addEventListener('click', () => {
         const lang = el.getAttribute('data-set-lang');
         document.cookie = 'utxo_lang=' + lang + '; path=/; max-age=31536000; SameSite=Lax';
-        try { localStorage.setItem('utxo_lang', lang); } catch (e) {}
       });
     });
 
-    // ---- Mobile menu ----
-    const burger = root.querySelector('[data-hamburger]');
-    const overlay = root.querySelector('[data-mobile-overlay]');
-    if (burger && overlay) {
-      const close = () => { overlay.style.display = 'none'; };
-      burger.addEventListener('click', () => { overlay.style.display = 'flex'; });
-      overlay.querySelectorAll('a, [data-overlay-close]').forEach(el => el.addEventListener('click', close));
-    }
-
-    // ---- Header scroll shadow ----
-    const hdr = root.querySelector('#hdr');
-
-    // ---- Reveal on scroll ----
-    // Content is visible by default (never hidden via CSS/HTML) so it can never
-    // get stuck blank in throttled/offscreen render contexts. We add a subtle
-    // one-time rise by hiding ONLY elements currently below the fold, then
-    // revealing them as they enter view. Anything already on screen stays shown.
-    const reveals = Array.prototype.slice.call(root.querySelectorAll('[data-reveal]'));
-    const show = (el) => { el.style.opacity = '1'; el.style.transform = 'none'; };
-    if (!reduce && 'IntersectionObserver' in window) {
-      const vh = window.innerHeight || 800;
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            const el = e.target;
-            const d = el.getAttribute('data-delay');
-            if (d) el.style.transitionDelay = d + 'ms';
-            show(el);
-            io.unobserve(el);
-          }
-        });
-      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-      reveals.forEach(el => {
-        const top = el.getBoundingClientRect().top;
-        if (top > vh * 1.05) { el.style.opacity = '0'; el.style.transform = 'translateY(22px)'; io.observe(el); }
-      });
-      // hard safety net: reveal everything after a short delay no matter what
-      setTimeout(() => reveals.forEach(show), 2500);
-    }
-
-    // ---- Roadmap scroll fill (on black band) ----
-    const rm = root.querySelector('#roadmap');
-    const roadmap = () => {
-      if (!rm) return;
-      const fill = rm.querySelector('[data-fill]');
-      const track = rm.querySelector('[data-track]');
-      const dots = Array.prototype.slice.call(rm.querySelectorAll('[data-dot]'));
-      if (!fill || !track || dots.length < 2) return;
-      const rr = rm.getBoundingClientRect();
-      const first = dots[0].getBoundingClientRect();
-      const last = dots[dots.length - 1].getBoundingClientRect();
-      const topY = (first.top + first.height / 2) - rr.top;
-      const botY = (last.top + last.height / 2) - rr.top;
-      const h = Math.max(botY - topY, 0);
-      track.style.top = topY + 'px';
-      track.style.height = h + 'px';
-      fill.style.top = topY + 'px';
-      const vh = window.innerHeight;
-      const ref = vh * 0.66;
-      let p = (ref - rr.top) / Math.max(rr.height, 1);
-      p = Math.max(0, Math.min(1, p));
-      if (this._reduce) p = 1;
-      fill.style.height = (p * h) + 'px';
-      dots.forEach((dot, i) => {
-        const thr = i / (dots.length - 1);
-        if (p >= thr - 0.001) {
-          dot.style.background = 'var(--fill-petrol)';
-          dot.style.borderColor = 'var(--fill-petrol)';
-          dot.style.transform = 'scale(1.1)';
-        } else {
-          dot.style.background = '#000';
-          dot.style.borderColor = 'rgba(255,255,255,.28)';
-          dot.style.transform = 'none';
-        }
-      });
-    };
-    this._roadmap = roadmap;
-
-    const onScroll = () => {
-      if (hdr) hdr.style.boxShadow = window.scrollY > 40 ? '0 6px 24px -12px rgba(0,0,0,.18)' : 'none';
-      roadmap();
-    };
-    window.addEventListener('scroll', onScroll, { passive: true, capture: true });
-    window.addEventListener('resize', () => { roadmap(); }, { passive: true });
-    requestAnimationFrame(() => requestAnimationFrame(roadmap));
-    setTimeout(roadmap, 400);
-
+    this._initReveal(root, reduce);
+    this._initMenu(root);
+    this._initHeader(root);
+    this._initDocQuote(root);
+    this._initDocViz(root);
+    this._initPlay(root, reduce);
     this._initPixelGrid(root, reduce);
-    this._initCase(root, reduce);
-    this._initCards(root, reduce);
-    this._initBeats(root, reduce);
-    this._initOrch(root, reduce);
     this._initBooking(root);
-    this._initSecurity(root);
     this._initForms(root);
-    this._initCarousel(root);
     this._initTeamScroll(root);
     this._initDemos(root);
-    this._initDuo(root);
     this._initDocDemo(root);
+    this._initVideo(root);
     this._initSwipe(root);
     this._initPress(root);
     this._initPressLogos(root);
     this._initHeroRotator(root, reduce);
     this._initConsent(root);
+    this._initToc(root);
+    this._initTables(root);
+  },
+
+  _initReveal(root, reduce) {
+    const reveals = Array.prototype.slice.call(root.querySelectorAll('[data-reveal]'));
+    if (reduce || !reveals.length || !('IntersectionObserver' in window)) return;
+    const show = (el) => { el.style.opacity = '1'; el.style.transform = 'none'; };
+    const vh = window.innerHeight || 800;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const d = e.target.getAttribute('data-delay');
+        if (d) e.target.style.transitionDelay = d + 'ms';
+        show(e.target);
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(el => {
+      if (el.getBoundingClientRect().top > vh * 1.05) { el.style.opacity = '0'; el.style.transform = 'translateY(16px)'; io.observe(el); }
+    });
+    setTimeout(() => reveals.forEach(show), 2500);
+  },
+
+  _initMenu(root) {
+    const button = root.querySelector('[data-menu-open]');
+    const menu = root.querySelector('[data-menu]');
+    if (!button || !menu) return;
+    const setOpen = (open) => {
+      menu.hidden = !open;
+      button.setAttribute('aria-expanded', String(open));
+      document.documentElement.classList.toggle('is-menu-open', open);
+      if (open) { const first = menu.querySelector('a, button'); if (first) first.focus(); }
+      else button.focus({ preventScroll: true });
+    };
+    button.addEventListener('click', () => setOpen(true));
+    menu.querySelectorAll('a, [data-menu-close]').forEach(el => el.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !menu.hidden) setOpen(false); });
+  },
+
+  _initHeader(root) {
+    const header = root.querySelector('.site-header');
+    if (!header) return;
+    const hero = root.querySelector('.hero, .hero-product');
+    const inks = Array.prototype.slice.call(root.querySelectorAll('main [data-surface="ink"], .site-footer[data-surface="ink"]'));
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const h = header.offsetHeight;
+      const top = window.scrollY <= 4;
+      const overHero = hero ? hero.getBoundingClientRect().bottom > h : false;
+      const overInk = inks.some(el => { const r = el.getBoundingClientRect(); return r.top <= h / 2 && r.bottom >= h / 2; });
+      header.classList.toggle('is-solid', !top && overHero);
+      header.classList.toggle('is-glass', !top && !overHero);
+      header.classList.toggle('is-ink', !top && !overHero && overInk);
+    };
+    const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
+  },
+
+  // --- product mockups (Fix B) ---
+  // Renders the Doc Indexer page visuals from window.UTXO_DOCDEMO (single source with the guided demo):
+  // [data-docmatrix] permission matrix, [data-docroles] same question for two roles, [data-docfiles] document strip.
+  _initDocViz(root) {
+    const data = window.UTXO_DOCDEMO;
+    if (!data) return;
+    const esc = (v) => String(v).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    const langOf = (el) => (el.getAttribute('data-lang') === 'en' ? 'en' : 'de');
+    const L = (v, lang) => (v && typeof v === 'object' ? v[lang] : v);
+    const svg = (p, s) => '<svg width="' + s + '" height="' + s + '" viewBox="0 0 24 24" fill="none" aria-hidden="true">' + p + '</svg>';
+    const icon = {
+      doc: svg('<path d="M7 3h7l5 5v13H7z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M14 3v5h5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>', 16),
+      lock: svg('<rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.6"/>', 14),
+      spark: svg('<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>', 13)
+    };
+    const avatar = (r) => '<span class="pp-avatar dot-' + r.dot + '">' + esc(r.initials) + '</span>';
+    const seenBy = (r) => data.docs.filter(d => d.roles.indexOf(r.id) > -1).map(d => d.id);
+    const sees = (ui, n) => ui.role.sees.replace('{n}', n).replace('{t}', data.docs.length);
+
+    root.querySelectorAll('[data-docmatrix]').forEach(el => {
+      const lang = langOf(el);
+      const ui = data.ui[lang];
+      const changed = (el.getAttribute('data-changed') || '').split(':');
+      const head = '<div class="pp-mx-row"><span></span>' + data.roles.map(r => '<span class="pp-mx-role">' + avatar(r) + '<small>' + esc(L(r.label, lang)) + '</small></span>').join('') + '</div>';
+      const rows = data.docs.map(d => '<div class="pp-mx-row"><span class="pp-mx-doc"><b>' + esc(L(d.title, lang)) + '</b><small>' + esc(L(d.ai, lang)) + '</small></span>' +
+        data.roles.map(r => {
+          const flip = changed[0] === d.id && changed[1] === r.id;
+          const on = (d.roles.indexOf(r.id) > -1) !== flip;
+          return '<span class="pp-cell' + (on ? ' is-on' : '') + (flip ? ' is-changed' : '') + '">' + (flip ? '<small>' + esc(ui.upload.changed) + '</small>' : '') + '</span>';
+        }).join('') + '</div>').join('');
+      el.innerHTML = '<p class="mock-bar"><b>' + esc(ui.upload.table) + '</b><span class="pp-ai">' + icon.spark + esc(ui.upload.suggest) + '</span></p><div class="pp-mx">' + head + rows + '</div>';
+    });
+
+    root.querySelectorAll('[data-docroles]').forEach(el => {
+      const lang = langOf(el);
+      const ui = data.ui[lang];
+      const q = data.questions.find(x => x.id === el.getAttribute('data-q'));
+      const pair = [el.getAttribute('data-a'), el.getAttribute('data-b')].map(id => data.roles.find(r => r.id === id));
+      if (!q || pair.some(r => !r)) return;
+      const needed = Array.from(new Set([].concat.apply([], q.blocks.map(b => b.requires))));
+      const panel = (r) => {
+        const seen = seenBy(r);
+        const blocks = q.blocks.filter(b => b.requires.every(id => seen.indexOf(id) > -1));
+        const bar = '<p class="mock-bar"><b>' + avatar(r) + esc(L(r.label, lang)) + '</b><span>' + esc(sees(ui, seen.length)) + '</span></p>';
+        if (!blocks.length) {
+          const hidden = needed.filter(id => seen.indexOf(id) < 0).length;
+          return '<div class="mock pp-role is-denied">' + bar + '<div class="pp-role-body"><p class="pp-deny">' + icon.lock + esc(ui.chat.denial) + '</p>' +
+            (hidden ? '<span class="pp-pill pp-pill--clay pp-role-hidden">' + esc(ui.locked) + ': ' + hidden + '</span>' : '') +
+            '<small class="pp-role-avail">' + esc(ui.chat.available) + '</small><div class="pp-role-chips">' +
+            seen.map(id => '<span>' + esc(L(data.docs.find(d => d.id === id).title, lang)) + '</span>').join('') + '</div></div></div>';
+        }
+        let n = 0;
+        return '<div class="mock pp-role">' + bar + '<div class="pp-role-body">' + blocks.map(b => '<div class="dq-blk"><h5>' + esc(L(b.title, lang)) + '</h5><p>' + esc(L(b.lines, lang)[0]) + '</p>' +
+          b.cites.filter(c => seen.indexOf(c.doc) > -1).map(c => { n += 1; return '<span class="dq-cite"><b>' + n + '</b>' + esc(L(c.label, lang)) + '</span>'; }).join('') + '</div>').join('') + '</div></div>';
+      };
+      el.innerHTML = '<p class="pp-roles-q"><span class="dq-ask">' + esc(L(q.q, lang)) + '</span></p><div class="pp-roles-grid">' + pair.map(panel).join('') + '</div>';
+    });
+
+    root.querySelectorAll('[data-docfiles]').forEach(el => {
+      const lang = langOf(el);
+      const ui = data.ui[lang];
+      const unit = el.getAttribute('data-unit') || '';
+      const label = el.parentElement.querySelector('[data-docfolder]');
+      if (label) label.textContent = ui.folder + ' · ' + ui.building;
+      el.innerHTML = data.docs.map(d => '<li>' + icon.doc + '<span><b>' + esc(L(d.title, lang)) + '</b><small>' + d.total + ' ' + esc(unit) + '</small></span></li>').join('');
+    });
+  },
+  // --- end product mockups (Fix B) ---
+
+  _initDocQuote(root) {
+    const data = window.UTXO_DOCDEMO;
+    if (!data) return;
+    const esc = (v) => String(v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    root.querySelectorAll('[data-docquote]').forEach(el => {
+      const lang = el.getAttribute('data-lang') || 'de';
+      const ui = data.ui[lang];
+      const q = data.questions.find(x => x.id === el.getAttribute('data-q'));
+      const role = data.roles.find(r => r.id === el.getAttribute('data-role'));
+      if (!q || !role || !ui) return;
+      const docs = data.docs.filter(d => d.roles.indexOf(role.id) > -1);
+      const blocks = q.blocks.filter(b => b.requires.every(id => docs.some(d => d.id === id)));
+      if (!blocks.length) return;
+      let n = 0;
+      const cites = [];
+      const blockHtml = blocks.map(b => '<div class="dq-blk"><h5>' + esc(b.title[lang]) + '</h5>' + b.lines[lang].map(l => '<p>' + esc(l) + '</p>').join('') +
+        b.cites.map(c => { n += 1; cites.push(c); return '<span class="dq-cite' + (n === 1 ? ' is-open' : '') + '"><b>' + n + '</b>' + esc(c.label[lang]) + '</span>'; }).join('') + '</div>').join('');
+      const first = cites[0];
+      const doc = data.docs.find(d => d.id === first.doc);
+      const page = doc && doc.pages.find(pg => pg.p === first.page);
+      const viewer = page ? '<div class="dq-viewer"><p class="dq-viewer-bar"><b>' + esc(doc.title[lang]) + '</b><span>' + esc(ui.viewer.page) + ' ' + page.p + ' ' + esc(ui.viewer.of) + ' ' + doc.total + '</span></p><div class="dq-page"><p class="dq-page-head"><span>' + esc(page.head) + '</span><span>' + page.p + '</span></p>' + page.html + '</div></div>' : '';
+      el.innerHTML = '<p class="mock-bar"><b>Doc Indexer</b><span>' + esc(ui.building) + '</span></p><div class="dq"><div class="dq-chat"><p class="dq-ask">' + esc(q.q[lang]) + '</p><p class="dq-head">' + esc(q.header[lang]) + '</p>' + blockHtml + '</div>' + viewer + '</div>';
+      const chip = el.parentElement.querySelector('[data-docquote-role]');
+      if (chip) chip.innerHTML = '<i>' + esc(role.initials) + '</i><b>' + esc(role.label[lang]) + '</b><span>' + esc(ui.role.sees.replace('{n}', docs.length).replace('{t}', data.docs.length)) + '</span>';
+    });
+  },
+
+  _initPlay(root, reduce) {
+    root.querySelectorAll('svg[data-wave]').forEach(svg => {
+      if (svg.childElementCount) return;
+      const n = 44, w = 280 / n;
+      let out = '';
+      for (let i = 0; i < n; i++) {
+        const env = 0.35 + 0.65 * Math.sin(Math.PI * (i + 0.5) / n);
+        const h = Math.max(4, Math.round(36 * env * (0.45 + 0.55 * Math.abs(Math.sin(i * 1.7)))));
+        out += '<rect x="' + (i * w + w * 0.2).toFixed(1) + '" y="' + ((36 - h) / 2) + '" width="' + (w * 0.6).toFixed(1) + '" height="' + h + '" rx="1.5" style="animation-delay:-' + ((i * 0.137) % 1.3).toFixed(2) + 's"></rect>';
+      }
+      svg.innerHTML = out;
+    });
+    if (!('IntersectionObserver' in window)) return;
+    const waves = Array.prototype.slice.call(root.querySelectorAll('svg[data-wave]'));
+    if (!reduce && waves.length) {
+      const wio = new IntersectionObserver(entries => entries.forEach(e => e.target.classList.toggle('is-live', e.isIntersecting)), { threshold: 0 });
+      waves.forEach(w => wio.observe(w));
+    }
+    if (reduce) return;
+    const items = Array.prototype.slice.call(root.querySelectorAll('[data-play]'));
+    const vh = window.innerHeight || 800;
+    const io = new IntersectionObserver(entries => entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('is-in');
+      e.target.classList.remove('pv-wait');
+      io.unobserve(e.target);
+    }), { threshold: 0.35 });
+    items.forEach(el => {
+      if (el.getBoundingClientRect().top < vh * 0.9) return;
+      el.classList.add('pv-wait');
+      io.observe(el);
+    });
+  },
+
+  _initVideo(root) {
+    root.querySelectorAll('[data-video]').forEach(figure => {
+      const video = figure.querySelector('video');
+      const play = figure.querySelector('[data-video-play]');
+      if (!video || !play) return;
+      play.addEventListener('click', () => {
+        if (!video.getAttribute('src')) video.src = video.getAttribute('data-src');
+        video.controls = true;
+        play.hidden = true;
+        figure.classList.add('is-playing');
+        const started = video.play();
+        if (started && started.catch) started.catch(() => {});
+        video.focus({ preventScroll: true });
+      });
+    });
   },
 
   _initConsent(root) {
@@ -146,8 +253,8 @@ const App = {
     const MAX_AGE = 365 * 24 * 60 * 60 * 1000;
     const de = document.documentElement.lang === 'de';
     const text = de
-      ? { msg: 'Wir möchten mit Google Analytics verstehen, wie unsere Website genutzt wird. Die Daten helfen uns, Inhalte zu verbessern. Sie können Ihre Wahl jederzeit im Footer ändern.', privacy: 'Datenschutz', href: '/privacy.de', deny: 'Ablehnen', accept: 'Akzeptieren' }
-      : { msg: 'We would like to use Google Analytics to understand how our website is used. The data helps us improve our content. You can change your choice at any time in the footer.', privacy: 'Privacy Policy', href: '/privacy', deny: 'Decline', accept: 'Accept' };
+      ? { msg: 'Wir möchten mit Google Analytics verstehen, wie unsere Website genutzt wird. Die Daten helfen uns, Inhalte zu verbessern. Sie können Ihre Wahl jederzeit im Footer ändern.', privacy: 'Datenschutz', href: '/de/datenschutz', deny: 'Ablehnen', accept: 'Akzeptieren' }
+      : { msg: 'We would like to use Google Analytics to understand how our website is used. The data helps us improve our content. You can change your choice at any time in the footer.', privacy: 'Privacy Policy', href: '/en/privacy', deny: 'Decline', accept: 'Accept' };
     const read = () => {
       try {
         const v = JSON.parse(localStorage.getItem(KEY) || 'null');
@@ -232,14 +339,17 @@ const App = {
   _initPressLogos(root) {
     const logos = window.UTXO_PRESS_LOGOS;
     if (!Array.isArray(logos)) return;
-    const img = (l) => '<img src="' + l.src + '" alt="' + l.name.replace(/&/g, '&amp;').replace(/"/g, '&quot;') + '"' + (l.stacked ? ' class="is-stacked"' : '') + ' decoding="async">';
+    const esc = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+    const img = (l, alt) => '<img src="' + l.src + '" alt="' + (alt ? esc(l.name) : '') + '"' + (l.stacked ? ' class="is-stacked"' : '') + ' decoding="async">';
     root.querySelectorAll('[data-press-logos]').forEach(el => {
-      const set = logos.map(img).join('');
+      const limit = parseInt(el.getAttribute('data-limit'), 10) || logos.length;
+      const list = logos.slice(0, limit);
       if (el.getAttribute('data-press-logos') === 'marquee') {
-        el.innerHTML = '<div class="press-logos-track">' + set + '<span aria-hidden="true" class="press-logos-dup">' + set + '</span></div>';
-      } else {
-        el.innerHTML = set;
+        const group = (copy) => '<ul class="press-marquee-group"' + (copy ? ' aria-hidden="true"' : '') + '>' + list.map(l => '<li>' + img(l, !copy) + '</li>').join('') + '</ul>';
+        el.innerHTML = '<div class="press-marquee-track">' + group(false) + group(true) + '</div>';
+        return;
       }
+      el.innerHTML = list.map(l => img(l, true)).join('');
     });
   },
 
@@ -274,10 +384,14 @@ const App = {
     const list = wrap.querySelector('[data-press-list]');
     const more = wrap.querySelector('[data-press-more]');
     const toggle = wrap.querySelector('[data-press-toggle]');
+    const limit = parseInt(wrap.getAttribute('data-limit'), 10);
+    const featured = items.filter(i => i.tier === 'featured');
+    const onlyLang = wrap.getAttribute('data-filter-lang');
+    if (limit) { featured.filter(i => !onlyLang || i.lang === onlyLang).slice(0, limit).forEach(i => list.appendChild(row(i))); return; }
     const extra = items.filter(i => i.tier !== 'featured');
-    items.filter(i => i.tier === 'featured').forEach(i => list.appendChild(row(i)));
-    extra.forEach(i => more.appendChild(row(i)));
-    if (!extra.length || !toggle) return;
+    featured.forEach(i => list.appendChild(row(i)));
+    if (more) extra.forEach(i => more.appendChild(row(i)));
+    if (!extra.length || !toggle || !more) return;
     const labelMore = (wrap.getAttribute('data-label-more') || '').replace('{n}', extra.length);
     const labelLess = wrap.getAttribute('data-label-less') || '';
     toggle.textContent = labelMore;
@@ -294,6 +408,7 @@ const App = {
     const wrap = root.querySelector('[data-docdemo]');
     const data = window.UTXO_DOCDEMO;
     if (!wrap || !data) return;
+    const reduce = this._reduce;
     const lang = wrap.getAttribute('data-lang') === 'de' ? 'de' : 'en';
     const t = data.ui[lang];
     const L = (v) => (v && typeof v === 'object' && !Array.isArray(v) ? v[lang] : v);
@@ -312,46 +427,114 @@ const App = {
       warn: svg('<path d="M12 4l9 16H3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 10v4M12 17h.01" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>', 14)
     };
 
-    const fresh = () => ({ step: 0, analyzed: 0, uploading: false, perms: {}, role: null, thread: [], busy: false, draft: '', viewer: null, suggestOpen: false });
+    const CELLS = 40;
+    const totalPages = data.docs.reduce((n, d) => n + d.total, 0);
+
+    const fresh = () => ({ step: 0, reach: 0, indexing: false, read: {}, indexed: 0, perms: {}, role: null, thread: [], busy: false, draft: '', viewer: null, suggestOpen: false });
     let state = fresh();
+    let shownStep = -1;
+    let shownViewer = '';
     let timers = [];
     const later = (fn, ms) => timers.push(setTimeout(fn, ms));
     const clearTimers = () => { timers.forEach(clearTimeout); timers = []; };
     const visible = (roleId) => data.docs.filter(d => (state.perms[d.id] || []).includes(roleId)).map(d => d.id);
-    const fill = (s, vars) => Object.keys(vars).reduce((out, k) => out.replace('{' + k + '}', vars[k]), s);
+    const fill = (s, vars) => Object.keys(vars).reduce((out, k) => out.split('{' + k + '}').join(vars[k]), s);
 
     const answerFor = (q, roleId) => {
       const seen = visible(roleId);
       const blocks = q.blocks.filter(b => b.requires.every(id => seen.includes(id)));
       const needed = Array.from(new Set([].concat.apply([], q.blocks.map(b => b.requires))));
-      return { blocks, hidden: needed.filter(id => !seen.includes(id)).length, seen };
+      const cites = [].concat.apply([], blocks.map(b => b.cites.filter(c => seen.includes(c.doc))));
+      return { blocks, cites, hidden: needed.filter(id => !seen.includes(id)).length, seen };
+    };
+
+    const scanFor = (q, roleId) => {
+      const a = answerFor(q, roleId);
+      return data.docs.map(d => {
+        if (!a.seen.includes(d.id)) return { d, state: 'skip', label: t.assemble.skip };
+        const pages = Array.from(new Set(a.cites.filter(c => c.doc === d.id).map(c => c.page)));
+        if (!pages.length) return { d, state: 'miss', label: t.assemble.miss };
+        return { d, state: 'hit', label: t.assemble.hit + ' · ' + t.viewer.page + ' ' + pages.join(', ') };
+      });
     };
 
     const avatar = (r) => '<span class="dd-avatar dot-' + r.dot + '">' + esc(r.initials) + '</span>';
 
-    const uploadView = () => {
-      if (!state.uploading && state.analyzed === 0) {
+    const indexMeta = (d) => {
+      const p = state.read[d.id] || 0;
+      if (p >= d.total) return '<span class="dd-ix-ok">' + icon.check + esc(t.index.done) + '</span> · ' + esc(L(d.ai));
+      return p ? esc(fill(t.index.reading, { p, t: d.total })) : esc(t.upload.queued);
+    };
+
+    const indexView = () => {
+      if (!state.indexing) {
         return '<div class="dd-panel dd-upload"><div class="dd-drop">' + icon.upload + '<h4>' + esc(t.upload.title) + '</h4><p>' + esc(t.upload.text) + '</p>' +
           '<button type="button" class="btn btn-primary" data-dd-upload="">' + esc(t.upload.button) + '</button></div></div>';
       }
+      const rows = data.docs.map(d => '<li class="dd-ix-doc" data-dd-ix="' + d.id + '"><span class="dd-ix-ic">' + icon.doc + '</span><span class="dd-ix-txt"><b>' + esc(L(d.title)) + '</b><small data-dd-ix-meta>' + indexMeta(d) + '</small></span>' +
+        '<span class="dd-ix-bar" aria-hidden="true"><i data-dd-ix-bar></i></span></li>').join('');
+      const cells = Array.from({ length: CELLS }, () => '<i></i>').join('');
+      return '<div class="dd-panel dd-index"><div class="dd-ix-grid"><ul class="dd-ix-list">' + rows + '</ul>' +
+        '<div class="dd-ix-core"><p class="dd-ix-title">' + icon.spark + esc(t.index.title) + '</p><div class="dd-ix-cells" aria-hidden="true">' + cells + '</div>' +
+        '<dl class="dd-ix-stats"><div><dt>' + esc(t.index.docs) + '</dt><dd data-dd-ix-docs></dd></div><div><dt>' + esc(t.index.pages) + '</dt><dd data-dd-ix-pages></dd></div></dl></div></div>' +
+        '<div class="dd-perm-foot"><small>' + esc(t.building) + '</small><button type="button" class="btn btn-primary" data-dd-go="1" data-dd-ix-next>' + esc(t.index.next) + ' →</button></div></div>';
+    };
+
+    const paintIndex = () => {
+      const panel = wrap.querySelector('.dd-index');
+      if (!panel) return;
+      let read = 0;
+      data.docs.forEach(d => {
+        const p = Math.min(d.total, state.read[d.id] || 0);
+        read += p;
+        const row = panel.querySelector('[data-dd-ix="' + d.id + '"]');
+        if (!row) return;
+        row.classList.toggle('is-busy', p > 0 && p < d.total);
+        row.classList.toggle('is-done', p >= d.total);
+        row.querySelector('[data-dd-ix-bar]').style.transform = 'scaleX(' + (p / d.total).toFixed(3) + ')';
+        row.querySelector('[data-dd-ix-meta]').innerHTML = indexMeta(d);
+      });
+      const on = Math.round(CELLS * read / totalPages);
+      panel.querySelectorAll('.dd-ix-cells i').forEach((c, i) => c.classList.toggle('is-on', i < on));
+      panel.querySelector('[data-dd-ix-docs]').textContent = state.indexed + ' / ' + data.docs.length;
+      panel.querySelector('[data-dd-ix-pages]').textContent = read + ' / ' + totalPages;
+      panel.querySelector('[data-dd-ix-next]').disabled = state.indexed < data.docs.length;
+      panel.classList.toggle('is-complete', state.indexed === data.docs.length);
+    };
+
+    const startIndex = () => {
+      state.indexing = true;
+      const finish = (d, i) => { state.read[d.id] = d.total; state.perms[d.id] = d.roles.slice(); state.indexed = i + 1; };
+      if (reduce) {
+        data.docs.forEach(finish);
+        return render();
+      }
+      render();
+      let at = 350;
+      data.docs.forEach((d, i) => {
+        const dur = Math.min(1100, 360 + d.total * 5);
+        const ticks = Math.max(5, Math.round(dur / 55));
+        for (let k = 1; k <= ticks; k++) {
+          later(() => {
+            if (k === ticks) finish(d, i); else state.read[d.id] = Math.round(d.total * k / ticks);
+            paintIndex();
+          }, at + Math.round(k * dur / ticks));
+        }
+        at += dur + 140;
+      });
+    };
+
+    const permsView = () => {
       const head = '<div class="dd-perm-row dd-perm-head"><span>' + esc(t.upload.table) + '</span>' + data.roles.map(r => '<span class="dd-perm-role" title="' + esc(L(r.label)) + '">' + avatar(r) + '<small>' + esc(L(r.label)) + '</small></span>').join('') + '</div>';
-      const rows = data.docs.map((d, i) => {
-        const ready = i < state.analyzed;
+      const rows = data.docs.map(d => {
         const perms = state.perms[d.id] || [];
-        const changed = ready && (perms.length !== d.roles.length || perms.some(r => !d.roles.includes(r)));
-        const meta = ready
-          ? '<small class="dd-ai">' + icon.spark + esc(L(d.ai)) + (changed ? ' · <b>' + esc(t.upload.changed) + '</b>' : '') + '</small>'
-          : i === state.analyzed
-            ? '<small class="dd-ai is-busy">' + esc(t.upload.analyzing) + '<i></i><i></i><i></i></small>'
-            : '<small class="dd-ai is-queued">' + esc(t.upload.queued) + '</small>';
-        const cells = data.roles.map(r => ready
-          ? '<button type="button" class="dd-perm' + (perms.includes(r.id) ? ' is-on' : '') + '" data-dd-perm="' + d.id + ':' + r.id + '" aria-pressed="' + perms.includes(r.id) + '" aria-label="' + esc(L(d.title) + ': ' + L(r.label)) + '">' + icon.check + '<span class="dd-perm-label">' + esc(L(r.label)) + '</span></button>'
-          : '<span class="dd-perm is-wait"><span class="dd-perm-label">' + esc(L(r.label)) + '</span></span>').join('');
-        return '<div class="dd-perm-row' + (ready ? ' is-ready' : '') + '"><span class="dd-perm-doc">' + icon.doc + '<span><b>' + esc(L(d.title)) + '</b>' + meta + '</span></span>' + cells + '</div>';
+        const changed = perms.length !== d.roles.length || perms.some(r => !d.roles.includes(r));
+        const meta = '<small class="dd-ai">' + icon.spark + esc(L(d.ai)) + (changed ? ' · <b>' + esc(t.upload.changed) + '</b>' : '') + '</small>';
+        const cells = data.roles.map(r => '<button type="button" class="dd-perm' + (perms.includes(r.id) ? ' is-on' : '') + '" data-dd-perm="' + d.id + ':' + r.id + '" aria-pressed="' + perms.includes(r.id) + '" aria-label="' + esc(L(d.title) + ': ' + L(r.label)) + '">' + icon.check + '<span class="dd-perm-label">' + esc(L(r.label)) + '</span></button>').join('');
+        return '<div class="dd-perm-row is-ready"><span class="dd-perm-doc">' + icon.doc + '<span><b>' + esc(L(d.title)) + '</b>' + meta + '</span></span>' + cells + '</div>';
       }).join('');
-      const done = state.analyzed === data.docs.length;
       return '<div class="dd-panel dd-perms"><div class="dd-perm-table">' + head + rows + '</div>' +
-        '<div class="dd-perm-foot"><small>' + icon.spark + esc(t.upload.suggest) + ' · ' + esc(t.upload.hint) + '</small><button type="button" class="btn btn-primary" data-dd-go="1"' + (done ? '' : ' disabled') + '>' + esc(t.upload.done) + ' →</button></div></div>';
+        '<div class="dd-perm-foot"><small>' + icon.spark + esc(t.upload.suggest) + ' · ' + esc(t.upload.hint) + '</small><button type="button" class="btn btn-primary" data-dd-go="2">' + esc(t.upload.done) + ' →</button></div></div>';
     };
 
     const sidebar = () => {
@@ -365,26 +548,39 @@ const App = {
     };
 
     const roleView = () => '<div class="dd-panel"><h4 class="dd-title">' + esc(t.role.title) + '</h4><p class="dd-sub">' + esc(t.role.text) + '</p><div class="dd-roles">' +
-      data.roles.map(r => '<button type="button" class="dd-role dot-' + r.dot + (state.role === r.id ? ' is-active' : '') + '" data-dd-role="' + r.id + '">' + avatar(r) +
-        '<b>' + esc(L(r.label)) + '</b><small>' + esc(r.person + ' · ' + L(r.scope)) + '</small><em>' + esc(fill(t.role.sees, { n: visible(r.id).length, t: data.docs.length })) + '</em></button>').join('') + '</div></div>';
+      data.roles.map(r => {
+        const seen = visible(r.id);
+        const dots = data.docs.map(d => '<i class="' + (seen.includes(d.id) ? 'is-on' : '') + '" title="' + esc(L(d.title)) + '"></i>').join('');
+        return '<button type="button" class="dd-role dot-' + r.dot + (state.role === r.id ? ' is-active' : '') + '" data-dd-role="' + r.id + '">' + avatar(r) +
+          '<b>' + esc(L(r.label)) + '</b><small>' + esc(r.person + ' · ' + L(r.scope)) + '</small><em><span class="dd-role-docs" aria-hidden="true">' + dots + '</span>' + esc(fill(t.role.sees, { n: seen.length, t: data.docs.length })) + '</em></button>';
+      }).join('') + '</div></div>';
 
     const chip = (c) => '<button type="button" class="dd-source" data-dd-open="' + c.doc + ':' + c.page + '">' + icon.doc + esc(L(c.label)) + '</button>';
 
+    const scanView = (turn) => {
+      const q = data.questions.find(x => x.id === turn.q);
+      return '<div class="dd-answer dd-scan"><p class="dd-ans-head">' + esc(t.assemble.title) + '</p><ul>' +
+        scanFor(q, turn.role).map(s => '<li class="is-' + s.state + '">' + (s.state === 'skip' ? icon.lock : icon.doc) + '<b>' + esc(L(s.d.title)) + '</b><small>' + esc(s.label) + '</small></li>').join('') + '</ul></div>';
+    };
+
     const renderAnswer = (turn) => {
-      if (turn.free) return '<div class="dd-answer"><p>' + esc(t.chat.free) + '</p></div>';
+      const enter = turn.fresh ? ' is-fresh' : '';
+      if (turn.free) return '<div class="dd-answer' + enter + '"><p>' + esc(t.chat.free) + '</p></div>';
       const q = data.questions.find(x => x.id === turn.q);
       const a = answerFor(q, turn.role);
       const hidden = a.hidden ? '<p class="dd-hidden">' + icon.lock + esc(a.hidden === 1 ? t.chat.hiddenOne : fill(t.chat.hidden, { n: a.hidden })) + '</p>' : '';
       if (!a.blocks.length) {
         const docs = a.seen.map(id => docById(id));
-        return '<div class="dd-answer"><p>' + esc(t.chat.denial) + '</p>' + (docs.length ? '<small class="dd-avail">' + esc(t.chat.available) + '</small><div class="dd-chips">' +
+        return '<div class="dd-answer' + enter + '"><p>' + esc(t.chat.denial) + '</p>' + (docs.length ? '<small class="dd-avail">' + esc(t.chat.available) + '</small><div class="dd-chips">' +
           docs.map(d => chip({ doc: d.id, page: d.pages[0].p, label: d.title })).join('') + '</div>' : '') + '</div>';
       }
-      return '<div class="dd-answer"><p class="dd-ans-head">' + esc(L(q.header)) + '</p>' +
+      const used = Array.from(new Set(a.cites.map(c => c.doc))).length;
+      return '<div class="dd-answer' + enter + '"><p class="dd-ans-head">' + esc(L(q.header)) + '</p>' +
         a.blocks.map((b, i) => '<div class="dd-blk"><h5>' + (i + 1) + ' · ' + esc(L(b.title).replace(/^\d+\s·\s/, '')) + '</h5>' + L(b.lines).map(l => '<p>' + esc(l) + '</p>').join('') +
           '<div class="dd-chips">' + b.cites.filter(c => a.seen.includes(c.doc)).map(chip).join('') + '</div>' +
           (b.warn ? '<p class="dd-warn">' + icon.warn + esc(L(b.warn)) + '</p>' : '') + '</div>').join('') +
-        (q.gap ? '<p class="dd-gap">' + esc(t.chat.gap) + ' <span>' + esc(L(q.gap)) + '</span></p>' : '') + hidden + '</div>';
+        (q.gap ? '<p class="dd-gap">' + esc(t.chat.gap) + ' <span>' + esc(L(q.gap)) + '</span></p>' : '') + hidden +
+        '<p class="dd-built">' + icon.check + esc(used === 1 ? t.assemble.builtOne : fill(t.assemble.built, { n: used })) + '</p></div>';
     };
 
     const chatView = () => {
@@ -393,40 +589,54 @@ const App = {
       if (!state.thread.length) thread = '<div class="dd-hello">' + icon.building + '<h4>' + esc(t.chat.hello) + '</h4><p>' + esc(t.building) + '</p></div>';
       state.thread.forEach(turn => {
         const r = roleById(turn.role);
-        thread += '<div class="dd-turn"><div class="dd-ask-bubble"><small class="dot-' + r.dot + '">' + esc(L(r.label)) + '</small><p>' + esc(turn.text) + '</p></div>' +
-          '<div class="dd-reply"><span class="dd-bot">' + icon.building + '</span>' + (turn.pending ? '<div class="dd-typing"><i></i><i></i><i></i></div>' : renderAnswer(turn)) + '</div></div>';
+        const body = turn.pending ? (turn.free ? '<div class="dd-typing"><i></i><i></i><i></i></div>' : scanView(turn)) : renderAnswer(turn);
+        thread += '<div class="dd-turn' + (turn.born ? ' is-new' : '') + '"><div class="dd-ask-bubble"><small class="dot-' + r.dot + '">' + esc(L(r.label)) + '</small><p>' + esc(turn.text) + '</p></div>' +
+          '<div class="dd-reply"><span class="dd-bot">' + icon.building + '</span>' + body + '</div></div>';
       });
       const asked = state.thread.filter(x => x.role === state.role && x.q).map(x => x.q);
-      const suggestions = data.questions.filter(q => !asked.includes(q.id)).map(q => '<button type="button" class="dd-chip" data-dd-ask="' + q.id + '">' + esc(L(q.q)) + '</button>');
       const off = state.busy ? ' disabled' : '';
-      const items = suggestions;
+      const items = data.questions.filter(q => !asked.includes(q.id)).map(q => '<button type="button" class="dd-chip" data-dd-ask="' + q.id + '"' + off + '>' + esc(L(q.q)) + '</button>');
       const collapsed = state.thread.length > 0 && !state.suggestOpen;
       const sugg = collapsed
         ? '<button type="button" class="dd-sugg-toggle" data-dd-sugg="open"' + off + '>' + esc(t.chat.more) + ' <span>(' + items.length + ')</span> <i aria-hidden="true">▾</i></button>'
-        : '<div class="dd-sugg-row"><small>' + esc(state.thread.length ? t.chat.more : t.chat.suggest) + '</small>' + (state.thread.length ? '<button type="button" class="dd-sugg-toggle is-inline" data-dd-sugg="close">' + esc(t.chat.hide) + ' <i aria-hidden="true">▴</i></button>' : '') + '</div><div class="dd-sugg">' + items.join('').replace(/<button /g, '<button' + off + ' ') + '</div>';
-      return '<div class="dd-panel dd-chat' + (collapsed ? ' is-collapsed' : '') + '"><div class="dd-chat-head"><span class="dot-' + role.dot + '">' + esc(t.chat.as) + ' <b>' + esc(L(role.label)) + '</b></span><button type="button" data-dd-go="1">' + esc(t.chat.change) + '</button></div>' +
-        '<div class="dd-thread">' + thread + '</div>' +
+        : '<div class="dd-sugg-row"><small>' + esc(state.thread.length ? t.chat.more : t.chat.suggest) + '</small>' + (state.thread.length ? '<button type="button" class="dd-sugg-toggle is-inline" data-dd-sugg="close">' + esc(t.chat.hide) + ' <i aria-hidden="true">▴</i></button>' : '') + '</div><div class="dd-sugg">' + items.join('') + '</div>';
+      return '<div class="dd-panel dd-chat' + (collapsed ? ' is-collapsed' : '') + '"><div class="dd-chat-head"><span class="dot-' + role.dot + '">' + esc(t.chat.as) + ' <b>' + esc(L(role.label)) + '</b></span><button type="button" data-dd-go="2">' + esc(t.chat.change) + '</button></div>' +
+        '<div class="dd-thread" aria-live="polite">' + thread + '</div>' +
         '<div class="dd-composer">' + sugg +
-        '<form class="dd-box" data-dd-form=""><textarea rows="1" data-dd-input="" placeholder="' + esc(t.chat.placeholder) + '"' + off + '>' + esc(state.draft) + '</textarea><button type="submit" class="dd-send" aria-label="' + esc(t.chat.send) + '"' + off + '>' + icon.send + '</button></form></div></div>';
+        '<form class="dd-box" data-dd-form=""><textarea rows="1" data-dd-input="" aria-label="' + esc(t.chat.placeholder) + '" placeholder="' + esc(t.chat.placeholder) + '"' + off + '>' + esc(state.draft) + '</textarea><button type="submit" class="dd-send" aria-label="' + esc(t.chat.send) + '"' + off + '>' + icon.send + '</button></form></div></div>';
     };
 
-    const viewerView = () => {
+    const viewerView = (enter) => {
       const d = docById(state.viewer.doc);
       const current = state.viewer.page;
       const rail = d.pages.map(p => '<button type="button" data-dd-page="' + p.p + '"' + (p.p === current ? ' aria-current="true"' : '') + '><span class="dd-mini"><i class="t"></i><i></i><i></i>' + (p.p === current ? '<i class="hl"></i><i class="hl"></i>' : '<i></i><i></i>') + '<i></i><i></i></span><small>' + p.p + '</small></button>').join('');
       const pages = d.pages.map(p => '<article class="dd-page' + (p.p === current ? ' is-cited' : '') + '" data-dd-pageno="' + p.p + '"><div class="dd-page-head"><span>' + esc(p.head) + '</span><span>' + esc(t.viewer.page) + ' ' + p.p + ' / ' + d.total + '</span></div>' +
         (p.status ? '<p class="dd-page-status' + (p.status.ok ? '' : ' is-void') + '">' + esc(p.status.text) + '</p>' : '') + p.html + '</article>').join('');
-      return '<div class="dd-viewer"><div class="dd-viewer-bar"><button type="button" data-dd-close="">← ' + esc(t.viewer.back) + '</button><span class="dd-viewer-file">' + icon.doc + '<b>' + esc(d.file) + '</b></span>' +
+      return '<div class="dd-viewer' + (enter ? ' is-enter' : '') + '"><div class="dd-viewer-bar"><button type="button" data-dd-close="">← ' + esc(t.viewer.back) + '</button><span class="dd-viewer-file">' + icon.doc + '<b>' + esc(d.file) + '</b></span>' +
+        '<span class="dd-viewer-cite">' + esc(t.viewer.cited) + ' · ' + esc(t.viewer.page) + ' ' + current + '</span>' +
         '<span class="dd-viewer-meta">' + esc(t.viewer.original) + ' · ' + esc(fill(t.viewer.stored, { n: d.pages.length, t: d.total })) + '</span></div>' +
         '<div class="dd-viewer-body"><nav class="dd-rail">' + rail + '</nav><div class="dd-pages">' + pages + '</div></div></div>';
     };
 
     const render = () => {
-      const steps = t.steps.map((label, i) => '<li class="' + (i === state.step ? 'is-active' : i < state.step ? 'is-done' : '') + '"><span>' + (i + 1) + '</span>' + esc(label) + '</li>').join('');
+      state.reach = Math.max(state.reach, state.step);
+      const enterStep = state.step !== shownStep;
+      const viewerKey = state.viewer ? state.viewer.doc + ':' + state.viewer.page : '';
+      const enterViewer = !!viewerKey && viewerKey !== shownViewer;
+      const steps = t.steps.map((label, i) => {
+        const cls = i === state.step ? 'is-active' : i <= state.reach ? 'is-done' : '';
+        const inner = '<span class="dd-step-n">' + (cls === 'is-done' ? icon.check : i + 1) + '</span><span class="dd-step-label">' + esc(label) + '</span>';
+        return '<li class="' + cls + '"' + (i === state.step ? ' aria-current="step"' : '') + '>' + (cls === 'is-done' ? '<button type="button" data-dd-go="' + i + '">' + inner + '</button>' : inner) + '</li>';
+      }).join('');
+      const help = '<p class="dd-help' + (enterStep ? ' is-enter' : '') + '"><span>' + esc(fill(t.stepOf, { n: state.step + 1, t: t.steps.length })) + '</span>' + esc(t.help[state.step]) + '</p>';
       let body;
-      if (state.step === 0) body = '<div class="dd-body is-full">' + uploadView() + '</div>';
-      else body = '<div class="dd-body">' + sidebar() + '<div class="dd-main">' + (state.step === 1 ? roleView() : chatView()) + '</div>' + (state.viewer ? viewerView() : '') + '</div>';
-      wrap.innerHTML = '<div class="stage-bar"><span>' + esc(t.bar) + '</span><button type="button" data-dd-restart="">' + esc(t.restart) + '</button></div><ol class="dd-steps">' + steps + '</ol>' + body;
+      if (state.step < 2) body = '<div class="dd-body is-full' + (enterStep ? ' is-enter' : '') + '">' + (state.step === 0 ? indexView() : permsView()) + '</div>';
+      else body = '<div class="dd-body' + (enterStep ? ' is-enter' : '') + '">' + sidebar() + '<div class="dd-main">' + (state.step === 2 ? roleView() : chatView()) + '</div>' + (state.viewer ? viewerView(enterViewer) : '') + '</div>';
+      wrap.innerHTML = '<div class="stage-bar"><span>' + esc(t.bar) + '</span><button type="button" data-dd-restart="">' + esc(t.restart) + '</button></div><ol class="dd-steps">' + steps + '</ol>' + help + body;
+      shownStep = state.step;
+      shownViewer = viewerKey;
+      state.thread.forEach(turn => { if (!turn.pending) turn.fresh = false; turn.born = false; });
+      if (state.step === 0 && state.indexing) paintIndex();
       const thread = wrap.querySelector('.dd-thread');
       const turns = thread ? thread.querySelectorAll('.dd-turn') : [];
       if (turns.length) thread.scrollTop = turns[turns.length - 1].offsetTop - thread.offsetTop - 12;
@@ -434,11 +644,15 @@ const App = {
         const cited = wrap.querySelector('.dd-page.is-cited');
         const pagesEl = wrap.querySelector('.dd-pages');
         if (cited && pagesEl) {
-          const mark = cited.querySelector('mark, tr.hl') || cited;
-          pagesEl.scrollTop = mark.getBoundingClientRect().top - pagesEl.getBoundingClientRect().top + pagesEl.scrollTop - 120;
+          const mark = cited.querySelector('mark, tr.hl');
+          if (mark) (mark.closest('p, tr') || mark).classList.add('dd-cited');
+          const target = mark || cited;
+          pagesEl.scrollTop = target.getBoundingClientRect().top - pagesEl.getBoundingClientRect().top + pagesEl.scrollTop - 120;
         }
       }
     };
+
+    const reveal = (turn, ms) => later(() => { turn.pending = false; turn.fresh = true; state.busy = false; render(); }, reduce ? 300 : ms);
 
     const ask = (qid, roleId) => {
       const q = data.questions.find(x => x.id === qid);
@@ -448,17 +662,20 @@ const App = {
       render();
       const text = L(q.q);
       const input = wrap.querySelector('[data-dd-input]');
+      const post = () => {
+        const turn = { q: qid, role: roleId, text, pending: true, born: true };
+        state.thread.push(turn);
+        render();
+        reveal(turn, 1700);
+      };
+      if (reduce) return post();
       let i = 0;
       const step = Math.max(1, Math.ceil(text.length / 40));
       const type = () => {
         i = Math.min(text.length, i + step);
         if (input) input.value = text.slice(0, i);
         if (i < text.length) return later(type, 22);
-        later(() => {
-          state.thread.push({ q: qid, role: roleId, text, pending: true });
-          render();
-          later(() => { state.thread[state.thread.length - 1].pending = false; state.busy = false; render(); }, 1000);
-        }, 250);
+        later(post, 250);
       };
       type();
     };
@@ -473,9 +690,10 @@ const App = {
       if (hit) return ask(hit.id, state.role);
       state.busy = true;
       state.draft = '';
-      state.thread.push({ free: true, role: state.role, text, pending: true });
+      const turn = { free: true, role: state.role, text, pending: true, born: true };
+      state.thread.push(turn);
       render();
-      later(() => { state.thread[state.thread.length - 1].pending = false; state.busy = false; render(); }, 700);
+      reveal(turn, 700);
     });
 
     wrap.addEventListener('keydown', (e) => {
@@ -490,13 +708,8 @@ const App = {
     wrap.addEventListener('click', (e) => {
       const el = e.target.closest('button');
       if (!el || !wrap.contains(el) || el.disabled || el.type === 'submit') return;
-      if (el.hasAttribute('data-dd-restart')) { clearTimers(); state = fresh(); return render(); }
-      if (el.hasAttribute('data-dd-upload')) {
-        state.uploading = true;
-        render();
-        data.docs.forEach((d, i) => later(() => { state.perms[d.id] = d.roles.slice(); state.analyzed = i + 1; render(); }, 500 + i * 420));
-        return;
-      }
+      if (el.hasAttribute('data-dd-restart')) { clearTimers(); state = fresh(); shownStep = -1; return render(); }
+      if (el.hasAttribute('data-dd-upload')) return startIndex();
       if (el.hasAttribute('data-dd-perm')) {
         const [doc, role] = el.getAttribute('data-dd-perm').split(':');
         const list = state.perms[doc];
@@ -504,11 +717,19 @@ const App = {
         if (idx < 0) list.push(role); else list.splice(idx, 1);
         return render();
       }
-      if (el.hasAttribute('data-dd-go')) { state.step = Number(el.getAttribute('data-dd-go')); state.viewer = null; return render(); }
+      if (el.hasAttribute('data-dd-go')) {
+        const go = Number(el.getAttribute('data-dd-go'));
+        if (go === 3 && !state.role) return;
+        state.step = go;
+        state.viewer = null;
+        render();
+        if (wrap.getBoundingClientRect().top < ((document.querySelector('.site-header') || {}).offsetHeight || 0)) wrap.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+        return;
+      }
       if (el.hasAttribute('data-dd-role')) {
         state.role = el.getAttribute('data-dd-role');
         render();
-        return later(() => { state.step = 2; render(); }, 450);
+        return later(() => { state.step = 3; render(); }, reduce ? 0 : 450);
       }
       if (el.hasAttribute('data-dd-sugg')) { state.suggestOpen = el.getAttribute('data-dd-sugg') === 'open'; return render(); }
       if (el.hasAttribute('data-dd-ask')) { state.suggestOpen = false; return ask(el.getAttribute('data-dd-ask'), state.role); }
@@ -516,7 +737,7 @@ const App = {
         const [doc, page] = el.getAttribute('data-dd-open').split(':');
         state.viewer = { doc, page: Number(page) };
         render();
-        if (wrap.getBoundingClientRect().top < 0) wrap.scrollIntoView({ behavior: this._reduce ? 'auto' : 'smooth', block: 'start' });
+        if (wrap.getBoundingClientRect().top < ((document.querySelector('.site-header') || {}).offsetHeight || 0)) wrap.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
         return;
       }
       if (el.hasAttribute('data-dd-page')) {
@@ -552,25 +773,6 @@ const App = {
         const el = cover();
         requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('is-in')));
         setTimeout(() => { location.href = link.href; }, 520);
-      });
-    });
-  },
-
-  _initDuo(root) {
-    root.querySelectorAll('[data-duo]').forEach(duo => {
-      const open = (key) => {
-        if (duo.getAttribute('data-open') === key) return;
-        duo.querySelectorAll('[data-duo-card]').forEach(card => {
-          if (card.getAttribute('data-duo-card') !== key) card.querySelectorAll('[data-demo-stop]:not([hidden])').forEach(b => b.click());
-        });
-        duo.setAttribute('data-open', key);
-        if (duo.getBoundingClientRect().top < 0) duo.scrollIntoView({ behavior: this._reduce ? 'auto' : 'smooth', block: 'start' });
-      };
-      duo.querySelectorAll('[data-duo-open]').forEach(el => {
-        el.addEventListener('click', () => open(el.getAttribute('data-duo-open')));
-        if (el.getAttribute('role') === 'button') el.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(el.getAttribute('data-duo-open')); }
-        });
       });
     });
   },
@@ -635,49 +837,6 @@ const App = {
     if (next) next.addEventListener('click', () => step(1));
   },
 
-  _initCarousel(root) {
-    Array.prototype.slice.call(root.querySelectorAll('[data-carousel]')).forEach(carousel => {
-      const track = carousel.querySelector('[data-carousel-track]');
-      const slides = Array.prototype.slice.call(carousel.querySelectorAll('[data-carousel-slide]'));
-      const prev = carousel.querySelector('[data-carousel-prev]');
-      const next = carousel.querySelector('[data-carousel-next]');
-      const dots = Array.prototype.slice.call(carousel.querySelectorAll('[data-carousel-dot]'));
-      if (!track || !slides.length) return;
-      track.style.overflowY = 'hidden';
-      let index = 0;
-      const setActive = (i) => {
-        index = Math.max(0, Math.min(i, slides.length - 1));
-        dots.forEach((d, di) => { d.style.backgroundColor = di === index ? 'var(--text-primary)' : 'var(--border-strong)'; });
-        slides.forEach((s, si) => { s.style.opacity = si === index ? '1' : '.5'; });
-      };
-      const centerLeft = (slide) => slide.offsetLeft + slide.offsetWidth / 2 - track.clientWidth / 2;
-      const goTo = (i) => {
-        const target = Math.max(0, Math.min(i, slides.length - 1));
-        track.scrollTo({ left: centerLeft(slides[target]), behavior: 'smooth' });
-        setActive(target);
-      };
-      if (prev) prev.addEventListener('click', () => goTo(index - 1));
-      if (next) next.addEventListener('click', () => goTo(index + 1));
-      dots.forEach((d, di) => d.addEventListener('click', () => goTo(di)));
-      let scrollTimer = null;
-      track.addEventListener('scroll', () => {
-        clearTimeout(scrollTimer);
-        scrollTimer = setTimeout(() => {
-          const trackCenter = track.scrollLeft + track.clientWidth / 2;
-          let closest = 0, closestDist = Infinity;
-          slides.forEach((s, si) => {
-            const dist = Math.abs((s.offsetLeft + s.offsetWidth / 2) - trackCenter);
-            if (dist < closestDist) { closestDist = dist; closest = si; }
-          });
-          setActive(closest);
-        }, 80);
-      }, { passive: true });
-      track.scrollLeft = centerLeft(slides[0]);
-      setActive(0);
-      setActive(0);
-    });
-  },
-
   _initForms(root) {
     Array.prototype.slice.call(root.querySelectorAll('[data-form]')).forEach(form => {
       form.addEventListener('submit', (e) => {
@@ -689,150 +848,57 @@ const App = {
           headers: { Accept: 'application/json' }
         }).then(res => {
           if (!res.ok) throw new Error('submit failed');
-          form.style.display = 'none';
-          if (done) done.style.display = 'flex';
+          form.hidden = true;
+          if (done) { done.hidden = false; done.style.removeProperty('display'); }
         }).catch(() => {});
       });
     });
   },
 
-  _initBeats(root, reduce) {
-    if (reduce) return;
-    Array.prototype.slice.call(root.querySelectorAll('[data-beats]')).forEach(group => {
-      const beats = Array.prototype.slice.call(group.querySelectorAll('[data-beat] > div:first-child'));
-      const arrows = Array.prototype.slice.call(group.querySelectorAll('[data-beat-arrow]'));
-      if (beats.length < 3) return;
-      let i = 0, timer = null;
-      const paint = (active) => {
-        beats.forEach((b, k) => {
-          if (k === active) { b.style.borderColor = 'var(--text-primary)'; b.style.boxShadow = '0 0 0 1px var(--text-primary)'; }
-          else { b.style.boxShadow = 'none'; if (b.style.borderWidth !== '1.5px') b.style.borderColor = 'var(--border-subtle)'; }
-        });
-        arrows.forEach((a, k) => { a.style.color = (k < active) ? 'var(--text-primary)' : 'var(--border-strong)'; });
-      };
-      const start = () => { if (timer) return; timer = setInterval(() => { i = (i + 1) % beats.length; paint(i); }, 1400); };
-      const stop = () => { if (timer) { clearInterval(timer); timer = null; } beats.forEach(b => { b.style.boxShadow = 'none'; }); arrows.forEach(a => { a.style.color = 'var(--border-strong)'; }); };
+  _initBooking(root) {
+    const containers = Array.prototype.slice.call(root.querySelectorAll('[data-cal-inline]'));
+    const popups = Array.prototype.slice.call(root.querySelectorAll('[data-cal-popup]'));
+    if (!containers.length && !popups.length) return;
+    const first = containers[0] || popups[0];
+    const theme = first.getAttribute('data-cal-theme') || 'light';
+    const compact = first.hasAttribute('data-cal-compact');
+    const small = window.matchMedia('(max-width: 919px)');
+    const hasIO = 'IntersectionObserver' in window;
+    let inlineDone = false;
+    const startInline = () => {
+      if (inlineDone || !containers.length || (popups.length && small.matches)) return;
+      inlineDone = true;
+      if (!hasIO) { this._loadCal(containers, theme, compact); return; }
       const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) { paint(0); start(); } else { stop(); } });
-      }, { threshold: 0.4 });
-      io.observe(group);
+        if (!entries.some(e => e.isIntersecting)) return;
+        io.disconnect();
+        this._loadCal(containers, theme, compact);
+      }, { rootMargin: '1600px 0px' });
+      containers.forEach(el => io.observe(el));
+    };
+    startInline();
+    if (small.addEventListener) small.addEventListener('change', startInline);
+    popups.forEach(btn => {
+      btn.addEventListener('click', () => {
+        this._calApi(theme, compact);
+        window.Cal('modal', { calLink: this._calLink, config: { layout: 'month_view', theme } });
+      });
+      if (hasIO) {
+        const pio = new IntersectionObserver((entries) => {
+          if (!entries.some(e => e.isIntersecting)) return;
+          pio.disconnect();
+          this._calApi(theme, compact);
+        }, { rootMargin: '600px 0px' });
+        pio.observe(btn);
+      }
     });
   },
 
-  _initCase(root, reduce) {
-    const wrap = root.querySelector('[data-case]');
-    if (!wrap || reduce) return; // reduced motion: everything stays visible
-    const steps = Array.prototype.slice.call(wrap.querySelectorAll('[data-case-step]'));
-    if (steps.length < 2) return;
-    const rowsOf = (s) => Array.prototype.slice.call(s.querySelectorAll('[data-case-row]'));
-    const dotOf = (s) => s.querySelector('[data-case-dot]');
-    let timers = [], running = false;
-    const clearTimers = () => { timers.forEach(clearTimeout); timers = []; };
-    const later = (fn, ms) => { timers.push(setTimeout(fn, ms)); };
-    const resetVisual = () => {
-      steps.forEach(s => {
-        s.style.opacity = '.35'; s.style.borderColor = 'var(--border-subtle)';
-        const d = dotOf(s); if (d) d.style.background = 'var(--border-strong)';
-        rowsOf(s).forEach(r => { r.style.opacity = '0'; r.style.transform = 'translateY(8px)'; });
-      });
-    };
-    const showAllFinal = () => {
-      steps.forEach(s => {
-        s.style.opacity = '1'; s.style.borderColor = 'var(--border-subtle)';
-        rowsOf(s).forEach(r => { r.style.opacity = '1'; r.style.transform = 'none'; });
-      });
-    };
-    const runSeq = () => {
-      clearTimers();
-      resetVisual();
-      let t = 350;
-      steps.forEach((s, i) => {
-        later(() => {
-          s.style.opacity = '1'; s.style.borderColor = 'var(--text-primary)';
-          const d = dotOf(s); if (d) d.style.background = 'var(--text-primary)';
-          if (i > 0) { const prev = steps[i-1]; prev.style.borderColor = 'var(--border-subtle)'; }
-        }, t);
-        const rows = rowsOf(s);
-        rows.forEach((r, j) => {
-          later(() => { r.style.opacity = '1'; r.style.transform = 'none'; }, t + 180 + j * 320);
-        });
-        t += 500 + rows.length * 320 + 500;
-      });
-      // hold final state, then loop
-      later(() => {
-        const last = steps[steps.length-1];
-        last.style.borderColor = 'var(--border-subtle)';
-        steps.forEach(s => { const d = dotOf(s); if (d) d.style.background = 'var(--text-primary)'; });
-      }, t);
-      later(() => { if (running) runSeq(); }, t + 4200);
-    };
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting && !running) { running = true; runSeq(); }
-        else if (!e.isIntersecting && running) { running = false; clearTimers(); showAllFinal(); }
-      });
-    }, { threshold: 0.25 });
-    io.observe(wrap);
-    // safety: if the observer never fires (throttled contexts), leave content visible
-    setTimeout(() => { if (!running) showAllFinal(); }, 3000);
-  },
+  _calLink: 'philip-isenmann-utxoag/30-min-meeting',
 
-  _initOrch(root, reduce) {
-    const wrap = root.querySelector('[data-orch]');
-    if (!wrap || reduce) return;
-    const nodes = {
-      in: wrap.querySelector('[data-orch-node="in"]'),
-      hub: wrap.querySelector('[data-orch-node="hub"]'),
-      subs: Array.prototype.slice.call(wrap.querySelectorAll('[data-orch-node="sub"]')),
-      out: wrap.querySelector('[data-orch-node="out"]')
-    };
-    const arrows = Array.prototype.slice.call(wrap.querySelectorAll('[data-orch-arrow]'));
-    if (!nodes.in || !nodes.hub || nodes.subs.length < 3 || !nodes.out) return;
-    let timers = [], running = false;
-    const later = (fn, ms) => timers.push(setTimeout(fn, ms));
-    const clearAll = () => { timers.forEach(clearTimeout); timers = []; };
-    const pillOn = (el) => { el.style.borderColor = 'var(--text-primary)'; el.style.boxShadow = '0 0 0 1px var(--text-primary)'; };
-    const pillOff = (el) => { el.style.borderColor = 'var(--border-strong)'; el.style.boxShadow = 'none'; };
-    const reset = () => {
-      pillOff(nodes.in); pillOff(nodes.out);
-      nodes.hub.style.boxShadow = 'none'; nodes.hub.style.transform = 'none';
-      nodes.subs.forEach(s => { s.style.borderColor = 'var(--border-strong)'; });
-      arrows.forEach(a => { a.style.color = 'var(--text-muted)'; });
-    };
-    const seq = () => {
-      clearAll(); reset();
-      later(() => pillOn(nodes.in), 300);
-      later(() => { arrows[0].style.color = 'var(--text-primary)'; }, 900);
-      later(() => { pillOff(nodes.in); nodes.hub.style.boxShadow = '0 14px 34px -14px rgba(0,0,0,.45)'; nodes.hub.style.transform = 'scale(1.02)'; }, 1300);
-      later(() => { arrows[1].style.color = 'var(--text-primary)'; }, 1900);
-      nodes.subs.forEach((s, i) => later(() => { s.style.borderColor = 'var(--text-primary)'; }, 2300 + i * 220));
-      later(() => { nodes.hub.style.boxShadow = 'none'; nodes.hub.style.transform = 'none'; }, 2400);
-      later(() => { arrows[2].style.color = 'var(--text-primary)'; nodes.subs.forEach(s => { s.style.borderColor = 'var(--border-strong)'; }); }, 3500);
-      later(() => pillOn(nodes.out), 3900);
-      later(() => { if (running) seq(); }, 6200);
-    };
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting && !running) { running = true; seq(); }
-        else if (!e.isIntersecting && running) { running = false; clearAll(); reset(); }
-      });
-    }, { threshold: 0.3 });
-    io.observe(wrap);
-  },
-
-  _initBooking(root) {
-    const containers = Array.prototype.slice.call(root.querySelectorAll('[data-cal-inline]'));
-    if (!containers.length) return;
-    if (!('IntersectionObserver' in window)) { this._loadCal(containers); return; }
-    const io = new IntersectionObserver((entries) => {
-      if (!entries.some(e => e.isIntersecting)) return;
-      io.disconnect();
-      this._loadCal(containers);
-    }, { rootMargin: '800px 0px' });
-    containers.forEach(el => io.observe(el));
-  },
-
-  _loadCal(containers) {
+  _calApi(theme, compact) {
+    if (this._calReady) return;
+    this._calReady = true;
     (function (C, A, L) {
       const p = function (a, ar) { a.q.push(ar); };
       const d = C.document;
@@ -860,71 +926,19 @@ const App = {
       };
     })(window, 'https://app.cal.com/embed/embed.js', 'init');
     window.Cal('init', { origin: 'https://cal.com' });
+    const dark = { 'cal-brand': '#ffffff', 'cal-bg': '#13171d', 'cal-bg-muted': '#181d24', 'cal-border-subtle': 'rgba(255,255,255,.08)', 'cal-border-booker': 'transparent' };
+    window.Cal('ui', { theme, cssVarsPerTheme: { light: { 'cal-brand': '#0b0e12' }, dark }, hideEventTypeDetails: !!compact });
+  },
+
+  _loadCal(containers, theme, compact) {
+    this._calApi(theme, compact);
     containers.forEach((el, i) => {
       if (!el.id) el.id = 'cal-inline-' + i;
       window.Cal('inline', {
         elementOrSelector: '#' + el.id,
-        calLink: 'philip-isenmann-utxoag/30-min-meeting',
-        config: { layout: 'month_view' }
+        calLink: this._calLink,
+        config: { layout: 'month_view', theme }
       });
-    });
-  },
-
-  _initSecurity(root) {
-    const sec = root.querySelector('#security');
-    if (!sec) return;
-    const grid = sec.querySelector('[data-sec-grid]');
-    if (!grid) return;
-    Array.prototype.slice.call(grid.querySelectorAll('[data-reveal][data-delay]')).forEach(card => {
-      card.style.position = 'relative';
-      card.style.overflow = 'hidden';
-      const line = document.createElement('div');
-      line.style.cssText = 'position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--text-primary);transition:width .45s var(--ease);';
-      card.appendChild(line);
-      card.addEventListener('mouseenter', () => { card.style.transform = 'translateY(-3px)'; card.style.borderColor = 'var(--text-primary)'; line.style.width = '100%'; });
-      card.addEventListener('mouseleave', () => { card.style.transform = 'none'; card.style.borderColor = ''; line.style.width = '0'; });
-    });
-  },
-
-  _initCards(root, reduce) {
-    const fmt = (n) => n.toLocaleString('en-US');
-    Array.prototype.slice.call(root.querySelectorAll('[data-uc-card]')).forEach(card => {
-      const bp = card.querySelector('[data-uc-bp]');
-      const countEl = card.querySelector('[data-uc-count]');
-      const target = countEl ? parseInt(countEl.getAttribute('data-target'), 10) : 0;
-      let counted = false, raf = null;
-      const runCount = () => {
-        if (!countEl) return;
-        if (reduce) { countEl.textContent = fmt(target); return; }
-        const dur = 900, t0 = performance.now();
-        const tick = (now) => {
-          const p = Math.min((now - t0) / dur, 1);
-          const e = 1 - Math.pow(1 - p, 3);
-          countEl.textContent = fmt(Math.round(target * e));
-          if (p < 1) raf = requestAnimationFrame(tick);
-        };
-        cancelAnimationFrame(raf); raf = requestAnimationFrame(tick);
-      };
-      card.addEventListener('mouseenter', () => {
-        card.style.transform = 'translateY(-3px)';
-        card.style.borderColor = 'var(--text-primary)';
-        card.style.boxShadow = '0 16px 38px -18px rgba(0,0,0,.22)';
-        if (bp) bp.style.opacity = '.5';
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'none';
-        card.style.borderColor = '';
-        card.style.boxShadow = 'none';
-        if (bp) bp.style.opacity = '0';
-      });
-      const reveal = () => { if (counted) return; counted = true; runCount(); };
-      if (reduce) { reveal(); }
-      else {
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach(e => { if (e.isIntersecting) { reveal(); io.unobserve(e.target); } });
-        }, { threshold: 0.4 });
-        io.observe(card);
-      }
     });
   },
 
@@ -936,9 +950,12 @@ const App = {
     const SPOTLIGHT_ONLY = cv.hasAttribute('data-spotlight-only');
     const TILE_SCALE = parseFloat(cv.getAttribute('data-tile-scale')) || 1;
     const MAX_OPACITY = parseFloat(cv.getAttribute('data-max-opacity')) || 0.8;
-    const IMAGE_SRCS = SPOTLIGHT_ONLY ? [] : ['resources/agent_hero_anim/head_1_crop.webp'];
+    const GAP = parseFloat(cv.getAttribute('data-gap')) || 0.05;
+    const IMAGE_SRCS = SPOTLIGHT_ONLY ? [] : ['/resources/agent_hero_anim/head_1_crop.webp'];
     const CYCLE_MS = 6000, FADE_MS = 700, IMG_FADE_IN_MS = 1800;
-    let W = 0, H = 0, cols = 0, rows = 0, cell = 0, gut = 0, rad = 0, sigma = 0;
+    const edgeSel = cv.getAttribute('data-align-edge');
+    const edgeEl = edgeSel ? cv.parentElement.querySelector(edgeSel) : null;
+    let W = 0, H = 0, cols = 0, rows = 0, cell = 0, gut = 0, rad = 0, sigma = 0, ox = 0, edgeCols = 0;
     let phase = [];
     const sampleCv = document.createElement('canvas');
     const sampleCtx = sampleCv.getContext('2d', { willReadFrequently: true });
@@ -988,7 +1005,9 @@ const App = {
     let spots = [], tintColor = [], tintLevel = null;
     const spawn = (spot, t, n) => {
       let k;
-      do { k = Math.floor(Math.random() * n); } while (tintColor[k] && spots.length > 1);
+      // Half of the accent tints land under the glass panel so its colour reads through the smoked tint.
+      const underEdge = edgeCols && Math.random() < 0.5;
+      do { k = underEdge ? Math.floor(Math.random() * rows) * cols + cols - 1 - Math.floor(Math.random() * edgeCols) : Math.floor(Math.random() * n); } while (tintColor[k] && spots.length > 1);
       spot.k = k;
       spot.c = accents[Math.floor(Math.random() * accents.length)];
       spot.born = t;
@@ -1000,10 +1019,22 @@ const App = {
       W = r.width; H = r.height;
       if (W < 2 || H < 2) return;
       cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
-      cols = Math.max(9, Math.min(80, Math.round(W / (11.5 * TILE_SCALE))));
-      cell = W / cols;
+      const edgeW = edgeEl ? parseFloat(getComputedStyle(edgeEl).getPropertyValue('--swipe-w')) : 0;
+      if (edgeW > 0) {
+        // Columns run from the right edge so a tile gap sits exactly on the panel edge, collapsed and open.
+        cell = edgeW / Math.max(1, Math.round(edgeW / (11.5 * TILE_SCALE)));
+        cols = Math.ceil(W / cell);
+        ox = W - cols * cell;
+        edgeCols = 1 + Math.max(1, Math.floor((Math.min(440, window.innerWidth * 0.4) - edgeW) / cell));
+        edgeEl.style.setProperty('--swipe-open', Math.round(edgeW + (edgeCols - 1) * cell) + 'px');
+      } else {
+        cols = Math.max(9, Math.min(80, Math.round(W / (11.5 * TILE_SCALE))));
+        cell = W / cols;
+        ox = 0;
+        edgeCols = 0;
+      }
       rows = Math.ceil(H / cell);
-      gut = Math.max(1.5, cell * 0.05);
+      gut = Math.max(1.5, cell * GAP);
       rad = Math.max(1, (cell - gut) * 0.16);
       sigma = cell * cols * 0.13;
       const n = cols * rows;
@@ -1039,6 +1070,12 @@ const App = {
       const prevIdx = n ? (curIdx - 1 + n) % n : 0;
       const fadeT = Math.min(1, (t % CYCLE_MS) / FADE_MS);
       const total = cols * rows;
+      // Tiles behind the vertical glass panel get a floor, so the smoked glass shows a structured, coloured grid.
+      let glassX = Infinity;
+      if (edgeCols) {
+        const er = edgeEl.getBoundingClientRect();
+        if (er.height > er.width) glassX = er.left - cv.getBoundingClientRect().left;
+      }
       spots.forEach(spot => {
         tintLevel[spot.k] = 0;
         if (!reduce && t - spot.born > spot.life) { tintColor[spot.k] = null; spawn(spot, t, total); }
@@ -1048,7 +1085,7 @@ const App = {
       for (let j = 0; j < rows; j++) {
         for (let i = 0; i < cols; i++) {
           const k = j * cols + i;
-          const x = i * cell, y = j * cell;
+          const x = ox + i * cell, y = j * cell;
           const shim = 0.55 + 0.45 * Math.sin(t * 0.0012 + phase[k]);
           let v;
           if (SPOTLIGHT_ONLY) {
@@ -1060,28 +1097,83 @@ const App = {
             const L = lumaAt(prevIdx, k, t) * (1 - fadeT) + lumaAt(curIdx, k, t) * fadeT;
             v = L * 0.34 + (0.1 + 0.4 * L) * shim;
           }
+          const glass = x + cell / 2 > glassX;
+          if (glass) v = Math.max(v, 0.32);
           if (v < 0.018) continue;
           if (v > 1) v = 1;
           const c = tintColor[k];
           const f = c ? tintLevel[k] : 0;
-          const a = (v * MAX_OPACITY * (1 - f) + Math.min(1, v * 2.4) * f).toFixed(3);
+          const tint = glass ? Math.max(0.85, v * 2.4) : v * 2.4;
+          const a = (v * MAX_OPACITY * (1 - f) + Math.min(1, tint) * f).toFixed(3);
           ctx.fillStyle = f ? 'rgba(' + Math.round(c[0] * f) + ',' + Math.round(c[1] * f) + ',' + Math.round(c[2] * f) + ',' + a + ')' : 'rgba(0,0,0,' + a + ')';
           rrect(x + gut / 2, y + gut / 2, cell - gut, cell - gut, rad);
           ctx.fill();
         }
       }
     };
-    build();
-    if (reduce) { draw(2600); }
-    else {
-      const loop = (t) => { draw(t); this._pgRAF = requestAnimationFrame(loop); };
-      this._pgRAF = requestAnimationFrame(loop);
-    }
-    if (window.ResizeObserver) { const ro = new ResizeObserver(() => build()); ro.observe(cv); }
+    let visible = true;
+    let resizeTimer = null;
+    const running = () => !reduce && visible && document.visibilityState === 'visible';
+    const loop = (t) => { draw(t); this._pgRAF = requestAnimationFrame(loop); };
+    const stop = () => { if (this._pgRAF) { cancelAnimationFrame(this._pgRAF); this._pgRAF = null; } };
+    const sync = () => {
+      if (reduce) { draw(2600); return; }
+      if (running() && !this._pgRAF) this._pgRAF = requestAnimationFrame(loop);
+      else if (!running()) stop();
+    };
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      build();
+      sync();
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver((entries) => { visible = entries[entries.length - 1].isIntersecting; sync(); }).observe(cv);
+      }
+      document.addEventListener('visibilitychange', sync);
+      if (reduce && edgeEl) ['mouseenter', 'mouseleave', 'focus', 'blur'].forEach(ev => edgeEl.addEventListener(ev, () => requestAnimationFrame(() => draw(2600))));
+      window.addEventListener('pageshow', (e) => { if (e.persisted) sync(); });
+      if (window.ResizeObserver) {
+        let first = true;
+        new ResizeObserver(() => {
+          if (first) { first = false; return; }
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(() => { build(); if (reduce) draw(2600); }, 150);
+        }).observe(cv);
+      }
+    }));
+  },
+
+  _initToc(root) {
+    const toc = root.querySelector('.gd-toc');
+    if (!toc) return;
+    const details = toc.querySelector('.gd-toc-d');
+    if (details && window.matchMedia('(min-width: 961px)').matches) details.open = true;
+    if (!('IntersectionObserver' in window)) return;
+    const links = Array.prototype.slice.call(toc.querySelectorAll('a[href^="#"]'));
+    const targets = links.map(a => document.getElementById(decodeURIComponent(a.getAttribute('href').slice(1)))).filter(Boolean);
+    if (!targets.length) return;
+    const setActive = (id) => links.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + id));
+    const seen = new Map();
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => seen.set(e.target.id, e.isIntersecting));
+      const current = targets.find(t => seen.get(t.id));
+      if (current) setActive(current.id);
+    }, { rootMargin: '-20% 0px -65% 0px' });
+    targets.forEach(t => io.observe(t));
+  },
+
+  _initTables(root) {
+    // Header labels for the stacked mobile layout of legal tables.
+    root.querySelectorAll('.legal-table table').forEach(table => {
+      const heads = Array.prototype.slice.call(table.querySelectorAll('thead th')).map(th => th.textContent.trim());
+      if (!heads.length) return;
+      table.querySelectorAll('tbody tr').forEach(tr => {
+        Array.prototype.slice.call(tr.children).forEach((td, i) => { if (heads[i]) td.setAttribute('data-label', heads[i]); });
+      });
+    });
   },
 
   destroy() {
     if (this._pgRAF) cancelAnimationFrame(this._pgRAF);
+    this._pgRAF = null;
   }
 };
 

@@ -1,17 +1,17 @@
 window.UTXO_PRESS_LOGOS = [
-  {"src": "resources/press/handelsblatt.svg", "name": "Handelsblatt", "stacked": false},
-  {"src": "resources/press/forbes.svg", "name": "Forbes", "stacked": false},
-  {"src": "resources/press/t3n.svg", "name": "t3n", "stacked": false},
-  {"src": "resources/press/horizont.svg", "name": "Horizont", "stacked": false},
-  {"src": "resources/press/wuv.svg", "name": "W&V", "stacked": false},
-  {"src": "resources/press/finanz-und-wirtschaft.svg", "name": "Finanz und Wirtschaft", "stacked": false},
-  {"src": "resources/press/yahoo-finance.svg", "name": "Yahoo Finance", "stacked": false},
-  {"src": "resources/press/meedia.svg", "name": "MEEDIA", "stacked": false},
-  {"src": "resources/press/switzerland-global-enterprise.svg", "name": "Switzerland Global Enterprise", "stacked": true},
-  {"src": "resources/press/swiss-ai-summit.svg", "name": "Swiss AI Summit", "stacked": true},
-  {"src": "resources/press/bigdata-insider.svg", "name": "BigData-Insider", "stacked": true},
-  {"src": "resources/press/lbbonline.svg", "name": "LBBOnline", "stacked": true},
-  {"src": "resources/press/ai-news.png", "name": "AI News", "stacked": false}
+  {"src": "/resources/press/handelsblatt.svg", "name": "Handelsblatt", "stacked": false},
+  {"src": "/resources/press/forbes.svg", "name": "Forbes", "stacked": false},
+  {"src": "/resources/press/t3n.svg", "name": "t3n", "stacked": false},
+  {"src": "/resources/press/horizont.svg", "name": "Horizont", "stacked": false},
+  {"src": "/resources/press/wuv.svg", "name": "W&V", "stacked": false},
+  {"src": "/resources/press/finanz-und-wirtschaft.svg", "name": "Finanz und Wirtschaft", "stacked": false},
+  {"src": "/resources/press/yahoo-finance.svg", "name": "Yahoo Finance", "stacked": false},
+  {"src": "/resources/press/meedia.svg", "name": "MEEDIA", "stacked": false},
+  {"src": "/resources/press/switzerland-global-enterprise.svg", "name": "Switzerland Global Enterprise", "stacked": true},
+  {"src": "/resources/press/swiss-ai-summit.svg", "name": "Swiss AI Summit", "stacked": true},
+  {"src": "/resources/press/bigdata-insider.svg", "name": "BigData-Insider", "stacked": true},
+  {"src": "/resources/press/lbbonline.svg", "name": "LBBOnline", "stacked": true},
+  {"src": "/resources/press/ai-news.png", "name": "AI News", "stacked": false}
 ];
 
 window.UTXO_PRESS = [
@@ -49,7 +49,7 @@ window.UTXO_PRESS = [
   {"tier": "more", "date": "2025", "outlet": "CoinDesk Research", "entity": "Masumi", "lang": "EN", "title": "State of the Blockchain 2025", "url": "https://www.coindesk.com/research/state-of-the-blockchain-2025"},
   {"tier": "more", "date": "2025", "outlet": "Cardano Developer Portal", "entity": "Masumi", "lang": "EN", "title": "Masumi Network", "url": "https://developers.cardano.org/docs/developers/curriculum/dapps/ai-agents/masumi/"},
   {"tier": "more", "date": "2024-12", "outlet": "Cardano Foundation", "entity": "NMKR", "lang": "EN", "title": null, "url": "https://www.linkedin.com/posts/cardano-foundation_were-very-excited-to-partner-with-serviceplan-activity-7272609071168389120--Ubk"},
-  {"tier": "featured", "date": "2024-12", "outlet": "LBBOnline", "entity": "Masumi", "lang": "EN", "title": null, "url": "https://lbbonline.com/news/serviceplan-group-partners-with-cardano-foundation-to-pioneer-blockchain-driven-ai-agent-economy"},
+  {"tier": "featured", "date": "2024-12", "outlet": "LBBOnline", "entity": "Masumi", "lang": "EN", "title": "Serviceplan Group Partners with Cardano Foundation to Pioneer Blockchain-Driven AI Agent Economy", "url": "https://lbbonline.com/news/serviceplan-group-partners-with-cardano-foundation-to-pioneer-blockchain-driven-ai-agent-economy"},
   {"tier": "featured", "date": "2024-11", "outlet": "W&V", "entity": "Sokosumi", "lang": "DE", "title": "Sebastian Küpers: \"Wir wollen das PayPal der KI-Agenten bauen\"", "url": "https://www.wuv.de/Themen/Agentur/Sebastian-Kuepers-Wir-wollen-das-PayPal-der-KI-Agenten-bauen"},
   {"tier": "more", "date": "2024-11", "outlet": "Digimedia", "entity": "Plan.Net Agentic Services", "lang": "FR", "title": "Plan.Net dévoile Agentic Services, ses solutions d'IA entièrement autonomes", "url": "https://digimedia.be/content.php?rubric=News&lng=fr&id=26525&title=plannet-d-voile-agentic-services-ses-solutions-d-ia-enti-rement-autonomes"},
   {"tier": "more", "date": "2024-10", "outlet": "Medienrot", "entity": "Plan.Net Agentic Services", "lang": "DE", "title": "Serviceplan Group bündelt Kreativkompetenzen in München und bietet vollautonome KI-Lösungen für Kunden", "url": "https://medienrot.de/serviceplan-group-buendelt-kreativkompetenzen-in-muenchen-und-bietet-vollautonome-ki-loesungen-fuer-kunden/"},
