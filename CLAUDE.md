@@ -103,7 +103,7 @@ changes.md       per-session changelog
 
 ## Team
 
-Static grid on the home `#about` (`.team-grid`, 7 columns, 5 tablet, 3 mobile), one aspect ratio, grayscale, colour on hover. Photos in `resources/Team/` and `resources/Team/Rectangle/`. `_initTeamScroll` is left over from the old scroll row and currently has no target.
+Static grid on the home `#about` (`.team-grid`, 7 columns, 5 tablet, 3 mobile), one aspect ratio, grayscale, colour on hover. Photos in `resources/Team/` and `resources/Team/Rectangle/`. Full names with a LinkedIn icon (`.team-in`, surname and icon kept together in `.team-ln`); the icon shows on hover/focus on pointer devices and always on touch. Names and LinkedIn URLs follow https://www.nmkr.io/about. `_initTeamScroll` is left over from the old scroll row and currently has no target.
 
 ## Press
 
@@ -141,7 +141,6 @@ Caddy reproduces production routing and headers; use a free port per server (`PO
 - Lawyer review of the new legal clauses (exclusions for anruf.guru, Sokosumi, Masumi in AGB, AVV, Datenschutz, Nutzungsrichtlinie, EN counterparts) before deploy.
 - Whitepaper PDFs (Google Drive links) still say "rund 20" and "bauen"; no English PDFs, EN shows the German covers.
 - Legal: lawyer review per `docs/legal-review-2026-10.md` before deploy. AGB are now "Allgemeine Geschäftsbedingungen" (individual development, offer/contract prevails).
-- Team photo Peter to be replaced.
 - Demo domain demo.anruf-guru.de: confirm long-term host and re-check the session endpoint.
 - Deferred guides (kundenakquise-mit-ki, ai-customer-acquisition): move to the new chrome or drop; the legacy 301s to them currently end in 404.
 

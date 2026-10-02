@@ -262,6 +262,9 @@
 - ".railwayignore" excludes deferred pages
 - Internal files return 404
 - "Mehr über KI" link services
+- Team full names
+- LinkedIn icons on hover
+- New photo for Peter
 
 ## doc-indexer-page-session — 2026-09-23 UTC
 
