@@ -782,7 +782,7 @@ ol.control-grid li::before{content:counter(step, decimal-leading-zero);position:
 /* Team: static grid, one aspect ratio, one crop, one grade. Contract: .team-grid > figure > img + figcaption (b + span) */
 .team-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:var(--s-6) var(--gutter);}
 .team-grid figure{margin:0;min-width:0;}
-.team-grid img{display:block;width:100%;height:auto;aspect-ratio:4 / 5;object-fit:cover;object-position:50% 18%;border-radius:var(--radius-media);background:#E3DFD8;filter:grayscale(1) contrast(1.08) brightness(1.03);transition:filter .4s var(--ease);}
+.team-grid img{display:block;width:100%;height:auto;aspect-ratio:4 / 5;object-fit:cover;object-position:center;border-radius:var(--radius-media);background:#E3DFD8;filter:grayscale(1) contrast(1.08) brightness(1.03);transition:filter .4s var(--ease);}
 .team-grid figure:hover img{filter:grayscale(0) contrast(1);}
 .team-grid figcaption{margin-top:var(--s-3);}
 .team-grid figcaption b{display:block;font-family:var(--font-display);font-weight:500;font-size:1rem;line-height:1.3;}
