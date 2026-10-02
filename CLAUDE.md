@@ -49,6 +49,8 @@ partials/        header(.de).html + footer(.de).html, canonical copies of the pa
 resources/       Team/ (+ Team/Rectangle/), logos/ (clients, partners, products), coworkers/ (Otto, Lena, Kai, compliance CoWorker `compliance-avatar.webp`), products/sokosumi/ (mock avatars), media/ (anruf.guru launch video, poster, DE captions), whitepapers/ (cover thumbnails), press/ (outlet logos, sources in SOURCES.md), og/, FAVICONS/, agent_hero_anim/ (pixel face source)
 sitemap.xml      34 public URLs (add new pages) with hreflang de/en/x-default (x-default = en); update lastmod when content changes
 robots.txt       allow all, sitemap reference (Cloudflare may prepend its managed AI-crawler rules)
+Staticfile       makes Railpack pick the static (Caddy) provider since there is no root index.html; Railpack then uses our Caddyfile
+.railwayignore   keeps the deferred SEO pages and local files out of `railway up`
 Caddyfile        routing (above), security headers, cache (HTML/JS/CSS no-cache, media 7 days, / no-store)
 docs/            plans and research (relaunch-2026-10-plan.md, redesign-2026-09-plan.md, evaluation, research, press-research-2026-09.json)
 changes.md       per-session changelog

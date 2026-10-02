@@ -61,7 +61,7 @@ header @media Cache-Control "public, max-age=604800"
 header @pages Cache-Control "no-cache, must-revalidate"
 
 route {
-	@internal path /docs/* /partials/* *.md /removed-sections /removed-sections.html *.blend *.blend1 /Caddyfile
+	@internal path /docs/* /partials/* *.md /removed-sections /removed-sections.html *.blend *.blend1 /Caddyfile /Staticfile /.railwayignore /.gitignore
 	respond @internal 404
 
 	@root_de expression `{path} == "/" && ({http.request.cookie.utxo_lang} == "de" || ({http.request.cookie.utxo_lang} != "en" && {http.request.header.Accept-Language}.matches("^de")))`

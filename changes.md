@@ -258,6 +258,9 @@
 - Compact demo spacing
 - Demo anchor on box
 - Demo scroll respects header
+- "Staticfile" for Railpack detection
+- ".railwayignore" excludes deferred pages
+- Internal files return 404
 
 ## doc-indexer-page-session — 2026-09-23 UTC
 
