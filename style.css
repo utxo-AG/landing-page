@@ -362,6 +362,7 @@ html.is-menu-open{overflow:hidden;}
 }
 .services-foot{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:16px 32px;margin-top:var(--gap-block);padding-top:var(--s-5);border-top:1px solid var(--border-strong);}
 .services-foot p{font-family:var(--font-display);font-weight:500;font-size:clamp(1.125rem, 1rem + .4vw, 1.375rem);line-height:1.3;letter-spacing:-.012em;}
+.services-more{display:flex;justify-content:flex-end;margin-top:var(--s-7);}
 
 /* Product mockups (HTML/CSS, sample data). Contract: .pfield.mock-stage[data-play] > .mock.mock-* + optional one .glass.mock-float */
 .mock-stage{--stage-pad:clamp(24px, 4.4vw, 64px);padding:var(--stage-pad);}

@@ -261,6 +261,7 @@
 - "Staticfile" for Railpack detection
 - ".railwayignore" excludes deferred pages
 - Internal files return 404
+- "Mehr über KI" link services
 
 ## doc-indexer-page-session — 2026-09-23 UTC
 
