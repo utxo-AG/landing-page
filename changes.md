@@ -1,5 +1,18 @@
 # Changes
 
+## 832e7af2 — 2026-10-05 UTC
+
+- anruf.guru video removed
+- Own products below Serviceplan
+- New ".own" product cards
+- NMKR Studio card added
+- NMKR Studio logo added
+- NMKR reference figures added
+- NMKR reference kicker added
+- "_initVideo" removed
+- Video CSS removed
+- "resources/media" removed
+
 ## 2eae75d4 — 2026-10-02 UTC
 
 - Pages moved to "de/" "en/"

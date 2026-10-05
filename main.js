@@ -31,7 +31,6 @@ const App = {
     this._initTeamScroll(root);
     this._initDemos(root);
     this._initDocDemo(root);
-    this._initVideo(root);
     this._initSwipe(root);
     this._initPress(root);
     this._initPressLogos(root);
@@ -226,23 +225,6 @@ const App = {
       if (el.getBoundingClientRect().top < vh * 0.9) return;
       el.classList.add('pv-wait');
       io.observe(el);
-    });
-  },
-
-  _initVideo(root) {
-    root.querySelectorAll('[data-video]').forEach(figure => {
-      const video = figure.querySelector('video');
-      const play = figure.querySelector('[data-video-play]');
-      if (!video || !play) return;
-      play.addEventListener('click', () => {
-        if (!video.getAttribute('src')) video.src = video.getAttribute('data-src');
-        video.controls = true;
-        play.hidden = true;
-        figure.classList.add('is-playing');
-        const started = video.play();
-        if (started && started.catch) started.catch(() => {});
-        video.focus({ preventScroll: true });
-      });
     });
   },
 
