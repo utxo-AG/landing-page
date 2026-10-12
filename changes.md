@@ -1,5 +1,11 @@
 # Changes
 
+## 14b3b5ee — 2026-10-12 UTC
+
+- Legacy ".en" redirects added
+- "ai-customer-acquisition" to lead research
+- Home sitemap lastmod updated
+
 ## 832e7af2 — 2026-10-05 UTC
 
 - anruf.guru video removed

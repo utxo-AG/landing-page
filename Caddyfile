@@ -15,20 +15,24 @@ header {
 map {path} {legacy} {
 	~^/index(\.html)?$                       /en
 	~^/index\.de(\.html)?$                   /de
+	~^/index\.en(\.html)?$                   /en
 	~^/agents(\.html)?$                      /en/ai-coworker
 	~^/agents\.de(\.html)?$                  /de/ki-coworker
+	~^/agents\.en(\.html)?$                  /en/ai-coworker
 	~^/call_assistant(\.html)?$              /en/ai-phone-assistant
 	~^/call_assistant\.de(\.html)?$          /de/ki-telefonassistent
 	~^/doc_indexer(\.html)?$                 /en/doc-indexer
 	~^/doc_indexer\.de(\.html)?$             /de/doc-indexer
 	~^/comparison(\.html)?$                  /en/coworker-vs-copilot
 	~^/comparison\.de(\.html)?$              /de/coworker-vs-copilot
+	~^/comparison\.en(\.html)?$              /en/coworker-vs-copilot
 	~^/ai-in-business(\.html)?$              /en/ai-in-business
 	~^/ai-in-business\.de(\.html)?$          /de/ki-im-unternehmen
+	~^/ai-in-business\.en(\.html)?$          /en/ai-in-business
 	~^/eu-ai-act(\.html)?$                   /en/eu-ai-act
 	~^/eu-ai-act\.de(\.html)?$               /de/eu-ai-act
-	~^/ai-customer-acquisition(\.html)?$     /en/ai-customer-acquisition
-	~^/ai-customer-acquisition\.de(\.html)?$ /de/kundenakquise-mit-ki
+	~^/ai-customer-acquisition(\.html)?$     /en/ai-coworker/lead-research
+	~^/ai-customer-acquisition\.de(\.html)?$ /de/ki-coworker/lead-recherche
 	~^/press(\.html)?$                       /en/press
 	~^/press\.de(\.html)?$                   /de/presse
 	~^/imprint(\.html)?$                     /en/imprint
