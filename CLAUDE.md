@@ -7,6 +7,7 @@ Plain static site. No build step, no framework, no bundler. Served by Caddy on R
 Every page exists twice, one file per language folder with a translated slug: `de/<slug>.html` is served at `/de/<slug>`, `en/<slug>.html` at `/en/<slug>`. The homes are `de/index.html` at `/de` and `/en`. CoWorker subpages are nested (`de/ki-coworker/compliance.html` at `/de/ki-coworker/compliance`, next to `de/ki-coworker.html` at `/de/ki-coworker`). Internal links are root-absolute, extensionless and without trailing slash.
 
 Routing (Caddyfile, one ordered `route {}`):
+0. old domain `utxoag.com` (also attached to the Railway service) 301 to `https://utxo.ag{uri}`
 1. internal paths 404: `/docs/*`, `/partials/*`, `*.md`, `/removed-sections`, `*.blend`, `/Caddyfile`
 2. `/` redirects 302 to `/de` (cookie `utxo_lang=de`, or no `en` cookie and `Accept-Language` starting with `de`), otherwise to `/en`; `Cache-Control: private, no-store`, `Vary: Accept-Language, Cookie`
 3. legacy map 301 (`/agents.de` to `/de/ki-coworker`, `/agents.en` to `/en/ai-coworker`, `/call_assistant` to `/en/ai-phone-assistant`, `/de/index` to `/de` etc.; old `.de`, `.en` and bare variants each with and without `.html`), query string kept

@@ -65,6 +65,9 @@ header @media Cache-Control "public, max-age=604800"
 header @pages Cache-Control "no-cache, must-revalidate"
 
 route {
+	@olddomain host utxoag.com www.utxoag.com
+	redir @olddomain https://utxo.ag{uri} 301
+
 	@internal path /docs/* /partials/* *.md /removed-sections /removed-sections.html *.blend *.blend1 /Caddyfile /Staticfile /.railwayignore /.gitignore
 	respond @internal 404
 
