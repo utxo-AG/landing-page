@@ -5,6 +5,7 @@
 - Legacy ".en" redirects added
 - "ai-customer-acquisition" to lead research
 - Home sitemap lastmod updated
+- "utxoag.com" 301 to utxo.ag
 
 ## 832e7af2 — 2026-10-05 UTC
 
