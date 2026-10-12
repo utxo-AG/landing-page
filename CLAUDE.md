@@ -9,7 +9,7 @@ Every page exists twice, one file per language folder with a translated slug: `d
 Routing (Caddyfile, one ordered `route {}`):
 1. internal paths 404: `/docs/*`, `/partials/*`, `*.md`, `/removed-sections`, `*.blend`, `/Caddyfile`
 2. `/` redirects 302 to `/de` (cookie `utxo_lang=de`, or no `en` cookie and `Accept-Language` starting with `de`), otherwise to `/en`; `Cache-Control: private, no-store`, `Vary: Accept-Language, Cookie`
-3. legacy map 301 (`/agents.de` to `/de/ki-coworker`, `/call_assistant` to `/en/ai-phone-assistant`, `/de/index` to `/de` etc.), query string kept
+3. legacy map 301 (`/agents.de` to `/de/ki-coworker`, `/agents.en` to `/en/ai-coworker`, `/call_assistant` to `/en/ai-phone-assistant`, `/de/index` to `/de` etc.; old `.de`, `.en` and bare variants each with and without `.html`), query string kept
 4. `*.html` 301 to the extensionless URL, trailing slash 301 to the path without it
 5. `/de`, `/en` rewrite to `index.html`, then `try_files {path} {path}.html =404`
 
@@ -142,7 +142,7 @@ Caddy reproduces production routing and headers; use a free port per server (`PO
 - Whitepaper PDFs (Google Drive links) still say "rund 20" and "bauen"; no English PDFs, EN shows the German covers.
 - Legal: lawyer review per `docs/legal-review-2026-10.md` before deploy. AGB are now "Allgemeine Geschäftsbedingungen" (individual development, offer/contract prevails).
 - Demo domain demo.anruf-guru.de: confirm long-term host and re-check the session endpoint.
-- Deferred guides (kundenakquise-mit-ki, ai-customer-acquisition): move to the new chrome or drop; the legacy 301s to them currently end in 404.
+- Deferred guides (kundenakquise-mit-ki, ai-customer-acquisition): move to the new chrome or drop; their legacy 301s point to the lead research subpages until then (switch them back in the Caddyfile `map` when a guide is published).
 
 ## Change tracking
 
