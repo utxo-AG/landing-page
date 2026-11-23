@@ -65,6 +65,7 @@ export async function createBlocks(stage, {
   sway = 0,
   ghost = false,
   fadeIn = false,
+  assembleTime = 2.3,
   solid = false,
   zoom = 1,
   background = '#14161B',
@@ -269,9 +270,10 @@ if (max(looseAt(vCell), max(max(looseAt(vCell + reach.xy), looseAt(vCell - reach
       pos[i * 3] = 16 + Math.random() * 14;
       pos[i * 3 + 1] = (Math.random() - 0.5) * 12;
       pos[i * 3 + 2] = (Math.random() - 0.5) * 16;
-      if (fadeIn) { pos[i * 3] = target[i * 3] + (Math.random() - 0.5) * 7; pos[i * 3 + 1] = target[i * 3 + 1] + (Math.random() - 0.5) * 5; pos[i * 3 + 2] = target[i * 3 + 2] + 1 + Math.random() * 5; }
+      if (fadeIn && layer > 0) pos.set(target.subarray(i * 3, i * 3 + 3), i * 3);
+      else if (fadeIn) { pos[i * 3] = target[i * 3] + (Math.random() - 0.5) * 7; pos[i * 3 + 1] = target[i * 3 + 1] + (Math.random() - 0.5) * 5; pos[i * 3 + 2] = target[i * 3 + 2] + 1 + Math.random() * 5; }
       origin.set(pos.subarray(i * 3, i * 3 + 3), i * 3);
-      gate[i] = fadeIn ? Math.random() * 0.78 : (col / cols) * 0.72 + Math.random() * 0.24;
+      gate[i] = fadeIn ? (layer > 0 ? Math.min(0.78, gate[c * layers] + 0.12) : Math.random() * 0.7) : (col / cols) * 0.72 + Math.random() * 0.24;
       spin[i] = (Math.random() - 0.5) * 9;
       axes.push(new THREE.Vector3(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).normalize());
       const roll = Math.random();
@@ -323,7 +325,7 @@ if (max(looseAt(vCell), max(max(looseAt(vCell + reach.xy), looseAt(vCell - reach
     let push = 0;
     if (pointerActive) { ray.setFromCamera(pointer, camera); ray.ray.intersectPlane(plane, hit); push = 1; }
     else if (ghost && t > 5) { hit.set(Math.sin(t * 0.43) * WIDTH * 0.44, Math.sin(t * 0.79 + 1) * 1.7, 0); push = 0.55; }
-    if (!settled && t > 0.9) progress += Math.max(-dt / 2.3, Math.min(dt / 2.3, goal - progress));
+    if (!settled && t > (fadeIn ? 0.4 : 0.9)) progress += Math.max(-dt / assembleTime, Math.min(dt / assembleTime, goal - progress));
     const phase = (t - 5) % pulseEvery;
     const pulseX = t > 5 && progress === 1 && phase < pulseTime ? -WIDTH / 2 - 3.5 + (phase / pulseTime) * (WIDTH + 7) : null;
     if (solid) cellState.fill(0);

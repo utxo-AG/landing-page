@@ -58,6 +58,7 @@
 - Plan all questions answered
 - F "Mehr erfahren" pill removed
 - F cubes fade while flying
+- F entry faster rear fades
 
 ## 004d38bb-143a-4fd9-9f48-cbf593cfd59e — 2026-11-23 UTC
 - Reference analysis lusion.co
