@@ -2,6 +2,16 @@
 
 Status 2026-11-23: plan written, not started. All six questions are answered (see section 9). Binding basis is draft F in `web/drafts/` (`f.html`, `f.js`, `page.js`, `blocks.js`, `drafts.css`; run with `cd web/drafts && python3 -m http.server 8131`, open `http://localhost:8131/f.html`). Drafts a to e are discarded experiments. Copy rules: `CLAUDE.md`, section "Copy".
 
+## Start here (handover 2026-11-23)
+
+- Branch `website-2027` (from `origin/master`, no upstream set, nothing pushed). Drafts and this plan are committed.
+- Next step: phase 1 in section 8 (Astro project in `web/`, header with menu, hero, overview, Managed Agents on the loop controller). `web/drafts/` stays untouched as the reference.
+- Look at draft F first, in a real browser, including motion: `cd web/drafts && python3 -m http.server 8131`, then `http://localhost:8131/f.html`.
+- Three.js r187 is vendored in `web/drafts/vendor/`; the Astro project should install `three` from npm instead.
+- Working rules from Phil: plan before coding, check results in a real browser (motion and phone view), keep `CLAUDE.md` and `changes.md` in sync, use subagents to keep the context clean, German copy rules from `CLAUDE.md`.
+- Untracked leftovers of abandoned attempts, not part of this plan: `site/`, `docs/site-2027-concept.md`, `docs/site-2027-drafts/`.
+- Before any merge to `master`: the live site serves the repository root, so `/web/` must be blocked in the `Caddyfile` or replaced by the Astro build output.
+
 The plan was produced by a planning subsession from the files only; it did not open the draft in a browser, so every frame cost and size figure below is a target, not a measurement.
 
 ## Decisions by Phil (binding)
