@@ -57,7 +57,7 @@
 - Plan answers name logos examples
 - Plan all questions answered
 - F "Mehr erfahren" pill removed
-- F cubes fade in place
+- F cubes fade while flying
 
 ## 004d38bb-143a-4fd9-9f48-cbf593cfd59e — 2026-11-23 UTC
 - Reference analysis lusion.co

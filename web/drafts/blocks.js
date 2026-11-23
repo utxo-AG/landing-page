@@ -269,7 +269,7 @@ if (max(looseAt(vCell), max(max(looseAt(vCell + reach.xy), looseAt(vCell - reach
       pos[i * 3] = 16 + Math.random() * 14;
       pos[i * 3 + 1] = (Math.random() - 0.5) * 12;
       pos[i * 3 + 2] = (Math.random() - 0.5) * 16;
-      if (fadeIn) pos.set(target.subarray(i * 3, i * 3 + 3), i * 3);
+      if (fadeIn) { pos[i * 3] = target[i * 3] + (Math.random() - 0.5) * 7; pos[i * 3 + 1] = target[i * 3 + 1] + (Math.random() - 0.5) * 5; pos[i * 3 + 2] = target[i * 3 + 2] + 1 + Math.random() * 5; }
       origin.set(pos.subarray(i * 3, i * 3 + 3), i * 3);
       gate[i] = fadeIn ? Math.random() * 0.84 : (col / cols) * 0.72 + Math.random() * 0.24;
       spin[i] = (Math.random() - 0.5) * 9;
@@ -344,7 +344,7 @@ if (max(looseAt(vCell), max(max(looseAt(vCell + reach.xy), looseAt(vCell - reach
       if (wave && !settled) tz += wave * (Math.sin(tx * 0.55 - t * 1.1) * 0.24 + Math.sin(ty * 0.9 + t * 0.7) * 0.1);
       if (settled) { pos[a] = tx; pos[a + 1] = ty; pos[a + 2] = tz; }
       else {
-        if (!fadeIn && progress <= gate[i]) { tx = origin[a]; ty = origin[a + 1]; tz = origin[a + 2]; }
+        if (progress <= gate[i]) { tx = origin[a]; ty = origin[a + 1]; tz = origin[a + 2]; }
         if (push) {
           const dx = pos[a] - hit.x, dy = pos[a + 1] - hit.y;
           const d = Math.hypot(dx, dy);
@@ -358,7 +358,7 @@ if (max(looseAt(vCell), max(max(looseAt(vCell + reach.xy), looseAt(vCell - reach
       }
       const dist = Math.hypot(pos[a] - rx, pos[a + 1] - ry, pos[a + 2] - rz);
       q.setFromAxisAngle(axes[i], spin[i] * Math.min(1, Math.max(0, dist + (i % layers === 0 ? lift * 0.3 : 0) - still) / (solid ? 3.5 : 7)));
-      const appear = fadeIn && !settled ? Math.min(1, Math.max(0, (progress - gate[i]) / 0.16)) : 1;
+      const appear = fadeIn && !settled ? Math.min(1, Math.max(0, (progress - gate[i]) / 0.2)) : 1;
       fade[i] = appear;
       if (solid && dist === 0 && lift === 0 && appear === 1) m.makeScale(0, 0, 0);
       else {
