@@ -1,5 +1,95 @@
 # Changes
 
+## cab32225-0016-4518-9557-a1abf04a5b3f — 2026-11-23 UTC
+- New branch `website-2027`
+- Reference analysis lusion.co redone
+- Skill research for design
+- New drafts `web/drafts/`
+- Directions "Bühne" "Papier" "Nacht"
+- Draft D with WebGL
+- 3D wordmark letters physics
+- Self-running "Managed Agents" sequence
+- Hero now block assembly
+- Rapier and SVGLoader removed
+- Draft E sand shader
+- Wipeable wordmark sun moon
+- Shared `page.js` intro sequence
+- Shared `blocks.js` and `page.js`
+- Draft F solid wordmark
+- Section sequence replays on scroll
+- Content direction noted
+- 3D wordmark includes "AG"
+- Solid side walls for F
+- F smooth solid body
+- F gradient stage background
+- Sand draft E dropped
+- F wave overshoot removed
+- F hole slivers removed
+- F wave front scattered
+- F stage phthalo green gradient
+- F stage green bottom grain
+- F wave slower no tail
+- F wave amplitude reduced
+- F wave moves front layer
+- F cubes lighter faces
+- F stage darker coarser grain
+- F services overview section
+- F headline "Managed Agents"
+- F "Scrollen" label removed
+- F header CTA gradient
+- F header logo removed
+- F new slogan headline
+- F overview compact hover subtexts
+- F page backdrop follows scroll
+- F hero dissolves on scroll
+- F CoWorker line reworded
+- F headline serious draft
+- F headline enterprise draft
+- F CTA hover keeps dark
+- F hero wordmark larger
+- F headline from Phil
+- F overview hover swaps text
+- F CTA "Jetzt kontaktieren" menu
+- F small header logo back
+- F headline second line final
+- Plan `docs/website-2027-plan.md`
+- Plan answers Astro subpages
+- Plan answers name logos examples
+- Plan all questions answered
+- F "Mehr erfahren" pill removed
+- F cubes fade in place
+
+## 004d38bb-143a-4fd9-9f48-cbf593cfd59e — 2026-11-23 UTC
+- Reference analysis lusion.co
+- Static drafts `docs/site-2027-drafts/`
+- Three directions A B C
+
+## 5f44d5ef-02d3-4b5f-93ac-3c11739dfdc1 — 2026-11-23 UTC
+- New branch `site-2027`
+- New Astro project `site/`
+- Hero prototype with WebGL scene
+- Logo peephole intro
+- Day and night theme
+- Chapter "Agentic CoWorker" scroll flight
+- Concept doc `docs/site-2027-concept.md`
+- Monoliths fluted with tiers
+- Ground blueprint marks added
+- Mobile "interface" camera crop
+- Night second moon added
+- Services overview section added
+- Tower markers from 3D
+- Window room replaces wall "interface"
+- Workflow cards with pulses
+- Facade flutes toned down
+- Hero camera pulled back
+- Service towers placed by hand
+- Eight services replace six
+- Overview shows all at once
+- Eight chapters house to house
+- Window room removed
+- Process visuals on facades
+- New "process.ts" drawing system
+
 ## 14b3b5ee — 2026-10-12 UTC
 
 - Legacy ".en" redirects added

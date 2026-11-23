@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>utxo AG Entwurf A · Bühne</title>
+<link rel="stylesheet" href="drafts.css">
+<style>
+.hero{padding:clamp(22px, 2.6vw, 38px) var(--edge) 0}
+.hero .stage svg{width:100%;height:auto}
+.iso-plane{fill:#161A21;stroke:rgba(236,238,241,.3);stroke-width:1.2}
+.iso-in{fill:none;stroke:rgba(236,238,241,.16);stroke-width:1}
+.iso-tile{fill:rgba(236,238,241,.14);stroke:rgba(236,238,241,.5);stroke-width:1}
+.iso-token{fill:var(--accent)}
+.iso-flow{stroke:var(--accent);stroke-width:1.6;stroke-dasharray:3 7;stroke-linecap:round}
+.iso-lead{stroke:rgba(236,238,241,.25);stroke-width:1}
+.iso-t{fill:#ECEEF1;font:600 15px "Manrope",sans-serif;letter-spacing:.04em;text-transform:uppercase}
+.iso-s{fill:#8A919C;font:400 15px "Manrope",sans-serif}
+.svc-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);margin-top:clamp(40px, 6.2vw, 96px);align-items:end}
+.svc-grid figure{grid-column:1 / span 7}
+.svc-grid .copy{grid-column:9 / -1;padding-bottom:36px}
+.svc-grid .pill{margin-top:34px}
+@media (max-width:760px){
+  .svc-grid{display:block}
+  .svc-grid .copy{padding:32px 0 0}
+  .hero .stage{aspect-ratio:4 / 5}
+  .hero .stage svg{position:absolute;inset:0;height:100%;width:auto;max-width:none;left:-22%}
+  .strip span:nth-child(n+4){display:none}
+}
+</style>
+</head>
+<body class="th-a">
+<div class="intro" aria-hidden="true"><img src="assets/wordmark-black.svg" alt=""></div>
+
+<header class="top">
+  <a class="logo" href="index.html"><img src="assets/wordmark-black.svg" alt="utxo AG" width="136" height="81"></a>
+  <p class="statement">utxo AG entwickelt Software und KI-Agenten, die in grossen Organisationen jeden Tag im Betrieb laufen.</p>
+  <div class="actions">
+    <a class="pill pill--accent" href="https://cal.com/philip-isenmann-utxoag/30-min-meeting">Erstgespräch buchen <i></i></a>
+    <a class="pill pill--2" href="#">Menü</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="stage">
+    <svg viewBox="0 0 1296 650" role="img" aria-label="Vier Ebenen eines KI-Systems: Infrastruktur, Modelle, Agenten, Anwendungen">
+      <polygon class="iso-plane" points="520,410 850,480 520,550 190,480"/>
+      <polygon class="iso-in" points="520,438 718,480 520,522 322,480"/>
+      <polygon class="iso-plane" points="520,305 850,375 520,445 190,375"/>
+      <ellipse class="iso-in" cx="520" cy="375" rx="150" ry="32"/>
+      <ellipse class="iso-in" cx="520" cy="375" rx="78" ry="16.5"/>
+      <polygon class="iso-plane" points="520,200 850,270 520,340 190,270"/>
+      <ellipse class="iso-token" cx="520" cy="235" rx="20" ry="8.5"/>
+      <ellipse class="iso-token" cx="685" cy="270" rx="20" ry="8.5"/>
+      <ellipse class="iso-token" cx="355" cy="270" rx="20" ry="8.5"/>
+      <ellipse class="iso-token" cx="520" cy="305" rx="20" ry="8.5"/>
+      <polygon class="iso-plane" points="520,95 850,165 520,235 190,165"/>
+      <polygon class="iso-tile" points="520,117 582,130 520,143 458,130"/>
+      <polygon class="iso-tile" points="685,152 747,165 685,178 623,165"/>
+      <polygon class="iso-tile" points="355,152 417,165 355,178 293,165"/>
+      <polygon class="iso-tile" points="520,187 582,200 520,213 458,200"/>
+      <line class="iso-flow" x1="520" y1="130" x2="520" y2="480"/>
+      <line class="iso-lead" x1="850" y1="165" x2="930" y2="165"/>
+      <line class="iso-lead" x1="850" y1="270" x2="930" y2="270"/>
+      <line class="iso-lead" x1="850" y1="375" x2="930" y2="375"/>
+      <line class="iso-lead" x1="850" y1="480" x2="930" y2="480"/>
+      <text class="iso-t" x="946" y="161">Anwendungen</text><text class="iso-s" x="946" y="185">Software und Interfaces</text>
+      <text class="iso-t" x="946" y="266">Agenten</text><text class="iso-s" x="946" y="290">Managed Agents, CoWorker</text>
+      <text class="iso-t" x="946" y="371">Modelle</text><text class="iso-s" x="946" y="395">modellunabhängig</text>
+      <text class="iso-t" x="946" y="476">Infrastruktur</text><text class="iso-s" x="946" y="500">Deutschland, EU oder on-premise</text>
+    </svg>
+  </div>
+  <div class="strip label">
+    <span><b>01</b> Software Development</span>
+    <span><b>02</b> KI-Automationen</span>
+    <span><b>03</b> Managed Agents</span>
+    <span><b>04</b> Agent Factories</span>
+    <span><b>05</b> AI Adoption</span>
+    <span><b>06</b> Agentic CoWorker</span>
+  </div>
+</section>
+
+<section class="svc">
+  <div class="svc-head label"><span>03 / 06</span><span>Managed Agents</span></div>
+  <h2 class="display"><span class="in">Agenten, die wir</span><span>für Sie betreiben.</span></h2>
+  <div class="svc-grid">
+    <figure>
+      <div class="console">
+        <div class="console-bar label"><span>Betrieb · Ihre Agenten</span><span class="live"><i></i>Live</span></div>
+        <ul class="agents">
+          <li><b>Briefing-Agent</b><span>prüft ein Kampagnenbriefing</span><em class="st">läuft</em><div class="track"><i style="--v:72"></i></div></li>
+          <li><b>Recherche-Agent</b><span>Wettbewerbsanalyse, 14 Quellen</span><em class="st">läuft</em><div class="track"><i style="--v:38"></i></div></li>
+          <li><b>Reporting-Agent</b><span>Wochenbericht ist fertig</span><em class="st st--wait">Ihre Freigabe</em><div class="track track--wait"><i style="--v:100"></i></div></li>
+          <li><b>Ablage-Agent</b><span>startet um 18:00 Uhr</span><em class="st">geplant</em><div class="track"><i style="--v:0"></i></div></li>
+        </ul>
+        <div class="console-foot">
+          <div><small>Läufe heute</small><b>128</b></div>
+          <div><small>ohne Eingriff erledigt</small><b>94 %</b></div>
+          <div><small>warten auf Sie</small><b>1</b></div>
+        </div>
+      </div>
+      <figcaption class="sample label">Beispielansicht mit Beispieldaten</figcaption>
+    </figure>
+    <div class="copy">
+      <p class="body">Wir entwickeln, hosten und überwachen Ihre KI-Agenten. Sie sehen jederzeit, was läuft, was erledigt ist und wo Ihre Freigabe nötig ist.</p>
+      <a class="pill pill--2" href="#">Mehr zu Managed Agents <i></i></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<aside class="note">
+  <h2>Entwurf A · Bühne</h2>
+  <ul>
+    <li>Kühles Hellgrau, eine dunkle Bühne pro Bildschirm, Zinnober nur in Visuals und Punkten, nie in Text.</li>
+    <li>Hero-Visual: die vier Ebenen eines KI-Systems. Bewegung: Ebenen fahren nacheinander auseinander, ein Auftrag läuft als Punkt von oben nach unten und zurück.</li>
+    <li>Leistungs-Abschnitt: kurzer Scroll löst die Sequenz aus, sie läuft dann von selbst (Zeilen erscheinen, Balken füllen sich, ein Status springt auf "Ihre Freigabe").</li>
+    <li>Die Zeile unter der Bühne ist zugleich die Übersicht der sechs Leistungen.</li>
+  </ul>
+</aside>
+<nav class="switch" aria-label="Entwürfe"><a href="a.html" aria-current="page">A</a><a href="b.html">B</a><a href="c.html">C</a><a href="d.html">D</a><a href="e.html">E</a><a href="f.html">F</a></nav>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>utxo AG Entwurf E · Sand</title>
+<script>document.documentElement.dataset.mood = matchMedia('(prefers-color-scheme: dark)').matches ? 'moon' : 'sun';</script>
+<link rel="stylesheet" href="drafts.css">
+<script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/":"./vendor/addons/"}}</script>
+<style>
+.th-e{--bg:#F2ECE2;--fg:#17120D;--muted:#6F665A;--rule:rgba(23,18,13,.14);--stage:#17130F;--stage-fg:#F2ECE2;--stage-muted:#9A9084;--stage-rule:rgba(242,236,226,.12);--stage-soft:rgba(242,236,226,.07);--accent:#DD7A22;--pill:#2A231C;--pill-fg:#fff;--pill-2:#E4DCCF;--sand:#B98A5E;--card:#fff;--card-fg:#17120D;--device:#0E0B08}
+[data-mood="moon"] .th-e{--bg:#090C12;--fg:#E8ECF3;--muted:#8C93A1;--rule:rgba(232,236,243,.16);--stage:#131822;--stage-fg:#E8ECF3;--stage-muted:#8A92A0;--stage-rule:rgba(232,236,243,.12);--stage-soft:rgba(232,236,243,.07);--accent:#EB8A3C;--pill:#E8ECF3;--pill-fg:#090C12;--pill-2:#1A202B;--sand:#2A3448;--card:#1A202B;--card-fg:#E8ECF3;--device:#03050A}
+.th-e,.th-e .pill,.th-e .device,.th-e .console,.th-e .switch,.th-e .switch a,.moods{transition:background-color 1.2s var(--ease),color 1.2s var(--ease)}
+.th-e .logo img,.th-e .intro img{transition:filter 1.2s var(--ease)}
+[data-mood="moon"] .th-e .logo img,[data-mood="moon"] .th-e .intro img{filter:invert(1)}
+.th-e .intro{animation:none}
+.th-e .intro img{animation:none;transform-origin:0 0;width:min(40vw, 420px)}
+.th-e .top,.th-e main{animation:none}
+.th-e .logo img{visibility:hidden}
+.th-e.is-ready .logo img{visibility:visible;transition:visibility 0s .9s,filter 1.2s var(--ease)}
+.th-e .display{font-weight:400;letter-spacing:-.04em;font-size:clamp(42px, 8.6vw, 132px)}
+.th-e .top .statement{font-weight:400}
+
+.ln{display:block;overflow:hidden;padding-bottom:.14em;margin-bottom:-.14em}
+.ln > span{display:block;transform:translateY(118%);transition:transform 1s var(--ease);transition-delay:calc(var(--i, 0) * 90ms + var(--d, 0ms))}
+.is-ready .top .ln > span,.is-in .ln > span{transform:none}
+.top{--d:500ms}
+.actions{opacity:0;transition:opacity .8s var(--ease) .9s}
+.is-ready .actions{opacity:1}
+
+.hero{padding:clamp(20px, 2.4vw, 34px) var(--edge) 0}
+.stage3d{height:calc(100svh - clamp(190px, 17vw, 262px));min-height:340px;border-radius:var(--radius);overflow:hidden;background:var(--sand);opacity:0;transform:scale(.97);transition:opacity 1s var(--ease) .35s,transform 1.4s var(--ease) .35s;touch-action:pan-y}
+.is-ready .stage3d{opacity:1;transform:none}
+.stage3d canvas{display:block;width:100%;height:100%}
+.marks{display:grid;grid-template-columns:1fr 1fr auto 1fr 1fr;align-items:center;height:50px;font-size:var(--fs-label);font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.marks i{font-style:normal;font-size:22px;font-weight:300;line-height:1}
+.marks i:nth-child(2){text-align:right;padding-right:6vw}
+.marks i:nth-child(4){padding-left:6vw}
+.marks i:last-child{text-align:right}
+
+.seq{padding:clamp(96px, 16vw, 240px) var(--edge) clamp(80px, 11vw, 170px)}
+.seq-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);margin-top:clamp(44px, 6.4vw, 100px);align-items:center}
+.device-wrap{grid-column:1 / span 7;perspective:1800px}
+.device{background:var(--device);border-radius:34px;padding:14px;box-shadow:0 0 0 1px var(--rule),0 60px 90px -40px rgba(30,20,10,.38),0 18px 30px -18px rgba(30,20,10,.22);transform:rotateX(50deg) rotateZ(-9deg) scale(.8) translateY(90px);opacity:0;transition:transform 1.7s var(--ease) .15s,opacity .7s ease .15s}
+.is-in .device{transform:none;opacity:1}
+.device .console{border-radius:22px}
+.th-e .agents li{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s var(--ease);transition-delay:calc(900ms + var(--i) * 170ms)}
+.is-in .agents li{opacity:1;transform:none}
+.th-e .track i{width:0;transition:width 1.9s var(--ease) 1.4s,background-color .4s}
+.is-in .track i{width:calc(var(--v) * 1%)}
+.is-waiting .track--flip i{background:var(--accent);opacity:1}
+.th-e .st{transition:background-color .4s,color .4s}
+.th-e .st--wait{color:var(--stage)}
+.seq .copy{grid-column:9 / -1;opacity:0;transform:translateY(20px);transition:opacity .9s ease .5s,transform .9s var(--ease) .5s}
+.is-in .copy{opacity:1;transform:none}
+.pill--white{background:var(--card);color:var(--card-fg);box-shadow:0 1px 2px rgba(0,0,0,.04),0 10px 24px rgba(0,0,0,.05);margin-top:38px;transition:background-color .35s var(--ease),color .35s var(--ease)}
+.th-e .pill--white:hover,.th-e .pill--talk:hover{background:var(--accent);color:#17120D}
+.pill--white i{background:var(--accent)}
+
+.moods{position:fixed;left:12px;top:50%;transform:translateY(-50%);z-index:5;display:flex;flex-direction:column;gap:4px;padding:4px;border-radius:99px;background:var(--pill-2)}
+.moods button{width:34px;height:34px;border-radius:50%;border:0;padding:0;cursor:pointer;display:grid;place-items:center;background:transparent;color:var(--fg);transition:background-color .5s var(--ease),color .5s var(--ease)}
+.moods button[aria-pressed="true"]{background:var(--pill);color:var(--pill-fg)}
+.moods svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+@media (max-width:760px){
+  .stage3d{height:auto;min-height:0;aspect-ratio:1 / 1}
+  .marks{grid-template-columns:auto 1fr auto}
+  .marks i:nth-child(2),.marks i:nth-child(4){display:none}
+  .marks span{text-align:center}
+  .seq-grid{display:block}
+  .device{border-radius:24px;padding:9px}
+  .device .console{border-radius:16px}
+  .seq .copy{padding-top:34px}
+  .moods{top:auto;bottom:12px;left:12px;transform:none;flex-direction:row}
+  .th-e .switch{right:12px;transform:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .ln > span,.stage3d,.device,.th-e .agents li,.seq .copy,.actions{transition:none;transform:none;opacity:1}
+  .th-e .track i{transition:none;width:calc(var(--v) * 1%)}
+}
+</style>
+</head>
+<body class="th-e">
+<div class="intro" aria-hidden="true"><img src="assets/wordmark-black.svg" alt=""></div>
+
+<header class="top">
+  <a class="logo" href="index.html"><img src="assets/wordmark-black.svg" alt="utxo AG" width="136" height="81"></a>
+  <p class="statement"><span class="ln" style="--i:0"><span>utxo AG entwickelt Software</span></span><span class="ln" style="--i:1"><span>und KI-Agenten für den Betrieb</span></span><span class="ln" style="--i:2"><span>in grossen Organisationen.</span></span></p>
+  <div class="actions">
+    <a class="pill pill--talk" href="https://cal.com/philip-isenmann-utxoag/30-min-meeting">Erstgespräch buchen <i></i></a>
+    <a class="pill pill--2" href="#">Menü</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="stage3d" data-stage><canvas aria-label="Die Wortmarke der utxo AG ist in feinen Sand gezeichnet und lässt sich mit Cursor oder Finger verwischen" role="img"></canvas></div>
+  <div class="marks"><i>+</i><i>+</i><span>Scrollen</span><i>+</i><i>+</i></div>
+</section>
+
+<section class="seq" data-seq>
+  <h2 class="display"><span class="ln in" style="--i:0"><span>Agenten, die wir</span></span><span class="ln" style="--i:1"><span>für Sie betreiben.</span></span></h2>
+  <div class="seq-grid">
+    <div class="device-wrap">
+      <div class="device">
+        <div class="console">
+          <div class="console-bar label"><span>Betrieb · Ihre Agenten</span><span class="live"><i></i>Live</span></div>
+          <ul class="agents">
+            <li style="--i:0"><b>Briefing-Agent</b><span>prüft ein Kampagnenbriefing</span><em class="st">läuft</em><div class="track"><i style="--v:72"></i></div></li>
+            <li style="--i:1"><b>Recherche-Agent</b><span>Wettbewerbsanalyse, 14 Quellen</span><em class="st">läuft</em><div class="track"><i style="--v:38"></i></div></li>
+            <li style="--i:2"><b>Reporting-Agent</b><span>Wochenbericht</span><em class="st st--wait" data-flip>Ihre Freigabe</em><div class="track track--flip"><i style="--v:100"></i></div></li>
+            <li style="--i:3"><b>Ablage-Agent</b><span>startet um 18:00 Uhr</span><em class="st">geplant</em><div class="track"><i style="--v:0"></i></div></li>
+          </ul>
+          <div class="console-foot">
+            <div><small>Läufe heute</small><b data-count="128">128</b></div>
+            <div><small>ohne Eingriff erledigt</small><b data-count="94">94<span> %</span></b></div>
+            <div><small>warten auf Sie</small><b data-count="1">1</b></div>
+          </div>
+        </div>
+      </div>
+      <p class="sample label">Beispielansicht mit Beispieldaten</p>
+    </div>
+    <div class="copy">
+      <p class="body">Wir entwickeln, hosten und überwachen Ihre KI-Agenten. Sie sehen jederzeit, was läuft, was erledigt ist und wo Ihre Freigabe nötig ist.</p>
+      <a class="pill pill--white" href="#"><i></i> Managed Agents</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="moods" role="group" aria-label="Lichtstimmung">
+  <button type="button" data-mood-set="sun" aria-label="Sonnenlicht" aria-pressed="false"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3"/><path d="M8 1.2v1.6M8 13.2v1.6M1.2 8h1.6M13.2 8h1.6M3.2 3.2l1.1 1.1M11.7 11.7l1.1 1.1M3.2 12.8l1.1-1.1M11.7 4.3l1.1-1.1"/></svg></button>
+  <button type="button" data-mood-set="moon" aria-label="Mondlicht" aria-pressed="false"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.4 9.6A5.8 5.8 0 0 1 6.4 2.6a5.8 5.8 0 1 0 7 7z"/></svg></button>
+</div>
+<nav class="switch" aria-label="Entwürfe"><a href="a.html">A</a><a href="b.html">B</a><a href="c.html">C</a><a href="d.html">D</a><a href="e.html" aria-current="page">E</a><a href="f.html">F</a></nav>
+<script type="module" src="e.js"></script>
+</body>
+</html>
