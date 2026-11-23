@@ -271,7 +271,7 @@ if (max(looseAt(vCell), max(max(looseAt(vCell + reach.xy), looseAt(vCell - reach
       pos[i * 3 + 2] = (Math.random() - 0.5) * 16;
       if (fadeIn) { pos[i * 3] = target[i * 3] + (Math.random() - 0.5) * 7; pos[i * 3 + 1] = target[i * 3 + 1] + (Math.random() - 0.5) * 5; pos[i * 3 + 2] = target[i * 3 + 2] + 1 + Math.random() * 5; }
       origin.set(pos.subarray(i * 3, i * 3 + 3), i * 3);
-      gate[i] = fadeIn ? Math.random() * 0.84 : (col / cols) * 0.72 + Math.random() * 0.24;
+      gate[i] = fadeIn ? Math.random() * 0.78 : (col / cols) * 0.72 + Math.random() * 0.24;
       spin[i] = (Math.random() - 0.5) * 9;
       axes.push(new THREE.Vector3(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).normalize());
       const roll = Math.random();
