@@ -1,0 +1,32 @@
+---
+/*
+  One service: headline (the service name), one mockup (default slot), one copy block.
+  The mockup's script registers this section ([data-section]) with motion/loop.js,
+  so headline, mockup and copy share one .is-in.
+  layout: "mockup-left" (mockup columns 1 to 7, copy 9 to 12).
+*/
+const { service, layout } = Astro.props;
+---
+<section class:list={['svc', `svc--${layout}`]} id={service.id} data-section>
+  <h2 class="display"><span class="ln"><span>{service.name}</span></span></h2>
+  <div class="svc-grid">
+    <div class="svc-mockup"><slot /></div>
+    <div class="svc-copy"><p class="body">{service.body}</p></div>
+  </div>
+</section>
+
+<style is:global>
+.svc{overflow-x:clip;padding:clamp(96px, 16vw, 240px) var(--edge) clamp(80px, 11vw, 170px)}
+.svc-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);margin-top:clamp(44px, 6.4vw, 100px);align-items:center}
+.svc--mockup-left .svc-mockup{grid-column:1 / span 7}
+.svc--mockup-left .svc-copy{grid-column:9 / -1}
+.js .svc-copy{opacity:0;transform:translateY(20px);transition:opacity var(--t-enter) ease .5s,transform var(--t-enter) var(--ease) .5s}
+.js .is-in .svc-copy{opacity:1;transform:none}
+@media (max-width:760px){
+  .svc-grid{display:block}
+  .svc-copy{padding-top:34px}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .svc-copy{transition:none;opacity:1;transform:none}
+}
+</style>

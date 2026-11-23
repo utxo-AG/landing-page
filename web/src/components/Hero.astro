@@ -1,0 +1,29 @@
+---
+const { t } = Astro.props;
+---
+<section class="hero" id="top">
+  <div class="stage3d stage-dark" data-stage><canvas role="img" aria-label={t.hero.canvasLabel}></canvas></div>
+  <div class="marks" aria-hidden="true"><i>+</i><i>+</i><i>+</i><i>+</i></div>
+</section>
+
+<script>
+  const stage = document.querySelector('[data-stage]');
+  requestAnimationFrame(() => import('../scene/hero.js').then(({ hero }) => hero(stage)));
+</script>
+
+<style is:global>
+.hero{padding:clamp(20px, 2.4vw, 34px) var(--edge) 0}
+.stage3d{height:calc(100svh - clamp(190px, 17vw, 262px));min-height:340px;touch-action:pan-y}
+.stage3d canvas{position:relative;z-index:1;display:block;width:100%;height:100%}
+.js .stage3d{opacity:0;transform:scale(.97);transition:opacity var(--t-enter) var(--ease) .35s,transform 1.4s var(--ease) .35s}
+.is-ready .stage3d{opacity:1;transform:none}
+.marks{display:flex;justify-content:space-between;align-items:center;height:50px;opacity:.32}
+.marks i{font-style:normal;font-size:22px;font-weight:300;line-height:1}
+@media (max-width:760px){
+  .stage3d{height:auto;min-height:0;aspect-ratio:1 / 1}
+  .marks i:nth-child(2),.marks i:nth-child(3){display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .stage3d{transition:none;opacity:1;transform:none}
+}
+</style>

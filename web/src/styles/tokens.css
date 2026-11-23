@@ -1,0 +1,36 @@
+:root{
+  --edge:max(5vw, 20px);
+  --gap:2vw;
+  --radius:20px;
+
+  --ease:cubic-bezier(.35,0,0,1);
+  --t-fast:.35s;
+  --t-move:.7s;
+  --t-enter:1s;
+  --t-stage:1.7s;
+  --stagger:90ms;
+
+  --fs-display:clamp(42px, 8.6vw, 132px);
+  --fs-statement:clamp(20px, 2.1vw, 32px);
+  --fs-body:clamp(16px, 1.45vw, 21px);
+  --fs-label:clamp(11px, .92vw, 13.5px);
+
+  --bg:#EEF0F6;
+  --bg-end:#E3EAE6;
+  --fg:#07080A;
+  --muted:#5D626C;
+  --rule:rgba(7,8,10,.14);
+  --surface:#fff;
+  --surface-hover:#0B0C0F;
+  --pill-2:#E2E5EE;
+
+  --stage:#14161B;
+  --stage-fg:#EEF0F6;
+  --stage-muted:#8A909B;
+  --stage-rule:rgba(238,240,246,.12);
+  --stage-soft:rgba(238,240,246,.07);
+  --device:#0A0B0E;
+}
+@media (max-width:760px){
+  :root{--radius:14px}
+}

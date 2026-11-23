@@ -1,0 +1,37 @@
+---
+import '../styles/tokens.css';
+import '../styles/base.css';
+import '../styles/mockup.css';
+import fontUrl from '../assets/fonts/manrope-latin-var.woff2?url';
+import iconSvg from '../assets/icons/icon.svg?url';
+import iconPng from '../assets/icons/favicon-96x96.png?url';
+import iconTouch from '../assets/icons/apple-touch-icon-180x180.png?url';
+
+const { t } = Astro.props;
+---
+<!doctype html>
+<html lang={t.lang}>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>{t.meta.title}</title>
+<meta name="description" content={t.meta.description}>
+<link rel="preload" href={fontUrl} as="font" type="font/woff2" crossorigin>
+<link rel="icon" href={iconSvg} type="image/svg+xml">
+<link rel="icon" href={iconPng} sizes="96x96" type="image/png">
+<link rel="apple-touch-icon" href={iconTouch}>
+<script is:inline>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<slot />
+<script>
+  import { backdrop } from '../page/backdrop.js';
+  import { disclosures } from '../page/disclosure.js';
+
+  backdrop();
+  disclosures();
+  document.documentElement.classList.add('is-ready');
+</script>
+</body>
+</html>

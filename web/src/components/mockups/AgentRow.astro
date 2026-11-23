@@ -1,0 +1,10 @@
+---
+const { row, status, index = 0 } = Astro.props;
+const planned = row.state === 'plan';
+---
+<li style={`--i:${index}`} data-state={row.state} data-due={row.due} data-task={planned ? row.task : undefined}>
+  <b>{row.name}</b>
+  <span class="agent-task">{planned ? row.planned : row.task}</span>
+  <div class="agent-status"><em class="st">{status[row.state]}</em></div>
+  <div class="track"><i style={`--v:${row.progress}`}></i></div>
+</li>

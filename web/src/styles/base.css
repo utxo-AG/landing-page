@@ -1,0 +1,37 @@
+@font-face{font-family:"Manrope";src:url("../assets/fonts/manrope-latin-var.woff2") format("woff2");font-weight:200 800;font-display:swap}
+
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%;background-color:color-mix(in srgb, var(--bg), var(--bg-end) calc(var(--sp, 0) * 100%))}
+html::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(60% 55% at calc(12% + var(--sp, 0) * 70%) calc(8% + var(--sp, 0) * 80%), rgba(18,92,70,.17) 0%, rgba(18,92,70,0) 70%),radial-gradient(55% 50% at calc(88% - var(--sp, 0) * 60%) calc(85% - var(--sp, 0) * 70%), rgba(104,116,190,.2) 0%, rgba(104,116,190,0) 70%)}
+body{color:var(--fg);font-family:"Manrope",system-ui,sans-serif;font-size:var(--fs-body);line-height:1.45;font-weight:400;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+ul,ol{list-style:none;padding:0}
+button{font:inherit;color:inherit;border:0;padding:0;background:none;cursor:pointer}
+:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
+
+.label{font-size:var(--fs-label);font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.display{font-size:var(--fs-display);line-height:1;letter-spacing:-.04em;font-weight:400}
+.body{max-width:34em}
+
+/* .ln: one masked line that rises into place. Hidden only with JS (.js on <html>);
+   shown by .is-ready (header) or .is-in on a section (set by motion/loop.js). */
+.ln{display:block;overflow:hidden;padding-bottom:.14em;margin-bottom:-.14em}
+.ln > span{display:block}
+.js .ln > span{transform:translateY(118%);transition:transform var(--t-enter) var(--ease);transition-delay:calc(var(--i, 0) * var(--stagger) + var(--d, 0ms))}
+.is-ready .top .ln > span,.is-in .ln > span{transform:none}
+
+.pill{display:inline-flex;align-items:center;gap:12px;height:46px;padding:0 20px;border-radius:99px;font-size:var(--fs-label);font-weight:600;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+.pill i{width:6px;height:6px;border-radius:50%;background:currentColor}
+.pill--2{background:var(--pill-2);color:var(--fg)}
+.pill--talk{position:relative;isolation:isolate;overflow:hidden;color:#fff;background:radial-gradient(130% 150% at 50% 135%, rgba(22,92,70,.95) 0%, rgba(18,70,54,.35) 45%, rgba(18,70,54,0) 75%),linear-gradient(112deg, #23262C 0%, #0B0C0F 100%)}
+.pill--talk::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(135% 165% at 50% 140%, #1E7A5C 0%, rgba(20,92,69,.62) 42%, rgba(18,70,54,0) 78%);opacity:0;transition:opacity var(--t-fast) var(--ease)}
+.pill--talk:hover::before{opacity:1}
+
+@media (prefers-reduced-motion:reduce){
+  .js .ln > span{transition:none;transform:none}
+}
+
+/* Dark stage: gradient with a hint of phthalo green and fine grain. Content sits above the grain with z-index 1. */
+.stage-dark{position:relative;overflow:hidden;border-radius:var(--radius);color:var(--stage-fg);background:linear-gradient(112deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,0) 26%, rgba(255,255,255,.022) 50%, rgba(255,255,255,0) 72%),radial-gradient(130% 75% at 50% 112%, rgba(18,70,54,.5) 0%, rgba(18,70,54,.17) 42%, rgba(22,84,64,0) 72%),radial-gradient(120% 100% at 28% 12%, #1B1D22 0%, #0E0F12 46%, #040506 100%)}
+.stage-dark::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.055;mix-blend-mode:screen;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.62' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}

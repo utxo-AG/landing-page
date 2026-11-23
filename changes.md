@@ -1,5 +1,25 @@
 # Changes
 
+## 778452ba-c747-4ac0-b926-6275773407e7 — 2026-11-23 UTC
+- Astro project in `web/`
+- Draft F ported to components
+- Copy moved to `de.json`
+- Tokens merged into `tokens.css`
+- Loop controller `loop.js`
+- "Managed Agents" loops with recycling
+- "Freigeben" button and pointer
+- "Menü" panel added
+- Phone menu full screen
+- Phone headline three lines
+- `blocks.js` solid mode only
+- Three.js loads after paint
+- No-JS content stays visible
+- `CLAUDE.md` and plan updated
+- Console rows keep height
+- Two-line rows below 1100px
+- Panels close on focus out
+- Focus ring visible again
+
 ## cab32225-0016-4518-9557-a1abf04a5b3f — 2026-11-23 UTC
 - New branch `website-2027`
 - Reference analysis lusion.co redone

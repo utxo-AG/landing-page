@@ -1,11 +1,11 @@
 # Website 2027: plan for the home page (draft F to full page)
 
-Status 2026-11-23: plan written, not started. All six questions are answered (see section 9). Binding basis is draft F in `web/drafts/` (`f.html`, `f.js`, `page.js`, `blocks.js`, `drafts.css`; run with `cd web/drafts && python3 -m http.server 8131`, open `http://localhost:8131/f.html`). Drafts a to e are discarded experiments. Copy rules: `CLAUDE.md`, section "Copy".
+Status 2026-11-23: phase 1 implemented in `web/` (Astro; see `CLAUDE.md`, section "Astro project in `web/`"), waiting for Phil's review before phase 2. All six questions are answered (see section 9). Binding basis is draft F in `web/drafts/` (`f.html`, `f.js`, `page.js`, `blocks.js`, `drafts.css`; run with `cd web/drafts && python3 -m http.server 8131`, open `http://localhost:8131/f.html`). Drafts a to e are discarded experiments. Copy rules: `CLAUDE.md`, section "Copy".
 
 ## Start here (handover 2026-11-23)
 
 - Branch `website-2027` (from `origin/master`, no upstream set, nothing pushed). Drafts and this plan are committed.
-- Next step: phase 1 in section 8 (Astro project in `web/`, header with menu, hero, overview, Managed Agents on the loop controller). `web/drafts/` stays untouched as the reference.
+- Phase 1 in section 8 is done (Astro project in `web/`, header with menu, hero, overview, Managed Agents on the loop controller). Next step after Phil's review: phase 2. `web/drafts/` stays untouched as the reference.
 - Look at draft F first, in a real browser, including motion: `cd web/drafts && python3 -m http.server 8131`, then `http://localhost:8131/f.html`.
 - Three.js r187 is vendored in `web/drafts/vendor/`; the Astro project should install `three` from npm instead.
 - Working rules from Phil: plan before coding, check results in a real browser (motion and phone view), keep `CLAUDE.md` and `changes.md` in sync, use subagents to keep the context clean, German copy rules from `CLAUDE.md`.
@@ -261,6 +261,15 @@ On phones `.actions .pill--2` is currently hidden by `drafts.css`. Show it, and 
 - `src/scene/blocks.js`
 - `src/styles/`: `base.css`, `mockup.css`
 
+**Deviations from the file map, decided in phase 1**
+- All tokens (colour, type, motion) are in `src/styles/tokens.css`; there is no `src/motion/tokens.css`.
+- `src/page/disclosure.js` serves both header panels (contact and menu) instead of a `contact-menu.js`.
+- `src/components/HomePage.astro` is the shared home component the language pages render with their dictionary.
+- Component styles live in the components (`<style is:global>`); `base.css` only holds reset, type and primitives.
+- `blocks.js` receives the SVG source (`?raw` import) instead of a URL, so the scene needs no request. `src/scene/hero.js` is the hero entry.
+- `mount(stage)` is deferred to phase 4, lazy import per mockup module to phase 6 (the Managed Agents module is 1.5 KB gzip).
+- Managed Agents loop: the row that is due is paced to reach 100 % at 4 s and asks for approval at 6 s; after the first pass the due row is always the top one, so it leaves at the top. The Reporting row starts at 88 % with "warten auf Sie" 0.
+
 **What happens to the draft files**
 - `blocks.js` moves to `src/scene/` nearly unchanged. Changes:
   - The wordmark URL becomes a parameter; it is the hard-coded relative `assets/wordmark-black.svg` today.
@@ -302,7 +311,7 @@ Each phase ends in something Phil can open in the browser.
 
 ## Known weaknesses of draft F to fix during implementation
 
-- Headline runs to four lines at 390px (rule: max three).
+- Headline runs to four lines at 390px (rule: max three). Fixed in phase 1: below 760px the headline flows as one paragraph, three lines at 390px.
 - F was checked in Chrome only (1440 and 390px, mostly via still frames); Safari, Firefox and real phones are untested.
 - When the wave or the cursor lifts cubes, the solid body has cube-shaped holes; under the cursor the background shows through.
 - Draft E "Sand" (`e.html`, `e.js`, `e.shader.js`) was dropped by Phil; the files and the "E" link in the draft switcher still exist.
