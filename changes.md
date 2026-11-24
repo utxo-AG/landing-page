@@ -164,6 +164,7 @@
 - Lite mode detection in "hero.js"
 - Overview number column fixed width
 - Penetration Testing short text shortened
+- Current state noted in "CLAUDE.md"
 - Phthalo accents in "Software Development"
 - English dictionaries `i18n/en`
 - English pages `pages/en`
