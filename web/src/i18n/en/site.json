@@ -77,7 +77,7 @@
     {
       "id": "penetration-testing",
       "name": "Penetration Testing",
-      "short": "Regular penetration tests that find vulnerabilities in your systems before they are exploited.",
+      "short": "Regular tests that uncover security gaps in your systems.",
       "body": "We test your systems for vulnerabilities on a regular basis, with current tools and to current standards. We rate the findings by risk and support the fix, so weaknesses are found and closed early.",
       "mockupLabel": "Animated example: a penetration test finds vulnerabilities in a system, rates them and confirms the fix in a retest.",
       "href": "/en/penetration-testing"
