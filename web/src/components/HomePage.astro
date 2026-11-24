@@ -32,7 +32,7 @@ const sections = [
     <Hero t={t} />
     <Overview t={t} />
     {sections.map(({ id, layout, Mockup }) => (
-      <ServiceSection service={t.services.find((entry) => entry.id === id)} layout={layout}>
+      <ServiceSection service={t.services.find((entry) => entry.id === id)} layout={layout} more={t.servicePages[id] && t.servicePage.more}>
         <Mockup t={t} />
       </ServiceSection>
     ))}

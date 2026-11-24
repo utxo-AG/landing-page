@@ -1,0 +1,15 @@
+---
+/* A numbered sequence side by side (stacked on phones). items: [{ name, text, note }] ; note is a small label, e.g. a duration or a deliverable. */
+const { items } = Astro.props;
+const number = (i) => String(i + 1).padStart(2, '0');
+---
+<ol class="sp-steps" style={`--n:${items.length}`}>
+  {items.map((item, i) => (
+    <li class="sp-rise" style={`--i:${i + 1}`}>
+      <p class="sp-step-n label">{number(i)}</p>
+      <h3 class="sp-step-name">{item.name}</h3>
+      <p class="sp-step-text">{item.text}</p>
+      {item.note && <p class="sp-step-note label">{item.note}</p>}
+    </li>
+  ))}
+</ol>

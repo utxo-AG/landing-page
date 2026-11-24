@@ -1,0 +1,13 @@
+---
+/* Hairline rows: name left, text in the middle, optional tag right. items: [{ name, text, tag }] */
+const { items } = Astro.props;
+---
+<ul class="sp-points">
+  {items.map((item, i) => (
+    <li class="sp-rise" style={`--i:${i + 1}`}>
+      <h3 class="sp-point-name">{item.name}</h3>
+      <p class="sp-point-text">{item.text}</p>
+      {item.tag && <p class="sp-point-tag label">{item.tag}</p>}
+    </li>
+  ))}
+</ul>

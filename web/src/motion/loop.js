@@ -99,6 +99,11 @@ const observer = reduced ? null : new IntersectionObserver((entries) => {
 
 if (!reduced) document.addEventListener('visibilitychange', choose);
 
+/* true once a root is registered (reduced motion: once it got its .is-in) */
+export function registered(root) {
+  return items.has(root) || root.classList.contains('is-in');
+}
+
 export function register(root, { enter = 0, period = 0, steps = [], tick, still, reset, slow, focus = root } = {}) {
   if (reduced) {
     root.classList.add('is-in');

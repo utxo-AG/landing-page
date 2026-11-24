@@ -9,18 +9,23 @@
     "wide"          copy first, mockup across the full width below
     "stage"         full-width dark stage; the mockup fills it, headline and copy sit on it, bottom left
                     (up to 900px: headline above the stage, stage 4:5, copy below)
+  bare: render only the mockup in its layout (no id, headline or copy). more: label of the pill that links to service.href.
 */
-const { service, layout } = Astro.props;
+const { service, layout, bare = false, more } = Astro.props;
 ---
-<section class:list={['svc', `svc--${layout}`]} id={service.id} data-section>
-  {layout === 'stage' ? (
+<section class:list={['svc', `svc--${layout}`, { 'svc--bare': bare }]} id={bare ? undefined : service.id} data-section>
+  {bare ? (
+    layout === 'stage'
+      ? <div class="svc-stage stage-dark"><div class="svc-mockup" role="img" aria-label={service.mockupLabel}><slot /></div></div>
+      : <div class="svc-mockup" role="img" aria-label={service.mockupLabel}><slot /></div>
+  ) : layout === 'stage' ? (
     <Fragment>
       <div class="svc-stage stage-dark">
         <div class="svc-mockup" role="img" aria-label={service.mockupLabel}><slot /></div>
       </div>
       <div class="svc-stage-text">
         <h2 class="display"><span class="ln"><span>{service.name}</span></span></h2>
-        <div class="svc-copy"><p class="body">{service.body}</p></div>
+        <div class="svc-copy"><p class="body">{service.body}</p>{more && <a class="pill pill--line svc-more" href={service.href}>{more} <i></i></a>}</div>
       </div>
     </Fragment>
   ) : (
@@ -28,13 +33,19 @@ const { service, layout } = Astro.props;
       <h2 class="display"><span class="ln"><span>{service.name}</span></span></h2>
       <div class="svc-grid">
         <div class="svc-mockup" role="img" aria-label={service.mockupLabel}><slot /></div>
-        <div class="svc-copy"><p class="body">{service.body}</p></div>
+        <div class="svc-copy"><p class="body">{service.body}</p>{more && <a class="pill pill--2 svc-more" href={service.href}>{more} <i></i></a>}</div>
       </div>
     </Fragment>
   )}
 </section>
 
 <style is:global>
+/* bare: only the mockup, for the hero of a service detail page (components/pages/ServicePage.astro) */
+.svc--bare{padding-top:clamp(36px, 4.4vw, 72px)}
+.svc--bare:not(.svc--stage) .svc-mockup{max-width:1100px}
+.svc-more{margin-top:clamp(20px, 2.2vw, 32px);pointer-events:auto}
+.svc--stage .svc-more{color:var(--stage-fg)}
+@media (max-width:900px){.svc--stage .svc-more{color:var(--fg);box-shadow:inset 0 0 0 1px var(--rule)}}
 .svc{overflow-x:clip;padding:clamp(96px, 14vw, 210px) var(--edge) 0}
 .svc-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);margin-top:clamp(40px, 5vw, 80px);align-items:center}
 .svc--mockup-left .svc-mockup{grid-column:1 / span 7}

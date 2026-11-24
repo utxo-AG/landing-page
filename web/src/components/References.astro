@@ -7,6 +7,8 @@ import { formatNumber } from '../page/format.js';
 
 const { t } = Astro.props;
 const r = t.references;
+/* the Serviceplan lead block only speaks for the rows right under it; own brands (row.own) follow as a separate list */
+const groups = [r.rows.filter((row) => !row.own), r.rows.filter((row) => row.own)].filter((group) => group.length);
 const files = import.meta.glob('../assets/{logos,sokosumi-clients,nmkr-clients}/*.{svg,webp,png}', { eager: true, import: 'default' });
 const logos = (folder, list) => list.map((entry) => ({ ...entry, image: files[`../assets/${folder}/${entry.file}`] }));
 const clients = {
@@ -23,27 +25,29 @@ const clients = {
       <p class="refs-note">{r.lead.text}</p>
     </div>
   </div>
-  <ul class="refs-list">
-    {r.rows.map((row, i) => (
-      <li class:list={['refs-item', { 'refs-row--inline': clients[row.clients] && row.figures.length > 1 }]} style={`--i:${i + 1}`}>
-        <a href={row.href} target="_blank" rel="noopener">
-          <span class="refs-name"><img class="refs-logo" src={files[`../assets/logos/${row.logo}`].src} alt={row.name} width={files[`../assets/logos/${row.logo}`].width} height={files[`../assets/logos/${row.logo}`].height} loading="lazy">{row.tag && <span class="refs-tag label">{row.tag}</span>}</span>
-          <span class="refs-desc">{row.text}</span>
-          <span class="refs-figs">
-            {row.figures.map((figure) => (
-              <span class="refs-fig">
-                {figure.text
-                  ? <b>{figure.text}</b>
-                  : <b><span data-count={figure.value} data-decimals={figure.decimals ?? 0}>{formatNumber(figure.value, t.number, figure.decimals)}</span>{figure.suffix}</b>}
-                {figure.label && <small>{figure.label}</small>}
-              </span>
-            ))}
-          </span>
-        </a>
-        {clients[row.clients] && <LogoLine label={row.clientsLabel} {...clients[row.clients]} />}
-      </li>
-    ))}
-  </ul>
+  {groups.map((group, g) => (
+    <ul class:list={['refs-list', { 'refs-list--own': g > 0 }]}>
+      {group.map((row) => (
+        <li class:list={['refs-item', { 'refs-row--inline': clients[row.clients] && row.figures.length > 1 }]} style={`--i:${r.rows.indexOf(row) + 1}`}>
+          <a href={row.href} target="_blank" rel="noopener">
+            <span class="refs-name"><img class="refs-logo" src={files[`../assets/logos/${row.logo}`].src} alt={row.name} width={files[`../assets/logos/${row.logo}`].width} height={files[`../assets/logos/${row.logo}`].height} loading="lazy">{row.tag && <span class="refs-tag label">{row.tag}</span>}</span>
+            <span class="refs-desc">{row.text}</span>
+            <span class="refs-figs">
+              {row.figures.map((figure) => (
+                <span class="refs-fig">
+                  {figure.text
+                    ? <b>{figure.text}</b>
+                    : <b><span data-count={figure.value} data-decimals={figure.decimals ?? 0}>{formatNumber(figure.value, t.number, figure.decimals)}</span>{figure.suffix}</b>}
+                  {figure.label && <small>{figure.label}</small>}
+                </span>
+              ))}
+            </span>
+          </a>
+          {clients[row.clients] && <LogoLine label={row.clientsLabel} {...clients[row.clients]} />}
+        </li>
+      ))}
+    </ul>
+  ))}
 </section>
 
 <script>
@@ -74,11 +78,12 @@ const clients = {
 <style is:global>
 .refs{padding:clamp(96px, 14vw, 210px) var(--edge) 0}
 .refs-lead{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);align-items:center;margin-top:clamp(40px, 5vw, 80px);padding-bottom:clamp(36px, 4.4vw, 70px)}
-.refs-sp{grid-column:1 / span 6;width:100%;height:auto}
+.refs-sp{grid-column:1 / span 4;width:100%;height:auto}
 .refs-lead-text{grid-column:9 / -1}
 .refs-claim{font-size:clamp(19px, 1.7vw, 26px);line-height:1.15;letter-spacing:-.03em}
 .refs-note{margin-top:.7em;color:var(--muted);font-size:clamp(14px, 1.2vw, 17.5px);line-height:1.35}
 .refs-list{border-bottom:1px solid var(--rule)}
+.refs-list--own{margin-top:clamp(56px, 7vw, 112px)}
 .refs-list > li{border-top:1px solid var(--rule)}
 .refs-list a{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);align-items:baseline;padding:clamp(18px, 1.8vw, 28px) 0;transition:opacity var(--t-fast) var(--ease)}
 .refs-name{grid-column:1 / span 3;align-self:start;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;font-size:clamp(21px, 2.2vw, 34px);line-height:1.05;letter-spacing:-.035em}

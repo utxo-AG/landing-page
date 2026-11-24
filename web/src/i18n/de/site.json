@@ -39,42 +39,48 @@
       "name": "Software Development",
       "short": "Individuelle Software, auch KI-gestützt, vom Konzept bis in den Betrieb.",
       "body": "Wir entwickeln individuelle Software für Ihre Prozesse, auf Wunsch KI-gestützt, vom Konzept bis in den Betrieb. Ein festes Team begleitet Architektur, Entwicklung und Weiterentwicklung.",
-      "mockupLabel": "Animierte Beispielsequenz: vom Workflow über Web-Anwendung, Mobile App und Schnittstellen bis zum Release."
+      "mockupLabel": "Animierte Beispielsequenz: vom Workflow über Web-Anwendung, Mobile App und Schnittstellen bis zum Release.",
+      "href": "/de/software-development"
     },
     {
       "id": "agent-factories",
       "name": "Agent Factories und KI-Infrastruktur",
       "short": "Die Grundlage, auf der Ihre Organisation Agenten in Serie entwickelt und betreibt.",
       "body": "Wir entwickeln die Grundlage, auf der Ihre Organisation KI-Agenten in Serie entwickelt, prüft und betreibt. Hosting nach Ihren Anforderungen: Deutschland, EU oder on-premise.",
-      "mockupLabel": "Animierte Beispielansicht: Auf gemeinsamer Infrastruktur entstehen KI-Agenten in Serie und gehen in den Betrieb."
+      "mockupLabel": "Animierte Beispielansicht: Auf gemeinsamer Infrastruktur entstehen KI-Agenten in Serie und gehen in den Betrieb.",
+      "href": "/de/agent-factories"
     },
     {
       "id": "managed-agents",
       "name": "Managed Agents",
       "short": "KI-Agenten, die wir für Sie entwickeln, hosten und überwachen.",
       "body": "Wir entwickeln, hosten und überwachen Ihre KI-Agenten. Sie sehen jederzeit, was läuft, was erledigt ist und wo Ihre Freigabe nötig ist.",
-      "mockupLabel": "Animierte Beispielansicht: Betriebskonsole mit laufenden KI-Agenten und einer Aufgabe, die auf Ihre Freigabe wartet."
+      "mockupLabel": "Animierte Beispielansicht: Betriebskonsole mit laufenden KI-Agenten und einer Aufgabe, die auf Ihre Freigabe wartet.",
+      "href": "/de/managed-agents"
     },
     {
       "id": "agentic-coworker",
       "name": "Agentic CoWorker",
       "short": "KI-CoWorker, die sich wie Kolleginnen und Kollegen in Ihr Team integrieren.",
       "body": "KI-CoWorker integrieren sich wie Kolleginnen und Kollegen in Ihr Team. Sie übernehmen Aufgaben im gewohnten Kanal, fragen nach und liefern Ergebnisse zur Abstimmung.",
-      "mockupLabel": "Animierte Beispielansicht: Ein KI-CoWorker arbeitet im Teamkanal mit, fragt nach und liefert Ergebnisse zur Abstimmung."
+      "mockupLabel": "Animierte Beispielansicht: Ein KI-CoWorker arbeitet im Teamkanal mit, fragt nach und liefert Ergebnisse zur Abstimmung.",
+      "href": "/de/agentic-coworker"
     },
     {
       "id": "ki-automationen",
       "name": "KI-Automationen",
       "short": "Wiederkehrende Abläufe, die in Ihren Systemen von selbst laufen.",
       "body": "Wiederkehrende Abläufe laufen in Ihren bestehenden Systemen von selbst, vom Eingang bis zur Buchung. Ausnahmen gehen zur Freigabe an Ihr Team.",
-      "mockupLabel": "Animierte Beispielansicht: Vorgänge laufen automatisch durch fünf Stationen, eine Ausnahme wartet auf Ihre Freigabe."
+      "mockupLabel": "Animierte Beispielansicht: Vorgänge laufen automatisch durch fünf Stationen, eine Ausnahme wartet auf Ihre Freigabe.",
+      "href": "/de/ki-automationen"
     },
     {
       "id": "ai-adoption",
       "name": "AI Adoption und Consulting",
       "short": "Von der Auswahl der richtigen Use Cases bis zur Einführung in Ihren Teams.",
       "body": "Wir identifizieren mit Ihnen die Anwendungsfälle mit dem grössten Nutzen und führen sie Schritt für Schritt in den Betrieb. Manche sind in wenigen Wochen produktiv, andere brauchen Monate. Wir begleiten die Einführung in Ihren Teams.",
-      "mockupLabel": "Animierte Beispielansicht: Use Cases werden nach Nutzen und Aufwand ausgewählt und in den Betrieb geführt."
+      "mockupLabel": "Animierte Beispielansicht: Use Cases werden nach Nutzen und Aufwand ausgewählt und in den Betrieb geführt.",
+      "href": "/de/ai-adoption"
     }
   ],
   "menu": {
@@ -157,7 +163,8 @@
             "label": "registrierte Unternehmen"
           }
         ],
-        "logo": "sokosumi.svg"
+        "logo": "sokosumi.svg",
+        "own": false
       },
       {
         "name": "Masumi",
@@ -168,7 +175,8 @@
             "text": "Open Source"
           }
         ],
-        "logo": "masumi.webp"
+        "logo": "masumi.webp",
+        "own": false
       },
       {
         "name": "NMKR",
@@ -195,7 +203,8 @@
             "label": "Kundenumsatz über die Infrastruktur abgewickelt"
           }
         ],
-        "logo": "nmkr-logo.svg"
+        "logo": "nmkr-logo.svg",
+        "own": true
       }
     ],
     "press": {
@@ -293,5 +302,12 @@
         "tag": "ISO/IEC 27001:2022"
       }
     ]
+  },
+  "servicePage": {
+    "more": "Mehr erfahren",
+    "breadcrumb": "Leistungen",
+    "others": "Weitere Leistungen",
+    "contactTitle": "Sprechen Sie mit uns über Ihr Vorhaben.",
+    "faq": "Häufige Fragen"
   }
 }

@@ -9,23 +9,33 @@ import iconTouch from '../assets/icons/apple-touch-icon-180x180.png?url';
 import { alternates, defaultLanguage } from '../i18n/routes.js';
 
 /*
-  title, description: text pages override the home defaults from the dictionary.
+  title, description: text pages override the home defaults from the dictionary. schema: extra JSON-LD nodes of the page.
   The site is noindex unless it is built with PUBLIC_INDEXABLE=1 (set in the Dockerfile for production).
 */
-const { t, title = t.meta.title, description = t.meta.description } = Astro.props;
+const { t, title = t.meta.title, description = t.meta.description, schema = [] } = Astro.props;
 const canonical = new URL(Astro.url.pathname.replace(/\.html$/, ''), Astro.site).href;
 const indexable = import.meta.env.PUBLIC_INDEXABLE === '1';
 const versions = alternates(Astro.url.pathname);
 const absolute = (path) => new URL(path, Astro.site).href;
-const organization = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  '@id': 'https://utxo.ag/#org',
-  name: 'utxo AG',
-  url: 'https://utxo.ag/',
-  email: 'business@utxo.ag',
-  address: { '@type': 'PostalAddress', streetAddress: 'Dammstrasse 16', postalCode: '6300', addressLocality: 'Zug', addressCountry: 'CH' },
-};
+const shareImage = absolute(`/og/og-${t.lang}.png`);
+/* Structured data: Organization and WebSite on every page, WebPage for this page, plus whatever the page passes in `schema` (e.g. Service, BreadcrumbList). */
+const graph = [
+  {
+    '@type': 'Organization',
+    '@id': 'https://utxo.ag/#org',
+    name: 'utxo AG',
+    url: 'https://utxo.ag/',
+    logo: absolute('/logo-512.png'),
+    email: 'business@utxo.ag',
+    foundingDate: '2022-02',
+    address: { '@type': 'PostalAddress', streetAddress: 'Dammstrasse 16', postalCode: '6300', addressLocality: 'Zug', addressCountry: 'CH' },
+    areaServed: ['CH', 'DE', 'AT'],
+    hasOfferCatalog: { '@type': 'OfferCatalog', name: t.overview.label, itemListElement: t.services.map((service) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: service.name, description: service.short } })) },
+  },
+  { '@type': 'WebSite', '@id': 'https://utxo.ag/#website', url: 'https://utxo.ag/', name: 'utxo AG', publisher: { '@id': 'https://utxo.ag/#org' }, inLanguage: ['de', 'en'] },
+  { '@type': 'WebPage', '@id': `${canonical}#page`, url: canonical, name: title, description, inLanguage: t.lang, isPartOf: { '@id': 'https://utxo.ag/#website' }, about: { '@id': 'https://utxo.ag/#org' }, primaryImageOfPage: shareImage },
+  ...schema,
+];
 ---
 <!doctype html>
 <html lang={t.lang}>
@@ -44,8 +54,12 @@ const organization = {
 <meta property="og:url" content={canonical}>
 <meta property="og:title" content={title}>
 <meta property="og:description" content={description}>
-<meta name="twitter:card" content="summary">
-<script type="application/ld+json" set:html={JSON.stringify(organization)}></script>
+<meta property="og:image" content={shareImage}>
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content={shareImage}>
+<script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': graph })}></script>
 <link rel="preload" href={fontUrl} as="font" type="font/woff2" crossorigin>
 <link rel="icon" href={iconSvg} type="image/svg+xml">
 <link rel="icon" href={iconPng} sizes="96x96" type="image/png">

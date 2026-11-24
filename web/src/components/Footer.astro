@@ -10,7 +10,7 @@ const f = t.footer;
   <nav class="foot-cols" aria-label="Footer">
     <div>
       <p class="label foot-label">{f.servicesLabel}</p>
-      <ul>{t.services.map((service) => <li><a href={`${t.home}#${service.id}`}>{service.name}</a></li>)}</ul>
+      <ul>{t.services.map((service) => <li><a href={t.servicePages[service.id] ? service.href : `${t.home}#${service.id}`}>{service.name}</a></li>)}</ul>
     </div>
     <div>
       <p class="label foot-label">{f.companyLabel}</p>

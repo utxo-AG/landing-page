@@ -116,6 +116,14 @@
 - Root `Dockerfile` and `railway.json`
 - Production image tested locally
 - Merged to `master` for deploy
+- Share images and `og:image`
+- Structured data graph in `Base`
+- Sitemap with hreflang
+- Service page layout and block kit
+- "Mehr erfahren" pill prepared
+- NMKR separate from Serviceplan block
+- Serviceplan logo smaller
+- Phone in film wider
 - Phthalo accents in "Software Development"
 - English dictionaries `i18n/en`
 - English pages `pages/en`
