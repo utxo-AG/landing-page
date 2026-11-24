@@ -1,46 +1,22 @@
 ---
 const { t } = Astro.props;
 const m = t.mockups.adoption;
-const segments = m.timeline.segments;
-const tl = m.timeline;
-const pilot = m.chips.find((chip) => chip.rank === m.inOperation);
-const after = (chip) => `${tl.from} ${chip.unit} ${chip.count}`;
-const notes = (chip) => [...chip.phases, after(chip)];
-const place = (rank) => (rank === undefined || rank > m.inOperation ? 'field' : rank === m.inOperation ? 'pilot' : 'ops');
 ---
 <div class="ad mock-light" data-mockup="adoption">
   <div class="mock-bar label"><span>{m.context}</span><span class="mock-live"><i></i>{t.mockup.live}</span></div>
   <div class="ad-stage">
-    <p class="ad-lab ad-lab--field label">{m.field.title}</p>
+    <p class="ad-lab label">{m.field.title}</p>
     <div class="ad-plot">
       <span class="ad-ax ad-ax--y label">{m.field.benefit}</span>
       <span class="ad-ax ad-ax--x label">{m.field.effort}</span>
     </div>
-    <p class="ad-lab ad-lab--time label">{m.timeline.title}</p>
-    <p class="ad-count"><span data-unit>{pilot.unit}</span> <b data-now>{pilot.count}</b> <small>{tl.of} <span data-total>{pilot.count}</span></small></p>
-    <ol class="ad-axis">
-      {segments.map((segment, index) => (
-        <li class="is-on" style={`--w:${segment.span};--i:${index}`} data-span={segment.span}>
-          <div class="track"><i class="ad-fill" style="--p:1"></i></div>
-          <b class="label">{segment.label}</b>
-          <small>{notes(pilot)[index]}</small>
-        </li>
-      ))}
-    </ol>
-    <em class="st ad-phase" data-phase>{segments.at(-1).label}</em>
-    <p class="ad-ops label"><span>{m.operation}</span><span>{m.operationNote}</span></p>
     <ul>
       {m.chips.map((chip, index) => (
         <li
-          class:list={['ad-chip', { 'ad-chip--wide': !chip.phone }]}
+          class:list={['ad-chip', { 'ad-chip--wide': !chip.phone, 'is-human': chip.rank === 0 }]}
           style={`--i:${index};--dx:${chip.at[0]};--dy:${chip.at[1]}${chip.phone ? `;--mx:${chip.phone[0]};--my:${chip.phone[1]}` : ''}`}
           data-rank={chip.rank}
-          data-at={place(chip.rank)}
-          data-slot={chip.rank < m.inOperation ? chip.rank : undefined}
-          data-unit={chip.unit}
-          data-count={chip.count}
-          data-notes={chip.phases && JSON.stringify(notes(chip))}
-        >{chip.name}{chip.duration && <span class="ad-dur">{tl.about} {chip.duration}</span>}</li>
+        >{chip.name}</li>
       ))}
     </ul>
   </div>
@@ -54,85 +30,45 @@ const place = (rank) => (rank === undefined || rank > m.inOperation ? 'field' : 
 
 <style is:global>
 /*
-  The stage is a size container with a fixed aspect ratio (a fixed height below 1100px). Field (--fx --fy --fw --fh),
-  timeline (--tx --tw) and its rows (--ky elapsed time, --py pilot slot, --ay axis, --oy "Im Betrieb", --sy slots)
-  are placed in container units, so every chip position is a pure CSS transform:
-  data-at="field" uses --x/--y inside the field, "pilot" the slot above the axis, "ops" data-slot 0 to 2.
+  The stage is a size container with a fixed aspect ratio. The field (--fx --fy --fw --fh) is placed in
+  container units and every chip position is a pure CSS transform from --dx/--dy (0 to 1 inside the field;
+  --mx/--my on phones, chips without a phone position are hidden there).
 */
 .ad.mock-light{background:none}
 .ad{font-size:clamp(12px, 1.02vw, 16.5px);line-height:1.3}
-.ad-stage{position:relative;container-type:size;aspect-ratio:12 / 5;margin-top:clamp(18px, 2vw, 30px);
-  --fx:max(2.4cqw, 28px);--fy:9cqh;--fw:calc(45cqw - var(--fx));--fh:78cqh;
-  --tx:55cqw;--tw:45cqw;--lt:0cqh;--ky:9cqh;--kf:17cqh;--py:41cqh;--ay:48cqh;--oy:70cqh;--sy:84.5cqh;--sw:calc(var(--tw) / 3);--sr:0cqh}
-.ad-lab,.ad-ax,.ad-ops,.ad-axis small,.ad-dur{color:var(--m-muted)}
+.ad-stage{position:relative;container-type:size;aspect-ratio:3 / 2;margin-top:clamp(18px, 2vw, 30px);
+  --fx:max(2.4cqw, 28px);--fy:8cqh;--fw:calc(100cqw - var(--fx));--fh:82cqh}
+.ad-lab,.ad-ax{color:var(--m-muted)}
 .ad-lab{position:absolute;left:0;top:0}
-.ad-lab--time{left:var(--tx);top:var(--lt)}
 .ad-plot{position:absolute;left:var(--fx);top:var(--fy);width:var(--fw);height:var(--fh);border-left:1px solid var(--m-rule);border-bottom:1px solid var(--m-rule)}
 .ad-plot::before{content:"";position:absolute;inset:0 50% 50% 0;background:linear-gradient(135deg, rgba(7,8,10,.055) 0%, rgba(7,8,10,0) 78%)}
 .ad-plot::after{content:"";position:absolute;inset:0;background:linear-gradient(var(--m-soft), var(--m-soft)) 50% 0 / 1px 100% no-repeat,linear-gradient(var(--m-soft), var(--m-soft)) 0 50% / 100% 1px no-repeat}
 .ad-ax{position:absolute;white-space:nowrap}
 .ad-ax--y{right:calc(100% + 10px);top:0;writing-mode:vertical-rl;transform:rotate(180deg)}
 .ad-ax--x{right:0;top:calc(100% + 12px)}
-.ad-count{position:absolute;left:var(--tx);top:var(--ky);font-size:var(--kf);line-height:.82;letter-spacing:-.05em;font-weight:400;white-space:nowrap;font-variant-numeric:tabular-nums}
-.ad-count > span,.ad-count small{color:var(--m-muted)}
-.ad-count b{font-weight:500}
-.ad-count small{font-size:.32em;font-weight:500;letter-spacing:-.01em}
-.ad-axis{position:absolute;left:var(--tx);top:var(--ay);width:var(--tw);display:flex;gap:4px}
-.ad-axis li{flex:var(--w) 1 0;min-width:0}
-.ad-axis b{display:block;margin-top:clamp(10px, 1vw, 15px);color:var(--m-muted);transition:color var(--t-fast)}
-.ad-axis .is-on b{color:var(--m-fg)}
-.ad-axis small{display:flex;margin-top:3px;font-size:.88em;white-space:nowrap}
-.ad-axis li:last-child{text-align:right}
-.ad-axis li:last-child small{justify-content:flex-end}
-.ad .track .ad-fill{width:100%;opacity:.85;transform:scaleX(var(--p));transform-origin:0 50%;transition:none}
-.ad-phase{position:absolute;left:0;top:0;transform:translate(calc(var(--tx) + var(--tw) - 100%), calc(var(--py) - 50%));transition:opacity var(--t-fast)}
-.ad-ops{position:absolute;left:var(--tx);top:var(--oy);width:var(--tw);display:flex;justify-content:space-between;gap:16px;padding-top:clamp(12px, 1.3vw, 20px);border-top:1px solid var(--m-rule)}
 :where(.ad-chip){background:var(--m-soft)}
 .ad-chip{position:absolute;left:0;top:0;padding:.5em .95em;border-radius:99px;font-size:.94em;font-weight:500;letter-spacing:-.005em;white-space:nowrap;
-  --x:var(--dx);--y:var(--dy);--ax:-50%;
+  --x:var(--dx);--y:var(--dy);
   --cx:calc(var(--fx) + (.5 + (var(--x) - .5) * var(--spread, 1)) * var(--fw));
   --cy:calc(var(--fy) + (.5 + (var(--y) - .5) * var(--spread, 1)) * var(--fh));
-  transform:translate(calc(var(--cx) + var(--ax)), calc(var(--cy) - 50%)) scale(var(--s, 1));
+  transform:translate(calc(var(--cx) - 50%), calc(var(--cy) - 50%)) scale(var(--s, 1));
   transition:transform var(--t-enter) var(--ease),opacity var(--t-move) ease,background-color var(--t-fast),box-shadow var(--t-fast)}
-.ad-dur{position:absolute;left:.95em;top:calc(100% + 5px);font-size:.86em;opacity:0;transition:opacity var(--t-fast)}
-.ad-chip[data-at="ops"] .ad-dur{opacity:1;transition-delay:var(--t-move)}
-.ad-chip.is-human{--s:1.06;z-index:1}
-.ad-chip[data-at="pilot"]{--ax:0%;--cx:var(--tx);--cy:var(--py);z-index:1}
-.ad-chip[data-at="ops"]{--ax:0%;--cx:calc(var(--tx) + var(--sc, 0) * var(--sw));--cy:calc(var(--sy) + var(--sl, 0) * var(--sr))}
-.ad-chip[data-slot="1"]{--sc:1}
-.ad-chip[data-slot="2"]{--sc:2}
+.ad-chip.is-human{--s:1.08;z-index:1}
 
 .js .ad-stage{--spread:.22}
 .js .is-in .ad-stage{--spread:1}
 .js .ad-chip{opacity:0;transition-delay:calc(150ms + var(--i) * 65ms)}
 .js .is-in .ad-chip{opacity:1}
 .js [data-step] .ad-chip{transition-delay:0s}
-.js .ad-lab,.js .ad-ax,.js .ad-ops,.js .ad-plot,.js .ad-axis b{opacity:0;transition:opacity var(--t-enter) ease .2s,color var(--t-fast)}
-.js .ad-axis b{transition-delay:calc(900ms + var(--i) * var(--stagger)),0s}
-.js .ad-count,.js .ad-axis small{opacity:0;transition:opacity var(--t-fast)}
-.js [data-step]:not([data-step="select"]) :is(.ad-count,.ad-axis small){opacity:1}
-.js .ad-ops{transition-delay:1s}
-.js .ad-phase{opacity:0}
-.js :is([data-step="run"],[data-step="live"]) .ad-phase{opacity:1}
-.js .is-in :is(.ad-lab,.ad-ax,.ad-ops,.ad-plot,.ad-axis b){opacity:1}
-.js .ad .track{transform:scaleX(0);transform-origin:0 50%;transition:transform var(--t-enter) var(--ease) calc(600ms + var(--i) * var(--stagger))}
-.js .is-in .ad .track{transform:none}
+.js .ad-lab,.js .ad-ax,.js .ad-plot{opacity:0;transition:opacity var(--t-enter) ease .2s}
+.js .is-in :is(.ad-lab,.ad-ax,.ad-plot){opacity:1}
 
-@media (max-width:1100px){
-  .ad-stage{aspect-ratio:auto;height:660px;
-    --fy:5cqh;--fw:calc(100cqw - var(--fx));--fh:39cqh;
-    --tx:0cqw;--tw:100cqw;--lt:53cqh;--ky:58cqh;--kf:9.5cqh;--py:71cqh;--ay:75.5cqh;--oy:85.5cqh;--sy:93.5cqh;--sw:26cqw}
-}
 @media (max-width:760px){
-  .ad-stage{height:720px;
-    --fh:38cqh;--lt:50.5cqh;--ky:54cqh;--kf:7cqh;--py:65cqh;--ay:68.5cqh;--oy:78cqh;--sy:86.5cqh;--sw:50cqw;--sr:6.6cqh}
+  .ad-stage{aspect-ratio:4 / 5}
   .ad-chip{--x:var(--mx);--y:var(--my)}
   .ad-chip--wide{display:none}
-  .ad-chip[data-slot="2"]{--sc:0;--sl:1}
-  .ad-axis .label{font-size:10px;letter-spacing:.02em}
 }
 @media (prefers-reduced-motion:reduce){
-  .js .ad-chip,.js .ad-dur,.js .ad .track,.js .ad-lab,.js .ad-ax,.js .ad-ops,.js .ad-plot,.js .ad-count,.js .ad-axis b,.js .ad-axis small{transition:none}
-  .js .ad-phase,.js .ad-count,.js .ad-axis small{opacity:1}
+  .js .ad-chip,.js .ad-lab,.js .ad-ax,.js .ad-plot{transition:none}
 }
 </style>

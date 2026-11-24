@@ -322,7 +322,7 @@ Each phase ends in something Phil can open in the browser.
 - 01 Software Development: the three-column window of section 2 was replaced on 2026-11-24 by a five-scene film (Workflow, Web-Anwendung, Mobile App, Schnittstellen, Release) at Phil's request; below 620px of mockup width a 4:5 variant shows.
 - 02 KI-Automationen: the example is an incoming customer order; "Prüfen" carries a fifth system label "Regelwerk"; the case waits above the pill "Ihre Freigabe"; pure function of the clock, no steps.
 - 04 Agent Factories: a cube every 3.6 s (five per 18 s pass); labels are flat text placed by the same projection instead of counter-rotated text; about 200 elements; up to 900px the stage is 4:5 with headline above and copy below.
-- 05 AI Adoption: 15.2 s loop; six ranked chips rotate; "Betrieb" is a fourth segment "ab Tag 30"; positions are container units, no measured FLIP.
+- 05 AI Adoption: reduced on 2026-11-24 at Phil's request to the matrix of use cases by benefit and effort, set beside the text (layout `mockup-right`); the timeline ("Weg in den Betrieb") and the "Im Betrieb" row are gone. The ranked chips are selected in turn (3.2 s each).
 - 06 Agentic CoWorker: each exchange has a short reply and a delivery line; messages carry day and time; an input line sits under the thread.
 - Referenzen: the Serviceplan logo is shown in its own colours and the three product rows carry their wordmarks (Phil, 2026-11-24). The press logos run as a band between closing stage and footer.
 - Closing stage: the canvas hand-over sets the wordmark to dissolved on arrival in either stage.

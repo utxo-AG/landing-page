@@ -125,6 +125,9 @@
 - Serviceplan logo smaller
 - Phone in film wider
 - Press label centred on line
+- "AI Adoption" reduced to matrix
+- Matrix beside the text
+- Serviceplan logo centred
 - Phthalo accents in "Software Development"
 - English dictionaries `i18n/en`
 - English pages `pages/en`
