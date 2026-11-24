@@ -1,0 +1,97 @@
+---
+/*
+  Penetration Testing, detail page, visual 4: the test plan of one round. Three systems, each with its agreed
+  test window in the week; a time marker runs through the week and the windows fill in phthalo while the test runs.
+  The window on the production system needs the client's approval first (white pill: a human decides).
+  Below, who receives the report. Positions are days of the week (plan-model.js).
+  The markup is the reduced-motion and no-JS frame: Friday morning, the approval is pending.
+*/
+import { DAYS, STILL_DAY, progress, state } from './plan-model.js';
+
+const { t } = Astro.props;
+const m = t.servicePages['penetration-testing'].plan;
+const windows = JSON.stringify(m.rows.map(({ from, to, approval }) => ({ from, to, approval })));
+---
+<div class="ptp-plan" data-mockup="ptp-plan" data-rows={windows} data-status={JSON.stringify(m.status)} role="img" aria-label={m.label}>
+  <div class="ptp-pl mock-light" style={`--day:${STILL_DAY}`}>
+    <div class="mock-bar label"><span>{m.context}</span><span>{m.week}</span></div>
+    <div class="ptp-pl-grid">
+      <p class="ptp-pl-line ptp-pl-days label" aria-hidden="true">
+        <span class="ptp-pl-track">{m.days.map((day) => <span>{day}</span>)}</span>
+      </p>
+      {m.rows.map((row, index) => (
+        <div class="ptp-pl-line ptp-pl-row" data-state={state(row, STILL_DAY)} style={`--i:${index}`}>
+          <p class="ptp-pl-name"><b>{row.name}</b><small>{row.env}</small><small>{row.time}</small></p>
+          <div class="ptp-pl-track">
+            <span class="ptp-pl-win" style={`--from:${row.from};--to:${row.to};--p:${progress(row, STILL_DAY).toFixed(3)}`}><i></i></span>
+          </div>
+          <em class="st">{m.status[state(row, STILL_DAY)]}</em>
+        </div>
+      ))}
+      <div class="ptp-pl-line ptp-pl-now" aria-hidden="true"><span class="ptp-pl-track"><i></i></span></div>
+    </div>
+    <p class="ptp-pl-to"><span class="label">{m.recipients.label}</span>{m.recipients.list.map((name) => <em class="st">{name}</em>)}</p>
+  </div>
+</div>
+
+<script>
+  import { plan } from './plan.js';
+
+  document.querySelectorAll('[data-mockup="ptp-plan"]').forEach(plan);
+</script>
+
+<style is:global>
+.ptp-plan{container-type:inline-size}
+.ptp-pl{--small:max(11px, .86em);--days:7;border-radius:var(--radius);padding:clamp(18px, 3.6cqw, 36px);font-size:clamp(12.5px, 1.8cqw, 16.5px);line-height:1.3;box-shadow:0 44px 80px -42px rgba(12,18,48,.3)}
+.ptp-pl .mock-bar{padding-bottom:clamp(14px, 2cqw, 22px)}
+.ptp-pl-grid{position:relative}
+.ptp-pl-line{display:grid;grid-template-columns:30% minmax(0,1fr) 9.6em;gap:0 1.2em;align-items:center}
+.ptp-pl-track{position:relative;grid-column:2;align-self:stretch}
+.ptp-pl-days{height:3em;color:var(--m-muted)}
+.ptp-pl-days .ptp-pl-track{display:grid;grid-template-columns:repeat(7,1fr);align-items:center}
+.ptp-pl-days .ptp-pl-track span{padding-left:.5em;font-size:max(11px, .74em)}
+.ptp-pl-row{height:5.6em;border-top:1px solid var(--m-rule)}
+.ptp-pl-row .ptp-pl-track{background:repeating-linear-gradient(to right, var(--m-rule) 0 1px, transparent 1px calc(100% / 7))}
+.ptp-pl-name{display:grid;gap:.1em;min-width:0}
+.ptp-pl-name b{font-weight:600;letter-spacing:-.01em}
+.ptp-pl-name small{font-size:var(--small);color:var(--m-muted)}
+.ptp-pl-win{position:absolute;left:calc(var(--from) / var(--days) * 100%);width:calc((var(--to) - var(--from)) / var(--days) * 100%);top:50%;height:1.5em;margin-top:-.75em;border-radius:.4em;background:#E9EBF0;box-shadow:inset 0 0 0 1px rgba(7,8,10,.1);overflow:hidden}
+.ptp-pl-win i{position:absolute;inset:0;background:var(--phthalo);transform-origin:0 50%;transform:scaleX(var(--p));transition:opacity var(--t-fast) ease}
+.ptp-pl-row[data-state="done"] .ptp-pl-win i{opacity:.4}
+.ptp-pl-row .st{justify-self:end;font-size:max(11px, .76em);padding:.5em .9em}
+.ptp-pl-row[data-state="running"] .st{background:color-mix(in srgb, var(--phthalo) 11%, transparent);color:var(--phthalo)}
+.ptp-pl-row[data-state="done"] .st{background:none;color:var(--m-muted);padding-right:0}
+.ptp-pl-row[data-state="done"] .st::before{content:"";display:inline-block;width:.34em;height:.62em;margin:0 .6em .08em 0;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg)}
+.ptp-pl-now{position:absolute;inset:2.2em 0 0;pointer-events:none}
+.ptp-pl-now .ptp-pl-track{container-type:inline-size}
+.ptp-pl-now i{position:absolute;left:0;top:0;bottom:0;width:0;transform:translateX(calc(var(--day) / var(--days) * 100cqw));transition:opacity var(--t-fast) ease}
+.ptp-pl-now i::before{content:"";position:absolute;left:-.5px;top:0;bottom:0;width:1px;background:var(--m-fg)}
+.ptp-pl-now i::after{content:"";position:absolute;left:-3.5px;top:-3px;width:7px;height:7px;border-radius:50%;background:var(--m-fg)}
+.ptp-pl.is-wrap .ptp-pl-now i,.ptp-pl.is-wrap .ptp-pl-win i{opacity:0}
+.ptp-pl-to{display:flex;flex-wrap:wrap;align-items:center;gap:.6em;padding-top:1.3em;border-top:1px solid var(--m-rule);color:var(--m-muted)}
+.ptp-pl-to .label{margin-right:.6em}
+.ptp-pl-to .st{font-size:max(11px, .76em);color:var(--m-fg)}
+
+.js .ptp-pl{opacity:0;transform:translateY(40px);transition:transform var(--t-stage) var(--ease) .1s,opacity var(--t-move) ease .1s}
+.js .is-in .ptp-pl{opacity:1;transform:none}
+.js .ptp-pl-row > *{opacity:0;transition:opacity var(--t-enter) ease calc(500ms + var(--i) * 150ms)}
+.js .is-in .ptp-pl-row > *{opacity:1}
+
+@container (max-width:560px){
+  .ptp-pl{font-size:clamp(12.5px, 3.8cqw, 15px)}
+  .ptp-pl-line{grid-template-columns:minmax(0,1fr) auto;gap:.7em 1em}
+  .ptp-pl-track{grid-column:1 / -1}
+  .ptp-pl-days{height:2.4em}
+  .ptp-pl-row{height:auto;padding:1em 0 1.1em}
+  .ptp-pl-row .ptp-pl-track{grid-row:2;height:2.2em}
+  .ptp-pl-row .st{grid-row:1;grid-column:2}
+  .ptp-pl-now{display:none}
+}
+@media (max-width:760px){
+  .ptp-pl{--small:max(10px, .84em)}
+  .ptp-pl-row .st,.ptp-pl-to .st,.ptp-pl-days .ptp-pl-track span{font-size:max(10px, .76em)}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .ptp-pl,.js .ptp-pl-row > *,.ptp-pl-win i,.ptp-pl-now i{transition:none}
+}
+</style>

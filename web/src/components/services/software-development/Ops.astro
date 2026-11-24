@@ -1,0 +1,123 @@
+---
+/*
+  Operations view (block "Integration und Betrieb"): a light window with three figures, a load curve that
+  runs continuously (two periods of wave.js side by side, moved by one period per pass), the connected
+  systems (one is checked every 2 s) and the list of versions. The newest version waits for the client's
+  approval (white pill), is approved, rolls out and is done; then the list moves down by one row and the
+  next version waits. Five rows are recycled (release n lives in row n mod 5), so nothing restarts.
+  The markup is the reduced-motion and no-JS frame: release 0 waits for approval.
+*/
+import { wave, rate } from './wave.js';
+
+const { t } = Astro.props;
+const o = t.servicePages['software-development'].operation.ops;
+const rel = o.releases;
+
+const POINTS = 96;
+const ROWS = 4;
+const xs = Array.from({ length: POINTS * 2 + 1 }, (_, i) => i / POINTS);
+const curve = xs.map((x, i) => `${i ? 'L' : 'M'}${(x * 100).toFixed(2)} ${(8 + wave(x % 1) * 84).toFixed(2)}`).join('');
+const rows = rel.names.map((name, e) => {
+  const n = e === 0 ? 0 : e === 1 ? 1 : e - rel.names.length;
+  return { name, n, p: -n, state: n === 0 ? 'wait' : n > 0 ? 'next' : 'done' };
+});
+const label = (state) => rel.states[state === 'next' ? 'wait' : state];
+const plan = JSON.stringify({ rows: ROWS, major: rel.major, minor: rel.minor, states: rel.states });
+---
+<div class="sdp-ops" data-visual="sdp-ops" data-plan={plan} role="img" aria-label={o.label}>
+  <div class="sdp-o-win mock-light">
+    <div class="mock-bar label"><span>{o.context}</span><span class="mock-live"><i></i>{t.mockup.live}</span></div>
+    <dl class="sdp-o-figs">
+      <div><dt>{o.figures.uptime.label}</dt><dd>{o.figures.uptime.value}</dd></div>
+      <div><dt>{o.figures.rate.label}</dt><dd data-rate>{rate(wave(0))}</dd></div>
+      <div><dt>{o.figures.latency.label}</dt><dd>{o.figures.latency.value}</dd></div>
+    </dl>
+    <div class="sdp-o-chart" aria-hidden="true">
+      <div class="sdp-o-clip">
+        <svg viewBox="0 0 200 100" preserveAspectRatio="none">
+          <defs><linearGradient id="sdp-o-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#167A5C" stop-opacity=".16" /><stop offset="1" stop-color="#167A5C" stop-opacity="0" /></linearGradient></defs>
+          <path d={`${curve}L200 100L0 100Z`} fill="url(#sdp-o-fill)" />
+          <path d={curve} fill="none" stroke="#167A5C" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+        </svg>
+      </div>
+      <i class="sdp-o-now" style={`--v:${wave(0)}`}><b></b></i>
+    </div>
+    <ul class="sdp-o-sys">
+      {o.systems.map(([name, what], k) => <li data-sys={k}><i></i><b>{name}</b><small>{what}</small></li>)}
+    </ul>
+    <p class="sdp-o-title label">{rel.title}</p>
+    <ul class="sdp-o-rel" style={`--rows:${ROWS}`}>
+      {rows.map((row) => (
+        <li data-state={row.state} style={`--p:${row.p}`}>
+          <b>{rel.major}.{rel.minor + row.n}.0</b>
+          <span>{row.name}</span>
+          <em class="st">{label(row.state)}</em>
+          <i class="sdp-o-track"><u></u></i>
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
+
+<script>
+  import { ops } from './ops.js';
+
+  document.querySelectorAll('[data-visual="sdp-ops"]').forEach(ops);
+</script>
+
+<style is:global>
+.sdp-ops{container-type:inline-size}
+.sdp-o-win{--rh:3.5em;border-radius:var(--radius);padding:clamp(18px, 3.6cqw, 34px);font-size:clamp(12px, 1.75cqw, 15.5px);line-height:1.3;box-shadow:0 44px 80px -42px rgba(12,18,48,.3)}
+.sdp-o-win .mock-live i{background:var(--phthalo)}
+.sdp-o-win small,.sdp-o-figs dt{font-size:max(11px, .86em);color:var(--m-muted)}
+.sdp-o-figs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding-top:clamp(16px, 2.6cqw, 26px)}
+.sdp-o-figs dt{margin-bottom:5px;white-space:nowrap}
+.sdp-o-figs dd{font-size:clamp(22px, 4.2cqw, 38px);font-weight:500;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.sdp-o-chart{position:relative;height:clamp(64px, 13cqw, 110px);margin-top:clamp(12px, 2cqw, 20px)}
+.sdp-o-clip{position:absolute;inset:0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg, transparent 0, #000 14%);mask-image:linear-gradient(90deg, transparent 0, #000 14%)}
+.sdp-o-clip svg{width:200%;height:100%;max-width:none;transform:translateX(calc(var(--ph, 0) * -50%))}
+.sdp-o-now{position:absolute;right:0;top:8%;width:0;height:84%;transform:translateY(calc(var(--v) * 100%))}
+.sdp-o-now b{position:absolute;left:-4.5px;top:-4.5px;width:9px;height:9px;border-radius:50%;background:var(--phthalo);box-shadow:0 0 0 4px rgba(22,122,92,.16)}
+
+.sdp-o-sys{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:clamp(12px, 2cqw, 20px)}
+.sdp-o-sys li{position:relative;display:flex;flex-direction:column;gap:.1em;padding:.75em 1em .8em 2.1em;border-radius:.9em;background:var(--m-soft);white-space:nowrap}
+.sdp-o-sys b{font-weight:600}
+.sdp-o-sys i{position:absolute;left:.95em;top:1.15em;width:6px;height:6px;border-radius:50%;background:rgba(7,8,10,.22);transition:background-color var(--t-move),box-shadow var(--t-move)}
+.sdp-o-sys li.is-check i{background:var(--phthalo);box-shadow:0 0 0 4px rgba(22,122,92,.16);transition-duration:.15s}
+
+.sdp-o-title{margin-top:clamp(18px, 3cqw, 30px);padding-bottom:.9em;color:var(--m-muted);border-bottom:1px solid var(--m-rule)}
+.sdp-o-rel{position:relative;height:calc(var(--rows) * var(--rh));overflow:hidden}
+.sdp-o-rel li{position:absolute;left:0;right:0;top:0;height:var(--rh);display:grid;grid-template-columns:4.2em minmax(0,1fr) auto;gap:1em;align-items:center;border-bottom:1px solid var(--m-rule);transform:translateY(calc(var(--p) * 100%));transition:transform var(--t-move) var(--ease),opacity var(--t-fast) ease}
+.sdp-o-rel li > b{font-weight:600;font-variant-numeric:tabular-nums}
+.sdp-o-rel span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sdp-o-rel li[data-state="done"] span{color:var(--m-muted)}
+.sdp-o-rel .st{font-size:max(11px, .8em);padding:.42em .9em;transition:background-color var(--t-fast),color var(--t-fast),box-shadow var(--t-fast),transform .2s ease}
+.sdp-o-rel li[data-state="wait"] .st,.sdp-o-rel li[data-state="next"] .st,.sdp-o-rel li[data-state="press"] .st{background:var(--m-human-bg);color:var(--m-human-fg);box-shadow:var(--m-human-shadow)}
+.sdp-o-rel li[data-state="press"] .st{transform:scale(.93)}
+.sdp-o-rel li[data-state="roll"] .st{color:var(--phthalo)}
+.sdp-o-rel li[data-state="next"]{opacity:0}
+.sdp-o-rel li.is-out{opacity:0}
+.sdp-o-rel li.is-off{transition:none}
+.sdp-o-track{position:absolute;left:0;right:0;bottom:-1px;height:2px;overflow:hidden}
+.sdp-o-track u{display:block;height:100%;background:var(--phthalo);transform:scaleX(0);transform-origin:0 0;opacity:0;transition:opacity var(--t-move) ease}
+.sdp-o-rel li[data-state="roll"] .sdp-o-track u{opacity:1;transform:none;transition:transform 2.4s linear}
+
+.js .sdp-o-win{opacity:0;transform:translateY(56px);transition:transform var(--t-stage) var(--ease) .1s,opacity var(--t-move) ease .1s}
+.js .is-in .sdp-o-win{opacity:1;transform:none}
+
+@container (max-width:520px){
+  .sdp-o-win{--rh:4.9em;font-size:max(12px, 3.5cqw)}
+  .sdp-o-win small,.sdp-o-figs dt{font-size:max(10px, .8em)}
+  .sdp-o-figs{gap:10px}
+  .sdp-o-figs dt{white-space:normal;min-height:2.6em}
+  .sdp-o-figs dd{font-size:max(19px, 6cqw)}
+  .sdp-o-sys{grid-template-columns:1fr 1fr}
+  .sdp-o-rel li{grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;gap:.25em 1em;align-content:center}
+  .sdp-o-rel span{grid-column:1 / -1;grid-row:2}
+  .sdp-o-rel .st{font-size:max(10px, .78em)}
+}
+@media (prefers-reduced-motion:reduce){
+  .sdp-o-win *{transition:none !important}
+  .js .sdp-o-win{opacity:1;transform:none;transition:none}
+}
+</style>

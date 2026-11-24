@@ -1,0 +1,188 @@
+---
+/*
+  One task from handover to release, on the dark stage of its block: the assignment left, the five stages with the
+  CoWorker's work log in the middle, the result document right. Two cases (agency, sales) take turns.
+  Every element that belongs to a stage carries data-from (and data-to): it is shown while from <= stage < to.
+  The page is rendered in the final stage (7) of the first case, which is also the state without JavaScript.
+*/
+import { teamOf } from './team.js';
+
+const { t } = Astro.props;
+const e = t.servicePages['agentic-coworker'].example;
+const { team } = teamOf(t);
+const person = (entry) => (entry.member === undefined ? entry : team[entry.member]);
+const FINAL = 7;
+/* stage at which the log entry of each of the five nodes appears, and at which its answer or pill follows */
+const NODE = [1, 2, 4, 5, 7];
+const ANSWER = [0, 3, 0, 5, 0];
+---
+<div class="acp-lc" data-acp="lifecycle" role="img" aria-label={e.label}>
+  <div class="mock-bar label">
+    <span>{e.context}</span>
+    <span class="acp-lc-tabs">{e.cases.map((item, i) => <span class:list={{ 'is-on': i === 0 }} data-tab>{item.tab}</span>)}</span>
+  </div>
+  <div class="acp-lc-cases">
+    {e.cases.map((item, index) => {
+      const from = person(item.from);
+      const to = person(item.to);
+      return (
+        <div class:list={['acp-lc-case', { 'is-on': index === 0 }]} data-case data-stage={FINAL}>
+          <div class="acp-lc-brief">
+            <p class="acp-lc-h label">{e.briefLabel}</p>
+            <p class="acp-lc-title">{item.title}</p>
+            <dl>
+              {[[e.fromLabel, from, false], [e.toLabel, to, true]].map(([label, who, coworker]) => (
+                <div class="acp-lc-who" data-coworker={coworker ? '' : undefined}>
+                  <dt>{label}</dt>
+                  <dd>
+                    {who.src ? <img class="acp-lc-av" src={who.src} alt="" width="80" height="80" loading="lazy" decoding="async"> : <span class="acp-lc-av">{who.initials}</span>}
+                    <span><b>{who.name}</b><small>{who.role}</small></span>
+                  </dd>
+                </div>
+              ))}
+              <div><dt>{e.channelLabel}</dt><dd>{item.channel}</dd></div>
+              <div><dt>{e.dueLabel}</dt><dd>{item.due}</dd></div>
+              <div><dt>{e.mayUseLabel}</dt><dd class="acp-lc-chips">{item.mayUse.map((name) => <span>{name}</span>)}</dd></div>
+            </dl>
+          </div>
+          <div class="acp-lc-flow">
+            <p class="acp-lc-h label">{e.logLabel}</p>
+            <ol class="acp-lc-line">
+              {item.log.map((entry, i) => (
+                <li data-node={NODE[i]} data-state="done">
+                  <i class="acp-lc-dot"></i>
+                  <p class="acp-lc-stage"><b>{e.stages[i]}</b><time data-from={NODE[i]} class="is-on">{entry.time}</time>
+                    {i === 2 && <em class="st acp-lc-run" data-from="4" data-to="5">{e.running}</em>}
+                    {entry.pill && i === 3 && <em class="st is-human" data-from="5" data-to="7">{entry.pill}</em>}
+                    {entry.pill && i === 4 && <em class="st is-on" data-from="7">{entry.pill}</em>}
+                  </p>
+                  <p class="acp-lc-text is-on" data-from={NODE[i]}>{entry.text}</p>
+                  {entry.answer && <p class="acp-lc-answer is-on" data-from={ANSWER[i]}>{entry.answer}</p>}
+                </li>
+              ))}
+            </ol>
+          </div>
+          <div class="acp-lc-result">
+            <p class="acp-lc-h label">{e.docLabel}</p>
+            <div class="acp-lc-doc mock-light">
+              <p class="acp-lc-name"><b>{item.doc.name}</b><span>{item.doc.meta}</span></p>
+              <ul>
+                {item.doc.sections.map((name, i) => (
+                  <li style={`--i:${i}`}>
+                    <span>{name}</span>
+                    <i class="acp-lc-bar is-on" data-from="4" style={`--w:${[92, 78, 86, 64, 72][i]}`}></i>
+                    <i class="acp-lc-bar is-on" data-from="4" style={`--w:${[70, 88, 58, 80, 46][i]}`}></i>
+                    {i === item.doc.comment && <i class="acp-lc-bar acp-lc-added is-on" data-from="6" style="--w:66"></i>}
+                    {i === item.doc.comment && <em class="st is-human acp-lc-note" data-from="5" data-to="6">{item.doc.note}</em>}
+                  </li>
+                ))}
+              </ul>
+              <p class="acp-lc-status">
+                <em class="st acp-lc-run" data-from="4" data-to="5">{item.doc.draft}</em>
+                <em class="st is-human" data-from="5" data-to="7">{item.doc.review}</em>
+                <em class="st is-on" data-from="7">{item.doc.final}</em>
+              </p>
+            </div>
+          </div>
+        </div>
+      );
+    })}
+  </div>
+</div>
+
+<script>
+  import { lifecycle } from './lifecycle.js';
+
+  document.querySelectorAll('[data-acp="lifecycle"]').forEach(lifecycle);
+</script>
+
+<style is:global>
+.acp-lc{container-type:inline-size;font-size:clamp(13px, 1.28cqw, 16.5px);line-height:1.35}
+.acp-lc .mock-bar{border-color:var(--stage-rule)}
+.acp-lc-tabs{display:flex;gap:6px}
+.acp-lc-tabs span{padding:6px 11px;border-radius:99px;color:var(--m-muted);transition:background-color var(--t-fast),color var(--t-fast)}
+.acp-lc-tabs .is-on{background:var(--m-soft);color:var(--m-fg)}
+.acp-lc-cases{display:grid}
+.acp-lc-case{grid-area:1 / 1;display:grid;grid-template-columns:27% minmax(0,1fr) 29%;transition:opacity var(--t-move) ease,transform var(--t-enter) var(--ease)}
+.acp-lc-case:not(.is-on){opacity:0;transform:translateY(-18px);pointer-events:none}
+.acp-lc-brief,.acp-lc-flow,.acp-lc-result{min-width:0;padding-top:1.7em}
+.acp-lc-brief{padding-right:1.8em}
+.acp-lc-flow{padding:1.7em 1.8em 0;border-left:1px solid var(--m-rule);border-right:1px solid var(--m-rule)}
+.acp-lc-result{padding-left:1.8em;display:flex;flex-direction:column}
+.acp-lc-h{color:var(--m-muted)}
+.acp-lc-title{margin-top:.75em;font-size:1.55em;line-height:1.1;letter-spacing:-.03em;text-wrap:balance}
+.acp-lc-brief dl{margin-top:1.5em}
+.acp-lc-brief dl > div{display:grid;grid-template-columns:4.4em minmax(0,1fr);align-items:center;gap:.6em;padding:.75em 0;border-top:1px solid var(--m-rule)}
+.acp-lc-brief dt{font-size:.86em;color:var(--m-muted)}
+.acp-lc-brief dd{margin:0;min-width:0}
+.acp-lc-who dd{display:flex;align-items:center;gap:.7em}
+.acp-lc-who b{display:block;font-weight:600;letter-spacing:-.01em}
+.acp-lc-who small{display:block;font-size:.86em;color:var(--m-muted)}
+.acp-lc-who[data-coworker] b{color:var(--phthalo-lift)}
+.acp-lc-av{flex:none;display:grid;place-items:center;width:2.3em;height:2.3em;border-radius:50%;object-fit:cover;background:var(--m-soft);font-size:1em;font-weight:600}
+span.acp-lc-av{font-size:.86em;width:2.68em;height:2.68em}
+.acp-lc-who[data-coworker] span.acp-lc-av{color:var(--phthalo-lift)}
+.acp-lc-chips{display:flex;flex-wrap:wrap;gap:.35em}
+.acp-lc-chips span{padding:.3em .75em;border-radius:99px;background:var(--m-soft);font-size:.86em;font-weight:500;white-space:nowrap}
+
+.acp-lc-line{position:relative;margin-top:1.1em}
+.acp-lc-line li{position:relative;display:grid;align-content:start;padding:0 0 1.35em 2.1em}
+.acp-lc-line li:last-child{padding-bottom:0}
+.acp-lc-line li:not(:last-child)::before,.acp-lc-line li:not(:last-child)::after{content:"";position:absolute;left:.45em;top:.85em;height:100%;width:1px;background:var(--m-rule)}
+.acp-lc-line li:not(:last-child)::after{background:var(--stage-fg);transform-origin:top;transform:scaleY(0);transition:transform var(--t-enter) var(--ease)}
+.acp-lc-line li[data-state="done"]::after{transform:none}
+.acp-lc-dot{position:absolute;left:0;top:.38em;z-index:1;width:.95em;height:.95em;border-radius:50%;background:var(--stage);box-shadow:inset 0 0 0 1px var(--stage-muted);transition:background-color var(--t-fast),box-shadow var(--t-fast),transform var(--t-fast) var(--ease)}
+.acp-lc-line [data-state="now"] .acp-lc-dot{background:var(--phthalo-lift);box-shadow:0 0 0 .3em rgba(53,181,140,.18);transform:scale(1.1)}
+.acp-lc-line [data-state="done"] .acp-lc-dot{background:var(--stage-fg);box-shadow:none}
+.acp-lc-stage{display:flex;align-items:center;gap:.8em;height:1.7em;white-space:nowrap}
+.acp-lc-stage b{font-size:1.12em;font-weight:500;letter-spacing:-.01em;color:var(--m-muted);transition:color var(--t-fast)}
+.acp-lc-line li:not([data-state="todo"]) .acp-lc-stage b{color:var(--m-fg)}
+.acp-lc-stage time{font-size:.86em;color:var(--m-muted);font-variant-numeric:tabular-nums}
+.acp-lc-stage .st{margin-left:auto;font-size:max(.74em, 11px)}
+.acp-lc-text{margin-top:.3em;color:var(--m-muted);text-wrap:pretty}
+.acp-lc-answer{margin-top:.45em;justify-self:start;padding:.4em .85em;border-radius:.9em;background:var(--m-soft);font-size:.92em}
+.acp-lc .acp-lc-run{color:var(--phthalo-lift);background:rgba(53,181,140,.14)}
+
+.acp-lc-doc{flex:1;display:flex;flex-direction:column;margin-top:1.1em;padding:1.5em 1.5em 1.3em;border-radius:calc(var(--radius) * .7);box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+.acp-lc-name b{display:block;font-size:1.12em;font-weight:600;letter-spacing:-.01em}
+.acp-lc-name span{display:block;margin-top:.15em;font-size:.86em;color:var(--m-muted)}
+.acp-lc-doc ul{flex:1;display:flex;flex-direction:column;justify-content:space-between;margin:1.2em 0}
+.acp-lc-doc li{position:relative;display:grid;gap:.42em;padding:.75em 0;border-top:1px solid var(--m-rule)}
+.acp-lc-doc li > span{font-size:.86em;font-weight:600;letter-spacing:-.005em}
+.acp-lc-bar{display:block;height:.42em;width:calc(var(--w) * 1%);border-radius:99px;background:rgba(7,8,10,.13);transform-origin:left;transition:transform var(--t-enter) var(--ease),opacity var(--t-fast);transition-delay:calc(var(--i) * 380ms)}
+.acp-lc-bar + .acp-lc-bar{transition-delay:calc(var(--i) * 380ms + 190ms)}
+.acp-lc-bar.acp-lc-added{background:var(--phthalo);opacity:.75;transition-delay:.2s}
+.acp-lc-note{position:absolute;right:0;bottom:.35em;font-size:max(.74em, 11px)}
+.acp-lc-status{display:grid;justify-items:start}
+.acp-lc-status .st{grid-area:1 / 1;font-size:max(.74em, 11px)}
+.acp-lc-doc .acp-lc-run{color:var(--phthalo);background:color-mix(in srgb, var(--phthalo) 10%, transparent)}
+
+/* stage visibility: an element with data-from is hidden until its stage (see lifecycle.js) */
+.acp-lc [data-from]:not(.is-on){opacity:0}
+.acp-lc [data-from]{transition:opacity var(--t-move) ease,transform var(--t-move) var(--ease)}
+.acp-lc-text:not(.is-on),.acp-lc-answer:not(.is-on){transform:translateY(.5em)}
+.acp-lc .st[data-from]:not(.is-on){transform:translateX(.6em)}
+.acp-lc .acp-lc-bar:not(.is-on){opacity:1;transform:scaleX(0);transition-delay:0s;transition-duration:var(--t-fast)}
+.acp-lc .acp-lc-added:not(.is-on){opacity:.75}
+
+.js .acp-lc-cases{opacity:0;transform:translateY(28px);transition:opacity var(--t-enter) ease .35s,transform var(--t-stage) var(--ease) .35s}
+.js .is-in .acp-lc-cases{opacity:1;transform:none}
+
+@container (max-width:900px){
+  .acp-lc{font-size:clamp(13px, 3.9cqw, 15px)}
+  .acp-lc-case{display:block}
+  .acp-lc-brief,.acp-lc-flow,.acp-lc-result{padding:1.4em 0 0;border:0}
+  .acp-lc-flow,.acp-lc-result{margin-top:1.4em;border-top:1px solid var(--m-rule)}
+  .acp-lc-brief dl > div:nth-child(n+3){display:none}
+  .acp-lc-brief dl{display:grid;grid-template-columns:1fr 1fr;gap:0 1em;margin-top:1.1em}
+  .acp-lc-brief dl > div{display:block;border:0;padding:.4em 0 0}
+  .acp-lc-who dd{margin-top:.5em}
+  .acp-lc-doc{padding:1.2em}
+  .acp-lc-doc ul{margin:.9em 0}
+  .acp-lc-doc li:nth-child(n+4){display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .acp-lc-cases,.acp-lc-case,.acp-lc [data-from],.acp-lc-line li::after,.acp-lc-dot,.acp-lc-bar{transition:none}
+  .js .acp-lc-cases{opacity:1;transform:none}
+}
+</style>

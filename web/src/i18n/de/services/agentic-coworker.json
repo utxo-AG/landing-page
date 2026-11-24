@@ -1,0 +1,421 @@
+{
+  "title": "Agentic CoWorker: KI-CoWorker für Ihr Team | utxo AG",
+  "description": "KI-CoWorker, die sich wie Kolleginnen und Kollegen in Ihr Team integrieren: mit Rolle, Aufgaben im gewohnten Kanal, Rückfragen und Ergebnissen zur Abstimmung.",
+  "lede": "Ein KI-CoWorker ist ein Mitglied Ihres Teams, mit Namen, Rolle und Aufgaben. Er arbeitet im gewohnten Kanal mit, fragt nach und legt Ergebnisse zur Abstimmung vor.",
+  "faq": [
+    {
+      "q": "Worin unterscheidet sich ein CoWorker von einem Chatbot oder Copilot?",
+      "a": "Ein Chatbot beantwortet Fragen, ein Copilot unterstützt eine einzelne Person in ihrem Programm. Ein CoWorker hat eine Rolle im Team: Er übernimmt Aufgaben vollständig, arbeitet in Ihren Systemen, fragt nach, wenn eine Angabe fehlt, und legt das Ergebnis zur Abstimmung vor."
+    },
+    {
+      "q": "Entscheidet ein CoWorker selbstständig?",
+      "a": "Er arbeitet Aufgaben selbstständig aus und entscheidet dabei nichts an Ihrer Stelle. Welche Schritte eine Freigabe brauchen, legen Sie fest. Wo es darauf ankommt, gibt ein Mensch frei."
+    },
+    {
+      "q": "In welchen Kanälen und Systemen arbeitet ein CoWorker?",
+      "a": "In denen, die Ihr Team bereits nutzt: Teamchat, E-Mail oder Ticketsystem für die Zusammenarbeit, dazu die Systeme, die er für seine Aufgaben braucht, etwa Ablage, CRM oder ERP. Welche Anbindungen sinnvoll sind, klären wir pro Projekt."
+    },
+    {
+      "q": "Wie lange dauert es, bis ein CoWorker im Team arbeitet?",
+      "a": "Das hängt von der Rolle und den Anbindungen ab. Manche CoWorker sind in wenigen Wochen produktiv, andere brauchen Monate. Im Erstgespräch ordnen wir Ihren Fall ein."
+    },
+    {
+      "q": "Was geschieht mit unseren Daten?",
+      "a": "Die Verarbeitung erfolgt nur auf Ihre Weisung, ein Training mit Ihren Daten findet nicht statt. Den AVV erstellen wir individuell pro Projekt. Hosting nach Ihren Anforderungen: Deutschland, EU oder on-premise. Wir arbeiten modellunabhängig, lokale Open-Source-Modelle prüfen wir projektbezogen."
+    },
+    {
+      "q": "Kann ein Team mehrere CoWorker haben?",
+      "a": "Ja. Jeder CoWorker hat eine eigene Rolle, eigene Zugriffe und eine Person, an die er berichtet. Wir empfehlen, mit einer Rolle zu beginnen und zu erweitern, sobald die Zusammenarbeit eingespielt ist."
+    }
+  ],
+  "scope": {
+    "title": "Ein Teammitglied mit klarem Auftrag.",
+    "text": "Wir entwickeln den CoWorker für eine konkrete Rolle in Ihrem Team. Das Rollenprofil legt fest, was er übernimmt, womit er arbeitet und an wen er berichtet.",
+    "points": [
+      {
+        "name": "Rolle und Auftrag",
+        "text": "Ein CoWorker mit Namen, klar umrissenen Aufgaben und einer Person im Team, an die er berichtet.",
+        "tag": "Rollenprofil"
+      },
+      {
+        "name": "Wissen Ihres Teams",
+        "text": "Er arbeitet mit Ihren Vorlagen, Richtlinien und bisherigen Ergebnissen und kennt den Stand jeder offenen Aufgabe.",
+        "tag": "Quellen"
+      },
+      {
+        "name": "Zugriff auf Ihre Systeme",
+        "text": "Er liest und schreibt nur dort, wo Sie es freigeben, zum Beispiel in Ablage, CRM oder ERP.",
+        "tag": "Minimale Rechte"
+      },
+      {
+        "name": "Rückfragen und Abstimmung",
+        "text": "Fehlt eine Angabe, fragt er nach. Ergebnisse legt er zur Abstimmung vor, bevor sie das Team verlassen.",
+        "tag": "Der Mensch entscheidet"
+      },
+      {
+        "name": "Entwicklung und Betrieb",
+        "text": "utxo AG entwickelt, hostet und überwacht den CoWorker und erweitert die Rolle gemeinsam mit Ihrem Team.",
+        "tag": "utxo AG"
+      }
+    ]
+  },
+  "profile": {
+    "label": "Animierte Beispielansicht: Rollenprofil des CoWorkers Lena mit Aufgaben, Quellen und einem Zugriff, den eine Person freigibt.",
+    "context": "Rollenprofil",
+    "state": "Im Team",
+    "reportsLabel": "Berichtet an",
+    "reports": 0,
+    "hoursLabel": "Erreichbar",
+    "hours": "Mo bis Fr · 07 bis 19 Uhr",
+    "channelsLabel": "Kanäle",
+    "channels": [
+      "Chat",
+      "E-Mail",
+      "Ticket"
+    ],
+    "tasksLabel": "Aufgaben",
+    "tasks": [
+      "Wettbewerbsanalysen",
+      "Mediaauswertungen",
+      "Kampagnenbeispiele",
+      "Wochenreport",
+      "Briefings zusammenfassen"
+    ],
+    "accessLabel": "Quellen und Zugriffe",
+    "access": [
+      {
+        "name": "Team-Laufwerk",
+        "level": "Lesen und ablegen"
+      },
+      {
+        "name": "Mediadaten",
+        "level": "Lesen"
+      },
+      {
+        "name": "Web-Recherche",
+        "level": "Freigegebene Quellen"
+      },
+      {
+        "name": "Versand an Kunden",
+        "level": "Nur mit Freigabe"
+      }
+    ],
+    "requests": [
+      {
+        "name": "Marktforschungs-Archiv",
+        "level": "Lesen",
+        "by": 1
+      },
+      {
+        "name": "Bilddatenbank",
+        "level": "Lesen",
+        "by": 2
+      },
+      {
+        "name": "Kampagnen-Dashboard",
+        "level": "Lesen",
+        "by": 3
+      }
+    ],
+    "requested": "Angefragt",
+    "approves": "Freigabe:",
+    "granted": "Erteilt"
+  },
+  "example": {
+    "title": "Eine Aufgabe, von der Übergabe bis zur Freigabe.",
+    "text": "Zwei Beispiele aus dem Alltag: eine Wettbewerbsanalyse im Kampagnenteam einer Agentur und ein Angebot im Vertrieb eines Industrieunternehmens. Der Ablauf ist derselbe. Der CoWorker übernimmt, fragt nach, liefert einen Entwurf, und eine Person prüft und gibt frei.",
+    "label": "Animierte Beispielansicht: der Weg einer Aufgabe von der Übergabe über Rückfrage, Entwurf und Prüfung durch eine Person bis zur finalen Version.",
+    "context": "Aufgabe im Detail",
+    "briefLabel": "Auftrag",
+    "fromLabel": "Von",
+    "toLabel": "An",
+    "channelLabel": "Kanal",
+    "dueLabel": "Fällig",
+    "mayUseLabel": "Darf nutzen",
+    "logLabel": "Arbeitsprotokoll",
+    "docLabel": "Ergebnis",
+    "stages": [
+      "Übergeben",
+      "Rückfrage",
+      "Entwurf",
+      "Prüfung",
+      "Final"
+    ],
+    "running": "In Arbeit",
+    "cases": [
+      {
+        "tab": "Agentur",
+        "title": "Wettbewerbsanalyse aktualisieren",
+        "from": {
+          "member": 0
+        },
+        "to": {
+          "member": 4
+        },
+        "channel": "Chat · Kampagne Herbst",
+        "due": "Donnerstag",
+        "mayUse": [
+          "Team-Laufwerk",
+          "Marktdaten",
+          "Web-Recherche"
+        ],
+        "log": [
+          {
+            "time": "Mo 09:12",
+            "text": "Aufgabe im Kanal übernommen, Entwurf bis Mittwoch, 16 Uhr zugesagt."
+          },
+          {
+            "time": "Mo 09:13",
+            "text": "Rückfrage an Jana: mit oder ohne Österreich?",
+            "answer": "Jana: Mit Österreich."
+          },
+          {
+            "time": "Mo bis Mi",
+            "text": "Analyse des Vorjahres gelesen, 14 Quellen ausgewertet, 5 Wettbewerber verglichen."
+          },
+          {
+            "time": "Mi 15:40",
+            "text": "Entwurf übergeben.",
+            "answer": "Jana: Preisvergleich um Eigenmarken ergänzen.",
+            "pill": "Jana prüft"
+          },
+          {
+            "time": "Do 10:05",
+            "text": "Anmerkung eingearbeitet, Version 4 abgelegt und im Kanal gemeldet.",
+            "pill": "Freigegeben"
+          }
+        ],
+        "doc": {
+          "name": "Wettbewerbsanalyse Herbst",
+          "meta": "PDF · 24 Seiten",
+          "sections": [
+            "Marktüberblick",
+            "Wettbewerber",
+            "Preisvergleich",
+            "Österreich",
+            "Quellen"
+          ],
+          "comment": 2,
+          "note": "Eigenmarken ergänzen",
+          "draft": "Entwurf · v3",
+          "review": "In Prüfung · Jana",
+          "final": "Freigegeben · v4"
+        }
+      },
+      {
+        "tab": "Vertrieb",
+        "title": "Angebot zum Rahmenvertrag vorbereiten",
+        "from": {
+          "name": "Sabine Roth",
+          "role": "Vertriebsleitung",
+          "initials": "SR"
+        },
+        "to": {
+          "name": "Kai",
+          "role": "CoWorker · Angebote",
+          "initials": "K"
+        },
+        "channel": "E-Mail · Vertriebspostfach",
+        "due": "Freitag",
+        "mayUse": [
+          "CRM",
+          "ERP-Preislisten",
+          "Vorlagen"
+        ],
+        "log": [
+          {
+            "time": "Di 08:47",
+            "text": "Anfrage aus dem Postfach übernommen, Entwurf bis Mittwochmittag zugesagt."
+          },
+          {
+            "time": "Di 08:49",
+            "text": "Rückfrage an Sabine: gilt die Staffel aus dem Rahmenvertrag?",
+            "answer": "Sabine: Ja, Staffel B."
+          },
+          {
+            "time": "Di bis Mi",
+            "text": "Kundenhistorie im CRM gelesen, Preise aus dem ERP übernommen, 3 Positionen kalkuliert."
+          },
+          {
+            "time": "Mi 10:52",
+            "text": "Entwurf übergeben.",
+            "answer": "Sabine: Lieferzeit auf KW 46 ändern.",
+            "pill": "Sabine prüft"
+          },
+          {
+            "time": "Mi 14:10",
+            "text": "Lieferzeit angepasst, Angebot abgelegt. Den Versand übernimmt Sabine.",
+            "pill": "Freigegeben"
+          }
+        ],
+        "doc": {
+          "name": "Angebot AN-0418",
+          "meta": "PDF · 4 Seiten",
+          "sections": [
+            "Positionen",
+            "Konditionen",
+            "Lieferzeit",
+            "Zahlungsziel",
+            "Anhang"
+          ],
+          "comment": 2,
+          "note": "KW 46",
+          "draft": "Entwurf · v1",
+          "review": "In Prüfung · Sabine",
+          "final": "Freigegeben · v2"
+        }
+      }
+    ]
+  },
+  "integration": {
+    "title": "Im gewohnten Kanal, in Ihren Systemen.",
+    "text": "Ihr Team muss keine neue Oberfläche lernen. Der CoWorker nimmt Aufgaben dort an, wo sie heute entstehen, und führt sie in einer Aufgabenliste zusammen, die Ihr Team jederzeit einsehen kann.",
+    "label": "Animierte Beispielansicht: Der CoWorker Lena nimmt Aufgaben in Chat, E-Mail und Ticketsystem an und führt sie in einer Aufgabenliste.",
+    "typing": "schreibt …",
+    "windows": [
+      {
+        "kind": "Chat",
+        "context": "Kampagne Herbst",
+        "from": 2,
+        "time": "09:41",
+        "mention": "@Lena",
+        "text": "bitte die Bildrechte für die drei Motive prüfen.",
+        "reply": {
+          "time": "09:42",
+          "text": "Übernehme ich. Rückmeldung bis morgen, 10 Uhr."
+        },
+        "before": 0,
+        "after": 1
+      },
+      {
+        "kind": "E-Mail",
+        "context": "Posteingang",
+        "from": 1,
+        "time": "10:15",
+        "subject": "Briefing Kunde Nordwind",
+        "text": "Lena, bitte fasse das Briefing auf einer Seite zusammen.",
+        "reply": {
+          "time": "11:30",
+          "subject": "Re: Briefing Kunde Nordwind",
+          "text": "Die Zusammenfassung liegt im Anhang. Zwei Punkte sind offen.",
+          "file": "Briefing_Nordwind.pdf"
+        },
+        "before": 2,
+        "after": 3
+      },
+      {
+        "kind": "Ticket",
+        "context": "MKT-482",
+        "from": 3,
+        "time": "Mo",
+        "subject": "Wochenreport Social Media",
+        "text": "Zugewiesen an Lena, fällig am Freitag.",
+        "reply": {
+          "time": "Fr 08:20",
+          "text": "Der Report für KW 41 ist angehängt und geht zur Abstimmung an Felix."
+        },
+        "before": 2,
+        "after": 3
+      }
+    ],
+    "queueLabel": "Lenas Aufgaben",
+    "queueNote": "Eine Liste für alle Kanäle",
+    "queue": [
+      "Bildrechte prüfen",
+      "Briefing Nordwind",
+      "Wochenreport KW 41"
+    ],
+    "states": [
+      "Neu",
+      "Übernommen",
+      "In Arbeit",
+      "Zur Abstimmung"
+    ],
+    "points": [
+      {
+        "name": "Kanäle",
+        "text": "Teamchat, E-Mail oder Ticketsystem: Der CoWorker arbeitet in den Kanälen, die Ihr Team bereits nutzt.",
+        "tag": "Chat · E-Mail · Ticket"
+      },
+      {
+        "name": "Systeme",
+        "text": "Anbindung an ERP, CRM, DMS und Ablagen über Schnittstellen, mit eigenen, eng gefassten Rechten.",
+        "tag": "ERP · CRM · DMS"
+      },
+      {
+        "name": "Freigaben",
+        "text": "Sie legen fest, welche Schritte eine Freigabe brauchen, etwa der Versand an Kunden oder eine Buchung.",
+        "tag": "Freigaberegeln"
+      },
+      {
+        "name": "Protokoll",
+        "text": "Jede Aktion wird protokolliert. Ihr Team sieht, was der CoWorker getan hat, mit welchen Quellen und für wen.",
+        "tag": "Nachvollziehbar"
+      },
+      {
+        "name": "Betrieb",
+        "text": "utxo AG hostet und überwacht den CoWorker. Hosting nach Ihren Anforderungen: Deutschland, EU oder on-premise.",
+        "tag": "Hosting nach Anforderung"
+      }
+    ]
+  },
+  "process": {
+    "title": "Von der Rolle bis zum Betrieb.",
+    "text": "Ein CoWorker wird eingearbeitet wie ein neues Teammitglied. Wie lange das dauert, hängt von der Rolle und den Anbindungen ab: Manche CoWorker sind in wenigen Wochen im Team, andere brauchen Monate.",
+    "label": "Animierte Darstellung: Der CoWorker durchläuft fünf Stationen vom Rollenprofil bis zum Betrieb.",
+    "rail": [
+      "Rolle beschrieben",
+      "Zugriffe erteilt",
+      "Probeaufgaben bestanden",
+      "Team prüft jedes Ergebnis",
+      "Im Betrieb"
+    ],
+    "steps": [
+      {
+        "name": "Erstgespräch und Rolle",
+        "text": "Wir klären mit Ihnen, welche Aufgaben der CoWorker im Team übernimmt, an wen er berichtet und woran Sie gute Arbeit messen.",
+        "note": "Rollenprofil"
+      },
+      {
+        "name": "Zugriffe und Wissen",
+        "text": "Ihr Team legt fest, welche Systeme, Ablagen und Quellen der CoWorker nutzen darf. Wir binden sie mit minimalen Rechten an.",
+        "note": "Rechtekonzept"
+      },
+      {
+        "name": "Entwicklung und Probeaufgaben",
+        "text": "Wir entwickeln den CoWorker und prüfen ihn an echten Aufgaben aus Ihrem Alltag, bis die Ergebnisse Ihrem Standard entsprechen.",
+        "note": "Testprotokoll"
+      },
+      {
+        "name": "Einarbeitung im Team",
+        "text": "Der CoWorker arbeitet im gewohnten Kanal mit. Am Anfang prüft Ihr Team jedes Ergebnis, später dort, wo Sie es festlegen.",
+        "note": "Freigaberegeln"
+      },
+      {
+        "name": "Betrieb und Weiterentwicklung",
+        "text": "utxo AG hostet und überwacht den CoWorker, wertet Rückmeldungen aus und erweitert die Rolle, wenn neue Aufgaben dazukommen.",
+        "note": "Laufender Betrieb"
+      }
+    ]
+  },
+  "reference": {
+    "title": "Im Einsatz: Sokosumi.",
+    "text": "Sokosumi ist die Plattform für Marketing-Teams: KI-CoWorker und KI-Agenten beauftragen und im Team mit ihnen zusammenarbeiten.",
+    "link": {
+      "text": "Zu Sokosumi",
+      "href": "https://www.sokosumi.com"
+    },
+    "points": [
+      {
+        "name": "Partnerschaft",
+        "text": "Gemeinsam mit der Serviceplan Group entwickelt und betrieben.",
+        "tag": "Serviceplan Group"
+      },
+      {
+        "name": "Rolle der utxo AG",
+        "text": "utxo AG verantwortet Technologie und Hosting.",
+        "tag": "Technologie · Hosting"
+      }
+    ]
+  }
+}

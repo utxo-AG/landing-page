@@ -1,0 +1,85 @@
+---
+/*
+  Project run (block "So läuft ein Projekt"): a rail above the five steps, one part per step, on the same
+  column grid as the steps (--g is the column gap; none once the steps wrap below 1000px).
+  A point travels along it: straight through steps 1 and 2, three turns in the loop of step 3 (one increment
+  each, a version lights up per turn), a stop at the gate of step 4 (the white pill: the client accepts),
+  then turns in the loop of step 5 (further versions). The step below the point is marked (data-seg).
+  The markup is the reduced-motion and no-JS frame: the point waits at the gate.
+*/
+const { t } = Astro.props;
+const r = t.servicePages['software-development'].process.run;
+const [a, b, c, live, d, e] = r.versions;
+---
+<div class="sdp-run" data-visual="sdp-run" data-seg="4" role="img" aria-label={r.label}>
+  <i class="sdp-r-line"></i>
+  {[0, 1, 2, 3, 4].map((k) => <i class="sdp-r-tick" style={`--k:${k}`}></i>)}
+  <i class="sdp-r-loop" style="--k:2"></i>
+  <i class="sdp-r-loop" style="--k:4"></i>
+  <i class="sdp-r-rot is-off" data-rot="0" style="--k:2"><b></b></i>
+  <i class="sdp-r-rot is-off" data-rot="1" style="--k:4"><b></b></i>
+  <i class="sdp-r-dot" data-at="gate"></i>
+  <p class="sdp-r-gate st is-human" style="--k:3">{r.gate}</p>
+  <p class="sdp-r-v is-lit" data-v="0" style="--k:2;--o:-1">{a}</p>
+  <p class="sdp-r-v is-lit" data-v="1" style="--k:2;--o:0">{b}</p>
+  <p class="sdp-r-v is-lit" data-v="2" style="--k:2;--o:1">{c}</p>
+  <p class="sdp-r-v" data-v="3" style="--k:3;--o:0">{live}</p>
+  <p class="sdp-r-v" data-v="4" style="--k:4;--o:-.5">{d}</p>
+  <p class="sdp-r-v" data-v="5" style="--k:4;--o:.5">{e}</p>
+</div>
+
+<script>
+  import { run } from './run.js';
+
+  document.querySelectorAll('[data-visual="sdp-run"]').forEach(run);
+</script>
+
+<style is:global>
+.sdp-run{--g:var(--gap);--cw:calc((100cqw + var(--g)) / 5);--r:clamp(15px, 2.1vw, 30px);--y:calc(var(--r) * 2 + 22px);container-type:inline-size;position:relative;height:calc(var(--y) + 30px);margin-bottom:clamp(20px, 2.4vw, 36px);font-size:var(--fs-label)}
+.sdp-run > *{position:absolute;--c:calc(var(--k) * var(--cw) + (var(--cw) - var(--g)) / 2)}
+.sdp-r-line{left:0;right:0;top:var(--y);height:1px;background:rgba(7,8,10,.22);transform-origin:0 0}
+.sdp-r-tick{left:calc(var(--k) * var(--cw));top:calc(var(--y) - 4px);width:1px;height:9px;background:rgba(7,8,10,.4)}
+.sdp-r-loop{left:calc(var(--c) - var(--r));top:calc(var(--y) - var(--r) * 2);width:calc(var(--r) * 2);height:calc(var(--r) * 2);border-radius:50%;box-shadow:inset 0 0 0 1px rgba(7,8,10,.22)}
+.sdp-r-rot{left:calc(var(--c) - var(--r));top:calc(var(--y) - var(--r) * 2);width:calc(var(--r) * 2);height:calc(var(--r) * 2);transform:rotate(calc(var(--turn, 0) * -360deg));transition:transform 1.2s linear,opacity .15s}
+.sdp-r-rot b,.sdp-r-dot{width:9px;height:9px;border-radius:50%;background:var(--phthalo);box-shadow:0 0 0 4px rgba(22,122,92,.16)}
+.sdp-r-rot b{position:absolute;left:calc(50% - 4.5px);bottom:-4.5px}
+.sdp-r-rot.is-off{opacity:0;transition:none}
+.sdp-r-dot{left:-4.5px;top:calc(var(--y) - 4px);--k:0;--x:0px;transform:translateX(var(--x));transition:opacity var(--t-fast) ease}
+.sdp-r-dot[data-at="loop"]{--k:2;--x:var(--c);transition:transform 2.4s linear,opacity .15s}
+.sdp-r-dot[data-at="gate"]{--k:3;--x:var(--c);transition:transform .8s var(--ease),opacity .15s}
+.sdp-r-dot[data-at="next"]{--k:4;--x:var(--c);transition:transform .8s var(--ease),opacity .15s}
+.sdp-r-dot[data-at="end"]{--x:100cqw;opacity:0;transition:transform .8s ease-in,opacity .5s ease .3s}
+.sdp-r-dot.is-off{opacity:0}
+.sdp-r-gate{left:var(--c);top:calc(var(--y) - 16px);transform:translate(-50%, -100%);background:var(--pill-2);color:var(--muted);box-shadow:none;font-size:max(11px, .86em);padding:5px 10px;transition:background-color var(--t-fast),color var(--t-fast),box-shadow var(--t-fast),scale .2s ease}
+.sdp-r-gate::after{content:"";position:absolute;left:50%;top:100%;width:1px;height:16px;background:rgba(7,8,10,.3)}
+.sdp-r-gate.is-human{background:#fff;color:var(--fg);box-shadow:0 0 0 1px rgba(7,8,10,.12),0 6px 16px rgba(10,14,30,.14)}
+.sdp-r-gate.is-press{scale:.93}
+.sdp-r-v{left:calc(var(--c) + var(--o) * 2.5em);top:calc(var(--y) + 12px);transform:translateX(-50%);color:var(--muted);font-weight:600;font-variant-numeric:tabular-nums;opacity:.55;transition:color var(--t-fast),opacity var(--t-fast)}
+.sdp-r-v.is-lit{color:var(--phthalo);opacity:1}
+
+/* the step under the point */
+.sdp-run + .sp-steps li{transition:border-color var(--t-move) ease,opacity var(--t-move) ease,transform var(--t-enter) var(--ease);transition-delay:0s,calc(120ms + var(--i, 0) * var(--stagger)),calc(120ms + var(--i, 0) * var(--stagger))}
+.sdp-run[data-seg="1"] + .sp-steps li:nth-child(1),.sdp-run[data-seg="2"] + .sp-steps li:nth-child(2),.sdp-run[data-seg="3"] + .sp-steps li:nth-child(3),.sdp-run[data-seg="4"] + .sp-steps li:nth-child(4),.sdp-run[data-seg="5"] + .sp-steps li:nth-child(5){border-top-color:var(--fg)}
+.sdp-run + .sp-steps .sp-step-n{transition:color var(--t-move) ease}
+.sdp-run[data-seg="1"] + .sp-steps li:nth-child(1) .sp-step-n,.sdp-run[data-seg="2"] + .sp-steps li:nth-child(2) .sp-step-n,.sdp-run[data-seg="3"] + .sp-steps li:nth-child(3) .sp-step-n,.sdp-run[data-seg="4"] + .sp-steps li:nth-child(4) .sp-step-n,.sdp-run[data-seg="5"] + .sp-steps li:nth-child(5) .sp-step-n{color:var(--fg)}
+
+.js .sdp-r-line{transform:scaleX(0);transition:transform 0s var(--t-fast)}
+.js .is-in .sdp-r-line{transform:none;transition:transform 1.4s var(--ease) .2s}
+.js .sdp-run > :not(.sdp-r-line){opacity:0}
+.js .is-in .sdp-run > :not(.sdp-r-line,.sdp-r-dot,.sdp-r-rot){opacity:1;transition:opacity var(--t-move) ease calc(500ms + var(--k) * 120ms),color var(--t-fast),background-color var(--t-fast),box-shadow var(--t-fast),scale .2s ease}
+.js .is-in .sdp-run > .sdp-r-v:not(.is-lit){opacity:.55}
+.js .is-in .sdp-r-dot:not(.is-off,[data-at="end"]),.js .is-in .sdp-r-rot:not(.is-off){opacity:1}
+
+@media (max-width:1000px){
+  .sdp-run{--g:0px;--r:clamp(15px, 4.4vw, 28px)}
+}
+@media (max-width:560px){
+  .sdp-run{font-size:10px}
+  .sdp-r-gate{font-size:10px;padding:4px 7px}
+  .sdp-r-v{left:calc(var(--c) + var(--o) * 2.1em)}
+}
+@media (prefers-reduced-motion:reduce){
+  .sdp-run *,.sdp-run + .sp-steps li{transition:none !important}
+  .js .sdp-r-line{transform:none}
+}
+</style>

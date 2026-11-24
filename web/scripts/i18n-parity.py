@@ -1,10 +1,10 @@
-import os
 """Key parity de/ vs en/ dictionaries: same key paths, array lengths, types; non-string values equal. Lists identical string values."""
 import json, os, sys
 SRC = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'src', 'i18n', '')
-files = ['site.json', 'pages.json'] + sorted('mockups/' + f for f in os.listdir(SRC + 'de/mockups'))
-extra = sorted(set(os.listdir(SRC + 'en/mockups')) - set(os.listdir(SRC + 'de/mockups')))
-errors, same, strings = [f'en only: mockups/{f}' for f in extra], [], 0
+FOLDERS = ['mockups', 'services']
+listing = lambda lang, folder: sorted(f for f in os.listdir(SRC + lang + '/' + folder) if f.endswith('.json')) if os.path.isdir(SRC + lang + '/' + folder) else []
+files = ['site.json', 'pages.json'] + [folder + '/' + f for folder in FOLDERS for f in listing('de', folder)]
+errors, same, strings = [f'en only: {folder}/{f}' for folder in FOLDERS for f in sorted(set(listing('en', folder)) - set(listing('de', folder)))], [], 0
 def walk(a, b, path):
     global strings
     if type(a) is not type(b): errors.append(f'{path}: type {type(a).__name__} vs {type(b).__name__}'); return

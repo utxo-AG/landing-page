@@ -1,0 +1,39 @@
+---
+/* Blocks of the service detail page "Agentic CoWorker": scope with the role profile, one task in detail, channels and systems, project steps, reference. */
+import Block from '../../sp/Block.astro';
+import Points from '../../sp/Points.astro';
+import Steps from '../../sp/Steps.astro';
+import Profile from './Profile.astro';
+import Lifecycle from './Lifecycle.astro';
+import Channels from './Channels.astro';
+import Onboard from './Onboard.astro';
+
+const { t } = Astro.props;
+const page = t.servicePages['agentic-coworker'];
+---
+<Block title={page.scope.title} text={page.scope.text} layout="split">
+  <Profile t={t} />
+  <div class="acp-points"><Points items={page.scope.points} /></div>
+</Block>
+<Block title={page.example.title} text={page.example.text} layout="wide" surface="dark">
+  <Lifecycle t={t} />
+</Block>
+<Block title={page.integration.title} text={page.integration.text} layout="wide">
+  <Channels t={t} />
+  <div class="acp-points"><Points items={page.integration.points} /></div>
+</Block>
+<Block title={page.process.title} text={page.process.text} layout="wide">
+  <Onboard t={t} />
+  <Steps items={page.process.steps} />
+</Block>
+<Block title={page.reference.title} layout="split">
+  <p class="acp-ref sp-rise" style="--i:1">{page.reference.text}</p>
+  <p class="acp-ref-link sp-rise" style="--i:2"><a class="pill pill--talk" href={page.reference.link.href} target="_blank" rel="noopener">{page.reference.link.text} <span aria-hidden="true">↗</span></a></p>
+  <div class="acp-points"><Points items={page.reference.points} /></div>
+</Block>
+
+<style is:global>
+.acp-points{margin-top:clamp(40px, 5vw, 80px)}
+.acp-ref-link{margin-top:clamp(20px, 2.2vw, 32px)}
+.acp-ref{max-width:24em;font-size:clamp(21px, 2.2vw, 34px);line-height:1.15;letter-spacing:-.035em}
+</style>

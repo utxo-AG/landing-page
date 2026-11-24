@@ -1,0 +1,117 @@
+{
+  "title": "Software Development: individuelle Software für Ihre Prozesse | utxo AG",
+  "description": "Individuelle Software für Unternehmensprozesse: Web-Anwendungen, Mobile Apps und Schnittstellen, auf Wunsch KI-gestützt. Vom Konzept bis in den Betrieb.",
+  "lede": "Wir entwickeln Software für Prozesse, die sich mit Standardprodukten nicht gut abbilden lassen. Ein festes Team begleitet sie vom Konzept bis in den Betrieb.",
+  "faq": [
+    { "q": "Wann lohnt sich individuelle Software gegenüber einem Standardprodukt?", "a": "Wenn ein Prozess für Ihr Unternehmen wichtig ist und sich mit Standardprodukten nur über Umwege, Zusatzlisten oder manuelle Schritte abbilden lässt. Im Erstgespräch klären wir das offen. Passt ein Standardprodukt besser, sagen wir das." },
+    { "q": "Wie lange dauert ein Projekt?", "a": "Das hängt vom Umfang ab. Manche Anwendungen sind in wenigen Wochen im Einsatz, andere brauchen Monate. Nach dem Konzept erhalten Sie einen Plan mit den Inkrementen, in denen die Anwendung entwickelt wird." },
+    { "q": "Muss die Software KI enthalten?", "a": "Nein. KI-Funktionen setzen wir dort ein, wo sie dem Prozess nützen, etwa beim Auslesen von Dokumenten oder bei der Suche in eigenen Daten. Wir arbeiten modellunabhängig; lokale Open-Source-Modelle prüfen wir projektbezogen." },
+    { "q": "Wie binden Sie unsere bestehenden Systeme an?", "a": "Über die Schnittstellen, die Ihre Systeme anbieten, etwa von ERP, CRM, DMS oder SSO. Welche Daten in welche Richtung fliessen, legen wir im Konzept gemeinsam mit Ihrer IT fest." },
+    { "q": "Wo wird die Anwendung gehostet?", "a": "Nach Ihren Anforderungen: in Deutschland, in der EU oder on-premise. Das entscheiden wir je Projekt. Den AVV erstellen wir individuell für Ihr Projekt, die Verarbeitung erfolgt nur auf Ihre Weisung." },
+    { "q": "Wer betreut die Anwendung nach dem Start?", "a": "Dasselbe Team, das sie entwickelt hat. utxo AG hostet und überwacht die Anwendung und setzt neue Anforderungen in weiteren Versionen um." }
+  ],
+  "scope": {
+    "title": "Was Sie erhalten",
+    "text": "Eine Anwendung, die zu Ihrem Prozess passt und in Ihre Systemlandschaft eingebunden ist. Der Umfang richtet sich nach dem Vorhaben. Diese Bausteine kommen in den meisten Projekten zusammen.",
+    "points": [
+      { "name": "Web-Anwendungen", "text": "Fachanwendungen und Portale für Ihre Abläufe, mit Rollen, Rechten und Auswertungen.", "tag": "Web" },
+      { "name": "Mobile Apps", "text": "Für Aufgaben, die unterwegs anfallen: Freigaben, Erfassung vor Ort, Mitteilungen.", "tag": "Mobile" },
+      { "name": "Schnittstellen", "text": "Anbindung an Ihre bestehenden Systeme wie ERP, CRM, DMS und SSO, damit Daten nur an einer Stelle gepflegt werden.", "tag": "API" },
+      { "name": "KI-gestützte Funktionen", "text": "Wo es dem Prozess hilft: Dokumente auslesen, Vorschläge erstellen, in eigenen Daten suchen. Modellunabhängig.", "tag": "Auf Wunsch" },
+      { "name": "Betrieb und Weiterentwicklung", "text": "Hosting, Überwachung und neue Versionen durch dasselbe Team, das die Anwendung entwickelt hat.", "tag": "Betrieb" }
+    ]
+  },
+  "arch": {
+    "label": "Animierte Beispielansicht: Architektur eines Einkaufsportals mit Oberflächen, Fachlogik, Daten und angebundenen Systemen. Vorgänge laufen durch alle Schichten.",
+    "context": "Architektur · Beispiel Einkaufsportal",
+    "layers": [
+      { "name": "Oberflächen", "tiles": [ { "name": "Web-Anwendung", "note": "Portal für Einkauf und Fachbereiche" }, { "name": "Mobile App", "note": "Freigaben unterwegs" } ] },
+      { "name": "Fachlogik", "tiles": [ { "name": "Workflow", "note": "Regeln, Schritte" }, { "name": "KI-Assistenz", "note": "auf Wunsch" }, { "name": "Rechte", "note": "Rollen" }, { "name": "Mitteilungen", "note": "E-Mail, Push" } ] },
+      { "name": "Daten", "tiles": [ { "name": "Datenbank", "note": "Vorgänge und Stammdaten" }, { "name": "Protokoll", "note": "jede Aktion" }, { "name": "Dokumente", "note": "Belege" } ] },
+      { "name": "Ihre Systeme", "tiles": [ { "name": "ERP", "note": "Aufträge" }, { "name": "DMS", "note": "Ablage" }, { "name": "SSO", "note": "Anmeldung" }, { "name": "CRM", "note": "Lieferanten" } ] }
+    ],
+    "routes": [
+      { "caption": "Bestellung anlegen", "events": [ "B-2051 erfasst", "Regel geprüft", "gespeichert", "Auftrag gebucht" ] },
+      { "caption": "Freigabe per App", "events": [ "Freigabe erteilt", "Rolle Leitung", "Eintrag 14:32", "angemeldet" ] },
+      { "caption": "Rechnung auslesen", "events": [ "R-8841 hochgeladen", "Betrag erkannt", "zugeordnet", "abgelegt" ] }
+    ]
+  },
+  "practice": {
+    "title": "Ein Beispiel aus der Praxis",
+    "text": "Ein Einkaufsportal ist seit einigen Monaten im Einsatz, und der Einkauf meldet eine neue Anforderung. So wird daraus eine ausgelieferte Version: Konzept, Entwicklung, automatisierte Tests, Ihre Abnahme, Produktion.",
+    "inc": {
+      "label": "Animierte Beispielansicht: Eine Anforderung durchläuft Konzept, Entwicklung, Tests und Abnahme und erscheint als neue Version in der Anwendung.",
+      "context": "Einkaufsportal · Weiterentwicklung",
+      "version": "Produktion",
+      "major": "2",
+      "minor": 4,
+      "stages": [ "Konzept", "Entwicklung", "Tests", "Abnahme", "Produktion" ],
+      "panels": [ "Abnahmekriterien", "Änderung", "Automatisiert", "Review", "Anwendung" ],
+      "testNames": [ "Unit", "Integration", "Oberfläche" ],
+      "review": { "code": "Code-Review", "codeDone": "geprüft", "client": "Fachbereich", "wait": "Ihre Abnahme", "done": "abgenommen" },
+      "newTag": "neu",
+      "items": [
+        {
+          "id": "EK-212", "from": "Anforderung aus dem Einkauf", "title": "Zweite Freigabe ab 25'000 EUR",
+          "criteria": [ "Regel greift ab 25'000 EUR", "Stellvertretung ist möglich", "Im Protokoll nachvollziehbar" ],
+          "code": [ "rule: secondApproval", "limit: 25000", "role: executive", "audit: true" ],
+          "tests": [ 218, 48, 31 ],
+          "screen": { "label": "Bestellung B-2051", "title": "Elbe Industrie · 27'150 EUR", "rows": [ [ "Einkauf", "geprüft" ], [ "Leitung", "freigegeben" ], [ "Geschäftsleitung", "Freigabe offen" ] ] }
+        },
+        {
+          "id": "EK-219", "from": "Anforderung aus dem Controlling", "title": "Budgetprüfung je Kostenstelle",
+          "criteria": [ "Budget je Kostenstelle sichtbar", "Warnung ab 90 Prozent", "Sperre nur mit Begründung" ],
+          "code": [ "check: costCenterBudget", "warnAt: 0.9", "source: erp.budgets", "override: reason" ],
+          "tests": [ 224, 51, 33 ],
+          "screen": { "label": "Kostenstelle 4410", "title": "Produktion · Werk Nord", "rows": [ [ "Budget", "480'000 EUR" ], [ "Bestellt", "431'200 EUR" ], [ "Auslastung", "90 %, Warnung" ] ] }
+        },
+        {
+          "id": "EK-226", "from": "Anforderung aus der Buchhaltung", "title": "Rechnungen mit KI auslesen",
+          "criteria": [ "Betrag und Lieferant erkannt", "Zuordnung zur Bestellung", "Buchung erst nach Prüfung" ],
+          "code": [ "extract: invoice.fields", "match: orderNumber", "confidence: 0.98", "approve: human" ],
+          "tests": [ 231, 55, 36 ],
+          "screen": { "label": "Rechnung R-8841", "title": "Nordwerk Logistik · 3'960 EUR", "rows": [ [ "Betrag", "erkannt" ], [ "Bestellung", "B-2038" ], [ "Buchung", "Vorschlag zur Prüfung" ] ] }
+        }
+      ]
+    }
+  },
+  "process": {
+    "title": "So läuft ein Projekt",
+    "text": "Der Umfang bestimmt die Dauer: Manche Anwendungen sind in wenigen Wochen im Einsatz, andere brauchen Monate. Der Ablauf bleibt derselbe.",
+    "steps": [
+      { "name": "Erstgespräch", "text": "Sie schildern den Prozess und das Ziel. Wir klären, ob individuelle Software dafür der richtige Weg ist.", "note": "Gemeinsames Bild" },
+      { "name": "Konzept und Architektur", "text": "Wir nehmen den Ablauf mit Ihren Fachbereichen auf und legen Umfang, Architektur und Schnittstellen fest.", "note": "Konzept und Plan" },
+      { "name": "Entwicklung in Inkrementen", "text": "Die Anwendung wächst in lauffähigen Versionen. Sie sehen jeden Stand und steuern die Prioritäten.", "note": "Lauffähige Versionen" },
+      { "name": "Einführung", "text": "Ihr Fachbereich nimmt die Anwendung ab. Wir übernehmen Daten, binden die Systeme an und begleiten den Start.", "note": "Ihre Abnahme" },
+      { "name": "Betrieb und Weiterentwicklung", "text": "Wir hosten und überwachen die Anwendung. Neue Anforderungen setzt dasselbe Team um.", "note": "Neue Versionen" }
+    ],
+    "run": {
+      "label": "Animiertes Diagramm: Ein Projekt läuft vom Erstgespräch über Inkremente und die Abnahme in den Betrieb mit weiteren Versionen.",
+      "gate": "Abnahme",
+      "versions": [ "0.1", "0.2", "0.3", "1.0", "1.1", "1.2" ]
+    }
+  },
+  "operation": {
+    "title": "Integration und Betrieb",
+    "text": "Die Anwendung arbeitet mit den Systemen, die Sie bereits einsetzen. Im Betrieb sehen Sie, was läuft, und entscheiden, was in Produktion geht.",
+    "facts": [
+      { "name": "Ihre Systeme", "text": "Anbindung über die Schnittstellen, die Ihre Systeme anbieten. Anmeldung über Ihr SSO, Rollen nach Ihrer Organisation." },
+      { "name": "Hosting", "text": "Nach Ihren Anforderungen: Deutschland, EU oder on-premise. Das legen wir je Projekt fest." },
+      { "name": "Überwachung", "text": "utxo AG überwacht Verfügbarkeit, Schnittstellen und Fehler. Jede Aktion wird protokolliert." },
+      { "name": "Ihre Freigabe", "text": "Neue Versionen gehen erst nach Ihrer Abnahme in Produktion." }
+    ],
+    "ops": {
+      "label": "Animierte Beispielansicht: Betriebsansicht einer Anwendung mit Kennzahlen, angebundenen Systemen und Versionen, von denen eine auf Ihre Freigabe wartet.",
+      "context": "Betrieb · Einkaufsportal",
+      "figures": { "uptime": { "label": "Verfügbarkeit", "value": "99,97 %" }, "rate": { "label": "Anfragen pro Minute" }, "latency": { "label": "Antwortzeit", "value": "182 ms" } },
+      "systems": [ [ "ERP", "Aufträge" ], [ "CRM", "Lieferanten" ], [ "DMS", "Belege" ], [ "SSO", "Anmeldung" ] ],
+      "releases": {
+        "title": "Versionen",
+        "major": "2",
+        "minor": 8,
+        "names": [ "Lieferantenbewertung", "Export für das Controlling", "Zweite Freigabe ab 25'000 EUR", "Budgetprüfung je Kostenstelle", "Rechnungen mit KI auslesen" ],
+        "states": { "wait": "Ihre Freigabe", "roll": "wird ausgeliefert", "done": "ausgeliefert" }
+      }
+    }
+  }
+}

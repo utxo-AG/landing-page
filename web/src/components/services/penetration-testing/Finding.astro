@@ -1,0 +1,172 @@
+---
+/*
+  Penetration Testing, detail page, visual 2: one finding from discovery to the retest, on the dark block.
+  Left the finding, in the middle its rating (four factors, then the risk), right the path it takes: notification,
+  recommendation, remediation, the client's decision (white card: a human decides) and the retest.
+  Two findings take turns ([data-c]): the critical one is fixed and retested after the approval; for the low one
+  the client accepts the residual risk until the next release. data-beat: 0 running, 1 button pressed, 2 decided.
+  The markup is the reduced-motion and no-JS frame: the first finding, decided and closed.
+*/
+const { t } = Astro.props;
+const m = t.servicePages['penetration-testing'].finding;
+const WHO = ['us', 'us', 'you', 'you', 'us'];
+const DECISION = 3;
+const all = m.cases.map((_, index) => index).join(' ');
+const on = (index) => index === 0 && 'is-on';
+---
+<div class="ptp-finding" data-mockup="ptp-finding" data-case="0" data-beat="2" role="img" aria-label={m.label}>
+  <div class="ptp-fi">
+    <div class="ptp-fi-col" style="--i:0">
+      <p class="ptp-zone label">{m.zones.finding}</p>
+      <div class="ptp-panel ptp-fi-card ptp-stack">
+        {m.cases.map((entry, index) => (
+          <div class:list={['ptp-face', on(index)]} data-c={index}>
+            <small>{entry.ref}</small>
+            <b>{entry.title}</b>
+            <p>{entry.summary}</p>
+            <dl>
+              <div><dt>{m.found}</dt><dd>{entry.found}</dd></div>
+              <div><dt>{m.evidence}</dt><dd>{entry.evidence}</dd></div>
+            </dl>
+            <em class:list={['st ptp-fi-state', index === 0 && 'ptp-fi-state--closed']}>{entry.state}</em>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div class="ptp-fi-col" style="--i:1">
+      <p class="ptp-zone label">{m.zones.rating}</p>
+      <div class="ptp-panel ptp-fi-rate">
+        <ul>
+          {m.factors.map((factor, k) => (
+            <li style={`--k:${k}`}>
+              <small>{factor}</small>
+              <span class="ptp-stack">{m.cases.map((entry, index) => <span class:list={['ptp-val', on(index)]} data-c={index}>{entry.values[k]}</span>)}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="ptp-fi-risk">
+          <small class="label">{m.risk}</small>
+          <div class="ptp-stack">
+            {m.cases.map((entry, index) => <p class:list={['ptp-val', on(index)]} data-c={index}><b>{m.severity[entry.level - 1]}</b><span class="ptp-sev" data-level={entry.level} aria-hidden="true"><i></i><i></i><i></i><i></i></span></p>)}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ptp-fi-col" style="--i:2">
+      <p class="ptp-zone label">{m.zones.path}</p>
+      <ol class="ptp-panel ptp-fi-steps">
+        {m.steps.map((step, j) => (
+          <li style={`--j:${j}`} data-decision={j === DECISION ? '' : undefined}>
+            <span class="ptp-mark"><i class="ptp-g is-on" data-c={all}></i></span>
+            <span class="ptp-fi-name"><b>{step}</b><small>{m.who[WHO[j]]}</small></span>
+            <span class="ptp-stack ptp-fi-res">{m.cases.map((entry, index) => <span class:list={['ptp-val', on(index)]} data-c={index}>{entry.results[j]}</span>)}</span>
+            {j === DECISION && (
+              <div class="ptp-fi-ap mock-light is-on" data-c={all}>
+                <p><small>{step} · {m.who.you}</small><em class="st is-human" data-ap="wait">{m.wait}</em></p>
+                <div class="ptp-stack">
+                  {m.cases.map((entry, index) => (
+                    <span class:list={['ptp-stack ptp-apf', on(index)]} data-c={index}><span data-ap="wait"><em class="ptp-btn">{entry.ask}</em></span><b data-ap="done">{entry.results[j]}</b></span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { finding } from './finding.js';
+
+  document.querySelectorAll('[data-mockup="ptp-finding"]').forEach(finding);
+</script>
+
+<style is:global>
+.ptp-finding{container-type:inline-size}
+.ptp-fi{--pad:clamp(14px, 1.7cqw, 24px);--hair:rgba(238,240,246,.13);--small:max(11px, .88em);display:grid;grid-template-columns:27fr 29fr 44fr;gap:clamp(16px, 2.4cqw, 34px);font-size:clamp(12.5px, 1.16cqw, 15.5px);line-height:1.3}
+.ptp-fi-col{display:flex;flex-direction:column;min-width:0}
+.ptp-zone{color:var(--stage-muted);padding-bottom:1.1em;white-space:nowrap}
+.ptp-panel{flex:1;border-radius:clamp(10px, 1.1cqw, 16px);background:rgba(238,240,246,.045);box-shadow:inset 0 0 0 1px var(--hair)}
+.ptp-fi small{font-size:var(--small);color:var(--stage-muted)}
+.ptp-fi b{font-weight:600;letter-spacing:-.01em}
+.ptp-val{opacity:0;transition:opacity var(--t-fast) ease}
+
+.ptp-fi-card{padding:var(--pad)}
+.ptp-fi-card .ptp-face{display:flex;flex-direction:column;align-items:flex-start}
+.ptp-fi-card b{margin-top:.5em;font-size:1.45em;font-weight:500;letter-spacing:-.025em;line-height:1.12;text-wrap:balance}
+.ptp-fi-card p{margin-top:.7em;color:var(--stage-muted);text-wrap:pretty}
+.ptp-fi-card dl{align-self:stretch;margin:1.3em 0 1.4em;border-top:1px solid var(--stage-rule)}
+.ptp-fi-card dl div{display:flex;justify-content:space-between;gap:1em;padding:.65em 0;border-bottom:1px solid var(--stage-rule)}
+.ptp-fi-card dt{flex:none;color:var(--stage-muted)}
+.ptp-fi-card dd{margin:0;text-align:right}
+.ptp-fi-state{margin-top:auto;font-size:max(11px, .82em);opacity:0;transition:opacity var(--t-fast) ease}
+.ptp-fi-state--closed::before{content:"";display:inline-block;width:.34em;height:.62em;margin:0 .6em .08em 0;border-right:1.5px solid var(--phthalo-lift);border-bottom:1.5px solid var(--phthalo-lift);transform:rotate(45deg)}
+.ptp-finding[data-beat="2"] .is-on > .ptp-fi-state{opacity:1;transition:opacity var(--t-move) ease 1.4s}
+
+.ptp-fi-rate{display:flex;flex-direction:column}
+.ptp-fi-rate ul{flex:1;display:grid;grid-auto-rows:1fr}
+.ptp-fi-rate li{display:flex;justify-content:space-between;align-items:center;gap:1em;min-height:3.3em;padding:0 var(--pad);border-bottom:1px solid var(--stage-rule);white-space:nowrap}
+.ptp-fi-rate li .ptp-val{text-align:right}
+.ptp-fi-rate li .ptp-val.is-on{opacity:1;transition:opacity var(--t-fast) ease calc(400ms + var(--k) * 400ms)}
+.ptp-fi-risk{padding:var(--pad)}
+.ptp-fi-risk p{display:flex;justify-content:space-between;align-items:flex-end;margin-top:.5em}
+.ptp-fi-risk b{font-size:clamp(24px, 2.6cqw, 38px);font-weight:500;letter-spacing:-.04em;line-height:1}
+.ptp-fi-risk .ptp-sev{height:clamp(22px, 2.3cqw, 34px);gap:4px}
+.ptp-fi-risk .ptp-sev i{width:clamp(5px, .55cqw, 8px);border-radius:2px}
+.ptp-fi-risk .ptp-val.is-on{opacity:1;transition:opacity var(--t-move) ease 2.2s}
+
+.ptp-fi-steps{display:grid;grid-auto-rows:1fr}
+.ptp-fi-steps li{position:relative;display:grid;grid-template-columns:1.5em 31% minmax(0,1fr);gap:1em;align-items:center;min-height:4.7em;padding:0 var(--pad);border-bottom:1px solid var(--stage-rule)}
+.ptp-fi-steps li:last-child{border-bottom:0}
+.ptp-fi-name{display:grid;gap:.15em}
+.ptp-fi-name b,.ptp-fi-name small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ptp-fi-res{text-wrap:pretty}
+.ptp-mark{width:1.5em;height:1.5em;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(238,240,246,.26)}
+.ptp-g{position:relative;display:block;width:100%;height:100%;border-radius:50%;background:var(--phthalo-lift);opacity:0;transform:scale(.4);transition:opacity var(--t-fast) ease,transform 0s var(--t-fast)}
+.ptp-g::after{content:"";position:absolute;left:50%;top:50%;width:.36em;height:.66em;margin:-.44em 0 0 -.2em;border-right:1.5px solid var(--stage);border-bottom:1.5px solid var(--stage);transform:rotate(45deg)}
+[data-decision] .ptp-g{background:var(--stage-fg)}
+.ptp-fi-steps li:nth-child(-n+3) :is(.ptp-val,.ptp-g).is-on{opacity:1;transform:none;transition:opacity var(--t-fast) ease calc(2.8s + var(--j) * .8s),transform var(--t-fast) var(--ease) calc(2.8s + var(--j) * .8s)}
+.ptp-finding[data-beat="2"] .ptp-fi-steps li:nth-child(n+4) :is(.ptp-val,.ptp-g).is-on{opacity:1;transform:none;transition:opacity var(--t-fast) ease calc((var(--j) - 3) * .8s),transform var(--t-fast) var(--ease) calc((var(--j) - 3) * .8s)}
+
+.ptp-fi-ap{position:absolute;inset:5px calc(var(--pad) - 10px) 5px calc(var(--pad) + 2em);display:flex;flex-direction:column;justify-content:center;gap:.35em;padding:0 1em 0 .5em;border-radius:.8em;box-shadow:0 14px 34px rgba(0,0,0,.5);opacity:0;transform:translateY(10px);transition:opacity var(--t-fast) ease,transform 0s var(--t-fast)}
+.ptp-fi-ap.is-on{opacity:1;transform:none;transition:opacity var(--t-move) ease 5.2s,transform var(--t-enter) var(--ease) 5.2s}
+.ptp-fi-ap p{display:flex;justify-content:space-between;align-items:center;gap:1em;white-space:nowrap}
+.ptp-fi-ap small{color:var(--m-muted)}
+.ptp-fi-ap .st{font-size:max(11px, .76em);padding:.35em .8em}
+.ptp-apf{opacity:0;align-items:center;transition:opacity var(--t-fast) ease}
+.ptp-apf.is-on{opacity:1}
+.ptp-btn{display:inline-block;padding:.42em 1em;border-radius:99px;background:var(--fg);color:#fff;font-style:normal;font-size:max(11px, .78em);font-weight:600;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;transition:transform .2s ease}
+.ptp-finding[data-beat="1"] .ptp-btn{transform:scale(.93)}
+.ptp-fi-ap [data-ap]{transition:opacity var(--t-fast) ease}
+.ptp-fi-ap [data-ap="done"],.ptp-finding[data-beat="2"] .ptp-fi-ap [data-ap="wait"]{opacity:0}
+.ptp-finding[data-beat="2"] .ptp-fi-ap [data-ap="done"]{opacity:1;transition-delay:.15s}
+.ptp-fi-ap b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.js .ptp-fi-col{opacity:0;transform:translateY(24px);transition:opacity var(--t-move) ease,transform var(--t-enter) var(--ease);transition-delay:calc(150ms + var(--i) * 130ms)}
+.js .is-in .ptp-fi-col{opacity:1;transform:none}
+
+@container (max-width:900px){
+  .ptp-fi{--pad:clamp(14px, 2.4cqw, 22px);grid-template-columns:1fr 1fr;font-size:clamp(12.5px, 1.75cqw, 14.5px)}
+  .ptp-fi-col:last-child{grid-column:1 / -1}
+  .ptp-fi-risk b{font-size:clamp(24px, 4cqw, 34px)}
+  .ptp-fi-risk .ptp-sev{height:26px}
+  .ptp-fi-risk .ptp-sev i{width:6px}
+}
+@container (max-width:600px){
+  .ptp-fi{--pad:16px;grid-template-columns:minmax(0,1fr);font-size:clamp(12.5px, 3.7cqw, 14.5px)}
+  .ptp-fi-steps li{grid-template-columns:1.5em minmax(0,1fr);min-height:5.6em;padding-top:.8em;padding-bottom:.8em;align-items:start}
+  .ptp-fi-res{grid-column:2}
+  .ptp-fi-ap{inset:5px 6px}
+  .ptp-fi-ap b{white-space:normal}
+}
+@media (max-width:760px){
+  .ptp-fi{--small:max(10px, .86em)}
+  .ptp-fi-ap .st,.ptp-btn{font-size:max(10px, .76em)}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .ptp-fi-col{transition:none;opacity:1;transform:none}
+  .ptp-finding *,.ptp-finding *::before,.ptp-finding *::after{transition:none !important}
+}
+</style>

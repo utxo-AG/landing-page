@@ -3,7 +3,7 @@
   "home": "/en",
   "meta": {
     "title": "utxo AG: Modern software for digital transformation",
-    "description": "AI-native solutions for complex enterprise requirements: Software Development, Agent Factories, Managed Agents, Agentic CoWorker, AI Automation and AI Adoption."
+    "description": "AI-native solutions for complex enterprise requirements: custom software, AI agents, automation, AI adoption and penetration testing."
   },
   "header": {
     "logoAlt": "utxo AG",
@@ -39,7 +39,7 @@
       "name": "Software Development",
       "short": "Custom software, AI-assisted where needed, from concept to production.",
       "body": "We develop custom software for your processes, AI-assisted on request, from concept to production. A dedicated team is responsible for architecture, development and ongoing enhancement.",
-      "mockupLabel": "Animated example sequence: from workflow to web application, mobile app and integrations through to release.",
+      "mockupLabel": "Animated example sequence: software on five screens, from a team chat to an integration API, a dashboard and a mobile approval.",
       "href": "/en/software-development"
     },
     {
@@ -81,6 +81,14 @@
       "body": "Together with you, we identify the use cases with the greatest benefit and bring them into production step by step. Some are in production within a few weeks, others take months. We support the rollout in your teams.",
       "mockupLabel": "Animated example: use cases are selected by benefit and effort and brought into production.",
       "href": "/en/ai-adoption"
+    },
+    {
+      "id": "penetration-testing",
+      "name": "Penetration Testing",
+      "short": "Regular penetration tests that find vulnerabilities in your systems before they are exploited.",
+      "body": "We test your systems for vulnerabilities on a regular basis, with current tools and to current standards. We rate the findings by risk and support the fix, so weaknesses are found and closed early.",
+      "mockupLabel": "Animated example: a penetration test finds vulnerabilities in a system, rates them and confirms the fix in a retest.",
+      "href": "/en/penetration-testing"
     }
   ],
   "menu": {
@@ -183,7 +191,7 @@
         "href": "https://www.nmkr.io",
         "clients": "nmkr",
         "clientsLabel": "Organizations NMKR has developed for",
-        "tag": "Our own brand",
+        "tag": "Our Web3 brand",
         "text": "No-code toolsets, API and infrastructure for tokenization and payments.",
         "figures": [
           {
@@ -210,7 +218,7 @@
     "press": {
       "label": "utxo AG in the press",
       "link": {
-        "text": "View press coverage",
+        "text": "In the press",
         "href": "/en/press"
       }
     }

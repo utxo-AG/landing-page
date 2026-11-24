@@ -1,205 +1,296 @@
 {
-  "scenes": {
-    "intro": "Beispielprozess",
-    "workflow": "Workflow",
-    "web": "Web-Anwendung",
-    "mobile": "Mobile App",
-    "api": "Schnittstellen",
-    "release": "Release"
-  },
-  "intro": {
-    "label": "Beispielprozess",
-    "title": "Einkaufsmanagement",
-    "line": "Von der Anfrage bis zur Buchung, als Software umgesetzt."
-  },
-  "core": {
-    "workflow": [
-      "Anforderung",
-      "Bestellfreigabe"
+  "chat": {
+    "workspace": "Team Portal",
+    "channelsLabel": "Kanäle",
+    "channels": [
+      "einkauf",
+      "projekt-portal",
+      "release"
     ],
-    "app": [
-      "Portal",
-      "Beschaffung"
-    ],
-    "api": [
-      "Plattform",
-      "API"
-    ],
-    "release": [
-      "Version",
-      "2.4.0"
-    ]
-  },
-  "chips": [
-    {
-      "workflow": [
-        "Fachbereich",
-        "Anfrage"
-      ],
-      "app": [
-        "Anfragen",
-        "128"
-      ],
-      "api": [
-        "ERP",
-        "Aufträge"
-      ],
-      "release": [
-        "Build",
-        "1:42 min"
-      ]
-    },
-    {
-      "workflow": [
-        "Einkauf",
-        "Prüfung"
-      ],
-      "app": [
-        "In Prüfung",
-        "14"
-      ],
-      "api": [
-        "CRM",
-        "Lieferanten"
-      ],
-      "release": [
-        "Tests",
-        " / 212"
-      ]
-    },
-    {
-      "workflow": [
-        "Leitung",
-        "Freigabe"
-      ],
-      "app": [
-        "Freigabe offen",
-        "3"
-      ],
-      "api": [
-        "DMS",
-        "Dokumente"
-      ],
-      "release": [
-        "Review",
-        "freigegeben"
-      ]
-    },
-    {
-      "workflow": [
-        "ERP",
-        "Buchung"
-      ],
-      "app": [
-        "Gebucht",
-        "111"
-      ],
-      "api": [
-        "BI",
-        "Kennzahlen"
-      ],
-      "release": [
-        "Deploy",
-        "14:32 Uhr"
-      ]
-    }
-  ],
-  "tests": 212,
-  "approved": "2",
-  "workflow": {
-    "over": "ab 5'000 EUR",
-    "auto": "automatisch"
-  },
-  "web": {
-    "nav": [
-      "Übersicht",
-      "Bestellungen",
-      "Lieferanten",
-      "Auswertung"
-    ],
-    "table": {
-      "title": "Offene Bestellungen",
-      "rows": [
-        [
-          "Hartmann Technik",
-          "12'480 EUR",
-          "Freigabe"
-        ],
-        [
-          "Nordwerk Logistik",
-          "3'960 EUR",
-          "geprüft"
-        ],
-        [
-          "Elbe Industrie",
-          "27'150 EUR",
-          "geprüft"
-        ],
-        [
-          "Kessler Büro",
-          "845 EUR",
-          "gebucht"
-        ]
-      ]
-    },
-    "chart": {
-      "title": "Bestellvolumen",
-      "value": "1,84 Mio. EUR",
-      "bars": [
-        [
-          "Jul",
-          46
-        ],
-        [
-          "Aug",
-          38
-        ],
-        [
-          "Sep",
-          62
-        ],
-        [
-          "Okt",
-          55
-        ],
-        [
-          "Nov",
-          78
-        ],
-        [
-          "Dez",
-          100
-        ]
-      ]
-    }
-  },
-  "mobile": {
-    "title": "Freigaben",
-    "cards": [
+    "agentsLabel": "Agenten",
+    "agent": "Lena",
+    "channel": "projekt-portal",
+    "members": "8 Mitglieder",
+    "agentTag": "Agent",
+    "placeholder": "Nachricht an #projekt-portal",
+    "messages": [
       {
-        "ref": "B-2041 · Einkauf",
-        "name": "Hartmann Technik",
-        "amount": "12'480 EUR"
+        "initials": "MS",
+        "name": "Miriam Scholz",
+        "time": "14:02",
+        "text": "Release 2.4 ist seit heute live."
       },
       {
-        "ref": "B-2046 · Produktion",
-        "name": "Alpina Messtechnik",
-        "amount": "8'720 EUR"
+        "initials": "FA",
+        "name": "Felix Arnold",
+        "time": "14:05",
+        "text": "Danke, läuft stabil."
+      },
+      {
+        "initials": "JB",
+        "name": "Jana Brandt",
+        "time": "14:21",
+        "text": "Die Rechnungen für März sind im Portal."
       }
     ],
-    "approve": "Freigeben"
+    "ask": {
+      "initials": "TK",
+      "name": "Tobias Keller",
+      "time": "14:30",
+      "mention": "@Lena",
+      "text": "prüf bitte die offenen Posten."
+    },
+    "reply": {
+      "initials": "L",
+      "name": "Lena",
+      "time": "14:31",
+      "text": "Erledigt. 3 Posten sind offen, die Übersicht liegt im Dashboard."
+    }
   },
   "api": {
-    "links": [
-      "REST",
-      "Webhook",
-      "SFTP",
-      "SQL"
-    ]
+    "title": "Integration API",
+    "version": "v2",
+    "status": "6 Systeme verbunden",
+    "hub": {
+      "name": "API",
+      "type": "Integration"
+    },
+    "nodes": {
+      "agent": {
+        "name": "Lena",
+        "type": "Agent"
+      },
+      "erp": {
+        "name": "ERP-System",
+        "type": "Aufträge"
+      },
+      "files": {
+        "name": "Fileserver",
+        "type": "Dokumente"
+      },
+      "crm": {
+        "name": "CRM",
+        "type": "Kontakte"
+      },
+      "sso": {
+        "name": "SSO",
+        "type": "Anmeldung"
+      },
+      "mail": {
+        "name": "E-Mail",
+        "type": "Versand"
+      }
+    },
+    "log": {
+      "title": "Anfragen",
+      "rows": [
+        {
+          "method": "GET",
+          "path": "/health",
+          "target": "API",
+          "status": "200",
+          "time": "12 ms"
+        },
+        {
+          "method": "GET",
+          "path": "/orders/4500218734",
+          "target": "ERP",
+          "status": "200",
+          "time": "182 ms"
+        },
+        {
+          "method": "GET",
+          "path": "/files/lieferschein-4500218734.pdf",
+          "target": "Fileserver",
+          "status": "200",
+          "time": "240 ms"
+        },
+        {
+          "method": "POST",
+          "path": "/crm/activities",
+          "target": "CRM",
+          "status": "201",
+          "time": "96 ms"
+        }
+      ]
+    }
   },
-  "release": {
-    "from": "main",
-    "to": "Produktion",
-    "done": "ausgeliefert"
+  "dash": {
+    "app": "Portal",
+    "nav": [
+      "Übersicht",
+      "Vorgänge",
+      "Berichte"
+    ],
+    "ranges": [
+      "Woche",
+      "Monat",
+      "Quartal"
+    ],
+    "kpis": [
+      {
+        "label": "Geprüft heute",
+        "value": "127",
+        "next": "128"
+      },
+      {
+        "label": "Offene Posten",
+        "value": "3"
+      },
+      {
+        "label": "Durchlaufzeit",
+        "value": "1,6 Tage"
+      }
+    ],
+    "chart": {
+      "title": "Volumen",
+      "unit": "in Tsd. EUR",
+      "labels": [
+        "J",
+        "F",
+        "M",
+        "A",
+        "M",
+        "J",
+        "J",
+        "A",
+        "S",
+        "O",
+        "N",
+        "D"
+      ],
+      "bars": [
+        [
+          42,
+          58
+        ],
+        [
+          38,
+          44
+        ],
+        [
+          55,
+          70
+        ],
+        [
+          48,
+          52
+        ],
+        [
+          62,
+          80
+        ],
+        [
+          58,
+          61
+        ],
+        [
+          66,
+          74
+        ],
+        [
+          52,
+          90
+        ],
+        [
+          70,
+          66
+        ],
+        [
+          64,
+          84
+        ],
+        [
+          82,
+          72
+        ],
+        [
+          100,
+          96
+        ]
+      ]
+    },
+    "feed": {
+      "title": "Letzte Vorgänge",
+      "fresh": {
+        "who": "Lena",
+        "what": "Offene Posten geprüft",
+        "time": "14:31"
+      },
+      "rows": [
+        {
+          "who": "Jana Brandt",
+          "what": "Rechnung R-2317 gebucht",
+          "time": "14:21"
+        },
+        {
+          "who": "Felix Arnold",
+          "what": "Lieferant angelegt",
+          "time": "13:48"
+        },
+        {
+          "who": "Miriam Scholz",
+          "what": "Bericht März erstellt",
+          "time": "11:40"
+        },
+        {
+          "who": "Tobias Keller",
+          "what": "Budget angepasst",
+          "time": "09:12"
+        }
+      ]
+    }
+  },
+  "app": {
+    "time": "14:31",
+    "title": "Freigaben",
+    "open": "Offen",
+    "count": [
+      "2",
+      "1"
+    ],
+    "card": {
+      "ref": "Rechnung R-2318",
+      "name": "Hartmann Technik",
+      "amount": "12'480 EUR",
+      "rows": [
+        [
+          "Kostenstelle",
+          "4120"
+        ],
+        [
+          "Fällig",
+          "30.11."
+        ]
+      ]
+    },
+    "approve": "Freigeben",
+    "approved": "Freigegeben",
+    "next": {
+      "ref": "Rechnung R-2319",
+      "name": "Nordwerk Logistik",
+      "amount": "3'960 EUR"
+    }
+  },
+  "notes": {
+    "time": "14:32",
+    "date": "Dienstag, 24. November",
+    "fresh": {
+      "app": "Portal",
+      "title": "R-2318 freigegeben",
+      "text": "Hartmann Technik · 12'480 EUR"
+    },
+    "items": [
+      {
+        "app": "Lena",
+        "title": "Offene Posten geprüft",
+        "text": "3 Posten sind offen"
+      },
+      {
+        "app": "Kalender",
+        "title": "Release-Review",
+        "text": "Heute, 15:00"
+      }
+    ]
   }
 }

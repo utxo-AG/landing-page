@@ -1,205 +1,296 @@
 {
-  "scenes": {
-    "intro": "Example process",
-    "workflow": "Workflow",
-    "web": "Web application",
-    "mobile": "Mobile app",
-    "api": "Integrations",
-    "release": "Release"
-  },
-  "intro": {
-    "label": "Example process",
-    "title": "Purchasing management",
-    "line": "From request to posting, delivered as software."
-  },
-  "core": {
-    "workflow": [
-      "Requirement",
-      "Order approval"
+  "chat": {
+    "workspace": "Team Portal",
+    "channelsLabel": "Channels",
+    "channels": [
+      "purchasing",
+      "portal-project",
+      "release"
     ],
-    "app": [
-      "Portal",
-      "Procurement"
-    ],
-    "api": [
-      "Platform",
-      "API"
-    ],
-    "release": [
-      "Version",
-      "2.4.0"
-    ]
-  },
-  "chips": [
-    {
-      "workflow": [
-        "Department",
-        "Request"
-      ],
-      "app": [
-        "Requests",
-        "128"
-      ],
-      "api": [
-        "ERP",
-        "Orders"
-      ],
-      "release": [
-        "Build",
-        "1:42 min"
-      ]
-    },
-    {
-      "workflow": [
-        "Purchasing",
-        "Review"
-      ],
-      "app": [
-        "In review",
-        "14"
-      ],
-      "api": [
-        "CRM",
-        "Suppliers"
-      ],
-      "release": [
-        "Tests",
-        " / 212"
-      ]
-    },
-    {
-      "workflow": [
-        "Management",
-        "Approval"
-      ],
-      "app": [
-        "Awaiting approval",
-        "3"
-      ],
-      "api": [
-        "DMS",
-        "Documents"
-      ],
-      "release": [
-        "Review",
-        "approved"
-      ]
-    },
-    {
-      "workflow": [
-        "ERP",
-        "Posting"
-      ],
-      "app": [
-        "Posted",
-        "111"
-      ],
-      "api": [
-        "BI",
-        "Metrics"
-      ],
-      "release": [
-        "Deploy",
-        "2:32 pm"
-      ]
-    }
-  ],
-  "tests": 212,
-  "approved": "2",
-  "workflow": {
-    "over": "from EUR 5,000",
-    "auto": "automatic"
-  },
-  "web": {
-    "nav": [
-      "Overview",
-      "Orders",
-      "Suppliers",
-      "Analytics"
-    ],
-    "table": {
-      "title": "Open orders",
-      "rows": [
-        [
-          "Hartmann Technik",
-          "EUR 12,480",
-          "Approval"
-        ],
-        [
-          "Nordwerk Logistik",
-          "EUR 3,960",
-          "reviewed"
-        ],
-        [
-          "Elbe Industrie",
-          "EUR 27,150",
-          "reviewed"
-        ],
-        [
-          "Kessler Büro",
-          "EUR 845",
-          "posted"
-        ]
-      ]
-    },
-    "chart": {
-      "title": "Order volume",
-      "value": "EUR 1.84M",
-      "bars": [
-        [
-          "Jul",
-          46
-        ],
-        [
-          "Aug",
-          38
-        ],
-        [
-          "Sep",
-          62
-        ],
-        [
-          "Oct",
-          55
-        ],
-        [
-          "Nov",
-          78
-        ],
-        [
-          "Dec",
-          100
-        ]
-      ]
-    }
-  },
-  "mobile": {
-    "title": "Approvals",
-    "cards": [
+    "agentsLabel": "Agents",
+    "agent": "Lena",
+    "channel": "portal-project",
+    "members": "8 members",
+    "agentTag": "Agent",
+    "placeholder": "Message #portal-project",
+    "messages": [
       {
-        "ref": "B-2041 · Purchasing",
-        "name": "Hartmann Technik",
-        "amount": "EUR 12,480"
+        "initials": "MS",
+        "name": "Miriam Scholz",
+        "time": "14:02",
+        "text": "Release 2.4 went live today."
       },
       {
-        "ref": "B-2046 · Production",
-        "name": "Alpina Messtechnik",
-        "amount": "EUR 8,720"
+        "initials": "FA",
+        "name": "Felix Arnold",
+        "time": "14:05",
+        "text": "Thanks, running stable."
+      },
+      {
+        "initials": "JB",
+        "name": "Jana Brandt",
+        "time": "14:21",
+        "text": "The March invoices are in the portal."
       }
     ],
-    "approve": "Approve"
+    "ask": {
+      "initials": "TK",
+      "name": "Tobias Keller",
+      "time": "14:30",
+      "mention": "@Lena",
+      "text": "please check the open items."
+    },
+    "reply": {
+      "initials": "L",
+      "name": "Lena",
+      "time": "14:31",
+      "text": "Done. 3 items are open, the overview is on the dashboard."
+    }
   },
   "api": {
-    "links": [
-      "REST",
-      "Webhook",
-      "SFTP",
-      "SQL"
-    ]
+    "title": "Integration API",
+    "version": "v2",
+    "status": "6 systems connected",
+    "hub": {
+      "name": "API",
+      "type": "Integration"
+    },
+    "nodes": {
+      "agent": {
+        "name": "Lena",
+        "type": "Agent"
+      },
+      "erp": {
+        "name": "ERP system",
+        "type": "Orders"
+      },
+      "files": {
+        "name": "File server",
+        "type": "Documents"
+      },
+      "crm": {
+        "name": "CRM",
+        "type": "Contacts"
+      },
+      "sso": {
+        "name": "SSO",
+        "type": "Sign-in"
+      },
+      "mail": {
+        "name": "Email",
+        "type": "Outbound"
+      }
+    },
+    "log": {
+      "title": "Requests",
+      "rows": [
+        {
+          "method": "GET",
+          "path": "/health",
+          "target": "API",
+          "status": "200",
+          "time": "12 ms"
+        },
+        {
+          "method": "GET",
+          "path": "/orders/4500218734",
+          "target": "ERP",
+          "status": "200",
+          "time": "182 ms"
+        },
+        {
+          "method": "GET",
+          "path": "/files/delivery-note-4500218734.pdf",
+          "target": "File server",
+          "status": "200",
+          "time": "240 ms"
+        },
+        {
+          "method": "POST",
+          "path": "/crm/activities",
+          "target": "CRM",
+          "status": "201",
+          "time": "96 ms"
+        }
+      ]
+    }
   },
-  "release": {
-    "from": "main",
-    "to": "Production",
-    "done": "shipped"
+  "dash": {
+    "app": "Portal",
+    "nav": [
+      "Overview",
+      "Activity",
+      "Reports"
+    ],
+    "ranges": [
+      "Week",
+      "Month",
+      "Quarter"
+    ],
+    "kpis": [
+      {
+        "label": "Reviewed today",
+        "value": "127",
+        "next": "128"
+      },
+      {
+        "label": "Open items",
+        "value": "3"
+      },
+      {
+        "label": "Lead time",
+        "value": "1.6 days"
+      }
+    ],
+    "chart": {
+      "title": "Volume",
+      "unit": "in EUR thousand",
+      "labels": [
+        "J",
+        "F",
+        "M",
+        "A",
+        "M",
+        "J",
+        "J",
+        "A",
+        "S",
+        "O",
+        "N",
+        "D"
+      ],
+      "bars": [
+        [
+          42,
+          58
+        ],
+        [
+          38,
+          44
+        ],
+        [
+          55,
+          70
+        ],
+        [
+          48,
+          52
+        ],
+        [
+          62,
+          80
+        ],
+        [
+          58,
+          61
+        ],
+        [
+          66,
+          74
+        ],
+        [
+          52,
+          90
+        ],
+        [
+          70,
+          66
+        ],
+        [
+          64,
+          84
+        ],
+        [
+          82,
+          72
+        ],
+        [
+          100,
+          96
+        ]
+      ]
+    },
+    "feed": {
+      "title": "Recent activity",
+      "fresh": {
+        "who": "Lena",
+        "what": "Open items reviewed",
+        "time": "14:31"
+      },
+      "rows": [
+        {
+          "who": "Jana Brandt",
+          "what": "Invoice R-2317 posted",
+          "time": "14:21"
+        },
+        {
+          "who": "Felix Arnold",
+          "what": "Supplier created",
+          "time": "13:48"
+        },
+        {
+          "who": "Miriam Scholz",
+          "what": "March report created",
+          "time": "11:40"
+        },
+        {
+          "who": "Tobias Keller",
+          "what": "Budget adjusted",
+          "time": "09:12"
+        }
+      ]
+    }
+  },
+  "app": {
+    "time": "14:31",
+    "title": "Approvals",
+    "open": "Open",
+    "count": [
+      "2",
+      "1"
+    ],
+    "card": {
+      "ref": "Invoice R-2318",
+      "name": "Hartmann Technik",
+      "amount": "EUR 12,480",
+      "rows": [
+        [
+          "Cost center",
+          "4120"
+        ],
+        [
+          "Due",
+          "Nov 30"
+        ]
+      ]
+    },
+    "approve": "Approve",
+    "approved": "Approved",
+    "next": {
+      "ref": "Invoice R-2319",
+      "name": "Nordwerk Logistik",
+      "amount": "EUR 3,960"
+    }
+  },
+  "notes": {
+    "time": "14:32",
+    "date": "Tuesday, November 24",
+    "fresh": {
+      "app": "Portal",
+      "title": "R-2318 approved",
+      "text": "Hartmann Technik · EUR 12,480"
+    },
+    "items": [
+      {
+        "app": "Lena",
+        "title": "Open items reviewed",
+        "text": "3 items are open"
+      },
+      {
+        "app": "Calendar",
+        "title": "Release review",
+        "text": "Today, 3:00 pm"
+      }
+    ]
   }
 }

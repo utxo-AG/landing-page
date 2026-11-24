@@ -1,0 +1,433 @@
+{
+  "title": "Penetration Testing: recurring penetration tests | utxo AG",
+  "description": "Recurring penetration tests by utxo AG for web applications, APIs, infrastructure and AI applications: report, remediation and retest.",
+  "lede": "We test your systems the way an attacker would approach them, and we repeat it at regular intervals. Every round ends with a report, fixed vulnerabilities and a retest.",
+  "faq": [
+    {
+      "q": "How often should we test?",
+      "a": "That depends on your systems, your release rhythm and your requirements. We agree the interval with you. After larger changes, an additional round is advisable."
+    },
+    {
+      "q": "Does a penetration test find every vulnerability?",
+      "a": "No. A test shows which vulnerabilities were found within the agreed scope and the available time. It is a snapshot and not proof that a system is free of gaps. This is one reason why we test regularly and again after changes."
+    },
+    {
+      "q": "Do you also test production systems?",
+      "a": "Yes, if you want us to. We agree with you in advance which tests run on the production system, in which time window and with which restrictions."
+    },
+    {
+      "q": "What do you need from us to start?",
+      "a": "Written authorization from the system owner, a description of the systems in scope, contacts in your IT and, depending on the type of test, test accounts. Systems hosted by third parties, such as a hosting provider, also require their consent."
+    },
+    {
+      "q": "Who receives the report?",
+      "a": "Only the people you name. We treat findings and reports as confidential and do not pass them on to third parties."
+    },
+    {
+      "q": "Do you also test AI applications and agents?",
+      "a": "Yes. We develop AI applications and agents ourselves and test them like any other application. This includes, for example, whether an agent can be led to take actions it is not allowed to take, or whether it discloses data a person has no access to."
+    }
+  ],
+  "scope": {
+    "title": "What you get",
+    "text": "Penetration tests for an agreed scope, repeated at the agreed interval and after larger changes. We test with current tools and according to current standards, and we keep both up to date.",
+    "points": [
+      {
+        "name": "Systems tested",
+        "text": "Web applications, interfaces and APIs, infrastructure, and AI applications and agents. We define the scope with you before every round.",
+        "tag": "Scope"
+      },
+      {
+        "name": "Report",
+        "text": "Every finding is described, rated by risk and comes with a concrete recommendation. A summary for management comes first.",
+        "tag": "Per round"
+      },
+      {
+        "name": "Remediation",
+        "text": "We explain the findings to your development and IT teams and support them with the fix.",
+        "tag": "With your team"
+      },
+      {
+        "name": "Retest",
+        "text": "Once the vulnerabilities are fixed, we test them again and record what is closed.",
+        "tag": "Confirmation"
+      },
+      {
+        "name": "Next round",
+        "text": "The next round follows at the agreed interval or after a major release. This keeps your security level traceable over time.",
+        "tag": "Recurring"
+      }
+    ]
+  },
+  "report": {
+    "label": "Animated sample view of a test report: four findings are shown in turn, each with its risk rating, description and recommendation. Sample data.",
+    "context": "Report · Customer portal · Round 4",
+    "summary": "Findings by risk",
+    "severity": [
+      "low",
+      "medium",
+      "high",
+      "critical"
+    ],
+    "counts": [
+      2,
+      3,
+      1,
+      1
+    ],
+    "list": "Findings",
+    "excerpt": "Excerpt",
+    "risk": "Risk",
+    "axes": {
+      "x": "Impact",
+      "y": "Likelihood"
+    },
+    "description": "Description",
+    "advice": "Recommendation",
+    "findings": [
+      {
+        "ref": "R4-01",
+        "title": "Access control can be bypassed",
+        "area": "API",
+        "level": 4,
+        "likelihood": 3,
+        "impact": 3,
+        "description": "Signed-in users can retrieve other customers' orders.",
+        "advice": "Check authorization on the server for every request."
+      },
+      {
+        "ref": "R4-02",
+        "title": "Account with excessive privileges",
+        "area": "Database",
+        "level": 3,
+        "likelihood": 2,
+        "impact": 3,
+        "description": "The application's account may change more data than it needs.",
+        "advice": "Restrict the account's privileges to what is necessary."
+      },
+      {
+        "ref": "R4-03",
+        "title": "Session does not expire",
+        "area": "Sign-in",
+        "level": 2,
+        "likelihood": 2,
+        "impact": 2,
+        "description": "Sessions remain valid after sign-out.",
+        "advice": "End sessions on sign-out and limit their lifetime."
+      },
+      {
+        "ref": "R4-06",
+        "title": "Outdated library",
+        "area": "Web application",
+        "level": 1,
+        "likelihood": 1,
+        "impact": 2,
+        "description": "A component in use is not up to date.",
+        "advice": "Update the component and check dependencies continuously."
+      }
+    ]
+  },
+  "example": {
+    "title": "One finding as an example",
+    "text": "A retail company has its customer portal tested regularly. In round 4, the API turns out to let signed-in users retrieve other customers' orders. A second finding carries a low risk. What happens with it is the company's decision."
+  },
+  "finding": {
+    "label": "Animated sample view: two findings are rated by risk. The critical one is reported, fixed and retested after your approval. For the second one, the company accepts the residual risk until the next release.",
+    "zones": {
+      "finding": "Finding",
+      "rating": "Rating",
+      "path": "From finding to retest"
+    },
+    "found": "Found",
+    "evidence": "Evidence",
+    "factors": [
+      "Exploitability",
+      "Precondition",
+      "Data affected",
+      "Impact"
+    ],
+    "risk": "Risk",
+    "severity": [
+      "low",
+      "medium",
+      "high",
+      "critical"
+    ],
+    "steps": [
+      "Notification",
+      "Recommendation",
+      "Remediation",
+      "Your decision",
+      "Retest"
+    ],
+    "who": {
+      "us": "utxo AG",
+      "you": "Your team"
+    },
+    "wait": "Your approval",
+    "cases": [
+      {
+        "ref": "R4-01 · API",
+        "title": "Access control can be bypassed",
+        "summary": "Signed-in users can retrieve other customers' orders.",
+        "found": "Round 4, orders area",
+        "evidence": "documented in the report",
+        "values": [
+          "easy",
+          "signed-in account",
+          "customer data",
+          "high"
+        ],
+        "level": 4,
+        "results": [
+          "Reported to IT security ahead of the report",
+          "Check authorization on the server for every request",
+          "Fix deployed with release 4.2.1",
+          "Retest approved, S. Brandt",
+          "No longer reproducible"
+        ],
+        "ask": "Approve retest",
+        "state": "closed"
+      },
+      {
+        "ref": "R4-06 · Web application",
+        "title": "Outdated library",
+        "summary": "A component in use is not up to date.",
+        "found": "Round 4, front end",
+        "evidence": "documented in the report",
+        "values": [
+          "difficult",
+          "none",
+          "none directly",
+          "low"
+        ],
+        "level": 1,
+        "results": [
+          "Listed in the round 4 report",
+          "Update the component",
+          "Scheduled for release 4.3",
+          "Residual risk accepted until then, S. Brandt",
+          "Scheduled for round 5"
+        ],
+        "ask": "Accept residual risk",
+        "state": "open until round 5"
+      }
+    ]
+  },
+  "project": {
+    "title": "How we work together",
+    "text": "It starts with a conversation about your systems and your goals. After that, every test round follows the same sequence. How often we test is agreed with you: it depends on your systems and your release rhythm.",
+    "steps": [
+      {
+        "name": "Scope and authorization",
+        "text": "We define with you which systems are tested, how deeply and in which time windows. Testing only takes place with written authorization from the system owner.",
+        "note": "Test agreement"
+      },
+      {
+        "name": "Test",
+        "text": "We test the agreed systems from an attacker's point of view, with current tools and by hand. We report critical findings immediately.",
+        "note": "Agreed test window"
+      },
+      {
+        "name": "Report",
+        "text": "You receive all findings with a risk rating and a recommendation. We walk your team through the report.",
+        "note": "Report"
+      },
+      {
+        "name": "Remediation",
+        "text": "Your team or your service provider fixes the vulnerabilities. We answer questions and support the implementation.",
+        "note": "Measures"
+      },
+      {
+        "name": "Retest and next round",
+        "text": "We test the fixed findings again. The next round follows at the agreed interval or after larger changes.",
+        "note": "Recurring"
+      }
+    ]
+  },
+  "rounds": {
+    "label": "Animated diagram with sample data: six test rounds over time. The number of findings falls from round to round, and new ones appear after a major release. Almost all are closed after the retest.",
+    "title": "Findings per test round",
+    "round": "Round",
+    "found": "found",
+    "open": "open",
+    "legend": {
+      "found": "found, by risk",
+      "closed": "fixed and retested",
+      "open": "open, carried into the next round"
+    },
+    "rounds": [
+      {
+        "when": "Initial test",
+        "levels": [
+          4,
+          4,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1
+        ],
+        "open": 3,
+        "release": false
+      },
+      {
+        "when": "agreed interval",
+        "levels": [
+          3,
+          3,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1
+        ],
+        "open": 1,
+        "release": false
+      },
+      {
+        "when": "agreed interval",
+        "levels": [
+          3,
+          2,
+          2,
+          1,
+          1
+        ],
+        "open": 0,
+        "release": false
+      },
+      {
+        "when": "after release 3.0",
+        "levels": [
+          4,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1
+        ],
+        "open": 2,
+        "release": true
+      },
+      {
+        "when": "agreed interval",
+        "levels": [
+          3,
+          2,
+          1,
+          1
+        ],
+        "open": 0,
+        "release": false
+      },
+      {
+        "when": "agreed interval",
+        "levels": [
+          2,
+          1
+        ],
+        "open": 0,
+        "release": false
+      }
+    ]
+  },
+  "organisation": {
+    "title": "Coordination with your organization",
+    "text": "A penetration test touches live operations. That is why it is settled in advance who is informed, when testing takes place and who decides. The results are confidential.",
+    "points": [
+      {
+        "name": "Contacts",
+        "text": "Your IT and utxo AG each name one contact. They coordinate the test windows and can be reached during the test.",
+        "tag": "Coordination"
+      },
+      {
+        "name": "Test windows",
+        "text": "You decide when testing takes place, for example outside business hours or ahead of a release.",
+        "tag": "Your call"
+      },
+      {
+        "name": "Production or test system",
+        "text": "We clarify with you what is tested on the test system and what is necessary on the production system. Tests that carry a risk for operations only run after your approval.",
+        "tag": "Your approval"
+      },
+      {
+        "name": "Confidentiality",
+        "text": "Findings and reports only go to the agreed group of recipients. You determine who sees the report.",
+        "tag": "Recipients"
+      },
+      {
+        "name": "Your decision",
+        "text": "You decide what happens with a finding: fix it, schedule it or deliberately accept a residual risk.",
+        "tag": "You decide"
+      }
+    ]
+  },
+  "plan": {
+    "label": "Animated sample view of a test plan: three systems with agreed test windows in one week. The test on the production system only starts after your approval. Sample data.",
+    "context": "Test plan · Round 4",
+    "week": "Week 47",
+    "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+    ],
+    "window": "Test window",
+    "status": {
+      "planned": "planned",
+      "running": "Test running",
+      "done": "completed",
+      "wait": "Your approval"
+    },
+    "rows": [
+      {
+        "name": "Customer portal",
+        "env": "Test system",
+        "time": "Mon to Wed, daytime",
+        "from": 0,
+        "to": 3,
+        "approval": false
+      },
+      {
+        "name": "API",
+        "env": "Test system",
+        "time": "Wed to Fri, daytime",
+        "from": 2,
+        "to": 5,
+        "approval": false
+      },
+      {
+        "name": "Infrastructure",
+        "env": "Production system",
+        "time": "Sat and Sun, all day",
+        "from": 5,
+        "to": 7,
+        "approval": true
+      }
+    ],
+    "recipients": {
+      "label": "Report goes to",
+      "list": [
+        "IT security",
+        "Head of development",
+        "Management"
+      ]
+    }
+  }
+}

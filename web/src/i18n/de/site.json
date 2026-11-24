@@ -3,7 +3,7 @@
   "home": "/de",
   "meta": {
     "title": "utxo AG: Moderne Software für digitale Transformation",
-    "description": "KI-native Lösungen für komplexe Unternehmensanforderungen: Software Development, Agent Factories, Managed Agents, Agentic CoWorker, KI-Automationen und AI Adoption."
+    "description": "KI-native Lösungen für komplexe Unternehmensanforderungen: individuelle Software, KI-Agenten, Automationen, AI Adoption und Penetration Testing."
   },
   "header": {
     "logoAlt": "utxo AG",
@@ -39,7 +39,7 @@
       "name": "Software Development",
       "short": "Individuelle Software, auch KI-gestützt, vom Konzept bis in den Betrieb.",
       "body": "Wir entwickeln individuelle Software für Ihre Prozesse, auf Wunsch KI-gestützt, vom Konzept bis in den Betrieb. Ein festes Team begleitet Architektur, Entwicklung und Weiterentwicklung.",
-      "mockupLabel": "Animierte Beispielsequenz: vom Workflow über Web-Anwendung, Mobile App und Schnittstellen bis zum Release.",
+      "mockupLabel": "Animierte Beispielsequenz: Software auf fünf Bildschirmen, vom Team-Chat über eine Integrations-API und ein Dashboard bis zur mobilen Freigabe.",
       "href": "/de/software-development"
     },
     {
@@ -81,6 +81,14 @@
       "body": "Wir identifizieren mit Ihnen die Anwendungsfälle mit dem grössten Nutzen und führen sie Schritt für Schritt in den Betrieb. Manche sind in wenigen Wochen produktiv, andere brauchen Monate. Wir begleiten die Einführung in Ihren Teams.",
       "mockupLabel": "Animierte Beispielansicht: Use Cases werden nach Nutzen und Aufwand ausgewählt und in den Betrieb geführt.",
       "href": "/de/ai-adoption"
+    },
+    {
+      "id": "penetration-testing",
+      "name": "Penetration Testing",
+      "short": "Regelmässige Penetrationstests, die Sicherheitslücken in Ihren Systemen finden, bevor sie ausgenutzt werden.",
+      "body": "Wir prüfen Ihre Systeme regelmässig mit Penetrationstests auf Sicherheitslücken, mit aktuellen Tools und nach aktuellen Standards. Die Befunde bewerten wir nach Risiko und unterstützen bei der Behebung, damit Schwachstellen früh erkannt und geschlossen werden.",
+      "mockupLabel": "Animierte Beispielansicht: Ein Penetrationstest findet Schwachstellen in einem System, bewertet sie und bestätigt die Behebung im Nachtest.",
+      "href": "/de/penetration-testing"
     }
   ],
   "menu": {
@@ -183,7 +191,7 @@
         "href": "https://www.nmkr.io",
         "clients": "nmkr",
         "clientsLabel": "Unternehmen, für die wir als NMKR entwickelt haben",
-        "tag": "Eigene Marke",
+        "tag": "Unsere Web3 Marke",
         "text": "No-Code-Toolsets, API und Infrastruktur für Tokenisierung und Payments.",
         "figures": [
           {
@@ -210,7 +218,7 @@
     "press": {
       "label": "utxo AG in der Presse",
       "link": {
-        "text": "Zur Presseseite",
+        "text": "In der Presse",
         "href": "/de/presse"
       }
     }

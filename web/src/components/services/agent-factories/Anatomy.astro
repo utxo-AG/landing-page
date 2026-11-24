@@ -1,0 +1,131 @@
+---
+/*
+  Anatomy of one agent: a cube taken apart into five slabs (json order = top to bottom), drawn as SVG polygons
+  in viewBox units. A slab moves only by translateY (--k levels of --rise when open, --mid levels when closed, so the closed
+  cube sits in the middle of the scene) and the stack opens and closes without any 3D transform. Labels are HTML text placed at the height of their slab in the open state.
+  The markup is the reduced-motion and no-JS frame: open, first layer marked.
+*/
+import { camera, projector, box, plane } from './iso.js';
+
+const { t } = Astro.props;
+const m = t.servicePages['agent-factories'].anatomy;
+
+const SIDE = 40;
+const THICK = 6;
+const SPREAD = 12;
+const PAD = 3;
+const cam = camera(64);
+const count = m.layers.length;
+const rise = SPREAD * cam.kz;
+const top = PAD + cam.ky * SIDE + cam.kz * ((count - 1) * (THICK + SPREAD) + THICK) + 2;
+const P = projector(cam, PAD, top);
+const width = 2 * PAD + 2 * cam.kx * SIDE;
+const height = top + cam.ky * SIDE + PAD + 4;
+
+const slabs = m.layers.map((_, index) => {
+  const level = count - 1 - index;
+  const z = level * THICK;
+  const [x, y] = P(SIDE, SIDE, z + THICK / 2);
+  return { index, level, faces: box(P, 0, 0, z, SIDE, SIDE, THICK), plane: plane(cam, P(0, 0, z + THICK)), x, y, labelY: ((y - level * rise) / height) * 100 };
+}).reverse();
+const ground = box(P, 3, 3, -1.5, SIDE, SIDE, 0).top;
+const wholeY = ((P(SIDE, SIDE, (count * THICK) / 2)[1] - ((count - 1) / 2) * rise) / height) * 100;
+
+/* flat markings on the top of each slab, in world units (0 to SIDE) */
+const grid = [0, 1, 2, 3].flatMap((c) => [0, 1, 2].map((r) => `<rect x="${6 + c * 7.6}" y="${8 + r * 9}" width="4.6" height="4.6"/>`)).join('');
+const MARKS = [
+  '<rect x="6" y="29" width="6" height="5"/><rect x="17" y="29" width="6" height="5"/><rect x="28" y="29" width="6" height="5"/>',
+  grid,
+  '<path d="M6 6H34V34H6ZM13 13H27V27H13ZM20 27V34" fill="none"/>',
+  '<path d="M20 17V6M23 20H34M20 23V34M17 20H6M17 17H23V23H17Z" fill="none"/><rect x="18" y="3" width="4" height="4"/><rect x="33" y="18" width="4" height="4"/><rect x="18" y="33" width="4" height="4"/><rect x="3" y="18" width="4" height="4"/>',
+  '<path d="M5 5H35V35H5ZM15 5V35M25 5V35M5 15H35M5 25H35" fill="none"/>',
+];
+---
+<div class="afp-an mock-light" data-afp="anatomy" data-open role="img" aria-label={m.label} style={`--rise:${rise.toFixed(3)}px;--mid:${(count - 1) / 2}`}>
+  <div class="mock-bar label"><span>{m.context}</span><span class="mock-live"><i></i>{m.agent}</span></div>
+  <div class="afp-an-scene">
+    <svg viewBox={`0 0 ${width.toFixed(2)} ${height.toFixed(2)}`} aria-hidden="true">
+      <defs>
+        <linearGradient id="afp-an-top" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#31353D" /><stop offset="1" stop-color="#191B20" /></linearGradient>
+        <filter id="afp-an-blur" x="-30%" y="-60%" width="160%" height="220%"><feGaussianBlur stdDeviation="2.2" /></filter>
+      </defs>
+      <polygon class="afp-an-ground" points={ground} filter="url(#afp-an-blur)" />
+      {slabs.map((slab) => (
+        <g class:list={['afp-an-slab', slab.index === 0 && 'is-on']} data-i={slab.index} style={`--k:${slab.level}`}>
+          <polygon class="afp-an-left" points={slab.faces.left} />
+          <polygon class="afp-an-right" points={slab.faces.right} />
+          <polygon class="afp-an-top" points={slab.faces.top} />
+          <g class="afp-an-mark" transform={slab.plane} set:html={MARKS[slab.index % MARKS.length]} />
+          <polygon class="afp-an-ring" points={slab.faces.top} />
+          <line class="afp-an-lead" x1={slab.x + 1.5} y1={slab.y} x2={width} y2={slab.y} />
+        </g>
+      ))}
+    </svg>
+    <ol class="afp-an-layers">
+      {m.layers.map((layer, index) => (
+        <li class:list={[index === 0 && 'is-on']} style={`--y:${slabs.find((slab) => slab.index === index).labelY.toFixed(2)}`}><b>{layer.name}</b><span>{layer.text}</span></li>
+      ))}
+    </ol>
+    <p class="afp-an-whole" style={`--y:${wholeY.toFixed(2)}`}><b>{m.whole.name}</b><span>{m.whole.text}</span></p>
+  </div>
+  <div class="afp-an-notes">
+    {m.layers.map((layer, index) => <p class:list={[index === 0 && 'is-on']}>{layer.text}</p>)}
+  </div>
+</div>
+
+<script>
+  import { anatomy } from './anatomy.js';
+
+  document.querySelectorAll('[data-afp="anatomy"]').forEach(anatomy);
+</script>
+
+<style is:global>
+.afp-an{--open:0;container-type:inline-size;position:relative;font-size:clamp(13px, 1.05vw, 15.5px);line-height:1.3}
+.afp-an.mock-light{background:none}
+.afp-an[data-open]{--open:1}
+.afp-an .mock-live i{background:var(--phthalo)}
+.afp-an-scene{position:relative;display:grid;grid-template-columns:42% minmax(0,1fr);margin-top:clamp(20px, 2.6vw, 40px)}
+.afp-an-scene svg{width:100%;height:auto;overflow:visible}
+.afp-an-ground{fill:#0A0D18;opacity:.2}
+.afp-an-slab{transform:translateY(calc((var(--open) * var(--k) + (1 - var(--open)) * var(--mid)) * var(--rise) * -1 - var(--pop, 0px)));transition:transform var(--t-enter) var(--ease);transition-delay:calc(var(--k) * 45ms)}
+.afp-an-slab.is-on{--pop:1.4px}
+.afp-an-left{fill:#101216}
+.afp-an-right{fill:#050608}
+.afp-an-top{fill:url(#afp-an-top)}
+.afp-an-mark{fill:#EEF0F6;stroke:#EEF0F6;stroke-width:1;opacity:.3;transition:opacity var(--t-fast)}
+.afp-an-mark *{vector-effect:non-scaling-stroke}
+.afp-an-mark rect{stroke:none}
+.afp-an-ring{fill:none;stroke:var(--phthalo-lift);stroke-width:1.5;vector-effect:non-scaling-stroke;opacity:0;transition:opacity var(--t-fast)}
+.afp-an-lead{stroke:var(--fg);stroke-width:1;vector-effect:non-scaling-stroke;opacity:calc(var(--open) * .16);transition:opacity var(--t-fast)}
+.is-on > .afp-an-mark{opacity:1}
+.is-on > .afp-an-ring{opacity:1}
+.is-on > .afp-an-lead{opacity:calc(var(--open) * .6)}
+
+.afp-an-layers{position:relative}
+.afp-an-layers li,.afp-an-whole{position:absolute;left:clamp(10px, 1.2vw, 18px);right:0;top:calc(var(--y) * 1%);transform:translateY(-.68em);transition:opacity var(--t-fast)}
+.afp-an-layers li{opacity:calc(var(--open) * .42)}
+.afp-an-layers li.is-on{opacity:var(--open)}
+.afp-an-layers b,.afp-an-whole b{display:block;font-size:clamp(17px, 1.5vw, 23px);font-weight:400;line-height:1.1;letter-spacing:-.03em}
+.afp-an-layers span,.afp-an-whole span{display:block;margin-top:5px;max-width:24em;color:var(--muted);font-size:clamp(12px, 1vw, 14.5px);line-height:1.3}
+.afp-an-whole{left:42%;margin-left:clamp(10px, 1.2vw, 18px);opacity:calc(1 - var(--open))}
+.afp-an-notes{display:none}
+
+.js .afp-an .mock-bar,.js .afp-an-scene{opacity:0;transform:translateY(22px);transition:opacity var(--t-move) ease .2s,transform var(--t-enter) var(--ease) .2s}
+.js .is-in .afp-an .mock-bar,.js .is-in .afp-an-scene{opacity:1;transform:none}
+.afp-an ~ .sp-points{margin-top:clamp(40px, 5vw, 80px)}
+
+/* narrow: names beside the slabs, the text of the marked layer in one place below */
+@container (max-width:600px){
+  .afp-an-scene{grid-template-columns:min(52%, 250px) minmax(0,1fr)}
+  .afp-an-whole{left:min(52%, 250px)}
+  .afp-an-layers span{display:none}
+  .afp-an-layers b,.afp-an-whole b{font-size:15px}
+  .afp-an-whole span{font-size:11px}
+  .afp-an-notes{display:grid;margin-top:14px;padding-top:12px;border-top:1px solid var(--rule);min-height:4.4em}
+  .afp-an-notes p{grid-area:1 / 1;color:var(--muted);font-size:13px;line-height:1.35;opacity:0;transition:opacity var(--t-fast)}
+  .afp-an-notes p.is-on{opacity:var(--open)}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .afp-an .mock-bar,.js .afp-an-scene,.afp-an-slab,.afp-an *{transition:none}
+}
+</style>

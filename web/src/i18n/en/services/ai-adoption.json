@@ -1,0 +1,740 @@
+{
+  "title": "AI Adoption and Consulting: from use cases to software in operation | utxo AG",
+  "description": "utxo AG works with you to identify the AI use cases with the greatest benefit, assesses them transparently and takes them into operation step by step.",
+  "lede": "Together with you, we find the use cases that are worth pursuing in your company and take them into operation step by step. The result is software your teams work with every day.",
+  "scope": {
+    "title": "What you get",
+    "text": "We are a software development team. Every recommendation is specific enough to be implemented, and if you wish, we implement it ourselves.",
+    "points": [
+      {
+        "name": "Use case portfolio",
+        "text": "All use cases from your departments in one overview, assessed by benefit, effort, data and risk.",
+        "tag": "Workshop"
+      },
+      {
+        "name": "Profile per use case",
+        "text": "One page per use case: process today, data sources, people involved, decision points, estimate with a range, and risks.",
+        "tag": "Basis"
+      },
+      {
+        "name": "Roadmap",
+        "text": "A sequence that fits your organization. Short projects start early, larger ones get under way in parallel.",
+        "tag": "Planning"
+      },
+      {
+        "name": "Pilot with real data",
+        "text": "The first use case runs as software in your environment, with your data and the people who will work with it later.",
+        "tag": "Software"
+      },
+      {
+        "name": "Introduction in the team",
+        "text": "Roles, training and a fixed path for feedback, until the solution is part of everyday work.",
+        "tag": "Support"
+      }
+    ]
+  },
+  "example": {
+    "title": "One use case, assessed on one page",
+    "text": "An example: a mechanical engineering company wants to prepare quotes faster. The profile records how the process runs today, which data is available, who is involved and where a person continues to decide. The estimate states a range and the assumptions behind it.",
+    "note": "The profile also shows which form the solution should take: an AI automation, an Agentic CoWorker in the team, a managed agent or custom software."
+  },
+  "project": {
+    "title": "How a project runs",
+    "text": "Every use case gets its own estimate. Some are productive within a few weeks, others take months. That is why we plan in waves: short projects deliver results early, and each further one uses what is already in place.",
+    "steps": [
+      {
+        "name": "Initial conversation",
+        "text": "We clarify goals, the starting point and who is involved on your side.",
+        "note": "Goals and scope"
+      },
+      {
+        "name": "Use case workshop",
+        "text": "With your departments, we collect use cases and assess them by benefit, effort, data and risk.",
+        "note": "Portfolio, shortlist"
+      },
+      {
+        "name": "Profile and decision",
+        "text": "Profiles with estimates are prepared for the shortlist. You decide where we begin.",
+        "note": "Profiles, roadmap"
+      },
+      {
+        "name": "Pilot",
+        "text": "We develop the first use case and trial it with real data and the people who will use it.",
+        "note": "Working software"
+      },
+      {
+        "name": "Operation and introduction",
+        "text": "After your approval, the use case goes into operation. We train the teams and start the next wave.",
+        "note": "Operation, training"
+      }
+    ]
+  },
+  "operation": {
+    "title": "Integration and operation",
+    "text": "A use case has been introduced when the team uses it in everyday work. To get there, we connect the solution to your existing systems, clarify roles and permissions, and stay with the team after the start.",
+    "points": [
+      {
+        "name": "Existing systems",
+        "text": "Connected to ERP, CRM and DMS, sign-in through your SSO. Your teams keep working in their familiar environment.",
+        "tag": "API · SSO"
+      },
+      {
+        "name": "Operation",
+        "text": "utxo AG develops, hosts and monitors the solution. Hosting to your requirements: Germany, EU or on-premises.",
+        "tag": "Per project"
+      },
+      {
+        "name": "Transparency",
+        "text": "You see how much the solution is used and which feedback is still open. Every action is logged.",
+        "tag": "Log"
+      },
+      {
+        "name": "Decisions",
+        "text": "Where it matters, a human approves. Which steps these are is defined together in the profile.",
+        "tag": "Approval"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "How long does it take until a use case is productive?",
+      "a": "That depends on the use case. Some are productive within a few weeks, others take months, for example when many systems have to be connected or the data situation has to be clarified first. Every profile contains an estimate with a range and the assumptions behind it."
+    },
+    {
+      "q": "Do we receive a concept or a solution in the end?",
+      "a": "Both. Portfolio, profiles and roadmap are your basis for decisions. utxo AG is a software development team, so the consulting leads to working software: we develop the pilot ourselves and take it into operation with you."
+    },
+    {
+      "q": "Does our data have to be prepared already?",
+      "a": "No. The data situation is one of the assessment criteria. For each use case, we check which sources exist, in what quality, and what has to be clarified before a pilot. Use cases with good data can start earlier."
+    },
+    {
+      "q": "Who needs to be involved on our side?",
+      "a": "A person with decision-making authority, the departments the use cases come from, plus IT and data protection. In the pilot, the employees who will later use the solution work with us."
+    },
+    {
+      "q": "How do you handle data protection and the EU AI Act?",
+      "a": "We prepare the DPA individually for each project. Data is processed only on your instructions, and there is no training with your data. Hosting is defined to your requirements: Germany, EU or on-premises. Our approach is aligned with the EU AI Act: where it matters, a human approves."
+    },
+    {
+      "q": "What happens after the first use case?",
+      "a": "The roadmap contains the next use cases. Depending on the task, they become AI automations, Agentic CoWorkers or managed agents. When many agents are created, a shared foundation on which they are developed and operated in series becomes worthwhile."
+    }
+  ],
+  "board": {
+    "label": "Animated sample view: use cases from the departments are scored, sorted and cut into a shortlist.",
+    "context": "Use case workshop · Scoring",
+    "phases": [
+      "Collect",
+      "Score",
+      "Sort",
+      "Shortlist"
+    ],
+    "columns": {
+      "name": "Use case",
+      "area": "Area",
+      "scores": [
+        "Benefit",
+        "Effort",
+        "Data",
+        "Risk"
+      ],
+      "result": "Result"
+    },
+    "results": [
+      "Shortlist",
+      "Wave 2",
+      "Later"
+    ],
+    "cut": [
+      3,
+      5
+    ],
+    "decision": "Your decision",
+    "rounds": [
+      {
+        "label": "Round 1 · Sales, Service, Finance",
+        "rows": [
+          {
+            "name": "Quote preparation",
+            "area": "Sales",
+            "scores": [
+              5,
+              3,
+              4,
+              2
+            ]
+          },
+          {
+            "name": "Sales forecast",
+            "area": "Sales",
+            "scores": [
+              4,
+              5,
+              2,
+              3
+            ]
+          },
+          {
+            "name": "Complaint handling",
+            "area": "Service",
+            "scores": [
+              4,
+              3,
+              4,
+              2
+            ]
+          },
+          {
+            "name": "Knowledge search",
+            "area": "Service",
+            "scores": [
+              3,
+              1,
+              4,
+              1
+            ]
+          },
+          {
+            "name": "Inquiry triage",
+            "area": "Service",
+            "scores": [
+              3,
+              2,
+              3,
+              2
+            ]
+          },
+          {
+            "name": "Invoice verification",
+            "area": "Finance",
+            "scores": [
+              4,
+              2,
+              5,
+              1
+            ]
+          },
+          {
+            "name": "Dunning",
+            "area": "Finance",
+            "scores": [
+              2,
+              2,
+              4,
+              3
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Round 2 · Procurement, Production, HR",
+        "rows": [
+          {
+            "name": "Supplier comparison",
+            "area": "Procurement",
+            "scores": [
+              4,
+              2,
+              4,
+              1
+            ]
+          },
+          {
+            "name": "Order matching",
+            "area": "Procurement",
+            "scores": [
+              5,
+              3,
+              5,
+              1
+            ]
+          },
+          {
+            "name": "Test report analysis",
+            "area": "Production",
+            "scores": [
+              5,
+              4,
+              4,
+              2
+            ]
+          },
+          {
+            "name": "Shift handover",
+            "area": "Production",
+            "scores": [
+              3,
+              2,
+              3,
+              1
+            ]
+          },
+          {
+            "name": "Maintenance planning",
+            "area": "Production",
+            "scores": [
+              4,
+              5,
+              2,
+              3
+            ]
+          },
+          {
+            "name": "Onboarding",
+            "area": "HR",
+            "scores": [
+              3,
+              3,
+              3,
+              2
+            ]
+          },
+          {
+            "name": "Application screening",
+            "area": "HR",
+            "scores": [
+              3,
+              2,
+              4,
+              5
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "profile": {
+    "label": "Animated sample view: the profile of a use case fills section by section, from process and data sources to estimate and recommendation.",
+    "context": "Use case profile",
+    "section": "Section",
+    "of": "of",
+    "working": "in progress",
+    "status": [
+      "Draft",
+      "Agreed"
+    ],
+    "sections": {
+      "process": "Process today",
+      "decisions": "Where a person decides",
+      "sources": "Data sources",
+      "people": "People involved",
+      "estimate": "Estimate",
+      "risks": "Risks",
+      "recommendation": "Recommendation"
+    },
+    "estimateNote": "Estimate with a range, not a committed date",
+    "scale": {
+      "unit": "weeks",
+      "max": 24,
+      "ticks": [
+        0,
+        8,
+        16,
+        24
+      ]
+    },
+    "levels": [
+      "low",
+      "medium",
+      "high"
+    ],
+    "cases": [
+      {
+        "id": "UC-07",
+        "name": "Quote preparation",
+        "area": "Mechanical engineering · Inside sales",
+        "process": [
+          {
+            "name": "Record inquiry",
+            "note": "Email, portal"
+          },
+          {
+            "name": "Check bill of materials",
+            "note": "ERP"
+          },
+          {
+            "name": "Calculate prices",
+            "note": "Price lists, discounts"
+          },
+          {
+            "name": "Write quote",
+            "note": "Template, DMS"
+          },
+          {
+            "name": "Approve quote",
+            "note": "Head of sales"
+          }
+        ],
+        "processNote": "Lead time today: 2 to 3 working days",
+        "decisions": [
+          "Approval of every quote",
+          "Special terms"
+        ],
+        "sources": [
+          {
+            "name": "ERP",
+            "note": "Items, prices",
+            "state": "available"
+          },
+          {
+            "name": "CRM",
+            "note": "Customer history",
+            "state": "available"
+          },
+          {
+            "name": "DMS",
+            "note": "Earlier quotes",
+            "state": "partial"
+          },
+          {
+            "name": "Sales mailbox",
+            "note": "Incoming inquiries",
+            "state": "to clarify"
+          }
+        ],
+        "people": [
+          {
+            "role": "Inside sales",
+            "note": "6 people, daily use"
+          },
+          {
+            "role": "Head of sales",
+            "note": "Business owner"
+          },
+          {
+            "role": "IT",
+            "note": "Interfaces, SSO"
+          },
+          {
+            "role": "Data protection",
+            "note": "Review before the pilot"
+          }
+        ],
+        "estimate": {
+          "from": 6,
+          "to": 10,
+          "value": "6 to 10 weeks",
+          "label": "until operation",
+          "assumption": "Assumption: the pricing logic is maintained in the ERP."
+        },
+        "risks": [
+          {
+            "name": "Pricing logic with many exceptions",
+            "level": 2
+          },
+          {
+            "name": "Inconsistent master data",
+            "level": 2
+          },
+          {
+            "name": "Acceptance in the team",
+            "level": 1
+          }
+        ],
+        "recommendation": {
+          "text": "Start the pilot",
+          "form": "Implementation as an AI automation with approval"
+        }
+      },
+      {
+        "id": "UC-12",
+        "name": "Complaint handling",
+        "area": "Mechanical engineering · Customer service",
+        "process": [
+          {
+            "name": "Record complaint",
+            "note": "Email, phone"
+          },
+          {
+            "name": "Match serial number",
+            "note": "ERP"
+          },
+          {
+            "name": "Classify cause",
+            "note": "Test reports"
+          },
+          {
+            "name": "Propose solution",
+            "note": "Service manual"
+          },
+          {
+            "name": "Decide on goodwill",
+            "note": "Head of service"
+          }
+        ],
+        "processNote": "Lead time today: 4 to 6 working days",
+        "decisions": [
+          "Goodwill and credit notes",
+          "Reply to the customer"
+        ],
+        "sources": [
+          {
+            "name": "Ticket system",
+            "note": "Cases, history",
+            "state": "available"
+          },
+          {
+            "name": "ERP",
+            "note": "Serial numbers, deliveries",
+            "state": "available"
+          },
+          {
+            "name": "Service manuals",
+            "note": "PDF, partly scanned",
+            "state": "partial"
+          },
+          {
+            "name": "Test reports",
+            "note": "Quality assurance",
+            "state": "to clarify"
+          }
+        ],
+        "people": [
+          {
+            "role": "Customer service",
+            "note": "9 people, daily use"
+          },
+          {
+            "role": "Head of service",
+            "note": "Business owner"
+          },
+          {
+            "role": "Quality assurance",
+            "note": "Causes, feedback"
+          },
+          {
+            "role": "IT",
+            "note": "Interfaces, SSO"
+          }
+        ],
+        "estimate": {
+          "from": 14,
+          "to": 20,
+          "value": "14 to 20 weeks",
+          "label": "until operation",
+          "assumption": "Assumption: the manuals are available in searchable form."
+        },
+        "risks": [
+          {
+            "name": "Goodwill rules not documented",
+            "level": 3
+          },
+          {
+            "name": "Manuals partly scanned only",
+            "level": 2
+          },
+          {
+            "name": "Inquiries in several languages",
+            "level": 1
+          }
+        ],
+        "recommendation": {
+          "text": "Second wave",
+          "form": "Implementation as an Agentic CoWorker in the service team"
+        }
+      }
+    ]
+  },
+  "roadmap": {
+    "label": "Animated sample view: five use cases in three waves take different lengths of time to reach operation, while trained teams and shared infrastructure grow with them.",
+    "context": "Roadmap · Estimate per use case",
+    "month": "Month",
+    "weeks": 36,
+    "weeksPerMonth": 4,
+    "stats": {
+      "month": "Month",
+      "live": "In operation",
+      "teams": "Trained teams"
+    },
+    "phases": [
+      "Analysis",
+      "Pilot",
+      "Operation"
+    ],
+    "gate": "Approval",
+    "waves": [
+      "Wave 1",
+      "Wave 2",
+      "Wave 3"
+    ],
+    "lanes": [
+      {
+        "name": "Knowledge search",
+        "form": "Managed agent",
+        "estimate": "approx. 5 weeks",
+        "team": "Service",
+        "wave": 0,
+        "start": 0,
+        "analysis": 2,
+        "pilot": 3
+      },
+      {
+        "name": "Invoice verification",
+        "form": "AI automation",
+        "estimate": "approx. 7 weeks",
+        "team": "Finance",
+        "wave": 0,
+        "start": 1,
+        "analysis": 2,
+        "pilot": 5
+      },
+      {
+        "name": "Quote preparation",
+        "form": "AI automation",
+        "estimate": "approx. 9 weeks",
+        "team": "Sales",
+        "wave": 0,
+        "start": 3,
+        "analysis": 3,
+        "pilot": 6
+      },
+      {
+        "name": "Complaint handling",
+        "form": "Agentic CoWorker",
+        "estimate": "approx. 4 months",
+        "team": "Quality",
+        "wave": 1,
+        "start": 10,
+        "analysis": 5,
+        "pilot": 13
+      },
+      {
+        "name": "Order matching",
+        "form": "Custom software",
+        "estimate": "approx. 3 months",
+        "team": "Procurement",
+        "wave": 2,
+        "start": 20,
+        "analysis": 4,
+        "pilot": 9
+      }
+    ],
+    "capability": {
+      "title": "What grows with it in the organization",
+      "teams": "Trained teams",
+      "infrastructure": "Shared infrastructure",
+      "layers": [
+        {
+          "name": "Sign-in and permissions",
+          "at": 2
+        },
+        {
+          "name": "Interfaces",
+          "at": 5
+        },
+        {
+          "name": "Logging and approvals",
+          "at": 9
+        },
+        {
+          "name": "Monitoring",
+          "at": 13
+        }
+      ]
+    }
+  },
+  "rollout": {
+    "label": "Animated sample view: a team is trained over ten weeks, usage grows and feedback is implemented.",
+    "context": "Introduction in the team · Inside sales",
+    "week": "Week",
+    "people": {
+      "title": "Roles and training",
+      "trained": "trained",
+      "of": "of",
+      "members": [
+        {
+          "initials": "MK",
+          "role": "Business owner"
+        },
+        {
+          "initials": "SB",
+          "role": "Key user"
+        },
+        {
+          "initials": "TW",
+          "role": "Key user"
+        },
+        {
+          "initials": "AL",
+          "role": "Team"
+        },
+        {
+          "initials": "JR",
+          "role": "Team"
+        },
+        {
+          "initials": "DN",
+          "role": "Team"
+        },
+        {
+          "initials": "PH",
+          "role": "Team"
+        },
+        {
+          "initials": "EC",
+          "role": "Team"
+        }
+      ],
+      "schedule": [
+        1,
+        3,
+        3,
+        5,
+        5,
+        6,
+        8,
+        8,
+        8,
+        8
+      ]
+    },
+    "usage": {
+      "title": "Usage",
+      "unit": "%",
+      "label": "of quotes prepared with the new solution",
+      "values": [
+        8,
+        15,
+        24,
+        31,
+        42,
+        55,
+        63,
+        71,
+        78,
+        84
+      ]
+    },
+    "feedback": {
+      "title": "Feedback from the team",
+      "states": [
+        "Decision open",
+        "in progress",
+        "done"
+      ],
+      "items": [
+        {
+          "text": "Framework contract discounts missing",
+          "from": "SB",
+          "at": 0
+        },
+        {
+          "text": "Take delivery time from the ERP",
+          "from": "TW",
+          "at": 3
+        },
+        {
+          "text": "Shorten the quote text for spare parts",
+          "from": "JR",
+          "at": 7
+        },
+        {
+          "text": "Add an English template",
+          "from": "DN",
+          "at": 9
+        }
+      ]
+    }
+  }
+}

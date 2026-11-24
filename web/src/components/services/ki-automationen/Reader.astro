@@ -1,0 +1,160 @@
+---
+/*
+  KI-Automationen, detail page, visual 1: one incoming purchase order up close. The paper lies on a desk on the left,
+  a reading line runs down it and marks the details it finds; each marked detail lands in the record on the right.
+  Then the record is checked against master data; the second order has one deviation (docs[].flag = index of the
+  record field, flagRow = index of the table row) and goes to approval.
+  Two papers and two value sets share the same places ([data-d]); the script only moves .is-on and sets data-phase.
+  The markup is the reduced-motion and no-JS frame: the second order, checked.
+*/
+const { t } = Astro.props;
+const m = t.servicePages['ki-automationen'].reader;
+
+const STILL = 1;
+const FOUND = [650, 1350, 1600, 2000, 2500, 3000];
+const found = (k) => `--k:${k};--t:${FOUND[k]}ms`;
+const on = (d) => d === STILL && 'is-on';
+---
+<div class="kap-read" data-mockup="kap-read" data-phase="done" role="img" aria-label={m.label}>
+  <div class="kap-read-win mock-light">
+    <div class="mock-bar label">
+      <span>{m.context}</span>
+      <span class="kap-stack kap-read-state">
+        <em class="st kap-run" data-on="read">{m.status.read}</em>
+        <em class="st kap-run" data-on="check">{m.status.check}</em>
+        {m.docs.map((doc, d) => <em class:list={['st', doc.flag >= 0 && 'is-human', on(d)]} data-on="done" data-d={d}>{m.status[doc.flag >= 0 ? 'flag' : 'ok']}</em>)}
+      </span>
+    </div>
+    <div class="kap-read-body">
+      <div class="kap-read-desk">
+        {m.docs.map((doc, d) => (
+          <div class:list={['kap-paper', on(d)]} data-d={d}>
+            <p class="kap-paper-from"><b><mark style={found(0)}>{doc.sender}</mark></b><span>{doc.city}</span></p>
+            <p class="kap-paper-to">{m.paper.to}</p>
+            <p class="kap-paper-type">{m.paper.type}</p>
+            <dl class="kap-paper-meta">
+              <div><dt>{m.paper.number}</dt><dd><mark style={found(1)}>{doc.number}</mark></dd></div>
+              <div><dt>{m.paper.date}</dt><dd>{doc.date}</dd></div>
+              <div><dt>{m.paper.delivery}</dt><dd><mark style={found(2)}>{doc.delivery}</mark></dd></div>
+            </dl>
+            <div class="kap-paper-table">
+              <p class="kap-paper-head">{m.paper.cols.map((col) => <span>{col}</span>)}</p>
+              {doc.rows.map(([item, quantity, price], row) => (
+                <p><span>{row + 1}</span><span><mark style={found(3)}>{item}</mark></span><span>{quantity}</span><span><mark class:list={[doc.flagRow === row && 'is-flag']} style={found(4)}>{price}</mark></span></p>
+              ))}
+            </div>
+            <p class="kap-paper-total"><span>{m.paper.total}</span><b><mark style={found(5)}>{doc.total}</mark></b></p>
+            <p class="kap-paper-lines" aria-hidden="true"><i></i><i></i><i></i></p>
+          </div>
+        ))}
+        <i class="kap-scan" aria-hidden="true"></i>
+      </div>
+      <div class="kap-read-rec">
+        <p class="kap-read-h label">{m.recordTitle}</p>
+        <ul>
+          {m.fields.map((field, k) => (
+            <li style={found(k)}>
+              <small>{field}</small>
+              <span class="kap-stack">
+                {m.docs.map((doc, d) => (
+                  <span class:list={['kap-read-v', on(d), doc.flag === k && 'is-flag']} data-d={d}><b>{doc.record[k]}</b><span><i></i>{doc.checks[k]}</span></span>
+                ))}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { reader } from './reader.js';
+
+  document.querySelectorAll('[data-mockup="kap-read"]').forEach(reader);
+</script>
+
+<style is:global>
+/* shared by the visuals of this page */
+.kap-stack{display:grid}
+.kap-stack > *{grid-area:1 / 1;min-width:0}
+.kap-gap{margin-top:clamp(40px, 5vw, 80px)}
+/* the tag column gets one width, so the texts of all rows start on one edge */
+@media (min-width:1001px){.kap-gap .sp-points li{grid-template-columns:minmax(0,4.6fr) minmax(0,5.4fr) 8vw}}
+/* smallest text of the visuals: 11px, 10px on phones */
+.kap-read,.kap-case,.kap-ops{--kap-min:11px}
+@media (max-width:760px){.kap-read,.kap-case,.kap-ops{--kap-min:10px}}
+:is(.kap-read,.kap-case,.kap-ops) :is(.st,.kap-btn){font-size:max(.82em, var(--kap-min))}
+.kap-run{color:var(--phthalo)}
+.mock-dark .kap-run{color:var(--phthalo-lift)}
+
+.kap-read{container-type:inline-size}
+.kap-read-win{display:flex;flex-direction:column;aspect-ratio:16 / 10.6;overflow:hidden;border-radius:var(--radius);padding:clamp(16px, 3.6cqw, 30px);font-size:clamp(11px, 1.6cqw, 13.5px);line-height:1.45;box-shadow:0 44px 80px -42px rgba(12,18,48,.3)}
+.kap-read .mock-bar{padding-bottom:clamp(12px, 2cqw, 18px)}
+.kap-read-state{justify-items:end}
+.kap-read-state em{opacity:0;transition:opacity var(--t-fast) ease}
+.kap-read[data-phase="read"] [data-on="read"],.kap-read[data-phase="check"] [data-on="check"],.kap-read[data-phase="done"] [data-on="done"].is-on{opacity:1}
+.kap-read-body{flex:1;min-height:0;display:grid;grid-template-columns:47% minmax(0,1fr);gap:0 4.5%;padding-top:clamp(12px, 2cqw, 18px)}
+
+.kap-read-desk{position:relative;overflow:hidden;border-radius:calc(var(--radius) * .6);background:#EFF1F5}
+.kap-paper{position:absolute;left:6%;right:6%;top:6.5%;min-height:110%;padding:1.5em 1.6em;background:#fff;box-shadow:0 0 0 1px rgba(7,8,10,.05),0 20px 34px -20px rgba(12,18,48,.3);opacity:0;transform:translateY(9%);transition:opacity var(--t-fast) ease,transform 0s var(--t-fast)}
+.kap-paper.is-on{opacity:1;transform:none;transition:opacity var(--t-move) ease .15s,transform var(--t-enter) var(--ease) .15s}
+.kap-paper p,.kap-paper dl{white-space:nowrap}
+.kap-paper-from{display:grid}
+.kap-paper-from b{font-weight:700;letter-spacing:-.01em}
+.kap-paper-from span,.kap-paper-to,.kap-paper dt,.kap-paper-head,.kap-paper-total span{color:var(--m-muted)}
+.kap-paper-to{margin-top:1em}
+.kap-paper-type{margin-top:.9em;font-size:1.3em;font-weight:600;letter-spacing:-.02em;line-height:1.2}
+.kap-paper-meta{margin-top:.5em}
+.kap-paper-meta div{display:grid;grid-template-columns:9.5em minmax(0,1fr)}
+.kap-paper-table{margin-top:.9em;border-top:1px solid var(--fg)}
+.kap-paper-table p{display:grid;grid-template-columns:2.7em minmax(0,1fr) 3em 4.2em;padding:.22em 0;border-bottom:1px solid var(--m-rule);font-variant-numeric:tabular-nums}
+.kap-paper-table span:nth-child(n + 3){text-align:right}
+.kap-paper-total{display:flex;justify-content:space-between;padding-top:.5em;font-variant-numeric:tabular-nums}
+.kap-paper-lines{display:grid;gap:.75em;margin-top:2em}
+.kap-paper-lines i{height:.5em;border-radius:2px;background:var(--m-soft)}
+.kap-paper-lines i:nth-child(2){width:86%}
+.kap-paper-lines i:nth-child(3){width:52%}
+
+/* a found detail: phthalo wash; the deviating one gets a dark frame once the check is through */
+.kap-paper mark{position:relative;background:none;color:inherit}
+.kap-paper mark::before,.kap-paper mark::after{content:"";position:absolute;inset:-.12em -.34em;border-radius:3px;opacity:0;transition:opacity var(--t-fast) ease}
+.kap-paper mark::before{background:rgba(22,122,92,.16);box-shadow:inset 0 0 0 1px rgba(22,122,92,.34)}
+.kap-paper mark::after{box-shadow:inset 0 0 0 1.5px var(--fg)}
+.kap-paper.is-on mark::before{opacity:1;transition-delay:var(--t)}
+.kap-read:is([data-phase="check"],[data-phase="done"]) .kap-paper.is-on mark.is-flag::after{opacity:1;transition-delay:calc(var(--k) * 200ms)}
+.kap-read:is([data-phase="check"],[data-phase="done"]) .kap-paper.is-on mark.is-flag::before{opacity:0;transition-delay:calc(var(--k) * 200ms)}
+
+.kap-scan{position:absolute;left:0;right:0;top:0;height:26%;border-bottom:1px solid var(--phthalo);background:linear-gradient(to top, rgba(22,122,92,.16), rgba(22,122,92,0));opacity:0;transform:translateY(-100%);transition:opacity var(--t-fast) ease,transform 0s var(--t-fast)}
+.kap-read[data-phase="read"] .kap-scan{opacity:1;transform:translateY(285%);transition:opacity var(--t-fast) ease .4s,transform 3.2s linear .4s}
+
+.kap-read-rec{display:flex;flex-direction:column;min-width:0}
+.kap-read-h{color:var(--m-muted);padding-bottom:.9em}
+.kap-read-rec ul{flex:1;display:grid;grid-auto-rows:1fr;border-bottom:1px solid var(--m-rule)}
+.kap-read-rec li{display:flex;flex-direction:column;justify-content:center;gap:.1em;border-top:1px solid var(--m-rule)}
+.kap-read-rec small{font-size:1em;color:var(--m-muted);line-height:1.25}
+.kap-read-v{display:flex;justify-content:space-between;align-items:baseline;gap:1em;white-space:nowrap;opacity:0;transform:translateY(.5em);transition:opacity var(--t-fast) ease,transform 0s var(--t-fast)}
+.kap-read-v b{font-weight:600;letter-spacing:-.01em;font-variant-numeric:tabular-nums;overflow:hidden;text-overflow:ellipsis}
+.kap-read-v.is-on{opacity:1;transform:none;transition:opacity var(--t-move) ease calc(var(--t) + 150ms),transform var(--t-move) var(--ease) calc(var(--t) + 150ms)}
+.kap-read-v span{display:inline-flex;align-items:center;gap:.5em;color:var(--m-muted);opacity:0;transition:opacity var(--t-fast) ease}
+.kap-read:is([data-phase="check"],[data-phase="done"]) .kap-read-v.is-on span{opacity:1;transition-delay:calc(var(--k) * 200ms)}
+.kap-read-v i{flex:none;width:.42em;height:.74em;margin:0 .2em .2em;border-right:1.5px solid var(--phthalo);border-bottom:1.5px solid var(--phthalo);transform:rotate(45deg)}
+.kap-read-v.is-flag span{color:var(--m-fg);font-weight:600}
+.kap-read-v.is-flag i{width:.55em;height:.55em;margin:0;border:0;border-radius:1px;background:var(--m-fg);transform:none}
+
+.js .kap-read-win{opacity:0;transform:translateY(48px) scale(.98);transition:transform var(--t-stage) var(--ease) .1s,opacity var(--t-move) ease .1s}
+.js .is-in .kap-read-win{opacity:1;transform:none}
+
+@container (max-width:620px){
+  .kap-read-win{aspect-ratio:auto;font-size:clamp(10px, 3.1cqw, 13px)}
+  .kap-read-body{display:block}
+  .kap-read-desk{height:29.5em}
+  .kap-paper{left:50%;right:auto;width:min(90%, 27em);margin-left:calc(min(90%, 27em) / -2);top:5.5%}
+  .kap-read-rec{margin-top:1.6em}
+  .kap-read-rec li{height:3.9em}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .kap-read-win{transition:none;opacity:1;transform:none}
+  .kap-read *,.kap-read *::before,.kap-read *::after{transition:none !important}
+}
+</style>

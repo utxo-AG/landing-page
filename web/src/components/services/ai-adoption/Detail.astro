@@ -1,0 +1,43 @@
+---
+/*
+  Blocks of the detail page "AI Adoption und Consulting" (content: i18n/<lang>/services/ai-adoption.json).
+  Four blocks, one looping visual each: Board (workshop scoring), Profile (use-case profile), Roadmap (waves,
+  on the dark block), Rollout (introduction in a team). Class prefix aap-.
+*/
+import Block from '../../sp/Block.astro';
+import Points from '../../sp/Points.astro';
+import Steps from '../../sp/Steps.astro';
+import Board from './Board.astro';
+import Profile from './Profile.astro';
+import Roadmap from './Roadmap.astro';
+import Rollout from './Rollout.astro';
+
+const { t } = Astro.props;
+const page = t.servicePages['ai-adoption'];
+---
+<Block title={page.scope.title} text={page.scope.text} layout="split">
+  <div slot="head" class="aap-side"><Points items={page.scope.points} /></div>
+  <Board t={t} />
+</Block>
+<Block title={page.example.title} text={page.example.text} layout="wide">
+  <Profile t={t} />
+  <p class="aap-note sp-rise" style="--i:3">{page.example.note}</p>
+</Block>
+<Block title={page.project.title} text={page.project.text} layout="wide" surface="dark">
+  <Roadmap t={t} />
+  <div class="aap-after"><Steps items={page.project.steps} /></div>
+</Block>
+<Block title={page.operation.title} text={page.operation.text} layout="flip">
+  <div slot="head" class="aap-side"><Points items={page.operation.points} /></div>
+  <Rollout t={t} />
+</Block>
+
+<style is:global>
+/* points in the narrow headline column: name, text and tag stacked */
+.aap-side{margin-top:clamp(28px, 3.2vw, 52px)}
+.aap-side .sp-points li{display:block;padding:clamp(14px, 1.4vw, 20px) 0}
+.aap-side .sp-point-text{margin-top:7px}
+.aap-side .sp-point-tag{margin-top:9px;text-align:left}
+.aap-note{max-width:34em;margin-top:clamp(28px, 3.4vw, 52px);color:var(--muted);line-height:1.4}
+.aap-after{margin-top:clamp(40px, 5vw, 80px)}
+</style>

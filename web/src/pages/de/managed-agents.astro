@@ -1,0 +1,10 @@
+---
+import ServicePage from '../../components/pages/ServicePage.astro';
+import Mockup from '../../components/mockups/ManagedAgents.astro';
+import Detail from '../../components/services/managed-agents/Detail.astro';
+import t from '../../i18n/de/index.js';
+---
+<ServicePage t={t} id="managed-agents" layout="mockup-left">
+  <Mockup slot="mockup" t={t} />
+  <Detail t={t} />
+</ServicePage>

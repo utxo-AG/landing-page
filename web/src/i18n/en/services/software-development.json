@@ -1,0 +1,117 @@
+{
+  "title": "Software Development: custom software for your processes | utxo AG",
+  "description": "Custom software for enterprise processes: web applications, mobile apps and integrations, AI-assisted where it helps. From concept to operation.",
+  "lede": "We develop software for processes that standard products do not cover well. A dedicated team stays with it from concept to operation.",
+  "faq": [
+    { "q": "When is custom software the better choice over a standard product?", "a": "When a process matters to your company and standard products only cover it through workarounds, side lists or manual steps. We discuss this openly in the first conversation. If a standard product fits better, we say so." },
+    { "q": "How long does a project take?", "a": "That depends on the scope. Some applications are in use within a few weeks, others take months. After the concept phase you receive a plan with the increments in which the application is developed." },
+    { "q": "Does the software have to include AI?", "a": "No. We use AI functions where they help the process, for example to read documents or to search your own data. We work model-agnostic; local open-source models are assessed per project." },
+    { "q": "How do you connect our existing systems?", "a": "Through the interfaces your systems provide, for example those of your ERP, CRM, DMS or SSO. Which data flows in which direction is defined in the concept together with your IT." },
+    { "q": "Where is the application hosted?", "a": "According to your requirements: in Germany, in the EU or on-premise. This is decided per project. The DPA is created individually for your project, and processing takes place only on your instructions." },
+    { "q": "Who looks after the application after go-live?", "a": "The same team that developed it. utxo AG hosts and monitors the application and implements new requirements in further versions." }
+  ],
+  "scope": {
+    "title": "What you get",
+    "text": "An application that fits your process and is integrated into your system landscape. The scope depends on the project. These components come together in most of them.",
+    "points": [
+      { "name": "Web applications", "text": "Business applications and portals for your workflows, with roles, permissions and reporting.", "tag": "Web" },
+      { "name": "Mobile apps", "text": "For tasks that come up on the move: approvals, on-site data capture, notifications.", "tag": "Mobile" },
+      { "name": "Integrations", "text": "Connections to your existing systems such as ERP, CRM, DMS and SSO, so data is maintained in one place only.", "tag": "API" },
+      { "name": "AI-assisted functions", "text": "Where it helps the process: reading documents, preparing suggestions, searching your own data. Model-agnostic.", "tag": "On request" },
+      { "name": "Operation and further development", "text": "Hosting, monitoring and new versions from the same team that developed the application.", "tag": "Operation" }
+    ]
+  },
+  "arch": {
+    "label": "Animated sample view: architecture of a procurement portal with interfaces, logic, data and connected systems. Transactions run through all layers.",
+    "context": "Architecture · Sample procurement portal",
+    "layers": [
+      { "name": "Interfaces", "tiles": [ { "name": "Web application", "note": "Portal for procurement and departments" }, { "name": "Mobile app", "note": "Approvals on the move" } ] },
+      { "name": "Logic", "tiles": [ { "name": "Workflow", "note": "Rules, steps" }, { "name": "AI assistance", "note": "on request" }, { "name": "Permissions", "note": "Roles" }, { "name": "Notifications", "note": "Email, push" } ] },
+      { "name": "Data", "tiles": [ { "name": "Database", "note": "Transactions and master data" }, { "name": "Audit log", "note": "every action" }, { "name": "Documents", "note": "Receipts" } ] },
+      { "name": "Your systems", "tiles": [ { "name": "ERP", "note": "Orders" }, { "name": "DMS", "note": "Filing" }, { "name": "SSO", "note": "Sign-in" }, { "name": "CRM", "note": "Suppliers" } ] }
+    ],
+    "routes": [
+      { "caption": "Create an order", "events": [ "B-2051 entered", "Rule checked", "saved", "Order posted" ] },
+      { "caption": "Approval in the app", "events": [ "Approval given", "Role: management", "Entry 2:32 pm", "signed in" ] },
+      { "caption": "Read an invoice", "events": [ "R-8841 uploaded", "Amount detected", "matched", "filed" ] }
+    ]
+  },
+  "practice": {
+    "title": "An example from practice",
+    "text": "A procurement portal has been in use for some months, and the procurement team raises a new requirement. This is how it becomes a released version: concept, development, automated tests, your acceptance, production.",
+    "inc": {
+      "label": "Animated sample view: a requirement passes through concept, development, tests and acceptance and appears as a new version in the application.",
+      "context": "Procurement portal · Further development",
+      "version": "Production",
+      "major": "2",
+      "minor": 4,
+      "stages": [ "Concept", "Development", "Tests", "Acceptance", "Production" ],
+      "panels": [ "Acceptance criteria", "Change", "Automated", "Review", "Application" ],
+      "testNames": [ "Unit", "Integration", "Interface" ],
+      "review": { "code": "Code review", "codeDone": "reviewed", "client": "Department", "wait": "Your acceptance", "done": "accepted" },
+      "newTag": "new",
+      "items": [
+        {
+          "id": "EK-212", "from": "Requirement from procurement", "title": "Second approval from EUR 25,000",
+          "criteria": [ "Rule applies from EUR 25,000", "A deputy can approve", "Traceable in the audit log" ],
+          "code": [ "rule: secondApproval", "limit: 25000", "role: executive", "audit: true" ],
+          "tests": [ 218, 48, 31 ],
+          "screen": { "label": "Order B-2051", "title": "Elbe Industrie · EUR 27,150", "rows": [ [ "Procurement", "checked" ], [ "Management", "approved" ], [ "Executive board", "Approval pending" ] ] }
+        },
+        {
+          "id": "EK-219", "from": "Requirement from controlling", "title": "Budget check per cost center",
+          "criteria": [ "Budget visible per cost center", "Warning from 90 percent", "Block only with a reason" ],
+          "code": [ "check: costCenterBudget", "warnAt: 0.9", "source: erp.budgets", "override: reason" ],
+          "tests": [ 224, 51, 33 ],
+          "screen": { "label": "Cost center 4410", "title": "Production · North plant", "rows": [ [ "Budget", "EUR 480,000" ], [ "Ordered", "EUR 431,200" ], [ "Utilization", "90%, warning" ] ] }
+        },
+        {
+          "id": "EK-226", "from": "Requirement from accounting", "title": "Read invoices with AI",
+          "criteria": [ "Amount and supplier detected", "Matched to the order", "Posted only after a check" ],
+          "code": [ "extract: invoice.fields", "match: orderNumber", "confidence: 0.98", "approve: human" ],
+          "tests": [ 231, 55, 36 ],
+          "screen": { "label": "Invoice R-8841", "title": "Nordwerk Logistik · EUR 3,960", "rows": [ [ "Amount", "detected" ], [ "Order", "B-2038" ], [ "Posting", "Suggestion for review" ] ] }
+        }
+      ]
+    }
+  },
+  "process": {
+    "title": "How a project runs",
+    "text": "The scope determines the duration: some applications are in use within a few weeks, others take months. The sequence stays the same.",
+    "steps": [
+      { "name": "First conversation", "text": "You describe the process and the goal. We clarify whether custom software is the right way to get there.", "note": "Shared picture" },
+      { "name": "Concept and architecture", "text": "We map the process with your departments and define scope, architecture and integrations.", "note": "Concept and plan" },
+      { "name": "Development in increments", "text": "The application grows in working versions. You see every state and set the priorities.", "note": "Working versions" },
+      { "name": "Rollout", "text": "Your department accepts the application. We migrate data, connect the systems and support the start.", "note": "Your acceptance" },
+      { "name": "Operation and further development", "text": "We host and monitor the application. The same team implements new requirements.", "note": "New versions" }
+    ],
+    "run": {
+      "label": "Animated diagram: a project runs from the first conversation through increments and acceptance into operation with further versions.",
+      "gate": "Acceptance",
+      "versions": [ "0.1", "0.2", "0.3", "1.0", "1.1", "1.2" ]
+    }
+  },
+  "operation": {
+    "title": "Integration and operation",
+    "text": "The application works with the systems you already use. In operation you see what is running and decide what goes into production.",
+    "facts": [
+      { "name": "Your systems", "text": "Connected through the interfaces your systems provide. Sign-in through your SSO, roles following your organization." },
+      { "name": "Hosting", "text": "According to your requirements: Germany, EU or on-premise. This is defined per project." },
+      { "name": "Monitoring", "text": "utxo AG monitors availability, integrations and errors. Every action is logged." },
+      { "name": "Your approval", "text": "New versions go into production only after your acceptance." }
+    ],
+    "ops": {
+      "label": "Animated sample view: operations view of an application with key figures, connected systems and versions, one of which is waiting for your approval.",
+      "context": "Operation · Procurement portal",
+      "figures": { "uptime": { "label": "Availability", "value": "99.97%" }, "rate": { "label": "Requests per minute" }, "latency": { "label": "Response time", "value": "182 ms" } },
+      "systems": [ [ "ERP", "Orders" ], [ "CRM", "Suppliers" ], [ "DMS", "Receipts" ], [ "SSO", "Sign-in" ] ],
+      "releases": {
+        "title": "Versions",
+        "major": "2",
+        "minor": 8,
+        "names": [ "Supplier rating", "Export for controlling", "Second approval from EUR 25,000", "Budget check per cost center", "Read invoices with AI" ],
+        "states": { "wait": "Your approval", "roll": "rolling out", "done": "released" }
+      }
+    }
+  }
+}

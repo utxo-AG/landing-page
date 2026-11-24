@@ -1,0 +1,433 @@
+{
+  "title": "Penetration Testing: regelmässige Penetrationstests | utxo AG",
+  "description": "Regelmässige Penetrationstests von utxo AG für Web-Anwendungen, Schnittstellen, Infrastruktur und KI-Anwendungen: Bericht, Behebung und Nachtest.",
+  "lede": "Wir prüfen Ihre Systeme so, wie ein Angreifer vorgehen würde, und wiederholen das regelmässig. Jede Runde endet mit einem Bericht, behobenen Schwachstellen und einem Nachtest.",
+  "faq": [
+    {
+      "q": "Wie oft sollte getestet werden?",
+      "a": "Das hängt von Ihren Systemen, Ihrem Releaserhythmus und Ihren Vorgaben ab. Den Abstand vereinbaren wir mit Ihnen. Nach grösseren Änderungen empfiehlt sich eine zusätzliche Runde."
+    },
+    {
+      "q": "Findet ein Penetrationstest alle Schwachstellen?",
+      "a": "Nein. Ein Test zeigt, welche Schwachstellen im vereinbarten Umfang und in der verfügbaren Zeit gefunden wurden. Er ist eine Momentaufnahme und kein Nachweis, dass ein System frei von Lücken ist. Auch deshalb prüfen wir regelmässig und erneut nach Änderungen."
+    },
+    {
+      "q": "Testen Sie auch produktive Systeme?",
+      "a": "Ja, wenn Sie das wünschen. Welche Prüfungen auf dem Produktivsystem laufen, in welchem Zeitfenster und mit welchen Einschränkungen, legen wir vorab mit Ihnen fest."
+    },
+    {
+      "q": "Was brauchen Sie von uns für den Start?",
+      "a": "Eine schriftliche Freigabe des Systeminhabers, eine Beschreibung der Systeme im Umfang, Ansprechpersonen in Ihrer IT und je nach Testart Testzugänge. Für Systeme bei Dritten, etwa bei einem Hosting-Anbieter, ist auch deren Zustimmung nötig."
+    },
+    {
+      "q": "Wer erhält den Bericht?",
+      "a": "Nur die Personen, die Sie benennen. Befunde und Berichte behandeln wir vertraulich und geben sie nicht an Dritte weiter."
+    },
+    {
+      "q": "Prüfen Sie auch KI-Anwendungen und Agenten?",
+      "a": "Ja. Wir entwickeln selbst KI-Anwendungen und Agenten und prüfen sie wie jede andere Anwendung. Dazu gehört zum Beispiel die Frage, ob ein Agent zu Aktionen gebracht werden kann, die ihm nicht erlaubt sind, oder ob er Daten preisgibt, auf die eine Person keinen Zugriff hat."
+    }
+  ],
+  "scope": {
+    "title": "Was Sie erhalten",
+    "text": "Penetrationstests für einen vereinbarten Umfang, die im festgelegten Abstand und nach grösseren Änderungen wiederholt werden. Wir testen mit aktuellen Tools und nach aktuellen Standards und halten beides auf dem neuesten Stand.",
+    "points": [
+      {
+        "name": "Geprüfte Systeme",
+        "text": "Web-Anwendungen, Schnittstellen und APIs, Infrastruktur sowie KI-Anwendungen und Agenten. Den Umfang legen wir vor jeder Runde mit Ihnen fest.",
+        "tag": "Umfang"
+      },
+      {
+        "name": "Bericht",
+        "text": "Jeder Befund ist beschrieben, nach Risiko bewertet und mit einer konkreten Empfehlung versehen. Eine Zusammenfassung für die Geschäftsleitung steht am Anfang.",
+        "tag": "Je Runde"
+      },
+      {
+        "name": "Behebung",
+        "text": "Wir erläutern die Befunde Ihrem Entwicklungs- und IT-Team und unterstützen bei der Behebung.",
+        "tag": "Mit Ihrem Team"
+      },
+      {
+        "name": "Nachtest",
+        "text": "Sind die Schwachstellen behoben, prüfen wir sie erneut und halten fest, was geschlossen ist.",
+        "tag": "Bestätigung"
+      },
+      {
+        "name": "Nächste Runde",
+        "text": "Die nächste Runde folgt im vereinbarten Abstand oder nach einem grösseren Release. So bleibt Ihr Sicherheitsstand über die Zeit nachvollziehbar.",
+        "tag": "Regelmässig"
+      }
+    ]
+  },
+  "report": {
+    "label": "Animierte Beispielansicht eines Testberichts: Vier Befunde werden nacheinander gezeigt, jeweils mit Risikobewertung, Beschreibung und Empfehlung. Beispieldaten.",
+    "context": "Bericht · Kundenportal · Runde 4",
+    "summary": "Befunde nach Risiko",
+    "severity": [
+      "niedrig",
+      "mittel",
+      "hoch",
+      "kritisch"
+    ],
+    "counts": [
+      2,
+      3,
+      1,
+      1
+    ],
+    "list": "Befunde",
+    "excerpt": "Auszug",
+    "risk": "Risiko",
+    "axes": {
+      "x": "Auswirkung",
+      "y": "Wahrscheinlichkeit"
+    },
+    "description": "Beschreibung",
+    "advice": "Empfehlung",
+    "findings": [
+      {
+        "ref": "R4-01",
+        "title": "Zugriffskontrolle umgehbar",
+        "area": "API",
+        "level": 4,
+        "likelihood": 3,
+        "impact": 3,
+        "description": "Angemeldete Nutzer können Bestellungen anderer Kunden abrufen.",
+        "advice": "Die Berechtigung bei jedem Abruf serverseitig prüfen."
+      },
+      {
+        "ref": "R4-02",
+        "title": "Konto mit zu vielen Rechten",
+        "area": "Datenbank",
+        "level": 3,
+        "likelihood": 2,
+        "impact": 3,
+        "description": "Das Konto der Anwendung darf mehr Daten ändern, als sie benötigt.",
+        "advice": "Die Rechte des Kontos auf das Nötige beschränken."
+      },
+      {
+        "ref": "R4-03",
+        "title": "Session läuft nicht ab",
+        "area": "Anmeldung",
+        "level": 2,
+        "likelihood": 2,
+        "impact": 2,
+        "description": "Sitzungen bleiben nach der Abmeldung weiter gültig.",
+        "advice": "Sitzungen bei der Abmeldung beenden und ihre Dauer begrenzen."
+      },
+      {
+        "ref": "R4-06",
+        "title": "Veraltete Bibliothek",
+        "area": "Web-Anwendung",
+        "level": 1,
+        "likelihood": 1,
+        "impact": 2,
+        "description": "Eine eingesetzte Komponente ist nicht auf dem aktuellen Stand.",
+        "advice": "Die Komponente aktualisieren und Abhängigkeiten laufend prüfen."
+      }
+    ]
+  },
+  "example": {
+    "title": "Ein Befund als Beispiel",
+    "text": "Ein Handelsunternehmen lässt sein Kundenportal regelmässig prüfen. In Runde 4 zeigt sich in der API, dass angemeldete Nutzer fremde Bestellungen abrufen können. Ein zweiter Befund hat ein geringes Risiko. Was mit ihm geschieht, entscheidet das Unternehmen."
+  },
+  "finding": {
+    "label": "Animierte Beispielansicht: Zwei Befunde werden nach Risiko bewertet. Der kritische wird gemeldet, behoben und nach Ihrer Freigabe nachgetestet. Beim zweiten akzeptiert das Unternehmen das Restrisiko bis zum nächsten Release.",
+    "zones": {
+      "finding": "Befund",
+      "rating": "Bewertung",
+      "path": "Vom Befund zum Nachtest"
+    },
+    "found": "Gefunden",
+    "evidence": "Nachweis",
+    "factors": [
+      "Ausnutzbarkeit",
+      "Voraussetzung",
+      "Betroffene Daten",
+      "Auswirkung"
+    ],
+    "risk": "Risiko",
+    "severity": [
+      "niedrig",
+      "mittel",
+      "hoch",
+      "kritisch"
+    ],
+    "steps": [
+      "Meldung",
+      "Empfehlung",
+      "Behebung",
+      "Ihre Entscheidung",
+      "Nachtest"
+    ],
+    "who": {
+      "us": "utxo AG",
+      "you": "Ihr Team"
+    },
+    "wait": "Ihre Freigabe",
+    "cases": [
+      {
+        "ref": "R4-01 · API",
+        "title": "Zugriffskontrolle umgehbar",
+        "summary": "Angemeldete Nutzer können Bestellungen anderer Kunden abrufen.",
+        "found": "Runde 4, Bereich Bestellungen",
+        "evidence": "im Bericht dokumentiert",
+        "values": [
+          "einfach",
+          "angemeldetes Konto",
+          "Kundendaten",
+          "hoch"
+        ],
+        "level": 4,
+        "results": [
+          "Vorab an die IT-Sicherheit gemeldet",
+          "Berechtigung bei jedem Abruf serverseitig prüfen",
+          "Korrektur mit Release 4.2.1 eingespielt",
+          "Nachtest freigegeben, S. Brandt",
+          "Nicht mehr reproduzierbar"
+        ],
+        "ask": "Nachtest freigeben",
+        "state": "geschlossen"
+      },
+      {
+        "ref": "R4-06 · Web-Anwendung",
+        "title": "Veraltete Bibliothek",
+        "summary": "Eine eingesetzte Komponente ist nicht auf dem aktuellen Stand.",
+        "found": "Runde 4, Bereich Oberfläche",
+        "evidence": "im Bericht dokumentiert",
+        "values": [
+          "aufwendig",
+          "keine",
+          "keine direkt",
+          "gering"
+        ],
+        "level": 1,
+        "results": [
+          "Im Bericht der Runde 4 aufgeführt",
+          "Komponente aktualisieren",
+          "Für Release 4.3 eingeplant",
+          "Restrisiko bis dahin akzeptiert, S. Brandt",
+          "Vorgemerkt für Runde 5"
+        ],
+        "ask": "Restrisiko akzeptieren",
+        "state": "offen bis Runde 5"
+      }
+    ]
+  },
+  "project": {
+    "title": "So läuft die Zusammenarbeit",
+    "text": "Am Anfang steht ein Gespräch über Ihre Systeme und Ihre Ziele. Danach folgt jede Testrunde demselben Ablauf. Wie oft wir prüfen, vereinbaren wir mit Ihnen: Es hängt von Ihren Systemen und Ihrem Releaserhythmus ab.",
+    "steps": [
+      {
+        "name": "Umfang und Freigabe",
+        "text": "Wir legen mit Ihnen fest, welche Systeme geprüft werden, wie tief und in welchen Zeitfenstern. Getestet wird nur mit schriftlicher Freigabe des Systeminhabers.",
+        "note": "Testvereinbarung"
+      },
+      {
+        "name": "Test",
+        "text": "Wir prüfen die vereinbarten Systeme aus der Sicht eines Angreifers, mit aktuellen Tools und von Hand. Kritische Befunde melden wir sofort.",
+        "note": "Abgestimmtes Testfenster"
+      },
+      {
+        "name": "Bericht",
+        "text": "Sie erhalten alle Befunde mit Risikobewertung und Empfehlung. Wir gehen den Bericht mit Ihrem Team durch.",
+        "note": "Bericht"
+      },
+      {
+        "name": "Behebung",
+        "text": "Ihr Team oder Ihr Dienstleister behebt die Schwachstellen. Wir beantworten Rückfragen und unterstützen bei der Umsetzung.",
+        "note": "Massnahmen"
+      },
+      {
+        "name": "Nachtest und nächste Runde",
+        "text": "Wir prüfen die behobenen Befunde erneut. Die nächste Runde folgt im vereinbarten Abstand oder nach grösseren Änderungen.",
+        "note": "Wiederkehrend"
+      }
+    ]
+  },
+  "rounds": {
+    "label": "Animiertes Schaubild mit Beispieldaten: Sechs Testrunden über die Zeit. Die Zahl der Befunde sinkt von Runde zu Runde, nach einem grossen Release kommen neue hinzu. Fast alle sind nach dem Nachtest geschlossen.",
+    "title": "Befunde je Testrunde",
+    "round": "Runde",
+    "found": "gefunden",
+    "open": "offen",
+    "legend": {
+      "found": "gefunden, nach Risiko",
+      "closed": "behoben und nachgetestet",
+      "open": "offen, geht in die nächste Runde"
+    },
+    "rounds": [
+      {
+        "when": "Erstprüfung",
+        "levels": [
+          4,
+          4,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1
+        ],
+        "open": 3,
+        "release": false
+      },
+      {
+        "when": "vereinbarter Abstand",
+        "levels": [
+          3,
+          3,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1
+        ],
+        "open": 1,
+        "release": false
+      },
+      {
+        "when": "vereinbarter Abstand",
+        "levels": [
+          3,
+          2,
+          2,
+          1,
+          1
+        ],
+        "open": 0,
+        "release": false
+      },
+      {
+        "when": "nach Release 3.0",
+        "levels": [
+          4,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1
+        ],
+        "open": 2,
+        "release": true
+      },
+      {
+        "when": "vereinbarter Abstand",
+        "levels": [
+          3,
+          2,
+          1,
+          1
+        ],
+        "open": 0,
+        "release": false
+      },
+      {
+        "when": "vereinbarter Abstand",
+        "levels": [
+          2,
+          1
+        ],
+        "open": 0,
+        "release": false
+      }
+    ]
+  },
+  "organisation": {
+    "title": "Abstimmung mit Ihrer Organisation",
+    "text": "Ein Penetrationstest berührt den laufenden Betrieb. Deshalb ist vorab geklärt, wer informiert ist, wann getestet wird und wer entscheidet. Die Ergebnisse sind vertraulich.",
+    "points": [
+      {
+        "name": "Ansprechpersonen",
+        "text": "Ihre IT und utxo AG benennen je eine Ansprechperson. Sie stimmen die Testfenster ab und sind während des Tests erreichbar.",
+        "tag": "Abstimmung"
+      },
+      {
+        "name": "Testfenster",
+        "text": "Wann getestet wird, legen Sie fest, zum Beispiel ausserhalb der Geschäftszeiten oder vor einem Release.",
+        "tag": "Ihre Vorgabe"
+      },
+      {
+        "name": "Produktiv- oder Testsystem",
+        "text": "Wir klären mit Ihnen, was auf dem Testsystem geprüft wird und was auf dem Produktivsystem nötig ist. Prüfungen mit einem Risiko für den Betrieb laufen nur nach Ihrer Freigabe.",
+        "tag": "Ihre Freigabe"
+      },
+      {
+        "name": "Vertraulichkeit",
+        "text": "Befunde und Berichte gehen nur an den vereinbarten Empfängerkreis. Wer den Bericht sieht, bestimmen Sie.",
+        "tag": "Empfängerkreis"
+      },
+      {
+        "name": "Ihre Entscheidung",
+        "text": "Was mit einem Befund geschieht, entscheiden Sie: beheben, einplanen oder ein Restrisiko bewusst akzeptieren.",
+        "tag": "Sie entscheiden"
+      }
+    ]
+  },
+  "plan": {
+    "label": "Animierte Beispielansicht eines Testplans: Drei Systeme mit vereinbarten Testfenstern in einer Woche. Der Test auf dem Produktivsystem beginnt erst nach Ihrer Freigabe. Beispieldaten.",
+    "context": "Testplan · Runde 4",
+    "week": "KW 47",
+    "days": [
+      "Mo",
+      "Di",
+      "Mi",
+      "Do",
+      "Fr",
+      "Sa",
+      "So"
+    ],
+    "window": "Testfenster",
+    "status": {
+      "planned": "geplant",
+      "running": "Test läuft",
+      "done": "abgeschlossen",
+      "wait": "Ihre Freigabe"
+    },
+    "rows": [
+      {
+        "name": "Kundenportal",
+        "env": "Testsystem",
+        "time": "Mo bis Mi, tagsüber",
+        "from": 0,
+        "to": 3,
+        "approval": false
+      },
+      {
+        "name": "API",
+        "env": "Testsystem",
+        "time": "Mi bis Fr, tagsüber",
+        "from": 2,
+        "to": 5,
+        "approval": false
+      },
+      {
+        "name": "Infrastruktur",
+        "env": "Produktivsystem",
+        "time": "Sa und So, ganztägig",
+        "from": 5,
+        "to": 7,
+        "approval": true
+      }
+    ],
+    "recipients": {
+      "label": "Bericht geht an",
+      "list": [
+        "IT-Sicherheit",
+        "Leitung Entwicklung",
+        "Geschäftsleitung"
+      ]
+    }
+  }
+}

@@ -66,6 +66,12 @@ function wordmarkCells(raw, cols) {
   `svg` is the wordmark SVG source; `stage` is the element that holds the canvas.
   mount(next) moves the canvas into another stage (hero and closing stage share this one WebGL context);
   the wordmark arrives dissolved there and assembles with setAssembled(true).
+  Hooks for a second layer in the same scene (scene/typeflow.js): attach({ object, frame(dt) }) adds its object
+  and calls frame before every render; hold(true) freezes the wordmark at rest as the plain body (no cubes,
+  no pulse, no pointer) and carve(cut) then cuts every cell out of it whose entry in `cut` is 255 (0 keeps it);
+  hold(false) hands it back to the frame loop; reset() leaves it dissolved; draw() renders outside the frame
+  loop; `resting` is true while the wordmark is fully assembled; `wordmark` describes the body (mask canvas
+  and texture with `cell` pixels per cell, cols x rows cells, size in world units).
 */
 export function createBlocks(stage, {
   svg,
@@ -256,6 +262,9 @@ if (max(looseAt(vCell), max(max(looseAt(vCell + reach.xy), looseAt(vCell - reach
   const origin = new Float32Array(count * 3);
   let goal = 1;
   let progress = 0;
+  let pulseFrom = 5;
+  let layer = null;
+  let held = false;
   const spin = new Float32Array(count);
   const jitter = new Float32Array(count * 2);
   const axes = [];
@@ -346,8 +355,8 @@ if (max(looseAt(vCell), max(max(looseAt(vCell + reach.xy), looseAt(vCell - reach
     let push = 0;
     if (pointerActive && goal === 1) { ray.setFromCamera(pointer, camera); ray.ray.intersectPlane(plane, hit); push = 1; }
     if (!settled && t > 0.4) progress += Math.max(-dt / assembleTime, Math.min(dt / assembleTime, goal - progress));
-    const phase = (t - 5) % pulseEvery;
-    const pulseX = t > 5 && progress === 1 && phase < pulseTime ? -WIDTH / 2 - 3.5 + (phase / pulseTime) * (WIDTH + 7) : null;
+    const phase = (t - pulseFrom) % pulseEvery;
+    const pulseX = t > pulseFrom && progress === 1 && phase < pulseTime ? -WIDTH / 2 - 3.5 + (phase / pulseTime) * (WIDTH + 7) : null;
     cellState.fill(0);
     for (let i = 0; i < count; i++) {
       const a = i * 3;
@@ -398,26 +407,56 @@ if (max(looseAt(vCell), max(max(looseAt(vCell + reach.xy), looseAt(vCell - reach
   }
 
   let visible = true;
+  let clock = 0;
   const sight = new IntersectionObserver((entries) => { visible = entries.at(-1).isIntersecting; });
   sight.observe(stage);
   if (reduced) {
     still = () => { update(0, 0, true); renderer.render(scene, camera); };
     still();
   } else {
-    let last = 0, clock = 0;
+    let last = 0;
     renderer.setAnimationLoop((now) => {
       const dt = Math.min(0.033, (now - last) / 1000);
       last = now;
       if (!visible || document.hidden) return;
       clock += dt;
       if (sway) place(clock);
-      update(clock, dt, false);
+      if (!held) update(clock, dt, false);
+      layer?.frame(dt);
       renderer.render(scene, camera);
     });
   }
 
+  function reset() {
+    goal = 0;
+    progress = 0;
+  }
+
   return {
+    camera,
+    renderer,
+    wordmark: { mask, texture, cell: MASK_RES, cols, rows, width: WIDTH, height: rows * size, front: size / 2, depth: layers * size },
+    get resting() { return progress === 1; },
     setAssembled(value) { goal = value ? 1 : 0; },
+    hold(value) {
+      if (value === held) return;
+      held = value;
+      blocks.visible = !value;
+      pulseFrom = value ? Infinity : clock + 2;
+      if (!value) return;
+      vel.fill(0);
+      update(clock, 0, true);
+    },
+    carve(cut) {
+      cellState.set(cut);
+      cellTexture.needsUpdate = true;
+    },
+    reset,
+    attach(next) {
+      layer = next;
+      scene.add(next.object);
+    },
+    draw() { renderer.render(scene, camera); },
     mount(next) {
       if (next === host) return;
       host = next;
@@ -428,8 +467,7 @@ if (max(looseAt(vCell), max(max(looseAt(vCell + reach.xy), looseAt(vCell - reach
       sizes.observe(next);
       sight.disconnect();
       sight.observe(next);
-      goal = 0;
-      progress = 0;
+      reset();
       resize();
     },
   };

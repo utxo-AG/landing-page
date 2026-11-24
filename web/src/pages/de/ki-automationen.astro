@@ -1,0 +1,10 @@
+---
+import ServicePage from '../../components/pages/ServicePage.astro';
+import Mockup from '../../components/mockups/Automation.astro';
+import Detail from '../../components/services/ki-automationen/Detail.astro';
+import t from '../../i18n/de/index.js';
+---
+<ServicePage t={t} id="ki-automationen" layout="stage">
+  <Mockup slot="mockup" t={t} />
+  <Detail t={t} />
+</ServicePage>

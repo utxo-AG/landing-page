@@ -1,0 +1,421 @@
+{
+  "title": "Agentic CoWorker: AI CoWorkers for your team | utxo AG",
+  "description": "AI CoWorkers that join your team like colleagues: with a role, tasks in the channel your team already uses, questions when needed and results for review.",
+  "lede": "An AI CoWorker is a member of your team, with a name, a role and tasks. It works in the channel your team already uses, asks when something is unclear and submits results for review.",
+  "faq": [
+    {
+      "q": "How does a CoWorker differ from a chatbot or a copilot?",
+      "a": "A chatbot answers questions, a copilot supports one person inside their application. A CoWorker has a role in the team: it takes on tasks from start to finish, works in your systems, asks when information is missing and submits the result for review."
+    },
+    {
+      "q": "Does a CoWorker make decisions on its own?",
+      "a": "It works through tasks independently and does not decide anything in your place. You define which steps require approval. Where it matters, a human approves."
+    },
+    {
+      "q": "Which channels and systems does a CoWorker work in?",
+      "a": "In the ones your team already uses: team chat, email or a ticket system for collaboration, plus the systems it needs for its tasks, such as file storage, CRM or ERP. We clarify which integrations make sense for each project."
+    },
+    {
+      "q": "How long does it take until a CoWorker works in the team?",
+      "a": "That depends on the role and the integrations. Some CoWorkers are productive within a few weeks, others take months. We assess your case in the first conversation."
+    },
+    {
+      "q": "What happens to our data?",
+      "a": "Data is processed only on your instructions, and there is no training with your data. We create the DPA individually for each project. Hosting tailored to your requirements: Germany, EU or on-premises. We work model-agnostic and assess local open-source models per project."
+    },
+    {
+      "q": "Can a team have several CoWorkers?",
+      "a": "Yes. Each CoWorker has its own role, its own access rights and a person it reports to. We recommend starting with one role and expanding once the collaboration runs smoothly."
+    }
+  ],
+  "scope": {
+    "title": "A team member with a clear remit.",
+    "text": "We develop the CoWorker for a specific role in your team. The role profile defines what it takes on, what it works with and who it reports to.",
+    "points": [
+      {
+        "name": "Role and remit",
+        "text": "A CoWorker with a name, clearly defined tasks and a person in the team it reports to.",
+        "tag": "Role profile"
+      },
+      {
+        "name": "Your team's knowledge",
+        "text": "It works with your templates, guidelines and previous results and knows the status of every open task.",
+        "tag": "Sources"
+      },
+      {
+        "name": "Access to your systems",
+        "text": "It reads and writes only where you allow it, for example in file storage, CRM or ERP.",
+        "tag": "Least privilege"
+      },
+      {
+        "name": "Questions and review",
+        "text": "When information is missing, it asks. It submits results for review before they leave the team.",
+        "tag": "A human decides"
+      },
+      {
+        "name": "Development and operations",
+        "text": "utxo AG develops, hosts and monitors the CoWorker and extends the role together with your team.",
+        "tag": "utxo AG"
+      }
+    ]
+  },
+  "profile": {
+    "label": "Animated example: role profile of the CoWorker Lena with tasks, sources and an access right that a person approves.",
+    "context": "Role profile",
+    "state": "On the team",
+    "reportsLabel": "Reports to",
+    "reports": 0,
+    "hoursLabel": "Available",
+    "hours": "Mon to Fri · 7 am to 7 pm",
+    "channelsLabel": "Channels",
+    "channels": [
+      "Chat",
+      "Email",
+      "Tickets"
+    ],
+    "tasksLabel": "Tasks",
+    "tasks": [
+      "Competitor analyses",
+      "Media evaluations",
+      "Campaign examples",
+      "Weekly report",
+      "Briefing summaries"
+    ],
+    "accessLabel": "Sources and access",
+    "access": [
+      {
+        "name": "Team drive",
+        "level": "Read and file"
+      },
+      {
+        "name": "Media data",
+        "level": "Read"
+      },
+      {
+        "name": "Web research",
+        "level": "Approved sources"
+      },
+      {
+        "name": "Sending to clients",
+        "level": "Approval required"
+      }
+    ],
+    "requests": [
+      {
+        "name": "Market research archive",
+        "level": "Read",
+        "by": 1
+      },
+      {
+        "name": "Image database",
+        "level": "Read",
+        "by": 2
+      },
+      {
+        "name": "Campaign dashboard",
+        "level": "Read",
+        "by": 3
+      }
+    ],
+    "requested": "Requested",
+    "approves": "Approval:",
+    "granted": "Granted"
+  },
+  "example": {
+    "title": "One task, from handover to approval.",
+    "text": "Two everyday examples: a competitor analysis in the campaign team of an agency and a quote in the sales team of an industrial company. The sequence is the same. The CoWorker takes the task on, asks a question, delivers a draft, and a person reviews and approves.",
+    "label": "Animated example: the path of a task from handover through a question, a draft and a review by a person to the final version.",
+    "context": "Task in detail",
+    "briefLabel": "Assignment",
+    "fromLabel": "From",
+    "toLabel": "To",
+    "channelLabel": "Channel",
+    "dueLabel": "Due",
+    "mayUseLabel": "May use",
+    "logLabel": "Work log",
+    "docLabel": "Result",
+    "stages": [
+      "Handed over",
+      "Question",
+      "Draft",
+      "Review",
+      "Final"
+    ],
+    "running": "In progress",
+    "cases": [
+      {
+        "tab": "Agency",
+        "title": "Update the competitor analysis",
+        "from": {
+          "member": 0
+        },
+        "to": {
+          "member": 4
+        },
+        "channel": "Chat · Fall campaign",
+        "due": "Thursday",
+        "mayUse": [
+          "Team drive",
+          "Market data",
+          "Web research"
+        ],
+        "log": [
+          {
+            "time": "Mon 09:12",
+            "text": "Task taken on in the channel, draft promised by Wednesday, 4 pm."
+          },
+          {
+            "time": "Mon 09:13",
+            "text": "Question to Jana: with or without Austria?",
+            "answer": "Jana: With Austria."
+          },
+          {
+            "time": "Mon to Wed",
+            "text": "Read last year's analysis, evaluated 14 sources, compared 5 competitors."
+          },
+          {
+            "time": "Wed 15:40",
+            "text": "Draft handed over.",
+            "answer": "Jana: Add private labels to the price comparison.",
+            "pill": "Jana reviews"
+          },
+          {
+            "time": "Thu 10:05",
+            "text": "Comment worked in, version 4 filed and reported in the channel.",
+            "pill": "Approved"
+          }
+        ],
+        "doc": {
+          "name": "Competitor analysis, fall",
+          "meta": "PDF · 24 pages",
+          "sections": [
+            "Market overview",
+            "Competitors",
+            "Price comparison",
+            "Austria",
+            "Sources"
+          ],
+          "comment": 2,
+          "note": "Add private labels",
+          "draft": "Draft · v3",
+          "review": "In review · Jana",
+          "final": "Approved · v4"
+        }
+      },
+      {
+        "tab": "Sales",
+        "title": "Prepare the quote under the framework agreement",
+        "from": {
+          "name": "Sabine Roth",
+          "role": "Head of Sales",
+          "initials": "SR"
+        },
+        "to": {
+          "name": "Kai",
+          "role": "CoWorker · Quotes",
+          "initials": "K"
+        },
+        "channel": "Email · Sales inbox",
+        "due": "Friday",
+        "mayUse": [
+          "CRM",
+          "ERP price lists",
+          "Templates"
+        ],
+        "log": [
+          {
+            "time": "Tue 08:47",
+            "text": "Request taken on from the inbox, draft promised by Wednesday noon."
+          },
+          {
+            "time": "Tue 08:49",
+            "text": "Question to Sabine: does the tier from the framework agreement apply?",
+            "answer": "Sabine: Yes, tier B."
+          },
+          {
+            "time": "Tue to Wed",
+            "text": "Read the customer history in the CRM, took prices from the ERP, calculated 3 items."
+          },
+          {
+            "time": "Wed 10:52",
+            "text": "Draft handed over.",
+            "answer": "Sabine: Change the delivery time to week 46.",
+            "pill": "Sabine reviews"
+          },
+          {
+            "time": "Wed 14:10",
+            "text": "Delivery time adjusted, quote filed. Sabine sends it to the customer.",
+            "pill": "Approved"
+          }
+        ],
+        "doc": {
+          "name": "Quote AN-0418",
+          "meta": "PDF · 4 pages",
+          "sections": [
+            "Items",
+            "Terms",
+            "Delivery time",
+            "Payment terms",
+            "Appendix"
+          ],
+          "comment": 2,
+          "note": "Week 46",
+          "draft": "Draft · v1",
+          "review": "In review · Sabine",
+          "final": "Approved · v2"
+        }
+      }
+    ]
+  },
+  "integration": {
+    "title": "In the channel your team uses, in your systems.",
+    "text": "Your team does not need to learn a new interface. The CoWorker takes on tasks where they arise today and keeps them in one task list that your team can view at any time.",
+    "label": "Animated example: the CoWorker Lena takes on tasks in chat, email and the ticket system and keeps them in one task list.",
+    "typing": "typing …",
+    "windows": [
+      {
+        "kind": "Chat",
+        "context": "Fall campaign",
+        "from": 2,
+        "time": "09:41",
+        "mention": "@Lena",
+        "text": "please check the image rights for the three visuals.",
+        "reply": {
+          "time": "09:42",
+          "text": "I'm on it. You will hear from me by 10 am tomorrow."
+        },
+        "before": 0,
+        "after": 1
+      },
+      {
+        "kind": "Email",
+        "context": "Inbox",
+        "from": 1,
+        "time": "10:15",
+        "subject": "Briefing for client Nordwind",
+        "text": "Lena, please summarize the briefing on one page.",
+        "reply": {
+          "time": "11:30",
+          "subject": "Re: Briefing for client Nordwind",
+          "text": "The summary is attached. Two points are still open.",
+          "file": "Briefing_Nordwind.pdf"
+        },
+        "before": 2,
+        "after": 3
+      },
+      {
+        "kind": "Ticket",
+        "context": "MKT-482",
+        "from": 3,
+        "time": "Mon",
+        "subject": "Weekly social media report",
+        "text": "Assigned to Lena, due on Friday.",
+        "reply": {
+          "time": "Fri 08:20",
+          "text": "The report for week 41 is attached and goes to Felix for review."
+        },
+        "before": 2,
+        "after": 3
+      }
+    ],
+    "queueLabel": "Lena's tasks",
+    "queueNote": "One list for all channels",
+    "queue": [
+      "Check image rights",
+      "Briefing Nordwind",
+      "Weekly report, week 41"
+    ],
+    "states": [
+      "New",
+      "Taken on",
+      "In progress",
+      "For review"
+    ],
+    "points": [
+      {
+        "name": "Channels",
+        "text": "Team chat, email or ticket system: the CoWorker works in the channels your team already uses.",
+        "tag": "Chat · Email · Tickets"
+      },
+      {
+        "name": "Systems",
+        "text": "Integration with ERP, CRM, DMS and file storage via interfaces, with its own narrowly defined rights.",
+        "tag": "ERP · CRM · DMS"
+      },
+      {
+        "name": "Approvals",
+        "text": "You define which steps require approval, such as sending to customers or posting a booking.",
+        "tag": "Approval rules"
+      },
+      {
+        "name": "Log",
+        "text": "Every action is logged. Your team sees what the CoWorker did, with which sources and for whom.",
+        "tag": "Traceable"
+      },
+      {
+        "name": "Operations",
+        "text": "utxo AG hosts and monitors the CoWorker. Hosting tailored to your requirements: Germany, EU or on-premises.",
+        "tag": "Hosting as required"
+      }
+    ]
+  },
+  "process": {
+    "title": "From the role to operations.",
+    "text": "A CoWorker is onboarded like a new team member. How long that takes depends on the role and the integrations: some CoWorkers join the team within a few weeks, others take months.",
+    "label": "Animated diagram: the CoWorker passes five stations from the role profile to operations.",
+    "rail": [
+      "Role described",
+      "Access granted",
+      "Trial tasks passed",
+      "Team reviews every result",
+      "In operation"
+    ],
+    "steps": [
+      {
+        "name": "First conversation and role",
+        "text": "Together we clarify which tasks the CoWorker takes on in the team, who it reports to and how you measure good work.",
+        "note": "Role profile"
+      },
+      {
+        "name": "Access and knowledge",
+        "text": "Your team defines which systems, storage locations and sources the CoWorker may use. We connect them with least privilege.",
+        "note": "Access concept"
+      },
+      {
+        "name": "Development and trial tasks",
+        "text": "We develop the CoWorker and test it on real tasks from your daily work until the results meet your standard.",
+        "note": "Test log"
+      },
+      {
+        "name": "Onboarding in the team",
+        "text": "The CoWorker works in the channel your team already uses. At first your team reviews every result, later wherever you define it.",
+        "note": "Approval rules"
+      },
+      {
+        "name": "Operations and further development",
+        "text": "utxo AG hosts and monitors the CoWorker, evaluates feedback and extends the role when new tasks come up.",
+        "note": "Ongoing operations"
+      }
+    ]
+  },
+  "reference": {
+    "title": "In use: Sokosumi.",
+    "text": "Sokosumi is the platform for marketing teams to brief AI CoWorkers and AI agents and work with them as a team.",
+    "link": {
+      "text": "Visit Sokosumi",
+      "href": "https://www.sokosumi.com"
+    },
+    "points": [
+      {
+        "name": "Partnership",
+        "text": "Developed and operated together with the Serviceplan Group.",
+        "tag": "Serviceplan Group"
+      },
+      {
+        "name": "Role of utxo AG",
+        "text": "utxo AG is responsible for technology and hosting.",
+        "tag": "Technology · Hosting"
+      }
+    ]
+  }
+}

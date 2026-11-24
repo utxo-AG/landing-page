@@ -1,0 +1,207 @@
+---
+/*
+  Use-case profile (AI Adoption detail page): one page per use case that fills itself section by section.
+  Both sample profiles are in the markup as two sheets on one stack: the front one fills, is agreed, leaves,
+  and the one behind comes forward. The front sheet in the markup is complete (no-JS and reduced-motion frame).
+  Sections carry data-order (the order in which they fill); the columns only place them.
+  Below 620px of width (with JS and motion) one section shows at a time, so the sheet keeps a phone-sized height.
+*/
+const { t } = Astro.props;
+const m = t.servicePages['ai-adoption'].profile;
+const order = ['process', 'sources', 'people', 'decisions', 'estimate', 'risks', 'recommendation'];
+const at = (name) => order.indexOf(name);
+const total = order.length;
+const share = (value) => `${((value / m.scale.max) * 100).toFixed(2)}%`;
+---
+<div class="aap-pf" data-aap="profile" role="img" aria-label={m.label}>
+  <div class="aap-pf-stack">
+    {m.cases.map((c, index) => (
+      <div class:list={['aap-pf-sheet mock-light', { 'is-back': index > 0 }, { 'is-agreed': index === 0 }]} data-sheet>
+        <div class="aap-pf-top">
+          <div>
+            <p class="aap-pf-ctx label">{m.context} · {c.id}</p>
+            <p class="aap-pf-name">{c.name}</p>
+            <p class="aap-pf-area">{c.area}</p>
+          </div>
+          <div class="aap-pf-meta">
+            <p class="aap-pf-status">{m.status.map((name) => <em class="st">{name}</em>)}</p>
+            <p class="aap-pf-count label">{m.section} <b data-now>{total}</b> {m.of} {total}</p>
+            <p class="aap-pf-ticks">{order.map(() => <i class="is-on" data-tick></i>)}</p>
+          </div>
+        </div>
+        <div class="aap-pf-cols">
+          <div class="aap-pf-col">
+            <div class="aap-pf-sec is-on" data-order={at('process')}>
+              <p class="aap-pf-h label"><span>{m.sections.process}</span><i>{m.working}</i></p>
+              <ol class="aap-pf-flow">
+                {c.process.map((step, i) => <li class="aap-pf-item" style={`--i:${i}`}><b>{step.name}</b><span>{step.note}</span></li>)}
+              </ol>
+              <p class="aap-pf-foot aap-pf-item" style={`--i:${c.process.length}`}>{c.processNote}</p>
+            </div>
+            <div class="aap-pf-sec aap-pf-sec--decisions is-on" data-order={at('decisions')}>
+              <p class="aap-pf-h label"><span>{m.sections.decisions}</span><i>{m.working}</i></p>
+              <ul class="aap-pf-pills">
+                {c.decisions.map((name, i) => <li class="st is-human aap-pf-item" style={`--i:${i}`}>{name}</li>)}
+              </ul>
+            </div>
+          </div>
+          <div class="aap-pf-col">
+            <div class="aap-pf-sec is-on" data-order={at('sources')}>
+              <p class="aap-pf-h label"><span>{m.sections.sources}</span><i>{m.working}</i></p>
+              <ul class="aap-pf-rows">
+                {c.sources.map((source, i) => <li class="aap-pf-item" style={`--i:${i}`}><b>{source.name}</b><span>{source.note}</span><em class="st">{source.state}</em></li>)}
+              </ul>
+            </div>
+            <div class="aap-pf-sec is-on" data-order={at('people')}>
+              <p class="aap-pf-h label"><span>{m.sections.people}</span><i>{m.working}</i></p>
+              <ul class="aap-pf-rows">
+                {c.people.map((person, i) => <li class="aap-pf-item" style={`--i:${i}`}><b>{person.role}</b><span>{person.note}</span></li>)}
+              </ul>
+            </div>
+          </div>
+          <div class="aap-pf-col aap-pf-col--result">
+            <div class="aap-pf-sec aap-pf-sec--estimate is-on" data-order={at('estimate')}>
+              <p class="aap-pf-h label"><span>{m.sections.estimate}</span><i>{m.working}</i></p>
+              <p class="aap-pf-value aap-pf-item"><b>{c.estimate.value}</b> <span>{c.estimate.label}</span></p>
+              <div class="aap-pf-scale aap-pf-item" style="--i:1">
+                <p class="aap-pf-range" style={`left:${share(c.estimate.from)};width:${share(c.estimate.to - c.estimate.from)}`}><i></i></p>
+                <ol class="label">{m.scale.ticks.map((tick, i) => <li style={`left:${share(tick)}`}>{tick}{i === m.scale.ticks.length - 1 && ` ${m.scale.unit}`}</li>)}</ol>
+              </div>
+              <p class="aap-pf-foot aap-pf-item" style="--i:2">{c.estimate.assumption}<br>{m.estimateNote}</p>
+            </div>
+            <div class="aap-pf-sec is-on" data-order={at('risks')}>
+              <p class="aap-pf-h label"><span>{m.sections.risks}</span><i>{m.working}</i></p>
+              <ul class="aap-pf-rows aap-pf-risks">
+                {c.risks.map((risk, i) => <li class="aap-pf-item" style={`--i:${i}`}><b>{risk.name}</b><span class="aap-pf-level" data-level={risk.level}><i></i><i></i><i></i>{m.levels[risk.level - 1]}</span></li>)}
+              </ul>
+            </div>
+            <div class="aap-pf-sec is-on" data-order={at('recommendation')}>
+              <p class="aap-pf-h label"><span>{m.sections.recommendation}</span><i>{m.working}</i></p>
+              <p class="aap-pf-rec aap-pf-item"><b>{c.recommendation.text}</b><span>{c.recommendation.form}</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  import { profile } from './profile.js';
+
+  document.querySelectorAll('[data-aap="profile"]').forEach(profile);
+</script>
+
+<style is:global>
+/*
+  .aap-pf-sheet   one profile; .is-back = waiting behind the front sheet (content hidden), .is-leaving = filed away,
+                  .is-agreed = status "Abgestimmt"
+  .aap-pf-sec     one section; .is-on = filled, .is-now = being worked on (green marker), .is-view = the one shown
+                  in the one-section view on phones
+  .aap-pf-item    a line of content that rises in when its section is filled (order --i)
+*/
+.aap-pf{container-type:inline-size;--aap-small:clamp(11px, .84vw, 12.5px);font-size:clamp(13.5px, 1.04vw, 15.5px);line-height:1.3}
+.aap-pf-stack{display:grid;grid-template-columns:minmax(0,1fr);padding-top:18px}
+.aap-pf-sheet{grid-area:1 / 1;position:relative;z-index:1;padding:clamp(22px, 3.4cqw, 48px);border-radius:var(--radius);box-shadow:0 44px 80px -42px rgba(12,18,48,.3),0 2px 8px -2px rgba(12,18,48,.06);transform-origin:50% 0;transition:transform var(--t-enter) var(--ease),opacity var(--t-fast) ease,background-color var(--t-move)}
+.aap-pf-sheet > *{transition:opacity var(--t-fast) ease}
+.aap-pf-sheet.is-back{z-index:0;background:#F7F8FB;transform:translateY(-18px) scale(.955)}
+.aap-pf-sheet.is-back > *{opacity:0}
+.aap-pf-sheet.is-leaving{opacity:0;transform:translateY(34px) scale(.985)}
+
+.aap-pf-top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;padding-bottom:clamp(18px, 2.2cqw, 30px);border-bottom:1px solid var(--m-rule)}
+.aap-pf-ctx{color:var(--m-muted)}
+.aap-pf-name{margin-top:clamp(10px, 1.2cqw, 16px);font-size:clamp(24px, 3.2cqw, 42px);line-height:1;letter-spacing:-.04em}
+.aap-pf-area{margin-top:8px;color:var(--m-muted)}
+.aap-pf-meta{display:grid;justify-items:end;gap:10px;flex:none}
+.aap-pf-status{display:grid}
+.aap-pf-status .st{grid-area:1 / 1;justify-self:end;font-size:var(--aap-small);transition:opacity var(--t-fast)}
+.aap-pf-status .st:last-child{background:var(--m-fg);color:#fff}
+.aap-pf-sheet:not(.is-agreed) .aap-pf-status .st:last-child,.aap-pf-sheet.is-agreed .aap-pf-status .st:first-child{opacity:0}
+.aap-pf-count{color:var(--m-muted);font-variant-numeric:tabular-nums}
+.aap-pf-count b{color:var(--m-fg);font-weight:600}
+.aap-pf-ticks{display:flex;gap:4px}
+.aap-pf-ticks i{width:18px;height:3px;border-radius:3px;background:var(--m-soft);transition:background-color var(--t-fast)}
+.aap-pf-ticks .is-on{background:var(--m-fg)}
+.aap-pf-ticks .is-now{background:var(--phthalo)}
+
+.aap-pf-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 clamp(24px, 3.4cqw, 52px);margin-top:clamp(18px, 2.2cqw, 30px)}
+.aap-pf-sec + .aap-pf-sec{margin-top:clamp(22px, 2.6cqw, 34px)}
+.aap-pf-h{display:flex;justify-content:space-between;gap:12px;padding-bottom:9px;border-bottom:1px solid var(--m-rule);color:var(--m-muted)}
+.aap-pf-h i{display:flex;align-items:center;gap:6px;font-style:normal;color:var(--phthalo);opacity:0;transition:opacity var(--t-fast)}
+.aap-pf-h i::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.aap-pf-sec.is-now .aap-pf-h i{opacity:1}
+.aap-pf-item{transition:opacity var(--t-move) ease,transform var(--t-move) var(--ease);transition-delay:calc(var(--i, 0) * 110ms)}
+.aap-pf b{font-weight:500;letter-spacing:-.015em}
+
+.aap-pf-flow li{position:relative;display:grid;gap:2px;padding:9px 0 9px 22px}
+.aap-pf-flow li span,.aap-pf-rows li span,.aap-pf-foot,.aap-pf-rec span{color:var(--m-muted);font-size:var(--aap-small)}
+.aap-pf-flow li::before{content:"";position:absolute;left:0;top:14px;width:7px;height:7px;border-radius:50%;background:var(--m-fg);transition:background-color var(--t-fast),box-shadow var(--t-fast),transform var(--t-fast) var(--ease)}
+.aap-pf-flow li::after{content:"";position:absolute;left:3px;top:25px;bottom:-11px;width:1px;background:var(--m-rule)}
+.aap-pf-flow li:last-child::after{display:none}
+.aap-pf-col:has(.aap-pf-sec--decisions.is-on) .aap-pf-flow li:last-child::before{background:#fff;box-shadow:0 0 0 1px rgba(7,8,10,.5),0 4px 10px rgba(10,14,30,.2);transform:scale(1.5)}
+.aap-pf-foot{margin-top:10px;line-height:1.4}
+.aap-pf-pills{display:flex;flex-wrap:wrap;gap:8px;padding-top:14px}
+.aap-pf-pills .st{font-size:var(--aap-small);padding:7px 12px}
+
+.aap-pf-rows li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--m-soft)}
+.aap-pf-rows li span{grid-column:1;grid-row:2}
+.aap-pf-rows .st{grid-column:2;grid-row:1 / span 2;font-size:var(--aap-small)}
+.aap-pf-risks li .aap-pf-level{grid-column:2;grid-row:1;display:flex;align-items:center;gap:3px;white-space:nowrap}
+.aap-pf-level i{width:9px;height:5px;border-radius:1px;background:var(--m-soft)}
+.aap-pf-level i:nth-of-type(3){margin-right:6px}
+.aap-pf-level i:first-child,.aap-pf-level:not([data-level="1"]) i:nth-of-type(2),.aap-pf-level[data-level="3"] i:nth-of-type(3){background:var(--m-fg)}
+
+.aap-pf-value{padding-top:14px;line-height:1.1}
+.aap-pf-value b{display:block;font-size:clamp(22px, 2.5cqw, 32px);font-weight:400;letter-spacing:-.035em}
+.aap-pf-value span{display:block;margin-top:5px;color:var(--m-muted)}
+.aap-pf-scale{position:relative;margin-top:16px;padding-top:4px;height:42px}
+.aap-pf-scale::before{content:"";position:absolute;left:0;right:0;top:7px;height:1px;background:var(--m-rule)}
+.aap-pf-range{position:absolute;top:4px;height:7px;border-radius:7px;overflow:hidden}
+.aap-pf-range i{display:block;height:100%;background:var(--m-fg);border-radius:7px;transform-origin:0 50%;transition:transform var(--t-enter) var(--ease) .3s}
+.aap-pf-scale ol{position:absolute;left:0;right:0;top:20px;color:var(--m-muted)}
+.aap-pf-scale li{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap}
+.aap-pf-scale li:first-child{transform:none}
+.aap-pf-scale li:last-child{transform:translateX(-100%)}
+.aap-pf-scale li::before{content:"";position:absolute;left:50%;bottom:calc(100% + 3px);width:1px;height:5px;background:var(--m-rule)}
+.aap-pf-scale li:first-child::before{left:0}
+.aap-pf-scale li:last-child::before{left:calc(100% - 1px)}
+.aap-pf-rec{display:grid;gap:5px;padding-top:14px}
+.aap-pf-rec b{font-size:clamp(20px, 2.1cqw, 27px);font-weight:400;letter-spacing:-.03em;line-height:1.1}
+
+.js .aap-pf-stack{opacity:0;transform:translateY(48px);transition:transform var(--t-stage) var(--ease) .1s,opacity var(--t-move) ease .1s}
+.js .is-in .aap-pf-stack{opacity:1;transform:none}
+.js .aap-pf-sec:not(.is-on) .aap-pf-item{opacity:0;transform:translateY(9px);transition-delay:0s}
+.js .aap-pf-sec:not(.is-on) .aap-pf-range i{transform:scaleX(0);transition-delay:0s}
+
+/* medium width: two columns, the result column runs across below them */
+@container (max-width:980px){
+  .aap-pf-cols{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .aap-pf-col--result{grid-column:1 / -1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(24px, 3.4cqw, 52px);margin-top:clamp(22px, 2.6cqw, 34px)}
+  .aap-pf-col--result .aap-pf-sec{margin-top:0}
+  .aap-pf-col--result .aap-pf-sec--estimate{grid-row:1 / span 2}
+  .aap-pf-col--result .aap-pf-sec:last-child{margin-top:clamp(22px, 2.6cqw, 34px)}
+}
+/* narrow: one column */
+@container (max-width:620px){
+  .aap-pf-sheet{padding:20px 18px 22px}
+  .aap-pf-top{display:block}
+  .aap-pf-meta{grid-template-columns:minmax(0,1fr) auto;justify-items:end;align-items:center;gap:6px 12px;margin-top:16px}
+  .aap-pf-status{grid-row:1 / span 2;justify-self:start}
+  .aap-pf-status .st{justify-self:start}
+  .aap-pf-cols,.aap-pf-col--result{display:block}
+  .aap-pf-col + .aap-pf-col,.aap-pf-col--result .aap-pf-sec + .aap-pf-sec{margin-top:26px}
+  .aap-pf-ticks i{width:12px}
+  .aap-pf :is(.aap-pf-flow li span,.aap-pf-rows li span,.aap-pf-foot,.aap-pf-rec span,.st,.label){font-size:11px}
+}
+@media (prefers-reduced-motion:no-preference){
+  @container (max-width:620px){
+    .js .aap-pf-cols{display:grid;grid-template-columns:minmax(0,1fr)}
+    .js .aap-pf-col,.js .aap-pf-col--result{display:contents}
+    .js .aap-pf-cols .aap-pf-sec{grid-area:1 / 1;margin-top:0;opacity:0;visibility:hidden;transition:opacity var(--t-fast) ease,visibility 0s var(--t-fast)}
+    .js .aap-pf-cols .aap-pf-sec.is-view{opacity:1;visibility:visible;transition:opacity var(--t-fast) ease var(--t-fast),visibility 0s var(--t-fast)}
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  .js .aap-pf-stack,.aap-pf-sheet,.aap-pf-sheet > *,.aap-pf-item,.aap-pf-range i{transition:none}
+}
+</style>

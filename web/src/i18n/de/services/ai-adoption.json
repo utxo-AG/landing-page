@@ -1,0 +1,740 @@
+{
+  "title": "AI Adoption und Consulting: von Use Cases zu Software im Betrieb | utxo AG",
+  "description": "utxo AG identifiziert mit Ihnen die KI-Anwendungsfälle mit dem grössten Nutzen, bewertet sie nachvollziehbar und führt sie Schritt für Schritt in den Betrieb.",
+  "lede": "Wir finden mit Ihnen die Anwendungsfälle, die sich für Ihr Unternehmen lohnen, und führen sie Schritt für Schritt in den Betrieb. Am Ende steht Software, mit der Ihre Teams täglich arbeiten.",
+  "scope": {
+    "title": "Was Sie erhalten",
+    "text": "Wir sind ein Softwareentwicklungsteam. Jede Empfehlung ist so konkret, dass sie sich umsetzen lässt, und auf Wunsch setzen wir sie selbst um.",
+    "points": [
+      {
+        "name": "Use-Case-Portfolio",
+        "text": "Alle Anwendungsfälle aus Ihren Fachbereichen in einer Übersicht, bewertet nach Nutzen, Aufwand, Datenlage und Risiko.",
+        "tag": "Workshop"
+      },
+      {
+        "name": "Steckbrief je Use Case",
+        "text": "Eine Seite pro Anwendungsfall: Prozess heute, Datenquellen, Beteiligte, Entscheidungspunkte, Schätzung mit Bandbreite und Risiken.",
+        "tag": "Grundlage"
+      },
+      {
+        "name": "Roadmap",
+        "text": "Eine Reihenfolge, die zu Ihrer Organisation passt. Kurze Vorhaben starten früh, grössere laufen parallel an.",
+        "tag": "Planung"
+      },
+      {
+        "name": "Pilot mit echten Daten",
+        "text": "Der erste Use Case läuft als Software in Ihrer Umgebung, mit Ihren Daten und den Menschen, die später damit arbeiten.",
+        "tag": "Software"
+      },
+      {
+        "name": "Einführung im Team",
+        "text": "Rollen, Schulung und ein fester Weg für Rückmeldungen, bis die Lösung zum Arbeitsalltag gehört.",
+        "tag": "Begleitung"
+      }
+    ]
+  },
+  "example": {
+    "title": "Ein Use Case, auf einer Seite beurteilt",
+    "text": "Ein Beispiel: Ein Maschinenbauunternehmen möchte Angebote schneller erstellen. Der Steckbrief hält fest, wie der Prozess heute läuft, welche Daten vorhanden sind, wer beteiligt ist und wo weiterhin ein Mensch entscheidet. Die Schätzung nennt eine Bandbreite und die Annahmen dahinter.",
+    "note": "Aus dem Steckbrief ergibt sich auch die Form der Lösung: eine KI-Automation, ein Agentic CoWorker im Team, ein Managed Agent oder individuelle Software."
+  },
+  "project": {
+    "title": "So läuft ein Projekt",
+    "text": "Jeder Use Case erhält seine eigene Schätzung. Manche sind in wenigen Wochen produktiv, andere brauchen Monate. Deshalb planen wir in Wellen: Kurze Vorhaben liefern früh Ergebnisse, und jedes weitere nutzt, was bereits steht.",
+    "steps": [
+      {
+        "name": "Erstgespräch",
+        "text": "Wir klären Ziele, Ausgangslage und wer auf Ihrer Seite beteiligt ist.",
+        "note": "Ziele und Rahmen"
+      },
+      {
+        "name": "Use-Case-Workshop",
+        "text": "Mit Ihren Fachbereichen sammeln wir Anwendungsfälle und bewerten sie nach Nutzen, Aufwand, Datenlage und Risiko.",
+        "note": "Portfolio, Shortlist"
+      },
+      {
+        "name": "Steckbrief und Entscheidung",
+        "text": "Für die Shortlist entstehen Steckbriefe mit Schätzung. Sie entscheiden, womit wir beginnen.",
+        "note": "Steckbriefe, Roadmap"
+      },
+      {
+        "name": "Pilot",
+        "text": "Wir entwickeln den ersten Use Case und erproben ihn mit echten Daten und den späteren Nutzerinnen und Nutzern.",
+        "note": "Lauffähige Software"
+      },
+      {
+        "name": "Betrieb und Einführung",
+        "text": "Nach Ihrer Freigabe geht der Use Case in den Betrieb. Wir schulen die Teams und starten die nächste Welle.",
+        "note": "Betrieb, Schulung"
+      }
+    ]
+  },
+  "operation": {
+    "title": "Integration und Betrieb",
+    "text": "Ein Use Case ist eingeführt, wenn das Team ihn im Alltag nutzt. Dafür binden wir die Lösung an Ihre bestehenden Systeme an, klären Rollen und Rechte und begleiten das Team auch nach dem Start.",
+    "points": [
+      {
+        "name": "Bestehende Systeme",
+        "text": "Anbindung an ERP, CRM und DMS, Anmeldung über Ihr SSO. Ihre Teams arbeiten in der gewohnten Umgebung weiter.",
+        "tag": "API · SSO"
+      },
+      {
+        "name": "Betrieb",
+        "text": "utxo AG entwickelt, hostet und überwacht die Lösung. Hosting nach Ihren Anforderungen: Deutschland, EU oder on-premise.",
+        "tag": "Je Projekt"
+      },
+      {
+        "name": "Transparenz",
+        "text": "Sie sehen, wie stark die Lösung genutzt wird und welche Rückmeldungen offen sind. Jede Aktion wird protokolliert.",
+        "tag": "Protokoll"
+      },
+      {
+        "name": "Entscheidungen",
+        "text": "Wo es darauf ankommt, gibt ein Mensch frei. Welche Schritte das sind, legen wir im Steckbrief gemeinsam fest.",
+        "tag": "Freigabe"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Wie lange dauert es, bis ein Use Case produktiv ist?",
+      "a": "Das hängt vom Use Case ab. Manche sind in wenigen Wochen produktiv, andere brauchen Monate, etwa wenn viele Systeme angebunden werden oder die Datenlage erst geklärt werden muss. Jeder Steckbrief enthält eine Schätzung mit Bandbreite und den Annahmen dahinter."
+    },
+    {
+      "q": "Erhalten wir am Ende ein Konzept oder eine Lösung?",
+      "a": "Beides. Portfolio, Steckbriefe und Roadmap sind Ihre Entscheidungsgrundlage. utxo AG ist ein Softwareentwicklungsteam, deshalb führt die Beratung zu lauffähiger Software: Den Pilot entwickeln wir selbst und führen ihn mit Ihnen in den Betrieb."
+    },
+    {
+      "q": "Müssen unsere Daten bereits aufbereitet sein?",
+      "a": "Nein. Die Datenlage ist ein Kriterium der Bewertung. Wir prüfen je Use Case, welche Quellen vorhanden sind, in welcher Qualität sie vorliegen und was vor einem Pilot zu klären ist. Use Cases mit guter Datenlage können früher starten."
+    },
+    {
+      "q": "Wer muss auf unserer Seite beteiligt sein?",
+      "a": "Eine Person mit Entscheidungsbefugnis, die Fachbereiche, aus denen die Use Cases kommen, sowie IT und Datenschutz. Im Pilot arbeiten die Mitarbeitenden mit, die die Lösung später nutzen."
+    },
+    {
+      "q": "Wie gehen Sie mit Datenschutz und der EU-KI-Verordnung um?",
+      "a": "Den AVV erstellen wir individuell je Projekt. Die Verarbeitung erfolgt nur auf Ihre Weisung, ein Training mit Ihren Daten findet nicht statt. Das Hosting legen wir nach Ihren Anforderungen fest: Deutschland, EU oder on-premise. Unser Vorgehen ist an der EU-KI-Verordnung ausgerichtet: Wo es darauf ankommt, gibt ein Mensch frei."
+    },
+    {
+      "q": "Wie geht es nach dem ersten Use Case weiter?",
+      "a": "Die Roadmap enthält die nächsten Use Cases. Je nach Aufgabe werden daraus KI-Automationen, Agentic CoWorker oder Managed Agents. Entstehen viele Agenten, lohnt sich eine gemeinsame Grundlage, auf der sie in Serie entwickelt und betrieben werden."
+    }
+  ],
+  "board": {
+    "label": "Animierte Beispielansicht: Use Cases aus den Fachbereichen werden bewertet, geordnet und zu einer Shortlist.",
+    "context": "Use-Case-Workshop · Bewertung",
+    "phases": [
+      "Sammeln",
+      "Bewerten",
+      "Ordnen",
+      "Shortlist"
+    ],
+    "columns": {
+      "name": "Use Case",
+      "area": "Bereich",
+      "scores": [
+        "Nutzen",
+        "Aufwand",
+        "Daten",
+        "Risiko"
+      ],
+      "result": "Ergebnis"
+    },
+    "results": [
+      "Shortlist",
+      "Welle 2",
+      "Später"
+    ],
+    "cut": [
+      3,
+      5
+    ],
+    "decision": "Ihre Entscheidung",
+    "rounds": [
+      {
+        "label": "Runde 1 · Vertrieb, Service, Finanzen",
+        "rows": [
+          {
+            "name": "Angebotserstellung",
+            "area": "Vertrieb",
+            "scores": [
+              5,
+              3,
+              4,
+              2
+            ]
+          },
+          {
+            "name": "Absatzprognose",
+            "area": "Vertrieb",
+            "scores": [
+              4,
+              5,
+              2,
+              3
+            ]
+          },
+          {
+            "name": "Reklamationsbearbeitung",
+            "area": "Service",
+            "scores": [
+              4,
+              3,
+              4,
+              2
+            ]
+          },
+          {
+            "name": "Wissenssuche",
+            "area": "Service",
+            "scores": [
+              3,
+              1,
+              4,
+              1
+            ]
+          },
+          {
+            "name": "Anfragen vorsortieren",
+            "area": "Service",
+            "scores": [
+              3,
+              2,
+              3,
+              2
+            ]
+          },
+          {
+            "name": "Rechnungsprüfung",
+            "area": "Finanzen",
+            "scores": [
+              4,
+              2,
+              5,
+              1
+            ]
+          },
+          {
+            "name": "Mahnwesen",
+            "area": "Finanzen",
+            "scores": [
+              2,
+              2,
+              4,
+              3
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Runde 2 · Einkauf, Produktion, HR",
+        "rows": [
+          {
+            "name": "Lieferantenvergleich",
+            "area": "Einkauf",
+            "scores": [
+              4,
+              2,
+              4,
+              1
+            ]
+          },
+          {
+            "name": "Bestellabgleich",
+            "area": "Einkauf",
+            "scores": [
+              5,
+              3,
+              5,
+              1
+            ]
+          },
+          {
+            "name": "Prüfprotokolle auswerten",
+            "area": "Produktion",
+            "scores": [
+              5,
+              4,
+              4,
+              2
+            ]
+          },
+          {
+            "name": "Schichtübergabe",
+            "area": "Produktion",
+            "scores": [
+              3,
+              2,
+              3,
+              1
+            ]
+          },
+          {
+            "name": "Wartungsplanung",
+            "area": "Produktion",
+            "scores": [
+              4,
+              5,
+              2,
+              3
+            ]
+          },
+          {
+            "name": "Onboarding",
+            "area": "HR",
+            "scores": [
+              3,
+              3,
+              3,
+              2
+            ]
+          },
+          {
+            "name": "Bewerbungen vorsortieren",
+            "area": "HR",
+            "scores": [
+              3,
+              2,
+              4,
+              5
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "profile": {
+    "label": "Animierte Beispielansicht: Der Steckbrief eines Use Case füllt sich Abschnitt für Abschnitt, von Prozess und Datenquellen bis zu Schätzung und Empfehlung.",
+    "context": "Use-Case-Steckbrief",
+    "section": "Abschnitt",
+    "of": "von",
+    "working": "in Arbeit",
+    "status": [
+      "Entwurf",
+      "Abgestimmt"
+    ],
+    "sections": {
+      "process": "Prozess heute",
+      "decisions": "Wo ein Mensch entscheidet",
+      "sources": "Datenquellen",
+      "people": "Beteiligte",
+      "estimate": "Schätzung",
+      "risks": "Risiken",
+      "recommendation": "Empfehlung"
+    },
+    "estimateNote": "Schätzung mit Bandbreite, keine Terminzusage",
+    "scale": {
+      "unit": "Wochen",
+      "max": 24,
+      "ticks": [
+        0,
+        8,
+        16,
+        24
+      ]
+    },
+    "levels": [
+      "gering",
+      "mittel",
+      "hoch"
+    ],
+    "cases": [
+      {
+        "id": "UC-07",
+        "name": "Angebotserstellung",
+        "area": "Maschinenbau · Vertriebsinnendienst",
+        "process": [
+          {
+            "name": "Anfrage erfassen",
+            "note": "E-Mail, Portal"
+          },
+          {
+            "name": "Stückliste prüfen",
+            "note": "ERP"
+          },
+          {
+            "name": "Preise kalkulieren",
+            "note": "Preislisten, Rabatte"
+          },
+          {
+            "name": "Angebot schreiben",
+            "note": "Vorlage, DMS"
+          },
+          {
+            "name": "Angebot freigeben",
+            "note": "Vertriebsleitung"
+          }
+        ],
+        "processNote": "Durchlaufzeit heute: 2 bis 3 Arbeitstage",
+        "decisions": [
+          "Freigabe jedes Angebots",
+          "Sonderkonditionen"
+        ],
+        "sources": [
+          {
+            "name": "ERP",
+            "note": "Artikel, Preise",
+            "state": "vorhanden"
+          },
+          {
+            "name": "CRM",
+            "note": "Kundenhistorie",
+            "state": "vorhanden"
+          },
+          {
+            "name": "DMS",
+            "note": "Frühere Angebote",
+            "state": "teilweise"
+          },
+          {
+            "name": "Postfach Vertrieb",
+            "note": "Eingehende Anfragen",
+            "state": "zu klären"
+          }
+        ],
+        "people": [
+          {
+            "role": "Vertriebsinnendienst",
+            "note": "6 Personen, tägliche Nutzung"
+          },
+          {
+            "role": "Vertriebsleitung",
+            "note": "Fachverantwortung"
+          },
+          {
+            "role": "IT",
+            "note": "Schnittstellen, SSO"
+          },
+          {
+            "role": "Datenschutz",
+            "note": "Prüfung vor dem Pilot"
+          }
+        ],
+        "estimate": {
+          "from": 6,
+          "to": 10,
+          "value": "6 bis 10 Wochen",
+          "label": "bis in den Betrieb",
+          "assumption": "Annahme: Die Preislogik ist im ERP gepflegt."
+        },
+        "risks": [
+          {
+            "name": "Preislogik mit vielen Ausnahmen",
+            "level": 2
+          },
+          {
+            "name": "Stammdaten uneinheitlich",
+            "level": 2
+          },
+          {
+            "name": "Akzeptanz im Team",
+            "level": 1
+          }
+        ],
+        "recommendation": {
+          "text": "Pilot starten",
+          "form": "Umsetzung als KI-Automation mit Freigabe"
+        }
+      },
+      {
+        "id": "UC-12",
+        "name": "Reklamationsbearbeitung",
+        "area": "Maschinenbau · Kundenservice",
+        "process": [
+          {
+            "name": "Reklamation erfassen",
+            "note": "E-Mail, Telefon"
+          },
+          {
+            "name": "Seriennummer zuordnen",
+            "note": "ERP"
+          },
+          {
+            "name": "Ursache einordnen",
+            "note": "Prüfberichte"
+          },
+          {
+            "name": "Lösung vorschlagen",
+            "note": "Servicehandbuch"
+          },
+          {
+            "name": "Kulanz entscheiden",
+            "note": "Serviceleitung"
+          }
+        ],
+        "processNote": "Durchlaufzeit heute: 4 bis 6 Arbeitstage",
+        "decisions": [
+          "Kulanz und Gutschriften",
+          "Antwort an den Kunden"
+        ],
+        "sources": [
+          {
+            "name": "Ticketsystem",
+            "note": "Fälle, Verlauf",
+            "state": "vorhanden"
+          },
+          {
+            "name": "ERP",
+            "note": "Seriennummern, Lieferungen",
+            "state": "vorhanden"
+          },
+          {
+            "name": "Servicehandbücher",
+            "note": "PDF, teils gescannt",
+            "state": "teilweise"
+          },
+          {
+            "name": "Prüfberichte",
+            "note": "Qualitätssicherung",
+            "state": "zu klären"
+          }
+        ],
+        "people": [
+          {
+            "role": "Kundenservice",
+            "note": "9 Personen, tägliche Nutzung"
+          },
+          {
+            "role": "Serviceleitung",
+            "note": "Fachverantwortung"
+          },
+          {
+            "role": "Qualitätssicherung",
+            "note": "Ursachen, Rückmeldung"
+          },
+          {
+            "role": "IT",
+            "note": "Schnittstellen, SSO"
+          }
+        ],
+        "estimate": {
+          "from": 14,
+          "to": 20,
+          "value": "14 bis 20 Wochen",
+          "label": "bis in den Betrieb",
+          "assumption": "Annahme: Die Handbücher liegen durchsuchbar vor."
+        },
+        "risks": [
+          {
+            "name": "Kulanzregeln nicht dokumentiert",
+            "level": 3
+          },
+          {
+            "name": "Handbücher teils nur gescannt",
+            "level": 2
+          },
+          {
+            "name": "Mehrsprachige Anfragen",
+            "level": 1
+          }
+        ],
+        "recommendation": {
+          "text": "Zweite Welle",
+          "form": "Umsetzung als Agentic CoWorker im Serviceteam"
+        }
+      }
+    ]
+  },
+  "roadmap": {
+    "label": "Animierte Beispielansicht: Fünf Use Cases laufen in drei Wellen unterschiedlich lange bis in den Betrieb, während geschulte Teams und gemeinsame Infrastruktur mitwachsen.",
+    "context": "Roadmap · Schätzung je Use Case",
+    "month": "Monat",
+    "weeks": 36,
+    "weeksPerMonth": 4,
+    "stats": {
+      "month": "Monat",
+      "live": "Im Betrieb",
+      "teams": "Geschulte Teams"
+    },
+    "phases": [
+      "Analyse",
+      "Pilot",
+      "Betrieb"
+    ],
+    "gate": "Freigabe",
+    "waves": [
+      "Welle 1",
+      "Welle 2",
+      "Welle 3"
+    ],
+    "lanes": [
+      {
+        "name": "Wissenssuche",
+        "form": "Managed Agent",
+        "estimate": "ca. 5 Wochen",
+        "team": "Service",
+        "wave": 0,
+        "start": 0,
+        "analysis": 2,
+        "pilot": 3
+      },
+      {
+        "name": "Rechnungsprüfung",
+        "form": "KI-Automation",
+        "estimate": "ca. 7 Wochen",
+        "team": "Finanzen",
+        "wave": 0,
+        "start": 1,
+        "analysis": 2,
+        "pilot": 5
+      },
+      {
+        "name": "Angebotserstellung",
+        "form": "KI-Automation",
+        "estimate": "ca. 9 Wochen",
+        "team": "Vertrieb",
+        "wave": 0,
+        "start": 3,
+        "analysis": 3,
+        "pilot": 6
+      },
+      {
+        "name": "Reklamationsbearbeitung",
+        "form": "Agentic CoWorker",
+        "estimate": "ca. 4 Monate",
+        "team": "Qualität",
+        "wave": 1,
+        "start": 10,
+        "analysis": 5,
+        "pilot": 13
+      },
+      {
+        "name": "Bestellabgleich",
+        "form": "Individuelle Software",
+        "estimate": "ca. 3 Monate",
+        "team": "Einkauf",
+        "wave": 2,
+        "start": 20,
+        "analysis": 4,
+        "pilot": 9
+      }
+    ],
+    "capability": {
+      "title": "Was in der Organisation mitwächst",
+      "teams": "Geschulte Teams",
+      "infrastructure": "Gemeinsame Infrastruktur",
+      "layers": [
+        {
+          "name": "Anmeldung und Rechte",
+          "at": 2
+        },
+        {
+          "name": "Schnittstellen",
+          "at": 5
+        },
+        {
+          "name": "Protokoll und Freigaben",
+          "at": 9
+        },
+        {
+          "name": "Monitoring",
+          "at": 13
+        }
+      ]
+    }
+  },
+  "rollout": {
+    "label": "Animierte Beispielansicht: Ein Team wird über zehn Wochen geschult, die Nutzung wächst und Rückmeldungen werden umgesetzt.",
+    "context": "Einführung im Team · Vertriebsinnendienst",
+    "week": "Woche",
+    "people": {
+      "title": "Rollen und Schulung",
+      "trained": "geschult",
+      "of": "von",
+      "members": [
+        {
+          "initials": "MK",
+          "role": "Fachverantwortung"
+        },
+        {
+          "initials": "SB",
+          "role": "Key User"
+        },
+        {
+          "initials": "TW",
+          "role": "Key User"
+        },
+        {
+          "initials": "AL",
+          "role": "Team"
+        },
+        {
+          "initials": "JR",
+          "role": "Team"
+        },
+        {
+          "initials": "DN",
+          "role": "Team"
+        },
+        {
+          "initials": "PH",
+          "role": "Team"
+        },
+        {
+          "initials": "EC",
+          "role": "Team"
+        }
+      ],
+      "schedule": [
+        1,
+        3,
+        3,
+        5,
+        5,
+        6,
+        8,
+        8,
+        8,
+        8
+      ]
+    },
+    "usage": {
+      "title": "Nutzung",
+      "unit": "%",
+      "label": "der Angebote über die neue Lösung",
+      "values": [
+        8,
+        15,
+        24,
+        31,
+        42,
+        55,
+        63,
+        71,
+        78,
+        84
+      ]
+    },
+    "feedback": {
+      "title": "Rückmeldungen aus dem Team",
+      "states": [
+        "Entscheidung offen",
+        "in Arbeit",
+        "umgesetzt"
+      ],
+      "items": [
+        {
+          "text": "Rabattstaffel für Rahmenverträge fehlt",
+          "from": "SB",
+          "at": 0
+        },
+        {
+          "text": "Lieferzeit aus dem ERP übernehmen",
+          "from": "TW",
+          "at": 3
+        },
+        {
+          "text": "Angebotstext für Ersatzteile kürzen",
+          "from": "JR",
+          "at": 7
+        },
+        {
+          "text": "Englische Vorlage ergänzen",
+          "from": "DN",
+          "at": 9
+        }
+      ]
+    }
+  }
+}

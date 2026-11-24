@@ -128,6 +128,26 @@
 - "AI Adoption" reduced to matrix
 - Matrix beside the text
 - Serviceplan logo centred
+- "Software Development" as showreel
+- Six service detail pages
+- Service page dictionaries DE EN
+- Parity check covers `services`
+- Old URLs redirect to service pages
+- Points list columns aligned
+- Dark block shows stage gradient
+- Showreel starts moving after 1.6 s
+- NMKR titled "Unsere Web3 Marke"
+- Press band: pill "In der Presse" left
+- Cube morph into panels tried and reverted
+- Sokosumi linked on CoWorker page
+- Showreel: fifth screen integration API
+- Showreel data lines clear of screens
+- Particle transition wordmark to menu
+- Seventh service "Penetration Testing" added
+- Penetration Testing mockup and page
+- Particle transition for contact tiles
+- Menu and contact fly into each other
+- Meta description shortened
 - Phthalo accents in "Software Development"
 - English dictionaries `i18n/en`
 - English pages `pages/en`

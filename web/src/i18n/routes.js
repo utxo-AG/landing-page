@@ -15,6 +15,7 @@ export const routes = {
   'agentic-coworker': { de: '/de/agentic-coworker', en: '/en/agentic-coworker' },
   'ki-automationen': { de: '/de/ki-automationen', en: '/en/ai-automation' },
   'ai-adoption': { de: '/de/ai-adoption', en: '/en/ai-adoption' },
+  'penetration-testing': { de: '/de/penetration-testing', en: '/en/penetration-testing' },
 };
 
 export const defaultLanguage = 'en';

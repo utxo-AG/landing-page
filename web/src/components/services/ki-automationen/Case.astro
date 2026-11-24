@@ -1,0 +1,234 @@
+---
+/*
+  KI-Automationen, detail page, visual 2: the decision for one purchase order, on the dark block.
+  Left the case, in the middle the rule set (five rules, evaluated one after the other), right what happens next:
+  the three automatic steps (post, reply, log) and below them the approval. Two orders take turns ([data-c]):
+  "a" meets every rule and runs straight through; "b" has a price deviation, waits for the approval
+  (white card: a human decides), is approved by a pointer and then runs through the same three steps.
+  Places are in units (1 unit = 1 % of the visual's width): [x, y, w, h] for the wide layout (three columns),
+  the mid layout (two columns, up to 860px) and the narrow one (one column, up to 640px). Lines are 1px boxes; their phthalo overlay draws along the route the current order takes.
+  The markup is the reduced-motion and no-JS frame: order "b", approved and completed.
+*/
+const { t } = Astro.props;
+const m = t.servicePages['ki-automationen'].flow;
+
+const KEYS = ['a', 'b'];
+const STILL = 'b';
+const cases = m.cases.map((entry, index) => ({ ...entry, key: KEYS[index] }));
+const on = (key) => key === STILL && 'is-on';
+
+const PLACES = {
+  card: [[0, 5, 23, 16], [0, 0, 47, 14], [0, 0, 100, 25]],
+  facts: [[0, 25, 23, 16], [0, 0, 0, 0], [0, 0, 0, 0]],
+  rules: [[28, 5, 32, 45], [0, 19, 47, 62], [0, 31, 100, 84]],
+  log: [[66, 5, 34, 19], [53, 19, 47, 30], [0, 186, 100, 42]],
+  approval: [[66, 29, 34, 21], [53, 55, 47, 26], [0, 124, 88, 52]],
+};
+const place = (name) => PLACES[name].map(([x, y, w, h], layout) => {
+  const p = ['', 'm', 'n'][layout];
+  return `--${p}x:${x};--${p}y:${y};--${p}w:${w};--${p}h:${h}`;
+}).join(';');
+
+/* line: [layout, orders it lights for, direction (h, v; a capital letter draws from the far end), x, y, length,
+   delay in ms, "go" when it waits for the cleared order (data-beat 3) instead of the start of the order] */
+const SPEED = 50;
+const LINES = [
+  ['wide', 'a b', 'h', 23, 13, 5, 300],
+  ['wide', 'a b', 'h', 60, 14.5, 3, 2400],
+  ['wide', 'a', 'h', 63, 14.5, 3, 0, 'go'],
+  ['wide', 'b', 'v', 63, 14.5, 25, 2460],
+  ['wide', 'b', 'h', 63, 39.5, 3, 2960],
+  ['wide', 'b', 'V', 83, 24, 5, 0, 'go'],
+  ['mid', 'a b', 'v', 23.5, 14, 5, 300],
+  ['mid', 'a b', 'h', 47, 34, 3, 2400],
+  ['mid', 'a', 'h', 50, 34, 3, 0, 'go'],
+  ['mid', 'b', 'v', 50, 34, 34, 2460],
+  ['mid', 'b', 'h', 50, 68, 3, 3140],
+  ['mid', 'b', 'V', 76, 49, 6, 0, 'go'],
+  ['narrow', 'a b', 'v', 50, 25, 6, 300],
+  ['narrow', 'a b', 'v', 50, 115, 4, 2400],
+  ['narrow', 'a', 'h', 50, 119, 44, 0, 'go'],
+  ['narrow', 'a', 'v', 94, 119, 67, 880, 'go'],
+  ['narrow', 'b', 'v', 50, 119, 5, 2480],
+  ['narrow', 'b', 'v', 50, 176, 10, 0, 'go'],
+];
+const lines = LINES.map(([layout, keys, way, x, y, n, d, go]) => ({
+  class: ['kap-l', `kap-l--${way.toLowerCase()}`, way < 'a' && 'kap-l--far', go && 'kap-l--go', `kap-${layout}`, keys.includes(STILL) && 'is-on'],
+  keys,
+  style: `--x:${x};--y:${y};--n:${n};--d:${d};--t:${Math.round(Math.max(60, (n / SPEED) * 1000))}`,
+}));
+---
+<div class="kap-case" data-mockup="kap-case" data-case={STILL} data-beat="3" role="img" aria-label={m.label}>
+  <div class="kap-case-in">
+    <p class="kap-zone label kap-wide" style="--x:0">{m.zones.case}</p>
+    <p class="kap-zone label kap-wide" style="--x:28">{m.zones.rules}</p>
+    <p class="kap-zone label kap-wide" style="--x:66">{m.zones.next}</p>
+
+    <div class="kap-box kap-panel kap-card kap-stack" style={`${place('card')};--i:0`}>
+      {cases.map((entry) => <p class:list={['kap-face', on(entry.key)]} data-c={entry.key}><small>{entry.ref}</small><b>{entry.name}</b><span>{entry.meta}</span></p>)}
+    </div>
+    <div class="kap-box kap-facts kap-stack kap-wide" style={`${place('facts')};--i:1`}>
+      {cases.map((entry) => (
+        <dl class:list={['kap-face', on(entry.key)]} data-c={entry.key}>
+          {entry.facts.map(([name, value]) => <div><dt>{name}</dt><dd>{value}</dd></div>)}
+        </dl>
+      ))}
+    </div>
+
+    <div class="kap-box kap-panel kap-rules" style={`${place('rules')};--i:2`}>
+      <ul>
+        {m.rules.map((rule, k) => (
+          <li style={`--k:${k}`}>
+            <b>{rule}</b>
+            <span class="kap-stack">{cases.map((entry) => <span class:list={['kap-val', on(entry.key), entry.flag === k && 'is-flag']} data-c={entry.key}>{entry.values[k]}</span>)}</span>
+            <span class="kap-stack kap-marks">{cases.map((entry) => <i class:list={['kap-g', entry.flag === k && 'kap-g--flag', on(entry.key)]} data-c={entry.key}></i>)}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="kap-verdict kap-stack">{cases.map((entry) => <span class:list={[on(entry.key)]} data-c={entry.key}>{entry.verdict}</span>)}</p>
+    </div>
+
+    <div class="kap-box kap-panel kap-log" style={`${place('log')};--i:3`}>
+      <ul>
+        {m.log.map((step, j) => (
+          <li style={`--j:${j}`}>
+            <small>{step}</small>
+            <span class="kap-stack">{cases.map((entry) => <span class:list={['kap-val', on(entry.key)]} data-c={entry.key}>{entry.log[j]}</span>)}</span>
+            <span class="kap-stack kap-marks">{cases.map((entry) => <i class:list={['kap-g', on(entry.key)]} data-c={entry.key}></i>)}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <p class="kap-box kap-none" style={`${place('approval')};--i:4`}>{m.approval.none}</p>
+    <div class:list={['kap-box kap-ap mock-light', on('b')]} data-c="b" style={place('approval')}>
+      <p class="kap-ap-top"><small>{m.approval.to}</small><span class="kap-stack"><em class="st is-human" data-ap="wait">{m.approval.wait}</em><em class="st" data-ap="done">{m.approval.done}</em></span></p>
+      <b>{m.approval.title}</b>
+      <span>{m.approval.detail}</span>
+      <p class="kap-ap-foot kap-stack"><span data-ap="wait"><em class="kap-btn kap-btn--go">{m.approval.approve}</em><em class="kap-btn">{m.approval.back}</em></span><span data-ap="done">{m.approval.by}</span></p>
+    </div>
+
+    <div class="kap-lines" aria-hidden="true">{lines.map((entry) => <i class:list={entry.class} data-c={entry.keys} style={entry.style}></i>)}</div>
+    <svg class="kap-ptr" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 2l14.5 7.2-6.3 1.9-2.3 6.4z" fill="#fff" stroke="#07080A" stroke-width="1.2" stroke-linejoin="round"/></svg>
+  </div>
+</div>
+
+<script>
+  import { caseFlow } from './case.js';
+
+  document.querySelectorAll('[data-mockup="kap-case"]').forEach(caseFlow);
+</script>
+
+<style is:global>
+.kap-case{container-type:inline-size}
+.kap-case-in{--u:1cqw;--kap-panel:rgba(238,240,246,.045);--kap-hair:inset 0 0 0 1px rgba(238,240,246,.13);--kap-line:rgba(238,240,246,.26);--ld:200ms;--ad:3s;position:relative;aspect-ratio:100 / 50;font-size:clamp(11px, 1.12cqw, 15px);line-height:1.3}
+.kap-case small{font-size:1em;color:var(--stage-muted)}
+.kap-case b{font-weight:600;letter-spacing:-.01em}
+.kap-zone{position:absolute;left:calc(var(--x) * var(--u));top:0;color:var(--stage-muted);white-space:nowrap}
+.kap-box{position:absolute;left:calc(var(--x) * var(--u));top:calc(var(--y) * var(--u));width:calc(var(--w) * var(--u));height:calc(var(--h) * var(--u))}
+.kap-panel{border-radius:calc(1.1 * var(--u));background:var(--kap-panel);box-shadow:var(--kap-hair)}
+
+.kap-face{opacity:0;transform:translateY(.5em);transition:opacity var(--t-fast) ease,transform 0s var(--t-fast)}
+.kap-face.is-on{opacity:1;transform:none;transition:opacity var(--t-move) ease,transform var(--t-move) var(--ease)}
+.kap-card{padding:0 calc(1.5 * var(--u))}
+.kap-card p{display:flex;flex-direction:column;justify-content:center;gap:.2em;white-space:nowrap}
+.kap-card b{font-size:1.22em}
+.kap-card span{color:var(--stage-muted);font-variant-numeric:tabular-nums}
+.kap-facts dl{display:grid;grid-auto-rows:1fr}
+.kap-facts div{display:flex;justify-content:space-between;align-items:center;gap:1em;border-bottom:1px solid var(--stage-rule);white-space:nowrap}
+.kap-facts dt{color:var(--stage-muted)}
+
+/* a value appears when its rule or step is through; its mark is a phthalo tick, or the white disc of a human decision */
+.kap-val{color:var(--stage-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums;opacity:0;transition:opacity var(--t-fast) ease}
+.kap-val.is-flag{color:var(--stage-fg)}
+.kap-marks{position:absolute;right:calc(1.5 * var(--u));top:50%;width:1.5em;height:1.5em;margin-top:-.75em;border-radius:50%;box-shadow:inset 0 0 0 1px var(--kap-line)}
+.kap-g{border-radius:50%;background:var(--phthalo-lift);opacity:0;transform:scale(.4);transition:opacity var(--t-fast) ease,transform 0s var(--t-fast)}
+.kap-g::after{content:"";position:absolute;left:50%;top:50%;width:.36em;height:.66em;margin:-.44em 0 0 -.2em;border-right:1.5px solid var(--stage);border-bottom:1.5px solid var(--stage);transform:rotate(45deg)}
+.kap-g--flag{background:var(--stage-fg)}
+.kap-g--flag::after{width:.6em;height:1.5px;margin:-.75px 0 0 -.3em;border:0;background:var(--stage);transform:none}
+.kap-g{position:relative}
+.kap-g::before{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 1px var(--phthalo-lift);opacity:0}
+.kap-g--flag::before{box-shadow:0 0 0 1px var(--stage-fg)}
+.kap-rules .kap-g.is-on::before{animation:kap-ring .8s ease-out calc(400ms + var(--k) * 400ms) both}
+.kap-case[data-beat="3"] .kap-log .kap-g.is-on::before{animation:kap-ring .8s ease-out calc(var(--ld) + var(--j) * 400ms) both}
+@keyframes kap-ring{from{opacity:.7;transform:none}to{opacity:0;transform:scale(2.4)}}
+.kap-rules .kap-val.is-on{opacity:1;transition:opacity var(--t-fast) ease calc(400ms + var(--k) * 400ms)}
+.kap-rules .kap-g.is-on{opacity:1;transform:none;transition:opacity var(--t-fast) ease calc(400ms + var(--k) * 400ms),transform var(--t-fast) var(--ease) calc(400ms + var(--k) * 400ms)}
+.kap-case[data-beat="3"] .kap-log .kap-val.is-on{opacity:1;transition:opacity var(--t-fast) ease calc(var(--ld) + var(--j) * 400ms)}
+.kap-case[data-beat="3"] .kap-log .kap-g.is-on{opacity:1;transform:none;transition:opacity var(--t-fast) ease calc(var(--ld) + var(--j) * 400ms),transform var(--t-fast) var(--ease) calc(var(--ld) + var(--j) * 400ms)}
+
+.kap-rules,.kap-log{display:flex;flex-direction:column}
+.kap-rules ul,.kap-log ul{flex:1;display:grid;grid-auto-rows:1fr}
+.kap-rules li,.kap-log li{position:relative;display:flex;flex-direction:column;justify-content:center;gap:.15em;padding:0 calc(1.5 * var(--u) + 2.2em) 0 calc(1.5 * var(--u));border-bottom:1px solid var(--stage-rule)}
+.kap-log li:last-child{border-bottom:0}
+.kap-rules b,.kap-log small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kap-log .kap-val{color:var(--stage-fg)}
+.kap-verdict{flex:none;height:calc(8 * var(--u));align-items:center;padding:0 calc(1.5 * var(--u));white-space:nowrap}
+.kap-verdict span{opacity:0;transition:opacity var(--t-fast) ease}
+.kap-verdict span.is-on{opacity:1;transition:opacity var(--t-move) ease 2.4s}
+
+.kap-none{display:grid;place-items:center;border-radius:calc(1.1 * var(--u));outline:1px dashed var(--kap-line);outline-offset:-1px;color:var(--stage-muted)}
+.kap-ap{display:flex;flex-direction:column;gap:.3em;padding:calc(1.5 * var(--u));border-radius:calc(1.1 * var(--u));box-shadow:0 calc(2 * var(--u)) calc(5 * var(--u)) rgba(0,0,0,.5);opacity:0;transform:translateY(calc(2 * var(--u)));transition:opacity var(--t-fast) ease,transform 0s var(--t-fast)}
+.kap-ap.is-on{opacity:1;transform:none;transition:opacity var(--t-move) ease var(--ad),transform var(--t-enter) var(--ease) var(--ad)}
+.kap-ap small{color:var(--m-muted)}
+.kap-ap > b{font-size:1.22em;white-space:nowrap}
+.kap-ap > span{color:var(--m-muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.kap-ap-top{display:flex;justify-content:space-between;align-items:center;gap:1em;margin-bottom:.9em;white-space:nowrap}
+.kap-ap .st{justify-self:end}
+.kap-ap-foot{margin-top:auto;align-items:center}
+.kap-ap-foot > span{display:flex;gap:.6em;align-items:center;color:var(--m-muted);white-space:nowrap}
+.kap-btn{padding:.62em 1.25em;border-radius:99px;font-style:normal;font-weight:600;letter-spacing:.04em;text-transform:uppercase;box-shadow:inset 0 0 0 1px var(--m-rule);transition:transform .2s ease}
+.kap-btn--go{background:var(--fg);color:#fff;box-shadow:none}
+.kap-ap [data-ap]{transition:opacity var(--t-fast) ease}
+.kap-ap [data-ap="done"],.kap-case[data-beat="3"] .kap-ap [data-ap="wait"]{opacity:0}
+.kap-case[data-beat="3"] .kap-ap [data-ap="done"]{opacity:1;transition-delay:.15s}
+.kap-case[data-beat="2"] .kap-btn--go{transform:scale(.93)}
+
+.kap-l{position:absolute;left:calc(var(--x) * var(--u));top:calc(var(--y) * var(--u));background:var(--kap-line)}
+.kap-l--h{width:calc(var(--n) * var(--u));height:1px}
+.kap-l--v{width:1px;height:calc(var(--n) * var(--u))}
+.kap-l::after{content:"";position:absolute;inset:-.5px;background:var(--phthalo-lift);transform-origin:0 0;opacity:0;transition:opacity var(--t-fast) ease,transform 0s var(--t-fast)}
+.kap-l--h::after{transform:scaleX(0)}
+.kap-l--v::after{transform:scaleY(0)}
+.kap-l--far::after{transform-origin:100% 100%}
+.kap-l.is-on:not(.kap-l--go)::after,.kap-case[data-beat="3"] .kap-l--go.is-on::after{opacity:1;transform:none;transition:transform calc(var(--t) * 1ms) linear calc(var(--d) * 1ms)}
+
+.kap-ptr{position:absolute;left:0;top:0;z-index:2;width:22px;height:22px;pointer-events:none;opacity:0;transform:translate(calc(var(--px, 0px) + 60px), calc(var(--py, 0px) + 70px));transition:transform var(--t-enter) var(--ease),opacity var(--t-fast)}
+.kap-case:is([data-beat="1"],[data-beat="2"]) .kap-ptr{opacity:1;transform:translate(var(--px, 0px), var(--py, 0px))}
+.kap-case[data-beat="2"] .kap-ptr{transform:translate(var(--px, 0px), var(--py, 0px)) scale(.86);transition-duration:.15s}
+
+.kap-mid,.kap-narrow{display:none}
+.js .kap-case :is(.kap-panel,.kap-facts,.kap-none,.kap-zone,.kap-lines){opacity:0;transform:translateY(calc(2.4 * var(--u)));transition:opacity var(--t-move) ease,transform var(--t-enter) var(--ease);transition-delay:calc(150ms + var(--i, 0) * 110ms)}
+.js .is-in .kap-case :is(.kap-panel,.kap-facts,.kap-none,.kap-zone,.kap-lines){opacity:1;transform:none}
+.js .kap-case .kap-lines{transform:none;transition-delay:.9s}
+
+@container (max-width:860px){
+  .kap-case-in{--ad:3.2s;aspect-ratio:100 / 81;font-size:clamp(11px, 1.7cqw, 13.5px)}
+  .kap-wide{display:none}
+  .kap-mid{display:block}
+  .kap-box{left:calc(var(--mx) * var(--u));top:calc(var(--my) * var(--u));width:calc(var(--mw) * var(--u));height:calc(var(--mh) * var(--u))}
+  .kap-panel,.kap-none,.kap-ap{border-radius:calc(1.8 * var(--u))}
+  .kap-card,.kap-verdict{padding:0 calc(2.2 * var(--u))}
+  .kap-rules li,.kap-log li{padding:0 calc(2.2 * var(--u) + 2.2em) 0 calc(2.2 * var(--u))}
+  .kap-marks{right:calc(2.2 * var(--u))}
+  .kap-verdict{height:calc(12 * var(--u))}
+  .kap-ap{padding:calc(2.2 * var(--u))}
+}
+@container (max-width:640px){
+  .kap-case-in{--ad:3s;aspect-ratio:100 / 228;font-size:clamp(10px, 3.4cqw, 13px)}
+  .kap-mid{display:none}
+  .kap-narrow{display:block}
+  .kap-box{left:calc(var(--nx) * var(--u));top:calc(var(--ny) * var(--u));width:calc(var(--nw) * var(--u));height:calc(var(--nh) * var(--u))}
+  .kap-panel,.kap-none,.kap-ap{border-radius:calc(3 * var(--u))}
+  .kap-card,.kap-verdict{padding:0 calc(4 * var(--u))}
+  .kap-rules li,.kap-log li{padding:0 calc(4 * var(--u) + 2.2em) 0 calc(4 * var(--u))}
+  .kap-marks{right:calc(4 * var(--u))}
+  .kap-verdict{height:calc(14 * var(--u))}
+  .kap-ap{padding:calc(4 * var(--u))}
+  .kap-case[data-case="a"] .kap-case-in{--ld:2300ms}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .kap-case :is(.kap-panel,.kap-facts,.kap-none,.kap-zone,.kap-lines){transition:none;opacity:1;transform:none}
+  .kap-case *,.kap-case *::before,.kap-case *::after{transition:none !important;animation:none !important}
+}
+</style>
