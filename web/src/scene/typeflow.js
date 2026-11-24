@@ -26,7 +26,7 @@ import * as THREE from 'three';
            wherever they are (second stage), and may return into it.
   Hand-over, set on the stage for the CSS in Hero.astro and Panels.astro:
            data-flow="fly"  canvas stays visible, the open panel is laid out but invisible
-           data-flow="type" the particles have landed: the panel itself fades in over them, then they go
+           data-flow="type" the particles have landed: the panel itself replaces them in the same frame
   Buffers are rebuilt in idle time after fonts load and after every resize of the stage; until then
   `ready` is false and scene/hero.js falls back to the dissolve.
 
@@ -44,8 +44,6 @@ const CAPACITY = 200000; // particles the buffers hold; above it the type is sam
 const SURFACE = 30000; // particles spent on filled surfaces
 const OPEN = 1.25; // seconds to a panel
 const CLOSE = 1.1; // seconds back to the wordmark
-const HOLD = 0.06; // seconds the landed particles stay under the panel that fades in
-const FADE = 0.06; // seconds they take to go
 const INSIDE = 0.3; // share of the particles that start inside the body
 const INK = 24; // least coverage (0 to 255) of a pixel that gets a particle
 const SLOT = 2 ** 20; // room for the index in a sort key
@@ -540,12 +538,8 @@ export function createTypeflow(blocks, stage, panels, onEnd) {
     sync();
     if (paused || c >= 0 || first.progress !== first.goal) return;
     if ((first.goal ? b : a) === MARK) { finish(true); return; }
-    if (landed < 0) { landed = 0; stage.dataset.flow = 'type'; }
-    else if (points.visible) {
-      landed += dt;
-      uniforms.uFade.value = 1 - Math.min(1, Math.max(0, (landed - HOLD) / FADE));
-      if (landed > HOLD + FADE) points.visible = false;
-    }
+    /* landed: the panel replaces the particles in one frame. An overlap would show the translucent tile surfaces twice, as a flash. */
+    if (landed < 0) { landed = 0; stage.dataset.flow = 'type'; points.visible = false; }
   }
 
   function finish(whole) {
