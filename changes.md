@@ -149,6 +149,19 @@
 - Menu and contact fly into each other
 - Meta description shortened
 - Panel hand-over without brightness flash
+- Dots removed from pill buttons
+- "Live" indicator removed from mockups
+- Penetration Testing before AI Adoption
+- Closing canvas out of flow
+- Closing stage height capped
+- Lite mode styles added
+- Cloudflare e-mail rewriting switched off
+- Own penetration tests in security section
+- Closing stage lower and wordmark smaller
+- Closing lede removed
+- Buffer sized in device pixels
+- Soft landing for capped buffers
+- Lite mode detection in "hero.js"
 - Phthalo accents in "Software Development"
 - English dictionaries `i18n/en`
 - English pages `pages/en`

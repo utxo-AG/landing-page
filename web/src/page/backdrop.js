@@ -2,6 +2,7 @@ export function backdrop() {
   let queued = false;
   const update = () => {
     queued = false;
+    if (document.documentElement.classList.contains('is-lite')) return;
     const range = document.documentElement.scrollHeight - innerHeight;
     document.documentElement.style.setProperty('--sp', range > 0 ? (scrollY / range).toFixed(4) : '0');
   };

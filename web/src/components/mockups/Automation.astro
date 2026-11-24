@@ -40,7 +40,7 @@ const cases = Array.from({ length: SLOTS }, (_, slot) => {
 const data = JSON.stringify({ geo, total: m.stats.total.value, number: t.number });
 ---
 <div class="au mock-dark" data-mockup="automation" data-flow={data}>
-  <div class="mock-bar label"><span>{m.context}</span><span class="mock-live"><i></i>{t.mockup.live}</span></div>
+  <div class="mock-bar label"><span>{m.context}</span></div>
   <dl class="au-stats">
     <div><dt class="label">{m.stats.waiting.label}</dt><dd data-count="waiting">{waiting ? 1 : 0}</dd></div>
     <div><dt class="label">{m.stats.total.label}</dt><dd data-count="total">{formatNumber(countAt(STILL, m.stats.total.value), t.number)}</dd></div>

@@ -11,6 +11,8 @@ import { alternates, defaultLanguage } from '../i18n/routes.js';
 /*
   title, description: text pages override the home defaults from the dictionary. schema: extra JSON-LD nodes of the page.
   The site is noindex unless it is built with PUBLIC_INDEXABLE=1 (set in the Dockerfile for production).
+  The email_off comments stop Cloudflare from rewriting e-mail addresses in the HTML (it replaces them with a
+  placeholder that a script fills in later, which changes text the header panels measure).
 */
 const { t, title = t.meta.title, description = t.meta.description, schema = [] } = Astro.props;
 const canonical = new URL(Astro.url.pathname.replace(/\.html$/, ''), Astro.site).href;
@@ -67,6 +69,7 @@ const graph = [
 <script is:inline>document.documentElement.classList.add('js')</script>
 </head>
 <body>
+<!--email_off-->
 <a class="skip" href="#main">{t.skip}</a>
 <slot />
 <script>
@@ -80,5 +83,6 @@ const graph = [
   disclosures();
   document.documentElement.classList.add('is-ready');
 </script>
+<!--/email_off-->
 </body>
 </html>

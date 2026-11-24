@@ -57,7 +57,7 @@ const cubes = Array.from({ length: POOL }, (_, i) => {
 const geo = JSON.stringify({ stops, slots, open: OPEN });
 ---
 <div class="fa mock-dark" data-mockup="factory" data-geo={geo} style={camera}>
-  <div class="mock-bar label"><span>{m.context}</span><span class="mock-live"><i></i>{t.mockup.live}</span></div>
+  <div class="mock-bar label"><span>{m.context}</span></div>
   <dl class="fa-stats">
     {Object.entries(m.stats).map(([key, stat]) => (
       <div><dt class="label">{stat.label}</dt><dd data-count={key}>{stat.value}</dd></div>

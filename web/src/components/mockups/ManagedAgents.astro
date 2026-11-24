@@ -8,7 +8,7 @@ const labels = JSON.stringify({ status: m.status, approve: m.approve });
 <div class="ma" data-mockup="managed-agents" data-labels={labels}>
   <div class="device">
     <div class="console mock-dark">
-      <div class="mock-bar label"><span>{m.context}</span><span class="mock-live"><i></i>{t.mockup.live}</span></div>
+      <div class="mock-bar label"><span>{m.context}</span></div>
       <ul class="agents">
         {m.rows.map((row, index) => <AgentRow row={row} status={m.status} index={index} />)}
       </ul>

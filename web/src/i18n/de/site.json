@@ -75,20 +75,20 @@
       "href": "/de/ki-automationen"
     },
     {
-      "id": "ai-adoption",
-      "name": "AI Adoption und Consulting",
-      "short": "Von der Auswahl der richtigen Use Cases bis zur Einführung in Ihren Teams.",
-      "body": "Wir identifizieren mit Ihnen die Anwendungsfälle mit dem grössten Nutzen und führen sie Schritt für Schritt in den Betrieb. Manche sind in wenigen Wochen produktiv, andere brauchen Monate. Wir begleiten die Einführung in Ihren Teams.",
-      "mockupLabel": "Animierte Beispielansicht: Use Cases werden nach Nutzen und Aufwand ausgewählt und in den Betrieb geführt.",
-      "href": "/de/ai-adoption"
-    },
-    {
       "id": "penetration-testing",
       "name": "Penetration Testing",
       "short": "Regelmässige Penetrationstests, die Sicherheitslücken in Ihren Systemen finden, bevor sie ausgenutzt werden.",
       "body": "Wir prüfen Ihre Systeme regelmässig mit Penetrationstests auf Sicherheitslücken, mit aktuellen Tools und nach aktuellen Standards. Die Befunde bewerten wir nach Risiko und unterstützen bei der Behebung, damit Schwachstellen früh erkannt und geschlossen werden.",
       "mockupLabel": "Animierte Beispielansicht: Ein Penetrationstest findet Schwachstellen in einem System, bewertet sie und bestätigt die Behebung im Nachtest.",
       "href": "/de/penetration-testing"
+    },
+    {
+      "id": "ai-adoption",
+      "name": "AI Adoption und Consulting",
+      "short": "Von der Auswahl der richtigen Use Cases bis zur Einführung in Ihren Teams.",
+      "body": "Wir identifizieren mit Ihnen die Anwendungsfälle mit dem grössten Nutzen und führen sie Schritt für Schritt in den Betrieb. Manche sind in wenigen Wochen produktiv, andere brauchen Monate. Wir begleiten die Einführung in Ihren Teams.",
+      "mockupLabel": "Animierte Beispielansicht: Use Cases werden nach Nutzen und Aufwand ausgewählt und in den Betrieb geführt.",
+      "href": "/de/ai-adoption"
     }
   ],
   "menu": {
@@ -145,9 +145,6 @@
         "href": "/de/datenschutz"
       }
     ]
-  },
-  "mockup": {
-    "live": "Live"
   },
   "references": {
     "id": "referenzen",
@@ -308,6 +305,11 @@
         "name": "Informationssicherheit",
         "text": "Ausgerichtet an ISO/IEC 27001:2022. Minimale Rechte, jede Aktion wird protokolliert.",
         "tag": "ISO/IEC 27001:2022"
+      },
+      {
+        "name": "Penetrationstests",
+        "text": "Systeme, die wir entwickeln und betreiben, prüfen wir regelmässig mit eigenen Penetrationstests.",
+        "tag": "Eigenes Penetration Testing"
       }
     ]
   },

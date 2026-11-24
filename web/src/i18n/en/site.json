@@ -75,20 +75,20 @@
       "href": "/en/ai-automation"
     },
     {
-      "id": "ai-adoption",
-      "name": "AI Adoption and Consulting",
-      "short": "From selecting the right use cases to rollout in your teams.",
-      "body": "Together with you, we identify the use cases with the greatest benefit and bring them into production step by step. Some are in production within a few weeks, others take months. We support the rollout in your teams.",
-      "mockupLabel": "Animated example: use cases are selected by benefit and effort and brought into production.",
-      "href": "/en/ai-adoption"
-    },
-    {
       "id": "penetration-testing",
       "name": "Penetration Testing",
       "short": "Regular penetration tests that find vulnerabilities in your systems before they are exploited.",
       "body": "We test your systems for vulnerabilities on a regular basis, with current tools and to current standards. We rate the findings by risk and support the fix, so weaknesses are found and closed early.",
       "mockupLabel": "Animated example: a penetration test finds vulnerabilities in a system, rates them and confirms the fix in a retest.",
       "href": "/en/penetration-testing"
+    },
+    {
+      "id": "ai-adoption",
+      "name": "AI Adoption and Consulting",
+      "short": "From selecting the right use cases to rollout in your teams.",
+      "body": "Together with you, we identify the use cases with the greatest benefit and bring them into production step by step. Some are in production within a few weeks, others take months. We support the rollout in your teams.",
+      "mockupLabel": "Animated example: use cases are selected by benefit and effort and brought into production.",
+      "href": "/en/ai-adoption"
     }
   ],
   "menu": {
@@ -145,9 +145,6 @@
         "href": "/en/privacy"
       }
     ]
-  },
-  "mockup": {
-    "live": "Live"
   },
   "references": {
     "id": "referenzen",
@@ -308,6 +305,11 @@
         "name": "Information security",
         "text": "Aligned with ISO/IEC 27001:2022. Least privilege, every action is logged.",
         "tag": "ISO/IEC 27001:2022"
+      },
+      {
+        "name": "Penetration tests",
+        "text": "We regularly test the systems we develop and operate with our own penetration tests.",
+        "tag": "In-house penetration testing"
       }
     ]
   },
