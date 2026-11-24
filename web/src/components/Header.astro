@@ -16,7 +16,7 @@ const versions = alternates(Astro.url.pathname);
   {statement && <h1 class="statement"><span class="ln" style="--i:0"><span><strong>{h.headline}</strong></span></span>{' '}<span class="ln" style="--i:1"><span>{h.subline}</span></span></h1>}
   <div class="actions">
     <div data-disclosure>
-      <button class="pill pill--talk" type="button" aria-expanded="false" aria-controls="contact-menu"><span class="pill-long">{h.contact}</span><span class="pill-short">{h.contactShort}</span> <i></i></button>
+      <button class="pill pill--talk" type="button" aria-expanded="false" aria-controls="contact-menu"><span class="pill-long">{h.contact}</span><span class="pill-short">{h.contactShort}</span></button>
     </div>
     <div data-disclosure>
       <button class="pill pill--2" type="button" aria-expanded="false" aria-controls="site-menu">{h.menu}</button>

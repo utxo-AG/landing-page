@@ -64,6 +64,12 @@ function wordmarkCells(raw, cols) {
   Cells that the logo covers by less than THIN have no visible cube: their sliver would float as a speck.
   Cells without a cube that touch a cube cell (fringe) hide their trace of the body whenever a neighbour is loose.
   `svg` is the wordmark SVG source; `stage` is the element that holds the canvas.
+  The drawing buffer has exactly the canvas's size in device pixels (the observer's device-pixel box where the
+  browser has it), so at any zoom one buffer pixel is one device pixel; above maxPixelRatio it is scaled down.
+  Where the measured box disagrees with devicePixelRatio (an emulated ratio, as in DevTools device mode) the
+  buffer is sized from devicePixelRatio instead. `ratio` is buffer pixels per CSS pixel: devicePixelRatio or
+  the cap; `density` is the grid the layout snaps to, in device pixels per CSS pixel: devicePixelRatio, or
+  what the box says under emulation. destroy() stops the loop and gives the WebGL context back.
   mount(next) moves the canvas into another stage (hero and closing stage share this one WebGL context);
   the wordmark arrives dissolved there and assembles with setAssembled(true).
   Hooks for a second layer in the same scene (scene/typeflow.js): attach({ object, frame(dt) }) adds its object
@@ -91,7 +97,6 @@ export function createBlocks(stage, {
   const count = cells.length * layers;
 
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(devicePixelRatio, maxPixelRatio));
   renderer.toneMapping = THREE.NeutralToneMapping;
 
   const scene = new THREE.Scene();
@@ -331,11 +336,18 @@ if (max(looseAt(vCell), max(max(looseAt(vCell + reach.xy), looseAt(vCell - reach
     camera.position.set(distance * (-0.2 + sway * Math.sin(t * 0.23) * 0.16), distance * (0.06 + sway * Math.cos(t * 0.17) * 0.07), distance);
     camera.lookAt(0, 0, 0);
   }
-  function resize() {
+  let ratio = 1;
+  let density = 1;
+  function resize(entries) {
     const width = host.clientWidth;
     const height = host.clientHeight;
     const aspect = width / height;
-    renderer.setSize(width, height, false);
+    const box = entries?.at(-1).devicePixelContentBoxSize?.[0];
+    const emulated = Boolean(box) && Math.abs(box.inlineSize / devicePixelRatio - width) >= 1;
+    const scale = Math.min(1, maxPixelRatio / devicePixelRatio);
+    density = emulated ? box.inlineSize / width : devicePixelRatio;
+    ratio = devicePixelRatio * scale;
+    renderer.setSize(Math.round((box && !emulated ? box.inlineSize : width * devicePixelRatio) * scale), Math.round((box && !emulated ? box.blockSize : height * devicePixelRatio) * scale), false);
     camera.aspect = aspect;
     const view = 2 * Math.tan(THREE.MathUtils.degToRad(14));
     distance = Math.max((WIDTH * (aspect > 1.2 ? 1.28 : 1.14)) / (view * aspect), (rows * size * 1.3) / view) / (aspect > 1.2 ? zoom : Math.min(zoom, 1.06));
@@ -344,7 +356,7 @@ if (max(looseAt(vCell), max(max(looseAt(vCell + reach.xy), looseAt(vCell - reach
     if (reduced && still) still();
   }
   const sizes = new ResizeObserver(resize);
-  sizes.observe(stage);
+  try { sizes.observe(canvas, { box: 'device-pixel-content-box' }); } catch { sizes.observe(canvas); }
   resize();
 
   const m = new THREE.Matrix4();
@@ -437,6 +449,8 @@ if (max(looseAt(vCell), max(max(looseAt(vCell + reach.xy), looseAt(vCell - reach
     renderer,
     wordmark: { mask, texture, cell: MASK_RES, cols, rows, width: WIDTH, height: rows * size, front: size / 2, depth: layers * size },
     get resting() { return progress === 1; },
+    get ratio() { return ratio; },
+    get density() { return density; },
     setAssembled(value) { goal = value ? 1 : 0; },
     hold(value) {
       if (value === held) return;
@@ -457,14 +471,19 @@ if (max(looseAt(vCell), max(max(looseAt(vCell + reach.xy), looseAt(vCell - reach
       scene.add(next.object);
     },
     draw() { renderer.render(scene, camera); },
+    destroy() {
+      renderer.setAnimationLoop(null);
+      sizes.disconnect();
+      sight.disconnect();
+      renderer.dispose();
+      renderer.forceContextLoss();
+    },
     mount(next) {
       if (next === host) return;
       host = next;
       release();
       listen(next);
       next.append(canvas);
-      sizes.disconnect();
-      sizes.observe(next);
       sight.disconnect();
       sight.observe(next);
       reset();

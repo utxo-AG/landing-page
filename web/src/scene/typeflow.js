@@ -27,7 +27,9 @@ import * as THREE from 'three';
   Hand-over, set on the stage for the CSS in Hero.astro and Panels.astro:
            data-flow="fly"  canvas stays visible, the open panel is laid out but invisible
            data-flow="type" the particles have landed: the panel itself replaces them in the same frame
-  Buffers are rebuilt in idle time after fonts load and after every resize of the stage; until then
+           data-flow="settle" the same where exactness is not known: a short cross-fade instead
+  Buffers are rebuilt in idle time after fonts load and after every change of the stage's size in device
+  pixels (resize, zoom); until then
   `ready` is false and scene/hero.js falls back to the dissolve.
 
   createTypeflow(blocks, stage, panels, onEnd) with at most two panels returns
@@ -37,13 +39,16 @@ import * as THREE from 'three';
                covers the screen); the panel then fades in as without this layer
     cancel()   stop at once and leave the wordmark dissolved (resize, canvas moves to another stage);
                an open panel then simply shows itself
-    seek(p, to, from)  development only: hold the flight from form `from` to form `to` at progress p
+    destroy()  stop and release observers and buffers (scene/hero.js gives the scene up in lite mode)
+    seek(p, to, from, landing)  development only: hold the flight from form `from` to form `to` at progress p,
+               `landing` seconds into a soft landing
     ready, active, count (particles)
 */
 const CAPACITY = 200000; // particles the buffers hold; above it the type is sampled more coarsely
 const SURFACE = 30000; // particles spent on filled surfaces
 const OPEN = 1.25; // seconds to a panel
 const CLOSE = 1.1; // seconds back to the wordmark
+const SETTLE = 0.1; // seconds of each half of a soft landing
 const INSIDE = 0.3; // share of the particles that start inside the body
 const INK = 24; // least coverage (0 to 255) of a pixel that gets a particle
 const SLOT = 2 ** 20; // room for the index in a sort key
@@ -58,7 +63,8 @@ const vertexShader = `
 #define SPREAD ${SPREAD}
 #define OWN ${OWN}
 #define FACE ${FACE}
-// position: place on the wordmark (world). aTo1, aTo2: place in a panel (NDC) and size there (pixels).
+// position: place on the wordmark (world). aTo1, aTo2: place in a panel (NDC) and size there (pixels,
+// negative for a particle of a filled surface).
 // aInk1, aInk2: colour and alpha there. aSeed: delay of the particle's cell, two random numbers,
 // brightness as a loose fragment.
 attribute vec3 aTo1;
@@ -73,9 +79,10 @@ uniform float uScale;
 uniform float uStart;
 varying vec4 vInk;
 varying vec3 vShard;
-varying vec2 vRest;
+varying vec3 vRest;
 
-void form(float id, vec3 home, out vec3 pos, out float size, out vec4 ink) {
+void form(float id, vec3 home, out vec3 pos, out float size, out vec4 ink, out float surface) {
+  surface = 0.0;
   if (id < 0.5) {
     pos = home;
     size = uStart * uScale / -home.z;
@@ -84,7 +91,8 @@ void form(float id, vec3 home, out vec3 pos, out float size, out vec4 ink) {
   }
   vec3 to = id < 1.5 ? aTo1 : aTo2;
   pos = vec3(to.xy * uDist / vec2(projectionMatrix[0][0], projectionMatrix[1][1]), -uDist);
-  size = to.z;
+  size = abs(to.z);
+  surface = step(to.z, 0.0);
   ink = id < 1.5 ? aInk1 : aInk2;
 }
 // How firmly a particle still belongs to a form it has left by e (linear) or s (eased).
@@ -110,9 +118,10 @@ void main() {
   vec3 pa, pb, pc;
   float sa, sb, sc;
   vec4 ia, ib, ic;
-  form(uForms.x, home, pa, sa, ia);
-  form(uForms.y, home, pb, sb, ib);
-  form(uForms.z, home, pc, sc, ic);
+  float fa, fb, fc;
+  form(uForms.x, home, pa, sa, ia, fa);
+  form(uForms.y, home, pb, sb, ib, fb);
+  form(uForms.z, home, pc, sc, ic, fc);
   float late = OWN * aSeed.y * SPREAD;
   float e1 = clamp(started(uProgress.x) - late, 0.0, 1.0);
   float e2 = clamp(started(uProgress.y) - late, 0.0, 1.0);
@@ -135,7 +144,7 @@ void main() {
   vInk = ia * ga + ib * gb + ic * gc + vec4(vec3(aSeed.w), 1.0) * loose;
   float mark = ga * step(uForms.x, 0.5) + gb * step(uForms.y, 0.5) + gc * step(uForms.z, 0.5);
   vShard = vec3((arc1 + arc2) * (aSeed.z - 0.5) * 14.0, loose, mark);
-  vRest = position.xy;
+  vRest = vec3(position.xy, fa * ga + fb * gb + fc * gc);
 
   // A particle is not drawn while its cell is part of the body (the same test as carved() below, a touch earlier).
   float left1 = started(uProgress.x);
@@ -147,16 +156,16 @@ void main() {
 }`;
 
 const fragmentShader = `
-uniform float uFade;
+uniform vec2 uFade;
 uniform float uStart;
 uniform vec2 uExtent;
 uniform sampler2D uMask;
 varying vec4 vInk;
 varying vec3 vShard;
-varying vec2 vRest;
+varying vec3 vRest;
 void main() {
   vec2 p = gl_PointCoord - 0.5;
-  vec2 at = vRest + vec2(p.x, -p.y) * uStart;
+  vec2 at = vRest.xy + vec2(p.x, -p.y) * uStart;
   float body = texture2D(uMask, vec2(at.x / uExtent.x + 0.5, 0.5 - at.y / uExtent.y)).r;
   float cut = mix(1.0, clamp((body - 0.5) / max(fwidth(body), 0.0001) + 0.5, 0.0, 1.0), vShard.z);
   float c = cos(vShard.x);
@@ -165,7 +174,7 @@ void main() {
   if (max(abs(q.x), abs(q.y)) > 0.5) discard;
   if (q.x * 0.8 + q.y * 0.6 > mix(1.0, 0.12, vShard.y)) discard;
   float light = mix(1.0, 0.6 + 0.4 * abs(cos(vShard.x * 0.7 + vRest.x * 9.0)), vShard.y);
-  gl_FragColor = vec4(vInk.rgb * light, vInk.a * cut * uFade);
+  gl_FragColor = vec4(vInk.rgb * light, vInk.a * cut * mix(uFade.x, uFade.y, vRest.z));
 }`;
 
 const idle = window.requestIdleCallback ?? ((task) => setTimeout(task, 60));
@@ -207,7 +216,7 @@ export function createTypeflow(blocks, stage, panels, onEnd) {
     uDist: { value: 1 },
     uScale: { value: 1 },
     uStart: { value: 0 },
-    uFade: { value: 1 },
+    uFade: { value: new THREE.Vector2(1, 1) },
     uMask: { value: wordmark.texture },
     uExtent: { value: new THREE.Vector2(wordmark.width, wordmark.height) },
   };
@@ -250,12 +259,16 @@ export function createTypeflow(blocks, stage, panels, onEnd) {
     const walker = document.createTreeWalker(panel, NodeFilter.SHOW_TEXT);
     for (let node = walker.nextNode(); node; node = walker.nextNode()) {
       const style = getComputedStyle(node.parentElement);
+      const { fontStyle, fontWeight, fontFamily } = style;
+      const size = parseFloat(style.fontSize);
+      const spacing = parseFloat(style.letterSpacing) || 0;
+      const font = (scale) => `${fontStyle} ${fontWeight} ${size * scale}px ${fontFamily}`;
       for (const match of node.data.matchAll(/\S+/g)) {
         range.setStart(node, match.index);
         range.setEnd(node, match.index + match[0].length);
         const box = range.getBoundingClientRect();
         if (!box.width) continue;
-        words.push({ text: style.textTransform === 'uppercase' ? match[0].toUpperCase() : match[0], x: box.left, top: box.top, font: style.font, spacing: style.letterSpacing, color: style.color });
+        words.push({ text: style.textTransform === 'uppercase' ? match[0].toUpperCase() : match[0], x: box.left, top: box.top, font, spacing, color: style.color });
       }
     }
     for (const svg of panel.querySelectorAll('svg')) {
@@ -265,7 +278,7 @@ export function createTypeflow(blocks, stage, panels, onEnd) {
       const path = new Path2D();
       for (const shape of svg.querySelectorAll('rect, path')) {
         if (shape.tagName === 'path') path.addPath(new Path2D(shape.getAttribute('d')));
-        else path.roundRect(shape.x.baseVal.value, shape.y.baseVal.value, shape.width.baseVal.value, shape.height.baseVal.value, shape.rx.baseVal.value);
+        else path[path.roundRect ? 'roundRect' : 'rect'](shape.x.baseVal.value, shape.y.baseVal.value, shape.width.baseVal.value, shape.height.baseVal.value, shape.rx.baseVal.value);
       }
       icons.push({ path, x: box.left, y: box.top, scale: box.width / svg.viewBox.baseVal.width, width: parseFloat(style.strokeWidth), cap: style.strokeLinecap, join: style.strokeLinejoin, color: style.color });
     }
@@ -278,10 +291,13 @@ export function createTypeflow(blocks, stage, panels, onEnd) {
     return { words, icons, surfaces };
   }
 
+  /* A CSS length on the device pixel grid, where the browser puts edges and baselines. */
+  const snap = (length) => Math.round(length * blocks.density) / blocks.density;
+
   function measure(panel) {
     panel.classList.add('is-measuring');
     const box = canvas.getBoundingClientRect();
-    const found = getComputedStyle(panel).position === 'fixed' ? null : { ...contents(panel), origin: { x: Math.round(box.left * devicePixelRatio) / devicePixelRatio, y: Math.round(box.top * devicePixelRatio) / devicePixelRatio } };
+    const found = getComputedStyle(panel).position === 'fixed' ? null : { ...contents(panel), origin: { x: snap(box.left), y: snap(box.top) } };
     panel.classList.remove('is-measuring');
     return found;
   }
@@ -291,6 +307,8 @@ export function createTypeflow(blocks, stage, panels, onEnd) {
     document while it draws, so its text takes the page's font smoothing and has the weight of the real text.
     Baselines are placed as the browser does: the ascent of the font at its device size and the position,
     rounded to device pixels; the canvas itself is shown from the nearest whole device pixel (`origin`).
+    Everything is scaled by blocks.ratio, the buffer pixels per CSS pixel: equal to the device pixel ratio
+    at any zoom, lower only where the buffer is capped; blocks.density is the grid the layout snaps to. A 2D context without letterSpacing sets glyph by glyph.
   */
   const sheet = document.createElement('canvas').getContext('2d', { willReadFrequently: true });
   sheet.canvas.hidden = true;
@@ -300,14 +318,23 @@ export function createTypeflow(blocks, stage, panels, onEnd) {
     const height = Math.ceil(canvas.height / grain);
     sheet.canvas.width = width;
     sheet.canvas.height = height;
-    sheet.setTransform(renderer.getPixelRatio() / grain, 0, 0, renderer.getPixelRatio() / grain, 0, 0);
+    sheet.setTransform(blocks.ratio / grain, 0, 0, blocks.ratio / grain, 0, 0);
     for (const word of words) {
-      sheet.letterSpacing = word.spacing === 'normal' ? '0px' : word.spacing;
       sheet.fillStyle = word.color;
-      sheet.font = word.font.replace(/[\d.]+(?=px)/, (size) => size * devicePixelRatio);
-      const ascent = Math.round(sheet.measureText(word.text).fontBoundingBoxAscent);
-      sheet.font = word.font;
-      sheet.fillText(word.text, word.x - origin.x, Math.round(word.top * devicePixelRatio + ascent) / devicePixelRatio - origin.y);
+      sheet.font = word.font(blocks.density);
+      const metrics = sheet.measureText(word.text);
+      const baseline = (Math.round(word.top * blocks.density) + Math.round(metrics.fontBoundingBoxAscent ?? metrics.actualBoundingBoxAscent)) / blocks.density - origin.y;
+      sheet.font = word.font(1);
+      if ('letterSpacing' in sheet) {
+        sheet.letterSpacing = `${word.spacing}px`;
+        sheet.fillText(word.text, word.x - origin.x, baseline);
+      } else {
+        let x = word.x - origin.x;
+        for (const glyph of word.text) {
+          sheet.fillText(glyph, x, baseline);
+          x += sheet.measureText(glyph).width + word.spacing;
+        }
+      }
     }
     for (const icon of icons) {
       sheet.save();
@@ -340,12 +367,11 @@ export function createTypeflow(blocks, stage, panels, onEnd) {
 
   /* A filled surface as squares of its colour inside its rounded outline, edges on device pixels as the browser paints them. */
   function tiles({ box, radius, red, green, blue, alpha }, origin, grain, each) {
-    const ratio = renderer.getPixelRatio();
-    const left = Math.round((box.left - origin.x) * ratio);
-    const top = Math.round((box.top - origin.y) * ratio);
-    const width = Math.round((box.right - origin.x) * ratio) - left;
-    const height = Math.round((box.bottom - origin.y) * ratio) - top;
-    const round = radius * ratio;
+    const left = Math.round((snap(box.left) - origin.x) * blocks.ratio);
+    const top = Math.round((snap(box.top) - origin.y) * blocks.ratio);
+    const width = Math.round((snap(box.right) - origin.x) * blocks.ratio) - left;
+    const height = Math.round((snap(box.bottom) - origin.y) * blocks.ratio) - top;
+    const round = radius * blocks.ratio;
     const color = ((Math.round(alpha * 255) << 24) | (blue << 16) | (green << 8) | red) >>> 0;
     squares(0, 0, width, height, grain, (x, y, side) => {
       const dx = Math.max(round - x, x - (width - round), 0);
@@ -354,21 +380,21 @@ export function createTypeflow(blocks, stage, panels, onEnd) {
     });
   }
 
-  /* All samples of a panel: place (buffer pixels), size and colour of every particle it needs. */
+  /* All samples of a panel: place (buffer pixels), size (negative on a surface) and colour of every particle it needs. */
   function sample(found) {
     let type = drawn(found, 1);
     for (let grain = 2; type.n > CAPACITY - 2 * SURFACE; grain *= 2) type = drawn(found, grain);
-    const area = found.surfaces.reduce((sum, { box }) => sum + box.width * box.height, 0) * renderer.getPixelRatio() ** 2;
+    const area = found.surfaces.reduce((sum, { box }) => sum + box.width * box.height, 0) * blocks.ratio ** 2;
     const coarse = Math.max(2, Math.ceil(Math.sqrt(area / SURFACE)));
     let n = type.n;
     for (const surface of found.surfaces) tiles(surface, found.origin, coarse, () => n++);
     const x = new Float32Array(n);
     const y = new Float32Array(n);
-    const size = new Uint8Array(n);
+    const size = new Int8Array(n);
     const pixel = new Uint32Array(n);
     let k = 0;
     const add = (px, py, grain, color) => { x[k] = px; y[k] = py; size[k] = grain; pixel[k++] = color; };
-    for (const surface of found.surfaces) tiles(surface, found.origin, coarse, add);
+    for (const surface of found.surfaces) tiles(surface, found.origin, coarse, (px, py, side, color) => add(px, py, -side, color));
     for (let row = 0, i = 0; row < type.height; row++) for (let col = 0; col < type.width; col++, i++) if (type.data[i] >>> 24 >= INK) add((col + 0.5) * type.grain, (row + 0.5) * type.grain, type.grain, type.data[i]);
     return { x, y, size, pixel, n };
   }
@@ -439,7 +465,7 @@ export function createTypeflow(blocks, stage, panels, onEnd) {
     uniforms.uStart.value = mark.pitch * unit * 2.2;
     warming = 1;
     points.visible = true;
-    uniforms.uFade.value = 0;
+    uniforms.uFade.value.set(0, 0);
     uniforms.uForms.value.set(MARK, 1, -1);
     uniforms.uProgress.value.set(0.5, 0);
   }
@@ -487,7 +513,10 @@ export function createTypeflow(blocks, stage, panels, onEnd) {
     clearTimeout(timer);
     timer = setTimeout(next, 200);
   }
-  document.fonts.ready.then(() => new ResizeObserver(rebuild).observe(stage));
+  const sizes = new ResizeObserver(rebuild);
+  document.fonts.ready.then(() => {
+    try { sizes.observe(stage, { box: 'device-pixel-content-box' }); } catch { sizes.observe(stage); }
+  });
 
   /* True once a cell is cut out of the body: one of its particles has left and not all are back. */
   function carved(delay) {
@@ -499,9 +528,27 @@ export function createTypeflow(blocks, stage, panels, onEnd) {
     return !(inFirst && left2 <= 0);
   }
 
+  /*
+    Where a landing is known to be pixel-exact (Chromium, one buffer pixel per real device pixel) the panel replaces
+    the particles in one frame. Elsewhere it settles: the panel fades in over SETTLE (CSS, data-flow="settle")
+    while the surface particles fade out, so a translucent tile is never there twice, and the particles of
+    text and icons stay under the real ones and go in a second SETTLE, so type never dips.
+  */
+  const exact = () => 'userAgentData' in navigator && blocks.ratio === devicePixelRatio && blocks.density === devicePixelRatio;
+
+  /*
+    The particles' share `time` seconds into a soft landing. Surfaces go in the first SETTLE, as the panel comes.
+    Text and icons stay longer, slowly down to 0.4 in the first SETTLE and to nothing in the second: under the
+    real text that keeps solid strokes from dipping and soft edges from thickening.
+  */
+  function settle(time) {
+    const t = time / SETTLE;
+    uniforms.uFade.value.set(Math.max(0, t < 1 ? 1 - 0.6 * t * t : 0.4 * (2 - t)), Math.max(0, 1 - t));
+  }
+
   function show() {
     points.visible = true;
-    uniforms.uFade.value = 1;
+    uniforms.uFade.value.set(1, 1);
     landed = -1;
   }
 
@@ -538,8 +585,15 @@ export function createTypeflow(blocks, stage, panels, onEnd) {
     sync();
     if (paused || c >= 0 || first.progress !== first.goal) return;
     if ((first.goal ? b : a) === MARK) { finish(true); return; }
-    /* landed: the panel replaces the particles in one frame. An overlap would show the translucent tile surfaces twice, as a flash. */
-    if (landed < 0) { landed = 0; stage.dataset.flow = 'type'; points.visible = false; }
+    if (landed < 0) {
+      landed = 0;
+      stage.dataset.flow = exact() ? 'type' : 'settle';
+      points.visible = !exact();
+    } else if (points.visible) {
+      landed += dt;
+      settle(landed);
+      points.visible = landed < 2 * SETTLE;
+    }
   }
 
   function finish(whole) {
@@ -601,12 +655,21 @@ export function createTypeflow(blocks, stage, panels, onEnd) {
       if (shown) blocks.draw();
     },
     cancel,
-    seek(value, to = 1, from = MARK) {
+    destroy() {
+      cancel();
+      run++;
+      clearTimeout(timer);
+      sizes.disconnect();
+      geometry.dispose();
+      material.dispose();
+    },
+    seek(value, to = 1, from = MARK, landing = 0) {
       if (!ready) return;
       begin(from, to);
       paused = true;
       first.progress = value;
       show();
+      settle(landing);
     },
   };
 }

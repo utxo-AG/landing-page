@@ -21,7 +21,7 @@ const spans = (lane) => [[lane.start, lane.mid], [lane.mid, lane.live], [lane.li
 const kinds = ['a', 'p', 'l'];
 ---
 <div class="aap-rm" data-aap="roadmap" data-weeks={total} data-wpm={m.weeksPerMonth} role="img" aria-label={m.label}>
-  <div class="mock-bar label"><span>{m.context}</span><span class="mock-live"><i></i>{t.mockup.live}</span></div>
+  <div class="mock-bar label"><span>{m.context}</span></div>
   <dl class="aap-rm-stats">
     <div><dt class="label">{m.stats.month}</dt><dd data-stat="month">{monthAt(STILL, total, m.weeksPerMonth)}</dd></div>
     <div><dt class="label">{m.stats.live}</dt><dd data-stat="live">{lanes.filter((lane) => lane.frame.live).length}</dd></div>
@@ -84,7 +84,6 @@ const kinds = ['a', 'p', 'l'];
   data-state on a segment: plan, run (green: in work, or in operation) or done.
 */
 .aap-rm{container-type:inline-size;--lw:25%;--aap-small:clamp(11px, .84vw, 12.5px);--rm-done:rgba(238,240,246,.62);font-size:clamp(13.5px, 1.04vw, 15.5px);line-height:1.25}
-.aap-rm .mock-live i{background:var(--phthalo-lift)}
 .aap-rm-stats{display:flex;justify-content:flex-end;gap:clamp(22px, 3vw, 48px);margin-top:clamp(14px, 1.6vw, 24px);text-align:right}
 .aap-rm-stats dt{color:var(--m-muted);margin-bottom:5px}
 .aap-rm-stats dd{font-size:clamp(24px, 2.6vw, 40px);font-weight:500;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}

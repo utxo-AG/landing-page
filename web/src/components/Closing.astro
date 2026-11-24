@@ -1,16 +1,20 @@
 ---
-/* mark={false}: pages without the wordmark scene (service detail pages) show the text only; id is omitted there. */
+/*
+  mark={false}: pages without the wordmark scene (service detail pages) show the text only; id is omitted there.
+  The still wordmark in the mark's place shows without JavaScript and in lite mode (no WebGL scene, styles/base.css).
+*/
+import wordmark from '../assets/wordmark-white.svg';
+
 const { t, mark = true } = Astro.props;
 const c = t.closing;
 ---
 <section class:list={['closing', { 'closing--plain': !mark }]} id={mark ? c.id : undefined} data-closing>
   <div class="closing-stage stage-dark">
-    {mark && <div class="closing-mark" data-stage-return aria-label={c.canvasLabel} role="img"></div>}
+    {mark && <div class="closing-mark" data-stage-return aria-label={c.canvasLabel} role="img"><img class="stage-still" src={wordmark.src} alt="" width="360" height="216" loading="lazy"></div>}
     <div class="closing-text">
       <h2 class="closing-title"><span class="ln"><span>{c.title}</span></span></h2>
-      <p class="closing-lede">{c.text}</p>
       <p class="closing-actions">
-        <a class="pill pill--light" href={t.contact.booking.href}>{c.booking} <i></i></a>
+        <a class="pill pill--light" href={t.contact.booking.href}>{c.booking}</a>
         <a class="pill pill--line" href={t.contact.mail.href}>{c.mail}</a>
       </p>
     </div>
@@ -24,27 +28,29 @@ const c = t.closing;
 </script>
 
 <style is:global>
-.closing{padding:clamp(96px, 14vw, 210px) var(--edge) 0}
-.closing-stage{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);align-items:end;height:calc(100svh - clamp(190px, 17vw, 262px));min-height:520px;padding:clamp(22px, 3.4vw, 54px)}
-.closing-mark{grid-column:7 / -1;grid-row:1;align-self:stretch;position:relative;z-index:1;margin:calc(clamp(22px, 3.4vw, 54px) * -1);margin-left:0;touch-action:pan-y}
-.closing-mark canvas{display:block;width:100%;height:100%}
+.closing{padding:clamp(72px, 9vw, 140px) var(--edge) 0}
+.closing-stage{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);align-items:center;height:clamp(400px, 34vw, 520px);padding:clamp(22px, 3.4vw, 54px)}
+.closing-mark{grid-column:8 / -1;grid-row:1;align-self:stretch;position:relative;z-index:1;touch-action:pan-y}
+/* out of flow, so the size of the canvas buffer can never stretch the stage */
+.closing-mark canvas{position:absolute;inset:0;display:block;width:100%;height:100%}
+.closing-mark .stage-still{position:absolute;inset:0;margin:auto;width:min(70%, 520px);height:auto}
+.js :where(.closing-mark) .stage-still{display:none}
 .closing--plain .closing-stage{height:auto;min-height:0;padding-top:clamp(72px, 10vw, 150px)}
 .closing-text{grid-column:1 / span 6;grid-row:1;position:relative;z-index:1}
 .closing-title{font-size:clamp(30px, 4.2vw, 66px);line-height:1;letter-spacing:-.04em;font-weight:400;text-wrap:balance}
-.closing-lede{margin-top:clamp(14px, 1.6vw, 24px);color:var(--stage-muted);max-width:26em}
 .closing-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(24px, 2.8vw, 44px)}
 .pill--light{background:var(--stage-fg);color:var(--stage);transition:background-color var(--t-fast) var(--ease)}
 .pill--light:hover{background:#fff}
 .closing-stage :focus-visible{outline-color:var(--stage-fg)}
-.js .closing-lede,.js .closing-actions{opacity:0;transform:translateY(20px);transition:opacity var(--t-enter) ease .3s,transform var(--t-enter) var(--ease) .3s}
+.js .closing-actions{opacity:0;transform:translateY(20px);transition:opacity var(--t-enter) ease .3s,transform var(--t-enter) var(--ease) .3s}
 .js .closing-actions{transition-delay:.45s}
-.js .is-in .closing-lede,.js .is-in .closing-actions{opacity:1;transform:none}
+.js .is-in .closing-actions{opacity:1;transform:none}
 @media (max-width:760px){
   .closing-stage{display:flex;flex-direction:column;align-items:stretch;height:auto;min-height:0;gap:0}
   .closing-mark{margin:calc(clamp(22px, 3.4vw, 54px) * -1);margin-bottom:0;aspect-ratio:4 / 3}
   .closing-text{padding-top:8px}
 }
 @media (prefers-reduced-motion:reduce){
-  .js .closing-lede,.js .closing-actions{opacity:1;transform:none;transition:none}
+  .js .closing-actions{opacity:1;transform:none;transition:none}
 }
 </style>

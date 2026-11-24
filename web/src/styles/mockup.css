@@ -35,7 +35,6 @@
 .approve.is-press{transform:scale(.94)}
 .approve::after{content:"";position:absolute;inset:-9px}
 @keyframes approve-in{from{opacity:0;transform:translateX(8px)}to{opacity:1;transform:none}}
-.console .mock-live i{background:var(--phthalo-lift)}
 .agents [data-state="run"] .track i{background:var(--phthalo-lift);opacity:.9}
 .agents [data-state="run"] .st{color:var(--phthalo-lift)}
 .console-foot{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding-top:clamp(16px, 2vw, 30px)}
