@@ -79,7 +79,6 @@ const classes = ['panel', `panel--${mode}`];
 .panel.is-measuring{display:grid;visibility:hidden;animation:none}
 [data-flow] > .panel{animation:none}
 [data-flow="fly"] > .panel{opacity:0;pointer-events:none}
-[data-flow="type"] > .panel{transition:opacity .06s linear}
 
 .cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(10px, 1.2vw, 18px);align-self:center;justify-self:center;width:min(100%, 860px)}
 .cta{display:grid;align-content:space-between;gap:clamp(36px, 5vw, 84px);padding:clamp(18px, 2vw, 30px);border-radius:var(--radius);background:var(--stage-soft);transition:background-color var(--t-fast) var(--ease),color var(--t-fast) var(--ease)}

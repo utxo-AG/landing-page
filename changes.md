@@ -148,6 +148,7 @@
 - Particle transition for contact tiles
 - Menu and contact fly into each other
 - Meta description shortened
+- Panel hand-over without brightness flash
 - Phthalo accents in "Software Development"
 - English dictionaries `i18n/en`
 - English pages `pages/en`
