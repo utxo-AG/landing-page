@@ -27,7 +27,8 @@ const logos = press.logos.map((entry) => ({ ...entry, image: files[`../assets/pr
 .press-band{padding:clamp(72px, 8vw, 128px) var(--edge) clamp(36px, 4.4vw, 72px)}
 /* one line: label, marquee, link */
 .press-band .refs-line{grid-template-columns:auto minmax(0,1fr) auto;column-gap:clamp(28px, 3.4vw, 56px)}
-.press-band .refs-line-label,.press-band .refs-marquee,.press-band .refs-line > a{grid-column:auto;grid-row:1;align-self:center;margin:0}
+.press-band .refs-line .refs-line-label,.press-band .refs-line .refs-marquee,.press-band .refs-line > a{grid-column:auto;grid-row:1;align-self:center;margin:0}
+.press-band .refs-line:has(> a) .refs-line-label{align-self:center;line-height:1}
 /* the brand name is always written "utxo AG", so this label is not set in capitals */
 .press-band .refs-line-label{text-transform:none;letter-spacing:0;font-size:clamp(13px, 1.05vw, 15.5px)}
 @media (max-width:900px){
