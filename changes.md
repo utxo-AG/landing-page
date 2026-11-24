@@ -124,6 +124,7 @@
 - NMKR separate from Serviceplan block
 - Serviceplan logo smaller
 - Phone in film wider
+- Press label centred on line
 - Phthalo accents in "Software Development"
 - English dictionaries `i18n/en`
 - English pages `pages/en`
