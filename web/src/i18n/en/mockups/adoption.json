@@ -5,33 +5,136 @@
     "benefit": "Benefit →",
     "effort": "Effort →"
   },
-  "timeline": {
-    "title": "Path to production · Estimate",
-    "of": "of approx.",
-    "from": "from",
-    "about": "approx.",
-    "segments": [
-      { "label": "Analysis", "span": 8 },
-      { "label": "Selection", "span": 7 },
-      { "label": "Pilot", "span": 15 },
-      { "label": "Operation", "span": 7 }
-    ]
-  },
-  "operation": "In operation",
-  "operationNote": "Rollout across teams",
-  "inOperation": 2,
   "chips": [
-    { "name": "Knowledge search", "rank": 0, "at": [0.16, 0.1], "phone": [0.22, 0.07], "unit": "Week", "count": 2, "duration": "2 weeks", "phases": ["2 days", "2 days", "6 days"] },
-    { "name": "Invoice review", "rank": 3, "at": [0.46, 0.08], "phone": [0.66, 0.1], "unit": "Week", "count": 6, "duration": "6 weeks", "phases": ["1 week", "1 week", "4 weeks"] },
-    { "name": "Contract review", "at": [0.8, 0.14] },
-    { "name": "Reporting", "rank": 1, "at": [0.33, 0.21], "phone": [0.4, 0.21], "unit": "Week", "count": 4, "duration": "4 weeks", "phases": ["1 week", "1 week", "2 weeks"] },
-    { "name": "Ticket routing", "rank": 5, "at": [0.68, 0.27], "phone": [0.76, 0.3], "unit": "Month", "count": 5, "duration": "5 months", "phases": ["3 weeks", "5 weeks", "3 months"] },
-    { "name": "Quote preparation", "rank": 2, "at": [0.19, 0.34], "phone": [0.27, 0.36], "unit": "Week", "count": 3, "duration": "3 weeks", "phases": ["3 days", "2 days", "2 weeks"] },
-    { "name": "Customer service", "at": [0.86, 0.4], "phone": [0.78, 0.6] },
-    { "name": "Onboarding", "rank": 4, "at": [0.5, 0.46], "phone": [0.58, 0.48], "unit": "Month", "count": 3, "duration": "3 months", "phases": ["2 weeks", "2 weeks", "2 months"] },
-    { "name": "Demand forecasting", "at": [0.83, 0.55] },
-    { "name": "Master data", "at": [0.58, 0.66], "phone": [0.6, 0.73] },
-    { "name": "Meeting minutes", "at": [0.15, 0.7], "phone": [0.22, 0.62] },
-    { "name": "Translations", "at": [0.38, 0.82], "phone": [0.26, 0.87] }
+    {
+      "name": "Knowledge search",
+      "rank": 0,
+      "at": [
+        0.16,
+        0.1
+      ],
+      "phone": [
+        0.22,
+        0.07
+      ]
+    },
+    {
+      "name": "Invoice review",
+      "rank": 3,
+      "at": [
+        0.46,
+        0.08
+      ],
+      "phone": [
+        0.66,
+        0.1
+      ]
+    },
+    {
+      "name": "Contract review",
+      "at": [
+        0.8,
+        0.14
+      ]
+    },
+    {
+      "name": "Reporting",
+      "rank": 1,
+      "at": [
+        0.33,
+        0.21
+      ],
+      "phone": [
+        0.4,
+        0.21
+      ]
+    },
+    {
+      "name": "Ticket routing",
+      "rank": 5,
+      "at": [
+        0.68,
+        0.27
+      ],
+      "phone": [
+        0.76,
+        0.3
+      ]
+    },
+    {
+      "name": "Quote preparation",
+      "rank": 2,
+      "at": [
+        0.19,
+        0.34
+      ],
+      "phone": [
+        0.27,
+        0.36
+      ]
+    },
+    {
+      "name": "Customer service",
+      "at": [
+        0.86,
+        0.4
+      ],
+      "phone": [
+        0.78,
+        0.6
+      ]
+    },
+    {
+      "name": "Onboarding",
+      "rank": 4,
+      "at": [
+        0.5,
+        0.46
+      ],
+      "phone": [
+        0.58,
+        0.48
+      ]
+    },
+    {
+      "name": "Demand forecasting",
+      "at": [
+        0.83,
+        0.55
+      ]
+    },
+    {
+      "name": "Master data",
+      "at": [
+        0.58,
+        0.66
+      ],
+      "phone": [
+        0.6,
+        0.73
+      ]
+    },
+    {
+      "name": "Meeting minutes",
+      "at": [
+        0.15,
+        0.7
+      ],
+      "phone": [
+        0.22,
+        0.62
+      ]
+    },
+    {
+      "name": "Translations",
+      "at": [
+        0.38,
+        0.82
+      ],
+      "phone": [
+        0.26,
+        0.87
+      ]
+    }
   ]
 }
