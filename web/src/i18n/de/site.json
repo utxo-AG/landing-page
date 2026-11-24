@@ -77,7 +77,7 @@
     {
       "id": "penetration-testing",
       "name": "Penetration Testing",
-      "short": "Regelmässige Penetrationstests, die Sicherheitslücken in Ihren Systemen finden, bevor sie ausgenutzt werden.",
+      "short": "Regelmässige Tests, die Sicherheitslücken in Ihren Systemen aufdecken.",
       "body": "Wir prüfen Ihre Systeme regelmässig mit Penetrationstests auf Sicherheitslücken, mit aktuellen Tools und nach aktuellen Standards. Die Befunde bewerten wir nach Risiko und unterstützen bei der Behebung, damit Schwachstellen früh erkannt und geschlossen werden.",
       "mockupLabel": "Animierte Beispielansicht: Ein Penetrationstest findet Schwachstellen in einem System, bewertet sie und bestätigt die Behebung im Nachtest.",
       "href": "/de/penetration-testing"

@@ -162,6 +162,8 @@
 - Buffer sized in device pixels
 - Soft landing for capped buffers
 - Lite mode detection in "hero.js"
+- Overview number column fixed width
+- Penetration Testing short text shortened
 - Phthalo accents in "Software Development"
 - English dictionaries `i18n/en`
 - English pages `pages/en`
