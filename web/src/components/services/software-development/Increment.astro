@@ -1,0 +1,207 @@
+---
+/*
+  One increment (block "Ein Beispiel aus der Praxis", on the dark stage of the block): a requirement on top,
+  below it five stage columns, each with the artefact of its stage: acceptance criteria, the change in code,
+  automated tests, review and acceptance, the running application. A column is pending, active or done
+  ([data-state], set by increment.js). Three requirements take turns ([data-k] pieces lie on top of each
+  other, [data-inc] on the visual shows one), so the picture never empties and nothing is created or removed.
+  Below 760px of width one panel shows at a time (the active stage) under a five-part rail.
+  The markup is the reduced-motion and no-JS frame: requirement 0 waiting for the client's acceptance.
+*/
+const { t } = Astro.props;
+const v = t.servicePages['software-development'].practice.inc;
+
+const SECONDS = [1.6, 2.4, 2, 1.6, 2.8];
+const STILL = 4;
+const state = (col) => (col < STILL ? 'done' : col === STILL ? 'active' : 'pending');
+const number = (n) => String(n).padStart(2, '0');
+const bars = [[34, 18], [22], [40, 12], [16]];
+const data = JSON.stringify({ seconds: SECONDS, tests: v.items.map((item) => item.tests), major: v.major, minor: v.minor });
+---
+<div class="sdp-inc" data-visual="sdp-inc" data-plan={data} data-inc="0" data-stage={STILL} data-checked="3" data-accept="wait" role="img" aria-label={v.label}>
+  <div class="mock-bar label">
+    <span>{v.context}</span>
+    <span class="mock-live"><i></i>{v.version} <b data-version>{v.major}.{v.minor}.0</b></span>
+  </div>
+
+  <div class="sdp-i-req">
+    {v.items.map((item, k) => (
+      <div class="sdp-i-item" data-k={k}>
+        <p class="sdp-i-from label"><b>{item.id}</b>{item.from}</p>
+        <p class="sdp-i-title"><span>{item.title}</span></p>
+      </div>
+    ))}
+  </div>
+
+  <div class="sdp-i-cols">
+    {v.stages.map((stage, s) => (
+      <div class="sdp-i-col" data-col={s + 1} data-state={state(s + 1)} style={`--i:${s};--dur:${SECONDS[s]}s`}>
+        <p class="sdp-i-stage label"><i>{number(s + 1)}</i><span>{stage}</span></p>
+        <i class="sdp-i-seg" aria-hidden="true"><b></b></i>
+        <div class:list={['sdp-i-panel', s === 4 && 'mock-light']}>
+          <p class="sdp-i-name label">{v.panels[s]}</p>
+          <div class="sdp-i-art">
+            {s === 0 && v.items.map((item, k) => (
+              <ul class="sdp-i-crit" data-k={k}>
+                {item.criteria.map((line, i) => <li style={`--n:${i}`}><i></i><span>{line}</span></li>)}
+              </ul>
+            ))}
+            {s === 1 && v.items.map((item, k) => (
+              <div class="sdp-i-code" data-k={k}>
+                {item.code.map((line, i) => <p style={`--n:${i}`}><i>{41 + k * 17 + i}</i><code>{line}</code>{bars[i].map((w) => <u style={`--w:${w}`}></u>)}</p>)}
+              </div>
+            ))}
+            {s === 2 && (
+              <ul class="sdp-i-tests">
+                {v.testNames.map((name, j) => <li style={`--n:${j}`}><span>{name}</span><b data-count={j}>{v.items[0].tests[j]}</b><i class="sdp-i-track"><b></b></i></li>)}
+              </ul>
+            )}
+            {s === 3 && (
+              <ul class="sdp-i-review">
+                <li style="--n:0"><span>{v.review.code}</span><em class="st">{v.review.codeDone}</em></li>
+                <li style="--n:1"><span>{v.review.client}</span><span class="sdp-i-accept"><em class="st is-human" data-accept="wait">{v.review.wait}</em><em class="st" data-accept="done">{v.review.done}</em></span></li>
+              </ul>
+            )}
+            {s === 4 && v.items.map((item, k) => (
+              <div class="sdp-i-screen" data-k={k}>
+                <small>{item.screen.label}</small>
+                <b>{item.screen.title}</b>
+                {item.screen.rows.map(([name, value], i) => (
+                  <p class:list={[i === 2 && 'sdp-i-new']}><span>{name}</span><span>{value}</span>{i === 2 && <em>{v.newTag}</em>}</p>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  import { increment } from './increment.js';
+
+  document.querySelectorAll('[data-visual="sdp-inc"]').forEach(increment);
+</script>
+
+<style is:global>
+.sdp-inc{--u:1cqw;--sdp-panel:#1B1E24;--sdp-hair:inset 0 0 0 1px rgba(238,240,246,.1);container-type:inline-size;font-size:clamp(12px, 1.14cqw, 15.5px);line-height:1.3}
+.sdp-inc .mock-live i{background:var(--phthalo-lift)}
+.sdp-inc .mock-live b{display:inline-block;min-width:3.4em;margin-left:.4em;text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
+.sdp-inc .st{font-size:max(11px, .8em);padding:.36em .8em}
+
+.sdp-i-req{display:grid;margin-top:calc(2.6 * var(--u))}
+.sdp-i-item{grid-area:1 / 1}
+.sdp-i-from{color:var(--m-muted);white-space:nowrap}
+.sdp-i-from b{margin-right:1em;color:var(--m-fg);font-weight:600}
+.sdp-i-title{overflow:hidden;margin-top:calc(.9 * var(--u));padding-bottom:.14em;font-size:calc(3.5 * var(--u));line-height:1.04;letter-spacing:-.04em;white-space:nowrap}
+.sdp-i-title span{display:block}
+.sdp-inc [data-k]{opacity:0;transition:opacity var(--t-fast) ease}
+.sdp-inc .sdp-i-title span{transform:translateY(118%);transition:transform 0s var(--t-fast)}
+.sdp-inc[data-inc="0"] [data-k="0"],.sdp-inc[data-inc="1"] [data-k="1"],.sdp-inc[data-inc="2"] [data-k="2"]{opacity:1;transition:opacity var(--t-move) ease .25s}
+.sdp-inc[data-inc="0"] [data-k="0"] .sdp-i-title span,.sdp-inc[data-inc="1"] [data-k="1"] .sdp-i-title span,.sdp-inc[data-inc="2"] [data-k="2"] .sdp-i-title span{transform:none;transition:transform var(--t-enter) var(--ease) .25s}
+
+.sdp-i-cols{display:grid;grid-template-columns:17fr 20fr 17fr 14fr 24fr;gap:calc(1.6 * var(--u));margin-top:calc(3.2 * var(--u))}
+.sdp-i-col{min-width:0}
+.sdp-i-stage{display:flex;gap:.9em;color:var(--m-muted);white-space:nowrap;transition:color var(--t-fast)}
+.sdp-i-stage i{font-style:normal;font-variant-numeric:tabular-nums;opacity:.6}
+.sdp-i-col[data-state="active"] .sdp-i-stage,.sdp-i-col[data-state="done"] .sdp-i-stage{color:var(--m-fg)}
+.sdp-i-seg{display:block;height:2px;margin-top:calc(1 * var(--u));background:var(--m-soft);overflow:hidden}
+.sdp-i-seg b{display:block;height:100%;background:var(--phthalo-lift);transform:scaleX(0);transform-origin:0 0;transition:transform 0s var(--t-fast),opacity var(--t-fast)}
+.sdp-i-col[data-state="active"] .sdp-i-seg b{transform:none;transition:transform var(--dur) linear}
+.sdp-i-col[data-state="done"] .sdp-i-seg b{transform:none;transition:none}
+.sdp-i-col[data-state="pending"] .sdp-i-seg b{opacity:0}
+
+.sdp-i-panel{position:relative;height:calc(19.5 * var(--u));min-height:15.5em;margin-top:calc(1.6 * var(--u));padding:calc(1.5 * var(--u)) calc(1.6 * var(--u));border-radius:calc(1.1 * var(--u));background:var(--sdp-panel);box-shadow:var(--sdp-hair);overflow:hidden;transition:opacity var(--t-move) ease}
+.sdp-i-panel.mock-light{background:#fff;box-shadow:0 calc(2 * var(--u)) calc(5 * var(--u)) rgba(0,0,0,.45)}
+.sdp-i-name{color:var(--m-muted);white-space:nowrap}
+.sdp-i-col[data-state="pending"] .sdp-i-panel:not(.mock-light){opacity:.5}
+.sdp-i-art{display:grid;margin-top:calc(1.3 * var(--u))}
+.sdp-i-art > *{grid-area:1 / 1;min-width:0}
+
+/* a piece of an artefact: hidden while its column is pending, then set one after another (--n) */
+.sdp-i-art li,.sdp-i-code p{transition:opacity var(--t-fast) ease,transform 0s var(--t-fast)}
+.sdp-i-col[data-state="pending"] :is(.sdp-i-crit li,.sdp-i-code p,.sdp-i-review em){opacity:0;transform:translateY(.7em)}
+.sdp-i-col[data-state="active"] :is(.sdp-i-crit li,.sdp-i-code p,.sdp-i-review em){transition:opacity var(--t-move) ease calc(200ms + var(--n) * 320ms),transform var(--t-move) var(--ease) calc(200ms + var(--n) * 320ms)}
+
+.sdp-i-crit li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.7em;align-items:start;padding:.55em 0;border-top:1px solid var(--m-rule)}
+.sdp-i-crit li:first-child{border-top:0;padding-top:0}
+.sdp-i-crit i{position:relative;width:1.1em;height:1.1em;margin-top:.1em;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(238,240,246,.3);transition:background-color var(--t-fast),box-shadow var(--t-fast)}
+.sdp-i-crit i::after{content:"";position:absolute;left:34%;top:20%;width:28%;height:48%;border-right:1.5px solid var(--stage);border-bottom:1.5px solid var(--stage);transform:rotate(40deg);opacity:0;transition:opacity var(--t-fast)}
+.sdp-inc[data-checked="1"] .sdp-i-crit li:nth-child(-n+1) i,.sdp-inc[data-checked="2"] .sdp-i-crit li:nth-child(-n+2) i,.sdp-inc[data-checked="3"] .sdp-i-crit li i{background:var(--phthalo-lift);box-shadow:none}
+.sdp-inc[data-checked="1"] .sdp-i-crit li:nth-child(-n+1) i::after,.sdp-inc[data-checked="2"] .sdp-i-crit li:nth-child(-n+2) i::after,.sdp-inc[data-checked="3"] .sdp-i-crit li i::after{opacity:1}
+
+.sdp-i-code p{display:flex;align-items:center;gap:.7em;height:2.25em;white-space:nowrap}
+.sdp-i-code i{flex:none;width:1.6em;font-style:normal;font-size:max(11px, .8em);color:var(--m-muted);opacity:.6;font-variant-numeric:tabular-nums}
+.sdp-i-code code{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:max(11px, .86em);color:var(--phthalo-lift)}
+.sdp-i-code u{flex:0 1 auto;min-width:.9em;width:calc(var(--w) * 1%);max-width:calc(var(--w) * .12 * var(--u));height:.5em;border-radius:.25em;background:var(--m-soft);text-decoration:none}
+
+.sdp-i-tests li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.5em 1em;align-items:baseline;padding-bottom:.95em}
+.sdp-i-tests li > b{font-weight:500;font-variant-numeric:tabular-nums}
+.sdp-i-tests span{color:var(--m-muted);transition:color var(--t-fast)}
+.sdp-i-col:not([data-state="pending"]) .sdp-i-tests span{color:var(--m-fg)}
+.sdp-i-track{grid-column:1 / -1;display:block;height:3px;border-radius:3px;background:var(--m-soft);overflow:hidden}
+.sdp-i-track b{display:block;height:100%;background:var(--phthalo-lift);transform:scaleX(0);transform-origin:0 0;transition:transform 0s var(--t-fast),opacity var(--t-fast)}
+.sdp-i-col[data-state="pending"] .sdp-i-track b{opacity:0}
+.sdp-i-col[data-state="active"] .sdp-i-track b{transform:none;transition:transform .8s linear calc(var(--n) * 400ms)}
+.sdp-i-col[data-state="done"] .sdp-i-track b{transform:none;transition:none}
+
+.sdp-i-review li{display:grid;gap:.6em;justify-items:start;padding:.75em 0;border-top:1px solid var(--m-rule)}
+.sdp-i-review li:first-child{border-top:0;padding-top:0}
+.sdp-i-review li > span:first-child{color:var(--m-muted)}
+.sdp-i-accept{display:grid}
+.sdp-i-accept em{grid-area:1 / 1;justify-self:start}
+.sdp-i-accept [data-accept="done"]{color:var(--phthalo-lift)}
+.sdp-inc:not([data-accept="done"]) .sdp-i-accept [data-accept="done"],.sdp-inc[data-accept="done"] .sdp-i-accept [data-accept="wait"]{opacity:0;transition:opacity var(--t-fast) ease}
+.sdp-inc[data-accept="press"] .sdp-i-accept [data-accept="wait"]{transform:scale(.93);transition:transform .2s ease}
+.sdp-i-col[data-state="active"] .sdp-i-review li:first-child em{--n:.4}
+.sdp-i-col[data-state="active"] .sdp-i-review .sdp-i-accept em{--n:1.3}
+
+.sdp-i-screen{display:flex;flex-direction:column;color:var(--fg)}
+.sdp-i-panel.mock-light .sdp-i-name,.sdp-i-screen small{color:var(--muted)}
+.sdp-i-screen small{font-size:max(11px, .86em)}
+.sdp-i-screen > b{margin:.1em 0 .7em;font-size:1.1em;font-weight:600;letter-spacing:-.015em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sdp-i-screen p{position:relative;display:flex;justify-content:space-between;gap:1em;padding:.62em 0;border-top:1px solid var(--rule);white-space:nowrap}
+.sdp-i-screen p span:first-child{color:var(--muted)}
+.sdp-i-screen p span + span{overflow:hidden;text-overflow:ellipsis}
+.sdp-i-screen{position:relative}
+.sdp-i-screen p.sdp-i-new{position:static;font-weight:600}
+.sdp-i-new em{position:absolute;right:0;top:0;padding:.2em .7em;border-radius:99px;background:var(--phthalo);color:#fff;font-style:normal;font-size:max(11px, .76em);font-weight:600;letter-spacing:.04em;text-transform:uppercase;transition:opacity var(--t-fast) ease}
+.sdp-i-new{transition:opacity var(--t-fast) ease,transform 0s var(--t-fast)}
+.sdp-i-col[data-state="pending"] .sdp-i-new{opacity:0;transform:translateY(1em)}
+.sdp-i-col[data-state="active"] .sdp-i-new{transition:opacity var(--t-move) ease .3s,transform var(--t-enter) var(--ease) .3s}
+.sdp-i-col[data-state="pending"] .sdp-i-new em{opacity:0}
+
+.js .sdp-inc .mock-bar,.js .sdp-i-req{opacity:0;transition:opacity var(--t-enter) ease .2s}
+.js .is-in .sdp-inc .mock-bar,.js .is-in .sdp-i-req{opacity:1}
+.js .sdp-i-col{opacity:0;transform:translateY(calc(3 * var(--u)));transition:opacity var(--t-move) ease,transform var(--t-enter) var(--ease);transition-delay:calc(350ms + var(--i) * 110ms)}
+.js .is-in .sdp-i-col{opacity:1;transform:none}
+
+@container (max-width:760px){
+  .sdp-inc{font-size:clamp(12px, 3.6cqw, 15px)}
+  .sdp-inc .mock-bar > span:first-child{display:none}
+  .sdp-inc .st{font-size:max(10px, min(11px, 3cqw))}
+  .sdp-i-req{margin-top:calc(5 * var(--u))}
+  .sdp-i-from{font-size:max(10px, min(var(--fs-label), 3.4cqw))}
+  .sdp-i-title{height:2.22em;margin-top:calc(2.4 * var(--u));font-size:clamp(22px, 7.4cqw, 34px);white-space:normal}
+  .sdp-i-cols{grid-template-columns:repeat(5, 1fr);gap:0 6px;margin-top:calc(5 * var(--u))}
+  .sdp-i-col{display:contents}
+  .sdp-i-stage{grid-row:1;grid-column:calc(var(--i) + 1);min-width:0}
+  .sdp-i-stage span{display:none}
+  .sdp-i-seg{grid-row:2;grid-column:calc(var(--i) + 1);margin-top:8px}
+  .sdp-i-panel{grid-row:3;grid-column:1 / -1;height:15.6em;min-height:0;margin-top:calc(5 * var(--u));padding:1.15em 1.2em;border-radius:calc(3 * var(--u));opacity:0;transition:opacity var(--t-fast) ease}
+  .sdp-i-art{margin-top:.9em}
+  .sdp-i-col[data-state="pending"] .sdp-i-panel:not(.mock-light){opacity:0}
+  .sdp-i-col[data-state="active"] .sdp-i-panel,.sdp-inc[data-stage="5"] .sdp-i-panel.mock-light{opacity:1;z-index:1;transition:opacity var(--t-move) ease .15s}
+  .sdp-i-code u{max-width:none}
+  .sdp-i-review{display:grid;grid-template-columns:1fr 1fr;gap:1.2em}
+  .sdp-i-review li,.sdp-i-review li:first-child{border-top:0;padding:0}
+}
+@container (min-width:480px) and (max-width:760px){
+  .sdp-i-stage span{display:inline}
+}
+@media (prefers-reduced-motion:reduce){
+  .sdp-inc *,.sdp-inc *::after{transition:none !important}
+  .js .sdp-inc .mock-bar,.js .sdp-i-req,.js .sdp-i-col{opacity:1;transform:none}
+}
+</style>

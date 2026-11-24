@@ -319,7 +319,8 @@ Each phase ends in something Phil can open in the browser.
 ## Deviations decided during implementation (2026-11-23)
 
 - Service headlines are 6.4vw (not 8.6vw) and may wrap, so all six names fit.
-- 01 Software Development: the three-column window of section 2 was replaced on 2026-11-24 by a five-scene film (Workflow, Web-Anwendung, Mobile App, Schnittstellen, Release) at Phil's request; below 620px of mockup width a 4:5 variant shows.
+- 01 Software Development: the three-column window of section 2 was replaced on 2026-11-24, first by a five-scene process film, then at Phil's request by a product-video-style showreel (floating screens, camera moves, depth of field); below 620px of mockup width a 4:5 variant shows.
+- Service detail pages for all six services were added on 2026-11-24 (the plan had prepared but not planned them).
 - 02 KI-Automationen: the example is an incoming customer order; "Prüfen" carries a fifth system label "Regelwerk"; the case waits above the pill "Ihre Freigabe"; pure function of the clock, no steps.
 - 04 Agent Factories: a cube every 3.6 s (five per 18 s pass); labels are flat text placed by the same projection instead of counter-rotated text; about 200 elements; up to 900px the stage is 4:5 with headline above and copy below.
 - 05 AI Adoption: reduced on 2026-11-24 at Phil's request to the matrix of use cases by benefit and effort, set beside the text (layout `mockup-right`); the timeline ("Weg in den Betrieb") and the "Im Betrieb" row are gone. The ranked chips are selected in turn (3.2 s each).

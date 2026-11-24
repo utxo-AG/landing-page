@@ -1,0 +1,155 @@
+---
+/*
+  The shared layer in detail: agents on the left, the layer every request passes in the middle, the models on
+  the right; below, the log and the data sources. Requests are pulses on SVG paths (stroke-dashoffset, as on the
+  home scene). The model in use changes once per pass, after a human approved it; the agents never change.
+  Wide: three columns joined by curved wires. Narrow (container below 520px): the columns stack, joined by two short vertical wires.
+  The markup is the reduced-motion and no-JS frame: the first model active, three log lines.
+*/
+import { logLine } from './log.js';
+
+const { t } = Astro.props;
+const m = t.servicePages['agent-factories'].operation.platform;
+
+const VISIBLE = 3;
+const share = (index, count) => (((index + 0.5) / count) * 100).toFixed(2);
+const fan = (count, mirror) => Array.from({ length: count }, (_, index) => {
+  const y = share(index, count);
+  return mirror ? `M0 50C55 50 45 ${y} 100 ${y}` : `M0 ${y}C55 ${y} 45 50 100 50`;
+});
+const lines = Array.from({ length: VISIBLE + 1 }, (_, slot) => ({ slot: slot - 1, ...logLine(m, -slot, 0) }));
+const copy = JSON.stringify({ clock: m.clock, agents: m.agents, actions: m.actions, data: m.data, models: m.models, states: m.states, swap: m.swap });
+---
+<div class="afp-in mock-light" data-afp="platform" data-copy={copy} role="img" aria-label={m.label}>
+  <div class="mock-bar label"><span>{m.context}</span><span class="mock-live"><i></i>{t.mockup.live}</span></div>
+  <div class="afp-in-flow">
+    <p class="afp-in-head afp-in-a label">{m.agentsLabel}</p>
+    <ul class="afp-in-agents afp-in-a">
+      {m.agents.map((name) => <li><i></i><span>{name}</span></li>)}
+    </ul>
+    <p class="afp-in-tail afp-in-a afp-in-same">{m.agentsNote}</p>
+    <svg class="afp-in-wires afp-in-wires--a" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      {fan(m.agents.length, false).map((d) => <Fragment><path class="afp-in-rail" d={d} /><path class="afp-in-pulse" data-wire="agent" d={d} pathLength="1" /></Fragment>)}
+    </svg>
+    <svg class="afp-in-drop afp-in-drop--a" viewBox="0 0 3 100" preserveAspectRatio="none" aria-hidden="true"><path class="afp-in-rail" d="M1.5 0V100" /><path class="afp-in-pulse" data-drop="agent" d="M1.5 0V100" pathLength="1" /></svg>
+    <p class="afp-in-head afp-in-c label">{m.coreLabel}</p>
+    <ol class="afp-in-core afp-in-c mock-dark">
+      {m.gates.map((gate, index) => <li style={`--k:${index}`}><i></i><span>{gate}</span></li>)}
+    </ol>
+    <svg class="afp-in-wires afp-in-wires--m" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      {fan(m.models.length, true).map((d, index) => <Fragment><path class:list={['afp-in-rail', index === 0 && 'is-live']} data-rail d={d} /><path class="afp-in-pulse" data-wire="model" d={d} pathLength="1" /></Fragment>)}
+    </svg>
+    <svg class="afp-in-drop afp-in-drop--m" viewBox="0 0 3 100" preserveAspectRatio="none" aria-hidden="true"><path class="afp-in-rail" d="M1.5 0V100" /><path class="afp-in-pulse" data-drop="model" d="M1.5 0V100" pathLength="1" /></svg>
+    <p class="afp-in-head afp-in-m label">{m.modelsLabel}</p>
+    <ul class="afp-in-models afp-in-m">
+      {m.models.map((model, index) => (
+        <li data-state={index === 0 ? 'active' : 'ready'}><p><b>{model.name}</b><small>{model.where}</small></p><em class="st">{index === 0 ? m.states.active : m.states.ready}</em></li>
+      ))}
+    </ul>
+    <p class="afp-in-tail afp-in-m afp-in-swap" data-swap><span class="label">{m.swap.label}</span><em class="st is-human">{m.swap.approve}</em></p>
+  </div>
+  <div class="afp-in-foot">
+    <div class="afp-in-log">
+      <p class="label">{m.logLabel}</p>
+      <ol style={`--rows:${VISIBLE}`}>
+        {lines.map((line) => <li style={`--p:${line.slot}`}><time>{line.time}</time><b>{line.agent}</b><span>{line.action}</span><em>{line.model}</em></li>)}
+      </ol>
+    </div>
+    <div class="afp-in-data">
+      <p class="label">{m.dataLabel}</p>
+      <ul>{m.data.map((name) => <li>{name}</li>)}</ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { platform } from './platform.js';
+
+  document.querySelectorAll('[data-afp="platform"]').forEach(platform);
+</script>
+
+<style is:global>
+.afp-in{container-type:inline-size;position:relative;padding:clamp(18px, 2.2vw, 34px);border-radius:var(--radius);box-shadow:0 60px 90px -50px rgba(12,18,48,.3),0 18px 30px -22px rgba(12,18,48,.18);font-size:clamp(13px, 1.02vw, 15px);line-height:1.3}
+.afp-in .st{font-size:max(11px, .82em)}
+.afp-in .mock-live i{background:var(--phthalo)}
+.afp-in-flow{--row:clamp(46px, 4.1vw, 58px);display:grid;grid-template-columns:minmax(0,27fr) minmax(0,9fr) minmax(0,27fr) minmax(0,9fr) minmax(0,31fr);grid-template-rows:auto calc(4 * var(--row)) auto;padding-top:clamp(16px, 1.8vw, 26px)}
+.afp-in-head{grid-row:1;padding-bottom:12px;color:var(--m-muted)}
+.afp-in-tail{grid-row:3;min-height:38px;padding-top:12px;color:var(--m-muted);font-size:max(12px, .9em)}
+.afp-in-a{grid-column:1}
+.afp-in-c{grid-column:3}
+.afp-in-m{grid-column:5}
+.afp-in-wires{grid-row:2;width:100%;height:100%;max-width:none;overflow:visible;fill:none}
+.afp-in-wires--a{grid-column:2}
+.afp-in-wires--m{grid-column:4}
+.afp-in-drop{display:none;fill:none}
+.afp-in-rail{stroke:rgba(7,8,10,.16);stroke-width:1;vector-effect:non-scaling-stroke}
+.afp-in-rail[data-rail]{stroke-dasharray:2 4;transition:opacity var(--t-fast)}
+.afp-in-rail[data-rail].is-live{stroke-dasharray:none;stroke:rgba(7,8,10,.4)}
+.afp-in-pulse{stroke:var(--phthalo);stroke-width:2.5;stroke-linecap:round;vector-effect:non-scaling-stroke;stroke-dasharray:.16 1.4;stroke-dashoffset:.17}
+.afp-in-pulse.is-on{stroke-dashoffset:-1;transition:stroke-dashoffset .72s linear}
+.afp-in-pulse.is-probe{stroke:var(--m-muted)}
+
+.afp-in-agents,.afp-in-models{grid-row:2;display:grid;grid-auto-rows:1fr}
+.afp-in-agents li{display:flex;align-items:center;gap:10px;border-top:1px solid var(--m-rule);transition:color var(--t-fast)}
+.afp-in-agents li:last-child,.afp-in-models li:last-child{border-bottom:1px solid var(--m-rule)}
+.afp-in-agents i{flex:none;width:9px;height:9px;background:var(--fg);transition:background-color var(--t-fast)}
+.afp-in-agents li.is-on i{background:var(--phthalo)}
+.afp-in-agents span{font-weight:500;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.afp-in-same{display:flex;align-items:center;gap:8px}
+.afp-in-same::before{content:"";width:9px;height:1px;background:currentColor}
+.afp-in-core{grid-row:2;display:grid;grid-auto-rows:1fr;padding:6px clamp(12px, 1.3vw, 20px);border-radius:14px;background:var(--stage-gradient)}
+.afp-in-core li{display:flex;align-items:center;gap:10px}
+.afp-in-core li + li{border-top:1px solid var(--m-rule)}
+.afp-in-core i{flex:none;width:7px;height:7px;border-radius:50%;background:var(--m-fg);opacity:.3;transition:opacity var(--t-fast) calc(var(--k) * 110ms),background-color var(--t-fast) calc(var(--k) * 110ms)}
+.afp-in-core.is-on i{opacity:1;background:var(--phthalo-lift)}
+.afp-in-models li{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid var(--m-rule);transition:opacity var(--t-fast)}
+.afp-in-models li[data-state="ready"]{opacity:.5}
+.afp-in-models b{display:block;font-weight:500;letter-spacing:-.01em}
+.afp-in-models small{display:block;color:var(--m-muted);font-size:max(11px, .86em)}
+.afp-in-models [data-state="active"] .st{color:var(--phthalo)}
+.afp-in-swap{grid-column:4 / 6;display:flex;align-items:center;justify-content:flex-end;gap:12px;opacity:0;transition:opacity var(--t-fast)}
+.afp-in-swap.is-on{opacity:1}
+.afp-in-swap .st:not(.is-human){color:var(--phthalo)}
+
+.afp-in-foot{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(20px, 3vw, 48px);margin-top:clamp(6px, .8vw, 12px);padding-top:clamp(14px, 1.6vw, 22px);border-top:1px solid var(--m-rule)}
+.afp-in-foot .label{color:var(--m-muted);margin-bottom:10px}
+.afp-in-log ol{--line:clamp(26px, 2.2vw, 30px);position:relative;height:calc(var(--rows) * var(--line));overflow:hidden}
+.afp-in-log li{position:absolute;left:0;right:0;top:0;height:var(--line);display:grid;grid-template-columns:5.2em minmax(0,10em) minmax(0,1fr) auto;gap:12px;align-items:center;font-size:max(12px, .9em);white-space:nowrap;opacity:clamp(0, min(1 + var(--p), 1 - var(--p) * .28, 3 - var(--p)), 1);transform:translateY(calc(var(--p) * 100%));transition:transform var(--t-move) var(--ease),opacity var(--t-fast)}
+.afp-in-log li.is-off{transition:none}
+.afp-in-log time{color:var(--m-muted);font-variant-numeric:tabular-nums}
+.afp-in-log b{font-weight:500;overflow:hidden;text-overflow:ellipsis}
+.afp-in-log span{color:var(--m-muted);overflow:hidden;text-overflow:ellipsis}
+.afp-in-log em{font-style:normal;color:var(--m-muted)}
+.afp-in-data ul{display:flex;gap:6px}
+.afp-in-data li{padding:5px 11px;border-radius:99px;background:var(--m-soft);font-size:max(11px, .82em);font-weight:600;letter-spacing:.04em;transition:background-color var(--t-fast),color var(--t-fast)}
+.afp-in-data li.is-on{background:var(--phthalo);color:#fff}
+
+.js .afp-in{opacity:0;transform:translateY(40px) scale(.97);transition:opacity var(--t-move) ease .15s,transform var(--t-stage) var(--ease) .15s}
+.js .is-in .afp-in{opacity:1;transform:none}
+.js .afp-in-flow > *,.js .afp-in-foot{opacity:0;transition:opacity var(--t-enter) ease .7s}
+.js .is-in .afp-in-flow > *:not(.afp-in-swap),.js .is-in .afp-in-foot,.js .is-in .afp-in-swap.is-on{opacity:1}
+.afp-in ~ .sp-points{margin-top:clamp(40px, 5vw, 80px)}
+
+@container (max-width:520px){
+  .afp-in-flow{display:flex;flex-direction:column;padding-top:16px}
+  .afp-in-flow > *{order:9}
+  .afp-in-head.afp-in-a{order:1}
+  .afp-in-agents{order:2;grid-template-columns:1fr 1fr;grid-auto-rows:44px;column-gap:16px}
+  .afp-in-agents li:nth-last-child(2){border-bottom:1px solid var(--m-rule)}
+  .afp-in-same{order:3;min-height:0}
+  .afp-in-drop--a{order:4}
+  .afp-in-head.afp-in-c{order:5}
+  .afp-in-core{order:6;grid-auto-rows:42px}
+  .afp-in-drop--m{order:7}
+  .afp-in-head.afp-in-m{order:8}
+  .afp-in-wires{display:none}
+  .afp-in-drop{display:block;align-self:center;width:3px;height:30px;margin:6px 0 2px;max-width:none}
+  .afp-in-models{grid-auto-rows:52px}
+  .afp-in-foot{grid-template-columns:minmax(0,1fr);gap:18px}
+  .afp-in-log li{grid-template-columns:4.9em minmax(0,1fr) auto;gap:10px}
+  .afp-in-log span{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .afp-in,.js .afp-in *{transition:none}
+}
+</style>

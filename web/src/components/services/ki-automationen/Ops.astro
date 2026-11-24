@@ -1,0 +1,121 @@
+---
+/*
+  KI-Automationen, detail page, visual 3: one day of operation as the client sees it. Three figures, the cases per
+  hour as bars that fill as the day passes (the current hour in phthalo), a lane with one marker per exception,
+  and the queue of exceptions waiting for approval (white pill: a human decides). Sample data from the json.
+  Every frame is a function of the clock (ops-model.js); the markup is the frame at STILL (reduced motion, no JS).
+*/
+import { STILL, dayAt, timeOf } from './ops-model.js';
+
+const { t } = Astro.props;
+const m = t.servicePages['ki-automationen'].ops;
+
+const data = { first: m.first, volumes: m.volumes, events: m.events.map(({ at }) => ({ at })) };
+const day = dayAt(STILL, data);
+const peak = Math.max(...m.volumes);
+const current = Math.min(m.volumes.length - 1, Math.floor(STILL));
+---
+<div class="kap-ops" data-mockup="kap-ops" data-day={JSON.stringify(data)} role="img" aria-label={m.label}>
+  <div class="kap-ops-win mock-light">
+    <div class="mock-bar label"><span>{m.context}</span><span class="mock-live"><i></i><b data-clock>{day.clock}</b></span></div>
+    <dl class="kap-ops-figs">
+      {['total', 'auto', 'waiting'].map((key) => <div><dt>{m.figures[key]}</dt><dd data-count={key}>{day[key]}</dd></div>)}
+    </dl>
+    <div class="kap-ops-body">
+      <div class="kap-ops-chart">
+        <p class="kap-ops-h label"><span>{m.chart}</span><span class="kap-ops-key"><i></i>{m.lane}</span></p>
+        <div class="kap-ops-plot">
+          <div class="kap-ops-lane">
+            {m.events.map((event, index) => <i class="kap-ops-mark" data-s={day.marks[index]} style={`--at:${(event.at / m.volumes.length).toFixed(4)}`}></i>)}
+          </div>
+          <div class="kap-ops-bars">
+            {m.volumes.map((volume, hour) => (
+              <div class:list={[hour === current && 'is-now']}>
+                <i style={`--v:${(volume / peak).toFixed(3)};transform:scaleY(${day.bars[hour].toFixed(3)})`}></i>
+                <small>{String(m.first + hour).padStart(2, '0')}</small>
+              </div>
+            ))}
+          </div>
+          <div class="kap-ops-now" style={`transform:translateX(${(day.progress * 100).toFixed(2)}%)`}></div>
+        </div>
+      </div>
+      <div class="kap-ops-queue">
+        <p class="kap-ops-h label"><span>{m.queue}</span></p>
+        <div class="kap-ops-list">
+          <p class="kap-ops-empty">{m.empty}</p>
+          {m.events.map((event, index) => (
+            <div class="kap-ops-item" data-s={day.states[index]} style={`--r:${day.rows[index]}`}>
+              <p><b>{event.reason}</b><small>{timeOf(event.at, m.first)} · {event.ref}</small></p>
+              <span class="kap-stack"><em class="st is-human">{m.wait}</em><em class="st">{m.approved}</em></span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { ops } from './ops.js';
+
+  document.querySelectorAll('[data-mockup="kap-ops"]').forEach(ops);
+</script>
+
+<style is:global>
+.kap-ops{container-type:inline-size}
+.kap-ops-win{display:flex;flex-direction:column;aspect-ratio:16 / 10.6;overflow:hidden;border-radius:var(--radius);padding:clamp(16px, 3.6cqw, 30px);font-size:clamp(11px, 1.6cqw, 13.5px);line-height:1.3;box-shadow:0 44px 80px -42px rgba(12,18,48,.3)}
+.kap-ops .mock-bar{padding-bottom:clamp(12px, 2cqw, 18px)}
+.kap-ops .mock-live i{background:var(--phthalo)}
+.kap-ops .mock-live b{font-weight:inherit;font-variant-numeric:tabular-nums}
+.kap-ops-figs{display:grid;grid-template-columns:repeat(3,1fr);gap:4.5%;padding:clamp(14px, 2.6cqw, 22px) 0}
+.kap-ops-figs dt{color:var(--m-muted);margin-bottom:.35em;white-space:nowrap}
+.kap-ops-figs dd{font-size:clamp(24px, 5.2cqw, 42px);font-weight:500;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.kap-ops-body{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 40%;gap:0 4.5%;padding-top:clamp(12px, 2cqw, 18px);border-top:1px solid var(--m-rule)}
+.kap-ops-h{display:flex;justify-content:space-between;color:var(--m-muted);white-space:nowrap}
+.kap-ops-key{display:inline-flex;align-items:center;gap:.6em}
+.kap-ops-key i{width:.75em;height:.75em;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--m-fg)}
+.kap-ops-chart,.kap-ops-queue{display:flex;flex-direction:column;min-width:0;min-height:0}
+
+.kap-ops-plot{position:relative;flex:1;min-height:0;display:flex;flex-direction:column;margin-top:.9em}
+.kap-ops-lane{position:relative;flex:none;height:1.5em;border-bottom:1px solid var(--m-rule)}
+.kap-ops-mark{position:absolute;left:calc(var(--at) * 100%);top:50%;width:.9em;height:.9em;margin:-.45em 0 0 -.45em;border-radius:50%;background:var(--m-fg);opacity:0;transform:scale(.5);transition:opacity var(--t-fast) ease,transform var(--t-fast) var(--ease)}
+.kap-ops-mark::after{content:"";position:absolute;inset:1.5px;border-radius:50%;background:#fff;transition:opacity var(--t-fast) ease}
+.kap-ops-mark:is([data-s="wait"],[data-s="done"]){opacity:1;transform:none}
+.kap-ops-mark[data-s="done"]{transform:scale(.56)}
+.kap-ops-mark[data-s="done"]::after{opacity:0}
+.kap-ops-bars{flex:1;min-height:0;display:grid;grid-template-columns:repeat(12,1fr);gap:0 4%;padding-top:.9em}
+.kap-ops-bars div{display:grid;grid-template-rows:minmax(0,1fr) auto;align-items:end;gap:.5em;min-height:0;text-align:center}
+.kap-ops-bars i{height:calc(var(--v) * 100%);border-radius:3px 3px 0 0;background:rgba(7,8,10,.2);transform-origin:50% 100%;transition:background-color var(--t-move) ease}
+.kap-ops-bars .is-now i{background:var(--phthalo)}
+.kap-ops-bars small{font-size:1em;color:var(--m-muted);font-variant-numeric:tabular-nums}
+.kap-ops-now{position:absolute;inset:0 0 1.75em;border-left:1px solid var(--phthalo);pointer-events:none}
+
+.kap-ops-list{--row:4.3em;position:relative;flex:1;min-height:calc(3 * var(--row));margin-top:.9em;border-top:1px solid var(--m-rule)}
+.kap-ops-empty{position:absolute;left:0;top:0;height:var(--row);display:flex;align-items:center;color:var(--m-muted);transition:opacity var(--t-fast) ease .3s}
+.kap-ops-list:has([data-s="wait"],[data-s="done"]) .kap-ops-empty{opacity:0;transition:opacity .2s ease}
+.kap-ops-item{position:absolute;left:0;right:0;top:0;height:var(--row);display:flex;justify-content:space-between;align-items:center;gap:.8em;border-bottom:1px solid var(--m-rule);opacity:0;transform:translateY(calc(var(--r) * 100%));transition:opacity var(--t-fast) ease,transform var(--t-move) var(--ease)}
+.kap-ops-item:is([data-s="wait"],[data-s="done"]){opacity:1;transition:opacity var(--t-fast) ease .2s,transform var(--t-move) var(--ease)}
+.kap-ops-item:is([data-s=""],[data-s="out"]){transition:opacity var(--t-fast) ease,transform 0s var(--t-fast)}
+.kap-ops-item p{display:grid;gap:.15em;min-width:0}
+.kap-ops-item b{font-weight:600;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kap-ops-item small{font-size:1em;color:var(--m-muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.kap-ops-item .st{justify-self:end;transition:opacity var(--t-fast) ease}
+.kap-ops-item .st + .st,.kap-ops-item[data-s="done"] .st.is-human{opacity:0}
+.kap-ops-item[data-s="done"] .st + .st{opacity:1}
+
+.js .kap-ops-win{opacity:0;transform:translateY(48px) scale(.98);transition:transform var(--t-stage) var(--ease) .1s,opacity var(--t-move) ease .1s}
+.js .is-in .kap-ops-win{opacity:1;transform:none}
+
+@container (max-width:620px){
+  .kap-ops-win{aspect-ratio:auto;font-size:clamp(10px, 3.1cqw, 13px)}
+  .kap-ops-figs dt{white-space:normal;min-height:2.6em}
+  .kap-ops-body{display:block}
+  .kap-ops-plot{flex:none;height:15em}
+  .kap-ops-queue{margin-top:1.8em}
+  .kap-ops-list{flex:none;height:calc(3 * var(--row))}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .kap-ops-win{transition:none;opacity:1;transform:none}
+  .kap-ops *,.kap-ops *::before,.kap-ops *::after{transition:none !important}
+}
+</style>

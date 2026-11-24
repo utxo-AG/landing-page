@@ -1,0 +1,93 @@
+---
+/*
+  Penetration Testing, detail page, diagram above the project steps: the findings of six test rounds over time.
+  One square per finding, darker with higher risk, stacked from the bottom. After the retest a closed finding is
+  a pale square; the few that stay open keep their fill, get a dark outline and go into the next round. The round after a major release
+  (release: true) is set off by a dashed line. The loop walks through the rounds: in the active one the squares
+  are found, then closed. Markup = all rounds lit in their final state (still, no JS).
+*/
+const { t } = Astro.props;
+const m = t.servicePages['penetration-testing'].rounds;
+---
+<div class="ptp-rounds" data-mockup="ptp-rounds" role="img" aria-label={m.label}>
+  <p class="ptp-rd-h label sp-rise">{m.title}</p>
+  <ol class="ptp-rd">
+    {m.rounds.map((round, index) => (
+      <li class:list={['sp-rise is-on', round.release && 'ptp-rd--release']} style={`--i:${index + 1}`}>
+        <span class="ptp-rd-stack" aria-hidden="true">
+          {round.levels.map((level, n) => <i class:list={['ptp-sq', n >= round.levels.length - round.open && 'ptp-sq--open']} data-level={level} style={`--n:${n}`}></i>)}
+        </span>
+        <span class="ptp-rd-text">
+          <b>{m.round} {index + 1}</b>
+          <small>{round.when}</small>
+          <span>{round.levels.length} {m.found} · {round.open} {m.open}</span>
+        </span>
+      </li>
+    ))}
+  </ol>
+  <p class="ptp-rd-legend sp-rise" style="--i:8">
+    <span><i class="ptp-sq ptp-sq--fill" data-level="4"></i><i class="ptp-sq ptp-sq--fill" data-level="2"></i>{m.legend.found}</span>
+    <span><i class="ptp-sq" data-level="3"></i>{m.legend.closed}</span>
+    <span><i class="ptp-sq ptp-sq--open" data-level="3"></i>{m.legend.open}</span>
+  </p>
+</div>
+
+<script>
+  import { rounds } from './rounds.js';
+
+  document.querySelectorAll('[data-mockup="ptp-rounds"]').forEach(rounds);
+</script>
+
+<style is:global>
+.ptp-rounds{--sq:clamp(17px, 1.75vw, 27px);--sq-gap:4px}
+.ptp-rd-h{color:var(--muted);padding-bottom:14px}
+.ptp-rd{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:var(--gap)}
+.ptp-rd li{position:relative;display:flex;flex-direction:column;border-top:1px solid var(--rule)}
+.ptp-rd-text{transition:opacity var(--t-move) ease}
+.ptp-rd li:not(.is-on) .ptp-rd-text{opacity:.45}
+.ptp-rd--release::before{content:"";position:absolute;left:calc(var(--gap) / -2);top:0;bottom:0;border-left:1px dashed rgba(7,8,10,.3)}
+.ptp-rd-stack{display:flex;flex-wrap:wrap-reverse;align-content:flex-start;gap:var(--sq-gap);width:calc(3 * var(--sq) + 2 * var(--sq-gap));height:calc(5 * var(--sq) + 4 * var(--sq-gap) + 44px);padding:22px 0}
+.ptp-sq{position:relative;display:block;flex:none;width:var(--sq);height:var(--sq);border-radius:3px;background:rgba(7,8,10,.07);box-shadow:inset 0 0 0 1px rgba(7,8,10,.1)}
+.ptp-sq::after{content:"";position:absolute;inset:0;border-radius:3px;background:var(--fg);opacity:0}
+.ptp-sq[data-level="4"]{--fill:1}
+.ptp-sq[data-level="3"]{--fill:.66}
+.ptp-sq[data-level="2"]{--fill:.4}
+.ptp-sq[data-level="1"]{--fill:.2}
+.ptp-sq:is(.ptp-sq--open,.ptp-sq--fill)::after{opacity:var(--fill)}
+.ptp-sq--open{box-shadow:inset 0 0 0 1.5px var(--fg)}
+.ptp-rd li.is-run .ptp-sq{animation:ptp-sq-in .5s var(--ease) calc(var(--n) * 50ms) both}
+.ptp-rd li.is-run .ptp-sq::after{animation:ptp-sq-found 2.2s linear both}
+.ptp-rd li.is-run .ptp-sq:not(.ptp-sq--open)::after{animation:ptp-sq-closed 2.2s ease calc(var(--n) * 50ms) both}
+@keyframes ptp-sq-in{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:none}}
+@keyframes ptp-sq-found{from,to{opacity:var(--fill)}}
+@keyframes ptp-sq-closed{0%,50%{opacity:var(--fill)}68%,100%{opacity:0}}
+.ptp-rd-text{display:grid;gap:.3em;padding-top:16px;border-top:1px solid var(--rule)}
+.ptp-rd-text b{font-size:clamp(19px, 1.7vw, 26px);font-weight:400;line-height:1.1;letter-spacing:-.03em}
+.ptp-rd-text small{font-size:var(--fs-label);font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.ptp-rd-text span{color:var(--muted);font-size:clamp(14px, 1.2vw, 17.5px);line-height:1.35}
+.ptp-rd--release .ptp-rd-text small{color:var(--fg)}
+
+.ptp-rd-legend{display:flex;flex-wrap:wrap;gap:10px clamp(18px, 2.4vw, 40px);padding-top:22px;color:var(--muted);font-size:var(--fs-label);font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.ptp-rd-legend span{display:inline-flex;align-items:center;gap:4px}
+.ptp-rd-legend .ptp-sq{--sq:13px;border-radius:2px}
+.ptp-rd-legend .ptp-sq:last-of-type{margin-right:6px}
+
+@media (max-width:1000px){
+  .ptp-rounds{--sq:clamp(15px, 2.2vw, 20px)}
+  .ptp-rd-text small{font-size:11px}
+  .ptp-rd-text span{font-size:13px}
+}
+@media (max-width:700px){
+  .ptp-rounds{--sq:clamp(11px, 3.4vw, 15px);--sq-gap:3px}
+  .ptp-rd{display:block;border-bottom:1px solid var(--rule)}
+  .ptp-rd li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px 0}
+  .ptp-rd--release::before{left:0;right:0;top:-1px;bottom:auto;border-left:0;border-top:1px dashed rgba(7,8,10,.45)}
+  .ptp-rd-stack{order:2;flex-wrap:wrap;justify-content:flex-end;width:calc(7 * var(--sq) + 6 * var(--sq-gap));height:auto;padding:0}
+  .ptp-rd-text{padding:0;border:0}
+  .ptp-rd-text small{font-size:10px}
+}
+@media (prefers-reduced-motion:reduce){
+  .ptp-rd-text{transition:none}
+  .ptp-rd li.is-run .ptp-sq,.ptp-rd li.is-run .ptp-sq::after{animation:none}
+}
+</style>

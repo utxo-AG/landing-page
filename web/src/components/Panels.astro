@@ -3,6 +3,9 @@
   The two header panels (contact options and menu) on a dark surface.
   mode "stage":  rendered inside the hero stage; the panel covers the stage and the wordmark dissolves
                  while one is open (scene/hero.js). Below 760px the menu still covers the whole screen.
+                 A panel can be formed by the wordmark's fragments (scene/typeflow.js): it lays the
+                 hidden panel out for a measurement (.is-measuring) and sets data-flow on the stage
+                 ("fly": panel invisible while the fragments fly, "type": the panel itself takes over).
   mode "screen": pages without a stage; the panel covers the whole screen.
   Behaviour and markup contract: page/disclosure.js.
 */
@@ -73,6 +76,10 @@ const classes = ['panel', `panel--${mode}`];
 .panel--screen .panel-head{display:flex}
 .panel-head img{width:clamp(50px, 5vw, 72px)}
 @keyframes panel-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.panel.is-measuring{display:grid;visibility:hidden;animation:none}
+[data-flow] > .panel{animation:none}
+[data-flow="fly"] > .panel{opacity:0;pointer-events:none}
+[data-flow="type"] > .panel{transition:opacity .06s linear}
 
 .cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(10px, 1.2vw, 18px);align-self:center;justify-self:center;width:min(100%, 860px)}
 .cta{display:grid;align-content:space-between;gap:clamp(36px, 5vw, 84px);padding:clamp(18px, 2vw, 30px);border-radius:var(--radius);background:var(--stage-soft);transition:background-color var(--t-fast) var(--ease),color var(--t-fast) var(--ease)}

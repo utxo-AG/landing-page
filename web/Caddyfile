@@ -12,40 +12,40 @@ header {
 	Referrer-Policy "strict-origin-when-cross-origin"
 }
 
-# Old URLs of the 2026-10 site. Pages that were not carried over lead to the matching
-# section of the new home in the same language.
+# Old URLs of the 2026-10 site. Pages that were not carried over lead to the detail page
+# of the matching service in the same language.
 map {path} {legacy} {
 	~^/index(\.en)?(\.html)?$                       /en
 	~^/index\.de(\.html)?$                          /de
 	~^/(de|en)/index(\.html)?$                       /${1}
-	~^/agents(\.en)?(\.html)?$                      /en#agentic-coworker
-	~^/agents\.de(\.html)?$                         /de#agentic-coworker
-	~^/de/ki-coworker(/.*)?$                         /de#agentic-coworker
-	~^/en/ai-coworker(/.*)?$                         /en#agentic-coworker
-	~^/call_assistant(\.html)?$                      /en#ki-automationen
-	~^/call_assistant\.de(\.html)?$                 /de#ki-automationen
-	~^/de/ki-telefonassistent$                       /de#ki-automationen
-	~^/en/ai-phone-assistant$                        /en#ki-automationen
-	~^/doc_indexer(\.html)?$                         /en#software-development
-	~^/doc_indexer\.de(\.html)?$                    /de#software-development
-	~^/de/doc-indexer$                               /de#software-development
-	~^/en/doc-indexer$                               /en#software-development
-	~^/comparison(\.en)?(\.html)?$                  /en#agentic-coworker
-	~^/comparison\.de(\.html)?$                     /de#agentic-coworker
-	~^/de/coworker-vs-copilot$                       /de#agentic-coworker
-	~^/en/coworker-vs-copilot$                       /en#agentic-coworker
-	~^/ai-in-business(\.en)?(\.html)?$              /en#ai-adoption
-	~^/ai-in-business\.de(\.html)?$                 /de#ai-adoption
-	~^/de/ki-im-unternehmen$                         /de#ai-adoption
-	~^/en/ai-in-business$                            /en#ai-adoption
-	~^/eu-ai-act(\.html)?$                           /en#ai-adoption
-	~^/eu-ai-act\.de(\.html)?$                      /de#ai-adoption
-	~^/de/eu-ai-act$                                 /de#ai-adoption
-	~^/en/eu-ai-act$                                 /en#ai-adoption
-	~^/ai-customer-acquisition(\.html)?$             /en#agentic-coworker
-	~^/ai-customer-acquisition\.de(\.html)?$        /de#agentic-coworker
-	~^/de/kundenakquise-mit-ki$                      /de#agentic-coworker
-	~^/en/ai-customer-acquisition$                   /en#agentic-coworker
+	~^/agents(\.en)?(\.html)?$                      /en/agentic-coworker
+	~^/agents\.de(\.html)?$                         /de/agentic-coworker
+	~^/de/ki-coworker(/.*)?$                         /de/agentic-coworker
+	~^/en/ai-coworker(/.*)?$                         /en/agentic-coworker
+	~^/call_assistant(\.html)?$                      /en/ai-automation
+	~^/call_assistant\.de(\.html)?$                 /de/ki-automationen
+	~^/de/ki-telefonassistent$                       /de/ki-automationen
+	~^/en/ai-phone-assistant$                        /en/ai-automation
+	~^/doc_indexer(\.html)?$                         /en/software-development
+	~^/doc_indexer\.de(\.html)?$                    /de/software-development
+	~^/de/doc-indexer$                               /de/software-development
+	~^/en/doc-indexer$                               /en/software-development
+	~^/comparison(\.en)?(\.html)?$                  /en/agentic-coworker
+	~^/comparison\.de(\.html)?$                     /de/agentic-coworker
+	~^/de/coworker-vs-copilot$                       /de/agentic-coworker
+	~^/en/coworker-vs-copilot$                       /en/agentic-coworker
+	~^/ai-in-business(\.en)?(\.html)?$              /en/ai-adoption
+	~^/ai-in-business\.de(\.html)?$                 /de/ai-adoption
+	~^/de/ki-im-unternehmen$                         /de/ai-adoption
+	~^/en/ai-in-business$                            /en/ai-adoption
+	~^/eu-ai-act(\.html)?$                           /en/ai-adoption
+	~^/eu-ai-act\.de(\.html)?$                      /de/ai-adoption
+	~^/de/eu-ai-act$                                 /de/ai-adoption
+	~^/en/eu-ai-act$                                 /en/ai-adoption
+	~^/ai-customer-acquisition(\.html)?$             /en/agentic-coworker
+	~^/ai-customer-acquisition\.de(\.html)?$        /de/agentic-coworker
+	~^/de/kundenakquise-mit-ki$                      /de/agentic-coworker
+	~^/en/ai-customer-acquisition$                   /en/agentic-coworker
 	~^/press(\.html)?$                               /en/press
 	~^/press\.de(\.html)?$                          /de/presse
 	~^/imprint(\.html)?$                             /en/imprint

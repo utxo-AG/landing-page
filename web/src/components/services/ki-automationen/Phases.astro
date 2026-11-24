@@ -1,0 +1,71 @@
+---
+/*
+  KI-Automationen, detail page, small diagram above the project steps: who handles a case in each phase.
+  Three rows of twelve cases. Today: the team handles every case (dark dots). Trial operation: the automation
+  handles them (phthalo) and the team approves each one (white ring: a human decides). Operation: the automation
+  completes them, only the exceptions (EXCEPTIONS) still carry the ring.
+  The loop walks through the rows; in the active row a pulse runs along the dots. Markup = all rows lit (still, no JS).
+*/
+const { t } = Astro.props;
+const m = t.servicePages['ki-automationen'].phases;
+
+const CASES = 12;
+const EXCEPTIONS = [4, 9];
+const KINDS = [() => 'team', () => 'both', (index) => (EXCEPTIONS.includes(index) ? 'both' : 'auto')];
+const dots = (row) => Array.from({ length: CASES }, (_, index) => KINDS[row](index));
+---
+<div class="kap-phase" data-mockup="kap-phase" role="img" aria-label={m.label}>
+  <p class="kap-phase-h label sp-rise">{m.title}</p>
+  <ul>
+    {m.rows.map((row, index) => (
+      <li class="sp-rise is-on" style={`--i:${index + 1}`}>
+        <b>{row.name}</b>
+        <span class="kap-phase-dots" aria-hidden="true">{dots(index).map((kind, dot) => <i class={`kap-dot kap-dot--${kind}`} style={`--n:${dot}`}></i>)}</span>
+        <span class="kap-phase-text">{row.text}</span>
+      </li>
+    ))}
+  </ul>
+  <p class="kap-phase-legend sp-rise" style="--i:4">
+    {['team', 'auto', 'both'].map((kind) => <span><i class={`kap-dot kap-dot--${kind}`}></i>{m.legend[kind]}</span>)}
+  </p>
+</div>
+
+<script>
+  import { phases } from './phases.js';
+
+  document.querySelectorAll('[data-mockup="kap-phase"]').forEach(phases);
+</script>
+
+<style is:global>
+.kap-phase{--dot:clamp(13px, 1.3vw, 19px)}
+.kap-phase-h{color:var(--muted);padding-bottom:14px}
+.kap-phase ul{border-bottom:1px solid var(--rule)}
+.kap-phase li{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);align-items:center;padding:clamp(16px, 1.6vw, 24px) 0;border-top:1px solid var(--rule)}
+.kap-phase b{grid-column:1 / span 3;font-size:clamp(19px, 1.7vw, 26px);font-weight:400;line-height:1.1;letter-spacing:-.03em}
+.kap-phase-dots{grid-column:4 / span 4;display:grid;grid-template-columns:repeat(12,var(--dot));justify-content:space-between}
+.kap-phase-text{grid-column:9 / -1;color:var(--muted);font-size:clamp(14px, 1.2vw, 17.5px);line-height:1.35}
+.kap-phase li > *{transition:opacity var(--t-move) ease}
+.kap-phase li:not(.is-on) > *{opacity:.4}
+
+.kap-dot{position:relative;display:block;width:var(--dot);height:var(--dot);border-radius:50%}
+.kap-dot::after{content:"";position:absolute;inset:24%;border-radius:50%;background:var(--fg)}
+.kap-dot--auto::after,.kap-dot--both::after{background:var(--phthalo)}
+.kap-dot--both{background:#fff;box-shadow:0 0 0 1px rgba(7,8,10,.12),0 4px 10px rgba(10,14,30,.14)}
+.kap-phase li.is-run .kap-dot{animation:kap-dot 0.6s var(--ease) calc(var(--n) * 90ms) both}
+@keyframes kap-dot{0%{transform:none}40%{transform:scale(1.5)}100%{transform:none}}
+
+.kap-phase-legend{display:flex;flex-wrap:wrap;gap:10px clamp(18px, 2.4vw, 40px);padding-top:16px;color:var(--muted);font-size:var(--fs-label);font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.kap-phase-legend span{display:inline-flex;align-items:center;gap:10px}
+.kap-phase-legend .kap-dot{--dot:13px;flex:none}
+
+@media (max-width:1000px){
+  .kap-phase{--dot:clamp(13px, 3.6vw, 18px)}
+  .kap-phase li{display:block}
+  .kap-phase-dots{margin-top:14px;max-width:420px}
+  .kap-phase-text{display:block;margin-top:12px}
+}
+@media (prefers-reduced-motion:reduce){
+  .kap-phase li > *{transition:none}
+  .kap-phase li.is-run .kap-dot{animation:none}
+}
+</style>

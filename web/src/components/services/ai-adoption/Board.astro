@@ -1,0 +1,133 @@
+---
+/*
+  Use-case workshop board (AI Adoption detail page): the use cases of one workshop round are scored on four
+  criteria, sorted by priority and cut into a shortlist. Two rounds lie on top of each other and take turns.
+  The markup is the final frame (round 1 sorted, shortlist decided): it is the no-JS and reduced-motion state.
+  Priority and rank are derived here from the scores in the json (benefit counts double, effort and risk count against).
+*/
+const { t } = Astro.props;
+const m = t.servicePages['ai-adoption'].board;
+const priority = ([benefit, effort, data, risk]) => benefit * 2 + data - effort - risk;
+const rounds = m.rounds.map((round) => {
+  const order = round.rows
+    .map((row, index) => ({ index, value: priority(row.scores) }))
+    .sort((a, b) => b.value - a.value || a.index - b.index)
+    .map((entry) => entry.index);
+  return {
+    label: round.label,
+    rows: round.rows.map((row, index) => {
+      const rank = order.indexOf(index);
+      return { ...row, rank, result: m.cut.filter((cut) => rank >= cut).length };
+    }),
+  };
+});
+const count = rounds[0].rows.length;
+const final = m.phases.length - 1;
+---
+<div class="aap-bd mock-light" data-aap="board" role="img" aria-label={m.label} style={`--n:${count};--cut:${m.cut[0]}`}>
+  <div class="mock-bar label">
+    <span>{m.context}</span>
+    <ol class="aap-bd-phases">
+      {m.phases.map((name, index) => <li class:list={{ 'is-on': index === final }} data-phase-name>{name}</li>)}
+    </ol>
+  </div>
+  <p class="aap-bd-round label">
+    {rounds.map((round, index) => <span class:list={{ 'is-away': index > 0 }} data-round-label>{round.label}</span>)}
+  </p>
+  <div class="aap-bd-grid aap-bd-head label">
+    <span>{m.columns.name}</span>
+    {m.columns.scores.map((name) => <span>{name}</span>)}
+    <span>{m.columns.result}</span>
+  </div>
+  <div class="aap-bd-body">
+    {rounds.map((round, index) => (
+      <ul class:list={['aap-bd-set', { 'is-away': index > 0 }]} data-round>
+        {round.rows.map((row, i) => (
+          <li class="aap-bd-grid aap-bd-row" style={`--pos:${row.rank};--i:${i}`} data-rank={row.rank} data-result={row.result} data-low={row.rank >= m.cut[0] ? '' : undefined} data-state="done">
+            <p class="aap-bd-name"><b>{row.name}</b><span>{row.area}</span></p>
+            {row.scores.map((score, k) => <span class="aap-bd-meter" style={`--v:${score};--k:${k}`}><i></i></span>)}
+            <em class="st aap-bd-res">{m.results[row.result]}</em>
+          </li>
+        ))}
+      </ul>
+    ))}
+    <p class="aap-bd-cut"><span class="st is-human">{m.decision}</span></p>
+  </div>
+</div>
+
+<script>
+  import { board } from './board.js';
+
+  document.querySelectorAll('[data-aap="board"]').forEach(board);
+</script>
+
+<style is:global>
+/*
+  Rows are absolutely placed and move by transform only: --pos is the line (set by the script: order of collection,
+  then rank), --rh the line height, --cg the gap that opens under the shortlist. The body has a fixed height.
+  data-phase on the board (collect, score, order, short, out) is set by the script; without it the final frame shows.
+*/
+.aap-bd{container-type:inline-size;--rh:58px;--cg:46px;--aap-small:clamp(11px, .84vw, 12.5px);font-size:clamp(13.5px, 1.04vw, 16px);line-height:1.25}
+.aap-bd.mock-light{background:none}
+.aap-bd-phases{display:flex;gap:clamp(12px, 1.3vw, 20px)}
+.aap-bd-phases li{display:flex;align-items:center;gap:7px;transition:color var(--t-fast)}
+.aap-bd-phases li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--phthalo);opacity:0;transform:scale(.4);transition:opacity var(--t-fast),transform var(--t-fast) var(--ease)}
+.aap-bd-phases .is-on{color:var(--m-fg)}
+.aap-bd-phases .is-on::before{opacity:1;transform:none}
+.aap-bd-round{display:grid;margin-top:clamp(16px, 1.8vw, 26px);color:var(--m-fg)}
+.aap-bd-round span{grid-area:1 / 1;transition:opacity var(--t-fast)}
+.aap-bd-round .is-away{opacity:0}
+.aap-bd-grid{display:grid;grid-template-columns:minmax(0,2.3fr) repeat(4,minmax(0,1fr)) 96px;column-gap:clamp(10px, 1.2vw, 18px);align-items:center}
+.aap-bd-head{margin-top:clamp(14px, 1.5vw, 22px);padding-bottom:10px;border-bottom:1px solid var(--m-rule);color:var(--m-muted)}
+.aap-bd-head span:last-child{text-align:right}
+.aap-bd-body{position:relative;height:calc(var(--n) * var(--rh) + var(--cg))}
+.aap-bd-set{position:absolute;inset:0}
+.aap-bd-set.is-away{visibility:hidden}
+.aap-bd-row{position:absolute;left:0;right:0;top:0;height:var(--rh);border-bottom:1px solid var(--m-rule);transform:translateY(calc(var(--pos) * var(--rh) + var(--g, 0px)));transition:transform var(--t-enter) var(--ease),opacity var(--t-move) ease}
+.aap-bd-row[data-low]{--g:var(--cg)}
+.aap-bd:is([data-phase="collect"],[data-phase="score"],[data-phase="order"]) .aap-bd-row{--g:0px}
+.aap-bd-row[data-result="2"]{opacity:.42}
+.aap-bd-name{min-width:0}
+.aap-bd-name b{display:block;font-weight:500;letter-spacing:-.015em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.aap-bd-name span{display:block;margin-top:2px;color:var(--m-muted);font-size:var(--aap-small)}
+.aap-bd-meter{display:block;height:5px;overflow:hidden;background:var(--m-soft);-webkit-mask:repeating-linear-gradient(90deg, #000 0 calc(20% - 3px), transparent calc(20% - 3px) 20%);mask:repeating-linear-gradient(90deg, #000 0 calc(20% - 3px), transparent calc(20% - 3px) 20%)}
+.aap-bd-meter i{display:block;height:100%;background:var(--m-fg);transform:translateX(calc(var(--v) * 20% - 100%));transition:transform var(--t-move) var(--ease) calc(var(--k) * 80ms),background-color var(--t-fast)}
+.aap-bd-row[data-state="idle"] .aap-bd-meter i{transform:translateX(-101%)}
+.aap-bd-row[data-state="run"] .aap-bd-meter i{background:var(--phthalo)}
+.aap-bd-res{justify-self:end;font-size:var(--aap-small);transition:opacity var(--t-fast)}
+.aap-bd-row:not([data-result="0"]) .aap-bd-res{color:var(--m-muted)}
+.aap-bd-cut{position:absolute;left:0;right:0;top:0;height:var(--cg);display:flex;align-items:center;gap:14px;transform:translateY(calc(var(--cut) * var(--rh)));transition:opacity var(--t-fast)}
+.aap-bd-cut::after{content:"";flex:1;height:1px;background:var(--m-fg);opacity:.5;transform-origin:0 50%;transition:transform var(--t-enter) var(--ease)}
+.aap-bd-cut .st{font-size:var(--aap-small)}
+.aap-bd:is([data-phase="collect"],[data-phase="score"],[data-phase="order"],[data-phase="out"]) :is(.aap-bd-cut,.aap-bd-res){opacity:0}
+.aap-bd:is([data-phase="collect"],[data-phase="score"],[data-phase="order"],[data-phase="out"]) .aap-bd-cut::after{transform:scaleX(0)}
+
+.js .aap-bd-row{opacity:0}
+.js .is-in .aap-bd-row{opacity:1;transition-delay:calc(250ms + var(--i) * 70ms)}
+.js [data-step] .aap-bd-row{transition-delay:0s}
+.js [data-step] .aap-bd[data-phase="order"] .aap-bd-row{transition-delay:calc(var(--pos) * 50ms)}
+.js .is-in .aap-bd:is([data-phase="short"],:not([data-phase])) .aap-bd-row[data-result="2"]{opacity:.42;transition-delay:.3s}
+.js .is-in .aap-bd[data-phase="out"] .aap-bd-row,.js .is-in .aap-bd-set.is-away .aap-bd-row{opacity:0;transition-duration:var(--t-fast)}
+.js .aap-bd :is(.mock-bar,.aap-bd-round,.aap-bd-head){opacity:0;transition:opacity var(--t-enter) ease .15s}
+.js .is-in .aap-bd :is(.mock-bar,.aap-bd-round,.aap-bd-head){opacity:1}
+
+/* narrow board (phones, and the stacked layout up to about 560px): name and result on one line, the four scores below */
+@container (max-width:560px){
+  .aap-bd-phases{display:grid}
+  .aap-bd-phases li{grid-area:1 / 1;justify-content:flex-end;opacity:0;transition:opacity var(--t-fast)}
+  .aap-bd-phases .is-on{opacity:1}
+  .aap-bd-grid{grid-template-columns:repeat(4,minmax(0,1fr));column-gap:12px}
+  .aap-bd-head span:first-child,.aap-bd-head span:last-child{display:none}
+  .aap-bd-head{font-size:10px}
+  .aap-bd-row{align-content:center;row-gap:11px}
+  .aap-bd-name{grid-column:1 / span 3}
+  .aap-bd-name span{display:none}
+  .aap-bd-res{grid-column:4;grid-row:1;font-size:10px;padding:5px 9px}
+  .aap-bd-meter{grid-row:2}
+  .aap-bd-cut .st,.aap-bd-round{font-size:10.5px}
+  .aap-bd-body{--rh:60px}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .aap-bd-row,.js .aap-bd :is(.mock-bar,.aap-bd-round,.aap-bd-head),.aap-bd-meter i,.aap-bd-cut,.aap-bd-cut::after,.aap-bd-res{transition:none}
+}
+</style>

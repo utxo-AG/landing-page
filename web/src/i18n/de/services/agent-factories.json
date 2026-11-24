@@ -1,0 +1,127 @@
+{
+  "title": "Agent Factories und KI-Infrastruktur | utxo AG",
+  "description": "Gemeinsame Infrastruktur und eine geregelte Linie, über die Ihre Organisation KI-Agenten in Serie entwickelt, prüft, freigibt und aktualisiert.",
+  "lede": "Wir entwickeln die gemeinsame Infrastruktur und die Linie, über die Ihre Organisation viele KI-Agenten nach einem einheitlichen Verfahren entwickelt, prüft, freigibt und aktualisiert.",
+  "scope": {
+    "title": "Was Sie erhalten",
+    "text": "Eine Agent Factory besteht aus zwei Teilen: der Infrastruktur, die alle Agenten gemeinsam nutzen, und der Linie, über die jeder neue Agent in den Betrieb kommt. Jeder Agent hat denselben Aufbau, vom ersten bis zum hundertsten.",
+    "points": [
+      { "name": "Gemeinsame Infrastruktur", "text": "Hosting, Modellzugang, Datenzugriff, Identität und Protokoll stehen einmal bereit und gelten für jeden Agenten.", "tag": "Fundament" },
+      { "name": "Agenten-Vorlagen", "text": "Ein neuer Agent startet aus einer geprüften Vorlage. Aufbau, Richtlinien und Tests enthalten Ihre Vorgaben von Beginn an.", "tag": "Vorlage" },
+      { "name": "Anbindung an Ihre Systeme", "text": "Schnittstellen zu ERP, CRM, DMS und Fachanwendungen werden einmal entwickelt und von allen Agenten wiederverwendet.", "tag": "Anbindung" },
+      { "name": "Test und Freigabe", "text": "Jeder Agent und jede neue Version durchläuft festgelegte Tests. In den Betrieb geht nur, was ein Mensch freigegeben hat.", "tag": "Freigabe" },
+      { "name": "Betrieb und Aktualisierung", "text": "Versionen, Zustand und Protokolle aller Agenten in einer Übersicht. Änderungen werden kontrolliert auf den gesamten Bestand ausgerollt.", "tag": "Betrieb" }
+    ]
+  },
+  "anatomy": {
+    "label": "Animierte Beispielansicht: Ein Agent, zerlegt in seine fünf Schichten Version, Tests, Richtlinien, Anbindungen und Vorlage.",
+    "context": "Aufbau eines Agenten",
+    "agent": "Agent Angebotsprüfung",
+    "layers": [
+      { "name": "Version", "text": "3.2, freigegeben. Jede Änderung ist nachvollziehbar und lässt sich zurücknehmen." },
+      { "name": "Tests", "text": "42 Prüffälle, die vor jeder Freigabe vollständig laufen." },
+      { "name": "Richtlinien", "text": "Was der Agent darf, was nicht, und wann er einen Menschen fragt." },
+      { "name": "Anbindungen", "text": "ERP, CRM und DMS über die gemeinsamen Schnittstellen." },
+      { "name": "Vorlage", "text": "Aufbau, Rollen und Abläufe aus der geprüften Vorlage." }
+    ],
+    "whole": { "name": "Ein Agent, fünf Schichten", "text": "Version 3.2 · im Betrieb" }
+  },
+  "practice": {
+    "title": "Ein Beispiel: eine neue Regel für 24 Agenten",
+    "text": "Eine Agenturgruppe betreibt 24 Agenten in vier Bereichen. Die Datenschutzbeauftragte verlangt eine strengere Regel für den Umgang mit Kundendaten. Die Regel wird einmal in der Vorlage geändert, gegen die Tests jedes Agenten geprüft und nach der Freigabe auf den Bestand ausgerollt. Ein Agent besteht seine Tests nicht. Er bleibt auf der bisherigen Version, bis er angepasst ist und das Plattform-Team entschieden hat.",
+    "rollout": {
+      "label": "Animierte Beispielansicht: Eine neue Version wird auf 24 Agenten ausgerollt. Ein Agent wird nach einem nicht bestandenen Test zurückgehalten, bis ein Mensch freigibt.",
+      "context": "Rollout · Richtlinie Kundendaten",
+      "version": "3.2",
+      "versionLabel": "Version",
+      "updatedLabel": "Aktualisiert",
+      "rows": ["Beratung", "Kreation", "Media", "Finanzen"],
+      "stages": {
+        "template": "Änderung in der Vorlage",
+        "test": "Tests je Agent",
+        "gate": "Freigabe Plattform-Team",
+        "roll": "Rollout auf den Bestand"
+      },
+      "states": {
+        "open": "offen",
+        "run": "läuft",
+        "done": "erledigt",
+        "failed": "1 offen",
+        "approve": "Ihre Freigabe",
+        "approved": "freigegeben",
+        "held": "zurückgehalten"
+      },
+      "status": {
+        "test": "Tests laufen",
+        "wait": "Wartet auf Freigabe",
+        "roll": "Rollout läuft",
+        "done": "Abgeschlossen"
+      },
+      "held": {
+        "short": "Reisekosten",
+        "name": "Agent Reisekosten · Finanzen",
+        "fail": "Test 7 von 12 nicht bestanden. Bleibt auf Version {v}.",
+        "fixed": "Agent angepasst, 12 von 12 Tests bestanden.",
+        "done": "Aktualisiert auf Version {v}."
+      }
+    }
+  },
+  "process": {
+    "title": "So läuft ein Projekt",
+    "text": "Der Umfang richtet sich nach Ihrer Ausgangslage. Manche Vorhaben sind in wenigen Wochen produktiv, andere brauchen Monate. Die Factory wächst entlang konkreter Anwendungsfälle.",
+    "steps": [
+      { "name": "Bestandsaufnahme", "text": "Mit Fachbereichen, IT und Datenschutz klären wir, welche Agenten geplant sind, welche Systeme sie brauchen und welche Vorgaben gelten.", "note": "Ergebnis: Zielbild" },
+      { "name": "Fundament", "text": "Hosting, Modellzugang, Identität, Datenzugriff und Protokoll werden in der vereinbarten Umgebung eingerichtet.", "note": "Ergebnis: Infrastruktur" },
+      { "name": "Erster Agent", "text": "Ein konkreter Anwendungsfall durchläuft die Linie vollständig: Vorlage, Anbindung, Test, Freigabe.", "note": "Ergebnis: Agent im Betrieb" },
+      { "name": "Serie", "text": "Weitere Agenten entstehen aus den Vorlagen. Wie viel davon Ihr eigenes Team übernimmt, legen wir gemeinsam fest.", "note": "Ergebnis: Bestand" },
+      { "name": "Betrieb", "text": "utxo AG überwacht die Plattform, pflegt Vorlagen und Anbindungen und rollt Änderungen kontrolliert aus.", "note": "Laufend" }
+    ]
+  },
+  "operation": {
+    "title": "Integration und Betrieb",
+    "text": "Die Factory wird Teil Ihrer Systemlandschaft. Agenten erreichen Modelle und Daten über eine gemeinsame Schicht. Deshalb lässt sich ein Modell austauschen, ohne dass ein Agent geändert werden muss.",
+    "points": [
+      { "name": "Ihre Systeme", "text": "Anmeldung über Ihr SSO, Rollen aus Ihrem Verzeichnis, Daten aus ERP, CRM und DMS über freigegebene Schnittstellen.", "tag": "SSO · API" },
+      { "name": "Modelle", "text": "Modellunabhängig. Welches Modell eingesetzt wird, entscheiden Sie je Anwendungsfall. Lokale Open-Source-Modelle prüfen wir projektbezogen.", "tag": "Austauschbar" },
+      { "name": "Rollen", "text": "Sie legen fest, wer Agenten erstellen, wer freigeben und wer betreiben darf. Erstellen und Freigeben lassen sich trennen.", "tag": "Erstellen · Freigeben · Betreiben" },
+      { "name": "Einsicht", "text": "Jede Aktion wird protokolliert. Ihr Team sieht, welcher Agent wann mit welchen Daten und welchem Modell gearbeitet hat.", "tag": "Protokoll" },
+      { "name": "Betrieb", "text": "utxo AG entwickelt, hostet und überwacht die Plattform. Hosting nach Ihren Anforderungen: Deutschland, EU oder on-premise.", "tag": "Deutschland · EU · on-premise" }
+    ],
+    "platform": {
+      "label": "Animierte Beispielansicht: Anfragen der Agenten laufen über eine gemeinsame Schicht zu einem Modell. Das Modell wird nach Freigabe gewechselt, die Agenten bleiben unverändert.",
+      "context": "Plattform · Anfragen",
+      "agentsLabel": "Agenten",
+      "agents": ["Angebotsprüfung", "Briefing-Assistenz", "Rechnungsabgleich", "Recherche"],
+      "agentsNote": "Agenten unverändert",
+      "coreLabel": "Gemeinsame Schicht",
+      "gates": ["Identität und Zugriff", "Richtlinien", "Modellauswahl"],
+      "modelsLabel": "Modelle",
+      "models": [
+        { "name": "Modell A", "where": "EU-Cloud" },
+        { "name": "Modell B", "where": "EU-Cloud" },
+        { "name": "Lokales Modell", "where": "on-premise" }
+      ],
+      "states": { "active": "aktiv", "ready": "bereit", "check": "in Prüfung" },
+      "swap": { "label": "Modellwechsel", "approve": "Ihre Freigabe", "approved": "freigegeben" },
+      "logLabel": "Protokoll",
+      "clock": "14:02",
+      "actions": [
+        { "text": "liest Angebot", "source": 0 },
+        { "text": "liest Kundenakte", "source": 1 },
+        { "text": "liest Rechnung", "source": 0 },
+        { "text": "sucht in Verträgen", "source": 2 },
+        { "text": "liest Briefing", "source": 2 }
+      ],
+      "dataLabel": "Daten",
+      "data": ["ERP", "CRM", "DMS"]
+    }
+  },
+  "faq": [
+    { "q": "Worin unterscheidet sich eine Agent Factory von einzelnen Agenten-Projekten?", "a": "Einzelne Projekte lösen Hosting, Zugriffsrechte, Anbindungen und Tests jedes Mal neu. In einer Agent Factory sind diese Teile einmal vorhanden und gelten für alle Agenten. Neue Agenten entstehen mit weniger Aufwand, und eine Änderung an Regeln oder Modellen wird an einer Stelle vorgenommen." },
+    { "q": "Ab wann ist eine Agent Factory sinnvoll?", "a": "Sobald absehbar ist, dass mehrere Agenten in verschiedenen Bereichen entstehen und für alle dieselben Vorgaben zu Datenschutz, Zugriff und Freigabe gelten sollen. Für einen einzelnen Agenten ist unsere Leistung Managed Agents meist der passendere Einstieg." },
+    { "q": "Sind wir an ein bestimmtes Modell oder einen Anbieter gebunden?", "a": "Nein. Die Plattform ist modellunabhängig. Agenten sprechen Modelle über eine gemeinsame Schicht an, sodass ein Modell ersetzt werden kann, ohne die Agenten anzupassen. Lokale Open-Source-Modelle prüfen wir projektbezogen." },
+    { "q": "Wo wird die Plattform gehostet?", "a": "Nach Ihren Anforderungen: in Deutschland, in der EU oder on-premise. Das legen wir je Projekt fest. Den Auftragsverarbeitungsvertrag erstellen wir individuell für Ihr Projekt. Die Verarbeitung erfolgt nur auf Ihre Weisung, ein Training mit Ihren Daten findet nicht statt." },
+    { "q": "Kann unser eigenes Team Agenten in der Factory entwickeln?", "a": "Ja. Ihre Entwicklerinnen und Entwickler arbeiten mit denselben Vorlagen, Anbindungen und Tests wie wir. Wie die Arbeit zwischen Ihrem Team und utxo AG verteilt wird, legen wir gemeinsam fest." },
+    { "q": "Welche Erfahrung hat utxo AG mit Infrastruktur für KI-Agenten?", "a": "Masumi, die dezentrale Infrastruktur, über die KI-Agenten sich finden, ausweisen und bezahlen, und die Plattform Sokosumi werden gemeinsam mit der Serviceplan Group entwickelt und betrieben. utxo AG verantwortet Technologie und Hosting." }
+  ]
+}

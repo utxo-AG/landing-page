@@ -1,0 +1,35 @@
+---
+/*
+  Penetration Testing, the blocks of the detail page (between the hero and the FAQ of ServicePage):
+    1 what you get           split, visual "Report" (the report of one round), then the scope as points
+    2 one example            dark, wide, visual "Finding" (two findings from discovery to the decision and retest)
+    3 how we work together   wide, diagram "Rounds" (findings per test round over time), then the steps
+    4 your organisation      flip, visual "Plan" (test windows of one week, approval, recipients), then the points
+  All copy and sample data: i18n/<lang>/services/penetration-testing.json. Class prefix of this folder: ptp-.
+*/
+import Block from '../../sp/Block.astro';
+import Points from '../../sp/Points.astro';
+import Steps from '../../sp/Steps.astro';
+import Report from './Report.astro';
+import Finding from './Finding.astro';
+import Rounds from './Rounds.astro';
+import Plan from './Plan.astro';
+
+const { t } = Astro.props;
+const page = t.servicePages['penetration-testing'];
+---
+<Block title={page.scope.title} text={page.scope.text} layout="split">
+  <Report t={t} />
+  <div class="ptp-gap"><Points items={page.scope.points} /></div>
+</Block>
+<Block title={page.example.title} text={page.example.text} layout="wide" surface="dark">
+  <Finding t={t} />
+</Block>
+<Block title={page.project.title} text={page.project.text} layout="wide">
+  <Rounds t={t} />
+  <div class="ptp-gap"><Steps items={page.project.steps} /></div>
+</Block>
+<Block title={page.organisation.title} text={page.organisation.text} layout="flip">
+  <Plan t={t} />
+  <div class="ptp-gap"><Points items={page.organisation.points} /></div>
+</Block>

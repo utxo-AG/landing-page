@@ -1,0 +1,40 @@
+---
+/*
+  Blocks of the Managed Agents detail page (between hero and FAQ). Content: t.servicePages['managed-agents'].
+  Three visuals, each registers its block with motion/loop.js: Ops (what utxo AG takes care of),
+  Run (one run step by step, on the dark block), Inbox (approvals and log).
+*/
+import Block from '../../sp/Block.astro';
+import Points from '../../sp/Points.astro';
+import Steps from '../../sp/Steps.astro';
+import Ops from './Ops.astro';
+import Run from './Run.astro';
+import Inbox from './Inbox.astro';
+
+const { t } = Astro.props;
+const page = t.servicePages['managed-agents'];
+---
+<Block title={page.scope.title} text={page.scope.text} layout="split">
+  <Ops v={page.scope.visual} />
+  <div class="map-below map-points"><Points items={page.scope.items} /></div>
+</Block>
+<Block title={page.run.title} text={page.run.text} layout="wide" surface="dark">
+  <Run v={page.run.visual} />
+</Block>
+<Block title={page.project.title} text={page.project.text} layout="wide">
+  <Steps items={page.project.steps} />
+</Block>
+<Block title={page.control.title} text={page.control.text} layout="flip">
+  <Inbox v={page.control.visual} />
+</Block>
+<Block title={page.integration.title} text={page.integration.text} layout="split">
+  <div class="map-points"><Points items={page.integration.items} /></div>
+</Block>
+
+<style is:global>
+.map-below{margin-top:clamp(40px, 5vw, 80px)}
+/* in the narrower body of a split block the three columns of the point rows get fixed shares, so the texts share one left edge */
+@media (min-width:1001px){
+  .map-points .sp-points li{grid-template-columns:minmax(0,7fr) minmax(0,11fr) minmax(0,6fr)}
+}
+</style>

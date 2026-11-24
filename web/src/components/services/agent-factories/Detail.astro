@@ -1,0 +1,76 @@
+---
+/*
+  Blocks of the detail page "Agent Factories und KI-Infrastruktur" (props: t). Content: t.servicePages['agent-factories'].
+  Visuals: Anatomy (one agent in five layers), Rollout (a version across the fleet, dark block), Platform (the shared layer,
+  model change). The project steps use the kit's step styles with a small drawing per step: the factory as it grows.
+*/
+import Block from '../../sp/Block.astro';
+import Points from '../../sp/Points.astro';
+import Anatomy from './Anatomy.astro';
+import Rollout from './Rollout.astro';
+import Platform from './Platform.astro';
+import { camera, projector, box } from './iso.js';
+
+const { t } = Astro.props;
+const page = t.servicePages['agent-factories'];
+
+/* one drawing per step: plate planned, plate set, then one, four and nine agents on it */
+const CUBE = 6;
+const GAP = 3;
+const SIDE = 3 * (CUBE + GAP) + GAP;
+const cam = camera(60);
+const top = 1 + cam.ky * SIDE + cam.kz * CUBE;
+const P = projector(cam, 1, top);
+const viewW = 2 + 2 * cam.kx * SIDE;
+const viewH = top + cam.ky * SIDE + 1;
+const plate = box(P, 0, 0, 0, SIDE, SIDE, 0).top;
+const cell = (col, row) => box(P, GAP + col * (CUBE + GAP), GAP + row * (CUBE + GAP), 0, CUBE, CUBE, CUBE);
+const FILLED = [[], [], [[0, 0]], [[0, 0], [1, 0], [2, 0], [0, 1]], [0, 1, 2].flatMap((row) => [0, 1, 2].map((col) => [col, row]))];
+const drawings = page.process.steps.map((_, index) => ({
+  planned: index === 0,
+  cubes: (FILLED[index] ?? FILLED[FILLED.length - 1]).map(([col, row]) => ({ depth: row - col, faces: cell(col, row) })).sort((a, b) => a.depth - b.depth),
+}));
+const number = (index) => String(index + 1).padStart(2, '0');
+---
+<Block title={page.scope.title} text={page.scope.text} layout="split">
+  <Anatomy t={t} />
+  <Points items={page.scope.points} />
+</Block>
+
+<Block title={page.practice.title} text={page.practice.text} layout="wide" surface="dark">
+  <Rollout t={t} />
+</Block>
+
+<Block title={page.process.title} text={page.process.text} layout="wide">
+  <ol class="sp-steps afp-steps" style={`--n:${page.process.steps.length}`}>
+    {page.process.steps.map((step, index) => (
+      <li class="sp-rise" style={`--i:${index + 1}`}>
+        <p class="sp-step-n label">{number(index)}</p>
+        <svg class:list={['afp-step', drawings[index].planned && 'afp-step--planned']} viewBox={`0 0 ${viewW.toFixed(2)} ${viewH.toFixed(2)}`} aria-hidden="true">
+          <polygon class="afp-step-plate" points={plate} />
+          {drawings[index].cubes.map((cube) => (
+            <g><polygon class="afp-step-left" points={cube.faces.left} /><polygon class="afp-step-right" points={cube.faces.right} /><polygon class="afp-step-top" points={cube.faces.top} /></g>
+          ))}
+        </svg>
+        <h3 class="sp-step-name">{step.name}</h3>
+        <p class="sp-step-text">{step.text}</p>
+        <p class="sp-step-note label">{step.note}</p>
+      </li>
+    ))}
+  </ol>
+</Block>
+
+<Block title={page.operation.title} text={page.operation.text} layout="flip">
+  <Platform t={t} />
+  <Points items={page.operation.points} />
+</Block>
+
+<style is:global>
+.afp-step{width:min(100%, 168px);height:auto;margin-top:clamp(20px, 2.4vw, 36px);overflow:visible}
+.afp-step-plate{fill:rgba(7,8,10,.05);stroke:rgba(7,8,10,.3);stroke-width:1;vector-effect:non-scaling-stroke}
+.afp-step--planned .afp-step-plate{fill:none;stroke-dasharray:3 3}
+.afp-step-top{fill:#3D414A}
+.afp-step-left{fill:#17191E}
+.afp-step-right{fill:#050608}
+.afp-steps .sp-step-name{margin-top:clamp(18px, 2vw, 30px)}
+</style>

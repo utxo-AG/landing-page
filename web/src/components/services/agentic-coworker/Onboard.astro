@@ -1,0 +1,63 @@
+---
+/* Onboarding rail above the project steps: five stations on the grid of the steps below, the CoWorker's portrait moves from one to the next. */
+import { teamOf } from './team.js';
+
+const { t } = Astro.props;
+const p = t.servicePages['agentic-coworker'].process;
+const { lena } = teamOf(t);
+const last = p.rail.length - 1;
+const number = (i) => String(i + 1).padStart(2, '0');
+---
+<div class="acp-ob" data-acp="onboard" role="img" aria-label={p.label} style={`--n:${p.rail.length};--k:${last}`}>
+  <ol>
+    {p.rail.map((label, i) => (
+      <li data-state={i === last ? 'now' : 'done'}>
+        <i class="acp-ob-dot"></i>
+        <small class="label">{number(i)}</small>
+        <span class:list={['st', { 'is-human': i === last - 1 }]}>{label}</span>
+      </li>
+    ))}
+  </ol>
+  <span class="acp-ob-run"><img src={lena.src} alt="" width="80" height="80" loading="lazy" decoding="async"></span>
+</div>
+
+<script>
+  import { onboard } from './onboard.js';
+
+  document.querySelectorAll('[data-acp="onboard"]').forEach(onboard);
+</script>
+
+<style is:global>
+.acp-ob{--m-soft:rgba(7,8,10,.06);--m-human-bg:#fff;--m-human-fg:var(--fg);--m-human-shadow:0 0 0 1px rgba(7,8,10,.12),0 6px 16px rgba(10,14,30,.14);position:relative;container-type:inline-size;padding-top:58px;margin-bottom:clamp(36px, 4vw, 64px);font-size:clamp(13px, 1.05vw, 15.5px)}
+.acp-ob ol{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));column-gap:var(--gap)}
+.acp-ob li{position:relative;padding-top:26px}
+.acp-ob li:not(:last-child)::before,.acp-ob li:not(:last-child)::after{content:"";position:absolute;left:0;top:5px;width:calc(100% + var(--gap));height:1px;background:var(--rule)}
+.acp-ob li:not(:last-child)::after{height:2px;top:4.5px;background:var(--phthalo);transform-origin:left;transform:scaleX(0);transition:transform var(--t-enter) var(--ease),opacity var(--t-fast)}
+.acp-ob li[data-state="done"]::after{transform:none}
+.acp-ob-dot{position:absolute;left:0;top:0;z-index:1;width:11px;height:11px;border-radius:50%;background:var(--bg);box-shadow:inset 0 0 0 1px var(--muted);transition:background-color var(--t-fast),box-shadow var(--t-fast)}
+.acp-ob [data-state="done"] .acp-ob-dot{background:var(--fg);box-shadow:none}
+.acp-ob [data-state="now"] .acp-ob-dot{background:var(--phthalo);box-shadow:0 0 0 5px color-mix(in srgb, var(--phthalo) 16%, transparent)}
+.acp-ob .st{display:inline-block;font-size:max(.74em, 11px);white-space:nowrap;color:var(--muted);transition:color var(--t-fast),background-color var(--t-fast)}
+.acp-ob li:not([data-state="todo"]) .st,.acp-ob .st.is-human{color:var(--fg)}
+.acp-ob small{display:none;color:var(--muted)}
+.acp-ob-run{position:absolute;left:0;top:0;pointer-events:none;transform:translateX(calc(var(--k) * (100cqw + var(--gap)) / var(--n)));transition:transform var(--t-enter) var(--ease),opacity var(--t-fast)}
+.acp-ob-run img{width:42px;height:42px;max-width:none;margin-left:-15px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 3px #fff,0 10px 20px -8px rgba(12,18,48,.4)}
+.acp-ob.is-wrap .acp-ob-run,.acp-ob.is-wrap li::after{opacity:0}
+
+.js .acp-ob{opacity:0;transition:opacity var(--t-enter) ease .3s}
+.js .is-in .acp-ob{opacity:1}
+
+@media (max-width:1000px){
+  .acp-ob{margin-bottom:40px}
+  .acp-ob ol{column-gap:0}
+  .acp-ob li:not(:last-child)::before,.acp-ob li:not(:last-child)::after{width:100%}
+  .acp-ob-run{transform:translateX(calc(var(--k) * 100cqw / var(--n)))}
+  .acp-ob .st{display:none}
+  .acp-ob small{display:block}
+  .acp-ob li{padding-top:24px}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .acp-ob,.acp-ob-run,.acp-ob li::after,.acp-ob-dot{transition:none}
+  .js .acp-ob{opacity:1}
+}
+</style>

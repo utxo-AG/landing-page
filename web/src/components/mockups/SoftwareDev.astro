@@ -1,136 +1,219 @@
 ---
 /*
-  Software Development: a short film in one dark frame. A title card ("intro", 00) and five scenes share five cards: the requirement
-  ("core") and four steps. A card has one face per role and one place per scene; places are in frame units
-  (1 unit = 1 % of the frame width), once for the wide frame (16:10) and once for the narrow one (4:5).
-  Everything else belongs to one or two scenes ([data-in]) and builds with its own delay (--d, in ms).
-  Lines are 1px boxes that draw by scale; "live" lines turn phthalo after --p ms.
+  Software Development: a product-video style showreel in one dark frame. Five screens with bezels (SCREENS) stand in
+  a 3D world; one camera (the transform of .sd-world) moves from shot to shot (SHOTS) and depth of field blurs the
+  screens that are out of focus (FOCUS, blur per screen in frame units). All geometry is in frame units
+  (1 unit = 1 % of the frame width); a screen in focus is shown at scale 1 in the wide frame, so its text is crisp.
+  Two camera sets: the wide frame (16:10) and the narrow one (4:5), where a unit is 2.6 % of the width, so the camera
+  sits closer and frames part of a screen at the same scale 1.
+  The markup is the still: establishing shot, every screen in its final state (data-chat, data-api, data-dash, data-app, data-note).
 */
 const { t } = Astro.props;
 const m = t.mockups['software-dev'];
 
-const SCENES = ['intro', 'workflow', 'web', 'mobile', 'api', 'release'];
-const SECONDS = { intro: 2.8 };
-const SCENE = 3.6;
-const STILL = 'web';
-const ROLES = { workflow: 'workflow', app: 'web mobile', api: 'api', release: 'release' };
-const SPEED = 50;
+const SCREENS = {
+  tablet: { x: -66, y: 8, z: 28, a: 26, w: 68, h: 51, r: 2.6, fs: 1.6 },
+  desk: { x: 4, y: -6, z: -30, a: -5, w: 92, h: 57.5, r: 2.2, fs: 1.5 },
+  phone: { x: 68, y: 10, z: 40, a: -30, w: 26.5, h: 57.4, r: 4.2, fs: 1.55 },
+  phone2: { x: 122, y: -16, z: -30, a: -20, w: 26.5, h: 57.4, r: 4.2, fs: 1.55 },
+  api: { x: -100, y: -47, z: -50, a: 16, w: 88, h: 55, r: 2.2, fs: 1.75 },
+};
+const SHOTS = ['wide', 'chat', 'dash', 'app', 'duo', 'api'];
+const FOCUS = ['wide', 'chat', 'dash', 'app', 'duo', 'rack', 'api'];
+const BLUR = {
+  tablet: [0.22, 0, 0.5, 0.6, 0.6, 0.6, 0.6],
+  desk: [0, 0.5, 0, 0.6, 0.6, 0.5, 0.5],
+  phone: [0.3, 0.6, 0.5, 0, 0, 0.45, 0.7],
+  phone2: [0.5, 0.7, 0.5, 0.55, 0.5, 0, 0.7],
+  api: [0.4, 0.7, 0.6, 0.7, 0.7, 0.7, 0],
+};
+/* camera: [screen or world point, offset on the screen, scale, tilt x, tilt y] */
+const WIDE = {
+  wide: [[6, -9, 0], [0, 0], 0.43, 9, -6],
+  chat: ['tablet', [0, 0], 1.04, 2, 5],
+  dash: ['desk', [0, 0], 1, 2, -4],
+  app: ['phone', [0, 0], 1, 2, 6],
+  duo: [[98, -15.5, -18], [0, 0], 1.08, 3, 12],
+  api: ['api', [0, 0], 1, 2, -4],
+};
+const NARROW = {
+  wide: [[0, -6, 0], [0, 0], 0.22, 8, -10],
+  chat: ['tablet', [4, 0], 0.95, 2, 4],
+  dash: ['desk', [26.5, -3], 1, 2, -3],
+  app: ['phone', [0, -4], 0.95, 2, 5],
+  duo: [[116, -21, -28], [0, 0], 1.04, 3, 14],
+  api: ['api', [14.2, 0], 0.8, 2, -3],
+};
 
-const WIDE = [
-  { intro: [5, 22.0, 0], workflow: [5, 19], web: [2.9, 10.4], mobile: [-39.1, 10.4, 0.2], api: [7.4, 29.25], release: [5, 42.5] },
-  { intro: [5, 44.0, 0], workflow: [5, 41], web: [22.5, 11.5], mobile: [-19.5, 11.5, 0.2], api: [75, 10.5], release: [5, 22] },
-  { intro: [28, 44.0, 0], workflow: [28, 41], web: [41.13, 11.5], mobile: [-0.87, 11.5, 0.2], api: [75, 23], release: [29.13, 22] },
-  { intro: [52, 30.5, 0], workflow: [52, 27.5], web: [59.77, 11.5], mobile: [68.4, 16.5], api: [75, 35.5], release: [53.27, 22] },
-  { intro: [77.4, 44.0, 0], workflow: [77.4, 41], web: [78.4, 11.5], mobile: [36.4, 11.5, 0.2], api: [75, 48], release: [77.4, 22] },
-];
-const NARROW = [
-  { intro: [6, 23.0, 0], workflow: [6, 18], web: [6, 16.5], mobile: [6, 16.5, 0], api: [28.5, 20], release: [6, 84] },
-  { intro: [6, 47.0, 0], workflow: [6, 42], web: [6, 37], mobile: [6, 37, 0], api: [6, 58], release: [6, 26] },
-  { intro: [51, 47.0, 0], workflow: [51, 42], web: [51, 37], mobile: [51, 37, 0], api: [51, 58], release: [51, 26] },
-  { intro: [51, 71.0, 0], workflow: [51, 66], web: [6, 58], mobile: [28.5, 30], api: [6, 88], release: [6, 50] },
-  { intro: [6, 95.0, 0], workflow: [6, 90], web: [51, 58], mobile: [51, 58, 0], api: [51, 88], release: [51, 50] },
-];
-const places = (index) => SCENES.map((scene, k) => {
-  const [x, y, o = 1] = WIDE[index][scene];
-  const [px, py, po = 1] = NARROW[index][scene];
-  return `--x${k}:${x};--y${k}:${y};--o${k}:${o};--px${k}:${px};--py${k}:${py};--po${k}:${po}`;
-}).join(';');
-
-/* line: [scene, direction (h, v; a capital letter draws from the far end), x, y, length, delay, pulse delay] */
-const WIDE_LINES = [
-  ['workflow', 'v', 13.8, 27.2, 13.8, 700, 2000], ['workflow', 'h', 22.6, 45.1, 5.4, 980, 2250], ['workflow', 'h', 45.6, 45.1, 3.2, 1090, 2350],
-  ['workflow', 'V', 48.8, 31.6, 13.5, 1150, 2420], ['workflow', 'h', 48.8, 31.6, 3.2, 1420, 2650], ['workflow', 'h', 69.6, 31.6, 3.8, 1500, 2730],
-  ['workflow', 'v', 73.4, 31.6, 13.5, 1580, 2800], ['workflow', 'h', 48.8, 45.1, 24.6, 1150], ['workflow', 'h', 73.4, 45.1, 4, 1850, 3030],
-  ['api', 'h', 25, 33.35, 25, 600, 1900], ['api', 'V', 50, 14.6, 18.75, 1100, 2100], ['api', 'v', 50, 33.35, 18.75, 1100, 2100],
-  ['api', 'h', 50, 14.6, 25, 1475, 2300], ['api', 'h', 50, 27.1, 25, 1225, 2450], ['api', 'h', 50, 39.6, 25, 1225, 2600], ['api', 'h', 50, 52.1, 25, 1475, 2750],
-  ['release', 'h', 22.6, 26.1, 6.53, 700, 900], ['release', 'h', 46.73, 26.1, 6.54, 850, 1500], ['release', 'h', 70.87, 26.1, 6.53, 1000, 2100],
-];
-const NARROW_LINES = [
-  ['workflow', 'v', 27.5, 35, 7, 700, 2000], ['workflow', 'h', 49, 50.5, 2, 900, 2200], ['workflow', 'v', 72.5, 59, 7, 1000, 2400],
-  ['workflow', 'v', 72.5, 83, 15.5, 1200, 2600], ['workflow', 'H', 49, 98.5, 23.5, 1510, 2800],
-  ['api', 'v', 50, 37, 10, 600, 1900], ['api', 'H', 27.5, 47, 22.5, 800, 2100], ['api', 'h', 50, 47, 22.5, 800, 2100],
-  ['api', 'v', 27.5, 47, 41, 1250, 2350], ['api', 'v', 72.5, 47, 41, 1250, 2350],
-  ['release', 'h', 49, 34.5, 2, 700, 900], ['release', 'h', 49, 58.5, 2, 1000, 2100],
-];
-const line = ([scene, way, x, y, n, d, p], layout) => ({
-  class: ['sd-l', `sd-l--${way.toLowerCase()}`, way < 'a' && 'sd-l--far', p && 'is-live', layout],
-  scene,
-  style: `--x:${x};--y:${y};--n:${n};--d:${d};--t:${Math.round(Math.max(60, (n / SPEED) * 1000))}${p ? `;--p:${p}` : ''}`,
+const rad = (degrees) => (degrees * Math.PI) / 180;
+const fix = (value) => Number(value.toFixed(2));
+const point = (screen, [dx, dy]) => [screen.x + dx * Math.cos(rad(screen.a)), screen.y + dy, screen.z - dx * Math.sin(rad(screen.a))];
+const move = ([x, y, z]) => `translate3d(calc(${fix(x)} * var(--u)), calc(${fix(y)} * var(--u)), calc(${fix(z)} * var(--u)))`;
+const camera = ([target, offset, scale, tiltX, tiltY]) => {
+  const screen = SCREENS[target];
+  const [x, y, z] = screen ? point(screen, offset) : target;
+  return `scale(${scale}) rotateX(${tiltX}deg) rotateY(${tiltY - (screen ? screen.a : 0)}deg) ${move([-x, -y, -z])}`;
+};
+const cameras = SHOTS.map((shot, k) => `--cam${k}:${camera(WIDE[shot])};--ncam${k}:${camera(NARROW[shot])}`).join(';');
+const place = (key, index) => {
+  const s = SCREENS[key];
+  return `--i:${index};--x:${s.x};--y:${s.y};--z:${s.z};--a:${s.a};--w:${s.w};--h:${s.h};--r:${s.r};--fs:${s.fs};${BLUR[key].map((blur, k) => `--b${k}:${blur}`).join(';')}`;
+};
+/*
+  Data lines. A line never runs over the face of a screen: it leaves the source at its bezel edge and stays in the plane
+  of that screen for the first piece, crosses free space, and reaches the target edge inside the plane of the target.
+  route: [screen, point on its edge, point beside it in the same plane] for source and target.
+*/
+const ROUTES = {
+  chat: [['tablet', [20, -25.5], [20, -44]], ['api', [44, 11], [50, 11]]],
+  api: [['api', [44, 14], [49, 14]], ['desk', [-46, -14], [-51, -14]]],
+  app: [['phone', [13.25, -6], [18, -6]], ['phone2', [-13.25, 10], [-18, 10]]],
+};
+const wires = Object.entries(ROUTES).flatMap(([name, [[from, a, a2], [to, b, b2]]]) => {
+  const path = [point(SCREENS[from], a), point(SCREENS[from], a2), point(SCREENS[to], b2), point(SCREENS[to], b)];
+  const pieces = path.slice(1).map(([x2, y2, z2], index) => {
+    const [x, y, z] = path[index];
+    const [dx, dy, dz] = [x2 - x, y2 - y, z2 - z];
+    const flat = Math.hypot(dx, dz);
+    return { x, y, z, n: Math.hypot(flat, dy), yaw: Math.atan2(-dz, dx) * 180 / Math.PI, pitch: Math.atan2(dy, flat) * 180 / Math.PI };
+  });
+  const total = pieces.reduce((sum, piece) => sum + piece.n, 0);
+  let done = 0;
+  return pieces.map((piece) => {
+    const style = `--x:${fix(piece.x)};--y:${fix(piece.y)};--z:${fix(piece.z)};--n:${fix(piece.n)};--yaw:${fix(piece.yaw)};--pitch:${fix(piece.pitch)};--d:${fix(done / total)};--t:${fix(piece.n / total)}`;
+    done += piece.n;
+    return { name, style };
+  });
 });
-const lines = [...WIDE_LINES.map((entry) => line(entry, 'sd-wide')), ...NARROW_LINES.map((entry) => line(entry, 'sd-narrow'))];
+const chat = m.chat;
+const dash = m.dash;
+const app = m.app;
+const notes = m.notes;
+const api = m.api;
 
-const cards = [m.core, ...m.chips].map((card, index) => ({
-  index,
-  faces: Object.entries(ROLES).map(([role, scenes]) => ({ scenes, top: card[role][0], main: card[role][1], count: index === 2 && role === 'release' && m.tests })),
-}));
-const open = cards[3];
-open.faces.find((face) => face.scenes === ROLES.app).phase = 'before';
-open.faces.push({ scenes: 'mobile', top: m.chips[2].app[0], main: m.approved, phase: 'after' });
-const number = (index) => String(index).padStart(2, '0');
-const film = JSON.stringify(SCENES.map((scene) => [scene, SECONDS[scene] ?? SCENE]));
+/* API screen: hub and nodes in em of the diagram box; a spoke runs from the hub to each node. "call" names the request a node takes part in. */
+const HUB = { x: 22.5, y: 8.5, w: 8.4, h: 4 };
+const NODES = [
+  { key: 'agent', x: 6.5, y: 8.5, w: 10.4, h: 3.8, call: 'agent' },
+  { key: 'erp', x: 39.5, y: 2.2, w: 11.4, h: 3.6, call: 'fan' },
+  { key: 'files', x: 39.5, y: 8.5, w: 11.4, h: 3.6, call: 'fan' },
+  { key: 'crm', x: 39.5, y: 14.8, w: 11.4, h: 3.6, call: 'write' },
+  { key: 'sso', x: 22.5, y: 2, w: 9, h: 3.4 },
+  { key: 'mail', x: 22.5, y: 15, w: 9, h: 3.4 },
+];
+const box = (node) => `--x:${node.x};--y:${node.y};--w:${node.w};--h:${node.h}`;
+const spoke = (node) => `--len:${fix(Math.hypot(node.x - HUB.x, node.y - HUB.y))};--ang:${fix(Math.atan2(node.y - HUB.y, node.x - HUB.x) * 180 / Math.PI)}`;
+const LOG_AFTER = ['', 'fan', 'fan', 'write'];
 ---
-<div class="sd" data-mockup="software-dev" data-film={film} data-scene={STILL} data-beat="2">
+<div class="sd" data-mockup="software-dev" data-shot="wide" data-focus="wide" data-chat="4" data-api="5" data-dash="3" data-app="2" data-note="1" data-wire="">
   <div class="sd-frame stage-dark mock-dark">
-    <div class="sd-bar mock-bar label">
-      <p class="sd-caps">{SCENES.map((scene, index) => <span data-in={scene}><i>{number(index)}</i>{m.scenes[scene]}</span>)}</p>
-      <p class="sd-segs" aria-hidden="true">{SCENES.slice(1).map((scene) => <i data-in={scene}></i>)}</p>
-    </div>
-
-    <div class="sd-intro" data-in="intro">
-      <p class="sd-intro-label label" data-in="intro">{m.intro.label}</p>
-      <p class="sd-intro-title"><span data-in="intro">{m.intro.title}</span></p>
-      <p class="sd-intro-line" data-in="intro">{m.intro.line}</p>
-    </div>
-
-    <div class="sd-lines" aria-hidden="true">
-      {lines.map((entry) => <i class:list={entry.class} data-in={entry.scene} style={entry.style}></i>)}
-      <i class="sd-pipe" data-in="release"><b></b></i>
-    </div>
-    <p class="sd-tag sd-wide" data-in="workflow" style="--x:52;--y:23.9;--d:1500">{m.workflow.over}</p>
-    <p class="sd-tag sd-wide" data-in="workflow" style="--x:54;--y:46.6;--d:1700">{m.workflow.auto}</p>
-    {m.api.links.map((link, index) => <p class="sd-tag sd-wide" data-in="api" style={`--x:54;--y:${11.3 + index * 12.5};--d:${1700 + index * 120}`}>{link}</p>)}
-    <p class="sd-tag sd-tag--from" data-in="release" style="--d:500">{m.release.from}</p>
-    <p class="sd-tag sd-tag--to" data-in="release" style="--d:2500">{m.release.to}</p>
-    <p class="sd-done st" data-in="release" style="--d:2700">{m.release.done}</p>
-
-    <div class="sd-win mock-light" data-in="web mobile">
-      <ul class="sd-nav sd-wide">{m.web.nav.map((item, index) => <li class:list={['sd-rise', index === 0 && 'is-active']} data-in="web mobile" style={`--d:${350 + index * 70}`}>{item}</li>)}</ul>
-      <div class="sd-table sd-rise" data-in="web mobile" style="--d:500">
-        <b>{m.web.table.title}</b>
-        {m.web.table.rows.map(([name, amount, state], index) => (
-          <p class="sd-rise" data-in="web mobile" style={`--d:${650 + index * 90}`}><span>{name}</span><span>{amount}</span><em class:list={['st', index === 0 && 'is-open']}>{state}</em></p>
-        ))}
-      </div>
-      <div class="sd-chart sd-rise sd-wide" data-in="web mobile" style="--d:620">
-        <span>{m.web.chart.title}</span>
-        <b>{m.web.chart.value}</b>
-        <div class="sd-bars">{m.web.chart.bars.map(([label, value], index) => <div><i data-in="web mobile" style={`--v:${value};--d:${900 + index * 80}`}></i><small>{label}</small></div>)}</div>
-      </div>
-    </div>
-
-    <div class="sd-phone" data-in="mobile">
-      <b class="sd-phone-title">{m.mobile.title}</b>
-      {m.mobile.cards.map((card, index) => (
-        <div class="sd-card" style={`--d:${450 + index * 140}`} data-in="mobile">
-          <small>{card.ref}</small>
-          <b>{card.name}</b>
-          <span>{card.amount}</span>
-          <em class:list={['sd-btn', index === 0 && 'is-human']}>{m.mobile.approve}</em>
+    <div class="sd-drift">
+      <div class="sd-world" style={cameras}>
+        <div class="sd-screen" style={place('tablet', 0)}>
+          <div class="sd-ui sd-chat">
+            <div class="sd-rail">
+              <b>{chat.workspace}</b>
+              <small>{chat.channelsLabel}</small>
+              <ul>{chat.channels.map((name) => <li class:list={[name === chat.channel && 'is-active']}>{name}</li>)}</ul>
+              <small>{chat.agentsLabel}</small>
+              <p class="sd-agent"><i></i>{chat.agent}</p>
+            </div>
+            <div class="sd-room">
+              <p class="sd-room-head"><b>{chat.channel}</b><small>{chat.members}</small></p>
+              <div class="sd-thread">
+                <div class="sd-msgs">
+                  {chat.messages.map((message) => (
+                    <div class="sd-msg"><i>{message.initials}</i><p><b>{message.name}</b><small>{message.time}</small></p><p>{message.text}</p></div>
+                  ))}
+                  <div class="sd-msg sd-msg--ask"><i>{chat.ask.initials}</i><p><b>{chat.ask.name}</b><small>{chat.ask.time}</small></p><p><span class="sd-mention">{chat.ask.mention}</span> {chat.ask.text}</p></div>
+                  <div class="sd-msg sd-msg--reply"><i>{chat.reply.initials}</i><p><b>{chat.reply.name}</b><em>{chat.agentTag}</em><small>{chat.reply.time}</small></p><p class="sd-answer">{chat.reply.text}</p><p class="sd-dots" aria-hidden="true"><i></i><i></i><i></i></p></div>
+                </div>
+              </div>
+              <div class="sd-compose">
+                <span class="sd-placeholder">{chat.placeholder}</span>
+                <span class="sd-typed"><span><span class="sd-mention">{chat.ask.mention}</span> {chat.ask.text}</span></span>
+                <i class="sd-send"></i>
+              </div>
+            </div>
+          </div>
         </div>
-      ))}
-    </div>
 
-    {cards.map((card) => (
-      <div class:list={['sd-chip', card.index === 0 && 'sd-chip--core', card === open && 'sd-chip--open']} style={`--i:${card.index};${places(card.index)}`}>
-        {card.index > 0 && <i class="sd-dot"></i>}
-        {card.faces.map((face) => (
-          <p class="sd-face" data-in={face.scenes} data-phase={face.phase}>
-            <small>{face.top}</small>
-            <b>{face.count && <span data-count={face.count}>{face.count}</span>}{face.main}</b>
-          </p>
-        ))}
+        <div class="sd-screen" style={place('desk', 1)}>
+          <div class="sd-ui sd-ui--light sd-dash">
+            <div class="sd-top">
+              <b>{dash.app}</b>
+              <ul class="sd-nav">{dash.nav.map((item, index) => <li class:list={[index === 0 && 'is-active']}>{item}</li>)}</ul>
+              <ul class="sd-ranges">
+                {dash.ranges.map((range) => <li>{range}</li>)}
+                <svg class="sd-cursor" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 2l14.5 7.2-6.3 1.9-2.3 6.4z" fill="#fff" stroke="#07080A" stroke-width="1.2" stroke-linejoin="round"/></svg>
+              </ul>
+            </div>
+            <div class="sd-kpis">
+              {dash.kpis.map((kpi) => (
+                <div class:list={[kpi.next && 'sd-kpi--live']}><small>{kpi.label}</small><b><span>{kpi.value}</span>{kpi.next && <span>{kpi.next}</span>}</b></div>
+              ))}
+            </div>
+            <div class="sd-panel sd-chart">
+              <p><b>{dash.chart.title}</b><small>{dash.chart.unit}</small></p>
+              <div class="sd-bars">{dash.chart.bars.map(([before, after], index) => <div><i style={`--v0:${before};--v1:${after};--i:${index}`}></i><small>{dash.chart.labels[index]}</small></div>)}</div>
+            </div>
+            <div class="sd-panel sd-feed">
+              <p><b>{dash.feed.title}</b></p>
+              <div class="sd-rows">
+                <ul>
+                  {[dash.feed.fresh, ...dash.feed.rows].map((row, index) => <li class:list={[index === 0 && 'sd-fresh']}><i></i><p><b>{row.who}</b><span>{row.what}</span></p><small>{row.time}</small></li>)}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sd-screen sd-screen--phone" style={place('phone', 2)}>
+          <div class="sd-ui sd-app">
+            <p class="sd-status"><span>{app.time}</span></p>
+            <p class="sd-app-head"><b>{app.title}</b><em class="st">{app.open} <span class="sd-swap">{app.count.map((count) => <span>{count}</span>)}</span></em></p>
+            <div class="sd-bill">
+              <small>{app.card.ref}</small>
+              <b>{app.card.name}</b>
+              <strong>{app.card.amount}</strong>
+              <dl>{app.card.rows.map(([label, value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
+              <div class="sd-act">
+                <span class="sd-tap is-human">{app.approve}<i></i></span>
+                <span class="sd-ok"><i></i>{app.approved}</span>
+              </div>
+            </div>
+            <div class="sd-bill sd-bill--next"><small>{app.next.ref}</small><b>{app.next.name}</b><strong>{app.next.amount}</strong></div>
+            <p class="sd-tabs" aria-hidden="true"><i></i><i></i><i></i></p>
+          </div>
+        </div>
+
+        <div class="sd-screen sd-screen--phone" style={place('phone2', 3)}>
+          <div class="sd-ui sd-ui--light sd-lock">
+            <p class="sd-clock"><b>{notes.time}</b><small>{notes.date}</small></p>
+            <ul class="sd-notes">
+              {[notes.fresh, ...notes.items].map((note, index) => <li class:list={[index === 0 && 'sd-fresh']}><small><i></i>{note.app}</small><b>{note.title}</b><span>{note.text}</span></li>)}
+            </ul>
+          </div>
+        </div>
+
+        <div class="sd-screen" style={place('api', 4)}>
+          <div class="sd-ui sd-api">
+            <p class="sd-api-head"><b>{api.title}</b><small>{api.version}</small><em class="st"><i></i>{api.status}</em></p>
+            <div class="sd-net" style={`--hx:${HUB.x};--hy:${HUB.y}`}>
+              {NODES.map((node) => <i class:list={['sd-spoke', node.call && `sd-spoke--${node.call}`]} style={spoke(node)}>{node.call && <b></b>}</i>)}
+              <div class="sd-node sd-node--hub" style={box(HUB)}><b>{api.hub.name}</b><small>{api.hub.type}</small></div>
+              {NODES.map((node) => <div class:list={['sd-node', node.call && `sd-node--${node.call}`]} style={box(node)}><i></i><b>{api.nodes[node.key].name}</b><small>{api.nodes[node.key].type}</small></div>)}
+            </div>
+            <div class="sd-log">
+              <small>{api.log.title}</small>
+              {api.log.rows.map((row, index) => <p class:list={[LOG_AFTER[index] && `sd-log--${LOG_AFTER[index]}`]}><b>{row.method}</b><span>{row.path}</span><span>{row.target}</span><span>{row.status}</span><span>{row.time}</span></p>)}
+            </div>
+          </div>
+        </div>
+
+        {wires.map((piece) => <i class="sd-wire" data-wire={piece.name} style={piece.style}><b></b></i>)}
       </div>
-    ))}
+    </div>
   </div>
 </div>
 
@@ -142,182 +225,216 @@ const film = JSON.stringify(SCENES.map((scene) => [scene, SECONDS[scene] ?? SCEN
 
 <style is:global>
 .sd{container-type:inline-size}
-.sd-frame{--u:1cqw;--cw:17.6;--ch:8.2;--pad:3.4;--sd-small:.88em;--sd-panel:#1B1E24;--sd-tile:#EFF1F5;--sd-line:rgba(238,240,246,.26);--sd-hair:inset 0 0 0 1px rgba(238,240,246,.1);aspect-ratio:16 / 10;perspective:calc(150 * var(--u));font-size:1.65cqw;line-height:1.3;box-shadow:0 60px 90px -40px rgba(12,18,48,.42),0 18px 30px -18px rgba(12,18,48,.24)}
+.sd-frame{--u:1cqw;--move:2.4s;--cam-ease:cubic-bezier(.65,0,.25,1);aspect-ratio:16 / 10;perspective:calc(170 * var(--u));line-height:1.3;box-shadow:0 60px 90px -40px rgba(12,18,48,.42),0 18px 30px -18px rgba(12,18,48,.24)}
 .sd-frame.mock-dark{background:var(--stage-gradient)}
-.sd-frame > *{z-index:1}
-.sd-frame small,.sd-tag{font-size:var(--sd-small);color:var(--m-muted);transition:color var(--t-move) ease}
-.sd-frame .st{font-size:var(--sd-small);padding:.32em .8em}
-.sd-frame b{font-weight:600}
+.sd-drift{position:absolute;inset:0;z-index:1;transform-style:preserve-3d}
+.sd-world{--cam:var(--cam0);position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;transform:var(--cam);transition:transform var(--move) var(--cam-ease)}
+.sd[data-shot="chat"] .sd-world{--cam:var(--cam1)}
+.sd[data-shot="dash"] .sd-world{--cam:var(--cam2)}
+.sd[data-shot="app"] .sd-world{--cam:var(--cam3)}
+.sd[data-shot="duo"] .sd-world{--cam:var(--cam4)}
+.sd[data-shot="api"] .sd-world{--cam:var(--cam5)}
 
-.sd [data-in]{opacity:0;transition:opacity var(--t-fast) ease,transform 0s var(--t-fast)}
-.sd .sd-rise{transform:translateY(1.1em)}
-.sd-l{position:absolute;left:calc(var(--x) * var(--u));top:calc(var(--y) * var(--u));background:var(--sd-line);transform-origin:0 0}
-.sd-l--h{width:calc(var(--n) * var(--u));height:1px;transform:scaleX(0)}
-.sd-l--v{width:1px;height:calc(var(--n) * var(--u));transform:scaleY(0)}
-.sd-l--far{transform-origin:100% 100%}
-.sd-l::after{content:"";position:absolute;inset:-.5px;background:var(--phthalo-lift);opacity:0}
-.sd[data-scene="intro"] [data-in~="intro"],.sd[data-scene="workflow"] [data-in~="workflow"],.sd[data-scene="web"] [data-in~="web"],.sd[data-scene="mobile"] [data-in~="mobile"],.sd[data-scene="api"] [data-in~="api"],.sd[data-scene="release"] [data-in~="release"]{
-  opacity:1;transition:opacity var(--t-move) ease calc(var(--d, 0) * 1ms),transform var(--t-enter) var(--ease) calc(var(--d, 0) * 1ms);
-  &.sd-rise,.sd-intro-title > &{transform:none}
-  &.sd-l{transform:none;transition:transform calc(var(--t) * 1ms) linear calc(var(--d) * 1ms)}
-  &.is-live::after{opacity:1;transition:opacity var(--t-fast) ease calc(var(--p) * 1ms)}
-}
+/* screens: bezel, edge light, reflection; blur and dimming follow --b */
+.sd-screen{--b:var(--b0);position:absolute;left:0;top:0;width:calc(var(--w) * var(--u));height:calc(var(--h) * var(--u));margin:calc(var(--h) * var(--u) / -2) 0 0 calc(var(--w) * var(--u) / -2);padding:calc(.7 * var(--u));border-radius:calc(var(--r) * var(--u));background:#08090B;box-shadow:inset 0 0 0 1px rgba(255,255,255,.2),0 calc(4 * var(--u)) calc(9 * var(--u)) rgba(0,0,0,.55);font-size:calc(var(--fs) * var(--u));transform:translate3d(calc(var(--x) * var(--u)), calc((var(--y) + var(--rise, 0)) * var(--u)), calc(var(--z) * var(--u))) rotateY(calc(var(--a) * 1deg));filter:blur(calc(var(--b) * var(--u))) brightness(calc(1 - var(--b) * .65));transition:filter 1.6s ease}
+.sd[data-focus="chat"] .sd-screen{--b:var(--b1)}
+.sd[data-focus="dash"] .sd-screen{--b:var(--b2)}
+.sd[data-focus="app"] .sd-screen{--b:var(--b3)}
+.sd[data-focus="duo"] .sd-screen{--b:var(--b4)}
+.sd[data-focus="rack"] .sd-screen{--b:var(--b5)}
+.sd[data-focus="api"] .sd-screen{--b:var(--b6)}
+.sd-ui{position:relative;height:100%;overflow:hidden;border-radius:calc((var(--r) - .7) * var(--u));--m-bg:#111318;--m-fg:#EEF0F6;--m-muted:#8A909B;--m-rule:rgba(238,240,246,.1);--m-soft:rgba(238,240,246,.07);background:var(--m-bg);color:var(--m-fg)}
+.sd-ui--light{--m-bg:#fff;--m-fg:var(--fg);--m-muted:var(--muted);--m-rule:var(--rule);--m-soft:rgba(7,8,10,.06)}
+.sd-ui::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(118deg, rgba(255,255,255,.09) 0%, rgba(255,255,255,0) 32%)}
+.sd-ui small{font-size:.86em;color:var(--m-muted)}
+.sd-ui b{font-weight:600}
+.sd-ui .st{font-size:.86em;padding:.3em .8em}
+.sd-mention{padding:.08em .4em;border-radius:.4em;background:rgba(53,181,140,.16);color:var(--phthalo-lift);font-weight:600}
+.sd-swap{display:inline-grid}
+.sd-swap span{grid-area:1 / 1;transition:opacity var(--t-fast) ease}
+.sd-swap span:first-child{opacity:0}
 
-.sd-bar{position:absolute;left:calc(var(--pad) * var(--u));right:calc(var(--pad) * var(--u));top:calc(var(--pad) * var(--u))}
-.sd-caps,.sd-segs{display:grid}
-.sd-caps{overflow:hidden;color:var(--m-fg)}
-.sd-caps span{grid-area:1 / 1;white-space:nowrap}
-.sd .sd-caps span{transform:translateY(110%)}
-.sd .sd-caps span[data-in]{transition:opacity var(--t-fast) ease,transform var(--t-fast) ease}
-.sd-caps i{display:inline-block;width:2.4em;font-style:normal;color:var(--m-muted);font-variant-numeric:tabular-nums}
-.sd-segs{grid-auto-flow:column;gap:5px}
-.sd-segs i{position:relative;width:clamp(18px, 3.2cqw, 34px);height:2px;background:var(--m-soft)}
-.sd .sd-segs i{opacity:1}
-.sd-segs i::after{content:"";position:absolute;inset:0;background:var(--phthalo-lift);transform:scaleX(0);transform-origin:0 0;opacity:0;transition:opacity var(--t-fast),transform 0s var(--t-fast)}
-.sd[data-scene="intro"] .sd-caps [data-in="intro"],.sd[data-scene="workflow"] .sd-caps [data-in="workflow"],.sd[data-scene="web"] .sd-caps [data-in="web"],.sd[data-scene="mobile"] .sd-caps [data-in="mobile"],.sd[data-scene="api"] .sd-caps [data-in="api"],.sd[data-scene="release"] .sd-caps [data-in="release"]{transform:none;transition:opacity var(--t-move) ease .25s,transform var(--t-move) var(--ease) .25s}
-.sd[data-scene="workflow"] .sd-segs [data-in="workflow"]::after,.sd[data-scene="web"] .sd-segs [data-in="web"]::after,.sd[data-scene="mobile"] .sd-segs [data-in="mobile"]::after,.sd[data-scene="api"] .sd-segs [data-in="api"]::after,.sd[data-scene="release"] .sd-segs [data-in="release"]::after{opacity:1;transform:none;transition:transform 3.6s linear}
+/* tablet: team chat */
+.sd-chat{display:grid;grid-template-columns:11em minmax(0,1fr)}
+.sd-rail{display:flex;flex-direction:column;gap:.35em;padding:1.3em 1.1em;background:#0C0D11}
+.sd-rail > b{margin-bottom:.9em}
+.sd-rail small{margin-top:.6em}
+.sd-rail li{padding:.34em .6em;margin:0 -.6em;border-radius:.5em;color:var(--m-muted)}
+.sd-rail li::before{content:"# ";opacity:.6}
+.sd-rail li.is-active{background:var(--m-soft);color:var(--m-fg)}
+.sd-agent{display:flex;align-items:center;gap:.5em}
+.sd-agent i,.sd-feed li i,.sd-ok i,.sd-notes small i{width:.5em;height:.5em;border-radius:50%;background:var(--phthalo-lift)}
+.sd-room{display:grid;grid-template-rows:auto minmax(0,1fr) auto;min-width:0}
+.sd-room-head{display:flex;align-items:baseline;gap:.8em;padding:1.2em 1.5em 1em;border-bottom:1px solid var(--m-rule)}
+.sd-room-head b::before{content:"# ";color:var(--m-muted)}
+.sd-thread{position:relative;overflow:hidden}
+.sd-msgs{--row:5.5em;position:absolute;left:0;right:0;bottom:0;padding:0 1.5em;transition:transform var(--t-move) var(--ease)}
+.sd-msg{display:grid;grid-template-columns:2.3em minmax(0,1fr);gap:.1em .8em;align-content:start;height:var(--row);transition:opacity var(--t-move) ease}
+.sd-msg > i{grid-row:1 / span 2;display:grid;place-items:center;width:2.9em;height:2.9em;border-radius:50%;background:var(--m-soft);font-style:normal;font-size:.8em;font-weight:600}
+.sd-msg > p{grid-column:2}
+.sd-msg p:first-of-type{display:flex;align-items:baseline;gap:.6em}
+.sd-msg em{font-style:normal;font-size:.8em;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:.15em .5em;border-radius:.4em;background:rgba(53,181,140,.16);color:var(--phthalo-lift)}
+.sd-msg--reply > i{background:var(--phthalo);color:#fff}
+.sd-answer,.sd-dots{grid-area:2 / 2;transition:opacity var(--t-fast) ease}
+.sd-dots{display:flex;gap:.3em;align-items:center;height:1.3em;opacity:0}
+.sd-dots i{width:.42em;height:.42em;border-radius:50%;background:var(--m-muted)}
+.sd-compose{position:relative;display:flex;align-items:center;height:3.1em;margin:0 1.5em 1.4em;padding:0 1.1em;border-radius:.9em;background:var(--m-soft);white-space:nowrap}
+.sd-placeholder{color:var(--m-muted);transition:opacity .2s}
+.sd-typed{position:absolute;left:1.1em;overflow:hidden;opacity:0;transform:translateX(-101%)}
+.sd-typed > span{display:block;transform:translateX(101%)}
+.sd-send{margin-left:auto;width:1.9em;height:1.9em;border-radius:50%;background:var(--m-soft);transition:background-color var(--t-fast)}
+.sd[data-chat="0"] .sd-msgs,.sd[data-chat="1"] .sd-msgs{transform:translateY(calc(2 * var(--row)))}
+.sd[data-chat="2"] .sd-msgs{transform:translateY(var(--row))}
+.sd[data-chat="0"] .sd-msg--ask,.sd[data-chat="1"] .sd-msg--ask,.sd[data-chat="0"] .sd-msg--reply,.sd[data-chat="1"] .sd-msg--reply,.sd[data-chat="2"] .sd-msg--reply{opacity:0;transition:none}
+.sd[data-chat="3"] .sd-answer{opacity:0;transition:none}
+.sd[data-chat="3"] .sd-dots{opacity:1}
+.sd[data-chat="1"] .sd-placeholder{opacity:0}
+.sd[data-chat="1"] .sd-typed{opacity:1}
+.sd[data-chat="1"] .sd-typed,.sd[data-chat="1"] .sd-typed > span{transform:none;transition:transform 1.2s steps(26)}
+.sd[data-chat="1"] .sd-send{background:var(--phthalo-lift)}
 
-.sd-intro{position:absolute;left:calc(5 * var(--u));right:calc(5 * var(--u));top:calc(23 * var(--u))}
-.sd-intro-label{color:var(--m-muted)}
-.sd-intro-title{overflow:hidden;margin-top:calc(1.6 * var(--u));padding-bottom:.14em;font-size:calc(7 * var(--u));line-height:1.02;letter-spacing:-.04em;white-space:nowrap}
-.sd-intro-title span{display:block}
-.sd .sd-intro-title span{transform:translateY(118%)}
-.sd-intro-line{margin-top:calc(1.2 * var(--u));font-size:1.3em;color:var(--m-muted)}
-.sd-intro-label{--d:calc(150 + var(--e, 0))}
-.sd-intro-title span{--d:calc(250 + var(--e, 0))}
-.sd-intro-line{--d:calc(550 + var(--e, 0))}
-.sd[data-scene="workflow"] .sd-intro{opacity:0;transition:opacity var(--t-fast) ease .3s}
-.sd[data-scene="workflow"] .sd-intro-title span{opacity:1;transform:translateY(-118%);transition:transform var(--t-move) var(--ease)}
-.js [data-section]:not([data-step]) .sd-intro{--e:700}
-.sd-chip{position:absolute;left:0;top:0;width:calc(var(--cw) * var(--u));height:calc(var(--ch) * var(--u));--x:var(--x0);--y:var(--y0);--o:var(--o0);opacity:var(--o);transform:translate(calc(var(--x) * var(--u)), calc(var(--y) * var(--u)));transition:transform .9s var(--ease) calc(var(--i) * 50ms),opacity var(--t-move) ease}
-.sd-frame > .sd-chip{z-index:3}
-.sd[data-scene="workflow"] .sd-chip{--x:var(--x1);--y:var(--y1);--o:var(--o1)}
-.sd[data-scene="web"] .sd-chip{--x:var(--x2);--y:var(--y2);--o:var(--o2)}
-.sd[data-scene="mobile"] .sd-chip{--x:var(--x3);--y:var(--y3);--o:var(--o3)}
-.sd[data-scene="api"] .sd-chip{--x:var(--x4);--y:var(--y4);--o:var(--o4)}
-.sd[data-scene="release"] .sd-chip{--x:var(--x5);--y:var(--y5);--o:var(--o5)}
-.sd-chip::before,.sd-chip::after{content:"";position:absolute;inset:0;border-radius:calc(1.2 * var(--u));background:var(--sd-panel);box-shadow:var(--sd-hair);transition:opacity var(--t-move) ease}
-.sd-chip::after{background:var(--sd-tile);box-shadow:none;opacity:0}
-.sd-chip > *{z-index:1}
-.sd-chip{transition-property:transform,opacity,color}
-.sd[data-scene="web"] .sd-chip,.sd[data-scene="mobile"] .sd-chip:not(.sd-chip--open){--m-muted:var(--muted);color:var(--fg)}
-.sd[data-scene="web"] .sd-chip::after,.sd[data-scene="mobile"] .sd-chip:not(.sd-chip--open)::after{opacity:1}
-.sd[data-scene="web"] .sd-chip--core::before,.sd[data-scene="mobile"] .sd-chip--core::before,.sd[data-scene="web"] .sd-chip--core::after,.sd[data-scene="mobile"] .sd-chip--core::after{opacity:0}
-.sd-face{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:.15em;padding:0 calc(1.4 * var(--u));white-space:nowrap}
-.sd .sd-face{--d:250;transform:translateY(.5em);transition:opacity var(--t-fast) ease,transform var(--t-fast) ease}
-.sd-face b{font-size:1.14em;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
-.sd-chip--core [data-in="release"] b{font-size:1.9em;font-weight:500;letter-spacing:-.03em;line-height:1.05}
-.sd[data-scene="workflow"] .sd-face[data-in~="workflow"],.sd[data-scene="web"] .sd-face[data-in~="web"],.sd[data-scene="mobile"] .sd-face[data-in~="mobile"],.sd[data-scene="api"] .sd-face[data-in~="api"],.sd[data-scene="release"] .sd-face[data-in~="release"]{transform:none}
-.sd[data-scene="mobile"][data-beat="2"] .sd-face[data-phase="before"],.sd[data-scene="mobile"]:not([data-beat="2"]) .sd-face[data-phase="after"]{opacity:0;transform:translateY(-.5em);transition:opacity var(--t-fast) ease,transform var(--t-fast) ease}
-.sd-dot{transition:background-color var(--t-move);position:absolute;right:calc(1.3 * var(--u));top:calc(1.3 * var(--u));width:max(6px, .75 * var(--u));height:max(6px, .75 * var(--u));border-radius:50%;background:rgba(238,240,246,.22)}
-.sd-dot::before,.sd-dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--phthalo-lift);opacity:0;transition:opacity var(--t-fast)}
-.sd[data-scene="workflow"] .sd-frame{--l0:1800;--l1:300}
-.sd[data-scene="api"] .sd-frame{--l0:2300;--l1:150}
-.sd[data-scene="release"] .sd-frame{--l0:200;--l1:600}
-.sd-chip{--lit:calc((var(--l0) + var(--i) * var(--l1)) * 1ms)}
-.sd[data-scene="workflow"] .sd-dot::before{animation:sd-lit-a var(--t-fast) var(--lit) both}
-.sd[data-scene="api"] .sd-dot::before{animation:sd-lit-b var(--t-fast) var(--lit) both}
-.sd[data-scene="release"] .sd-dot::before{animation:sd-lit-c var(--t-fast) var(--lit) both}
-.sd[data-scene="release"] .sd-dot ~ [data-in="release"] b:not(:has(span)){animation:sd-done var(--t-fast) var(--lit) both}
-@keyframes sd-lit-a{from{opacity:0}to{opacity:1}}
-@keyframes sd-lit-b{from{opacity:0}to{opacity:1}}
-@keyframes sd-lit-c{from{opacity:0}to{opacity:1}}
-@keyframes sd-done{from{opacity:.3}to{opacity:1}}
-.sd[data-scene="web"] .sd-chip--open .sd-dot::after,.sd[data-scene="mobile"] .sd-chip--open .sd-dot::after{opacity:1}
-.sd[data-scene="web"] .sd-dot,.sd[data-scene="mobile"] .sd-chip:not(.sd-chip--open) .sd-dot{background:rgba(7,8,10,.16)}
-
-.sd-tag{position:absolute;left:calc(var(--x) * var(--u));top:calc(var(--y) * var(--u));white-space:nowrap}
-.sd-tag--from{--x:5;--y:32.9}
-.sd-tag--to{left:auto;right:calc(5 * var(--u));--y:32.9}
-.sd-pipe{position:absolute;left:calc(5 * var(--u));right:calc(5 * var(--u));top:calc(37.2 * var(--u));height:3px;border-radius:3px;background:var(--m-soft);overflow:hidden}
-.sd-pipe b{display:block;height:100%;background:var(--phthalo-lift);transform:scaleX(0);transform-origin:0 0;transition:transform 0s var(--t-fast)}
-.sd[data-scene="release"] .sd-pipe b{transform:none;transition:transform 2.4s linear .2s}
-.sd-done{position:absolute;right:calc(5 * var(--u));top:calc(45.2 * var(--u));color:var(--phthalo-lift)}
-
-.sd-win{position:absolute;left:calc(2.5 * var(--u));top:calc(9.5 * var(--u));width:calc(95 * var(--u));height:calc(50 * var(--u));border-radius:calc(1.8 * var(--u));box-shadow:0 calc(3 * var(--u)) calc(8 * var(--u)) rgba(0,0,0,.5);transform-origin:12% 8%}
-.sd .sd-win{transform:translateY(calc(3 * var(--u))) rotateX(16deg) scale(.92);transition:opacity var(--t-fast) ease,transform var(--t-move) ease}
-.sd[data-scene="web"] .sd-win{transform:none}
-.sd[data-scene="mobile"] .sd-win{opacity:.2;transform:translateX(calc(-42 * var(--u)))}
-.sd-win > *{position:absolute}
-.sd-win::before{content:"";position:absolute;left:calc(18.5 * var(--u));top:0;bottom:0;width:1px;background:var(--m-rule)}
-.sd-nav{left:calc(1 * var(--u));top:calc(10.7 * var(--u));width:calc(16.5 * var(--u));display:grid;gap:.2em}
-.sd-nav li{padding:.5em calc(1.4 * var(--u));border-radius:.6em;color:var(--m-muted)}
-.sd-nav li.is-active{background:var(--m-soft);color:var(--m-fg)}
-.sd-table,.sd-chart{top:calc(11.7 * var(--u));height:calc(36.8 * var(--u));padding:calc(1.5 * var(--u)) calc(1.7 * var(--u));border-radius:calc(1.2 * var(--u));background:var(--sd-tile)}
-.sd-table{left:calc(20 * var(--u));width:calc(43 * var(--u));display:grid;grid-template-rows:auto repeat(4,minmax(0,1fr))}
-.sd-table p{display:grid;grid-template-columns:minmax(0,1fr) auto calc(10.4 * var(--u));gap:calc(1 * var(--u));align-items:center;border-top:1px solid var(--m-rule);white-space:nowrap;font-variant-numeric:tabular-nums}
-.sd-table > b{padding-bottom:calc(1.2 * var(--u))}
-.sd-table span:first-child{overflow:hidden;text-overflow:ellipsis}
-.sd-table em{justify-self:end}
-.sd-table .is-open{color:var(--phthalo)}
-.sd-chart{left:calc(64.03 * var(--u));width:calc(29.47 * var(--u));display:flex;flex-direction:column}
-.sd-chart > span{color:var(--m-muted)}
-.sd-chart > b{margin-top:.15em;font-size:1.5em;font-weight:500;letter-spacing:-.03em;white-space:nowrap}
-.sd-bars{flex:1;display:grid;grid-template-columns:repeat(6,1fr);gap:calc(.9 * var(--u));min-height:0;margin-top:calc(1.4 * var(--u))}
-.sd-bars div{display:grid;grid-template-rows:minmax(0,1fr) auto;gap:.4em;align-items:end;min-height:0;text-align:center}
-.sd-bars i{height:calc(var(--v) * 1%);border-radius:calc(.3 * var(--u)) calc(.3 * var(--u)) 0 0;background:rgba(7,8,10,.16);transform-origin:50% 100%}
-.sd .sd-bars i{transform:scaleY(0)}
-.sd[data-scene="web"] .sd-bars i,.sd[data-scene="mobile"] .sd-bars i{transform:none}
+/* desktop: dashboard */
+.sd-dash{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr);gap:1em;padding:0 1.6em 1.6em;background:#F3F4F8}
+.sd-top{grid-column:1 / -1;display:flex;align-items:center;gap:2.4em;height:4.2em;margin:0 -1.6em;padding:0 1.6em;background:#fff}
+.sd-top > b{font-size:1.15em;letter-spacing:-.01em}
+.sd-nav{display:flex;gap:1.6em;color:var(--m-muted)}
+.sd-nav .is-active{color:var(--m-fg);font-weight:600}
+.sd-ranges{--on:1;position:relative;display:grid;grid-template-columns:repeat(3,6.4em);margin-left:auto;padding:.25em;border-radius:99px;background:#F0F1F5;text-align:center}
+.sd-ranges::before{content:"";position:absolute;left:.25em;top:.25em;bottom:.25em;width:6.4em;border-radius:99px;background:#fff;box-shadow:0 1px 3px rgba(10,14,30,.16);transform:translateX(calc(var(--on) * 100%));transition:transform var(--t-fast) var(--ease)}
+.sd-ranges li{position:relative;padding:.38em 0;font-weight:500}
+.sd-cursor{position:absolute;z-index:2;left:50%;top:55%;width:1.5em;height:1.5em;overflow:visible;filter:drop-shadow(0 2px 3px rgba(10,14,30,.3));transition:transform .8s var(--ease)}
+.sd-kpis{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,1fr);gap:1em}
+.sd-kpis div,.sd-panel{border-radius:1em;background:#fff}
+.sd-kpis div{position:relative;padding:1.1em 1.3em}
+.sd-kpis b{display:grid;margin-top:.2em;font-size:1.9em;font-weight:500;letter-spacing:-.03em;line-height:1.1;font-variant-numeric:tabular-nums}
+.sd-kpis b span{grid-area:1 / 1;transition:opacity var(--t-fast) ease}
+.sd-kpis b span:first-child:not(:last-child){opacity:0}
+.sd-kpi--live::after{content:"";position:absolute;right:1.3em;top:1.3em;width:.55em;height:.55em;border-radius:50%;background:var(--phthalo);transition:opacity var(--t-fast)}
+.sd-panel{display:flex;flex-direction:column;min-height:0;padding:1.2em 1.3em}
+.sd-panel > p{display:flex;align-items:baseline;gap:.8em;margin-bottom:.9em}
+.sd-bars{flex:1;display:grid;grid-template-columns:repeat(12,1fr);gap:.7em;min-height:0}
+.sd-bars div{display:grid;grid-template-rows:minmax(0,1fr) auto;gap:.4em;text-align:center}
+.sd-bars i{border-radius:.3em .3em 0 0;background:rgba(7,8,10,.14);transform-origin:50% 100%;transform:scaleY(calc(var(--v1) / 100));transition:transform var(--t-move) var(--ease) calc(var(--i) * 30ms)}
 .sd-bars div:last-child i{background:var(--phthalo)}
+.sd-rows{flex:1;min-height:0;overflow:hidden}
+.sd-rows ul{--row:3.5em;transition:transform var(--t-move) var(--ease)}
+.sd-feed li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:.8em;height:var(--row);border-top:1px solid var(--rule);white-space:nowrap}
+.sd-feed li i{background:rgba(7,8,10,.16)}
+.sd-feed li.sd-fresh i{background:var(--phthalo)}
+.sd-feed li p{display:grid;line-height:1.25}
+.sd-feed li span{color:var(--m-muted);font-size:.86em;overflow:hidden;text-overflow:ellipsis}
+.sd-feed .sd-fresh{transition:opacity var(--t-move) ease}
+.sd[data-dash="0"] .sd-rows ul{transform:translateY(calc(-1 * var(--row)))}
+.sd[data-dash="0"] .sd-feed .sd-fresh{opacity:0}
+.sd[data-dash="0"] .sd-kpis b span:first-child:not(:last-child){opacity:1}
+.sd[data-dash="0"] .sd-kpis b span:last-child:not(:first-child),.sd[data-dash="0"] .sd-kpi--live::after{opacity:0}
+.sd[data-dash="0"] .sd-cursor,.sd[data-dash="1"] .sd-cursor{transform:translate(-13em, 15em)}
+.sd[data-dash="0"] .sd-ranges,.sd[data-dash="1"] .sd-ranges,.sd[data-dash="2"] .sd-ranges{--on:2}
+.sd[data-dash="0"] .sd-bars i,.sd[data-dash="1"] .sd-bars i,.sd[data-dash="2"] .sd-bars i{transform:scaleY(calc(var(--v0) / 100))}
+.sd-ranges::after{content:"";position:absolute;z-index:1;left:50%;top:50%;width:2.6em;height:2.6em;margin:-1.3em;border-radius:50%;background:rgba(7,8,10,.16);opacity:0}
+.sd[data-dash="3"] .sd-ranges::after{animation:sd-ripple .6s ease-out}
+@keyframes sd-ripple{from{opacity:1;transform:scale(.2)}to{opacity:0;transform:scale(1)}}
 
-.sd-phone{position:absolute;z-index:2;left:calc(62 * var(--u));top:calc(8.6 * var(--u));width:calc(29 * var(--u));height:calc(60 * var(--u));border-radius:calc(3 * var(--u));background:#08090B;box-shadow:inset 0 0 0 1px rgba(238,240,246,.24),0 calc(3 * var(--u)) calc(7 * var(--u)) rgba(0,0,0,.6)}
-.sd .sd-phone{transform:translateY(calc(16 * var(--u))) rotateX(-14deg);transition:opacity var(--t-fast) ease,transform var(--t-move) ease}
-.sd[data-scene="mobile"] .sd-phone{transform:none}
-.sd-phone-title{position:absolute;left:calc(2.4 * var(--u));top:calc(2.5 * var(--u));font-size:1.14em}
-.sd-card{position:absolute;left:calc(2.4 * var(--u));top:calc(17.6 * var(--u));width:calc(var(--cw) * var(--u));height:calc(19 * var(--u));display:flex;flex-direction:column;gap:.1em;padding:calc(1.4 * var(--u));border-radius:calc(1.2 * var(--u));background:var(--sd-panel);box-shadow:var(--sd-hair);white-space:nowrap}
-.sd-card + .sd-card{top:calc(38.1 * var(--u))}
-.sd .sd-card{transform:translateY(calc(3 * var(--u)))}
-.sd[data-scene="mobile"] .sd-card{transform:none}
-.sd-card span{font-size:1.14em;font-variant-numeric:tabular-nums}
-.sd-btn{margin-top:auto;padding:.55em 0;border-radius:99px;text-align:center;font-style:normal;font-size:var(--sd-small);font-weight:600;letter-spacing:.04em;text-transform:uppercase;box-shadow:inset 0 0 0 1px var(--sd-line);transition:transform .2s ease}
-.sd-btn.is-human{box-shadow:none}
-.sd[data-scene="mobile"][data-beat="1"] .sd-btn.is-human{transform:scale(.94)}
-.sd[data-scene="mobile"][data-beat="2"] .sd-card{transform:translateX(118%);opacity:0;transition:opacity var(--t-fast) ease .15s,transform var(--t-move) var(--ease)}
-.sd[data-scene="mobile"][data-beat="2"] .sd-card + .sd-card{transform:translateY(calc(-20.5 * var(--u)));opacity:1;transition:transform var(--t-move) var(--ease) .25s}
+/* phone: approvals */
+.sd-app{display:flex;flex-direction:column;gap:.9em;padding:0 1.1em 1em}
+.sd-status{display:flex;justify-content:center;padding-top:.9em;font-size:.86em;font-weight:600}
+.sd-app-head{display:flex;justify-content:space-between;align-items:center;margin:.6em 0 .2em}
+.sd-app-head b{font-size:1.7em;letter-spacing:-.03em;font-weight:500}
+.sd-bill{display:flex;flex-direction:column;padding:1.2em;border-radius:1.2em;background:#1B1E24;box-shadow:inset 0 0 0 1px rgba(238,240,246,.08)}
+.sd-bill > b{margin-top:.15em;font-size:1.1em}
+.sd-bill strong{margin-top:.5em;font-size:1.75em;font-weight:500;letter-spacing:-.03em;line-height:1.1;white-space:nowrap}
+.sd-bill dl{margin-top:.9em}
+.sd-bill dl div{display:flex;justify-content:space-between;padding:.5em 0;border-top:1px solid var(--m-rule)}
+.sd-bill dt{color:var(--m-muted)}
+.sd-act{display:grid;margin-top:.9em}
+.sd-act > *{grid-area:1 / 1;display:flex;align-items:center;justify-content:center;gap:.6em;height:3em;border-radius:99px;font-weight:600;transition:opacity var(--t-fast) ease,transform .2s ease}
+.sd-tap{position:relative;opacity:0}
+.sd-tap i{position:absolute;left:50%;top:50%;width:3.4em;height:3.4em;margin:-1.7em;border-radius:50%;background:rgba(7,8,10,.22);opacity:0}
+.sd-ok{background:rgba(53,181,140,.14);color:var(--phthalo-lift)}
+.sd-bill--next{opacity:.7}
+.sd-tabs{display:flex;justify-content:center;gap:2.6em;margin-top:auto;padding-top:.4em}
+.sd-tabs i{width:1.3em;height:.3em;border-radius:99px;background:var(--m-soft)}
+.sd-tabs i:first-child{background:var(--m-fg)}
+.sd[data-app="0"] .sd-tap,.sd[data-app="1"] .sd-tap{opacity:1}
+.sd[data-app="0"] .sd-ok,.sd[data-app="1"] .sd-ok{opacity:0}
+.sd[data-app="1"] .sd-tap{transform:scale(.96)}
+.sd[data-app="1"] .sd-tap i{animation:sd-ripple .6s ease-out}
+.sd[data-app="0"] .sd-app .sd-swap span:first-child,.sd[data-app="1"] .sd-app .sd-swap span:first-child{opacity:1}
+.sd[data-app="0"] .sd-app .sd-swap span:last-child,.sd[data-app="1"] .sd-app .sd-swap span:last-child{opacity:0}
 
-.sd-narrow{display:none}
+/* far phone: notifications */
+.sd-lock{display:flex;flex-direction:column;padding:0 1em;background:linear-gradient(180deg, #E4E8F1 0%, #F4F5F8 60%)}
+.sd-clock{display:grid;justify-items:center;margin:2.6em 0 2em}
+.sd-clock b{font-size:3.6em;font-weight:400;letter-spacing:-.04em;line-height:1}
+.sd-clock small{margin-top:.5em}
+.sd-notes{--row:6.4em;transition:transform var(--t-move) var(--ease)}
+.sd-notes li{display:grid;align-content:center;gap:.1em;height:calc(var(--row) - .6em);margin-bottom:.6em;padding:0 1em;border-radius:1.1em;background:#fff;box-shadow:0 2px 10px rgba(10,14,30,.06);white-space:nowrap;transition:opacity var(--t-move) ease}
+.sd-notes small{display:flex;align-items:center;gap:.5em}
+.sd-notes small i{background:rgba(7,8,10,.2)}
+.sd-notes .sd-fresh small i{background:var(--phthalo)}
+.sd-notes span{color:var(--m-muted);font-size:.86em;overflow:hidden;text-overflow:ellipsis}
+.sd-notes b{overflow:hidden;text-overflow:ellipsis}
+.sd[data-note="0"] .sd-notes{transform:translateY(calc(-1 * var(--row)))}
+.sd[data-note="0"] .sd-notes .sd-fresh{opacity:0}
+
+/* second wide screen: one API between the agent and the company's systems. data-api: 1 the agent calls, 2 the request fans out
+   to two systems, 3 their answers return, 4 the answer goes back to the agent and an entry is written, 5 at rest */
+.sd-api{display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding:0 1.5em 1.2em}
+.sd-api-head{display:flex;align-items:baseline;gap:.7em;height:3.6em;padding-top:1.2em}
+.sd-api-head b{font-size:1.1em;letter-spacing:-.01em}
+.sd-api-head em{display:flex;align-items:center;gap:.5em;margin-left:auto;align-self:center;font-style:normal}
+.sd-api-head em i,.sd-node > i{width:.5em;height:.5em;border-radius:50%;background:var(--phthalo-lift)}
+.sd-net{position:relative}
+.sd-spoke{position:absolute;left:calc(var(--hx) * 1em);top:calc(var(--hy) * 1em);width:calc(var(--len) * 1em);height:1px;background:rgba(238,240,246,.2);transform-origin:0 50%;transform:rotate(calc(var(--ang) * 1deg))}
+.sd-spoke b{--at:0;position:absolute;left:-.3em;top:-.3em;width:.6em;height:.6em;border-radius:50%;background:var(--phthalo-lift);box-shadow:0 0 .8em rgba(53,181,140,.9);opacity:0;transform:translateX(calc(var(--at) * var(--len) * 1em));transition:opacity .2s ease .5s,transform 0s .7s}
+.sd-node{position:absolute;left:calc((var(--x) - var(--w) / 2) * 1em);top:calc((var(--y) - var(--h) / 2) * 1em);width:calc(var(--w) * 1em);height:calc(var(--h) * 1em);display:grid;align-content:center;gap:.05em;padding:0 1em;border-radius:.8em;background:#1B1E24;box-shadow:inset 0 0 0 1px rgba(238,240,246,.1);white-space:nowrap}
+.sd-node::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1.5px var(--phthalo-lift),0 0 1.4em rgba(53,181,140,.28);opacity:0;transition:opacity var(--t-fast) ease}
+.sd-node > i{position:absolute;right:.9em;top:.9em;background:rgba(238,240,246,.25);transition:background-color var(--t-fast)}
+.sd-node--hub{justify-items:center;background:#22262E}
+.sd-log{display:grid;gap:0}
+.sd-log > small{padding-bottom:.5em}
+.sd-log p{display:grid;grid-template-columns:3.4em minmax(0,1fr) 7em 2.6em 4.6em;gap:1em;align-items:center;height:1.95em;border-top:1px solid var(--m-rule);white-space:nowrap;font-size:.86em;font-variant-numeric:tabular-nums;transition:opacity var(--t-move) ease,transform var(--t-move) var(--ease)}
+.sd-log b{color:var(--phthalo-lift)}
+.sd-log span{overflow:hidden;text-overflow:ellipsis;color:var(--m-muted)}
+.sd-log span:first-of-type{color:var(--m-fg)}
+.sd-log span:last-child{text-align:right}
+.sd[data-api="0"] .sd-spoke--agent b,.sd[data-api="5"] .sd-spoke--agent b,.sd[data-api="5"] .sd-spoke--write b{--at:1}
+.sd[data-api="1"] .sd-spoke--agent b,.sd[data-api="3"] .sd-spoke--fan b{--at:0;opacity:1;transition:opacity .15s ease,transform .7s var(--cam-ease)}
+.sd[data-api="2"] .sd-spoke--fan b,.sd[data-api="4"] .sd-spoke--agent b,.sd[data-api="4"] .sd-spoke--write b{--at:1;opacity:1;transition:opacity .15s ease,transform .7s var(--cam-ease)}
+.sd[data-api="1"] .sd-node--agent::after,.sd[data-api="4"] .sd-node--agent::after,.sd[data-api="2"] .sd-node--fan::after,.sd[data-api="3"] .sd-node--fan::after,.sd[data-api="4"] .sd-node--write::after,.sd[data-api="1"] .sd-node--hub::after,.sd[data-api="2"] .sd-node--hub::after,.sd[data-api="3"] .sd-node--hub::after,.sd[data-api="4"] .sd-node--hub::after{opacity:1}
+.sd[data-api="1"] .sd-node--agent > i,.sd[data-api="4"] .sd-node--agent > i,.sd[data-api="2"] .sd-node--fan > i,.sd[data-api="3"] .sd-node--fan > i,.sd[data-api="4"] .sd-node--write > i{background:var(--phthalo-lift)}
+.sd[data-api="0"] .sd-log--fan,.sd[data-api="1"] .sd-log--fan,.sd[data-api="2"] .sd-log--fan,.sd[data-api="0"] .sd-log--write,.sd[data-api="1"] .sd-log--write,.sd[data-api="2"] .sd-log--write,.sd[data-api="3"] .sd-log--write{opacity:0;transform:translateY(.6em);transition:none}
+
+/* data lines between screens */
+.sd-wire{position:absolute;left:0;top:0;width:calc(var(--n) * var(--u));height:1px;background:rgba(53,181,140,.5);transform-origin:0 50%;transform:translate3d(calc(var(--x) * var(--u)), calc(var(--y) * var(--u)), calc(var(--z) * var(--u))) rotateY(calc(var(--yaw) * 1deg)) rotateZ(calc(var(--pitch) * 1deg));opacity:0;transition:opacity var(--t-move) ease}
+.sd-wire b{--run:1.2s;position:absolute;left:0;top:-1px;width:calc(3 * var(--u));height:3px;margin-left:calc(-3 * var(--u));border-radius:3px;background:linear-gradient(90deg, rgba(53,181,140,0), var(--phthalo-lift));box-shadow:0 0 calc(1.2 * var(--u)) rgba(53,181,140,.8);opacity:0}
+.sd[data-wire="chat"] [data-wire="chat"],.sd[data-wire="api"] [data-wire="api"],.sd[data-wire="app"] [data-wire="app"]{opacity:1}
+.sd[data-wire="chat"] [data-wire="chat"] b,.sd[data-wire="api"] [data-wire="api"] b,.sd[data-wire="app"] [data-wire="app"] b{animation:sd-run calc(var(--t) * var(--run)) linear calc(.3s + var(--d) * var(--run)) both}
+@keyframes sd-run{0%{opacity:0;transform:translateX(0)}8%,92%{opacity:1}100%{opacity:0;transform:translateX(calc(var(--n) * var(--u)))}}
+
 .js .sd-frame{opacity:0;transform:translateY(60px) scale(.97);transition:transform var(--t-stage) var(--ease) .1s,opacity var(--t-move) ease .1s}
 .js .is-in .sd-frame{opacity:1;transform:none}
-.js .sd-chip{opacity:0}
-.js .is-in .sd-chip{opacity:var(--o);transition:transform .9s var(--ease) calc(var(--i) * 50ms),opacity var(--t-move) ease calc(500ms + var(--i) * 110ms)}
-.js [data-step] .sd-chip{transition:transform .9s var(--ease) calc(var(--i) * 50ms),opacity var(--t-move) ease}
-.js .sd[data-scene="intro"] .sd-chip{transition:transform .9s var(--ease),opacity var(--t-fast) ease}
+.js .sd-screen{--rise:26;opacity:0}
+.js .is-in .sd-screen{--rise:0;opacity:1;transition:transform 2s var(--ease) calc(200ms + var(--i) * 140ms),opacity var(--t-enter) ease calc(200ms + var(--i) * 140ms),filter 1.6s ease}
 
 @container (max-width:620px){
-  .sd-frame{--cw:43;--ch:17;--pad:5;--sd-small:1em;aspect-ratio:4 / 5;font-size:max(10px, 3.2cqw)}
-  .sd-wide{display:none}
-  .sd-narrow{display:block}
-  .sd-chip{--x:var(--px0);--y:var(--py0);--o:var(--po0)}
-  .sd[data-scene="workflow"] .sd-chip{--x:var(--px1);--y:var(--py1);--o:var(--po1)}
-  .sd[data-scene="web"] .sd-chip{--x:var(--px2);--y:var(--py2);--o:var(--po2)}
-  .sd[data-scene="mobile"] .sd-chip{--x:var(--px3);--y:var(--py3);--o:var(--po3)}
-  .sd[data-scene="api"] .sd-chip{--x:var(--px4);--y:var(--py4);--o:var(--po4)}
-  .sd[data-scene="release"] .sd-chip{--x:var(--px5);--y:var(--py5);--o:var(--po5)}
-  .sd-intro{left:calc(6 * var(--u));right:calc(6 * var(--u));top:calc(40 * var(--u))}
-  .sd-intro-title{margin-top:calc(3 * var(--u));font-size:calc(8.6 * var(--u));white-space:normal}
-  .sd-intro-line{margin-top:calc(3 * var(--u));font-size:1.15em}
-  .sd-chip::before,.sd-card,.sd-table{border-radius:calc(3 * var(--u))}
-  .sd-face{padding:0 calc(3.6 * var(--u))}
-  .sd-dot{right:calc(3.2 * var(--u));top:calc(3.2 * var(--u))}
-  .sd-tag--from{--x:6;--y:68}
-  .sd-tag--to{right:calc(6 * var(--u));--y:68}
-  .sd-pipe{left:calc(6 * var(--u));right:calc(6 * var(--u));top:calc(76 * var(--u))}
-  .sd-done{right:calc(6 * var(--u));top:calc(89 * var(--u))}
-  .sd-win{left:calc(3 * var(--u));top:calc(14 * var(--u));width:calc(94 * var(--u));height:calc(105 * var(--u));border-radius:calc(4 * var(--u))}
-  .sd-win::before{display:none}
-  .sd[data-scene="mobile"] .sd-win{opacity:.25;transform:none}
-  .sd-table{left:calc(3 * var(--u));top:calc(65 * var(--u));width:calc(88 * var(--u));height:calc(37 * var(--u));padding:calc(3 * var(--u)) calc(3.6 * var(--u));grid-template-rows:auto repeat(3,minmax(0,1fr))}
-  .sd-table p{grid-template-columns:minmax(0,1fr) auto;gap:calc(2 * var(--u))}
-  .sd-table p:last-child,.sd-table span + span{display:none}
-  .sd-table > b{padding-bottom:calc(2 * var(--u))}
-  .sd-phone{left:calc(22 * var(--u));top:calc(16 * var(--u));width:calc(56 * var(--u));height:calc(120 * var(--u));border-radius:calc(7 * var(--u))}
-  .sd-phone-title{left:calc(6.5 * var(--u));top:calc(5 * var(--u))}
-  .sd-card{left:calc(6.5 * var(--u));top:calc(36 * var(--u));height:calc(40 * var(--u));padding:calc(3.4 * var(--u))}
-  .sd-card + .sd-card{top:calc(80 * var(--u))}
-  .sd[data-scene="mobile"][data-beat="2"] .sd-card + .sd-card{transform:translateY(calc(-44 * var(--u)))}
+  .sd-frame{--u:2.6cqw;aspect-ratio:4 / 5}
+  .sd-msgs{padding-right:13em}
+  .sd-world{--cam:var(--ncam0)}
+  .sd[data-shot="chat"] .sd-world{--cam:var(--ncam1)}
+  .sd[data-shot="dash"] .sd-world{--cam:var(--ncam2)}
+  .sd[data-shot="app"] .sd-world{--cam:var(--ncam3)}
+  .sd[data-shot="duo"] .sd-world{--cam:var(--ncam4)}
+  .sd[data-shot="api"] .sd-world{--cam:var(--ncam5)}
+  .sd-log{padding:0 2.8em 0 18.6em}
+  .sd[data-wire="chat"] [data-wire="chat"]{transition-delay:.4s}
+  .sd-api-head em{margin-right:2.6em}
+  .sd-log p{grid-template-columns:3.4em minmax(0,1fr) 2.6em}
+  .sd-log span:nth-of-type(2),.sd-log span:nth-of-type(4){display:none}
 }
 @media (prefers-reduced-motion:reduce){
   .js .sd-frame{transition:none;opacity:1;transform:none}
+  .js .sd-screen{--rise:0;opacity:1}
   .sd-frame *,.sd-frame *::before,.sd-frame *::after{transition:none !important;animation:none !important}
 }
 </style>

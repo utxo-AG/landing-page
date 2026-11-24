@@ -1,0 +1,115 @@
+---
+/* Role profile of the CoWorker: identity left, tasks and access right. One access row rotates through requests that a person approves. */
+import { teamOf } from './team.js';
+
+const { t } = Astro.props;
+const p = t.servicePages['agentic-coworker'].profile;
+const { team, lena } = teamOf(t);
+const lead = team[p.reports];
+---
+<div class="acp-pf" data-acp="profile" role="img" aria-label={p.label}>
+  <div class="acp-pf-card mock-light">
+    <div class="mock-bar label"><span>{p.context}</span><span class="mock-live"><i></i>{p.state}</span></div>
+    <div class="acp-pf-cols">
+      <div class="acp-pf-id">
+        <div class="acp-pf-who acp-pf-in" style="--i:0">
+          <img class="acp-pf-face" src={lena.src} alt="" width="160" height="160" loading="lazy" decoding="async">
+          <p><b>{lena.name}</b><span>{lena.role}</span></p>
+        </div>
+        <dl>
+          <div class="acp-pf-in" style="--i:1"><dt>{p.reportsLabel}</dt><dd class="acp-pf-lead"><img src={lead.src} alt="" width="80" height="80" loading="lazy" decoding="async">{lead.name}</dd></div>
+          <div class="acp-pf-in" style="--i:2"><dt>{p.hoursLabel}</dt><dd>{p.hours}</dd></div>
+          <div class="acp-pf-in" style="--i:3"><dt>{p.channelsLabel}</dt><dd class="acp-pf-chips">{p.channels.map((name) => <span>{name}</span>)}</dd></div>
+        </dl>
+      </div>
+      <div class="acp-pf-detail">
+        <p class="acp-pf-h label acp-pf-in" style="--i:2">{p.tasksLabel}</p>
+        <p class="acp-pf-chips acp-pf-tasks">{p.tasks.map((name, i) => <span class="acp-pf-in" style={`--i:${3 + i * 0.6}`}>{name}</span>)}</p>
+        <p class="acp-pf-h label acp-pf-in" style="--i:5">{p.accessLabel}</p>
+        <ul class="acp-pf-access">
+          {p.access.map((row, i) => (
+            <li class="acp-pf-in" style={`--i:${6 + i}`}><b>{row.name}</b><span class:list={['st', { 'is-human': i === p.access.length - 1 }]}>{row.level}</span></li>
+          ))}
+          <li class="acp-pf-req acp-pf-in" style={`--i:${6 + p.access.length}`} data-state="wait">
+            {p.requests.map((row, i) => (
+              <div class:list={['acp-pf-var', { 'is-on': i === 0 }]}>
+                <b>{row.name}</b>
+                <span class="acp-pf-pills">
+                  <em class="st acp-pf-p" data-p="req">{p.requested}</em>
+                  <em class="st is-human acp-pf-p" data-p="wait"><img src={team[row.by].src} alt="" width="80" height="80" loading="lazy" decoding="async">{p.approves} {team[row.by].name}</em>
+                  <em class="st acp-pf-p" data-p="ok">{p.granted} · {row.level}</em>
+                </span>
+              </div>
+            ))}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { profile } from './profile.js';
+
+  document.querySelectorAll('[data-acp="profile"]').forEach(profile);
+</script>
+
+<style is:global>
+.acp-pf{container-type:inline-size}
+.acp-pf-card{border-radius:var(--radius);padding:clamp(18px, 4cqw, 36px);font-size:clamp(13px, 1.9cqw, 16.5px);line-height:1.35;box-shadow:0 44px 80px -42px rgba(12,18,48,.3)}
+.acp-pf-cols{display:grid;grid-template-columns:36% minmax(0,1fr)}
+.acp-pf-id{padding:1.6em 1.6em 0 0}
+.acp-pf-detail{min-width:0;padding:1.6em 0 0 1.6em;border-left:1px solid var(--m-rule)}
+.acp-pf-who{display:grid;gap:1em}
+.acp-pf-face{width:5.6em;height:5.6em;border-radius:50%;object-fit:cover;background:var(--m-soft)}
+.acp-pf-who b{display:block;font-size:1.7em;font-weight:500;letter-spacing:-.03em;line-height:1.05;color:var(--phthalo)}
+.acp-pf-who span{display:block;margin-top:.35em;color:var(--m-muted)}
+.acp-pf-id dl{margin-top:1.5em}
+.acp-pf-id dl > div{padding:.8em 0;border-top:1px solid var(--m-rule)}
+.acp-pf-id dt{font-size:.86em;color:var(--m-muted)}
+.acp-pf-id dd{margin:.25em 0 0;font-weight:500}
+.acp-pf-lead{display:flex;align-items:center;gap:.55em}
+.acp-pf-lead img{width:1.6em;height:1.6em;border-radius:50%;object-fit:cover}
+.acp-pf-chips{display:flex;flex-wrap:wrap;gap:.4em}
+.acp-pf-chips span{padding:.32em .8em;border-radius:99px;background:var(--m-soft);font-size:.9em;font-weight:500;white-space:nowrap}
+.acp-pf-id .acp-pf-chips{margin-top:.45em}
+.acp-pf-h{color:var(--m-muted)}
+.acp-pf-tasks{margin:.9em 0 1.8em}
+.acp-pf-access{margin-top:.5em}
+.acp-pf-access li{display:flex;justify-content:space-between;align-items:center;gap:1em;height:3.1em;border-bottom:1px solid var(--m-rule)}
+.acp-pf-access li:last-child{border-bottom:0}
+.acp-pf-access b{font-weight:500;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.acp-pf-access .st{flex:none;font-size:max(.74em, 11px)}
+.acp-pf-req{display:grid !important;grid-template-columns:minmax(0,1fr)}
+.acp-pf-var{grid-area:1 / 1;display:flex;justify-content:space-between;align-items:center;gap:1em;min-width:0;transition:opacity var(--t-fast) ease,transform var(--t-move) var(--ease)}
+.acp-pf-var:not(.is-on){opacity:0;transform:translateY(.7em)}
+.acp-pf-pills{flex:none;display:grid;justify-items:end;align-items:center}
+.acp-pf-p{grid-area:1 / 1;display:inline-flex;align-items:center;gap:.5em;opacity:0;transform:translateX(.6em);transition:opacity var(--t-fast) ease,transform var(--t-fast) var(--ease)}
+.acp-pf-p img{width:1.5em;height:1.5em;margin:-.3em 0 -.3em -.45em;border-radius:50%;object-fit:cover}
+.acp-pf-p[data-p="req"]{color:var(--phthalo);background:color-mix(in srgb, var(--phthalo) 10%, transparent)}
+.acp-pf-req[data-state="req"] [data-p="req"],.acp-pf-req[data-state="wait"] [data-p="wait"],.acp-pf-req[data-state="ok"] [data-p="ok"]{opacity:1;transform:none}
+
+.js .acp-pf-card{opacity:0;transform:translateY(56px);transition:transform var(--t-stage) var(--ease) .1s,opacity var(--t-move) ease .1s}
+.js .is-in .acp-pf-card{opacity:1;transform:none}
+.js .acp-pf-in{opacity:0;transform:translateY(.8em);transition:opacity var(--t-move) ease,transform var(--t-move) var(--ease);transition-delay:calc(500ms + var(--i) * 130ms)}
+.js .is-in .acp-pf-in{opacity:1;transform:none}
+
+@container (max-width:560px){
+  .acp-pf-card{font-size:clamp(13px, 3.8cqw, 15px)}
+  .acp-pf-cols{display:block}
+  .acp-pf-id{padding:1.3em 0 0}
+  .acp-pf-who{grid-template-columns:auto minmax(0,1fr);align-items:center}
+  .acp-pf-face{width:4.2em;height:4.2em}
+  .acp-pf-id dl{margin-top:1.2em}
+  .acp-pf-detail{padding:1.3em 0 0;border-left:0;border-top:1px solid var(--m-rule)}
+  .acp-pf-access li{height:3.3em}
+  .acp-pf-access .acp-pf-req{height:5.6em}
+  .acp-pf-var{flex-direction:column;align-items:flex-start;justify-content:center;gap:.5em}
+  .acp-pf-pills{justify-items:start}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .acp-pf-card,.js .acp-pf-in,.acp-pf-var,.acp-pf-p{transition:none;opacity:1;transform:none}
+  .acp-pf-var:not(.is-on),.acp-pf-p{opacity:0}
+  .acp-pf-req[data-state="wait"] .is-on [data-p="wait"]{opacity:1}
+}
+</style>

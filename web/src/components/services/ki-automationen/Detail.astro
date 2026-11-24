@@ -1,0 +1,35 @@
+---
+/*
+  KI-Automationen, the blocks of the detail page (between the hero and the FAQ of ServicePage):
+    1 what you get        split, visual "Reader" (one order is read), then the scope as points
+    2 one example         dark, wide, visual "Case" (rule set, decision, approval)
+    3 how a project runs  wide, diagram "Phases" (who handles a case), then the steps
+    4 operation           flip, visual "Ops" (a day of operation), then the points
+  All copy and sample data: i18n/<lang>/services/ki-automationen.json. Class prefix of this folder: kap-.
+*/
+import Block from '../../sp/Block.astro';
+import Points from '../../sp/Points.astro';
+import Steps from '../../sp/Steps.astro';
+import Reader from './Reader.astro';
+import Case from './Case.astro';
+import Phases from './Phases.astro';
+import Ops from './Ops.astro';
+
+const { t } = Astro.props;
+const page = t.servicePages['ki-automationen'];
+---
+<Block title={page.scope.title} text={page.scope.text} layout="split">
+  <Reader t={t} />
+  <div class="kap-gap"><Points items={page.scope.points} /></div>
+</Block>
+<Block title={page.example.title} text={page.example.text} layout="wide" surface="dark">
+  <Case t={t} />
+</Block>
+<Block title={page.project.title} text={page.project.text} layout="wide">
+  <Phases t={t} />
+  <div class="kap-gap"><Steps items={page.project.steps} /></div>
+</Block>
+<Block title={page.operation.title} text={page.operation.text} layout="flip">
+  <Ops t={t} />
+  <div class="kap-gap"><Points items={page.operation.points} /></div>
+</Block>

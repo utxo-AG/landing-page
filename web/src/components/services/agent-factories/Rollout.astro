@@ -1,0 +1,197 @@
+---
+/*
+  Rollout across a fleet: 24 agents (6 by 4 cubes, one row per business unit) on one plate, next to the
+  rollout console. Cubes are SVG polygons in viewBox units; a cube only lifts (translateY by --lift) and
+  changes opacity of its overlays. Row names and the flag of the held agent are HTML text placed by the same projection.
+  The markup is the reduced-motion and no-JS frame: 23 agents updated, one held back, waiting for a human.
+*/
+import { camera, projector, box, plane } from './iso.js';
+
+const { t } = Astro.props;
+const m = t.servicePages['agent-factories'].practice.rollout;
+
+const CUBE = 6;
+const GAP = 3;
+const COLS = 6;
+const ROWS = m.rows.length;
+const LIFT = 5;
+const LABELS = 17;
+const HELD = { col: 4, row: 3 };
+const PITCH = CUBE + GAP;
+const WIDTH = COLS * PITCH + GAP;
+const DEPTH = ROWS * PITCH + GAP;
+const TOTAL = COLS * ROWS;
+
+const cam = camera(60);
+const top = 1 + cam.ky * WIDTH + cam.kz * (CUBE + LIFT);
+const P = projector(cam, LABELS, top);
+const viewW = LABELS + cam.kx * (WIDTH + DEPTH) + 1;
+const viewH = top + cam.ky * DEPTH + 8;
+const at = ([x, y]) => `left:${((x / viewW) * 100).toFixed(2)}%;top:${((y / viewH) * 100).toFixed(2)}%`;
+
+const held = HELD.row * COLS + HELD.col;
+const cubes = Array.from({ length: TOTAL }, (_, n) => {
+  const col = n % COLS;
+  const row = Math.floor(n / COLS);
+  const x = GAP + col * PITCH;
+  const y = GAP + row * PITCH;
+  return { n, wave: col + row, depth: y - x, x, y, faces: box(P, x, y, 0, CUBE, CUBE, CUBE), plane: plane(cam, P(x, y, CUBE)) };
+}).sort((a, b) => a.depth - b.depth);
+const plate = box(P, 0, 0, 0, WIDTH, DEPTH, 0).top;
+const rows = m.rows.map((name, row) => ({ name, at: at(P(0, GAP + row * PITCH + CUBE / 2 + 1, 0)) }));
+const heldCube = cubes.find((cube) => cube.n === held);
+const flag = at(P(heldCube.x + CUBE / 2, heldCube.y + CUBE / 2, CUBE));
+const number = (value) => `${Math.floor(value / 10)}.${value % 10}`;
+const release = Number(m.version.replace('.', ''));
+const copy = JSON.stringify({ version: m.version, states: m.states, status: m.status, held: m.held });
+const fill = (text, value) => text.replace('{v}', value);
+---
+<div class="afp-ro" data-afp="rollout" data-copy={copy} data-held={held} data-phase="wait" role="img" aria-label={m.label} style={`--lift:${(LIFT * cam.kz).toFixed(3)}px`}>
+  <div class="mock-bar label"><span>{m.context}</span><span class="mock-live"><i></i><span data-status>{m.status.wait}</span></span></div>
+  <div class="afp-ro-grid">
+    <div class="afp-ro-scene">
+      <svg viewBox={`0 0 ${viewW.toFixed(2)} ${viewH.toFixed(2)}`} aria-hidden="true">
+        <polygon class="afp-ro-plate" points={plate} />
+        <g class="afp-ro-slots" transform={plane(cam, P(0, 0, 0))}>
+          {cubes.map((cube) => <rect x={cube.x} y={cube.y} width={CUBE} height={CUBE} />)}
+          {m.rows.slice(1).map((_, row) => <path d={`M0 ${GAP / 2 + (row + 1) * PITCH}H${WIDTH}`} />)}
+        </g>
+        {cubes.map((cube) => (
+          <g class="afp-ro-cube" data-n={cube.n} data-wave={cube.wave} data-m={cube.n === held ? 0 : 1} data-s={cube.n === held ? 'held' : undefined} style={`--i:${cube.wave}`}>
+            <g class="afp-ro-body">
+              <polygon class="afp-ro-left" points={cube.faces.left} />
+              <polygon class="afp-ro-right" points={cube.faces.right} />
+              <polygon class="afp-ro-top" points={cube.faces.top} />
+              <g class="afp-ro-marks" transform={cube.plane}>
+                {[0, 1, 2].map((p) => <rect data-p={p} x={0.9 + p * 1.5} y="3.9" width="1.05" height="1.3" />)}
+              </g>
+              <polygon class="afp-ro-work" points={cube.faces.top} />
+            </g>
+            <polygon class="afp-ro-hold" points={cube.faces.top} />
+          </g>
+        ))}
+      </svg>
+      <ul class="afp-ro-rows label">
+        {rows.map((row) => <li style={row.at}>{row.name}</li>)}
+      </ul>
+      <p class="afp-ro-flag st is-human is-on" data-flag style={flag}>{m.held.short}</p>
+    </div>
+    <div class="afp-ro-console">
+      <dl class="afp-ro-stats">
+        <div><dt class="label">{m.versionLabel}</dt><dd><span data-from>{number(release - 1)}</span><i></i><b data-to>{m.version}</b></dd></div>
+        <div><dt class="label">{m.updatedLabel}</dt><dd><b data-updated>{TOTAL - 1}</b><span> / {TOTAL}</span></dd></div>
+      </dl>
+      <ul class="afp-ro-stages">
+        <li data-row="template" data-state="done"><span>{m.stages.template}</span><em class="st">{m.states.done}</em></li>
+        <li data-row="test" data-state="done"><span>{m.stages.test}</span><small><b data-count>{TOTAL}</b> / {TOTAL}</small><em class="st">{m.states.done}</em><div class="track"><i style="--v:100"></i></div></li>
+        <li data-row="gate" data-state="done"><span>{m.stages.gate}</span><em class="st">{m.states.approved}</em></li>
+        <li data-row="roll" data-state="run"><span>{m.stages.roll}</span><small><b data-count>{TOTAL - 1}</b> / {TOTAL}</small><em class="st">{m.states.run}</em><div class="track"><i style={`--v:${((TOTAL - 1) / TOTAL) * 100}`}></i></div></li>
+      </ul>
+      <div class="afp-ro-card is-on" data-card data-state="wait">
+        <p><b>{m.held.name}</b><span data-note>{fill(m.held.fixed, m.version)}</span></p>
+        <em class="st">{m.states.approve}</em>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { rollout } from './rollout.js';
+
+  document.querySelectorAll('[data-afp="rollout"]').forEach(rollout);
+</script>
+
+<style is:global>
+.afp-ro{position:relative;font-size:clamp(13px, 1.05vw, 15.5px);line-height:1.3;margin-top:clamp(8px, 1vw, 16px)}
+.afp-ro .st{font-size:max(11px, .82em)}
+.afp-ro .mock-live{flex:none;margin-left:16px;white-space:nowrap}
+/* the kit's dark block is flat (.mock-dark sets its background after .stage-dark); this block gets the stage gradient back */
+.sp-block--dark:has(.afp-ro){background:var(--stage-gradient)}
+.afp-ro .mock-live i{transition:background-color var(--t-fast)}
+.afp-ro[data-phase="run"] .mock-live i{background:var(--phthalo-lift)}
+.afp-ro-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4.4fr);gap:clamp(24px, 4vw, 72px);align-items:center;padding-top:clamp(20px, 2.6vw, 44px)}
+
+.afp-ro-scene{position:relative}
+.afp-ro-scene svg{width:100%;height:auto;overflow:visible}
+.afp-ro-plate{fill:rgba(238,240,246,.045);stroke:rgba(238,240,246,.17);stroke-width:1;vector-effect:non-scaling-stroke}
+.afp-ro-slots rect{fill:rgba(238,240,246,.07)}
+.afp-ro-slots path{stroke:rgba(238,240,246,.1);stroke-width:1;vector-effect:non-scaling-stroke;fill:none}
+.afp-ro-body{transform:translateY(calc(var(--up, 0) * var(--lift) * -1));transition:transform var(--t-move) var(--ease),opacity var(--t-fast)}
+.afp-ro-top{fill:#fff}
+.afp-ro-left{fill:#CDD1D9}
+.afp-ro-right{fill:#989EA9}
+.afp-ro-marks rect{fill:#0B0C0F;opacity:0;transition:opacity var(--t-fast)}
+.afp-ro-cube[data-m="0"] [data-p="0"],.afp-ro-cube[data-m="1"] [data-p="1"],.afp-ro-cube[data-m="2"] [data-p="2"]{opacity:1}
+.afp-ro-work{fill:var(--phthalo-lift);opacity:0;transition:opacity var(--t-fast)}
+.afp-ro-hold{fill:none;stroke:#fff;stroke-width:1.2;stroke-dasharray:3 3;vector-effect:non-scaling-stroke;opacity:0;transition:opacity var(--t-fast)}
+.afp-ro-cube[data-s="up"]{--up:1}
+.afp-ro-cube[data-s="up"] .afp-ro-work{opacity:.82}
+.afp-ro-cube[data-s="held"] .afp-ro-body{opacity:.26}
+.afp-ro-cube[data-s="held"] .afp-ro-hold{opacity:.9}
+/* test pass: a short phthalo flash runs over the fleet, wave by wave */
+[data-step="test"] .afp-ro-work{animation:afp-ro-scan .7s ease calc(.4s + var(--i) * .26s) both}
+@keyframes afp-ro-scan{0%,100%{opacity:0}40%{opacity:.7}}
+
+.afp-ro-rows li{position:absolute;padding-right:8px;white-space:nowrap;line-height:1;color:var(--m-muted);transform:translate(-100%, 3px)}
+.afp-ro-flag{--pole:clamp(14px, 1.8vw, 26px);position:absolute;padding:4px 9px;line-height:1.15;transform:translate(-50%, calc(-100% - var(--pole)));opacity:0;transition:opacity var(--t-fast),background-color var(--t-fast),color var(--t-fast)}
+.afp-ro-flag:not(.is-human){background:#2A2D34;color:var(--m-fg)}
+.afp-ro-flag::after{content:"";position:absolute;left:50%;top:100%;width:1px;height:var(--pole);background:rgba(238,240,246,.4)}
+.afp-ro-flag.is-on{opacity:1}
+
+.afp-ro-stats{display:flex;gap:clamp(24px, 3vw, 52px)}
+.afp-ro-stats dt{color:var(--m-muted);margin-bottom:6px}
+.afp-ro-stats dd{display:flex;align-items:baseline;gap:.28em;font-size:clamp(24px, 2.5vw, 40px);font-weight:500;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.afp-ro-stats dd b{font-weight:500}
+.afp-ro-stats dd span{color:var(--m-muted)}
+.afp-ro-stats dd i{align-self:center;width:.5em;height:1px;background:var(--m-muted)}
+.afp-ro-stages{margin-top:clamp(18px, 2vw, 32px);border-top:1px solid var(--m-rule)}
+.afp-ro-stages li{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:8px 14px;align-items:center;min-height:clamp(46px, 3.9vw, 60px);padding:10px 0;border-bottom:1px solid var(--m-rule);transition:opacity var(--t-fast)}
+.afp-ro-stages li[data-state="open"]{opacity:.45}
+.afp-ro-stages small{color:var(--m-muted);font-size:1em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.afp-ro-stages small b{font-weight:400;color:var(--m-fg)}
+.afp-ro-stages small{grid-column:2}
+.afp-ro-stages .st{grid-column:3}
+.afp-ro-stages .track{grid-column:1 / -1}
+.afp-ro-stages .track i{transform-origin:0 50%;width:100%;transform:scaleX(calc(var(--v) / 100));transition:transform var(--t-fast) linear,opacity var(--t-fast)}
+.afp-ro-stages [data-state="run"] .st{color:var(--phthalo-lift)}
+.afp-ro-stages [data-state="run"] .track i{background:var(--phthalo-lift);opacity:.9}
+.afp-ro-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:center;min-height:clamp(92px, 7.2vw, 112px);margin-top:clamp(14px, 1.6vw, 24px);padding:clamp(12px, 1.2vw, 18px);border-radius:12px;background:var(--m-soft);opacity:0;transform:translateY(8px);transition:opacity var(--t-fast),transform var(--t-move) var(--ease)}
+.afp-ro-card.is-on{opacity:1;transform:none}
+.afp-ro-card b{display:block;font-weight:600;letter-spacing:-.01em}
+.afp-ro-card p span{display:block;margin-top:4px;color:var(--m-muted)}
+.afp-ro-card[data-state="done"] .st{color:var(--phthalo-lift)}
+.afp-ro.is-turn .afp-ro-stats dd,.afp-ro.is-turn .afp-ro-stages small,.afp-ro.is-turn .afp-ro-stages .st{opacity:.25}
+.afp-ro-stats dd,.afp-ro-stages small{transition:opacity var(--t-fast)}
+
+.js .afp-ro .mock-bar,.js .afp-ro-console > *{opacity:0;transform:translateY(18px);transition:opacity var(--t-move) ease,transform var(--t-enter) var(--ease);transition-delay:calc(.3s + var(--o, 0) * 120ms)}
+.js .is-in .afp-ro .mock-bar,.js .is-in .afp-ro-console > *{opacity:1;transform:none}
+.afp-ro-stages{--o:1}
+.afp-ro-card{--o:2}
+.js .afp-ro-card:not(.is-on){opacity:0;transform:translateY(8px)}
+.js .afp-ro-plate,.js .afp-ro-slots,.js .afp-ro-rows{opacity:0;transition:opacity var(--t-enter) ease .2s}
+.js .is-in .afp-ro-plate,.js .is-in .afp-ro-slots,.js .is-in .afp-ro-rows{opacity:1}
+.js .afp-ro-cube{opacity:0;translate:0 -14px;transition:opacity var(--t-move) ease,translate var(--t-enter) var(--ease);transition-delay:calc(.5s + var(--i) * 70ms)}
+.js .is-in .afp-ro-cube{opacity:1;translate:none}
+.js [data-step] .afp-ro-console > *{transition-delay:0s}
+
+@media (max-width:900px){
+  .afp-ro-grid{grid-template-columns:minmax(0,1fr);gap:28px}
+  .afp-ro-stages li{min-height:50px}
+  .afp-ro-card{min-height:104px}
+}
+/* phones: every part keeps its height whatever the current wording is */
+@media (max-width:560px){
+  .afp-ro .mock-bar{flex-direction:column;align-items:flex-start;gap:6px}
+  .afp-ro .mock-live{margin-left:0}
+  .afp-ro-stages li{min-height:60px}
+  .afp-ro-stages li:has(.track){min-height:72px}
+  .afp-ro-card{min-height:152px}
+}
+@media (max-width:760px){
+  .afp-ro-rows li{padding-right:5px;font-size:10px}
+  .afp-ro .afp-ro-flag{font-size:10px;padding:3px 7px}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .afp-ro *,.js .afp-ro .mock-bar{transition:none}
+}
+</style>

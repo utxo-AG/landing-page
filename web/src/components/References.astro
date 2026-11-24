@@ -26,11 +26,13 @@ const clients = {
     </div>
   </div>
   {groups.map((group, g) => (
+    <Fragment>
+    {g > 0 && group[0].tag && <p class="refs-own-label label refs-item" style={`--i:${r.rows.indexOf(group[0]) + 1}`}>{group[0].tag}</p>}
     <ul class:list={['refs-list', { 'refs-list--own': g > 0 }]}>
       {group.map((row) => (
         <li class:list={['refs-item', { 'refs-row--inline': clients[row.clients] && row.figures.length > 1 }]} style={`--i:${r.rows.indexOf(row) + 1}`}>
           <a href={row.href} target="_blank" rel="noopener">
-            <span class="refs-name"><img class="refs-logo" src={files[`../assets/logos/${row.logo}`].src} alt={row.name} width={files[`../assets/logos/${row.logo}`].width} height={files[`../assets/logos/${row.logo}`].height} loading="lazy">{row.tag && <span class="refs-tag label">{row.tag}</span>}</span>
+            <span class="refs-name"><img class="refs-logo" src={files[`../assets/logos/${row.logo}`].src} alt={row.name} width={files[`../assets/logos/${row.logo}`].width} height={files[`../assets/logos/${row.logo}`].height} loading="lazy"></span>
             <span class="refs-desc">{row.text}</span>
             <span class="refs-figs">
               {row.figures.map((figure) => (
@@ -47,6 +49,7 @@ const clients = {
         </li>
       ))}
     </ul>
+    </Fragment>
   ))}
 </section>
 
@@ -83,12 +86,13 @@ const clients = {
 .refs-claim{font-size:clamp(19px, 1.7vw, 26px);line-height:1.15;letter-spacing:-.03em}
 .refs-note{margin-top:.7em;color:var(--muted);font-size:clamp(14px, 1.2vw, 17.5px);line-height:1.35}
 .refs-list{border-bottom:1px solid var(--rule)}
+.refs-own-label{margin-top:clamp(56px, 7vw, 112px);margin-bottom:16px;color:var(--muted)}
+.refs-own-label + .refs-list--own{margin-top:0}
 .refs-list--own{margin-top:clamp(56px, 7vw, 112px)}
 .refs-list > li{border-top:1px solid var(--rule)}
 .refs-list a{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);align-items:baseline;padding:clamp(18px, 1.8vw, 28px) 0;transition:opacity var(--t-fast) var(--ease)}
 .refs-name{grid-column:1 / span 3;align-self:start;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;font-size:clamp(21px, 2.2vw, 34px);line-height:1.05;letter-spacing:-.035em}
 .refs-logo{width:auto;height:clamp(18px, 1.75vw, 27px)}
-.refs-tag{color:var(--muted);letter-spacing:.04em}
 .refs-desc{grid-column:4 / span 4;color:var(--muted);font-size:clamp(14px, 1.2vw, 17.5px);line-height:1.35}
 .refs-figs{grid-column:8 / -1;display:grid;grid-template-columns:40% minmax(0,1fr);gap:14px var(--gap);align-items:center}
 .refs-fig{display:contents}

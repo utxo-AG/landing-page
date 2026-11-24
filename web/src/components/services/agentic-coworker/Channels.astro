@@ -1,0 +1,128 @@
+---
+/* Three channels the team already uses (chat, e-mail, ticket), each with a request to the CoWorker and her reply; below them her one task list with one row per channel. A window names the state of its row before and after the reply (indices into states). */
+import { teamOf } from './team.js';
+
+const { t } = Astro.props;
+const c = t.servicePages['agentic-coworker'].integration;
+const { team, lena } = teamOf(t);
+/* c.states: new, taken on, in work (accent), for review (a person decides) */
+const STATE_CLASS = [null, null, 'acp-ch-run', 'is-human'];
+---
+<div class="acp-ch" data-acp="channels" role="img" aria-label={c.label}>
+  <div class="acp-ch-wins">
+    {c.windows.map((win, index) => (
+      <div class="acp-ch-col" style={`--i:${index}`}>
+        <div class="acp-ch-win mock-light" data-win>
+          <div class="mock-bar label"><span>{win.kind}</span><span>{win.context}</span></div>
+          <div class="acp-ch-msg">
+            <img class="acp-ch-av" src={team[win.from].src} alt="" width="80" height="80" loading="lazy" decoding="async">
+            <p class="acp-ch-meta"><b>{team[win.from].name}</b><time>{win.time}</time></p>
+            <div class="acp-ch-body">
+              {win.subject && <p class="acp-ch-subject">{win.subject}</p>}
+              <p>{win.mention && <Fragment><span class="acp-ch-mention">{win.mention}</span>{' '}</Fragment>}{win.text}</p>
+            </div>
+          </div>
+          <div class="acp-ch-msg acp-ch-reply" data-coworker>
+            <img class="acp-ch-av" src={lena.src} alt="" width="80" height="80" loading="lazy" decoding="async">
+            <p class="acp-ch-meta"><b>{lena.name}</b><span class="acp-ch-when"><time>{win.reply.time}</time><span class="acp-ch-typing">{c.typing}</span></span></p>
+            <div class="acp-ch-body">
+              {win.reply.subject && <p class="acp-ch-subject">{win.reply.subject}</p>}
+              <p>{win.reply.text}</p>
+              {win.reply.file && <p class="acp-ch-file">{win.reply.file}</p>}
+            </div>
+          </div>
+        </div>
+        <span class="acp-ch-wire" aria-hidden="true"><i></i></span>
+      </div>
+    ))}
+  </div>
+  <div class="acp-ch-queue mock-light">
+    <p class="acp-ch-qhead"><img class="acp-ch-av" src={lena.src} alt="" width="80" height="80" loading="lazy" decoding="async"><b>{c.queueLabel}</b><span>{c.queueNote}</span></p>
+    <ul>
+      {c.queue.map((title, index) => (
+        <li data-row data-state="after">
+          <b>{title}</b>
+          <span class="acp-ch-kind">{c.windows[index].kind}</span>
+          <span class="acp-ch-pills">{['before', 'after'].map((key) => <em class:list={['st', STATE_CLASS[c.windows[index][key]]]} data-s={key}>{c.states[c.windows[index][key]]}</em>)}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
+
+<script>
+  import { channels } from './channels.js';
+
+  document.querySelectorAll('[data-acp="channels"]').forEach(channels);
+</script>
+
+<style is:global>
+.acp-ch{container-type:inline-size;font-size:clamp(13px, 1.2cqw, 16.5px);line-height:1.35}
+.acp-ch-wins{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap)}
+.acp-ch-col{display:flex;flex-direction:column}
+.acp-ch-win{flex:1;border-radius:var(--radius);padding:1.6em 1.7em 1.5em;box-shadow:0 30px 60px -36px rgba(12,18,48,.28);transition:transform var(--t-move) var(--ease),box-shadow var(--t-move) ease}
+.acp-ch-win .mock-bar{padding-bottom:1.1em}
+.acp-ch-msg{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:.8em;padding-top:1.2em}
+.acp-ch-av{flex:none;width:2.3em;height:2.3em;border-radius:50%;object-fit:cover;background:var(--m-soft)}
+.acp-ch-msg .acp-ch-av{grid-row:1 / span 2}
+.acp-ch-meta{display:flex;align-items:baseline;gap:.6em;white-space:nowrap}
+.acp-ch-meta b{font-weight:600;letter-spacing:-.01em}
+.acp-ch-meta time,.acp-ch-typing{font-size:.86em;color:var(--m-muted);font-variant-numeric:tabular-nums}
+.acp-ch-when{display:grid}
+.acp-ch-when > *{grid-area:1 / 1}
+.acp-ch-typing{opacity:0}
+.acp-ch-body{grid-column:2;margin-top:.15em;text-wrap:pretty}
+.acp-ch-subject{font-weight:600;letter-spacing:-.01em}
+.acp-ch-mention{padding:.08em .4em;border-radius:.45em;background:color-mix(in srgb, var(--phthalo) 10%, transparent);color:var(--phthalo);font-weight:600}
+.acp-ch [data-coworker] .acp-ch-meta b{color:var(--phthalo)}
+.acp-ch-file{display:inline-block;margin-top:.6em;padding:.4em .85em;border-radius:.7em;background:var(--m-soft);font-size:.9em;font-weight:600}
+.acp-ch-meta time,.acp-ch-typing,.acp-ch-reply .acp-ch-body{transition:opacity var(--t-fast) ease,transform var(--t-move) var(--ease)}
+.acp-ch-win.is-typing .acp-ch-reply time{opacity:0}
+.acp-ch-win.is-typing .acp-ch-typing{opacity:1}
+.acp-ch-win.is-typing .acp-ch-reply .acp-ch-body{opacity:0;transform:translateY(.6em);transition-duration:.2s}
+.acp-ch-win.is-on{transform:translateY(-8px);box-shadow:0 44px 70px -36px rgba(12,18,48,.4)}
+
+.acp-ch-wire{position:relative;display:block;height:clamp(22px, 2.6cqw, 40px);width:1px;margin:0 auto;background:var(--rule)}
+.acp-ch-wire i{position:absolute;left:-3px;top:-3px;width:7px;height:7px;border-radius:50%;background:var(--phthalo);opacity:0}
+.acp-ch-wire.is-on i{animation:acp-ch-drop .8s var(--ease)}
+@keyframes acp-ch-drop{0%{opacity:0;transform:none}25%{opacity:1}80%{opacity:1}100%{opacity:0;transform:translateY(clamp(22px, 2.6cqw, 40px))}}
+
+.acp-ch-queue{border-radius:var(--radius);padding:1.2em 1.7em 0;box-shadow:0 30px 60px -36px rgba(12,18,48,.28)}
+.acp-ch-qhead{display:flex;align-items:center;gap:.8em;padding-bottom:1.1em;border-bottom:1px solid var(--m-rule)}
+.acp-ch-qhead .acp-ch-av{width:1.9em;height:1.9em}
+.acp-ch-qhead b{font-weight:600;letter-spacing:-.01em;color:var(--phthalo)}
+.acp-ch-qhead span{margin-left:auto;font-size:.86em;color:var(--m-muted)}
+.acp-ch-queue ul{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--gap);margin:0 -1.7em;padding:0 1.7em}
+.acp-ch-queue li{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:.15em 1em;padding:1.1em 0 1.2em}
+.acp-ch-queue li b{font-weight:500;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.acp-ch-kind{grid-area:2 / 1;font-size:.86em;color:var(--m-muted)}
+.acp-ch-pills{grid-area:1 / 2 / 3 / 3;display:grid;justify-items:end;align-items:center}
+.acp-ch-pills .st{grid-area:1 / 1;font-size:max(.74em, 11px);opacity:0;transform:translateY(.5em);transition:opacity var(--t-fast) ease,transform var(--t-fast) var(--ease)}
+.acp-ch-pills .acp-ch-run{color:var(--phthalo);background:color-mix(in srgb, var(--phthalo) 10%, transparent)}
+.acp-ch [data-state="before"] [data-s="before"],.acp-ch [data-state="after"] [data-s="after"]{opacity:1;transform:none}
+
+.js .acp-ch-col{opacity:0;transform:translateY(40px);transition:opacity var(--t-move) ease,transform var(--t-stage) var(--ease);transition-delay:calc(150ms + var(--i) * 160ms)}
+.js .is-in .acp-ch-col{opacity:1;transform:none}
+.js .acp-ch-queue{opacity:0;transform:translateY(24px);transition:opacity var(--t-move) ease .8s,transform var(--t-enter) var(--ease) .8s}
+.js .is-in .acp-ch-queue{opacity:1;transform:none}
+
+@container (max-width:900px){
+  .acp-ch{font-size:clamp(13px, 3.8cqw, 15px)}
+  .acp-ch-wins{grid-template-columns:1fr;gap:12px}
+  .acp-ch-win{padding:1.2em 1.3em 1.3em}
+  .acp-ch-win.is-on{transform:translateY(-4px)}
+  .acp-ch-wire{display:none}
+  .acp-ch-queue{margin-top:12px;padding:1.1em 1.3em 0}
+  .acp-ch-queue ul{display:block;margin:0;padding:0}
+  .acp-ch-queue li{border-bottom:1px solid var(--m-rule);padding:.85em 0 .9em}
+  .acp-ch-queue li:last-child{border-bottom:0}
+}
+@container (min-width:621px) and (max-width:900px){
+  .acp-ch-msg{padding-top:1em}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .acp-ch-col,.js .acp-ch-queue,.acp-ch-win,.acp-ch-pills .st,.acp-ch-meta time,.acp-ch-typing,.acp-ch-reply .acp-ch-body{transition:none}
+  .js .acp-ch-col,.js .acp-ch-queue{opacity:1;transform:none}
+  .acp-ch-wire.is-on i{animation:none}
+}
+</style>

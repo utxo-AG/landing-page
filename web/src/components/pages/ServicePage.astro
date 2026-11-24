@@ -84,6 +84,7 @@ const schema = [
 .sp-block--wide .sp-head{grid-column:1 / span 7}
 .sp-block--wide .sp-body{grid-column:1 / -1}
 .sp-block--dark{margin:clamp(96px, 13vw, 200px) var(--edge) 0;padding:clamp(28px, 4vw, 64px);color:var(--stage-fg)}
+.sp-block--dark.mock-dark{background:var(--stage-gradient)}
 .sp-block--dark > *{position:relative;z-index:1}
 .sp-block--dark .sp-text{color:var(--stage-muted)}
 .sp-h{font-size:clamp(30px, 4.2vw, 66px);line-height:1;letter-spacing:-.04em;font-weight:400;text-wrap:balance}
@@ -92,7 +93,7 @@ const schema = [
 .js .is-in .sp-rise{opacity:1;transform:none}
 
 .sp-points{border-bottom:1px solid var(--rule)}
-.sp-points li{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,6fr) auto;gap:var(--gap);align-items:baseline;padding:clamp(16px, 1.6vw, 24px) 0;border-top:1px solid var(--rule)}
+.sp-points li{display:grid;grid-template-columns:38% minmax(0,1fr) auto;gap:var(--gap);align-items:baseline;padding:clamp(16px, 1.6vw, 24px) 0;border-top:1px solid var(--rule)}
 .sp-point-name{font-size:clamp(19px, 1.7vw, 26px);font-weight:400;line-height:1.1;letter-spacing:-.03em}
 .sp-point-text{color:var(--muted);font-size:clamp(14px, 1.2vw, 17.5px);line-height:1.35}
 .sp-point-tag{color:var(--muted);text-align:right}

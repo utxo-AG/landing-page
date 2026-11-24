@@ -1,0 +1,263 @@
+{
+  "title": "KI-Automationen für wiederkehrende Abläufe | utxo AG",
+  "description": "KI-Automationen von utxo AG: Wiederkehrende Vorgänge werden gelesen, geprüft und in Ihren Systemen gebucht. Ausnahmen gehen zur Freigabe an Ihr Team.",
+  "lede": "Aufträge, Rechnungen, Anfragen und Dokumente werden gelesen, nach Ihren Regeln geprüft, in Ihren bestehenden Systemen gebucht und beantwortet. Die Ausnahmen entscheidet Ihr Team.",
+  "faq": [
+    {
+      "q": "Welche Abläufe eignen sich für eine Automation?",
+      "a": "Abläufe, die häufig vorkommen, klaren Regeln folgen und heute von Hand zwischen Posteingang und Fachsystem übertragen werden: Auftragseingang, Eingangsrechnungen, Anfragen, Stammdatenänderungen oder Dokumentenprüfungen. Ob sich Ihr Ablauf eignet, klären wir im Erstgespräch anhand echter Vorgänge."
+    },
+    {
+      "q": "Müssen wir dafür unsere Systeme ersetzen?",
+      "a": "Nein. Die Automation arbeitet mit den Systemen, die Sie im Einsatz haben, und nutzt deren Schnittstellen. Bietet ein System keine Schnittstelle, prüfen wir im Projekt, welcher Weg tragfähig ist."
+    },
+    {
+      "q": "Was passiert, wenn die Automation unsicher ist?",
+      "a": "Vorgänge, die nicht alle Regeln erfüllen oder nicht eindeutig gelesen werden, gehen mit Begründung zur Freigabe an Ihr Team. Jeder Schritt ist protokolliert, sodass sich jeder Vorgang nachvollziehen und korrigieren lässt."
+    },
+    {
+      "q": "Wie lange dauert es bis zum Betrieb?",
+      "a": "Das hängt vom Ablauf, von der Zahl der Sonderfälle und von Ihren Systemen ab. Manche Anwendungsfälle sind in wenigen Wochen produktiv, andere brauchen Monate. Nach der Aufnahme des Ablaufs können wir den Aufwand einschätzen."
+    },
+    {
+      "q": "Wo werden unsere Daten verarbeitet?",
+      "a": "Das Hosting richtet sich nach Ihren Anforderungen: Deutschland, EU oder on-premise, pro Projekt festgelegt. Wir verarbeiten Daten nur nach Ihrer Weisung und trainieren keine Modelle mit Ihren Daten. Der AVV wird für jedes Projekt individuell erstellt."
+    },
+    {
+      "q": "Welche KI-Modelle setzen Sie ein?",
+      "a": "Wir arbeiten modellunabhängig und wählen das Modell nach Aufgabe und Datenschutzanforderungen. Lokale Open-Source-Modelle prüfen wir projektbezogen."
+    }
+  ],
+  "scope": {
+    "title": "Was Sie erhalten",
+    "text": "Eine Automation für einen klar umrissenen Ablauf in Ihrem Unternehmen, zum Beispiel den Auftragseingang. Sie liest jeden Vorgang, prüft ihn nach Ihren Regeln und schliesst ihn in Ihren Systemen ab.",
+    "points": [
+      {
+        "name": "Lesen",
+        "text": "Die Automation erkennt die relevanten Angaben in E-Mails, PDF und Formularen und überführt sie in einen strukturierten Datensatz.",
+        "tag": "E-Mail, PDF"
+      },
+      {
+        "name": "Prüfen",
+        "text": "Jeder Vorgang wird gegen Ihr Regelwerk und Ihre Stammdaten geprüft: Kunde, Artikel, Preise, Limiten, Termine.",
+        "tag": "Regelwerk"
+      },
+      {
+        "name": "Buchen und antworten",
+        "text": "Erfüllt ein Vorgang alle Regeln, legt die Automation ihn in Ihrem ERP an, verschickt die Antwort und legt ihn im CRM ab.",
+        "tag": "ERP, CRM"
+      },
+      {
+        "name": "Ausnahmen",
+        "text": "Weicht etwas ab, geht der Vorgang mit Begründung an die zuständige Person. Nach der Freigabe läuft er weiter.",
+        "tag": "Ihre Freigabe"
+      },
+      {
+        "name": "Protokoll",
+        "text": "Jeder Schritt wird festgehalten: was gelesen wurde, welche Regel gegriffen hat und wer freigegeben hat.",
+        "tag": "Jeder Schritt"
+      }
+    ]
+  },
+  "reader": {
+    "label": "Animierte Beispielansicht: Eine eingehende Bestellung wird gelesen, die Angaben werden als Datensatz erfasst und geprüft, eine Abweichung wird markiert.",
+    "context": "Auftragseingang · Lesen",
+    "status": {
+      "read": "liest",
+      "check": "prüft",
+      "ok": "bereit zur Buchung",
+      "flag": "zur Freigabe"
+    },
+    "recordTitle": "Erkannte Angaben",
+    "fields": ["Kunde", "Bestellnummer", "Wunschtermin", "Positionen", "Preise", "Gesamtbetrag"],
+    "paper": {
+      "type": "Bestellung",
+      "to": "An Hallberg Industriebedarf AG, Verkauf",
+      "number": "Bestellnummer",
+      "date": "Datum",
+      "delivery": "Wunschtermin",
+      "cols": ["Pos.", "Artikel", "Menge", "Preis"],
+      "total": "Gesamt netto"
+    },
+    "docs": [
+      {
+        "sender": "Brenner Anlagenbau AG",
+        "city": "Industriestrasse 14, 8404 Winterthur",
+        "number": "PO-2026-08841",
+        "date": "24.11.2026",
+        "delivery": "KW 49",
+        "rows": [
+          ["Rillenkugellager 6204", "400", "2.85"],
+          ["Wellendichtring 25 mm", "250", "4.20"],
+          ["Schmierfett 400 g", "60", "11.90"]
+        ],
+        "total": "CHF 2'904.00",
+        "record": ["Brenner Anlagenbau AG", "PO-2026-08841", "KW 49", "3 Positionen", "3 Preise", "CHF 2'904.00"],
+        "checks": ["Kunde 10217", "neu", "lieferbar", "im Stamm", "laut Preisliste", "stimmt"],
+        "flag": -1,
+        "flagRow": -1
+      },
+      {
+        "sender": "Kessler Maschinenbau AG",
+        "city": "Werkstrasse 3, 9015 St. Gallen",
+        "number": "4500218734",
+        "date": "24.11.2026",
+        "delivery": "KW 50",
+        "rows": [
+          ["Linearführung 600 mm", "24", "412.00"],
+          ["Führungswagen Typ B", "48", "134.00"],
+          ["Montagesatz M8", "24", "87.50"]
+        ],
+        "total": "CHF 18'420.00",
+        "record": ["Kessler Maschinenbau AG", "4500218734", "KW 50", "3 Positionen", "Pos. 2: 134.00", "CHF 18'420.00"],
+        "checks": ["Kunde 10482", "neu", "lieferbar", "im Stamm", "Preisliste 142.00", "stimmt"],
+        "flag": 4,
+        "flagRow": 1
+      }
+    ]
+  },
+  "example": {
+    "title": "Ein Auftrag als Beispiel",
+    "text": "Ein Grosshändler erhält Bestellungen per E-Mail als PDF. Erfüllt eine Bestellung alle Regeln, ist sie ohne Eingriff im ERP angelegt und bestätigt. Weicht ein Preis von der Preisliste ab, entscheidet der Vertriebsinnendienst."
+  },
+  "flow": {
+    "label": "Animierte Beispielansicht: Zwei Bestellungen werden gegen fünf Regeln geprüft. Die erste wird ohne Eingriff gebucht und bestätigt, die zweite wartet wegen einer Preisabweichung auf die Freigabe und läuft danach weiter.",
+    "zones": {
+      "case": "Vorgang",
+      "rules": "Regelwerk · Auftragseingang",
+      "next": "Buchen und antworten"
+    },
+    "rules": ["Kunde bekannt", "Artikel im Stamm", "Preise laut Preisliste", "Kreditlimite eingehalten", "Wunschtermin lieferbar"],
+    "log": ["Buchen · ERP", "Antwort · E-Mail", "Protokoll · CRM"],
+    "cases": [
+      {
+        "ref": "Bestellung PO-2026-08841",
+        "name": "Brenner Anlagenbau AG",
+        "meta": "CHF 2'904.00 · 3 Positionen",
+        "facts": [["Eingang", "10:38 Uhr"], ["Kanal", "E-Mail mit PDF"], ["Gelesen", "6 Angaben"]],
+        "values": ["Kunde 10217", "3 von 3", "3 von 3 stimmen", "CHF 2'904 von 40'000", "KW 49"],
+        "verdict": "5 von 5 Regeln erfüllt",
+        "log": ["Auftrag AU-88212 angelegt", "Auftragsbestätigung gesendet", "Vorgang abgelegt"],
+        "flag": -1
+      },
+      {
+        "ref": "Bestellung 4500218734",
+        "name": "Kessler Maschinenbau AG",
+        "meta": "CHF 18'420.00 · 3 Positionen",
+        "facts": [["Eingang", "10:41 Uhr"], ["Kanal", "E-Mail mit PDF"], ["Gelesen", "6 Angaben"]],
+        "values": ["Kunde 10482", "3 von 3", "Pos. 2: 134.00 statt 142.00", "CHF 18'420 von 60'000", "KW 50"],
+        "verdict": "4 von 5 Regeln erfüllt, 1 Abweichung",
+        "log": ["Auftrag AU-88213 angelegt", "Auftragsbestätigung gesendet", "Vorgang mit Freigabe abgelegt"],
+        "flag": 2
+      }
+    ],
+    "approval": {
+      "none": "Keine Freigabe nötig",
+      "to": "Freigabe · Vertriebsinnendienst",
+      "wait": "Ihre Freigabe",
+      "done": "freigegeben",
+      "title": "Preis in Position 2 weicht ab",
+      "detail": "Bestellung CHF 134.00, Preisliste CHF 142.00",
+      "approve": "Freigeben",
+      "back": "Zurückgeben",
+      "by": "M. Keller, 10:44 Uhr"
+    }
+  },
+  "project": {
+    "title": "So läuft ein Projekt",
+    "text": "Wir beginnen mit einem Ablauf und mit echten Vorgängen. Wie lange es bis zum Betrieb dauert, hängt vom Ablauf und von Ihren Systemen ab: Manche Anwendungsfälle sind in wenigen Wochen produktiv, andere brauchen Monate.",
+    "steps": [
+      {
+        "name": "Ablauf aufnehmen",
+        "text": "Im Erstgespräch wählen wir mit Ihnen einen Ablauf aus. Anhand echter Vorgänge halten wir fest, wie Ihr Team heute arbeitet und wo es entscheidet.",
+        "note": "Ablaufbeschreibung"
+      },
+      {
+        "name": "Regeln festlegen",
+        "text": "Mit Ihrem Fachbereich legen wir fest, was die Automation selbst abschliesst und was zur Freigabe geht.",
+        "note": "Regelwerk"
+      },
+      {
+        "name": "Systeme anbinden",
+        "text": "Wir entwickeln die Automation und binden sie über Schnittstellen an Posteingang, ERP und CRM an, mit einem eigenen, eingeschränkten Zugang.",
+        "note": "Testumgebung"
+      },
+      {
+        "name": "Probebetrieb",
+        "text": "Die Automation bearbeitet echte Vorgänge, Ihr Team gibt jeden einzelnen frei. So zeigt sich, wo Regeln fehlen oder zu streng sind.",
+        "note": "Abnahme"
+      },
+      {
+        "name": "Betrieb",
+        "text": "Nach Ihrer Abnahme schliesst die Automation Vorgänge selbst ab. Wir hosten und überwachen sie und passen Regeln an, wenn sich Ihr Ablauf ändert.",
+        "note": "Laufend"
+      }
+    ]
+  },
+  "phases": {
+    "label": "Animiertes Schaubild: Heute bearbeitet Ihr Team jeden Vorgang. Im Probebetrieb bearbeitet die Automation und Ihr Team gibt jeden Vorgang frei. Im Betrieb entscheidet Ihr Team nur noch die Ausnahmen.",
+    "title": "Wer einen Vorgang bearbeitet",
+    "rows": [
+      { "name": "Heute", "text": "Ihr Team bearbeitet jeden Vorgang von Hand." },
+      { "name": "Probebetrieb", "text": "Die Automation bearbeitet, Ihr Team gibt jeden Vorgang frei." },
+      { "name": "Betrieb", "text": "Die Automation schliesst ab, Ihr Team entscheidet die Ausnahmen." }
+    ],
+    "legend": {
+      "team": "Ihr Team bearbeitet",
+      "auto": "Automation bearbeitet",
+      "both": "Ihr Team gibt frei"
+    }
+  },
+  "operation": {
+    "title": "Betrieb und Kontrolle",
+    "text": "Die Automation arbeitet in Ihren bestehenden Systemen. utxo AG entwickelt, hostet und überwacht sie. Ihr Team sieht jederzeit, was läuft, und entscheidet dort, wo es darauf ankommt.",
+    "points": [
+      {
+        "name": "Ihre Systeme bleiben",
+        "text": "Die Automation liest aus dem Posteingang und schreibt in ERP, CRM oder DMS, über Schnittstellen und mit einem eigenen, eingeschränkten Zugang.",
+        "tag": "Integration"
+      },
+      {
+        "name": "Sie setzen die Grenzen",
+        "text": "Limiten, Toleranzen und Freigabewege legen Sie fest. Jede Änderung am Regelwerk wird protokolliert.",
+        "tag": "Regelwerk"
+      },
+      {
+        "name": "Ein Mensch gibt frei",
+        "text": "Ausnahmen erreichen die zuständige Person mit Begründung und den betroffenen Angaben. Sie gibt frei oder gibt zurück.",
+        "tag": "Freigabe"
+      },
+      {
+        "name": "Wir betreiben",
+        "text": "utxo AG überwacht den Betrieb, behebt Störungen und passt die Automation an, wenn sich Formate oder Abläufe ändern.",
+        "tag": "Betrieb"
+      }
+    ]
+  },
+  "ops": {
+    "label": "Animierte Beispielansicht eines Betriebstags: Vorgänge je Stunde, Anteil ohne Eingriff und die Warteschlange der Freigaben. Beispieldaten.",
+    "context": "Betrieb · Auftragseingang",
+    "figures": {
+      "total": "Vorgänge heute",
+      "auto": "ohne Eingriff",
+      "waiting": "warten auf Freigabe"
+    },
+    "chart": "Vorgänge je Stunde",
+    "lane": "Freigaben",
+    "queue": "Zur Freigabe",
+    "empty": "Keine offenen Freigaben",
+    "wait": "Ihre Freigabe",
+    "approved": "freigegeben",
+    "first": 7,
+    "volumes": [6, 14, 19, 17, 12, 7, 10, 16, 15, 11, 8, 5],
+    "events": [
+      { "at": 1.4, "ref": "PO-2026-08790", "reason": "Kunde nicht eindeutig" },
+      { "at": 3.2, "ref": "4500218611", "reason": "Menge über Limite" },
+      { "at": 3.9, "ref": "4500218734", "reason": "Preis weicht ab" },
+      { "at": 4.6, "ref": "B-77120", "reason": "Artikel nicht im Stamm" },
+      { "at": 7.1, "ref": "PO-2026-08856", "reason": "Termin nicht lieferbar" },
+      { "at": 9.3, "ref": "4500219002", "reason": "Preis weicht ab" },
+      { "at": 9.9, "ref": "B-77164", "reason": "Limite überschritten" }
+    ]
+  }
+}

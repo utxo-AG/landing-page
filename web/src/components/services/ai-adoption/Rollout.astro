@@ -1,0 +1,128 @@
+---
+/*
+  Introduction in a team (AI Adoption detail page): ten weeks of one team. People are trained in the order of
+  their role, the share of work done with the new solution grows week by week, and feedback from the team
+  passes from "decision open" (white pill: the business owner decides) through "in work" to "done".
+  The markup is week ten (no-JS and reduced-motion frame). The script only sets data-week states and slots.
+*/
+const { t } = Astro.props;
+const m = t.servicePages['ai-adoption'].rollout;
+const weeks = m.usage.values.length;
+const last = weeks - 1;
+const groups = [];
+m.people.members.forEach((member, index) => {
+  const group = groups.at(-1);
+  if (group && group.role === member.role) group.members.push({ ...member, index });
+  else groups.push({ role: member.role, members: [{ ...member, index }] });
+});
+const stateAt = (item, week) => (week - item.at < 1 ? 0 : week - item.at < 3 ? 1 : 2);
+const shown = m.feedback.items.filter((item) => item.at <= last);
+const slot = (item) => shown.filter((other) => other.at > item.at).length;
+---
+<div class="aap-ro mock-light" data-aap="rollout" data-schedule={JSON.stringify(m.people.schedule)} role="img" aria-label={m.label}>
+  <div class="mock-bar label"><span>{m.context}</span><span class="aap-ro-week">{m.week} <b data-week>{weeks}</b></span></div>
+  <div class="aap-ro-band">
+    <p class="aap-ro-h label"><span>{m.people.title}</span><span><b data-trained>{m.people.schedule[last]}</b> {m.people.of} {m.people.members.length} {m.people.trained}</span></p>
+    <ul class="aap-ro-groups">
+      {groups.map((group) => (
+        <li>
+          <span class="aap-ro-role label">{group.role}</span>
+          <span class="aap-ro-faces">{group.members.map((member) => <i data-member={member.index} data-state="done">{member.initials}</i>)}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+  <div class="aap-ro-band aap-ro-usage">
+    <p class="aap-ro-h label"><span>{m.usage.title}</span></p>
+    <p class="aap-ro-figure"><span><b data-usage>{m.usage.values[last]}</b> {m.usage.unit}</span><small>{m.usage.label}</small></p>
+    <ol class="aap-ro-bars">
+      {m.usage.values.map((value, index) => <li data-bar={value} data-state={index === last ? 'run' : 'done'}><span><i style={`--v:${value / 100}`}></i></span><b class="label">{index + 1}</b></li>)}
+    </ol>
+  </div>
+  <div class="aap-ro-band">
+    <p class="aap-ro-h label"><span>{m.feedback.title}</span></p>
+    <ul class="aap-ro-items">
+      {m.feedback.items.map((item) => (
+        <li data-item={item.at} data-state={stateAt(item, last)} data-slot={slot(item)}>
+          <i>{item.from}</i>
+          <span>{item.text}</span>
+          <span class="aap-ro-states">{m.feedback.states.map((name, k) => <em class:list={['st', { 'is-human': k === 0 }]}>{name}</em>)}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
+
+<script>
+  import { rollout } from './rollout.js';
+
+  document.querySelectorAll('[data-aap="rollout"]').forEach(rollout);
+</script>
+
+<style is:global>
+/*
+  data-state on a face or a bar: idle, run (green: this week) or done. A feedback item carries data-state 0 to 2
+  (index into the three status pills) and data-slot (line from the top; 3 and above are out of view).
+*/
+.aap-ro{container-type:inline-size;--aap-small:clamp(11px, .84vw, 12.5px);--face:clamp(34px, 5.4cqw, 42px);--ih:50px;font-size:clamp(13.5px, 1.04vw, 15.5px);line-height:1.25}
+.aap-ro.mock-light{background:none}
+.aap-ro-week{color:var(--m-fg);font-variant-numeric:tabular-nums}
+.aap-ro-band{padding-top:clamp(18px, 2vw, 28px)}
+.aap-ro-h{display:flex;justify-content:space-between;gap:12px;color:var(--m-muted)}
+.aap-ro-h b{color:var(--m-fg);font-weight:600;font-variant-numeric:tabular-nums}
+.aap-ro-groups{display:flex;flex-wrap:wrap;gap:16px clamp(20px, 4cqw, 40px);margin-top:14px;padding-bottom:clamp(18px, 2vw, 28px);border-bottom:1px solid var(--m-rule)}
+.aap-ro-groups li{display:grid;gap:9px}
+.aap-ro-role{color:var(--m-muted)}
+.aap-ro-faces{display:flex;gap:7px}
+.aap-ro-faces i{display:grid;place-items:center;width:var(--face);height:var(--face);border-radius:50%;font-style:normal;font-size:var(--aap-small);font-weight:600;letter-spacing:.02em;color:#fff;background:var(--m-fg);transition:background-color var(--t-move),color var(--t-move),box-shadow var(--t-move)}
+.aap-ro-faces [data-state="idle"]{background:transparent;color:var(--m-muted);box-shadow:inset 0 0 0 1px var(--m-rule)}
+.aap-ro-faces [data-state="run"]{background:var(--phthalo)}
+.aap-ro-usage{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:0 clamp(16px, 3cqw, 32px);align-items:end;padding-bottom:clamp(14px, 1.6vw, 22px);border-bottom:1px solid var(--m-rule)}
+.aap-ro-usage .aap-ro-h{grid-column:1 / -1}
+.aap-ro-figure{display:grid;gap:8px;padding-bottom:22px}
+.aap-ro-figure > span{font-size:clamp(40px, 8cqw, 68px);line-height:.9;letter-spacing:-.05em;color:var(--m-muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.aap-ro-figure b{font-weight:400;color:var(--m-fg)}
+.aap-ro-figure small{color:var(--m-muted);font-size:var(--aap-small);line-height:1.3}
+.aap-ro-bars{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:clamp(4px, 1cqw, 9px);margin-top:12px}
+.aap-ro-bars li{display:grid;gap:7px;text-align:center}
+.aap-ro-bars span{display:flex;align-items:flex-end;height:clamp(84px, 16cqw, 116px);border-radius:3px;overflow:hidden;background:var(--m-soft)}
+.aap-ro-bars i{display:block;width:100%;height:100%;background:var(--m-fg);transform-origin:50% 100%;transform:scaleY(var(--v));transition:transform var(--t-enter) var(--ease),background-color var(--t-move)}
+.aap-ro-bars [data-state="idle"] i{transform:scaleY(0)}
+.aap-ro-bars [data-state="run"] i{background:var(--phthalo)}
+.aap-ro-bars b{color:var(--m-muted);font-variant-numeric:tabular-nums;transition:color var(--t-fast)}
+.aap-ro-bars [data-state="run"] b{color:var(--m-fg)}
+.aap-ro-items{position:relative;height:calc(3 * var(--ih));margin-top:6px;overflow:hidden}
+.aap-ro-items li{position:absolute;left:0;right:0;top:0;height:var(--ih);display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;border-bottom:1px solid var(--m-soft);transform:translateY(calc(var(--slot, 0) * var(--ih)));transition:transform var(--t-enter) var(--ease),opacity var(--t-move) ease}
+.aap-ro-items li > i{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;font-style:normal;font-size:11px;font-weight:600;color:var(--m-muted);box-shadow:inset 0 0 0 1px var(--m-rule)}
+.aap-ro-items li > span:nth-child(2){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.aap-ro-items [data-slot="1"]{--slot:1}
+.aap-ro-items [data-slot="2"]{--slot:2}
+.aap-ro-items [data-slot="3"]{--slot:3;opacity:0}
+.aap-ro-items [data-slot="new"]{--slot:-1;opacity:0}
+.aap-ro-states{display:grid;justify-items:end}
+.aap-ro-states .st{grid-area:1 / 1;font-size:var(--aap-small);opacity:0;transition:opacity var(--t-fast)}
+.aap-ro-states .st:nth-child(2){color:var(--phthalo)}
+.aap-ro-states .st:nth-child(3){color:var(--m-muted)}
+[data-state="0"] > .aap-ro-states .st:nth-child(1),[data-state="1"] > .aap-ro-states .st:nth-child(2),[data-state="2"] > .aap-ro-states .st:nth-child(3){opacity:1}
+
+.js .aap-ro > *{opacity:0;transform:translateY(16px);transition:opacity var(--t-move) ease,transform var(--t-enter) var(--ease)}
+.js .aap-ro > :nth-child(2){transition-delay:.15s}
+.js .aap-ro > :nth-child(3){transition-delay:.3s}
+.js .aap-ro > :nth-child(4){transition-delay:.45s}
+.js .is-in .aap-ro > *{opacity:1;transform:none}
+
+@container (max-width:520px){
+  .aap-ro{--ih:62px}
+  .aap-ro-usage{display:block}
+  .aap-ro-figure{padding-bottom:6px;margin-top:14px}
+  .aap-ro-bars span{height:84px}
+  .aap-ro-items li{grid-template-columns:auto minmax(0,1fr);gap:4px 10px;align-content:center}
+  .aap-ro-items li > i{grid-row:1 / span 2}
+  .aap-ro-states{grid-column:2;justify-items:start}
+  .aap-ro :is(.label,.st,.aap-ro-figure small){font-size:10.5px}
+  .aap-ro-states .st{padding:4px 9px}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .aap-ro > *,.aap-ro-faces i,.aap-ro-bars i,.aap-ro-items li,.aap-ro-states .st{transition:none}
+}
+</style>

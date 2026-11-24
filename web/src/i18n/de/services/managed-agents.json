@@ -1,0 +1,308 @@
+{
+  "title": "Managed Agents: KI-Agenten entwickelt, gehostet und überwacht | utxo AG",
+  "description": "utxo AG entwickelt, hostet und überwacht Ihre KI-Agenten. Sie sehen, was läuft, und entscheiden an festgelegten Freigabepunkten. Jede Aktion wird protokolliert.",
+  "lede": "Ihre KI-Agenten laufen bei uns im Betrieb: von utxo AG entwickelt, gehostet, überwacht und laufend verbessert. Ihr Team sieht den Stand und entscheidet an den Punkten, die Sie festlegen.",
+  "scope": {
+    "title": "Was wir für Sie übernehmen",
+    "text": "Sie betreiben nichts selbst. utxo AG entwickelt die Agenten für Ihre Abläufe, betreibt sie in der vereinbarten Umgebung und kümmert sich um alles, was im laufenden Betrieb anfällt.",
+    "items": [
+      {
+        "name": "Entwicklung",
+        "text": "Agenten für Ihre konkreten Abläufe, angebunden an Ihre Systeme und geprüft an echten Fällen aus Ihrem Alltag.",
+        "tag": "Individuell"
+      },
+      {
+        "name": "Hosting",
+        "text": "Betrieb in der Umgebung, die zu Ihren Anforderungen passt: Deutschland, EU oder on-premise. Das legen wir pro Projekt fest.",
+        "tag": "Deutschland · EU · on-premise"
+      },
+      {
+        "name": "Überwachung",
+        "text": "Wir beobachten jeden Lauf. Schlägt einer fehl, wird er wiederholt oder von unserem Team übernommen.",
+        "tag": "Jeder Lauf"
+      },
+      {
+        "name": "Weiterentwicklung",
+        "text": "Neue Versionen, Modellwechsel und Anpassungen an geänderte Abläufe prüfen wir und spielen sie im laufenden Betrieb ein.",
+        "tag": "Modellunabhängig"
+      },
+      {
+        "name": "Protokoll",
+        "text": "Jede Aktion wird protokolliert: was ein Agent getan hat, mit welchen Quellen, und wer freigegeben hat.",
+        "tag": "Nachvollziehbar"
+      }
+    ],
+    "visual": {
+      "label": "Animierte Beispielansicht: Die Überwachung erkennt einen fehlgeschlagenen Lauf und wiederholt ihn, übergibt einen zweiten Fall an das Team von utxo AG und rollt eine neue Version aus.",
+      "context": "Betrieb · utxo AG",
+      "live": "Überwachung aktiv",
+      "lanesLabel": "Läufe",
+      "now": "jetzt",
+      "version": 23,
+      "lanes": ["Recherche-Agent", "Reporting-Agent", "Angebots-Agent"],
+      "eventsLabel": "Ereignisse",
+      "events": {
+        "retry": {
+          "lane": 0,
+          "time": "09:42",
+          "title": "Quelle nicht erreichbar",
+          "states": ["Fehler erkannt", "Wiederholung läuft", "behoben"]
+        },
+        "escalate": {
+          "lane": 1,
+          "time": "09:47",
+          "title": "Prüfung nicht bestanden",
+          "states": ["Fehler erkannt", "utxo AG übernimmt", "behoben"]
+        },
+        "rollout": {
+          "time": "09:55",
+          "who": "Alle Agenten",
+          "title": "Version {v}",
+          "states": ["Tests laufen", "Rollout läuft", "ausgerollt"]
+        }
+      },
+      "counters": {
+        "runs": { "label": "Läufe heute", "value": 128 },
+        "fixed": { "label": "automatisch behoben", "value": 3 },
+        "team": { "label": "von utxo AG gelöst", "value": 1 }
+      }
+    }
+  },
+  "run": {
+    "title": "Ein Lauf, vom Auslöser bis zum Protokoll",
+    "text": "Ein Beispiel aus einer Agentur: Für einen Pitch entsteht eine Wettbewerbsanalyse. Der Recherche-Agent arbeitet in festen Schritten, belegt jede Aussage mit einer Quelle und legt das Ergebnis der Strategieleitung zur Freigabe vor.",
+    "visual": {
+      "label": "Animierte Beispielansicht: Ein Lauf des Recherche-Agenten in sechs Schritten, vom Auslöser über Quellen, Entwurf, Prüfung und Freigabe bis zum Ergebnis, daneben das Protokoll.",
+      "context": "Recherche-Agent",
+      "runLabel": "Lauf",
+      "runNumber": 4812,
+      "live": "läuft",
+      "stations": ["Auslöser", "Quellen", "Entwurf", "Prüfung", "Freigabe", "Ergebnis"],
+      "trigger": {
+        "kicker": "Neues Briefing im Projektordner",
+        "title": "Pitch Nordhof Getränke",
+        "rows": [
+          { "name": "Auftrag", "value": "Wettbewerbsanalyse, fünf Marken" },
+          { "name": "Ausgelöst durch", "value": "Ablage im Projektordner" },
+          { "name": "Frist", "value": "Donnerstag, 12:00 Uhr" }
+        ]
+      },
+      "sources": {
+        "kicker": "Quellen gelesen",
+        "of": "von 14",
+        "items": [
+          { "name": "Geschäftsberichte 2025", "kind": "PDF", "count": 5 },
+          { "name": "Websites der fünf Marken", "kind": "Web", "count": 5 },
+          { "name": "Pressearchiv", "kind": "Archiv", "count": 2 },
+          { "name": "Marktdaten Getränke", "kind": "Daten", "count": 2 }
+        ],
+        "rejected": "2 weitere verworfen: Aussage nicht belegbar"
+      },
+      "draft": {
+        "kicker": "Entwurf",
+        "title": "Wettbewerbsanalyse Nordhof",
+        "sections": [
+          { "name": "Marktüberblick", "cites": "1, 4" },
+          { "name": "Positionierung der fünf Marken", "cites": "2, 6, 7" },
+          { "name": "Preis und Distribution", "cites": "3, 12" },
+          { "name": "Kommunikation", "cites": "8, 9, 11" },
+          { "name": "Chancen für den Pitch", "cites": "5, 14" }
+        ]
+      },
+      "check": {
+        "kicker": "Prüfung vor der Vorlage",
+        "title": "Vier Prüfungen, bevor ein Mensch das Ergebnis sieht",
+        "items": [
+          "Jede Aussage hat eine Quelle",
+          "Zahlen mit der Originalquelle abgeglichen",
+          "Keine vertraulichen Kundendaten",
+          "Umfang und Format wie im Briefing"
+        ],
+        "passed": "bestanden"
+      },
+      "approval": {
+        "kicker": "Freigabepunkt",
+        "initials": "CR",
+        "person": "Carla Renner",
+        "role": "Leitung Strategie",
+        "question": "Analyse an das Pitch-Team weitergeben?",
+        "waiting": "Ihre Freigabe",
+        "approve": "Freigeben",
+        "back": "Zurückgeben",
+        "approved": "freigegeben"
+      },
+      "result": {
+        "kicker": "Ergebnis",
+        "title": "Wettbewerbsanalyse_Nordhof.pdf",
+        "rows": [
+          { "name": "Abgelegt", "value": "Projektordner Pitch Nordhof" },
+          { "name": "Benachrichtigt", "value": "Pitch-Team, 6 Personen" },
+          { "name": "Dauer", "value": "38 Minuten" }
+        ],
+        "done": "erledigt"
+      },
+      "logLabel": "Protokoll",
+      "log": [
+        { "time": "09:12", "text": "Lauf gestartet: neues Briefing" },
+        { "time": "09:14", "text": "14 Quellen gelesen, 2 verworfen" },
+        { "time": "09:31", "text": "Entwurf erstellt, 5 Kapitel" },
+        { "time": "09:34", "text": "Prüfung bestanden, 4 von 4" },
+        { "time": "09:35", "text": "Vorgelegt: Carla Renner" },
+        { "time": "09:48", "text": "Freigegeben: Carla Renner" },
+        { "time": "09:50", "text": "Ergebnis abgelegt, Team benachrichtigt" }
+      ]
+    }
+  },
+  "project": {
+    "title": "So läuft ein Projekt ab",
+    "text": "Manche Anwendungsfälle sind in wenigen Wochen im Betrieb, andere brauchen Monate. Der Ablauf bleibt derselbe.",
+    "steps": [
+      {
+        "name": "Erstgespräch",
+        "text": "Wir klären, welche Abläufe sich eignen, welche Systeme beteiligt sind und woran Sie den Nutzen messen.",
+        "note": "Ergebnis: Einschätzung"
+      },
+      {
+        "name": "Konzept",
+        "text": "Wir beschreiben die Schritte des Agenten, seine Quellen und Rechte, die Freigabepunkte und die Hosting-Umgebung.",
+        "note": "Ergebnis: Konzept"
+      },
+      {
+        "name": "Entwicklung",
+        "text": "Wir entwickeln den Agenten, binden ihn an Ihre Systeme an und prüfen ihn an echten Fällen aus Ihrem Alltag.",
+        "note": "Ergebnis: geprüfter Agent"
+      },
+      {
+        "name": "Pilotbetrieb",
+        "text": "Der Agent arbeitet mit einem ersten Team unter enger Beobachtung. Rückmeldungen fliessen in die nächste Version.",
+        "note": "Ergebnis: Entscheid zum Rollout"
+      },
+      {
+        "name": "Betrieb",
+        "text": "Wir hosten, überwachen und verbessern den Agenten. Sie sehen Status und Protokoll und entscheiden an Ihren Freigabepunkten.",
+        "note": "Laufend"
+      }
+    ]
+  },
+  "control": {
+    "title": "Was Sie sehen und wo Sie entscheiden",
+    "text": "Ein zweites Beispiel, aus dem Vertriebsinnendienst eines Maschinenbauers: Die Teamleitung erhält vorbereitete Vorgänge, gibt sie frei oder schickt sie mit einem Kommentar zurück. Jeder Schritt steht im Protokoll, mit Zeit und Akteur.",
+    "visual": {
+      "label": "Animierte Beispielansicht: Eine Teamleitung gibt einen Vorgang frei und schickt einen zweiten mit Kommentar zurück, das Protokoll füllt sich und wird gefiltert.",
+      "context": "Freigaben · Vertriebsinnendienst",
+      "person": "Martin Vogt",
+      "initials": "MV",
+      "status": {
+        "wait": "Ihre Freigabe",
+        "run": "in Arbeit",
+        "done": "freigegeben",
+        "rework": "in Überarbeitung"
+      },
+      "approve": "Freigeben",
+      "back": "Zurückgeben",
+      "working": "wird vorbereitet",
+      "items": [
+        {
+          "agent": "Angebots-Agent",
+          "title": "Angebot 24-0318, Kessler Fördertechnik",
+          "ref": "Angebot 24-0318",
+          "meta": "3 Positionen, Lieferzeit 6 Wochen",
+          "comment": "Bitte die Lieferzeit mit dem Einkauf abstimmen.",
+          "revised": "Überarbeitet: Lieferzeit 8 Wochen bestätigt"
+        },
+        {
+          "agent": "Auftrags-Agent",
+          "title": "Auftragsbestätigung 88214, Hagen Antriebe",
+          "ref": "Auftrag 88214",
+          "meta": "Abweichung zur Bestellung: Zahlungsziel",
+          "comment": "Zahlungsziel laut Rahmenvertrag: 30 Tage.",
+          "revised": "Überarbeitet: Zahlungsziel 30 Tage"
+        },
+        {
+          "agent": "Angebots-Agent",
+          "title": "Angebot 24-0321, Lindner Verpackung",
+          "ref": "Angebot 24-0321",
+          "meta": "7 Positionen, Sonderlackierung",
+          "comment": "Die Sonderlackierung bitte als Option ausweisen.",
+          "revised": "Überarbeitet: Lackierung als Option"
+        },
+        {
+          "agent": "Reklamations-Agent",
+          "title": "Reklamation R-5530, Bauer Logistik",
+          "ref": "Reklamation R-5530",
+          "meta": "Vorschlag: Ersatzlieferung, Antwortentwurf",
+          "comment": "Vorher mit dem Service einen Termin klären.",
+          "revised": "Überarbeitet: Servicetermin am 14. März"
+        },
+        {
+          "agent": "Auftrags-Agent",
+          "title": "Auftragsbestätigung 88219, Weber Anlagenbau",
+          "ref": "Auftrag 88219",
+          "meta": "Teillieferung in zwei Losen",
+          "comment": "Das zweite Los bitte mit Datum nennen.",
+          "revised": "Überarbeitet: zweites Los in KW 16"
+        }
+      ],
+      "logLabel": "Protokoll",
+      "filters": ["Alle", "Entscheidungen", "Agenten"],
+      "actions": {
+        "submit": "legt vor",
+        "approve": "gibt frei",
+        "back": "gibt zurück, mit Kommentar",
+        "revise": "legt überarbeitet vor"
+      }
+    }
+  },
+  "integration": {
+    "title": "Einbindung in Ihre Systeme",
+    "text": "Agenten arbeiten dort, wo Ihre Daten und Abläufe schon sind. Welche Systeme angebunden werden und welche Rechte ein Agent erhält, legen wir gemeinsam fest.",
+    "items": [
+      {
+        "name": "Anbindung",
+        "text": "Über Schnittstellen an ERP, CRM, DMS, Projektablage oder E-Mail. Ein Agent erhält nur die Rechte, die er für seine Aufgabe braucht.",
+        "tag": "API · minimale Rechte"
+      },
+      {
+        "name": "Freigabepunkte",
+        "text": "Sie legen fest, an welchen Stellen ein Mensch entscheidet und wer das ist. Alles andere läuft ohne Eingriff durch.",
+        "tag": "Der Mensch entscheidet"
+      },
+      {
+        "name": "Sicht für Ihr Team",
+        "text": "Status, Ergebnisse und Freigaben in einer Ansicht. Wie Ihr Team darauf zugreift, etwa über Ihr SSO, klären wir im Konzept.",
+        "tag": "Status · Freigaben · Protokoll"
+      },
+      {
+        "name": "Betrieb",
+        "text": "utxo AG hostet und überwacht die Agenten. Störungen, Wiederholungen und neue Versionen sind unsere Aufgabe und stehen im Protokoll.",
+        "tag": "utxo AG"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Was unterscheidet Managed Agents von Agenten, die wir selbst betreiben?",
+      "a": "Sie brauchen kein eigenes Team für Betrieb, Überwachung und Weiterentwicklung. utxo AG übernimmt diese Aufgaben. Sie steuern über Ihre Vorgaben und Freigaben und sehen jederzeit, was läuft."
+    },
+    {
+      "q": "Wo laufen die Agenten und wo liegen unsere Daten?",
+      "a": "Hosting nach Ihren Anforderungen: Deutschland, EU oder on-premise. Das legen wir pro Projekt fest. Die Verarbeitung erfolgt nur auf Ihre Weisung, ohne Training mit Ihren Daten. Die AVV erstellen wir individuell für Ihr Projekt."
+    },
+    {
+      "q": "Welche KI-Modelle kommen zum Einsatz?",
+      "a": "Wir arbeiten modellunabhängig und wählen das Modell nach Aufgabe und Anforderungen. Den Einsatz lokaler Open-Source-Modelle prüfen wir projektbezogen."
+    },
+    {
+      "q": "Was passiert, wenn ein Lauf fehlschlägt oder ein Agent ein falsches Ergebnis liefert?",
+      "a": "Jeder Lauf wird überwacht. Ein fehlgeschlagener Lauf wird wiederholt oder geht an unser Team. Wo es darauf ankommt, gibt ein Mensch frei, bevor ein Ergebnis weitergeht. Jede Aktion steht im Protokoll und lässt sich nachvollziehen."
+    },
+    {
+      "q": "Wie lange dauert es, bis ein Agent im Betrieb ist?",
+      "a": "Das hängt vom Anwendungsfall ab. Manche sind in wenigen Wochen im Betrieb, andere brauchen Monate, etwa wenn mehrere Systeme angebunden werden. Nach dem Erstgespräch erhalten Sie eine Einschätzung."
+    },
+    {
+      "q": "Können wir Abläufe und Freigabepunkte später ändern?",
+      "a": "Ja. Agenten werden im Betrieb laufend weiterentwickelt. Wenn sich Ihre Abläufe ändern oder ein Freigabepunkt wegfallen oder hinzukommen soll, passen wir den Agenten an und spielen die neue Version geprüft ein."
+    }
+  ]
+}

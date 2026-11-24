@@ -1,0 +1,168 @@
+---
+/*
+  Roadmap (AI Adoption detail page, on the dark block): five use cases of different length in three waves.
+  A playhead runs through nine months; each lane fills its estimate (analysis, pilot), waits for the release
+  (white pill) and then runs in operation. Underneath, trained teams and shared infrastructure grow with it.
+  Positions are percentages of the chart width (weeks / total); fills are scaleX(--p). The markup is the frame
+  STILL from roadmap-model.js (no-JS and reduced-motion state).
+*/
+import { plan, laneAt, layerAt, state, monthAt, STILL } from './roadmap-model.js';
+
+const { t } = Astro.props;
+const m = t.servicePages['ai-adoption'].roadmap;
+const total = m.weeks;
+const months = total / m.weeksPerMonth;
+const pct = (weeks) => `${((weeks / total) * 100).toFixed(3)}%`;
+const lanes = m.lanes.map((lane, index) => {
+  const p = plan(lane);
+  return { ...lane, ...p, frame: laneAt(p, STILL, total), first: index === 0 || m.lanes[index - 1].wave !== lane.wave };
+});
+const spans = (lane) => [[lane.start, lane.mid], [lane.mid, lane.live], [lane.live, total]];
+const kinds = ['a', 'p', 'l'];
+---
+<div class="aap-rm" data-aap="roadmap" data-weeks={total} data-wpm={m.weeksPerMonth} role="img" aria-label={m.label}>
+  <div class="mock-bar label"><span>{m.context}</span><span class="mock-live"><i></i>{t.mockup.live}</span></div>
+  <dl class="aap-rm-stats">
+    <div><dt class="label">{m.stats.month}</dt><dd data-stat="month">{monthAt(STILL, total, m.weeksPerMonth)}</dd></div>
+    <div><dt class="label">{m.stats.live}</dt><dd data-stat="live">{lanes.filter((lane) => lane.frame.live).length}</dd></div>
+    <div><dt class="label">{m.stats.teams}</dt><dd data-stat="teams">{lanes.filter((lane) => lane.frame.trained).length}</dd></div>
+  </dl>
+  <div class="aap-rm-chart">
+    <div class="aap-rm-grid" aria-hidden="true" style={`--months:${months}`}><i class="aap-rm-now" data-now style={`--now:${STILL / total}`}></i></div>
+    <div class="aap-rm-lane aap-rm-axis label">
+      <p>{m.month}</p>
+      <ol style={`--months:${months}`}>{Array.from({ length: months }, (_, i) => <li>{i + 1}</li>)}</ol>
+    </div>
+    {lanes.map((lane) => (
+      <Fragment>
+        {lane.first && <p class="aap-rm-wave label">{m.waves[lane.wave]}</p>}
+        <div class="aap-rm-lane" data-lane data-start={lane.start} data-mid={lane.mid} data-live={lane.live} data-trained={lane.trained}>
+          <p class="aap-rm-name"><b>{lane.name}</b><span>{lane.form} · {lane.estimate}</span></p>
+          <div class="aap-rm-track">
+            {spans(lane).map(([from, to], k) => (
+              <span class={`aap-rm-seg aap-rm-seg--${kinds[k]}`} style={`left:${pct(from)};width:${pct(to - from)}`} data-state={state(lane.frame.fills[k])}><i style={`--p:${lane.frame.fills[k]}`} data-fill></i></span>
+            ))}
+            <i class:list={['aap-rm-dot', { 'is-on': lane.frame.live }]} style={`left:${pct(lane.live)}`} data-dot></i>
+            <em class:list={['st is-human aap-rm-gate', { 'is-on': lane.frame.gate }]} style={`left:${pct(lane.live)}`} data-gate>{m.gate}</em>
+          </div>
+        </div>
+      </Fragment>
+    ))}
+    <p class="aap-rm-wave aap-rm-wave--cap label">{m.capability.title}</p>
+    <div class="aap-rm-lane aap-rm-lane--teams">
+      <p class="aap-rm-name"><b>{m.capability.teams}</b></p>
+      <div class="aap-rm-track">
+        {lanes.map((lane) => <span class:list={['aap-rm-team label', { 'is-on': lane.frame.trained, 'is-end': lane.trained / total > 0.85 }]} style={`left:${pct(lane.trained)}`} data-team={lane.trained}>{lane.team}</span>)}
+      </div>
+    </div>
+    <div class="aap-rm-lane aap-rm-lane--infra">
+      <p class="aap-rm-name"><b>{m.capability.infrastructure}</b></p>
+      <div class="aap-rm-layers">
+        {m.capability.layers.map((layer) => (
+          <p class:list={['aap-rm-layer', { 'is-on': STILL >= layer.at }]} style={`margin-left:${pct(layer.at)}`} data-layer={layer.at}>
+            <span>{layer.name}</span><i style={`--p:${layerAt(layer.at, STILL, total)}`} data-fill></i>
+          </p>
+        ))}
+      </div>
+    </div>
+  </div>
+  <ul class="aap-rm-legend label">
+    {m.phases.map((name, k) => <li class={`aap-rm-key--${kinds[k]}`}><i></i>{name}</li>)}
+  </ul>
+</div>
+
+<script>
+  import { roadmap } from './roadmap.js';
+
+  document.querySelectorAll('[data-aap="roadmap"]').forEach(roadmap);
+</script>
+
+<style is:global>
+/*
+  --lw is the width of the name column; the chart area (months, tracks, grid lines, playhead) is everything right of it.
+  A segment (.aap-rm-seg) shows the estimate as a faint shape; its <i> is the elapsed part.
+  data-state on a segment: plan, run (green: in work, or in operation) or done.
+*/
+.aap-rm{container-type:inline-size;--lw:25%;--aap-small:clamp(11px, .84vw, 12.5px);--rm-done:rgba(238,240,246,.62);font-size:clamp(13.5px, 1.04vw, 15.5px);line-height:1.25}
+.aap-rm .mock-live i{background:var(--phthalo-lift)}
+.aap-rm-stats{display:flex;justify-content:flex-end;gap:clamp(22px, 3vw, 48px);margin-top:clamp(14px, 1.6vw, 24px);text-align:right}
+.aap-rm-stats dt{color:var(--m-muted);margin-bottom:5px}
+.aap-rm-stats dd{font-size:clamp(24px, 2.6vw, 40px);font-weight:500;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.aap-rm-chart{position:relative;margin-top:clamp(10px, 1.2vw, 18px)}
+.aap-rm-grid{position:absolute;left:var(--lw);right:0;top:0;bottom:0;background:repeating-linear-gradient(90deg, var(--m-rule) 0 1px, transparent 1px calc(100% / var(--months)));border-right:1px solid var(--m-rule)}
+.aap-rm-now{position:absolute;inset:0;transform:translateX(calc(var(--now) * 100%))}
+.aap-rm-now::before{content:"";position:absolute;left:-1px;top:26px;bottom:0;width:1px;background:var(--m-fg);opacity:.75}
+.aap-rm-now::after{content:"";position:absolute;left:-4px;top:22px;width:7px;height:7px;border-radius:50%;background:var(--m-fg)}
+.aap-rm-lane{position:relative;display:grid;grid-template-columns:var(--lw) minmax(0,1fr);align-items:center;min-height:46px}
+.aap-rm-axis{min-height:26px;color:var(--m-muted)}
+.aap-rm-axis ol{display:grid;grid-template-columns:repeat(var(--months),minmax(0,1fr))}
+.aap-rm-axis li{padding-left:7px}
+.aap-rm-wave{position:relative;margin-top:12px;padding:9px 0 2px;border-top:1px solid var(--m-rule);color:var(--m-muted)}
+.aap-rm-wave--cap{margin-top:22px;color:var(--m-fg)}
+.aap-rm-name{min-width:0;padding-right:16px}
+.aap-rm-name b{display:block;font-weight:500;letter-spacing:-.015em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.aap-rm-name span{display:block;margin-top:2px;color:var(--m-muted);font-size:var(--aap-small);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.aap-rm-track{position:relative;height:16px}
+.aap-rm-seg{position:absolute;top:50%;height:16px;margin-top:-8px;border-radius:3px;overflow:hidden;background:rgba(238,240,246,.1)}
+.aap-rm-seg--a{height:6px;margin-top:-3px}
+.aap-rm-seg--a,.aap-rm-seg--p{box-shadow:inset -2px 0 0 #101216}
+.aap-rm-seg--l{height:2px;margin-top:-1px;background:rgba(238,240,246,.07)}
+.aap-rm-seg i{display:block;height:100%;background:var(--rm-done);transform-origin:0 50%;transform:scaleX(var(--p));transition:background-color var(--t-move)}
+.aap-rm-seg[data-state="run"] i{background:var(--phthalo-lift)}
+.aap-rm-seg--l i{background:var(--phthalo-lift)}
+.aap-rm-dot{position:absolute;top:50%;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;background:var(--m-fg);box-shadow:0 0 0 3px #111317;opacity:0;transform:scale(.3);transition:opacity var(--t-fast),transform var(--t-fast) var(--ease)}
+.aap-rm-dot.is-on{opacity:1;transform:none}
+.aap-rm-gate{position:absolute;top:50%;z-index:1;font-size:var(--aap-small);opacity:0;transform:translate(-50%,-50%) scale(.7);transition:opacity var(--t-fast),transform var(--t-fast) var(--ease)}
+.aap-rm-gate.is-on{opacity:1;transform:translate(-50%,-50%)}
+
+.aap-rm-lane--teams{min-height:58px}
+.aap-rm-lane--teams .aap-rm-track::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--m-rule)}
+.aap-rm-team{position:absolute;top:50%;padding-left:12px;line-height:1;white-space:nowrap;color:var(--m-fg);opacity:0;transform:translateY(calc(-50% - 13px));transition:opacity var(--t-move)}
+.aap-rm-team:nth-child(even){transform:translateY(calc(-50% + 13px))}
+.aap-rm-team::before{content:"";position:absolute;left:-3.5px;top:50%;width:7px;height:7px;margin-top:9.5px;border-radius:50%;background:var(--m-fg)}
+.aap-rm-team:nth-child(even)::before{margin-top:-16.5px}
+.aap-rm-team::after{content:"";position:absolute;left:0;top:50%;width:1px;height:12px;background:var(--m-fg);opacity:.4}
+.aap-rm-team:nth-child(even)::after{margin-top:-12px}
+.aap-rm-team.is-end{padding:0 12px 0 0;translate:-100% 0}
+.aap-rm-team.is-end::before{left:auto;right:-3.5px}
+.aap-rm-team.is-end::after{left:auto;right:0}
+.aap-rm-team.is-on{opacity:1}
+.aap-rm-lane--infra{align-items:start;padding:10px 0 2px}
+.aap-rm-lane--infra .aap-rm-name{padding-top:3px}
+.aap-rm-layer{padding-bottom:9px}
+.aap-rm-layer span{display:block;color:var(--m-muted);font-size:var(--aap-small);white-space:nowrap;opacity:.6;transition:opacity var(--t-move),color var(--t-move)}
+.aap-rm-layer.is-on span{opacity:1;color:var(--m-fg)}
+.aap-rm-layer i{display:block;height:3px;margin-top:5px;border-radius:3px;background:var(--rm-done);transform-origin:0 50%;transform:scaleX(var(--p))}
+.aap-rm-legend{display:flex;flex-wrap:wrap;gap:8px clamp(16px, 2vw, 30px);margin-top:clamp(16px, 1.8vw, 26px);padding-left:var(--lw);color:var(--m-muted)}
+.aap-rm-legend li{display:flex;align-items:center;gap:9px}
+.aap-rm-legend i{width:26px;height:14px;border-radius:3px;background:var(--rm-done)}
+.aap-rm-key--a i{height:6px}
+.aap-rm-key--l i{height:2px;background:var(--phthalo-lift)}
+
+.js .aap-rm > *{opacity:0;transition:opacity var(--t-enter) ease .2s}
+.js .is-in .aap-rm > *{opacity:1}
+.js .aap-rm-lane,.js .aap-rm-wave{opacity:0;transform:translateY(14px);transition:opacity var(--t-move) ease,transform var(--t-enter) var(--ease)}
+.js .is-in :is(.aap-rm-lane,.aap-rm-wave){opacity:1;transform:none}
+.js .aap-rm-chart > :nth-child(n+2){transition-delay:.3s}
+
+/* narrow chart: the name sits above its track */
+@container (max-width:760px){
+  .aap-rm-chart{--lw:0%}
+  .aap-rm-legend{padding-left:0}
+  .aap-rm-lane{display:block;min-height:0;padding:8px 0 10px}
+  .aap-rm-axis{padding:0 0 6px}
+  .aap-rm-axis p{display:none}
+  .aap-rm-axis li{padding-left:4px}
+  .aap-rm-name{padding:0 0 9px}
+  .aap-rm-now::before{top:20px}
+  .aap-rm-now::after{top:16px}
+  .aap-rm-lane--teams .aap-rm-track{height:44px}
+  .aap-rm-lane--infra{padding-bottom:0}
+  .aap-rm :is(.aap-rm-name span,.aap-rm-layer span,.aap-rm-gate,.label){font-size:11px}
+  .aap-rm .aap-rm-team{padding-left:9px;font-size:10.5px;letter-spacing:0}
+  .aap-rm-team.is-end{padding:0 9px 0 0}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .aap-rm > *,.js .aap-rm-lane,.js .aap-rm-wave,.aap-rm-dot,.aap-rm-gate,.aap-rm-team,.aap-rm-layer span{transition:none}
+}
+</style>

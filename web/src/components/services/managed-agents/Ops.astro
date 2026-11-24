@@ -1,0 +1,114 @@
+---
+/*
+  The operations side that utxo AG takes care of: three agents with their runs drifting past as ticks
+  (newest on the right), the events the monitoring raises, and three counters.
+  The markup is the reduced-motion and no-JS frame: one failed run was retried, a second one is with the team.
+  Props: v = t.servicePages['managed-agents'].scope.visual
+*/
+import { shift, version } from './model.js';
+
+const { v } = Astro.props;
+const TICKS = 22;
+const PASS = 20;
+const { retry, escalate, rollout } = v.events;
+const heights = (lane) => Array.from({ length: TICKS }, (_, k) => 0.45 + (((k * 7 + lane * 5) * 37) % 11) / 20);
+const rows = [
+  { time: escalate.time, who: v.lanes[escalate.lane], title: escalate.title, state: escalate.states[1], kind: 'human' },
+  { time: retry.time, who: v.lanes[retry.lane], title: retry.title, state: retry.states[2], kind: 'done' },
+  { time: shift(rollout.time, -PASS), who: rollout.who, title: rollout.title.replace('{v}', version(v.version)), state: rollout.states[2], kind: 'done' },
+];
+const data = JSON.stringify({ events: v.events, lanes: v.lanes, version: v.version, counters: Object.fromEntries(Object.entries(v.counters).map(([key, counter]) => [key, counter.value])) });
+---
+<div class="map-ops" data-map-ops data-ops={data} role="img" aria-label={v.label}>
+  <div class="map-ops-win mock-light">
+    <div class="mock-bar label"><span>{v.context}</span><span class="mock-live"><i></i>{v.live}</span></div>
+    <div class="map-ops-lanes">
+      <p class="map-ops-h label"><span>{v.lanesLabel}</span><span>{v.now}</span></p>
+      {v.lanes.map((name, lane) => (
+        <div class="map-ops-lane" style={`--i:${lane}`}>
+          <b>{name}</b>
+          <em class="map-ops-ver">v<span data-version>{version(v.version)}</span></em>
+          <div class="map-ops-strip" data-strip>
+            {heights(lane).map((h, k) => <i class:list={[k === TICKS - 1 && 'is-run', lane === escalate.lane && k === TICKS - 3 && 'is-fail']} style={`--k:${k};--h:${h.toFixed(2)}`}></i>)}
+          </div>
+        </div>
+      ))}
+    </div>
+    <div class="map-ops-events">
+      <p class="map-ops-h label"><span>{v.eventsLabel}</span></p>
+      <ol>
+        {rows.map((row, i) => (
+          <li data-kind={row.kind} style={`--i:${i}`}>
+            <time>{row.time}</time>
+            <span class="map-ops-what"><b>{row.who}</b><span>{row.title}</span></span>
+            <em class:list={['st', row.kind === 'human' && 'is-human']}>{row.state}</em>
+          </li>
+        ))}
+      </ol>
+    </div>
+    <div class="console-foot map-ops-foot">
+      {Object.entries(v.counters).map(([key, counter]) => <div><small>{counter.label}</small><b data-count={key}>{counter.value}</b></div>)}
+    </div>
+  </div>
+</div>
+
+<script>
+  import { ops } from './ops.js';
+
+  document.querySelectorAll('[data-map-ops]').forEach(ops);
+</script>
+
+<style is:global>
+.map-ops{container-type:inline-size}
+.map-ops-win{--small:max(11px, .82em);overflow:hidden;border-radius:var(--radius);padding:clamp(18px, 4.2cqw, 34px);font-size:clamp(13px, 1.95cqw, 15.5px);line-height:1.3;box-shadow:0 44px 80px -42px rgba(12,18,48,.3)}
+.map-ops .mock-live i{background:var(--phthalo)}
+.map-ops .st{font-size:var(--small)}
+.map-ops-h{display:flex;justify-content:space-between;color:var(--m-muted);padding:clamp(16px, 3cqw, 24px) 0 8px}
+
+.map-ops-lane{display:grid;grid-template-columns:30% 3.6em minmax(0,1fr);gap:16px;align-items:center;padding:clamp(10px, 1.8cqw, 15px) 0;border-top:1px solid var(--m-rule)}
+.map-ops-lane > b{font-weight:600;font-size:1.06em;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.map-ops-ver{font-style:normal;font-size:var(--small);font-weight:600;color:var(--m-muted);font-variant-numeric:tabular-nums;transition:color var(--t-fast)}
+.map-ops-ver.is-new{color:var(--phthalo)}
+.map-ops-ver span{display:inline-block}
+/* a strip of runs: every tick sits at k / n of the width; the script moves them to the left and wraps them */
+.map-ops-strip{position:relative;height:28px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg, transparent 0, #000 16%, #000 100%);mask-image:linear-gradient(90deg, transparent 0, #000 16%, #000 100%)}
+.map-ops-strip i{position:absolute;left:calc((var(--k) + .5) / 22 * 100% - 2px);bottom:0;width:4px;height:100%;border-radius:2px;background:var(--m-fg);opacity:.26;transform-origin:50% 100%;transform:scaleY(var(--h))}
+.map-ops-strip i.is-run{background:var(--phthalo);opacity:1}
+.map-ops-strip i.is-fail{background:none;opacity:1;box-shadow:inset 0 0 0 1.5px var(--m-fg)}
+.map-ops-strip i.is-fixed{opacity:.5}
+
+.map-ops-events ol{border-bottom:1px solid var(--m-rule)}
+.map-ops-events li{display:grid;grid-template-columns:3.4em minmax(0,1fr) auto;gap:16px;align-items:center;height:clamp(50px, 8.6cqw, 62px);border-top:1px solid var(--m-rule)}
+.map-ops-events time{color:var(--m-muted);font-variant-numeric:tabular-nums}
+.map-ops-what{display:flex;gap:0 .8em;min-width:0;flex-wrap:wrap;height:1.3em;overflow:hidden}
+.map-ops-what b{font-weight:600;white-space:nowrap}
+.map-ops-what span{color:var(--m-muted);white-space:nowrap}
+.map-ops-events [data-kind="run"] .st{color:var(--phthalo)}
+.map-ops-events [data-kind="done"] .st{color:var(--m-muted)}
+.map-ops-foot{gap:16px}
+.map-ops-foot b{font-size:clamp(22px, 4.6cqw, 36px);font-variant-numeric:tabular-nums}
+.map-ops-foot small{font-size:var(--small)}
+
+.js .map-ops-win{opacity:0;transform:translateY(48px);transition:transform var(--t-stage) var(--ease) .1s,opacity var(--t-move) ease .1s}
+.js .is-in .map-ops-win{opacity:1;transform:none}
+.js .map-ops-lane,.js .map-ops-events li{opacity:0;transform:translateY(12px);transition:opacity var(--t-move) ease,transform var(--t-move) var(--ease);transition-delay:calc(500ms + var(--i) * 120ms)}
+.js .map-ops-events li{transition-delay:calc(860ms + var(--i) * 120ms)}
+.js .is-in .map-ops-lane,.js .is-in .map-ops-events li{opacity:1;transform:none}
+.js [data-step] .map-ops-events li{transition-delay:0s}
+
+/* narrow frame: name and version on one line, the strip below; an event shows its title under the agent */
+@container (max-width:560px){
+  .map-ops-lane{grid-template-columns:minmax(0,1fr) auto;gap:8px 12px}
+  .map-ops-strip{grid-column:1 / -1}
+  .map-ops-events li{grid-template-columns:3em minmax(0,1fr) auto;gap:10px;height:64px}
+  .map-ops-what{display:block;height:auto}
+  .map-ops-what b,.map-ops-what span{display:block;overflow:hidden;text-overflow:ellipsis}
+  .map-ops-foot{gap:10px}
+}
+@media (max-width:760px){
+  .map-ops-win{--small:max(10px, .8em)}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .map-ops-win,.js .map-ops-lane,.js .map-ops-events li{transition:none;opacity:1;transform:none}
+}
+</style>

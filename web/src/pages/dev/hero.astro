@@ -1,0 +1,19 @@
+---
+/* Development page: header and hero stage only (wordmark scene and the header panels inside the stage). Not linked; 404 in production. */
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import de from '../../i18n/de/index.js';
+
+---
+<Base t={de}>
+  <Header t={de} panels={false} />
+  <main id="main">
+    <Hero t={de} />
+    <div class="dev-space"></div>
+  </main>
+</Base>
+
+<style is:global>
+.dev-space{height:120vh}
+</style>

@@ -1,0 +1,127 @@
+{
+  "title": "Agent Factories and AI Infrastructure | utxo AG",
+  "description": "Shared infrastructure and a governed production line your organization uses to develop, test, approve and update AI agents at scale.",
+  "lede": "We develop the shared infrastructure and the production line your organization uses to develop, test, approve and update many AI agents by one consistent process.",
+  "scope": {
+    "title": "What you get",
+    "text": "An agent factory has two parts: the infrastructure all agents share, and the line every new agent passes on its way into operation. Every agent has the same structure, from the first to the hundredth.",
+    "points": [
+      { "name": "Shared infrastructure", "text": "Hosting, model access, data access, identity and audit log are set up once and apply to every agent.", "tag": "Foundation" },
+      { "name": "Agent templates", "text": "A new agent starts from a reviewed template. Structure, policies and tests carry your requirements from the start.", "tag": "Template" },
+      { "name": "Integration with your systems", "text": "Interfaces to ERP, CRM, DMS and business applications are developed once and reused by all agents.", "tag": "Integration" },
+      { "name": "Test and approval", "text": "Every agent and every new version runs through defined tests. Only what a human has approved goes into operation.", "tag": "Approval" },
+      { "name": "Operation and updates", "text": "Versions, status and logs of all agents in one overview. Changes are rolled out to the entire fleet in a controlled way.", "tag": "Operation" }
+    ]
+  },
+  "anatomy": {
+    "label": "Animated sample view: one agent, taken apart into its five layers version, tests, policies, integrations and template.",
+    "context": "Anatomy of an agent",
+    "agent": "Quote review agent",
+    "layers": [
+      { "name": "Version", "text": "3.2, approved. Every change is traceable and can be rolled back." },
+      { "name": "Tests", "text": "42 test cases that run in full before every approval." },
+      { "name": "Policies", "text": "What the agent may do, what it may not, and when it asks a human." },
+      { "name": "Integrations", "text": "ERP, CRM and DMS through the shared interfaces." },
+      { "name": "Template", "text": "Structure, roles and workflows from the reviewed template." }
+    ],
+    "whole": { "name": "One agent, five layers", "text": "Version 3.2 · in operation" }
+  },
+  "practice": {
+    "title": "An example: one new rule for 24 agents",
+    "text": "An agency group operates 24 agents in four units. The data protection officer requires a stricter rule for handling client data. The rule is changed once in the template, checked against the tests of every agent and, after approval, rolled out to the fleet. One agent fails its tests. It stays on the previous version until it has been adjusted and the platform team has decided.",
+    "rollout": {
+      "label": "Animated sample view: a new version is rolled out to 24 agents. One agent is held back after a failed test until a human approves.",
+      "context": "Rollout · Client data policy",
+      "version": "3.2",
+      "versionLabel": "Version",
+      "updatedLabel": "Updated",
+      "rows": ["Consulting", "Creative", "Media", "Finance"],
+      "stages": {
+        "template": "Change in the template",
+        "test": "Tests per agent",
+        "gate": "Platform team approval",
+        "roll": "Rollout to the fleet"
+      },
+      "states": {
+        "open": "open",
+        "run": "running",
+        "done": "done",
+        "failed": "1 open",
+        "approve": "Your approval",
+        "approved": "approved",
+        "held": "held back"
+      },
+      "status": {
+        "test": "Tests running",
+        "wait": "Waiting for approval",
+        "roll": "Rollout running",
+        "done": "Completed"
+      },
+      "held": {
+        "short": "Travel expenses",
+        "name": "Travel expenses agent · Finance",
+        "fail": "Test 7 of 12 failed. Stays on version {v}.",
+        "fixed": "Agent adjusted, 12 of 12 tests passed.",
+        "done": "Updated to version {v}."
+      }
+    }
+  },
+  "process": {
+    "title": "How a project runs",
+    "text": "The scope depends on where you start. Some projects are in production within a few weeks, others take months. The factory grows along concrete use cases.",
+    "steps": [
+      { "name": "Assessment", "text": "With business units, IT and data protection we clarify which agents are planned, which systems they need and which requirements apply.", "note": "Result: target picture" },
+      { "name": "Foundation", "text": "Hosting, model access, identity, data access and audit log are set up in the agreed environment.", "note": "Result: infrastructure" },
+      { "name": "First agent", "text": "One concrete use case passes the entire line: template, integration, test, approval.", "note": "Result: agent in operation" },
+      { "name": "Series", "text": "Further agents are created from the templates. How much of this your own team takes on is agreed together.", "note": "Result: fleet" },
+      { "name": "Operation", "text": "utxo AG monitors the platform, maintains templates and integrations and rolls out changes in a controlled way.", "note": "Ongoing" }
+    ]
+  },
+  "operation": {
+    "title": "Integration and operation",
+    "text": "The factory becomes part of your system landscape. Agents reach models and data through one shared layer. That is why a model can be replaced without changing a single agent.",
+    "points": [
+      { "name": "Your systems", "text": "Sign-in through your SSO, roles from your directory, data from ERP, CRM and DMS through approved interfaces.", "tag": "SSO · API" },
+      { "name": "Models", "text": "Model-agnostic. You decide which model is used for each use case. Local open-source models are assessed per project.", "tag": "Interchangeable" },
+      { "name": "Roles", "text": "You define who may create agents, who may approve and who may operate them. Creating and approving can be separated.", "tag": "Create · Approve · Operate" },
+      { "name": "Visibility", "text": "Every action is logged. Your team sees which agent worked when, with which data and which model.", "tag": "Audit log" },
+      { "name": "Operation", "text": "utxo AG develops, hosts and monitors the platform. Hosting tailored to your requirements: Germany, EU or on-premises.", "tag": "Germany · EU · on-premises" }
+    ],
+    "platform": {
+      "label": "Animated sample view: agent requests pass through one shared layer to a model. The model is switched after approval, the agents remain unchanged.",
+      "context": "Platform · Requests",
+      "agentsLabel": "Agents",
+      "agents": ["Quote review", "Briefing assistant", "Invoice matching", "Research"],
+      "agentsNote": "Agents unchanged",
+      "coreLabel": "Shared layer",
+      "gates": ["Identity and access", "Policies", "Model selection"],
+      "modelsLabel": "Models",
+      "models": [
+        { "name": "Model A", "where": "EU cloud" },
+        { "name": "Model B", "where": "EU cloud" },
+        { "name": "Local model", "where": "on-premises" }
+      ],
+      "states": { "active": "active", "ready": "ready", "check": "in review" },
+      "swap": { "label": "Model switch", "approve": "Your approval", "approved": "approved" },
+      "logLabel": "Audit log",
+      "clock": "14:02",
+      "actions": [
+        { "text": "reads quote", "source": 0 },
+        { "text": "reads client file", "source": 1 },
+        { "text": "reads invoice", "source": 0 },
+        { "text": "searches contracts", "source": 2 },
+        { "text": "reads briefing", "source": 2 }
+      ],
+      "dataLabel": "Data",
+      "data": ["ERP", "CRM", "DMS"]
+    }
+  },
+  "faq": [
+    { "q": "How does an agent factory differ from individual agent projects?", "a": "Individual projects solve hosting, access rights, integrations and tests anew each time. In an agent factory these parts exist once and apply to all agents. New agents take less effort, and a change to rules or models is made in one place." },
+    { "q": "When does an agent factory make sense?", "a": "As soon as it is foreseeable that several agents will be created in different units and the same requirements for data protection, access and approval should apply to all of them. For a single agent, our Managed Agents service is usually the better starting point." },
+    { "q": "Are we tied to a specific model or vendor?", "a": "No. The platform is model-agnostic. Agents address models through one shared layer, so a model can be replaced without adjusting the agents. Local open-source models are assessed per project." },
+    { "q": "Where is the platform hosted?", "a": "According to your requirements: in Germany, in the EU or on-premises. This is decided per project. We create the data processing agreement individually for your project. Processing takes place only on your instructions, and your data is not used for training." },
+    { "q": "Can our own team develop agents in the factory?", "a": "Yes. Your developers work with the same templates, integrations and tests as we do. How the work is divided between your team and utxo AG is agreed together." },
+    { "q": "What experience does utxo AG have with infrastructure for AI agents?", "a": "Masumi, the decentralized infrastructure through which AI agents find, identify and pay each other, and the Sokosumi platform are developed and operated together with the Serviceplan Group. utxo AG is responsible for technology and hosting." }
+  ]
+}

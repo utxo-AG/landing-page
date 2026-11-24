@@ -1,0 +1,308 @@
+{
+  "title": "Managed Agents: AI agents developed, hosted and monitored | utxo AG",
+  "description": "utxo AG develops, hosts and monitors your AI agents. You see what is running and decide at defined approval points. Every action is logged.",
+  "lede": "Your AI agents run in our operations: developed, hosted, monitored and continuously improved by utxo AG. Your team sees the status and decides at the points you define.",
+  "scope": {
+    "title": "What we take on for you",
+    "text": "You do not operate anything yourself. utxo AG develops the agents for your processes, runs them in the agreed environment and takes care of everything that comes up in day-to-day operation.",
+    "items": [
+      {
+        "name": "Development",
+        "text": "Agents for your specific processes, connected to your systems and tested on real cases from your daily work.",
+        "tag": "Custom"
+      },
+      {
+        "name": "Hosting",
+        "text": "Operation in the environment that fits your requirements: Germany, EU or on-premise. We decide this per project.",
+        "tag": "Germany · EU · on-premise"
+      },
+      {
+        "name": "Monitoring",
+        "text": "We watch every run. If one fails, it is retried or taken over by our team.",
+        "tag": "Every run"
+      },
+      {
+        "name": "Ongoing development",
+        "text": "We test new versions, model changes and adjustments to changed processes and roll them out during operation.",
+        "tag": "Model-agnostic"
+      },
+      {
+        "name": "Log",
+        "text": "Every action is logged: what an agent did, which sources it used and who approved.",
+        "tag": "Traceable"
+      }
+    ],
+    "visual": {
+      "label": "Animated sample view: monitoring detects a failed run and retries it, hands a second case to the utxo AG team and rolls out a new version.",
+      "context": "Operations · utxo AG",
+      "live": "Monitoring active",
+      "lanesLabel": "Runs",
+      "now": "now",
+      "version": 23,
+      "lanes": ["Research agent", "Reporting agent", "Quote agent"],
+      "eventsLabel": "Events",
+      "events": {
+        "retry": {
+          "lane": 0,
+          "time": "09:42",
+          "title": "Source not reachable",
+          "states": ["Error detected", "Retry running", "resolved"]
+        },
+        "escalate": {
+          "lane": 1,
+          "time": "09:47",
+          "title": "Check not passed",
+          "states": ["Error detected", "utxo AG takes over", "resolved"]
+        },
+        "rollout": {
+          "time": "09:55",
+          "who": "All agents",
+          "title": "Version {v}",
+          "states": ["Tests running", "Rollout running", "rolled out"]
+        }
+      },
+      "counters": {
+        "runs": { "label": "Runs today", "value": 128 },
+        "fixed": { "label": "resolved automatically", "value": 3 },
+        "team": { "label": "resolved by utxo AG", "value": 1 }
+      }
+    }
+  },
+  "run": {
+    "title": "One run, from trigger to log",
+    "text": "An example from an agency: a competitor analysis is needed for a pitch. The research agent works in fixed steps, backs every statement with a source and submits the result to the head of strategy for approval.",
+    "visual": {
+      "label": "Animated sample view: one run of the research agent in six steps, from trigger through sources, draft, check and approval to the result, with the log next to it.",
+      "context": "Research agent",
+      "runLabel": "Run",
+      "runNumber": 4812,
+      "live": "running",
+      "stations": ["Trigger", "Sources", "Draft", "Check", "Approval", "Result"],
+      "trigger": {
+        "kicker": "New briefing in the project folder",
+        "title": "Pitch Nordhof Beverages",
+        "rows": [
+          { "name": "Task", "value": "Competitor analysis, five brands" },
+          { "name": "Triggered by", "value": "File added to the project folder" },
+          { "name": "Deadline", "value": "Thursday, 12:00 pm" }
+        ]
+      },
+      "sources": {
+        "kicker": "Sources read",
+        "of": "of 14",
+        "items": [
+          { "name": "Annual reports 2025", "kind": "PDF", "count": 5 },
+          { "name": "Websites of the five brands", "kind": "Web", "count": 5 },
+          { "name": "Press archive", "kind": "Archive", "count": 2 },
+          { "name": "Beverage market data", "kind": "Data", "count": 2 }
+        ],
+        "rejected": "2 more discarded: statement not verifiable"
+      },
+      "draft": {
+        "kicker": "Draft",
+        "title": "Competitor analysis Nordhof",
+        "sections": [
+          { "name": "Market overview", "cites": "1, 4" },
+          { "name": "Positioning of the five brands", "cites": "2, 6, 7" },
+          { "name": "Price and distribution", "cites": "3, 12" },
+          { "name": "Communication", "cites": "8, 9, 11" },
+          { "name": "Opportunities for the pitch", "cites": "5, 14" }
+        ]
+      },
+      "check": {
+        "kicker": "Check before submission",
+        "title": "Four checks before a person sees the result",
+        "items": [
+          "Every statement has a source",
+          "Figures compared with the original source",
+          "No confidential client data",
+          "Scope and format as in the briefing"
+        ],
+        "passed": "passed"
+      },
+      "approval": {
+        "kicker": "Approval point",
+        "initials": "CR",
+        "person": "Carla Renner",
+        "role": "Head of Strategy",
+        "question": "Pass the analysis on to the pitch team?",
+        "waiting": "Your approval",
+        "approve": "Approve",
+        "back": "Send back",
+        "approved": "approved"
+      },
+      "result": {
+        "kicker": "Result",
+        "title": "Competitor_analysis_Nordhof.pdf",
+        "rows": [
+          { "name": "Filed", "value": "Project folder Pitch Nordhof" },
+          { "name": "Notified", "value": "Pitch team, 6 people" },
+          { "name": "Duration", "value": "38 minutes" }
+        ],
+        "done": "done"
+      },
+      "logLabel": "Log",
+      "log": [
+        { "time": "09:12", "text": "Run started: new briefing" },
+        { "time": "09:14", "text": "14 sources read, 2 discarded" },
+        { "time": "09:31", "text": "Draft created, 5 chapters" },
+        { "time": "09:34", "text": "Check passed, 4 of 4" },
+        { "time": "09:35", "text": "Submitted: Carla Renner" },
+        { "time": "09:48", "text": "Approved: Carla Renner" },
+        { "time": "09:50", "text": "Result filed, team notified" }
+      ]
+    }
+  },
+  "project": {
+    "title": "How a project runs",
+    "text": "Some use cases are in operation within a few weeks, others take months. The process stays the same.",
+    "steps": [
+      {
+        "name": "First conversation",
+        "text": "We clarify which processes are suitable, which systems are involved and how you measure the benefit.",
+        "note": "Outcome: assessment"
+      },
+      {
+        "name": "Concept",
+        "text": "We describe the agent's steps, its sources and permissions, the approval points and the hosting environment.",
+        "note": "Outcome: concept"
+      },
+      {
+        "name": "Development",
+        "text": "We develop the agent, connect it to your systems and test it on real cases from your daily work.",
+        "note": "Outcome: tested agent"
+      },
+      {
+        "name": "Pilot operation",
+        "text": "The agent works with a first team under close observation. Feedback goes into the next version.",
+        "note": "Outcome: rollout decision"
+      },
+      {
+        "name": "Operation",
+        "text": "We host, monitor and improve the agent. You see status and log and decide at your approval points.",
+        "note": "Ongoing"
+      }
+    ]
+  },
+  "control": {
+    "title": "What you see and where you decide",
+    "text": "A second example, from the inside sales team of a machine manufacturer: the team lead receives prepared cases, approves them or sends them back with a comment. Every step is in the log, with time and actor.",
+    "visual": {
+      "label": "Animated sample view: a team lead approves one case and sends a second one back with a comment, the log fills and is filtered.",
+      "context": "Approvals · Inside sales",
+      "person": "Martin Vogt",
+      "initials": "MV",
+      "status": {
+        "wait": "Your approval",
+        "run": "in progress",
+        "done": "approved",
+        "rework": "being revised"
+      },
+      "approve": "Approve",
+      "back": "Send back",
+      "working": "being prepared",
+      "items": [
+        {
+          "agent": "Quote agent",
+          "title": "Quote 24-0318, Kessler Fördertechnik",
+          "ref": "Quote 24-0318",
+          "meta": "3 items, delivery time 6 weeks",
+          "comment": "Please confirm the delivery time with purchasing.",
+          "revised": "Revised: delivery time 8 weeks confirmed"
+        },
+        {
+          "agent": "Order agent",
+          "title": "Order confirmation 88214, Hagen Antriebe",
+          "ref": "Order 88214",
+          "meta": "Deviation from the order: payment term",
+          "comment": "Payment term per framework contract: 30 days.",
+          "revised": "Revised: payment term 30 days"
+        },
+        {
+          "agent": "Quote agent",
+          "title": "Quote 24-0321, Lindner Verpackung",
+          "ref": "Quote 24-0321",
+          "meta": "7 items, special coating",
+          "comment": "Please list the special coating as an option.",
+          "revised": "Revised: coating as an option"
+        },
+        {
+          "agent": "Complaints agent",
+          "title": "Complaint R-5530, Bauer Logistik",
+          "ref": "Complaint R-5530",
+          "meta": "Proposal: replacement delivery, draft reply",
+          "comment": "Clarify a date with the service team first.",
+          "revised": "Revised: service date on March 14"
+        },
+        {
+          "agent": "Order agent",
+          "title": "Order confirmation 88219, Weber Anlagenbau",
+          "ref": "Order 88219",
+          "meta": "Partial delivery in two lots",
+          "comment": "Please state the date of the second lot.",
+          "revised": "Revised: second lot in week 16"
+        }
+      ],
+      "logLabel": "Log",
+      "filters": ["All", "Decisions", "Agents"],
+      "actions": {
+        "submit": "submits",
+        "approve": "approves",
+        "back": "sends back, with comment",
+        "revise": "submits the revision"
+      }
+    }
+  },
+  "integration": {
+    "title": "Integration into your systems",
+    "text": "Agents work where your data and processes already are. Together we define which systems are connected and which permissions an agent receives.",
+    "items": [
+      {
+        "name": "Connection",
+        "text": "Through interfaces to ERP, CRM, DMS, project storage or email. An agent only receives the permissions it needs for its task.",
+        "tag": "API · least privilege"
+      },
+      {
+        "name": "Approval points",
+        "text": "You define where a person decides and who that is. Everything else runs through without intervention.",
+        "tag": "The human decides"
+      },
+      {
+        "name": "View for your team",
+        "text": "Status, results and approvals in one view. How your team accesses it, for example through your SSO, is settled in the concept.",
+        "tag": "Status · approvals · log"
+      },
+      {
+        "name": "Operation",
+        "text": "utxo AG hosts and monitors the agents. Incidents, retries and new versions are our job and appear in the log.",
+        "tag": "utxo AG"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "How do Managed Agents differ from agents we operate ourselves?",
+      "a": "You do not need your own team for operation, monitoring and ongoing development. utxo AG takes on these tasks. You steer through your requirements and approvals and can see at any time what is running."
+    },
+    {
+      "q": "Where do the agents run and where is our data?",
+      "a": "Hosting follows your requirements: Germany, EU or on-premise. We decide this per project. Processing takes place only on your instructions, without training on your data. We create the DPA individually for your project."
+    },
+    {
+      "q": "Which AI models are used?",
+      "a": "We work model-agnostically and choose the model by task and requirements. We assess the use of local open-source models per project."
+    },
+    {
+      "q": "What happens if a run fails or an agent delivers a wrong result?",
+      "a": "Every run is monitored. A failed run is retried or goes to our team. Where it matters, a person approves before a result moves on. Every action is in the log and can be traced."
+    },
+    {
+      "q": "How long does it take until an agent is in operation?",
+      "a": "That depends on the use case. Some are in operation within a few weeks, others take months, for example when several systems are connected. After the first conversation you receive an assessment."
+    },
+    {
+      "q": "Can we change processes and approval points later?",
+      "a": "Yes. Agents are developed further during operation. If your processes change, or an approval point is to be removed or added, we adjust the agent and roll out the tested new version."
+    }
+  ]
+}

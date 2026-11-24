@@ -1,0 +1,263 @@
+{
+  "title": "AI Automation for recurring processes | utxo AG",
+  "description": "AI automation by utxo AG: recurring cases are read, checked and posted in your existing systems. Exceptions go to your team for approval.",
+  "lede": "Orders, invoices, requests and documents are read, checked against your rules, posted in your existing systems and answered. Your team decides the exceptions.",
+  "faq": [
+    {
+      "q": "Which processes are suited to automation?",
+      "a": "Processes that occur often, follow clear rules and are transferred by hand today between an inbox and a business system: order intake, incoming invoices, requests, master data changes or document checks. Whether your process is a fit is something we clarify in the first conversation, using real cases."
+    },
+    {
+      "q": "Do we have to replace our systems?",
+      "a": "No. The automation works with the systems you have in place and uses their interfaces. If a system offers no interface, we assess during the project which route is sound."
+    },
+    {
+      "q": "What happens when the automation is uncertain?",
+      "a": "Cases that do not meet every rule or cannot be read unambiguously go to your team for approval, with the reason attached. Every step is logged, so each case can be traced and corrected."
+    },
+    {
+      "q": "How long does it take to go live?",
+      "a": "That depends on the process, the number of special cases and your systems. Some use cases are in production within a few weeks, others take months. Once the process is documented, we can estimate the effort."
+    },
+    {
+      "q": "Where is our data processed?",
+      "a": "Hosting follows your requirements: Germany, the EU or on-premise, decided per project. We process data only on your instructions and do not train models with your data. The DPA is drawn up individually for each project."
+    },
+    {
+      "q": "Which AI models do you use?",
+      "a": "We work model-agnostic and choose the model according to the task and the data protection requirements. Local open-source models are assessed per project."
+    }
+  ],
+  "scope": {
+    "title": "What you get",
+    "text": "An automation for one clearly defined process in your company, for example order intake. It reads every case, checks it against your rules and completes it in your systems.",
+    "points": [
+      {
+        "name": "Read",
+        "text": "The automation recognizes the relevant details in emails, PDFs and forms and turns them into a structured record.",
+        "tag": "Email, PDF"
+      },
+      {
+        "name": "Check",
+        "text": "Every case is checked against your rule set and your master data: customer, items, prices, limits, dates.",
+        "tag": "Rule set"
+      },
+      {
+        "name": "Post and reply",
+        "text": "If a case meets every rule, the automation creates it in your ERP, sends the reply and files it in the CRM.",
+        "tag": "ERP, CRM"
+      },
+      {
+        "name": "Exceptions",
+        "text": "If something deviates, the case goes to the person in charge, with the reason attached. After approval it continues.",
+        "tag": "Your approval"
+      },
+      {
+        "name": "Log",
+        "text": "Every step is recorded: what was read, which rule applied and who approved.",
+        "tag": "Every step"
+      }
+    ]
+  },
+  "reader": {
+    "label": "Animated example: an incoming purchase order is read, its details are captured as a record and checked, and one deviation is flagged.",
+    "context": "Order intake · Read",
+    "status": {
+      "read": "reading",
+      "check": "checking",
+      "ok": "ready to post",
+      "flag": "for approval"
+    },
+    "recordTitle": "Recognized details",
+    "fields": ["Customer", "Order number", "Requested date", "Line items", "Prices", "Total"],
+    "paper": {
+      "type": "Purchase order",
+      "to": "To Hallberg Industriebedarf AG, Sales",
+      "number": "Order number",
+      "date": "Date",
+      "delivery": "Requested date",
+      "cols": ["No.", "Item", "Qty", "Price"],
+      "total": "Total net"
+    },
+    "docs": [
+      {
+        "sender": "Brenner Anlagenbau AG",
+        "city": "Industriestrasse 14, 8404 Winterthur",
+        "number": "PO-2026-08841",
+        "date": "Nov 24, 2026",
+        "delivery": "Week 49",
+        "rows": [
+          ["Ball bearing 6204", "400", "2.85"],
+          ["Shaft seal 25 mm", "250", "4.20"],
+          ["Grease 400 g", "60", "11.90"]
+        ],
+        "total": "CHF 2,904.00",
+        "record": ["Brenner Anlagenbau AG", "PO-2026-08841", "Week 49", "3 line items", "3 prices", "CHF 2,904.00"],
+        "checks": ["Customer 10217", "new", "available", "in master data", "as per price list", "correct"],
+        "flag": -1,
+        "flagRow": -1
+      },
+      {
+        "sender": "Kessler Maschinenbau AG",
+        "city": "Werkstrasse 3, 9015 St. Gallen",
+        "number": "4500218734",
+        "date": "Nov 24, 2026",
+        "delivery": "Week 50",
+        "rows": [
+          ["Linear guide 600 mm", "24", "412.00"],
+          ["Guide carriage type B", "48", "134.00"],
+          ["Mounting kit M8", "24", "87.50"]
+        ],
+        "total": "CHF 18,420.00",
+        "record": ["Kessler Maschinenbau AG", "4500218734", "Week 50", "3 line items", "Item 2: 134.00", "CHF 18,420.00"],
+        "checks": ["Customer 10482", "new", "available", "in master data", "Price list 142.00", "correct"],
+        "flag": 4,
+        "flagRow": 1
+      }
+    ]
+  },
+  "example": {
+    "title": "One order as an example",
+    "text": "A wholesaler receives purchase orders by email as PDFs. If an order meets every rule, it is created in the ERP and confirmed without anyone stepping in. If a price deviates from the price list, the sales office decides."
+  },
+  "flow": {
+    "label": "Animated example: two purchase orders are checked against five rules. The first is posted and confirmed without intervention; the second waits for approval because of a price deviation and then continues.",
+    "zones": {
+      "case": "Case",
+      "rules": "Rule set · Order intake",
+      "next": "Post and reply"
+    },
+    "rules": ["Customer known", "Items in master data", "Prices as per price list", "Credit limit kept", "Requested date available"],
+    "log": ["Post · ERP", "Reply · Email", "Log · CRM"],
+    "cases": [
+      {
+        "ref": "Purchase order PO-2026-08841",
+        "name": "Brenner Anlagenbau AG",
+        "meta": "CHF 2,904.00 · 3 line items",
+        "facts": [["Received", "10:38 a.m."], ["Channel", "Email with PDF"], ["Read", "6 details"]],
+        "values": ["Customer 10217", "3 of 3", "3 of 3 correct", "CHF 2,904 of 40,000", "Week 49"],
+        "verdict": "5 of 5 rules met",
+        "log": ["Sales order AU-88212 created", "Order confirmation sent", "Case filed"],
+        "flag": -1
+      },
+      {
+        "ref": "Purchase order 4500218734",
+        "name": "Kessler Maschinenbau AG",
+        "meta": "CHF 18,420.00 · 3 line items",
+        "facts": [["Received", "10:41 a.m."], ["Channel", "Email with PDF"], ["Read", "6 details"]],
+        "values": ["Customer 10482", "3 of 3", "Item 2: 134.00, not 142.00", "CHF 18,420 of 60,000", "Week 50"],
+        "verdict": "4 of 5 rules met, 1 deviation",
+        "log": ["Sales order AU-88213 created", "Order confirmation sent", "Case filed with approval"],
+        "flag": 2
+      }
+    ],
+    "approval": {
+      "none": "No approval needed",
+      "to": "Approval · Sales office",
+      "wait": "Your approval",
+      "done": "approved",
+      "title": "Price in item 2 deviates",
+      "detail": "Order CHF 134.00, price list CHF 142.00",
+      "approve": "Approve",
+      "back": "Send back",
+      "by": "M. Keller, 10:44 a.m."
+    }
+  },
+  "project": {
+    "title": "How a project runs",
+    "text": "We start with one process and with real cases. How long it takes to go live depends on the process and on your systems: some use cases are in production within a few weeks, others take months.",
+    "steps": [
+      {
+        "name": "Document the process",
+        "text": "In the first conversation we select one process with you. Using real cases, we record how your team works today and where it decides.",
+        "note": "Process description"
+      },
+      {
+        "name": "Define the rules",
+        "text": "Together with your department we define what the automation completes on its own and what goes to approval.",
+        "note": "Rule set"
+      },
+      {
+        "name": "Connect the systems",
+        "text": "We develop the automation and connect it to the inbox, ERP and CRM through interfaces, with its own restricted access.",
+        "note": "Test environment"
+      },
+      {
+        "name": "Trial operation",
+        "text": "The automation handles real cases and your team approves every single one. This shows where rules are missing or too strict.",
+        "note": "Acceptance"
+      },
+      {
+        "name": "Operation",
+        "text": "After your acceptance the automation completes cases on its own. We host and monitor it and adjust rules when your process changes.",
+        "note": "Ongoing"
+      }
+    ]
+  },
+  "phases": {
+    "label": "Animated diagram: today your team handles every case. In trial operation the automation handles cases and your team approves each one. In operation your team decides only the exceptions.",
+    "title": "Who handles a case",
+    "rows": [
+      { "name": "Today", "text": "Your team handles every case by hand." },
+      { "name": "Trial operation", "text": "The automation handles the cases, your team approves each one." },
+      { "name": "Operation", "text": "The automation completes the cases, your team decides the exceptions." }
+    ],
+    "legend": {
+      "team": "Handled by your team",
+      "auto": "Handled by the automation",
+      "both": "Approved by your team"
+    }
+  },
+  "operation": {
+    "title": "Operation and control",
+    "text": "The automation works in your existing systems. utxo AG develops, hosts and monitors it. Your team sees at any time what is running and decides where it matters.",
+    "points": [
+      {
+        "name": "Your systems stay",
+        "text": "The automation reads from the inbox and writes to the ERP, CRM or DMS, through interfaces and with its own restricted access.",
+        "tag": "Integration"
+      },
+      {
+        "name": "You set the limits",
+        "text": "You define limits, tolerances and approval paths. Every change to the rule set is logged.",
+        "tag": "Rule set"
+      },
+      {
+        "name": "A person approves",
+        "text": "Exceptions reach the person in charge with the reason and the details concerned. They approve or send back.",
+        "tag": "Approval"
+      },
+      {
+        "name": "We operate",
+        "text": "utxo AG monitors operation, resolves incidents and adapts the automation when formats or processes change.",
+        "tag": "Operation"
+      }
+    ]
+  },
+  "ops": {
+    "label": "Animated example of a day in operation: cases per hour, the share completed without intervention and the queue of approvals. Sample data.",
+    "context": "Operation · Order intake",
+    "figures": {
+      "total": "Cases today",
+      "auto": "without intervention",
+      "waiting": "awaiting approval"
+    },
+    "chart": "Cases per hour",
+    "lane": "Approvals",
+    "queue": "For approval",
+    "empty": "No open approvals",
+    "wait": "Your approval",
+    "approved": "approved",
+    "first": 7,
+    "volumes": [6, 14, 19, 17, 12, 7, 10, 16, 15, 11, 8, 5],
+    "events": [
+      { "at": 1.4, "ref": "PO-2026-08790", "reason": "Customer unclear" },
+      { "at": 3.2, "ref": "4500218611", "reason": "Quantity above limit" },
+      { "at": 3.9, "ref": "4500218734", "reason": "Price deviates" },
+      { "at": 4.6, "ref": "B-77120", "reason": "Item not in master data" },
+      { "at": 7.1, "ref": "PO-2026-08856", "reason": "Date not available" },
+      { "at": 9.3, "ref": "4500219002", "reason": "Price deviates" },
+      { "at": 9.9, "ref": "B-77164", "reason": "Credit limit exceeded" }
+    ]
+  }
+}

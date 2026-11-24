@@ -1,0 +1,131 @@
+---
+/*
+  The approval inbox of a team lead next to the log: three cases, one is approved, one goes back with a
+  comment and returns revised; every step lands in the log, which is filtered once per pass.
+  The markup is the reduced-motion and no-JS frame: one case approved, one sent back, one in preparation.
+  Props: v = t.servicePages['managed-agents'].control.visual
+*/
+import { inboxEvent } from './model.js';
+
+const { v } = Astro.props;
+const LOG_ROWS = 6;
+const SHOWN = 2;
+const rows = [
+  { item: v.items[0], state: 'done', meta: v.items[0].revised },
+  { item: v.items[1], state: 'rework', meta: v.items[1].comment },
+  { item: v.items[2], state: 'run', meta: v.working },
+];
+const log = Array.from({ length: LOG_ROWS }, (_, i) => inboxEvent(SHOWN - 1 - i, v.items.length));
+const data = JSON.stringify({ items: v.items, status: v.status, working: v.working, person: v.person, actions: v.actions });
+---
+<div class="map-inbox" data-map-inbox data-inbox={data} role="img" aria-label={v.label}>
+  <div class="map-inbox-win mock-light">
+    <div class="mock-bar label"><span>{v.context}</span><span class="map-inbox-user"><i>{v.initials}</i><span>{v.person}</span></span></div>
+    <div class="map-inbox-cols">
+      <ol class="map-inbox-list">
+        {rows.map((row, i) => (
+          <li data-state={row.state} style={`--i:${i}`}>
+            <p class="map-inbox-top"><span class="label">{row.item.agent}</span><em class="st">{v.status[row.state]}</em></p>
+            <b>{row.item.title}</b>
+            <p class="map-inbox-meta">{row.meta}</p>
+            <p class="map-inbox-act"><span class="approve" data-approve>{v.approve}</span><span class="map-inbox-back" data-back>{v.back}</span><i class="map-inbox-bar"><b></b></i></p>
+          </li>
+        ))}
+      </ol>
+      <div class="map-inbox-log">
+        <p class="map-inbox-h">
+          <span class="label">{v.logLabel}</span>
+          <span class="map-inbox-filters">{v.filters.map((name, i) => <i class:list={[i === 0 && 'is-on']}>{name}</i>)}</span>
+        </p>
+        <ol data-filter="0">
+          {log.map((entry, i) => {
+            const item = v.items[entry.item];
+            return (
+              <li data-human={entry.human ? '' : undefined} style={`--i:${i}`}>
+                <time>{entry.time}</time>
+                <b>{entry.human ? v.person : item.agent}</b>
+                <span>{v.actions[entry.kind]}: {item.ref}</span>
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { inbox } from './inbox.js';
+
+  document.querySelectorAll('[data-map-inbox]').forEach(inbox);
+</script>
+
+<style is:global>
+.map-inbox{container-type:inline-size}
+.map-inbox-win{--small:max(11px, .82em);overflow:hidden;border-radius:var(--radius);padding:clamp(18px, 4.2cqw, 34px);font-size:clamp(13px, 1.95cqw, 15.5px);line-height:1.3;box-shadow:0 44px 80px -42px rgba(12,18,48,.3)}
+.map-inbox .st,.map-inbox .approve{font-size:var(--small)}
+.map-inbox-user{display:inline-flex;align-items:center;gap:9px;color:var(--m-fg);white-space:nowrap}
+.map-inbox .mock-bar{gap:12px}
+.map-inbox-user i{display:grid;place-items:center;border-radius:50%;background:var(--m-soft);font-style:normal;font-size:var(--small);width:2.5em;height:2.5em;margin:-.7em 0}
+.map-inbox-cols{display:grid;grid-template-columns:minmax(0,11fr) minmax(0,9fr);gap:clamp(20px, 4.4cqw, 40px);align-items:start}
+
+.map-inbox-list li{display:grid;gap:5px;padding:clamp(13px, 2.2cqw, 18px) 0;border-bottom:1px solid var(--m-rule)}
+.map-inbox-top{display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:2em;color:var(--m-muted)}
+.map-inbox-list li > b{font-weight:600;font-size:1.06em;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:opacity var(--t-fast)}
+.map-inbox-meta{height:2.6em;overflow:hidden;color:var(--m-muted)}
+.map-inbox-act{position:relative;display:flex;align-items:center;gap:16px;height:30px}
+.map-inbox-act span{opacity:0;transition:opacity var(--t-fast),background-color .15s,color .15s}
+/* while nobody has to decide, the line of the buttons shows how far the case is */
+.map-inbox-bar{position:absolute;left:0;right:0;top:50%;height:3px;margin-top:-1.5px;border-radius:3px;background:var(--m-soft);overflow:hidden;transition:opacity var(--t-fast)}
+.map-inbox-bar b{display:block;height:100%;border-radius:3px;background:var(--phthalo);transform-origin:0 50%;transform:scaleX(.3);transition:transform 1.6s var(--ease),background-color var(--t-fast)}
+[data-state="rework"] .map-inbox-bar b{transform:scaleX(.62)}
+[data-state="done"] .map-inbox-bar b{transform:none;background:var(--m-fg);opacity:.3}
+[data-state="wait"] .map-inbox-bar{opacity:0}
+[data-state="wait"] .map-inbox-bar b{transform:none}
+.map-inbox .approve{animation:none;padding:6px 12px}
+.map-inbox-back{font-size:var(--small);font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--m-muted);padding:6px 10px;margin-left:-10px;border-radius:99px}
+.map-inbox-back.is-press{background:var(--m-soft);color:var(--m-fg)}
+[data-state="wait"] .map-inbox-act span{opacity:1}
+.map-inbox-list [data-state="run"] > b{opacity:.5}
+.map-inbox-list [data-state="run"] .st,.map-inbox-list [data-state="rework"] .st{color:var(--phthalo)}
+.map-inbox-list [data-state="done"] .st{color:var(--m-muted)}
+.map-inbox-list [data-state="rework"] .map-inbox-meta{padding-left:11px;color:var(--m-fg);box-shadow:inset 2px 0 0 var(--m-fg)}
+
+.map-inbox-h{display:grid;gap:10px;padding:clamp(13px, 2.2cqw, 18px) 0 12px;color:var(--m-muted)}
+.map-inbox-h .label{display:flex;align-items:center;min-height:2em}
+.map-inbox-filters{display:flex;gap:4px;margin-left:-9px}
+.map-inbox-filters i{font-style:normal;font-size:var(--small);font-weight:600;padding:5px 9px;border-radius:99px;transition:background-color var(--t-fast),color var(--t-fast)}
+.map-inbox-filters i.is-on{background:var(--m-fg);color:var(--m-bg)}
+.map-inbox-log ol{border-bottom:1px solid var(--m-rule)}
+.map-inbox-log li{display:grid;grid-template-columns:3.3em minmax(0,1fr);gap:1px 10px;align-content:center;height:clamp(50px, 7.6cqw, 57px);border-top:1px solid var(--m-rule);transition:opacity var(--t-move)}
+.map-inbox-log time{color:var(--m-muted);font-variant-numeric:tabular-nums}
+.map-inbox-log li b{font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.map-inbox-log li[data-human] b{font-weight:600}
+.map-inbox-log li span{grid-column:2;color:var(--m-muted);font-size:var(--small);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.map-inbox-log [data-filter="1"] li:not([data-human]),.map-inbox-log [data-filter="2"] li[data-human]{opacity:.2}
+
+.js .map-inbox-win{opacity:0;transform:translateY(48px);transition:transform var(--t-stage) var(--ease) .1s,opacity var(--t-move) ease .1s}
+.js .is-in .map-inbox-win{opacity:1;transform:none}
+.js .map-inbox-list li{opacity:0;transform:translateY(12px);transition:opacity var(--t-move) ease,transform var(--t-move) var(--ease);transition-delay:calc(500ms + var(--i) * 140ms)}
+.js .is-in .map-inbox-list li{opacity:1;transform:none}
+.js [data-step] .map-inbox-list li{transition-delay:0s}
+.js .is-in .map-inbox-list li.is-leaving{opacity:0;transform:translateY(-12px);transition-duration:var(--t-fast)}
+
+/* narrow frame: the log sits under the inbox and shows four rows */
+@container (max-width:600px){
+  .map-inbox-cols{grid-template-columns:minmax(0,1fr);gap:0}
+  .map-inbox-h{padding:18px 0 10px}
+  .map-inbox-log li:nth-child(n + 5){display:none}
+  .map-inbox-list li:last-child{border-bottom:0}
+}
+@container (max-width:400px){
+  .map-inbox-user span{display:none}
+}
+@media (max-width:760px){
+  .map-inbox-win{--small:max(10px, .8em)}
+}
+@media (prefers-reduced-motion:reduce){
+  .map-inbox-bar b{transition:none}
+  .js .map-inbox-win,.js .map-inbox-list li{transition:none;opacity:1;transform:none}
+}
+</style>

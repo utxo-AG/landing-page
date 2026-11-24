@@ -1,0 +1,53 @@
+---
+/*
+  Blocks of the Software Development detail page (between hero and FAQ; framework: pages/ServicePage.astro):
+    1 scope      what the client gets: architecture view (Arch) and five points
+    2 practice   one requirement becomes a released version (Increment), on the dark stage
+    3 process    five steps with the project rail above them (Run)
+    4 operation  integration and operation: operations view (Ops) and four facts
+  Every visual registers its block with motion/loop.js. Content: t.servicePages['software-development'].
+*/
+import Block from '../../sp/Block.astro';
+import Points from '../../sp/Points.astro';
+import Steps from '../../sp/Steps.astro';
+import Arch from './Arch.astro';
+import Increment from './Increment.astro';
+import Run from './Run.astro';
+import Ops from './Ops.astro';
+
+const { t } = Astro.props;
+const p = t.servicePages['software-development'];
+---
+<Block title={p.scope.title} text={p.scope.text} layout="split">
+  <Arch t={t} />
+  <div class="sdp-points"><Points items={p.scope.points} /></div>
+</Block>
+
+<Block title={p.practice.title} text={p.practice.text} layout="wide" surface="dark">
+  <Increment t={t} />
+</Block>
+
+<Block title={p.process.title} text={p.process.text} layout="wide">
+  <Run t={t} />
+  <Steps items={p.process.steps} />
+</Block>
+
+<Block title={p.operation.title} text={p.operation.text} layout="flip">
+  <ul class="sdp-facts" slot="head">
+    {p.operation.facts.map((fact, i) => (
+      <li class="sp-rise" style={`--i:${i + 2}`}>
+        <h3>{fact.name}</h3>
+        <p>{fact.text}</p>
+      </li>
+    ))}
+  </ul>
+  <Ops t={t} />
+</Block>
+
+<style is:global>
+.sdp-points{margin-top:clamp(40px, 5vw, 80px)}
+.sdp-facts{margin-top:clamp(28px, 3vw, 48px);border-bottom:1px solid var(--rule)}
+.sdp-facts li{padding:clamp(14px, 1.4vw, 20px) 0;border-top:1px solid var(--rule)}
+.sdp-facts h3{font-size:clamp(17px, 1.45vw, 22px);font-weight:400;line-height:1.15;letter-spacing:-.025em}
+.sdp-facts p{margin-top:6px;color:var(--muted);font-size:clamp(14px, 1.2vw, 17.5px);line-height:1.35}
+</style>

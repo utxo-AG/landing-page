@@ -1,0 +1,10 @@
+---
+import ServicePage from '../../components/pages/ServicePage.astro';
+import Mockup from '../../components/mockups/Adoption.astro';
+import Detail from '../../components/services/ai-adoption/Detail.astro';
+import t from '../../i18n/en/index.js';
+---
+<ServicePage t={t} id="ai-adoption" layout="mockup-right">
+  <Mockup slot="mockup" t={t} />
+  <Detail t={t} />
+</ServicePage>

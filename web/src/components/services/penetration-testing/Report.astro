@@ -1,0 +1,147 @@
+---
+/*
+  Penetration Testing, detail page, visual 1: the report of one test round.
+  Top the findings by risk (one segment per severity, widths from the counts), left an excerpt of the findings,
+  right the selected finding: its place in the risk matrix (likelihood by impact), description and recommendation.
+  The loop selects one finding after the other; the marker in the list and the dot in the matrix move, the texts cross-fade.
+  The markup is the reduced-motion and no-JS frame: the first finding selected.
+*/
+const { t } = Astro.props;
+const m = t.servicePages['penetration-testing'].report;
+const total = m.counts.reduce((sum, value) => sum + value, 0);
+const levels = [4, 3, 2, 1];
+const first = m.findings[0];
+---
+<div class="ptp-report" data-mockup="ptp-report" role="img" aria-label={m.label}>
+  <div class="ptp-rep mock-light" style={`--sel:0;--ix:${first.impact - 1};--iy:${3 - first.likelihood}`}>
+    <div class="mock-bar label"><span>{m.context}</span><span>{total} {m.list}</span></div>
+    <div class="ptp-rep-sum">
+      <p class="label">{m.summary}</p>
+      <ul>
+        {levels.map((level, index) => (
+          <li style={`--n:${m.counts[level - 1]};--i:${index}`}><i data-level={level}></i><span><b>{m.counts[level - 1]}</b> {m.severity[level - 1]}</span></li>
+        ))}
+      </ul>
+    </div>
+    <div class="ptp-rep-cols">
+      <div class="ptp-rep-list">
+        <p class="ptp-rep-h label"><span>{m.list}</span><span>{m.excerpt}</span></p>
+        <ol>
+          <i class="ptp-rep-cur" aria-hidden="true"></i>
+          {m.findings.map((finding, index) => (
+            <li class:list={[index === 0 && 'is-on']} data-f={index} data-x={finding.impact - 1} data-y={3 - finding.likelihood}>
+              <span class="ptp-sev" data-level={finding.level} aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+              <span class="ptp-rep-t"><b>{finding.title}</b><small>{finding.ref} · {finding.area}</small></span>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <div class="ptp-rep-detail">
+        <div class="ptp-rep-risk">
+          <div class="ptp-matrix" aria-hidden="true">
+            {Array.from({ length: 9 }, (_, cell) => <i style={`--w:${(cell % 3) + (2 - Math.floor(cell / 3))}`}></i>)}
+            <b class="ptp-matrix-dot"></b>
+          </div>
+          <p class="ptp-matrix-y label">{m.axes.y}</p>
+          <p class="ptp-matrix-x label">{m.axes.x}</p>
+          <div class="ptp-rep-word ptp-stack">
+            {m.findings.map((finding, index) => <p class:list={['ptp-face', index === 0 && 'is-on']} data-f={index}><small class="label">{m.risk}</small><b>{m.severity[finding.level - 1]}</b></p>)}
+          </div>
+        </div>
+        <div class="ptp-stack ptp-rep-texts">
+          {m.findings.map((finding, index) => (
+            <dl class:list={['ptp-face', index === 0 && 'is-on']} data-f={index}>
+              <dt class="label">{m.description}</dt><dd>{finding.description}</dd>
+              <dt class="label">{m.advice}</dt><dd>{finding.advice}</dd>
+            </dl>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { report } from './report.js';
+
+  document.querySelectorAll('[data-mockup="ptp-report"]').forEach(report);
+</script>
+
+<style is:global>
+/* shared by the visuals of this page: stacked faces that cross-fade, and the four-bar severity scale */
+.ptp-stack{display:grid}
+.ptp-stack > *{grid-area:1 / 1;min-width:0}
+.ptp-face{opacity:0;transform:translateY(.5em);transition:opacity var(--t-fast) ease,transform 0s var(--t-fast)}
+.ptp-face.is-on{opacity:1;transform:none;transition:opacity var(--t-move) ease .15s,transform var(--t-move) var(--ease) .15s}
+.ptp-sev{flex:none;display:flex;align-items:flex-end;gap:2px;height:1.25em}
+.ptp-sev i{width:3px;height:40%;border-radius:1px;background:currentColor;opacity:.16}
+.ptp-sev i:nth-child(2){height:60%}
+.ptp-sev i:nth-child(3){height:80%}
+.ptp-sev i:nth-child(4){height:100%}
+.ptp-sev[data-level="1"] i:nth-child(-n+1),.ptp-sev[data-level="2"] i:nth-child(-n+2),.ptp-sev[data-level="3"] i:nth-child(-n+3),.ptp-sev[data-level="4"] i{opacity:1}
+.ptp-gap{margin-top:clamp(40px, 5vw, 80px)}
+
+.ptp-report{container-type:inline-size}
+.ptp-rep{--small:max(11px, .86em);border-radius:var(--radius);padding:clamp(18px, 3.6cqw, 36px);font-size:clamp(12.5px, 1.8cqw, 16.5px);line-height:1.35;box-shadow:0 44px 80px -42px rgba(12,18,48,.3)}
+.ptp-rep .mock-bar{padding-bottom:clamp(14px, 2cqw, 22px)}
+.ptp-rep-sum{padding:1.3em 0 1.5em;border-bottom:1px solid var(--m-rule)}
+.ptp-rep-sum > p{color:var(--m-muted)}
+.ptp-rep-sum ul{display:flex;gap:3px;margin-top:.9em}
+.ptp-rep-sum li{flex:var(--n) 1 0;min-width:max-content}
+.ptp-rep-sum i{display:block;height:8px;border-radius:2px;background:var(--m-fg);transform-origin:0 50%}
+.ptp-rep-sum i[data-level="3"]{opacity:.62}
+.ptp-rep-sum i[data-level="2"]{opacity:.36}
+.ptp-rep-sum i[data-level="1"]{opacity:.16}
+.ptp-rep-sum span{display:block;margin-top:.6em;font-size:var(--small);color:var(--m-muted);white-space:nowrap}
+.ptp-rep-sum span b{color:var(--m-fg);font-weight:600}
+
+.ptp-rep-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(18px, 3.6cqw, 36px);padding-top:1.3em}
+.ptp-rep-h{display:flex;justify-content:space-between;gap:1em;padding-bottom:.8em;color:var(--m-muted)}
+.ptp-rep-h span:first-child{color:var(--m-fg)}
+.ptp-rep-list ol{position:relative}
+.ptp-rep-list li{position:relative;display:flex;align-items:center;gap:.9em;height:4.3em;padding:0 .9em;border-top:1px solid var(--m-rule);opacity:.55;transition:opacity var(--t-fast)}
+.ptp-rep-list li.is-on{opacity:1}
+.ptp-rep-cur{position:absolute;left:0;right:0;top:0;height:4.3em;border-radius:.7em;background:var(--m-soft);transform:translateY(calc(var(--sel) * 100%));transition:transform var(--t-move) var(--ease)}
+.ptp-rep-t{display:grid;gap:.1em;min-width:0}
+.ptp-rep-t b{font-weight:600;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ptp-rep-t small{font-size:var(--small);color:var(--m-muted);white-space:nowrap}
+
+.ptp-rep-risk{position:relative;display:grid;grid-template-columns:auto auto minmax(0,1fr);grid-template-rows:auto auto;gap:.5em .7em;align-items:center}
+.ptp-matrix{--cell:clamp(24px, 4.3cqw, 38px);position:relative;grid-area:1 / 2;display:grid;grid-template-columns:repeat(3,var(--cell));grid-auto-rows:var(--cell);gap:3px}
+.ptp-matrix i{border-radius:3px;background:var(--m-fg);opacity:calc(.05 + var(--w) * .035)}
+.ptp-matrix-dot{position:absolute;left:0;top:0;width:var(--cell);height:var(--cell);transform:translate(calc(var(--ix) * (100% + 3px)), calc(var(--iy) * (100% + 3px)));transition:transform var(--t-move) var(--ease)}
+.ptp-matrix-dot::after{content:"";position:absolute;inset:30%;border-radius:50%;background:var(--m-fg);box-shadow:0 0 0 4px rgba(7,8,10,.1)}
+.ptp-matrix-y{grid-area:1 / 1;writing-mode:vertical-rl;transform:rotate(180deg);color:var(--m-muted);font-size:max(11px, .7em);justify-self:center}
+.ptp-matrix-x{grid-area:2 / 2;color:var(--m-muted);font-size:max(11px, .7em);text-align:center}
+.ptp-rep-word{grid-area:1 / 3;align-self:center;padding-left:.8em}
+.ptp-rep-word p{display:grid;gap:.25em}
+.ptp-rep-word small{color:var(--m-muted)}
+.ptp-rep-word b{font-size:clamp(20px, 3.4cqw, 32px);font-weight:500;letter-spacing:-.035em;line-height:1}
+.ptp-rep-texts{margin-top:1.2em}
+.ptp-rep-texts dt{color:var(--m-muted);padding-top:.9em;border-top:1px solid var(--m-rule)}
+.ptp-rep-texts dd{margin:.3em 0 .9em;text-wrap:pretty}
+.ptp-rep-texts dd:last-child{margin-bottom:0}
+
+.js .ptp-rep{opacity:0;transform:translateY(40px);transition:transform var(--t-stage) var(--ease) .1s,opacity var(--t-move) ease .1s}
+.js .is-in .ptp-rep{opacity:1;transform:none}
+.js .ptp-rep-sum i{transform:scaleX(0);transition:transform var(--t-enter) var(--ease) calc(500ms + var(--i) * 120ms)}
+.js .is-in .ptp-rep-sum i{transform:none}
+.js .ptp-rep-cols{opacity:0;transition:opacity var(--t-enter) ease .8s}
+.js .is-in .ptp-rep-cols{opacity:1}
+
+@container (max-width:560px){
+  .ptp-rep{font-size:clamp(12.5px, 3.8cqw, 15px)}
+  .ptp-rep-cols{display:block}
+  .ptp-rep-detail{margin-top:1.6em}
+  .ptp-matrix{--cell:clamp(26px, 9cqw, 36px)}
+  .ptp-rep-word b{font-size:clamp(22px, 7cqw, 30px)}
+}
+@media (max-width:760px){
+  .ptp-rep{--small:max(10px, .84em)}
+  .ptp-matrix-y,.ptp-matrix-x{font-size:max(10px, .7em)}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .ptp-rep,.js .ptp-rep-sum i,.js .ptp-rep-cols,.ptp-face,.ptp-face.is-on,.ptp-rep-cur,.ptp-matrix-dot,.ptp-rep-list li{transition:none}
+  .js .ptp-rep-sum i{transform:none}
+}
+</style>
