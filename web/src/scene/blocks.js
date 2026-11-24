@@ -10,6 +10,10 @@ const COVER = 3;
 const STILL = 0.03;
 const STIFFNESS = 80;
 const DAMPING = 18;
+const LOOSE_AT = 0.14;
+const LOOSE_SHRINK = 0.2;
+const EDGE_SHADE = 0.42;
+const THIN = 0.35;
 
 function wordmarkCells(raw, cols) {
   const [vx, vy, vw, vh] = raw.match(/viewBox="([^"]+)"/)[1].split(/\s+/).map(Number);
@@ -36,7 +40,7 @@ function wordmarkCells(raw, cols) {
     for (let row = 0; row < rows; row++) for (let col = 0; col < cols; col++) {
       let sum = 0, n = 0;
       for (let y = Math.floor(y0 + row * cell); y < y0 + (row + 1) * cell && y < h; y += 2) for (let x = Math.floor(x0 + col * cell); x < x0 + (col + 1) * cell; x += 2) { sum += data[(y * w + x) * 4 + 3]; n++; }
-      if (sum / n > COVER) cells.push({ col, row, letter });
+      if (sum / n > COVER) cells.push({ col, row, cover: sum / n / 255 });
     }
   });
   const mask = Object.assign(document.createElement('canvas'), { width: cols * MASK_RES, height: rows * MASK_RES });
@@ -55,8 +59,13 @@ function wordmarkCells(raw, cols) {
 /*
   The wordmark as a solid white body on a transparent canvas. At rest only the smooth extruded
   mesh is drawn; where cubes are loose (entry, pulse, pointer) a cell texture cuts cube-shaped
-  holes into it and only those cubes are drawn, clipped to the logo outline.
+  holes into it and only those cubes are drawn, clipped to the logo outline. A loose cube shrinks slightly
+  and gets shaded edges (aLoose), so neighbours read as single cubes instead of one white lump.
+  Cells that the logo covers by less than THIN have no visible cube: their sliver would float as a speck.
+  Cells without a cube that touch a cube cell (fringe) hide their trace of the body whenever a neighbour is loose.
   `svg` is the wordmark SVG source; `stage` is the element that holds the canvas.
+  mount(next) moves the canvas into another stage (hero and closing stage share this one WebGL context);
+  the wordmark arrives dissolved there and assembles with setAssembled(true).
 */
 export function createBlocks(stage, {
   svg,
@@ -98,6 +107,9 @@ export function createBlocks(stage, {
   const rest = new Float32Array(count * 2);
   const cellOf = new Int32Array(count);
   const fade = new Float32Array(count).fill(1);
+  const loose = new Float32Array(count);
+  const thin = new Uint8Array(count);
+  const hasCube = new Uint8Array(cols * rows);
   const grow = new THREE.Vector3();
   const front = new Float32Array(count);
   const cellRandom = Float32Array.from({ length: cols * rows }, () => Math.random() - 0.5);
@@ -119,12 +131,15 @@ export function createBlocks(stage, {
     shader.uniforms.uSoft = { value: softTexture };
     shader.uniforms.uExtent = { value: new THREE.Vector2(WIDTH, rows * size) };
     shader.uniforms.uEdge = { value: edge };
+    shader.uniforms.uEdgeShade = { value: EDGE_SHADE };
     shader.uniforms.uTexel = { value: size / MASK_RES };
     shader.vertexShader = shader.vertexShader
       .replace('#include <common>', `#include <common>
 attribute vec2 aRest;
 attribute float aFade;
+attribute float aLoose;
 varying float vFade;
+varying float vLoose;
 varying vec2 vRest;
 varying vec3 vLocal;
 varying vec3 vEye;
@@ -133,6 +148,7 @@ varying mat3 vToView;`)
 mat4 toWorld = modelMatrix * instanceMatrix;
 vRest = aRest;
 vFade = aFade;
+vLoose = aLoose;
 vLocal = position;
 vEye = (inverse(toWorld) * vec4(cameraPosition, 1.0)).xyz;
 vToView = mat3(viewMatrix) * mat3(toWorld);`);
@@ -143,6 +159,8 @@ uniform sampler2D uSoft;
 uniform vec2 uExtent;
 uniform float uEdge;
 uniform float uTexel;
+uniform float uEdgeShade;
+varying float vLoose;
 varying float vFade;
 varying vec2 vRest;
 varying vec3 vLocal;
@@ -185,12 +203,19 @@ if (front < 0.5) {
   if (diffuseColor.a < 0.01) discard;
   }
 }
-diffuseColor.a *= vFade;`)
+diffuseColor.a *= vFade;
+vec3 side = abs(vLocal) / (uEdge * 0.5);
+float rim = max(max(min(side.x, side.y), min(side.y, side.z)), min(side.x, side.z));
+float edgeShade = 1.0 - uEdgeShade * vLoose * smoothstep(0.8, 1.0, rim);
+diffuseColor.rgb *= edgeShade;`)
+      .replace('#include <emissivemap_fragment>', `#include <emissivemap_fragment>
+totalEmissiveRadiance *= edgeShade;`)
       .replace('#include <normal_fragment_begin>', `#include <normal_fragment_begin>
 if (onWall) { normal = wallNormal; nonPerturbedNormal = wallNormal; }`);
   };
   geometry.setAttribute('aRest', new THREE.InstancedBufferAttribute(rest, 2));
   geometry.setAttribute('aFade', new THREE.InstancedBufferAttribute(fade, 1));
+  geometry.setAttribute('aLoose', new THREE.InstancedBufferAttribute(loose, 1));
   const blocks = new THREE.InstancedMesh(geometry, material, count);
   blocks.frustumCulled = false;
   scene.add(blocks);
@@ -234,13 +259,15 @@ if (max(looseAt(vCell), max(max(looseAt(vCell + reach.xy), looseAt(vCell - reach
   const spin = new Float32Array(count);
   const jitter = new Float32Array(count * 2);
   const axes = [];
-  cells.forEach(({ col, row }, c) => {
+  cells.forEach(({ col, row, cover }, c) => {
     for (let layer = 0; layer < layers; layer++) {
       const i = c * layers + layer;
       target[i * 3] = (col - cols / 2 + 0.5) * size;
       target[i * 3 + 1] = (rows / 2 - row - 0.5) * size;
       target[i * 3 + 2] = -layer * size;
       cellOf[i] = row * cols + col;
+      thin[i] = cover < THIN ? 1 : 0;
+      hasCube[cellOf[i]] = 1;
       front[i] = cellRandom[cellOf[i]] * 2.6 + Math.sin(target[i * 3 + 1] * 1.1) * 0.5;
       rest[i * 2] = target[i * 3];
       rest[i * 2 + 1] = target[i * 3 + 1];
@@ -255,29 +282,49 @@ if (max(looseAt(vCell), max(max(looseAt(vCell + reach.xy), looseAt(vCell - reach
     }
   });
 
+  const fringe = [];
+  for (let row = 0; row < rows; row++) for (let col = 0; col < cols; col++) {
+    if (hasCube[row * cols + col]) continue;
+    const around = [];
+    for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
+      const x = col + dx, y = row + dy;
+      if (x >= 0 && x < cols && y >= 0 && y < rows && hasCube[y * cols + x]) around.push(y * cols + x);
+    }
+    if (around.length) fringe.push({ cell: row * cols + col, around });
+  }
+
   const pointer = new THREE.Vector2();
   let pointerActive = false;
   const ray = new THREE.Raycaster();
   const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
   const hit = new THREE.Vector3();
-  stage.addEventListener('pointermove', (e) => {
-    const r = stage.getBoundingClientRect();
-    pointer.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
-    pointerActive = true;
-  });
+  let host = stage;
   const release = () => { pointerActive = false; };
-  stage.addEventListener('pointerleave', release);
-  stage.addEventListener('pointerup', (e) => { if (e.pointerType !== 'mouse') release(); });
-  stage.addEventListener('pointercancel', release);
+  const listened = new WeakSet();
+  function listen(el) {
+    if (listened.has(el)) return;
+    listened.add(el);
+    el.addEventListener('pointermove', (e) => {
+      if (el !== host) return;
+      const r = el.getBoundingClientRect();
+      pointer.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
+      pointerActive = true;
+    });
+    el.addEventListener('pointerleave', release);
+    el.addEventListener('pointerup', (e) => { if (e.pointerType !== 'mouse') release(); });
+    el.addEventListener('pointercancel', release);
+  }
+  listen(stage);
 
   let distance = 20;
+  let still = null;
   function place(t) {
     camera.position.set(distance * (-0.2 + sway * Math.sin(t * 0.23) * 0.16), distance * (0.06 + sway * Math.cos(t * 0.17) * 0.07), distance);
     camera.lookAt(0, 0, 0);
   }
   function resize() {
-    const width = stage.clientWidth;
-    const height = stage.clientHeight;
+    const width = host.clientWidth;
+    const height = host.clientHeight;
     const aspect = width / height;
     renderer.setSize(width, height, false);
     camera.aspect = aspect;
@@ -285,18 +332,19 @@ if (max(looseAt(vCell), max(max(looseAt(vCell + reach.xy), looseAt(vCell - reach
     distance = Math.max((WIDTH * (aspect > 1.2 ? 1.28 : 1.14)) / (view * aspect), (rows * size * 1.3) / view) / (aspect > 1.2 ? zoom : Math.min(zoom, 1.06));
     place(0);
     camera.updateProjectionMatrix();
+    if (reduced && still) still();
   }
-  new ResizeObserver(resize).observe(stage);
+  const sizes = new ResizeObserver(resize);
+  sizes.observe(stage);
   resize();
 
   const m = new THREE.Matrix4();
   const q = new THREE.Quaternion();
   const p = new THREE.Vector3();
-  const unit = new THREE.Vector3(1, 1, 1);
 
   function update(t, dt, settled) {
     let push = 0;
-    if (pointerActive) { ray.setFromCamera(pointer, camera); ray.ray.intersectPlane(plane, hit); push = 1; }
+    if (pointerActive && goal === 1) { ray.setFromCamera(pointer, camera); ray.ray.intersectPlane(plane, hit); push = 1; }
     if (!settled && t > 0.4) progress += Math.max(-dt / assembleTime, Math.min(dt / assembleTime, goal - progress));
     const phase = (t - 5) % pulseEvery;
     const pulseX = t > 5 && progress === 1 && phase < pulseTime ? -WIDTH / 2 - 3.5 + (phase / pulseTime) * (WIDTH + 7) : null;
@@ -331,24 +379,30 @@ if (max(looseAt(vCell), max(max(looseAt(vCell + reach.xy), looseAt(vCell - reach
       q.setFromAxisAngle(axes[i], spin[i] * Math.min(1, Math.max(0, dist + (i % layers === 0 ? lift * 0.3 : 0) - STILL) / 3.5));
       const appear = !settled ? Math.min(1, Math.max(0, (progress - gate[i]) / 0.2)) : 1;
       fade[i] = appear;
+      loose[i] = Math.min(1, (dist + (i % layers === 0 ? lift * 0.3 : 0)) / LOOSE_AT);
       if (dist === 0 && lift === 0 && appear === 1) m.makeScale(0, 0, 0);
       else {
         cellState[cellOf[i]] = 255;
-        if (appear === 0) m.makeScale(0, 0, 0);
-        else m.compose(p.set(pos[a] + ox, pos[a + 1] + oy, pos[a + 2] + oz), q, appear === 1 ? unit : grow.setScalar(0.6 + 0.4 * appear));
+        if (appear === 0 || thin[i]) m.makeScale(0, 0, 0);
+        else m.compose(p.set(pos[a] + ox, pos[a + 1] + oy, pos[a + 2] + oz), q, grow.setScalar((0.6 + 0.4 * appear) * (1 - LOOSE_SHRINK * loose[i])));
       }
       blocks.setMatrixAt(i, m);
     }
     blocks.instanceMatrix.needsUpdate = true;
+    for (const { cell, around } of fringe) {
+      for (const other of around) if (cellState[other]) { cellState[cell] = 255; break; }
+    }
     cellTexture.needsUpdate = true;
     geometry.attributes.aFade.needsUpdate = true;
+    geometry.attributes.aLoose.needsUpdate = true;
   }
 
   let visible = true;
-  new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(stage);
+  const sight = new IntersectionObserver((entries) => { visible = entries.at(-1).isIntersecting; });
+  sight.observe(stage);
   if (reduced) {
-    update(0, 0, true);
-    renderer.render(scene, camera);
+    still = () => { update(0, 0, true); renderer.render(scene, camera); };
+    still();
   } else {
     let last = 0, clock = 0;
     renderer.setAnimationLoop((now) => {
@@ -364,5 +418,19 @@ if (max(looseAt(vCell), max(max(looseAt(vCell + reach.xy), looseAt(vCell - reach
 
   return {
     setAssembled(value) { goal = value ? 1 : 0; },
+    mount(next) {
+      if (next === host) return;
+      host = next;
+      release();
+      listen(next);
+      next.append(canvas);
+      sizes.disconnect();
+      sizes.observe(next);
+      sight.disconnect();
+      sight.observe(next);
+      goal = 0;
+      progress = 0;
+      resize();
+    },
   };
 }

@@ -1,0 +1,102 @@
+{
+	admin off
+}
+
+:{$PORT:8080}
+
+root * {$SITE_ROOT:/srv}
+encode gzip zstd
+
+header {
+	X-Content-Type-Options "nosniff"
+	Referrer-Policy "strict-origin-when-cross-origin"
+}
+
+# Old URLs of the 2026-10 site. Pages that were not carried over lead to the matching
+# section of the new home in the same language.
+map {path} {legacy} {
+	~^/index(\.en)?(\.html)?$                       /en
+	~^/index\.de(\.html)?$                          /de
+	~^/(de|en)/index(\.html)?$                       /${1}
+	~^/agents(\.en)?(\.html)?$                      /en#agentic-coworker
+	~^/agents\.de(\.html)?$                         /de#agentic-coworker
+	~^/de/ki-coworker(/.*)?$                         /de#agentic-coworker
+	~^/en/ai-coworker(/.*)?$                         /en#agentic-coworker
+	~^/call_assistant(\.html)?$                      /en#ki-automationen
+	~^/call_assistant\.de(\.html)?$                 /de#ki-automationen
+	~^/de/ki-telefonassistent$                       /de#ki-automationen
+	~^/en/ai-phone-assistant$                        /en#ki-automationen
+	~^/doc_indexer(\.html)?$                         /en#software-development
+	~^/doc_indexer\.de(\.html)?$                    /de#software-development
+	~^/de/doc-indexer$                               /de#software-development
+	~^/en/doc-indexer$                               /en#software-development
+	~^/comparison(\.en)?(\.html)?$                  /en#agentic-coworker
+	~^/comparison\.de(\.html)?$                     /de#agentic-coworker
+	~^/de/coworker-vs-copilot$                       /de#agentic-coworker
+	~^/en/coworker-vs-copilot$                       /en#agentic-coworker
+	~^/ai-in-business(\.en)?(\.html)?$              /en#ai-adoption
+	~^/ai-in-business\.de(\.html)?$                 /de#ai-adoption
+	~^/de/ki-im-unternehmen$                         /de#ai-adoption
+	~^/en/ai-in-business$                            /en#ai-adoption
+	~^/eu-ai-act(\.html)?$                           /en#ai-adoption
+	~^/eu-ai-act\.de(\.html)?$                      /de#ai-adoption
+	~^/de/eu-ai-act$                                 /de#ai-adoption
+	~^/en/eu-ai-act$                                 /en#ai-adoption
+	~^/ai-customer-acquisition(\.html)?$             /en#agentic-coworker
+	~^/ai-customer-acquisition\.de(\.html)?$        /de#agentic-coworker
+	~^/de/kundenakquise-mit-ki$                      /de#agentic-coworker
+	~^/en/ai-customer-acquisition$                   /en#agentic-coworker
+	~^/press(\.html)?$                               /en/press
+	~^/press\.de(\.html)?$                          /de/presse
+	~^/imprint(\.html)?$                             /en/imprint
+	~^/imprint\.de(\.html)?$                        /de/impressum
+	~^/privacy(\.html)?$                             /en/privacy
+	~^/privacy\.de(\.html)?$                        /de/datenschutz
+	~^/terms(\.html)?$                               /en/terms
+	~^/terms\.de(\.html)?$                          /de/agb
+	~^/acceptable-use(\.html)?$                      /en/acceptable-use
+	~^/acceptable-use\.de(\.html)?$                 /de/nutzungsrichtlinie
+	~^/dpa(\.html)?$                                 /en/dpa
+	~^/dpa\.de(\.html)?$                            /de/avv
+	default                                          ""
+}
+
+@root path /
+header @root Vary "Accept-Language, Cookie"
+header @root Cache-Control "private, no-store"
+
+@hashed path /_astro/*
+header @hashed Cache-Control "public, max-age=31536000, immutable"
+
+@pages not path / /_astro/*
+header @pages Cache-Control "no-cache, must-revalidate"
+
+route {
+	@olddomain host utxoag.com www.utxoag.com
+	redir @olddomain https://utxo.ag{uri} 301
+
+	@root_de expression `{path} == "/" && ({http.request.cookie.utxo_lang} == "de" || ({http.request.cookie.utxo_lang} != "en" && {http.request.header.Accept-Language}.matches("^de")))`
+	redir @root_de /de 302
+	redir @root /en 302
+
+	@legacy expression `{legacy} != ""`
+	redir @legacy {legacy} 301
+
+	@htmlfile path_regexp htmlext ^/(.+)\.html$
+	redir @htmlfile /{re.htmlext.1}{?query} 301
+
+	@trailing path_regexp trailing ^(/.+)/$
+	redir @trailing {re.trailing.1}{?query} 301
+
+	@dev path /dev /dev/*
+	respond @dev 404
+
+	try_files {path} {path}.html
+	file_server
+}
+
+handle_errors {
+	@notfound expression `{err.status_code} == 404`
+	rewrite @notfound /404.html
+	file_server
+}

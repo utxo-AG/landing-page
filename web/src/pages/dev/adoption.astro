@@ -1,0 +1,16 @@
+---
+/* Development page for one mockup in isolation. Not linked; the dev folder is removed before cutover. */
+import Base from '../../layouts/Base.astro';
+import ServiceSection from '../../components/ServiceSection.astro';
+import Adoption from '../../components/mockups/Adoption.astro';
+import t from '../../i18n/de/index.js';
+
+const service = t.services.find((entry) => entry.id === 'ai-adoption');
+---
+<Base t={t}>
+  <main>
+    <ServiceSection service={service} layout="wide">
+      <Adoption t={t} />
+    </ServiceSection>
+  </main>
+</Base>

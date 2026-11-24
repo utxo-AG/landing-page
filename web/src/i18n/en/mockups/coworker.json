@@ -1,0 +1,178 @@
+{
+  "context": "Workspace · Campaign team",
+  "teamLabel": "Team",
+  "team": [
+    {
+      "name": "Jana Brandt",
+      "role": "Account",
+      "avatar": "jana"
+    },
+    {
+      "name": "Tobias Keller",
+      "role": "Strategy",
+      "avatar": "tobias"
+    },
+    {
+      "name": "Miriam Scholz",
+      "role": "Creative",
+      "avatar": "miriam"
+    },
+    {
+      "name": "Felix Arnold",
+      "role": "Media",
+      "avatar": "felix"
+    },
+    {
+      "name": "Lena",
+      "role": "CoWorker · Research",
+      "avatar": "lena"
+    }
+  ],
+  "coworker": 4,
+  "channel": "Fall campaign",
+  "members": "5 members",
+  "compose": "Message Fall campaign",
+  "weekLabel": "Week",
+  "week": [
+    {
+      "day": "Mo",
+      "meetings": [
+        {
+          "time": "09:30",
+          "title": "Weekly sync"
+        },
+        {
+          "time": "14:00",
+          "title": "Strategy workshop"
+        }
+      ]
+    },
+    {
+      "day": "Tu",
+      "meetings": [
+        {
+          "time": "14:00",
+          "title": "Client call"
+        }
+      ]
+    },
+    {
+      "day": "We",
+      "meetings": [
+        {
+          "time": "11:00",
+          "title": "Creative review"
+        }
+      ]
+    },
+    {
+      "day": "Th",
+      "meetings": [
+        {
+          "time": "15:00",
+          "title": "Media planning"
+        }
+      ]
+    },
+    {
+      "day": "Fr",
+      "meetings": [
+        {
+          "time": "10:00",
+          "title": "Client meeting"
+        },
+        {
+          "time": "15:00",
+          "title": "Weekly wrap-up"
+        }
+      ]
+    }
+  ],
+  "exchanges": [
+    {
+      "member": 0,
+      "ask": {
+        "time": "Mon 09:12",
+        "mention": "@Lena",
+        "text": "please update the competitor analysis by Thursday."
+      },
+      "answer": {
+        "time": "Mon 09:13",
+        "text": "I'm on it. Draft by Wednesday, 4 pm. One question: with or without Austria?"
+      },
+      "reply": {
+        "time": "Mon 09:15",
+        "text": "With Austria, please."
+      },
+      "delivery": {
+        "time": "Wed 15:40",
+        "text": "The draft is ready, Austria is included.",
+        "file": "Competitor_analysis_v3.pdf",
+        "meta": "PDF · 24 pages",
+        "status": "For review"
+      },
+      "task": {
+        "day": "We",
+        "time": "16:00",
+        "title": "Competitor analysis"
+      }
+    },
+    {
+      "member": 3,
+      "ask": {
+        "time": "Tue 10:04",
+        "mention": "@Lena",
+        "text": "can you analyze the summer campaign's media data for Friday's client meeting?"
+      },
+      "answer": {
+        "time": "Tue 10:05",
+        "text": "Will do. You'll have the analysis on Thursday at noon. One question: broken down by channel or by audience?"
+      },
+      "reply": {
+        "time": "Tue 10:09",
+        "text": "By channel is fine."
+      },
+      "delivery": {
+        "time": "Thu 11:35",
+        "text": "The analysis is ready, broken down by channel.",
+        "file": "Media_analysis_summer.xlsx",
+        "meta": "XLSX · 6 sheets",
+        "status": "For review"
+      },
+      "task": {
+        "day": "Th",
+        "time": "12:00",
+        "title": "Media analysis"
+      }
+    },
+    {
+      "member": 2,
+      "ask": {
+        "time": "Mon 16:20",
+        "mention": "@Lena",
+        "text": "for the mood board I need examples of current fall campaigns in retail."
+      },
+      "answer": {
+        "time": "Mon 16:21",
+        "text": "I'll put them together. Twelve examples by Tuesday, 10 am. One question: print and out-of-home only, or social media too?"
+      },
+      "reply": {
+        "time": "Mon 16:24",
+        "text": "Social media too."
+      },
+      "delivery": {
+        "time": "Tue 09:45",
+        "text": "Twelve examples with sources, social media included.",
+        "file": "Fall_campaign_examples.pdf",
+        "meta": "PDF · 14 pages",
+        "status": "For review"
+      },
+      "task": {
+        "day": "Tu",
+        "time": "10:00",
+        "title": "Campaign examples"
+      }
+    }
+  ],
+  "typing": "typing …"
+}

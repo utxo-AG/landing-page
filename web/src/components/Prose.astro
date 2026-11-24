@@ -1,0 +1,5 @@
+---
+/* Long-form HTML of a text page (content/<lang>/<page>.html, imported with ?raw). Styles: .tp-prose in layouts/TextPage.astro. */
+const { html } = Astro.props;
+---
+<article class="tp-prose tp-rise" data-reveal set:html={html} />

@@ -19,6 +19,111 @@
 - Two-line rows below 1100px
 - Panels close on focus out
 - Focus ring visible again
+- Phase 1 committed
+- Dictionary split per mockup
+- Mockup grammar light and dark
+- Section layouts `wide` `stage` `mockup-right`
+- Mockup "Software Development"
+- Mockup "KI-Automationen" conveyor
+- Mockup "Agent Factories" CSS 3D
+- Mockup "AI Adoption"
+- Mockup "Agentic CoWorker"
+- "Referenzen und Kunden" section
+- Closing stage canvas hand-over
+- `blocks.js` gets `mount`
+- Footer and consent banner
+- Subpages on `TextPage` layout
+- Legal texts ported unchanged
+- Press and team data files
+- Head metadata sitemap robots 404
+- `web/Dockerfile` and `web/Caddyfile`
+- Old URLs redirect in Caddy
+- Sample label removed
+- NMKR tagged "Eigene Marke"
+- Fixed 30 day pilot removed
+- Service order changed
+- "KI-Automationen" on dark stage
+- "Agent Factories" stage lower
+- CoWorker avatars and mentions
+- Panels move into hero stage
+- Contact options as large tiles
+- Screen panels on subpages
+- DE EN toggle in header
+- English dictionaries and pages
+- English legal texts ported unchanged
+- Caddy language redirect restored
+- Sokosumi client logo marquee
+- NMKR client logos in row
+- Press logo marquee with link
+- Loose cubes separated and shaded
+- Sliver cubes no longer drawn
+- Automation counter uses `formatNumber`
+- `i18n-parity.py` added
+- Fringe cells hide body traces
+- Sokosumi figure registered companies
+- Press block set apart
+- Press link dark pill
+- CoWorker avatars in colour
+- Header headline stacks below 1280px
+- Panel no longer blocks scrolling
+- Screen panel takes focus
+- Stage headlines one size
+- Copy stacks below 1000px
+- Loop ranking by mockup visibility
+- Pulse keeps rear cubes solid
+- Pointer ignored while dissolved
+- Skip link and `main` id
+- Mockups labelled for screen readers
+- Static wordmark without JavaScript
+- Marquee logos load eagerly
+- English wording refined
+- Own CoWorker portraits added
+- Lena name and mention phthalo green
+- Two people removed from team
+- Team text says around 10
+- Team roles and order updated
+- Team in two groups
+- Phthalo token lighter
+- Code bars phthalo
+- Phthalo highlights in "Managed Agents"
+- "Agent Factories" and "KI-Automationen" swapped
+- Contact tiles smaller with icons
+- Language toggle above "Menü"
+- Header pills align with headline
+- More room above toggle
+- Section "Sicherheit und Betrieb" added
+- Company facts on about page
+- NMKR logo line inside row
+- Figure labels centred on numbers
+- NMKR marquee narrower
+- EU stars behind security section
+- Founding dates on about page
+- Root redirect for preview restored
+- EU stars larger and cropped
+- Press band below closing stage
+- Press label "utxo AG in der Presse"
+- Press band one line
+- "Software Development" now five-scene film
+- EU stars smaller and uncut below
+- Dev server stopped
+- Figures right aligned to labels
+- Serviceplan logo in colour
+- Product logos in reference rows
+- ISO sentence without "ISMS"
+- More space below press band
+- Opening scene "00 Beispielprozess" added
+- Dev server stopped again
+- Root `Dockerfile` and `railway.json`
+- Production image tested locally
+- Merged to `master` for deploy
+- Phthalo accents in "Software Development"
+- English dictionaries `i18n/en`
+- English pages `pages/en`
+- English legal fragments `content/en`
+- `PressPage` `AboutPage` shared components
+- English roles in `team.json`
+- Press dates use `t.lang`
+- 404 links both homes
 
 ## cab32225-0016-4518-9557-a1abf04a5b3f — 2026-11-23 UTC
 - New branch `website-2027`

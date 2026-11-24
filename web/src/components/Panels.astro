@@ -1,0 +1,110 @@
+---
+/*
+  The two header panels (contact options and menu) on a dark surface.
+  mode "stage":  rendered inside the hero stage; the panel covers the stage and the wordmark dissolves
+                 while one is open (scene/hero.js). Below 760px the menu still covers the whole screen.
+  mode "screen": pages without a stage; the panel covers the whole screen.
+  Behaviour and markup contract: page/disclosure.js.
+*/
+import logo from '../assets/wordmark-white.svg';
+
+const { t, mode } = Astro.props;
+const m = t.menu;
+const number = (i) => String(i + 1).padStart(2, '0');
+const classes = ['panel', `panel--${mode}`];
+---
+<div class:list={[...classes, 'contact-panel']} id="contact-menu" hidden>
+  <div class="panel-head">
+    <img src={logo.src} alt="" width="50" height="30">
+    <button class="pill pill--line" type="button" data-close>{t.header.close}</button>
+  </div>
+  <div class="cta-grid">
+    {[{ ...t.contact.booking, icon: 'calendar' }, { ...t.contact.mail, icon: 'mail' }].map((entry) => (
+      <a class="cta" href={entry.href}>
+        <span class="cta-top">
+          <svg class="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            {entry.icon === 'calendar'
+              ? <Fragment><rect x="3.5" y="5" width="17" height="15.5" rx="2.5" /><path d="M3.5 10h17M8 3v4M16 3v4" /></Fragment>
+              : <Fragment><rect x="3" y="5.5" width="18" height="13" rx="2.5" /><path d="M3.5 7.5l8.5 6 8.5-6" /></Fragment>}
+          </svg>
+          <span class="cta-arrow" aria-hidden="true">↗</span>
+        </span>
+        <span class="cta-text"><span class="cta-title">{entry.title}</span><span class="cta-note">{entry.note}</span></span>
+      </a>
+    ))}
+  </div>
+</div>
+<nav class:list={[...classes, 'menu-panel']} id="site-menu" aria-label={t.header.menu} hidden>
+  <div class="panel-head">
+    <img src={logo.src} alt="" width="50" height="30">
+    <button class="pill pill--line" type="button" data-close>{t.header.close}</button>
+  </div>
+  <div class="menu-grid">
+    <div class="menu-col menu-col--services">
+      <p class="menu-label label">{m.servicesLabel}</p>
+      <ol>
+        {t.services.map((service, i) => <li><a href={`${t.home}#${service.id}`}><span class="menu-n label">{number(i)}</span>{service.name}</a></li>)}
+      </ol>
+    </div>
+    <div class="menu-col">
+      <p class="menu-label label">{m.companyLabel}</p>
+      <ul>
+        {m.company.map((entry) => <li><a href={entry.href}>{entry.label}</a></li>)}
+      </ul>
+    </div>
+    <div class="menu-col">
+      <p class="menu-label label">{m.productsLabel}</p>
+      <ul>
+        {m.products.map((entry) => <li><a href={entry.href} target="_blank" rel="noopener">{entry.label} <span aria-hidden="true">↗</span></a></li>)}
+      </ul>
+    </div>
+    <ul class="menu-legal">
+      {m.legal.map((entry) => <li><a href={entry.href}>{entry.label}</a></li>)}
+    </ul>
+  </div>
+</nav>
+
+<style is:global>
+.panel{position:absolute;inset:0;z-index:2;display:grid;grid-template-rows:minmax(0,1fr);overflow-y:auto;padding:clamp(22px, 3.4vw, 54px);color:var(--stage-fg);animation:panel-in var(--t-move) var(--ease) .25s both}
+.panel[hidden]{display:none}
+.panel--screen{position:fixed;z-index:30;overscroll-behavior:contain;grid-template-rows:auto minmax(0,1fr);padding:clamp(18px, 3.4vw, 50px) var(--edge) clamp(28px, 3.4vw, 50px);background:var(--stage-gradient);animation-delay:0s}
+.panel :focus-visible{outline-color:var(--stage-fg)}
+.panel-head{display:none;justify-content:space-between;align-items:center;margin-bottom:clamp(22px, 3vw, 44px)}
+.panel--screen .panel-head{display:flex}
+.panel-head img{width:clamp(50px, 5vw, 72px)}
+@keyframes panel-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(10px, 1.2vw, 18px);align-self:center;justify-self:center;width:min(100%, 860px)}
+.cta{display:grid;align-content:space-between;gap:clamp(36px, 5vw, 84px);padding:clamp(18px, 2vw, 30px);border-radius:var(--radius);background:var(--stage-soft);transition:background-color var(--t-fast) var(--ease),color var(--t-fast) var(--ease)}
+.cta-top{display:flex;justify-content:space-between;align-items:flex-start}
+.cta-icon{width:clamp(26px, 2.4vw, 36px);height:auto}
+.cta-arrow{font-size:clamp(18px, 1.6vw, 24px);font-weight:300;line-height:1;color:var(--stage-muted);transition:color var(--t-fast) var(--ease)}
+.cta-text{display:grid;gap:8px}
+.cta-title{font-size:clamp(22px, 2.3vw, 36px);line-height:1.05;letter-spacing:-.035em}
+.cta-note{color:var(--stage-muted);font-size:clamp(13px, 1.05vw, 15.5px);transition:color var(--t-fast) var(--ease)}
+.cta:hover,.cta:focus-visible{background:var(--stage-fg);color:var(--stage)}
+.cta:hover .cta-note,.cta:focus-visible .cta-note,.cta:hover .cta-arrow,.cta:focus-visible .cta-arrow{color:var(--muted)}
+
+.menu-grid{display:grid;grid-template-columns:7fr 3fr 2fr;gap:clamp(28px, 3vw, 48px) var(--gap);align-content:space-between}
+.menu-label{color:var(--stage-muted);margin-bottom:clamp(12px, 1.3vw, 20px)}
+.menu-grid a{display:flex;align-items:baseline;gap:.5em;padding:.24em 0;transition:opacity var(--t-fast) var(--ease)}
+.menu-col{font-size:clamp(18px, 1.55vw, 24px);line-height:1.15;letter-spacing:-.02em}
+.menu-col--services{font-size:clamp(21px, 2.2vw, 34px);line-height:1.05;letter-spacing:-.035em}
+.menu-n{flex:none;width:3.2em;color:var(--stage-muted);letter-spacing:.04em}
+.menu-legal{grid-column:1 / -1;display:flex;gap:24px;font-size:clamp(13px, 1vw, 15px);color:var(--stage-muted)}
+@media (hover:hover){
+  .menu-grid:hover a{opacity:.4}
+  .menu-grid a:hover{opacity:1}
+}
+@media (max-width:760px){
+  .cta-grid{grid-template-columns:1fr}
+  .panel.menu-panel{position:fixed;z-index:30;overscroll-behavior:contain;grid-template-rows:auto minmax(0,1fr);padding:18px var(--edge) 32px;background:var(--stage-gradient);animation-delay:0s}
+  .menu-panel .panel-head{display:flex}
+  .menu-grid{grid-template-columns:1fr 1fr;align-content:start}
+  .menu-col--services{grid-column:1 / -1}
+  .is-modal-open{overflow:hidden}
+}
+@media (prefers-reduced-motion:reduce){
+  .panel{animation:none}
+}
+</style>

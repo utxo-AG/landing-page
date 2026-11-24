@@ -1,0 +1,87 @@
+{
+  "context": "Betrieb · Ihre Agenten",
+  "status": {
+    "run": "läuft",
+    "wait": "Ihre Freigabe",
+    "plan": "geplant",
+    "done": "erledigt"
+  },
+  "approve": "Freigeben",
+  "rows": [
+    {
+      "name": "Briefing-Agent",
+      "task": "prüft ein Kampagnenbriefing",
+      "state": "run",
+      "progress": 72,
+      "due": 1
+    },
+    {
+      "name": "Recherche-Agent",
+      "task": "Wettbewerbsanalyse, 14 Quellen",
+      "state": "run",
+      "progress": 38,
+      "due": 2
+    },
+    {
+      "name": "Reporting-Agent",
+      "task": "Wochenbericht",
+      "state": "run",
+      "progress": 88,
+      "due": 0
+    },
+    {
+      "name": "Ablage-Agent",
+      "task": "legt 46 Dokumente ab",
+      "planned": "startet um 18:00 Uhr",
+      "state": "plan",
+      "progress": 0
+    }
+  ],
+  "pool": [
+    {
+      "name": "Angebots-Agent",
+      "task": "erstellt ein Angebot aus der Anfrage",
+      "planned": "startet um 18:15 Uhr"
+    },
+    {
+      "name": "Monitoring-Agent",
+      "task": "Medienbeobachtung, 32 Quellen",
+      "planned": "startet um 18:30 Uhr"
+    },
+    {
+      "name": "Übersetzungs-Agent",
+      "task": "Kampagnentexte in 4 Sprachen",
+      "planned": "startet um 19:00 Uhr"
+    },
+    {
+      "name": "Rechnungs-Agent",
+      "task": "prüft 18 Eingangsrechnungen",
+      "planned": "startet um 19:30 Uhr"
+    },
+    {
+      "name": "Protokoll-Agent",
+      "task": "fasst das Kundenmeeting zusammen",
+      "planned": "startet um 20:00 Uhr"
+    },
+    {
+      "name": "Datenpflege-Agent",
+      "task": "gleicht CRM-Kontakte ab",
+      "planned": "startet um 20:30 Uhr"
+    }
+  ],
+  "counters": {
+    "runs": {
+      "label": "Läufe heute",
+      "value": 128
+    },
+    "auto": {
+      "label": "ohne Eingriff erledigt",
+      "value": 94,
+      "unit": "%"
+    },
+    "waiting": {
+      "label": "warten auf Sie",
+      "value": 0
+    }
+  }
+}

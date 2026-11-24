@@ -1,0 +1,297 @@
+{
+  "lang": "en",
+  "home": "/en",
+  "meta": {
+    "title": "utxo AG: Modern software for digital transformation",
+    "description": "AI-native solutions for complex enterprise requirements: Software Development, Agent Factories, Managed Agents, Agentic CoWorker, AI Automation and AI Adoption."
+  },
+  "header": {
+    "logoAlt": "utxo AG",
+    "headline": "Modern software for digital transformation.",
+    "subline": "AI-native solutions for complex enterprise requirements.",
+    "contact": "Contact us",
+    "contactShort": "Contact",
+    "menu": "Menu",
+    "close": "Close",
+    "language": "Language"
+  },
+  "contact": {
+    "booking": {
+      "note": "30 minutes",
+      "href": "https://cal.com/philip-isenmann-utxoag/30-min-meeting",
+      "title": "Book an intro call"
+    },
+    "mail": {
+      "note": "business@utxo.ag",
+      "href": "mailto:business@utxo.ag",
+      "title": "Email us"
+    }
+  },
+  "hero": {
+    "canvasLabel": "The utxo AG wordmark as a solid body that breaks into cubes when touched"
+  },
+  "overview": {
+    "label": "Services"
+  },
+  "services": [
+    {
+      "id": "software-development",
+      "name": "Software Development",
+      "short": "Custom software, AI-assisted where needed, from concept to production.",
+      "body": "We develop custom software for your processes, AI-assisted on request, from concept to production. A dedicated team is responsible for architecture, development and ongoing enhancement.",
+      "mockupLabel": "Animated example sequence: from workflow to web application, mobile app and integrations through to release."
+    },
+    {
+      "id": "agent-factories",
+      "name": "Agent Factories and AI Infrastructure",
+      "short": "The foundation on which your organization develops and operates agents at scale.",
+      "body": "We develop the platform your organization uses to produce, test and operate AI agents at scale. Hosting tailored to your requirements: Germany, EU or on-premises.",
+      "mockupLabel": "Animated example: AI agents are produced at scale on shared infrastructure and go into operation."
+    },
+    {
+      "id": "managed-agents",
+      "name": "Managed Agents",
+      "short": "AI agents that we develop, host and monitor for you.",
+      "body": "We develop, host and monitor your AI agents. You can see at any time what is running, what is done and where your approval is needed.",
+      "mockupLabel": "Animated example: operations console with running AI agents and one task waiting for your approval."
+    },
+    {
+      "id": "agentic-coworker",
+      "name": "Agentic CoWorker",
+      "short": "AI CoWorkers that join your team like colleagues.",
+      "body": "AI CoWorkers join your team like colleagues. They take on tasks in the channel your team already uses, ask when something is unclear and deliver results for review.",
+      "mockupLabel": "Animated example: an AI CoWorker works in the team channel, asks questions and delivers results for review."
+    },
+    {
+      "id": "ki-automationen",
+      "name": "AI Automation",
+      "short": "Recurring processes that run on their own in your systems.",
+      "body": "Recurring processes run on their own in your existing systems, from intake to posting. Exceptions go to your team for approval.",
+      "mockupLabel": "Animated example: cases pass through five stations automatically; one exception waits for your approval."
+    },
+    {
+      "id": "ai-adoption",
+      "name": "AI Adoption and Consulting",
+      "short": "From selecting the right use cases to rollout in your teams.",
+      "body": "Together with you, we identify the use cases with the greatest benefit and bring them into production step by step. Some are in production within a few weeks, others take months. We support the rollout in your teams.",
+      "mockupLabel": "Animated example: use cases are selected by benefit and effort and brought into production."
+    }
+  ],
+  "menu": {
+    "servicesLabel": "Services",
+    "companyLabel": "Company",
+    "productsLabel": "Products",
+    "company": [
+      {
+        "label": "Clients and References",
+        "href": "/en#referenzen"
+      },
+      {
+        "label": "Security and Operations",
+        "href": "/en#sicherheit"
+      },
+      {
+        "label": "About us",
+        "href": "/en/about"
+      },
+      {
+        "label": "Press",
+        "href": "/en/press"
+      },
+      {
+        "label": "Contact",
+        "href": "/en#kontakt"
+      }
+    ],
+    "products": [
+      {
+        "label": "Sokosumi",
+        "href": "https://www.sokosumi.com"
+      },
+      {
+        "label": "Masumi",
+        "href": "https://www.masumi.network"
+      },
+      {
+        "label": "NMKR",
+        "href": "https://www.nmkr.io"
+      },
+      {
+        "label": "anruf.guru",
+        "href": "https://anruf.guru"
+      }
+    ],
+    "legal": [
+      {
+        "label": "Imprint",
+        "href": "/en/imprint"
+      },
+      {
+        "label": "Privacy",
+        "href": "/en/privacy"
+      }
+    ]
+  },
+  "mockup": {
+    "live": "Live"
+  },
+  "references": {
+    "id": "referenzen",
+    "title": "Clients and References",
+    "lead": {
+      "name": "Serviceplan Group",
+      "claim": "Europe's largest owner-managed agency group",
+      "text": "Developed and operated together with the Serviceplan Group. utxo AG is responsible for technology and hosting."
+    },
+    "rows": [
+      {
+        "name": "Sokosumi",
+        "href": "https://www.sokosumi.com",
+        "clients": "sokosumi",
+        "clientsLabel": "Used by",
+        "text": "The platform for marketing teams: assign work to AI CoWorkers and AI agents and collaborate with them.",
+        "figures": [
+          {
+            "value": 1000,
+            "suffix": "+",
+            "label": "registered companies"
+          }
+        ],
+        "logo": "sokosumi.svg"
+      },
+      {
+        "name": "Masumi",
+        "href": "https://www.masumi.network",
+        "text": "Decentralized payments, identity and discovery for AI agents.",
+        "figures": [
+          {
+            "text": "Open Source"
+          }
+        ],
+        "logo": "masumi.webp"
+      },
+      {
+        "name": "NMKR",
+        "href": "https://www.nmkr.io",
+        "clients": "nmkr",
+        "clientsLabel": "Organizations NMKR has developed for",
+        "tag": "Our own brand",
+        "text": "No-code toolsets, API and infrastructure for tokenization and payments.",
+        "figures": [
+          {
+            "value": 38000,
+            "suffix": "+",
+            "label": "registered users, since 2021"
+          },
+          {
+            "value": 2.5,
+            "decimals": 1,
+            "suffix": "M",
+            "label": "digital assets"
+          },
+          {
+            "value": 69,
+            "suffix": "M EUR",
+            "label": "client revenue processed through the infrastructure"
+          }
+        ],
+        "logo": "nmkr-logo.svg"
+      }
+    ],
+    "press": {
+      "label": "utxo AG in the press",
+      "link": {
+        "text": "View press coverage",
+        "href": "/en/press"
+      }
+    }
+  },
+  "closing": {
+    "id": "kontakt",
+    "title": "Talk to us about your project.",
+    "text": "In 30 minutes, we work out what makes sense for your company.",
+    "booking": "Book an intro call",
+    "mail": "Email us",
+    "canvasLabel": "The utxo AG wordmark"
+  },
+  "footer": {
+    "servicesLabel": "Services",
+    "companyLabel": "Company",
+    "productsLabel": "Products",
+    "legalLabel": "Legal",
+    "legal": [
+      {
+        "label": "Imprint",
+        "href": "/en/imprint"
+      },
+      {
+        "label": "Privacy",
+        "href": "/en/privacy"
+      },
+      {
+        "label": "Terms",
+        "href": "/en/terms"
+      },
+      {
+        "label": "Acceptable Use",
+        "href": "/en/acceptable-use"
+      },
+      {
+        "label": "DPA",
+        "href": "/en/dpa"
+      }
+    ],
+    "cookies": "Cookie settings",
+    "line": "© 2026 utxo AG · Dammstrasse 16 · 6300 Zug · Switzerland"
+  },
+  "number": {
+    "group": ",",
+    "decimal": "."
+  },
+  "consent": {
+    "label": "Cookies",
+    "text": "We would like to use Google Analytics to understand how our website is used. The data helps us improve our content. You can change your choice at any time in the footer.",
+    "privacy": "Privacy",
+    "privacyHref": "/en/privacy",
+    "deny": "Decline",
+    "accept": "Accept"
+  },
+  "analytics": {
+    "gaMeasurementId": "G-35CTMZQ9Z1"
+  },
+  "locale": "en_US",
+  "notFound": {
+    "heading": "Page not found",
+    "title": "Page not found | utxo AG",
+    "description": "This page does not exist or no longer exists.",
+    "lede": "This page does not exist or no longer exists.",
+    "back": "Back to home"
+  },
+  "skip": "Skip to content",
+  "security": {
+    "id": "sicherheit",
+    "title": "Security and Operations",
+    "rows": [
+      {
+        "name": "Data protection",
+        "text": "A DPA tailored to your stack and requirements. Processing only on your instructions, no training with your data.",
+        "tag": "GDPR · Art. 28"
+      },
+      {
+        "name": "Hosting",
+        "text": "Hosting tailored to your requirements: Germany, EU or on-premises. Model-agnostic.",
+        "tag": "Germany · EU · on-premises"
+      },
+      {
+        "name": "EU AI Act",
+        "text": "Aligned with the EU AI Act: where it matters, a human approves.",
+        "tag": "A human decides"
+      },
+      {
+        "name": "Information security",
+        "text": "Aligned with ISO/IEC 27001:2022. Least privilege, every action is logged.",
+        "tag": "ISO/IEC 27001:2022"
+      }
+    ]
+  }
+}

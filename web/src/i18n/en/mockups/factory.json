@@ -1,0 +1,20 @@
+{
+  "context": "Agent Factory · Platform",
+  "plates": {
+    "infra": "Infrastructure",
+    "factory": "Factory",
+    "run": "Operation"
+  },
+  "fields": ["Hosting", "Models", "Data", "Identity and access", "Audit log"],
+  "stations": ["Template", "Integration", "Test", "Approval"],
+  "stats": {
+    "running": {
+      "label": "In operation",
+      "value": 24
+    },
+    "version": {
+      "label": "Version",
+      "value": "3.1"
+    }
+  }
+}

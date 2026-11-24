@@ -1,23 +1,34 @@
 ---
 import logo from '../assets/wordmark-black.svg';
-import Menu from './Menu.astro';
+import Panels from './Panels.astro';
+import { alternates } from '../i18n/routes.js';
 
-const { t } = Astro.props;
+/*
+  statement: the home page shows the headline (h1) in the header; text pages pass statement={false}.
+  panels: the home passes panels={false} because its panels live inside the hero stage (Hero.astro).
+*/
+const { t, statement = true, panels = true } = Astro.props;
 const h = t.header;
+const versions = alternates(Astro.url.pathname);
 ---
 <header class="top">
   <a class="logo" href={t.home}><img src={logo.src} alt={h.logoAlt} width="72" height="43"></a>
-  <h1 class="statement"><span class="ln" style="--i:0"><span><strong>{h.headline}</strong></span></span>{' '}<span class="ln" style="--i:1"><span>{h.subline}</span></span></h1>
+  {statement && <h1 class="statement"><span class="ln" style="--i:0"><span><strong>{h.headline}</strong></span></span>{' '}<span class="ln" style="--i:1"><span>{h.subline}</span></span></h1>}
   <div class="actions">
-    <div class="disclosure" data-disclosure>
+    <div data-disclosure>
       <button class="pill pill--talk" type="button" aria-expanded="false" aria-controls="contact-menu"><span class="pill-long">{h.contact}</span><span class="pill-short">{h.contactShort}</span> <i></i></button>
-      <div class="panel contact-menu" id="contact-menu" hidden>
-        {[t.contact.booking, t.contact.mail].map((entry) => <a href={entry.href}>{entry.label}<span>{entry.note}</span></a>)}
-      </div>
     </div>
-    <Menu t={t} />
+    <div data-disclosure>
+      <button class="pill pill--2" type="button" aria-expanded="false" aria-controls="site-menu">{h.menu}</button>
+    </div>
+    {versions && (
+      <nav class="lang label" aria-label={h.language}>
+        {Object.entries(versions).map(([lang, path]) => <a href={path} hreflang={lang} lang={lang} data-set-lang={lang} aria-current={lang === t.lang ? 'page' : undefined}>{lang}</a>)}
+      </nav>
+    )}
   </div>
 </header>
+{panels && <Panels t={t} mode="screen" />}
 
 <style is:global>
 .top{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);align-items:start;padding:clamp(18px, 3.4vw, 50px) var(--edge) 0;--d:150ms}
@@ -29,33 +40,30 @@ const h = t.header;
 .js .actions{opacity:0;transition:opacity var(--t-move) var(--ease) .9s}
 .is-ready .logo,.is-ready .actions{opacity:1}
 .pill-short{display:none}
+.actions{position:relative;align-self:end}
+.lang{position:absolute;right:10px;bottom:calc(100% + 7px);display:flex;font-size:10.5px;line-height:1}
+.lang a{padding:3px 6px;color:var(--muted);transition:color var(--t-fast) var(--ease)}
+.lang a + a{border-left:1px solid var(--rule)}
+.lang a:last-child{padding-right:0}
+.lang a:hover,.lang a[aria-current]{color:var(--fg)}
 
-/* Header panels: contract in page/disclosure.js */
-.disclosure{position:relative}
-.panel{position:absolute;right:0;top:calc(100% + 8px);z-index:10;animation:panel-in var(--t-fast) var(--ease)}
-.panel[hidden]{display:none}
-@keyframes panel-in{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
-
-.contact-menu{display:grid;gap:6px;min-width:300px}
-.contact-menu a{display:flex;white-space:nowrap;justify-content:space-between;align-items:baseline;gap:24px;padding:17px 20px;border-radius:16px;background:var(--surface);font-size:17px;letter-spacing:-.01em;box-shadow:0 1px 2px rgba(0,0,0,.05),0 14px 30px rgba(10,14,30,.1);transition:background-color var(--t-fast) var(--ease),color var(--t-fast) var(--ease)}
-.contact-menu a span{font-size:13px;color:var(--muted);transition:color var(--t-fast) var(--ease)}
-.contact-menu a:hover,.contact-menu a:focus-visible{background:var(--surface-hover);color:#fff}
-.contact-menu a:hover span,.contact-menu a:focus-visible span{color:rgba(255,255,255,.6)}
-
-@media (max-width:760px){
+/* below 1280px the headline needs the full width, so it moves under logo and actions */
+@media (max-width:1280px){
   .top{grid-template-columns:1fr auto;row-gap:22px}
-  .actions{grid-column:2;gap:8px}
-  .statement{grid-column:1 / -1;grid-row:2;line-height:1.12;font-size:min(20px, 5vw)}
+  .actions{grid-column:2}
+  .statement{grid-column:1 / -1;grid-row:2}
+}
+@media (max-width:760px){
+  .top{padding-top:32px}
+  .actions{gap:8px}
+  .statement{line-height:1.12;font-size:min(20px, 5vw)}
   .statement .ln,.statement .ln > span{display:inline}
   .js .statement{opacity:0;transition:opacity var(--t-enter) var(--ease) .15s}
   .is-ready .statement{opacity:1}
   .pill-long{display:none}
   .pill-short{display:inline}
-  .actions{position:relative}
-  .disclosure{position:static}
 }
 @media (prefers-reduced-motion:reduce){
   .js .logo,.js .actions,.js .statement{transition:none;opacity:1}
-  .panel{animation:none}
 }
 </style>

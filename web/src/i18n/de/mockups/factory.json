@@ -1,0 +1,20 @@
+{
+  "context": "Agent Factory · Plattform",
+  "plates": {
+    "infra": "Infrastruktur",
+    "factory": "Factory",
+    "run": "Betrieb"
+  },
+  "fields": ["Hosting", "Modelle", "Daten", "Identität und Zugriff", "Protokoll"],
+  "stations": ["Vorlage", "Anbindung", "Test", "Freigabe"],
+  "stats": {
+    "running": {
+      "label": "Im Betrieb",
+      "value": 24
+    },
+    "version": {
+      "label": "Version",
+      "value": "3.1"
+    }
+  }
+}

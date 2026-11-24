@@ -66,6 +66,7 @@ export function managedAgents(mockup) {
     if (!withButton) return;
     const button = document.createElement('button');
     button.type = 'button';
+    button.tabIndex = -1;
     button.className = 'approve';
     button.textContent = labels.approve;
     button.addEventListener('click', () => loop.jump('approve'), { once: true });
@@ -136,6 +137,7 @@ export function managedAgents(mockup) {
 
   setup();
   const loop = register(mockup.closest('[data-section]'), {
+    focus: mockup,
     enter: ENTER,
     period: PERIOD,
     steps,

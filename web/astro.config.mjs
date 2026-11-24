@@ -5,6 +5,7 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'never',
   build: { format: 'file' },
+  // only for dev and preview; in production the Caddyfile redirects / by language before any file is served
   redirects: { '/': '/de' },
   vite: { build: { assetsInlineLimit: 0 } },
 });

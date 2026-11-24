@@ -1,0 +1,41 @@
+---
+/* "Wir in der Presse": marquee of the outlets from content/press.json with a link to the press page. Sits between the closing stage and the footer. */
+import LogoLine from './LogoLine.astro';
+import press from '../content/press.json';
+
+const { t } = Astro.props;
+const p = t.references.press;
+const files = import.meta.glob('../assets/press/*.{svg,webp,png}', { eager: true, import: 'default' });
+const STACKED = 1.6;
+const logos = press.logos.map((entry) => ({ ...entry, image: files[`../assets/press/${entry.file}`], scale: entry.stacked ? STACKED : 1 }));
+---
+<section class="press-band" data-press-band>
+  <div class="press-band-line">
+    <LogoLine label={p.label} logos={logos} tone="grey" seconds={90}>
+      <a class="pill pill--talk" href={p.link.href}>{p.link.text} <i></i></a>
+    </LogoLine>
+  </div>
+</section>
+
+<script>
+  import { register } from '../motion/loop.js';
+
+  document.querySelectorAll('[data-press-band]').forEach((section) => register(section));
+</script>
+
+<style is:global>
+.press-band{padding:clamp(72px, 8vw, 128px) var(--edge) clamp(36px, 4.4vw, 72px)}
+/* one line: label, marquee, link */
+.press-band .refs-line{grid-template-columns:auto minmax(0,1fr) auto;column-gap:clamp(28px, 3.4vw, 56px)}
+.press-band .refs-line-label,.press-band .refs-marquee,.press-band .refs-line > a{grid-column:auto;grid-row:1;align-self:center;margin:0}
+/* the brand name is always written "utxo AG", so this label is not set in capitals */
+.press-band .refs-line-label{text-transform:none;letter-spacing:0;font-size:clamp(13px, 1.05vw, 15.5px)}
+@media (max-width:900px){
+  .press-band .refs-line > a{display:inline-flex;margin-top:18px}
+}
+.js .press-band-line{opacity:0;transform:translateY(22px);transition:opacity var(--t-move) ease,transform var(--t-enter) var(--ease)}
+.js .is-in .press-band-line{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .js .press-band-line{opacity:1;transform:none;transition:none}
+}
+</style>

@@ -10,8 +10,8 @@
   --t-stage:1.7s;
   --stagger:90ms;
 
-  --fs-display:clamp(42px, 8.6vw, 132px);
-  --fs-statement:clamp(20px, 2.1vw, 32px);
+  --fs-display:clamp(40px, 6.4vw, 100px);
+  --fs-statement:clamp(20px, 1.9vw, 30px);
   --fs-body:clamp(16px, 1.45vw, 21px);
   --fs-label:clamp(11px, .92vw, 13.5px);
 
@@ -30,6 +30,9 @@
   --stage-rule:rgba(238,240,246,.12);
   --stage-soft:rgba(238,240,246,.07);
   --device:#0A0B0E;
+  --phthalo:#167A5C;
+  --phthalo-lift:#35B58C;
+  --stage-gradient:linear-gradient(112deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,0) 26%, rgba(255,255,255,.022) 50%, rgba(255,255,255,0) 72%),radial-gradient(130% 75% at 50% 112%, rgba(18,70,54,.5) 0%, rgba(18,70,54,.17) 42%, rgba(22,84,64,0) 72%),radial-gradient(120% 100% at 28% 12%, #1B1D22 0%, #0E0F12 46%, #040506 100%);
 }
 @media (max-width:760px){
   :root{--radius:14px}

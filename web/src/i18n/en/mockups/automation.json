@@ -1,0 +1,25 @@
+{
+  "context": "Order intake · Automation",
+  "plates": {
+    "flow": "Process",
+    "systems": "Systems"
+  },
+  "stations": [
+    { "name": "Intake", "system": "Email" },
+    { "name": "Read", "system": "PDF" },
+    { "name": "Check", "system": "Rules" },
+    { "name": "Post", "system": "ERP" },
+    { "name": "Reply", "system": "CRM" }
+  ],
+  "gate": "Your approval",
+  "stats": {
+    "waiting": {
+      "label": "Awaiting approval",
+      "value": 0
+    },
+    "total": {
+      "label": "Processed today",
+      "value": 1284
+    }
+  }
+}

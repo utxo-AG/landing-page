@@ -1,11 +1,11 @@
 # Website 2027: plan for the home page (draft F to full page)
 
-Status 2026-11-23: phase 1 implemented in `web/` (Astro; see `CLAUDE.md`, section "Astro project in `web/`"), waiting for Phil's review before phase 2. All six questions are answered (see section 9). Binding basis is draft F in `web/drafts/` (`f.html`, `f.js`, `page.js`, `blocks.js`, `drafts.css`; run with `cd web/drafts && python3 -m http.server 8131`, open `http://localhost:8131/f.html`). Drafts a to e are discarded experiments. Copy rules: `CLAUDE.md`, section "Copy".
+Status 2026-11-23: all phases implemented in `web/` (Astro; current reference: `CLAUDE.md`, section "Astro project in `web/`"). Deployed on 2026-11-24 from `master` through the root `Dockerfile`. Still open: lawyer review of the legal texts, Safari, Firefox and real phones. All six questions are answered (see section 9). Binding basis is draft F in `web/drafts/` (`f.html`, `f.js`, `page.js`, `blocks.js`, `drafts.css`; run with `cd web/drafts && python3 -m http.server 8131`, open `http://localhost:8131/f.html`). Drafts a to e are discarded experiments. Copy rules: `CLAUDE.md`, section "Copy".
 
 ## Start here (handover 2026-11-23)
 
 - Branch `website-2027` (from `origin/master`, no upstream set, nothing pushed). Drafts and this plan are committed.
-- Phase 1 in section 8 is done (Astro project in `web/`, header with menu, hero, overview, Managed Agents on the loop controller). Next step after Phil's review: phase 2. `web/drafts/` stays untouched as the reference.
+- Phases 1 to 6 in section 8 are implemented (review of phase 1 by Phil on 2026-11-23: approved). `web/drafts/` stays untouched as the reference. Where this plan and the code differ, `CLAUDE.md` describes the current state; the deviations per mockup are listed at the end of this file.
 - Look at draft F first, in a real browser, including motion: `cd web/drafts && python3 -m http.server 8131`, then `http://localhost:8131/f.html`.
 - Three.js r187 is vendored in `web/drafts/vendor/`; the Astro project should install `three` from npm instead.
 - Working rules from Phil: plan before coding, check results in a real browser (motion and phone view), keep `CLAUDE.md` and `changes.md` in sync, use subagents to keep the context clean, German copy rules from `CLAUDE.md`.
@@ -315,3 +315,16 @@ Each phase ends in something Phil can open in the browser.
 - F was checked in Chrome only (1440 and 390px, mostly via still frames); Safari, Firefox and real phones are untested.
 - When the wave or the cursor lifts cubes, the solid body has cube-shaped holes; under the cursor the background shows through.
 - Draft E "Sand" (`e.html`, `e.js`, `e.shader.js`) was dropped by Phil; the files and the "E" link in the draft switcher still exist.
+
+## Deviations decided during implementation (2026-11-23)
+
+- Service headlines are 6.4vw (not 8.6vw) and may wrap, so all six names fit.
+- 01 Software Development: the three-column window of section 2 was replaced on 2026-11-24 by a five-scene film (Workflow, Web-Anwendung, Mobile App, Schnittstellen, Release) at Phil's request; below 620px of mockup width a 4:5 variant shows.
+- 02 KI-Automationen: the example is an incoming customer order; "Prüfen" carries a fifth system label "Regelwerk"; the case waits above the pill "Ihre Freigabe"; pure function of the clock, no steps.
+- 04 Agent Factories: a cube every 3.6 s (five per 18 s pass); labels are flat text placed by the same projection instead of counter-rotated text; about 200 elements; up to 900px the stage is 4:5 with headline above and copy below.
+- 05 AI Adoption: 15.2 s loop; six ranked chips rotate; "Betrieb" is a fourth segment "ab Tag 30"; positions are container units, no measured FLIP.
+- 06 Agentic CoWorker: each exchange has a short reply and a delivery line; messages carry day and time; an input line sits under the thread.
+- Referenzen: the Serviceplan logo is shown in its own colours and the three product rows carry their wordmarks (Phil, 2026-11-24). The press logos run as a band between closing stage and footer.
+- Closing stage: the canvas hand-over sets the wordmark to dissolved on arrival in either stage.
+- Subpages: "Ein Produktstudio aus Zug." and "Sie schreiben über KI-Agenten im Unternehmen?" from the old pages are dropped (positioning). Legal wording is unchanged except the removed back link.
+- Deploy: the root `Dockerfile` (with `railway.json`) and `web/Caddyfile` serve only the new site; the legacy tree is not copied, old URLs redirect.

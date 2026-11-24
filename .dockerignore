@@ -1,0 +1,7 @@
+*
+!web/package.json
+!web/package-lock.json
+!web/astro.config.mjs
+!web/Caddyfile
+!web/public
+!web/src

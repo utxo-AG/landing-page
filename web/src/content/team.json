@@ -1,0 +1,112 @@
+[
+  {
+    "name": "Patrick Tobler",
+    "role": {
+      "de": "Gründer und CEO",
+      "en": "Founder and CEO"
+    },
+    "photo": "patrick.webp",
+    "linkedin": "https://www.linkedin.com/in/patrick-tobler-6593b912b/",
+    "group": "lead"
+  },
+  {
+    "name": "Phil Isenmann",
+    "role": {
+      "de": "Chief of Staff",
+      "en": "Chief of Staff"
+    },
+    "photo": "phil.webp",
+    "linkedin": "https://www.linkedin.com/in/phil-isenmann-56101626b/",
+    "group": "lead"
+  },
+  {
+    "name": "Sascha Tobler",
+    "role": {
+      "de": "CTO",
+      "en": "CTO"
+    },
+    "photo": "sascha.webp",
+    "linkedin": "https://www.linkedin.com/in/sascha-tobler-56ab39193/",
+    "group": "lead"
+  },
+  {
+    "name": "Sandro Schaier",
+    "role": {
+      "de": "Lead-Entwickler Masumi",
+      "en": "Lead Developer, Masumi"
+    },
+    "photo": "sandro.webp",
+    "linkedin": "https://www.linkedin.com/in/sandro-schaier-7518a4299/",
+    "group": "lead"
+  },
+  {
+    "name": "Peter Jaschkowske",
+    "role": {
+      "de": "Lead-Entwickler Agentic",
+      "en": "Lead Developer, Agentic"
+    },
+    "photo": "peter.webp",
+    "linkedin": "https://www.linkedin.com/in/peter-jaschkowske-aa1091227/",
+    "group": "lead"
+  },
+  {
+    "name": "Andreas Osberghaus",
+    "role": {
+      "de": "Lead-Entwickler Sokosumi",
+      "en": "Lead Developer, Sokosumi"
+    },
+    "photo": "andreas.webp",
+    "linkedin": "https://www.linkedin.com/in/andreas-osberghaus/",
+    "group": "lead"
+  },
+  {
+    "name": "Florian Schmieg",
+    "role": {
+      "de": "Sales & Communications",
+      "en": "Sales & Communications"
+    },
+    "photo": "florian.webp",
+    "linkedin": "https://www.linkedin.com/in/florian-schmieg-92a988150/",
+    "group": "team"
+  },
+  {
+    "name": "Albina Nikiforova",
+    "role": {
+      "de": "Entwicklerin",
+      "en": "Developer"
+    },
+    "photo": "albina.webp",
+    "linkedin": "https://www.linkedin.com/in/albinanikiforova/",
+    "group": "team"
+  },
+  {
+    "name": "Shivangi Gupta",
+    "role": {
+      "de": "Webentwicklerin",
+      "en": "Web Developer"
+    },
+    "photo": "shivangi.webp",
+    "linkedin": "https://www.linkedin.com/in/the-shivangi-gupta-in/",
+    "group": "team"
+  },
+  {
+    "name": "Faizan Shaikh",
+    "role": {
+      "de": "Entwickler",
+      "en": "Developer"
+    },
+    "photo": "faizan.webp",
+    "linkedin": "https://www.linkedin.com/in/faizanshaikh-here/",
+    "group": "team"
+  },
+  {
+    "name": "Francis Luz",
+    "role": {
+      "de": "Entwickler",
+      "en": "Developer"
+    },
+    "photo": "francis.webp",
+    "linkedin": "https://www.linkedin.com/in/francisluz",
+    "group": "team"
+  }
+]

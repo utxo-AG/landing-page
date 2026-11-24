@@ -1,0 +1,297 @@
+{
+  "lang": "de",
+  "home": "/de",
+  "meta": {
+    "title": "utxo AG: Moderne Software für digitale Transformation",
+    "description": "KI-native Lösungen für komplexe Unternehmensanforderungen: Software Development, Agent Factories, Managed Agents, Agentic CoWorker, KI-Automationen und AI Adoption."
+  },
+  "header": {
+    "logoAlt": "utxo AG",
+    "headline": "Moderne Software für digitale Transformation.",
+    "subline": "KI-native Lösungen für komplexe Unternehmensanforderungen.",
+    "contact": "Jetzt kontaktieren",
+    "contactShort": "Kontakt",
+    "menu": "Menü",
+    "close": "Schliessen",
+    "language": "Sprache"
+  },
+  "contact": {
+    "booking": {
+      "note": "30 Minuten",
+      "href": "https://cal.com/philip-isenmann-utxoag/30-min-meeting",
+      "title": "Erstgespräch buchen"
+    },
+    "mail": {
+      "note": "business@utxo.ag",
+      "href": "mailto:business@utxo.ag",
+      "title": "E-Mail schreiben"
+    }
+  },
+  "hero": {
+    "canvasLabel": "Die Wortmarke utxo AG als massiver Körper, der bei Berührung in Würfel zerfällt"
+  },
+  "overview": {
+    "label": "Leistungen"
+  },
+  "services": [
+    {
+      "id": "software-development",
+      "name": "Software Development",
+      "short": "Individuelle Software, auch KI-gestützt, vom Konzept bis in den Betrieb.",
+      "body": "Wir entwickeln individuelle Software für Ihre Prozesse, auf Wunsch KI-gestützt, vom Konzept bis in den Betrieb. Ein festes Team begleitet Architektur, Entwicklung und Weiterentwicklung.",
+      "mockupLabel": "Animierte Beispielsequenz: vom Workflow über Web-Anwendung, Mobile App und Schnittstellen bis zum Release."
+    },
+    {
+      "id": "agent-factories",
+      "name": "Agent Factories und KI-Infrastruktur",
+      "short": "Die Grundlage, auf der Ihre Organisation Agenten in Serie entwickelt und betreibt.",
+      "body": "Wir entwickeln die Grundlage, auf der Ihre Organisation KI-Agenten in Serie entwickelt, prüft und betreibt. Hosting nach Ihren Anforderungen: Deutschland, EU oder on-premise.",
+      "mockupLabel": "Animierte Beispielansicht: Auf gemeinsamer Infrastruktur entstehen KI-Agenten in Serie und gehen in den Betrieb."
+    },
+    {
+      "id": "managed-agents",
+      "name": "Managed Agents",
+      "short": "KI-Agenten, die wir für Sie entwickeln, hosten und überwachen.",
+      "body": "Wir entwickeln, hosten und überwachen Ihre KI-Agenten. Sie sehen jederzeit, was läuft, was erledigt ist und wo Ihre Freigabe nötig ist.",
+      "mockupLabel": "Animierte Beispielansicht: Betriebskonsole mit laufenden KI-Agenten und einer Aufgabe, die auf Ihre Freigabe wartet."
+    },
+    {
+      "id": "agentic-coworker",
+      "name": "Agentic CoWorker",
+      "short": "KI-CoWorker, die sich wie Kolleginnen und Kollegen in Ihr Team integrieren.",
+      "body": "KI-CoWorker integrieren sich wie Kolleginnen und Kollegen in Ihr Team. Sie übernehmen Aufgaben im gewohnten Kanal, fragen nach und liefern Ergebnisse zur Abstimmung.",
+      "mockupLabel": "Animierte Beispielansicht: Ein KI-CoWorker arbeitet im Teamkanal mit, fragt nach und liefert Ergebnisse zur Abstimmung."
+    },
+    {
+      "id": "ki-automationen",
+      "name": "KI-Automationen",
+      "short": "Wiederkehrende Abläufe, die in Ihren Systemen von selbst laufen.",
+      "body": "Wiederkehrende Abläufe laufen in Ihren bestehenden Systemen von selbst, vom Eingang bis zur Buchung. Ausnahmen gehen zur Freigabe an Ihr Team.",
+      "mockupLabel": "Animierte Beispielansicht: Vorgänge laufen automatisch durch fünf Stationen, eine Ausnahme wartet auf Ihre Freigabe."
+    },
+    {
+      "id": "ai-adoption",
+      "name": "AI Adoption und Consulting",
+      "short": "Von der Auswahl der richtigen Use Cases bis zur Einführung in Ihren Teams.",
+      "body": "Wir identifizieren mit Ihnen die Anwendungsfälle mit dem grössten Nutzen und führen sie Schritt für Schritt in den Betrieb. Manche sind in wenigen Wochen produktiv, andere brauchen Monate. Wir begleiten die Einführung in Ihren Teams.",
+      "mockupLabel": "Animierte Beispielansicht: Use Cases werden nach Nutzen und Aufwand ausgewählt und in den Betrieb geführt."
+    }
+  ],
+  "menu": {
+    "servicesLabel": "Leistungen",
+    "companyLabel": "Unternehmen",
+    "productsLabel": "Produkte",
+    "company": [
+      {
+        "label": "Referenzen und Kunden",
+        "href": "/de#referenzen"
+      },
+      {
+        "label": "Sicherheit und Betrieb",
+        "href": "/de#sicherheit"
+      },
+      {
+        "label": "Über uns",
+        "href": "/de/ueber-uns"
+      },
+      {
+        "label": "Presse",
+        "href": "/de/presse"
+      },
+      {
+        "label": "Kontakt",
+        "href": "/de#kontakt"
+      }
+    ],
+    "products": [
+      {
+        "label": "Sokosumi",
+        "href": "https://www.sokosumi.com"
+      },
+      {
+        "label": "Masumi",
+        "href": "https://www.masumi.network"
+      },
+      {
+        "label": "NMKR",
+        "href": "https://www.nmkr.io"
+      },
+      {
+        "label": "anruf.guru",
+        "href": "https://anruf.guru"
+      }
+    ],
+    "legal": [
+      {
+        "label": "Impressum",
+        "href": "/de/impressum"
+      },
+      {
+        "label": "Datenschutz",
+        "href": "/de/datenschutz"
+      }
+    ]
+  },
+  "mockup": {
+    "live": "Live"
+  },
+  "references": {
+    "id": "referenzen",
+    "title": "Referenzen und Kunden",
+    "lead": {
+      "name": "Serviceplan Group",
+      "claim": "Europas grösste inhabergeführte Agenturgruppe",
+      "text": "Gemeinsam mit der Serviceplan Group entwickelt und betrieben. utxo AG verantwortet Technologie und Hosting."
+    },
+    "rows": [
+      {
+        "name": "Sokosumi",
+        "href": "https://www.sokosumi.com",
+        "clients": "sokosumi",
+        "clientsLabel": "Im Einsatz bei",
+        "text": "Die Plattform für Marketing-Teams: KI-CoWorker und KI-Agenten beauftragen und im Team mit ihnen zusammenarbeiten.",
+        "figures": [
+          {
+            "value": 1000,
+            "suffix": "+",
+            "label": "registrierte Unternehmen"
+          }
+        ],
+        "logo": "sokosumi.svg"
+      },
+      {
+        "name": "Masumi",
+        "href": "https://www.masumi.network",
+        "text": "Die dezentrale Infrastruktur, über die KI-Agenten sich finden, ausweisen und bezahlen.",
+        "figures": [
+          {
+            "text": "Open Source"
+          }
+        ],
+        "logo": "masumi.webp"
+      },
+      {
+        "name": "NMKR",
+        "href": "https://www.nmkr.io",
+        "clients": "nmkr",
+        "clientsLabel": "Unternehmen, für die wir als NMKR entwickelt haben",
+        "tag": "Eigene Marke",
+        "text": "No-Code-Toolsets, API und Infrastruktur für Tokenisierung und Payments.",
+        "figures": [
+          {
+            "value": 38000,
+            "suffix": "+",
+            "label": "registrierte Nutzer, seit 2021"
+          },
+          {
+            "value": 2.5,
+            "decimals": 1,
+            "suffix": " Mio.",
+            "label": "digitale Assets"
+          },
+          {
+            "value": 69,
+            "suffix": " Mio. EUR",
+            "label": "Kundenumsatz über die Infrastruktur abgewickelt"
+          }
+        ],
+        "logo": "nmkr-logo.svg"
+      }
+    ],
+    "press": {
+      "label": "utxo AG in der Presse",
+      "link": {
+        "text": "Zur Presseseite",
+        "href": "/de/presse"
+      }
+    }
+  },
+  "closing": {
+    "id": "kontakt",
+    "title": "Sprechen Sie mit uns über Ihr Vorhaben.",
+    "text": "In 30 Minuten klären wir, was für Ihr Unternehmen sinnvoll ist.",
+    "booking": "Erstgespräch buchen",
+    "mail": "E-Mail schreiben",
+    "canvasLabel": "Die Wortmarke utxo AG"
+  },
+  "footer": {
+    "servicesLabel": "Leistungen",
+    "companyLabel": "Unternehmen",
+    "productsLabel": "Produkte",
+    "legalLabel": "Rechtliches",
+    "legal": [
+      {
+        "label": "Impressum",
+        "href": "/de/impressum"
+      },
+      {
+        "label": "Datenschutz",
+        "href": "/de/datenschutz"
+      },
+      {
+        "label": "AGB",
+        "href": "/de/agb"
+      },
+      {
+        "label": "Nutzungsrichtlinie",
+        "href": "/de/nutzungsrichtlinie"
+      },
+      {
+        "label": "AVV",
+        "href": "/de/avv"
+      }
+    ],
+    "cookies": "Cookie-Einstellungen",
+    "line": "© 2026 utxo AG · Dammstrasse 16 · 6300 Zug · Schweiz"
+  },
+  "number": {
+    "group": "'",
+    "decimal": ","
+  },
+  "consent": {
+    "label": "Cookies",
+    "text": "Wir möchten mit Google Analytics verstehen, wie unsere Website genutzt wird. Die Daten helfen uns, Inhalte zu verbessern. Sie können Ihre Wahl jederzeit im Footer ändern.",
+    "privacy": "Datenschutz",
+    "privacyHref": "/de/datenschutz",
+    "deny": "Ablehnen",
+    "accept": "Akzeptieren"
+  },
+  "analytics": {
+    "gaMeasurementId": "G-35CTMZQ9Z1"
+  },
+  "locale": "de_CH",
+  "notFound": {
+    "heading": "Seite nicht gefunden",
+    "title": "Seite nicht gefunden | utxo AG",
+    "description": "Diese Seite gibt es nicht oder nicht mehr.",
+    "lede": "Diese Seite gibt es nicht oder nicht mehr.",
+    "back": "Zur Startseite"
+  },
+  "skip": "Zum Inhalt springen",
+  "security": {
+    "id": "sicherheit",
+    "title": "Sicherheit und Betrieb",
+    "rows": [
+      {
+        "name": "Datenschutz",
+        "text": "AVV individuell nach Ihrem Stack und Ihren Anforderungen. Verarbeitung nur auf Ihre Weisung, kein Training mit Ihren Daten.",
+        "tag": "DSGVO · Art. 28"
+      },
+      {
+        "name": "Hosting",
+        "text": "Hosting nach Ihren Anforderungen: Deutschland, EU oder on-premise. Modellunabhängig.",
+        "tag": "Deutschland · EU · on-premise"
+      },
+      {
+        "name": "EU-KI-Verordnung",
+        "text": "Ausgerichtet an der EU-KI-Verordnung: Wo es darauf ankommt, gibt ein Mensch frei.",
+        "tag": "Der Mensch entscheidet"
+      },
+      {
+        "name": "Informationssicherheit",
+        "text": "Ausgerichtet an ISO/IEC 27001:2022. Minimale Rechte, jede Aktion wird protokolliert.",
+        "tag": "ISO/IEC 27001:2022"
+      }
+    ]
+  }
+}

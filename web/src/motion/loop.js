@@ -9,6 +9,8 @@
     still,   () sets the reduced-motion frame, called once instead of everything else
     reset,   () restores the initial state after the section left the viewport
     slow,    element that slows the clock while a mouse hovers it
+    focus,   element whose visibility ranks this section against the others (default: root);
+             mockups pass the mockup itself, so the one that fills the screen plays
   })
 
   Rules: enter at 35 % visible, pause below 10 %, reset when fully out, pause in a hidden tab,
@@ -57,8 +59,8 @@ function run(now) {
 function choose() {
   active = null;
   if (!document.hidden) {
-    for (const item of items.values()) {
-      if (item.entered && item.clocked && item.ratio >= PAUSE_BELOW && (!active || item.ratio > active.ratio)) active = item;
+    for (const item of new Set(items.values())) {
+      if (item.entered && item.clocked && item.rank >= PAUSE_BELOW && (!active || item.rank > active.rank)) active = item;
     }
   }
   if (active && !frame) {
@@ -67,11 +69,18 @@ function choose() {
   }
 }
 
+function visibleShare(entry) {
+  const viewport = entry.rootBounds?.height ?? innerHeight;
+  return entry.isIntersecting ? entry.intersectionRect.height / Math.min(entry.boundingClientRect.height, viewport) : 0;
+}
+
 const observer = reduced ? null : new IntersectionObserver((entries) => {
   for (const entry of entries) {
     const item = items.get(entry.target);
-    const viewport = entry.rootBounds?.height ?? innerHeight;
-    item.ratio = entry.isIntersecting ? entry.intersectionRect.height / Math.min(entry.boundingClientRect.height, viewport) : 0;
+    const ratio = visibleShare(entry);
+    if (entry.target === item.focus) item.rank = ratio;
+    if (entry.target !== item.root) continue;
+    item.ratio = ratio;
     if (!item.entered && item.ratio >= ENTER_AT) {
       item.entered = true;
       item.t = -item.enter;
@@ -90,20 +99,24 @@ const observer = reduced ? null : new IntersectionObserver((entries) => {
 
 if (!reduced) document.addEventListener('visibilitychange', choose);
 
-export function register(root, { enter = 0, period = 0, steps = [], tick, still, reset, slow } = {}) {
+export function register(root, { enter = 0, period = 0, steps = [], tick, still, reset, slow, focus = root } = {}) {
   if (reduced) {
     root.classList.add('is-in');
     still?.();
     return { jump() {} };
   }
   const item = {
-    root, enter, period, tick, reset,
+    root, focus, enter, period, tick, reset,
     steps: [...steps].sort((a, b) => a.at - b.at),
     clocked: period > 0 || Boolean(tick),
-    entered: false, ratio: 0, t: 0, next: 0, cycle: 0, rate: 1,
+    entered: false, ratio: 0, rank: 0, t: 0, next: 0, cycle: 0, rate: 1,
   };
   items.set(root, item);
   observer.observe(root);
+  if (focus !== root) {
+    items.set(focus, item);
+    observer.observe(focus);
+  }
   if (slow) {
     slow.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') item.rate = HOVER_RATE; });
     slow.addEventListener('pointerleave', () => { item.rate = 1; });

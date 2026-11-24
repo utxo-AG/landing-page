@@ -1,0 +1,11 @@
+---
+import TextPage from '../../layouts/TextPage.astro';
+import Prose from '../../components/Prose.astro';
+import t from '../../i18n/de/index.js';
+import html from '../../content/de/datenschutz.html?raw';
+
+const page = t.pages.datenschutz;
+---
+<TextPage t={t} title={page.title} description={page.description} heading={page.heading}>
+  <Prose html={html} />
+</TextPage>

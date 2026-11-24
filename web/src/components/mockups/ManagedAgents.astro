@@ -2,12 +2,12 @@
 import AgentRow from './AgentRow.astro';
 
 const { t } = Astro.props;
-const m = t.managedAgents;
+const m = t.mockups['managed-agents'];
 const labels = JSON.stringify({ status: m.status, approve: m.approve });
 ---
 <div class="ma" data-mockup="managed-agents" data-labels={labels}>
   <div class="device">
-    <div class="console">
+    <div class="console mock-dark">
       <div class="mock-bar label"><span>{m.context}</span><span class="mock-live"><i></i>{t.mockup.live}</span></div>
       <ul class="agents">
         {m.rows.map((row, index) => <AgentRow row={row} status={m.status} index={index} />)}
@@ -23,7 +23,6 @@ const labels = JSON.stringify({ status: m.status, approve: m.approve });
       <svg class="ma-pointer" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 2l14.5 7.2-6.3 1.9-2.3 6.4z" fill="#fff" stroke="#07080A" stroke-width="1.2" stroke-linejoin="round"/></svg>
     </div>
   </div>
-  <p class="mock-sample label">{t.mockup.sample}</p>
 </div>
 
 <script>

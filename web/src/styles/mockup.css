@@ -1,38 +1,45 @@
 /*
   Shared mockup grammar (all six service mockups):
+  .mock-dark / .mock-light  surface of a mockup; sets --m-bg, --m-fg, --m-muted, --m-rule, --m-soft, --m-human-*
   .mock-bar     label row: context left, state right (.mock-live)
   .track        3px progress track; the bar width comes from --v (0 to 100) on its <i>
-  .st           status pill, grey on grey; the filled white pill ([data-state="wait"]) always means a human decides
-  .mock-sample  "Beispielansicht mit Beispieldaten" under every mockup
-  All labels are DOM text. Entry states are hidden only with JS (.js) and shown by .is-in on the section.
+  .st           status pill, grey on grey
+  .is-human     the one highlight: the filled white pill always means a human decides
+                ([data-state="wait"] .st gets it automatically)
+  All labels are DOM or SVG text. Entry states are hidden only with JS (.js) and shown by .is-in on the section.
+  A mockup keeps its own rules in its component (<style is:global>, class prefix per mockup).
 */
-.mock-bar{display:flex;justify-content:space-between;align-items:center;padding-bottom:clamp(14px, 1.6vw, 24px);border-bottom:1px solid var(--stage-rule);color:var(--stage-muted)}
-.mock-live{display:inline-flex;align-items:center;gap:8px;color:var(--stage-fg)}
-.mock-live i{width:7px;height:7px;border-radius:50%;background:var(--stage-fg)}
-.mock-sample{margin-top:14px;color:var(--muted)}
-.st{font-style:normal;font-size:.82em;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:6px 11px;border-radius:99px;background:var(--stage-soft);white-space:nowrap;transition:background-color var(--t-fast),color var(--t-fast)}
-[data-state="wait"] .st{background:var(--stage-fg);color:var(--stage)}
-.track{height:3px;border-radius:3px;background:var(--stage-soft);overflow:hidden}
-.track i{display:block;height:100%;width:calc(var(--v) * 1%);background:var(--stage-fg);opacity:.55;border-radius:3px;transition:opacity var(--t-fast)}
+.mock-dark{--m-bg:var(--stage);--m-fg:var(--stage-fg);--m-muted:var(--stage-muted);--m-rule:var(--stage-rule);--m-soft:var(--stage-soft);--m-human-bg:var(--stage-fg);--m-human-fg:var(--stage);--m-human-shadow:none;background:var(--m-bg);color:var(--m-fg)}
+.mock-light{--m-bg:#fff;--m-fg:var(--fg);--m-muted:var(--muted);--m-rule:var(--rule);--m-soft:rgba(7,8,10,.06);--m-human-bg:#fff;--m-human-fg:var(--fg);--m-human-shadow:0 0 0 1px rgba(7,8,10,.12),0 6px 16px rgba(10,14,30,.14);background:var(--m-bg);color:var(--m-fg)}
+.mock-bar{display:flex;justify-content:space-between;align-items:center;padding-bottom:clamp(14px, 1.6vw, 24px);border-bottom:1px solid var(--m-rule);color:var(--m-muted)}
+.mock-live{display:inline-flex;align-items:center;gap:8px;color:var(--m-fg)}
+.mock-live i{width:7px;height:7px;border-radius:50%;background:var(--m-fg)}
+.st{font-style:normal;font-size:.82em;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:6px 11px;border-radius:99px;background:var(--m-soft);white-space:nowrap;transition:background-color var(--t-fast),color var(--t-fast)}
+.is-human,[data-state="wait"] .st{background:var(--m-human-bg);color:var(--m-human-fg);box-shadow:var(--m-human-shadow)}
+.track{height:3px;border-radius:3px;background:var(--m-soft);overflow:hidden}
+.track i{display:block;height:100%;width:calc(var(--v) * 1%);background:var(--m-fg);opacity:.55;border-radius:3px;transition:opacity var(--t-fast)}
 [data-state="wait"] .track i,[data-state="done"] .track i{opacity:1}
 
 /* --- managed agents: tablet with the operations console --- */
 .ma{perspective:1800px}
 .device{background:var(--device);border-radius:34px;padding:14px;box-shadow:0 60px 90px -40px rgba(12,18,48,.38),0 18px 30px -18px rgba(12,18,48,.22)}
-.console{position:relative;background:var(--stage);color:var(--stage-fg);border-radius:22px;padding:clamp(18px, 2.2vw, 34px);font-size:clamp(13px, 1.05vw, 15.5px);line-height:1.3}
-.agents li{display:grid;grid-template-columns:36% minmax(0,1fr) auto;gap:6px 20px;align-items:center;padding:clamp(13px, 1.5vw, 22px) 0;border-bottom:1px solid var(--stage-rule)}
+.console{position:relative;border-radius:22px;padding:clamp(18px, 2.2vw, 34px);font-size:clamp(13px, 1.05vw, 15.5px);line-height:1.3}
+.agents li{display:grid;grid-template-columns:36% minmax(0,1fr) auto;gap:6px 20px;align-items:center;padding:clamp(13px, 1.5vw, 22px) 0;border-bottom:1px solid var(--m-rule)}
 .agents b{font-weight:600;font-size:1.12em;letter-spacing:-.01em}
-.agent-task{color:var(--stage-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.agent-task{color:var(--m-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .agent-status{display:flex;align-items:center;gap:8px}
 .agents .track{grid-column:1 / -1}
-.approve{position:relative;font-size:.82em;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:5px 11px;border-radius:99px;border:1px solid var(--stage-fg);color:var(--stage-fg);white-space:nowrap;animation:approve-in var(--t-fast) var(--ease);transition:background-color .15s,color .15s,transform .15s}
-.console :focus-visible{outline-color:var(--stage-fg)}
-.approve:hover,.approve.is-press{background:var(--stage-fg);color:var(--stage)}
+.approve{position:relative;font-size:.82em;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:5px 11px;border-radius:99px;border:1px solid var(--m-fg);color:var(--m-fg);white-space:nowrap;animation:approve-in var(--t-fast) var(--ease);transition:background-color .15s,color .15s,transform .15s}
+.console :focus-visible{outline-color:var(--m-fg)}
+.approve:hover,.approve.is-press{background:var(--m-fg);color:var(--m-bg)}
 .approve.is-press{transform:scale(.94)}
 .approve::after{content:"";position:absolute;inset:-9px}
 @keyframes approve-in{from{opacity:0;transform:translateX(8px)}to{opacity:1;transform:none}}
+.console .mock-live i{background:var(--phthalo-lift)}
+.agents [data-state="run"] .track i{background:var(--phthalo-lift);opacity:.9}
+.agents [data-state="run"] .st{color:var(--phthalo-lift)}
 .console-foot{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding-top:clamp(16px, 2vw, 30px)}
-.console-foot small{display:block;color:var(--stage-muted);font-size:.86em;margin-bottom:6px}
+.console-foot small{display:block;color:var(--m-muted);font-size:.86em;margin-bottom:6px}
 .console-foot b{font-size:clamp(24px, 2.7vw, 42px);font-weight:500;letter-spacing:-.04em;line-height:1}
 .ma-pointer{position:absolute;left:0;top:0;z-index:2;width:22px;height:22px;pointer-events:none;opacity:0;transform:translate(calc(var(--x, 0px) + 70px), calc(var(--y, 0px) + 90px));transition:transform var(--t-enter) var(--ease),opacity var(--t-fast)}
 .ma-pointer.is-on{opacity:1;transform:translate(var(--x, 0px), var(--y, 0px))}
@@ -42,11 +49,11 @@
 .js .is-in .device{transform:none;opacity:1}
 .js .agents li{opacity:0;transform:translateY(14px);transition:opacity var(--t-move) ease,transform var(--t-move) var(--ease);transition-delay:calc(900ms + var(--i, 0) * 170ms)}
 .js .is-in .agents li{opacity:1;transform:none}
-.js .track i{width:0;transition:width var(--t-stage) var(--ease) 1.4s,opacity var(--t-fast)}
-.js .is-in .track i{width:calc(var(--v) * 1%)}
+.js .agents .track i{width:0;transition:width var(--t-stage) var(--ease) 1.4s,opacity var(--t-fast)}
+.js .is-in .agents .track i{width:calc(var(--v) * 1%)}
 /* once the loop runs (data-step on the section) rows and tracks move without the entry delays */
 .js [data-step] .agents li{transition-delay:0s}
-.js [data-step] .track i{transition:width 1.6s var(--ease),opacity var(--t-fast)}
+.js [data-step] .agents .track i{transition:width 1.6s var(--ease),opacity var(--t-fast)}
 .js .is-in .agents li.is-leaving{opacity:0;transform:translateY(-12px);transition-duration:var(--t-fast)}
 
 /* below 1100px a row has two lines: name and status, then task and (while waiting) the button */
@@ -55,8 +62,8 @@
   .agent-task{grid-column:1 / -1;grid-row:2}
   .agents li:has(.approve) .agent-task{grid-column:1}
   .agent-status{display:contents}
-  .st{grid-column:2;grid-row:1;justify-self:end}
-  .approve{grid-column:2;grid-row:2;justify-self:end}
+  .agents .st{grid-column:2;grid-row:1;justify-self:end}
+  .agents .approve{grid-column:2;grid-row:2;justify-self:end}
 }
 @media (max-width:760px){
   .device{border-radius:24px;padding:9px}
@@ -65,6 +72,6 @@
 }
 @media (prefers-reduced-motion:reduce){
   .js .device,.js .agents li{transition:none;transform:none;opacity:1}
-  .js .track i{transition:none;width:calc(var(--v) * 1%)}
+  .js .agents .track i{transition:none;width:calc(var(--v) * 1%)}
 }
 /* --- end managed agents --- */
