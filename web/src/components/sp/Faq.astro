@@ -1,0 +1,12 @@
+---
+/* Questions and answers as native <details>. items: [{ q, a }]. The page adds the FAQPage schema (ServicePage does it from page.faq). */
+const { items } = Astro.props;
+---
+<div class="sp-faq">
+  {items.map((item, i) => (
+    <details class="sp-rise" style={`--i:${i + 1}`}>
+      <summary><span>{item.q}</span><i aria-hidden="true"></i></summary>
+      <p>{item.a}</p>
+    </details>
+  ))}
+</div>

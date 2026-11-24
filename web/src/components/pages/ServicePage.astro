@@ -1,0 +1,148 @@
+---
+/*
+  Detail page of one service, both languages. Structure:
+    header · hero (breadcrumb label, h1 = service name, lede, the service's home mockup as the large visual)
+    · the page's own blocks (default slot; built from components/sp/*) · FAQ (page.faq, optional)
+    · Sicherheit und Betrieb · the other services · contact · footer
+  Props: t, id (service id), layout (the ServiceSection layout of the mockup). Slots: "mockup" (the home
+  mockup component), default (the blocks). Content: t.servicePages[id] = { title, description, lede, faq?, ... }.
+  Styles of the block kit (sp-*) live here.
+*/
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import ServiceSection from '../ServiceSection.astro';
+import Block from '../sp/Block.astro';
+import Faq from '../sp/Faq.astro';
+import Security from '../Security.astro';
+import Closing from '../Closing.astro';
+import Footer from '../Footer.astro';
+
+const { t, id, layout } = Astro.props;
+const service = t.services.find((entry) => entry.id === id);
+const page = t.servicePages[id];
+const number = String(t.services.indexOf(service) + 1).padStart(2, '0');
+const others = t.services.filter((entry) => entry !== service);
+const url = (path) => new URL(path, Astro.site).href;
+const schema = [
+  { '@type': 'Service', '@id': `${url(service.href)}#service`, name: service.name, description: page.description, provider: { '@id': 'https://utxo.ag/#org' }, areaServed: ['CH', 'DE', 'AT'], url: url(service.href) },
+  { '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'utxo AG', item: url(t.home) },
+    { '@type': 'ListItem', position: 2, name: t.servicePage.breadcrumb, item: url(`${t.home}#leistungen`) },
+    { '@type': 'ListItem', position: 3, name: service.name, item: url(service.href) },
+  ] },
+  ...(page.faq ? [{ '@type': 'FAQPage', mainEntity: page.faq.map((item) => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } })) }] : []),
+];
+---
+<Base t={t} title={page.title} description={page.description} schema={schema}>
+  <Header t={t} statement={false} />
+  <main class="sp" id="main">
+    <header class="sp-hero" data-sp-block>
+      <p class="sp-crumb label sp-rise"><a href={`${t.home}#leistungen`}>{t.servicePage.breadcrumb}</a><span>{number}</span></p>
+      <h1 class="display"><span class="ln"><span>{service.name}</span></span></h1>
+      <p class="sp-lede sp-rise" style="--i:2">{page.lede}</p>
+    </header>
+    <ServiceSection service={service} layout={layout} bare>
+      <slot name="mockup" />
+    </ServiceSection>
+    <slot />
+    {page.faq && (
+      <Block title={t.servicePage.faq} layout="split">
+        <Faq items={page.faq} />
+      </Block>
+    )}
+    <Security t={t} />
+    <section class="sp-others" data-sp-block>
+      <p class="label sp-others-label"><span class="ln"><span>{t.servicePage.others}</span></span></p>
+      <ul>
+        {others.map((entry, i) => <li class="sp-rise" style={`--i:${i}`}><a href={t.servicePages[entry.id] ? entry.href : `${t.home}#${entry.id}`}><span>{entry.name}</span><small>{entry.short}</small></a></li>)}
+      </ul>
+    </section>
+    <Closing t={t} mark={false} />
+  </main>
+  <Footer t={t} />
+</Base>
+
+<script>
+  import { register, registered } from '../../motion/loop.js';
+
+  /* blocks without a looping visual get the plain replaying reveal; a visual registers its block itself */
+  requestAnimationFrame(() => document.querySelectorAll('[data-sp-block]').forEach((block) => { if (!registered(block)) register(block); }));
+</script>
+
+<style is:global>
+.sp-hero{padding:clamp(56px, 8vw, 128px) var(--edge) 0}
+.sp-crumb{display:flex;gap:14px;color:var(--muted);margin-bottom:clamp(18px, 2vw, 30px)}
+.sp-crumb a:hover{color:var(--fg)}
+.sp-lede{max-width:30em;margin-top:clamp(20px, 2.4vw, 36px);font-size:clamp(19px, 1.9vw, 30px);line-height:1.2;letter-spacing:-.03em}
+
+/* --- block kit of the service detail pages (components/sp/*) --- */
+.sp-block{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(32px, 4vw, 64px) var(--gap);align-items:start;padding:clamp(96px, 13vw, 200px) var(--edge) 0}
+.sp-head{grid-column:1 / span 4}
+.sp-body{grid-column:6 / -1;min-width:0}
+.sp-block--flip .sp-head{grid-column:9 / -1;grid-row:1}
+.sp-block--flip .sp-body{grid-column:1 / span 7;grid-row:1}
+.sp-block--wide .sp-head{grid-column:1 / span 7}
+.sp-block--wide .sp-body{grid-column:1 / -1}
+.sp-block--dark{margin:clamp(96px, 13vw, 200px) var(--edge) 0;padding:clamp(28px, 4vw, 64px);color:var(--stage-fg)}
+.sp-block--dark > *{position:relative;z-index:1}
+.sp-block--dark .sp-text{color:var(--stage-muted)}
+.sp-h{font-size:clamp(30px, 4.2vw, 66px);line-height:1;letter-spacing:-.04em;font-weight:400;text-wrap:balance}
+.sp-text{margin-top:clamp(16px, 1.8vw, 28px);color:var(--muted);max-width:30em;line-height:1.4}
+.js .sp-rise{opacity:0;transform:translateY(22px);transition:opacity var(--t-move) ease,transform var(--t-enter) var(--ease);transition-delay:calc(120ms + var(--i, 0) * var(--stagger))}
+.js .is-in .sp-rise{opacity:1;transform:none}
+
+.sp-points{border-bottom:1px solid var(--rule)}
+.sp-points li{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,6fr) auto;gap:var(--gap);align-items:baseline;padding:clamp(16px, 1.6vw, 24px) 0;border-top:1px solid var(--rule)}
+.sp-point-name{font-size:clamp(19px, 1.7vw, 26px);font-weight:400;line-height:1.1;letter-spacing:-.03em}
+.sp-point-text{color:var(--muted);font-size:clamp(14px, 1.2vw, 17.5px);line-height:1.35}
+.sp-point-tag{color:var(--muted);text-align:right}
+.sp-block--dark .sp-points,.sp-block--dark .sp-points li{border-color:var(--stage-rule)}
+.sp-block--dark .sp-point-text,.sp-block--dark .sp-point-tag{color:var(--stage-muted)}
+
+.sp-steps{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:var(--gap)}
+.sp-steps li{padding-top:16px;border-top:1px solid var(--rule)}
+.sp-step-n{color:var(--muted)}
+.sp-step-name{margin-top:clamp(28px, 4vw, 64px);font-size:clamp(19px, 1.7vw, 26px);font-weight:400;line-height:1.1;letter-spacing:-.03em}
+.sp-step-text{margin-top:10px;color:var(--muted);font-size:clamp(14px, 1.2vw, 17.5px);line-height:1.35}
+.sp-step-note{margin-top:16px;color:var(--muted)}
+.sp-block--dark .sp-steps li{border-color:var(--stage-rule)}
+.sp-block--dark .sp-step-n,.sp-block--dark .sp-step-text,.sp-block--dark .sp-step-note{color:var(--stage-muted)}
+
+.sp-faq{border-bottom:1px solid var(--rule)}
+.sp-faq details{border-top:1px solid var(--rule)}
+.sp-faq summary{display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:clamp(16px, 1.6vw, 24px) 0;cursor:pointer;list-style:none;font-size:clamp(19px, 1.7vw, 26px);line-height:1.15;letter-spacing:-.03em}
+.sp-faq summary::-webkit-details-marker{display:none}
+.sp-faq summary i{flex:none;width:.6em;height:.6em;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-30%);transition:transform var(--t-fast) var(--ease)}
+.sp-faq details[open] summary i{transform:rotate(225deg) translateY(-20%)}
+.sp-faq details p{max-width:38em;padding-bottom:clamp(18px, 2vw, 30px);color:var(--muted);font-size:clamp(15px, 1.25vw, 18px);line-height:1.45}
+
+.sp-others{padding:clamp(96px, 13vw, 200px) var(--edge) 0}
+.sp-others-label{color:var(--muted);margin-bottom:22px}
+.sp-others ul{border-bottom:1px solid var(--rule)}
+.sp-others li{border-top:1px solid var(--rule)}
+.sp-others a{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);align-items:baseline;padding:clamp(10px, 1vw, 15px) 0;transition:opacity var(--t-fast) var(--ease)}
+.sp-others a span{grid-column:1 / span 6;font-size:clamp(21px, 2.2vw, 34px);line-height:1.05;letter-spacing:-.035em}
+.sp-others a small{grid-column:7 / -1;color:var(--muted);font-size:clamp(14px, 1.2vw, 17.5px);line-height:1.3}
+@media (hover:hover){
+  .sp-others ul:hover a{opacity:.32}
+  .sp-others ul a:hover{opacity:1}
+}
+@media (max-width:1000px){
+  .sp-block{display:block}
+  .sp-body{margin-top:clamp(32px, 5vw, 56px)}
+  .sp-block--dark{padding:22px}
+  .sp-points li{display:block}
+  .sp-point-text{margin-top:8px}
+  .sp-point-tag{margin-top:10px;text-align:left}
+  .sp-steps{grid-template-columns:1fr 1fr;row-gap:36px}
+  .sp-others a{display:block}
+  .sp-others a small{display:block;margin-top:6px}
+}
+@media (max-width:560px){
+  .sp-steps{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .sp-rise{opacity:1;transform:none;transition:none}
+}
+/* --- end block kit --- */
+</style>

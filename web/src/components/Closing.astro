@@ -1,10 +1,11 @@
 ---
-const { t } = Astro.props;
+/* mark={false}: pages without the wordmark scene (service detail pages) show the text only; id is omitted there. */
+const { t, mark = true } = Astro.props;
 const c = t.closing;
 ---
-<section class="closing" id={c.id} data-closing>
+<section class:list={['closing', { 'closing--plain': !mark }]} id={mark ? c.id : undefined} data-closing>
   <div class="closing-stage stage-dark">
-    <div class="closing-mark" data-stage-return aria-label={c.canvasLabel} role="img"></div>
+    {mark && <div class="closing-mark" data-stage-return aria-label={c.canvasLabel} role="img"></div>}
     <div class="closing-text">
       <h2 class="closing-title"><span class="ln"><span>{c.title}</span></span></h2>
       <p class="closing-lede">{c.text}</p>
@@ -27,6 +28,7 @@ const c = t.closing;
 .closing-stage{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);align-items:end;height:calc(100svh - clamp(190px, 17vw, 262px));min-height:520px;padding:clamp(22px, 3.4vw, 54px)}
 .closing-mark{grid-column:7 / -1;grid-row:1;align-self:stretch;position:relative;z-index:1;margin:calc(clamp(22px, 3.4vw, 54px) * -1);margin-left:0;touch-action:pan-y}
 .closing-mark canvas{display:block;width:100%;height:100%}
+.closing--plain .closing-stage{height:auto;min-height:0;padding-top:clamp(72px, 10vw, 150px)}
 .closing-text{grid-column:1 / span 6;grid-row:1;position:relative;z-index:1}
 .closing-title{font-size:clamp(30px, 4.2vw, 66px);line-height:1;letter-spacing:-.04em;font-weight:400;text-wrap:balance}
 .closing-lede{margin-top:clamp(14px, 1.6vw, 24px);color:var(--stage-muted);max-width:26em}

@@ -1,0 +1,21 @@
+---
+/*
+  One content block of a service detail page: headline, optional text, and a body (default slot).
+  layout: "split"  headline and text in columns 1 to 4, body (usually a visual) in columns 6 to 12
+          "flip"   body in columns 1 to 7, headline and text in columns 9 to 12
+          "wide"   headline and text on top (columns 1 to 7), body across the full width below
+  surface: "dark" wraps the block in the dark stage (for one emphasis block per page at most)
+  The block reveals itself each time it enters the viewport (.is-in from motion/loop.js); children with
+  class "sp-rise" rise in, order via --i. A visual with its own loop registers the block as its section:
+  register(visual.closest('[data-section]'), { focus: visual, ... }) replaces the plain reveal.
+*/
+const { title, text, layout = 'split', surface, id } = Astro.props;
+---
+<section class:list={['sp-block', `sp-block--${layout}`, { 'sp-block--dark stage-dark mock-dark': surface === 'dark' }]} id={id} data-section data-sp-block>
+  <div class="sp-head">
+    <h2 class="sp-h"><span class="ln"><span>{title}</span></span></h2>
+    {text && <p class="sp-text sp-rise" style="--i:1">{text}</p>}
+    <slot name="head" />
+  </div>
+  <div class="sp-body"><slot /></div>
+</section>

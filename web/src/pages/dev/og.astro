@@ -1,0 +1,34 @@
+---
+/*
+  Source of the share images (Open Graph). Not linked; 404 in production.
+  Render: build, preview, then `python3 scripts/og.py` writes public/og/og-<lang>.png (1200x630).
+  ?lang=en switches the text on the client, so one page serves both languages.
+*/
+import Base from '../../layouts/Base.astro';
+import de from '../../i18n/de/index.js';
+import en from '../../i18n/en/index.js';
+
+const text = Object.fromEntries([de, en].map((t) => [t.lang, [t.header.headline, t.header.subline]]));
+---
+<Base t={de}>
+  <main class="og" data-text={JSON.stringify(text)}>
+    <div class="og-stage stage-dark" data-stage><canvas></canvas></div>
+    <p class="og-text"><strong data-line="0">{text.de[0]}</strong><span data-line="1">{text.de[1]}</span></p>
+  </main>
+</Base>
+
+<script>
+  const root = document.querySelector('.og');
+  const lines = JSON.parse(root.dataset.text)[new URLSearchParams(location.search).get('lang') ?? 'de'];
+  root.querySelectorAll('[data-line]').forEach((el) => { el.textContent = lines[el.dataset.line]; });
+  import('../../scene/hero.js').then(({ hero }) => hero(root.querySelector('[data-stage]')));
+</script>
+
+<style is:global>
+.og{position:fixed;inset:0;z-index:50;display:grid;grid-template-rows:minmax(0,1fr) auto;background:#0B0C0F}
+.og .skip,.og ~ *{display:none}
+.og-stage{border-radius:0}
+.og-stage canvas{position:relative;z-index:1;display:block;width:100%;height:100%}
+.og-text{display:grid;gap:4px;padding:6px 56px 44px;color:var(--stage-fg);font-size:30px;line-height:1.1;letter-spacing:-.035em}
+.og-text strong{font-weight:600}
+</style>
