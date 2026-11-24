@@ -1,0 +1,69 @@
+---
+import logo from '../assets/wordmark-black.svg';
+import Panels from './Panels.astro';
+import { alternates } from '../i18n/routes.js';
+
+/*
+  statement: the home page shows the headline (h1) in the header; text pages pass statement={false}.
+  panels: the home passes panels={false} because its panels live inside the hero stage (Hero.astro).
+*/
+const { t, statement = true, panels = true } = Astro.props;
+const h = t.header;
+const versions = alternates(Astro.url.pathname);
+---
+<header class="top">
+  <a class="logo" href={t.home}><img src={logo.src} alt={h.logoAlt} width="72" height="43"></a>
+  {statement && <h1 class="statement"><span class="ln" style="--i:0"><span><strong>{h.headline}</strong></span></span>{' '}<span class="ln" style="--i:1"><span>{h.subline}</span></span></h1>}
+  <div class="actions">
+    <div data-disclosure>
+      <button class="pill pill--talk" type="button" aria-expanded="false" aria-controls="contact-menu"><span class="pill-long">{h.contact}</span><span class="pill-short">{h.contactShort}</span> <i></i></button>
+    </div>
+    <div data-disclosure>
+      <button class="pill pill--2" type="button" aria-expanded="false" aria-controls="site-menu">{h.menu}</button>
+    </div>
+    {versions && (
+      <nav class="lang label" aria-label={h.language}>
+        {Object.entries(versions).map(([lang, path]) => <a href={path} hreflang={lang} lang={lang} data-set-lang={lang} aria-current={lang === t.lang ? 'page' : undefined}>{lang}</a>)}
+      </nav>
+    )}
+  </div>
+</header>
+{panels && <Panels t={t} mode="screen" />}
+
+<style is:global>
+.top{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);align-items:start;padding:clamp(18px, 3.4vw, 50px) var(--edge) 0;--d:150ms}
+.logo{grid-column:1;width:clamp(50px, 5vw, 72px)}
+.statement{grid-column:2 / span 8;font-size:var(--fs-statement);line-height:1.04;letter-spacing:-.04em;font-weight:400}
+.statement strong{font-weight:600}
+.actions{grid-column:10 / -1;display:flex;gap:12px;justify-content:flex-end}
+.js .logo{opacity:0;transition:opacity var(--t-move) var(--ease) .2s}
+.js .actions{opacity:0;transition:opacity var(--t-move) var(--ease) .9s}
+.is-ready .logo,.is-ready .actions{opacity:1}
+.pill-short{display:none}
+.actions{position:relative;align-self:end}
+.lang{position:absolute;right:10px;bottom:calc(100% + 7px);display:flex;font-size:10.5px;line-height:1}
+.lang a{padding:3px 6px;color:var(--muted);transition:color var(--t-fast) var(--ease)}
+.lang a + a{border-left:1px solid var(--rule)}
+.lang a:last-child{padding-right:0}
+.lang a:hover,.lang a[aria-current]{color:var(--fg)}
+
+/* below 1280px the headline needs the full width, so it moves under logo and actions */
+@media (max-width:1280px){
+  .top{grid-template-columns:1fr auto;row-gap:22px}
+  .actions{grid-column:2}
+  .statement{grid-column:1 / -1;grid-row:2}
+}
+@media (max-width:760px){
+  .top{padding-top:32px}
+  .actions{gap:8px}
+  .statement{line-height:1.12;font-size:min(20px, 5vw)}
+  .statement .ln,.statement .ln > span{display:inline}
+  .js .statement{opacity:0;transition:opacity var(--t-enter) var(--ease) .15s}
+  .is-ready .statement{opacity:1}
+  .pill-long{display:none}
+  .pill-short{display:inline}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .logo,.js .actions,.js .statement{transition:none;opacity:1}
+}
+</style>

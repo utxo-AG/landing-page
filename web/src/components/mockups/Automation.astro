@@ -1,0 +1,160 @@
+---
+/*
+  KI-Automationen: an isometric conveyor on the dark stage. The conveyor plate carries the five stations and a siding
+  to "Ihre Freigabe"; the systems plate below carries one node per station, joined by dashed wires.
+  All geometry is in world units (one cube = 6 units). CSS projects it with --u (unit length) and the camera
+  factors on .au, so the labels are flat text placed by the same projection.
+  The markup is the reduced-motion and no-JS frame, computed with the same model as the script.
+*/
+import { formatNumber } from '../../page/format.js';
+import { BRANCH, SLOTS, STILL, countAt, placeAt, plan, stateAt, tokenAt, waitingAt } from './automation-model.js';
+
+const { t } = Astro.props;
+const m = t.mockups.automation;
+
+const STEP = 20;
+const HALF = 5;
+const LEAD = 7;
+const SIDE = 10;
+const DROP = 12;
+const PAD = 8;
+const NODE = 1.8;
+
+const stations = m.stations.map((_, index) => index * STEP);
+const length = stations.length * STEP;
+const [from, to] = [stations[BRANCH], stations[BRANCH + 1]];
+const geo = { length, stations, siding: [[0, from], [SIDE, from], [SIDE, to], [0, to]] };
+const flow = plan(geo);
+
+const box = (x, y, w, h) => `--x:${x};--y:${y};--w:${w};--h:${h}`;
+const pad = (x, y) => box(x - PAD / 2, y - PAD / 2, PAD, PAD);
+const strip = box(-HALF, -LEAD, 2 * HALF, length + 2 * LEAD);
+const at = (x, y, z = 0) => `--x:${x};--y:${y};--z:${z}`;
+
+const waiting = waitingAt(STILL, flow);
+const cases = Array.from({ length: SLOTS }, (_, slot) => {
+  const { held, age, alive } = tokenAt(STILL, slot);
+  const [x, y] = placeAt(age, held, flow);
+  return { state: alive ? stateAt(age, held, flow) : '', style: `--x:${x.toFixed(2)};--y:${y.toFixed(2)};--o:${alive ? 1 : 0}` };
+});
+const data = JSON.stringify({ geo, total: m.stats.total.value, number: t.number });
+---
+<div class="au mock-dark" data-mockup="automation" data-flow={data}>
+  <div class="mock-bar label"><span>{m.context}</span><span class="mock-live"><i></i>{t.mockup.live}</span></div>
+  <dl class="au-stats">
+    <div><dt class="label">{m.stats.waiting.label}</dt><dd data-count="waiting">{waiting ? 1 : 0}</dd></div>
+    <div><dt class="label">{m.stats.total.label}</dt><dd data-count="total">{formatNumber(countAt(STILL, m.stats.total.value), t.number)}</dd></div>
+  </dl>
+  <div class="au-scene" style={`--g:${DROP}`}>
+    <div class="au-wires" aria-hidden="true">
+      {stations.map((y) => <div class="au-at au-wire" style={at(0, y)}><i></i></div>)}
+    </div>
+    <div class="au-world" aria-hidden="true">
+      <div class="au-r au-plate" style={`${strip};--z:${-DROP};--d:0`}>
+        {stations.map((y) => <i class="au-r au-node" style={box(HALF - NODE / 2, LEAD + y - NODE / 2, NODE, NODE)}></i>)}
+      </div>
+      <div class="au-r au-plate" style={`${strip};--d:1`}>
+        <i class="au-r au-lane" style={box(HALF, LEAD, 0, length)}></i>
+        <i class="au-r au-lane" style={box(HALF, LEAD + from, HALF, 0)}></i>
+        <i class="au-r au-lane" style={box(HALF, LEAD + to, HALF, 0)}></i>
+        {stations.map((y, index) => <i class:list={['au-r au-pad', index === 0 && 'au-pad--source']} style={pad(HALF, LEAD + y)}></i>)}
+        <i class="au-r au-pad au-pad--exit" style={pad(HALF, LEAD + length)}></i>
+      </div>
+      <div class="au-r au-plate" style={`${box(HALF, from - HALF, 2 * (SIDE - HALF), to - from + 2 * HALF)};--d:1`}>
+        <i class="au-r au-lane" style={box(0, HALF, SIDE - HALF, 0)}></i>
+        <i class="au-r au-lane" style={box(SIDE - HALF, HALF, 0, to - from)}></i>
+        <i class="au-r au-lane" style={box(0, HALF + to - from, SIDE - HALF, 0)}></i>
+        <i class="au-r au-pad au-pad--source" style={pad(SIDE - HALF, HALF + (to - from) / 2)}></i>
+      </div>
+      {cases.map((entry) => (
+        <div class="au-case" data-s={entry.state} style={entry.style}><div class="au-box"><i class="au-top"></i><i class="au-left"></i><i class="au-right"></i></div></div>
+      ))}
+    </div>
+    <p class="au-at au-name label" style={at(-HALF, -LEAD)}>{m.plates.flow}</p>
+    <p class="au-at au-name label" style={at(-HALF, -LEAD, -DROP)}>{m.plates.systems}</p>
+    <ol class="au-stops label">
+      {m.stations.map((station, index) => <li class="au-at au-stop" style={at(0, stations[index], -DROP)}><b>{station.name}</b><span>{station.system}</span></li>)}
+    </ol>
+    <p class:list={['au-at au-gate st', waiting && 'is-human']} style={at(SIDE, (from + to) / 2)}>{m.gate}</p>
+  </div>
+</div>
+
+<script>
+  import { automation } from './automation.js';
+
+  document.querySelectorAll('[data-mockup="automation"]').forEach(automation);
+</script>
+
+<style is:global>
+.svc-stage:has(.au){--stage-h:clamp(520px, 80svh, 880px);--stage-ratio:5 / 4}
+.au{--p:clamp(22px, 3.4vw, 54px);--tilt:60deg;--turn:-45deg;--cx:.7071;--sx:.7071;--kx:.3536;--ky:.3536;--kz:.866;--edge:3.54;--lift:7;--ox:8.5;--oy:6;--sw:88;--sh:57;container-type:size;position:relative;display:flex;flex-direction:column;padding:var(--p);font-size:clamp(12px, 1.05vw, 15.5px);line-height:1.3}
+.au.mock-dark{background:none}
+.au .mock-bar{position:relative;z-index:1}
+.au-stats{position:relative;z-index:1;align-self:flex-end;display:flex;gap:clamp(24px, 3.4vw, 56px);margin-top:clamp(14px, 1.6vw, 24px);text-align:right}
+.au-stats dt{color:var(--m-muted);margin-bottom:6px}
+.au-stats dd{font-size:clamp(24px, 2.7vw, 42px);font-weight:500;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+
+.au-scene{--u:min((100cqh - clamp(84px, 7vw, 104px)) / var(--sh), (80cqw - 5em) / var(--sw));position:absolute;right:var(--p);bottom:var(--p);width:calc(var(--sw) * var(--u));height:calc(var(--sh) * var(--u))}
+.au-world{position:absolute;left:calc(var(--ox) * var(--u));top:calc(var(--oy) * var(--u));width:0;height:0;transform-origin:0 0;transform:rotateX(var(--tilt)) rotateZ(var(--turn));transform-style:preserve-3d}
+.au-world i{display:block}
+.au-r{position:absolute;left:calc(var(--x) * var(--u));top:calc(var(--y) * var(--u));width:max(1px, var(--w) * var(--u));height:max(1px, var(--h) * var(--u))}
+
+.au-plate{background:rgba(238,240,246,.045);box-shadow:inset 0 0 0 1px rgba(238,240,246,.17);transform:translateZ(calc(var(--z, 0) * var(--u)))}
+.au-node{background:var(--m-fg);opacity:.5}
+.au-lane{background:rgba(238,240,246,.2)}
+.au-pad{background:#101216;box-shadow:inset 0 0 0 1px rgba(238,240,246,.26)}
+.au-pad--source{box-shadow:inset 0 0 0 1px rgba(238,240,246,.6)}
+.au-pad--exit{background:none;box-shadow:none;outline:1px dashed rgba(238,240,246,.3);outline-offset:-1px}
+
+.au-case{position:absolute;left:0;top:0;width:0;height:0;transform-style:preserve-3d;transform:translate3d(calc(var(--x) * var(--u)), calc(var(--y) * var(--u)), 0)}
+.au-box{--s:.22;position:absolute;left:calc(-3 * var(--u));top:calc(-3 * var(--u));width:calc(6 * var(--u));height:calc(6 * var(--u));transform-style:preserve-3d;transform:scale3d(1, 1, var(--s));transition:transform var(--t-move) var(--ease)}
+.au-box i{position:absolute;width:100%;height:100%;opacity:var(--o, 1)}
+.au-top{left:0;top:0;background:#fff;transform:translateZ(calc(6 * var(--u)))}
+.au-left{right:100%;top:0;background:#CDD1D9;transform-origin:100% 50%;transform:rotateY(90deg)}
+.au-right{left:0;top:100%;background:#989EA9;transform-origin:50% 0;transform:rotateX(90deg)}
+.au-top::after{content:"";position:absolute;left:16%;bottom:15%;width:68%;height:13%;background:linear-gradient(#0B0C0F 0 0) 0 0 / 20% 100% no-repeat,linear-gradient(#0B0C0F 0 0) 50% 0 / 20% 100% no-repeat,linear-gradient(#0B0C0F 0 0) 100% 0 / 20% 100% no-repeat;clip-path:inset(0 100% 0 0)}
+.au-top::before{content:"";position:absolute;left:43.2%;bottom:15%;width:13.6%;height:13%;box-shadow:inset 0 0 0 1px #0B0C0F;opacity:0}
+[data-s~="read"] .au-top::after{clip-path:inset(0 70% 0 0)}
+[data-s~="check"] .au-top::after{clip-path:inset(0 30% 0 0)}
+[data-s~="sent"] .au-top::after{clip-path:none}
+[data-s~="ask"] .au-top::before{opacity:1}
+[data-s~="book"] .au-box{--s:1}
+
+.au-at{position:absolute;left:calc((var(--ox) + var(--x) * var(--cx) + var(--y) * var(--sx)) * var(--u));top:calc((var(--oy) + var(--y) * var(--ky) - var(--x) * var(--kx) - var(--z) * var(--kz)) * var(--u));white-space:nowrap}
+.au-wire{width:1px;height:calc(var(--g) * var(--kz) * var(--u));background:repeating-linear-gradient(rgba(238,240,246,.3) 0 1px, transparent 1px 3.2px)}
+.au-wire i{position:absolute;left:-.5px;top:0;width:2px;height:18%;background:#fff;opacity:0}
+.au-wire.is-on i{opacity:1;transform:translateY(456%);transition:transform var(--t-move) linear}
+.au-name{transform:translate(calc(-100% - 2 * var(--u)), -50%)}
+.au-stops{color:var(--m-muted)}
+.au-stop{display:grid;justify-items:end;gap:.2em;padding:.1em .7em .1em 0;transform:translate(-100%, calc((var(--edge) + .8) * var(--u)))}
+.au-stop::after{content:"";position:absolute;right:0;top:0;bottom:0;width:1px;background:rgba(238,240,246,.3)}
+.au-stop b{font-weight:inherit;color:var(--m-fg)}
+.au-gate{background:none;color:var(--m-muted);transform:translate(-11px, calc(-100% - var(--lift) * var(--kz) * var(--u)))}
+.au-gate.is-human{background:var(--m-human-bg);color:var(--m-human-fg)}
+.au-gate::after{content:"";position:absolute;left:11px;top:100%;width:1px;height:calc((var(--lift) - 4) * var(--kz) * var(--u));background:rgba(238,240,246,.3)}
+
+.js .au-plate{opacity:0;transform:translateZ(calc((var(--z, 0) - 10) * var(--u)))}
+.js .is-in .au-plate{opacity:1;transform:translateZ(calc(var(--z, 0) * var(--u)));transition:opacity var(--t-move) ease,transform var(--t-enter) var(--ease);transition-delay:calc(var(--d) * 300ms)}
+.js .au-name,.js .au-stop,.js .au-gate{opacity:0;translate:0 calc(10 * var(--kz) * var(--u))}
+.js .is-in .au-name,.js .is-in .au-stop,.js .is-in .au-gate{opacity:1;translate:none;transition:opacity var(--t-move) ease .45s,translate var(--t-enter) var(--ease) .45s,background-color var(--t-fast),color var(--t-fast)}
+.js .au-wire,.js .au-stats{opacity:0}
+.js .is-in .au-wire,.js .is-in .au-stats{opacity:1;transition:opacity var(--t-enter) ease 1.2s}
+.js .au-case i{opacity:0}
+.js .is-in .au-case i{opacity:var(--o, 1);transition:opacity var(--t-move) ease 1.3s}
+.js [data-step] .au-case i{transition:none}
+
+@media (max-width:900px){
+  .au{--p:clamp(14px, 3.6vw, 30px)}
+  .au-stats dt{margin-bottom:3px}
+  .au-stats dd{font-size:clamp(20px, 5vw, 36px)}
+  .au-scene{--u:min((100cqh - 9.5em) / (var(--sh) + 2), (100cqw - 5.5em) / var(--sw));position:relative;right:auto;bottom:auto;margin:auto 0 auto auto}
+}
+@media (max-width:700px){
+  .svc-stage:has(.au){--stage-ratio:4 / 5}
+  .au{--turn:-30deg;--cx:.866;--sx:.5;--kx:.25;--ky:.433;--edge:5;--lift:10;--ox:8;--sw:66;--sh:64}
+  .au-stops,.au-name{font-size:10px;line-height:1.2}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .is-in .au-plate,.js .is-in .au-name,.js .is-in .au-stop,.js .is-in .au-gate,.js .is-in .au-wire,.js .is-in .au-stats,.js .is-in .au-case i,.au-box,.au-wire.is-on i{transition:none}
+}
+</style>

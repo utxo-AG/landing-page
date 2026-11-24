@@ -1,0 +1,71 @@
+---
+import TextPage from '../../layouts/TextPage.astro';
+import team from '../../content/team.json';
+
+/* About page of both languages: team in two groups side by side (content/team.json: role per language, group "lead" or "team") and contact. */
+const { t } = Astro.props;
+const page = t.pages.about;
+const photos = import.meta.glob('../../assets/team/*.webp', { eager: true, import: 'default' });
+const members = team.map((member) => ({ ...member, image: photos[`../../assets/team/${member.photo}`], role: member.role[t.lang], first: member.name.slice(0, member.name.lastIndexOf(' ')), last: member.name.slice(member.name.lastIndexOf(' ') + 1) }));
+const groups = ['lead', 'team'].map((key) => ({ key, members: members.filter((member) => member.group === key) }));
+---
+<TextPage t={t} title={page.title} description={page.description} heading={page.heading} lede={`${t.header.headline} ${t.header.subline}`}>
+  <section class="tp-row" id="team" data-reveal>
+    <h2 class="tp-h tp-rise">{page.teamTitle}</h2>
+    <p class="tp-text tp-rise" style="--i:1">{page.teamText}</p>
+    <div class="tp-wide ab-groups">
+      {groups.map((group) => (
+        <div>
+          <h3 class="ab-group label tp-rise" style="--i:2">{page.groups[group.key]}</h3>
+          <ul class="ab-team">
+            {group.members.map((member, i) => (
+              <li class="tp-rise" style={`--i:${2.5 + i * 0.5}`}>
+                <img src={member.image.src} alt={`${member.name}, ${member.role}`} width={member.image.width} height={member.image.height} loading="lazy" decoding="async">
+                <a class="ab-name" href={member.linkedin} target="_blank" rel="noopener" aria-label={page.linkedin.replace('{name}', member.name)}>{member.first} <span class="ab-last">{member.last} <span aria-hidden="true">↗</span></span></a>
+                <span class="ab-role">{member.role}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="tp-row" id="unternehmen" data-reveal>
+    <h2 class="tp-h tp-rise">{page.companyTitle}</h2>
+    <dl class="tp-text ab-facts tp-rise" style="--i:1">
+      {page.facts.map((fact) => <div><dt class="label">{fact.label}</dt><dd>{fact.value}</dd></div>)}
+    </dl>
+  </section>
+
+  <section class="tp-row" id="kontakt" data-reveal>
+    <h2 class="tp-h tp-rise">{page.contactTitle}</h2>
+    <div class="tp-text tp-rise" style="--i:1">
+      <p>{t.closing.title} {t.closing.text}</p>
+      <p class="tp-actions">
+        <a class="pill pill--talk" href={t.contact.booking.href}>{t.closing.booking} <i></i></a>
+        <a class="pill pill--2" href={t.contact.mail.href}>{t.closing.mail}</a>
+      </p>
+    </div>
+  </section>
+</TextPage>
+
+<style is:global>
+.ab-groups{display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px, 6vw, 96px) calc(var(--gap) * 3);margin-top:clamp(40px, 5vw, 76px)}
+.ab-group{color:var(--muted);padding-bottom:14px;margin-bottom:clamp(20px, 2.2vw, 32px);border-bottom:1px solid var(--rule)}
+.ab-team{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(30px, 3.4vw, 52px) var(--gap)}
+.ab-team img{width:100%;height:auto;aspect-ratio:4 / 5;object-fit:cover;border-radius:calc(var(--radius) * .5);background:var(--pill-2);filter:grayscale(1);transition:filter var(--t-move) var(--ease)}
+.ab-team li:hover img,.ab-team li:focus-within img{filter:none}
+.ab-facts > div{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:var(--gap);align-items:baseline;padding:14px 0;border-top:1px solid var(--rule)}
+.ab-facts > div:last-child{border-bottom:1px solid var(--rule)}
+.ab-facts dt{color:var(--muted)}
+.ab-name{display:block;margin-top:12px;font-size:clamp(14px, 1.15vw, 17px);line-height:1.2;letter-spacing:-.015em}
+.ab-last{white-space:nowrap}
+.ab-last span{color:var(--muted);transition:color var(--t-fast) var(--ease)}
+.ab-name:hover .ab-last span{color:var(--fg)}
+.ab-role{display:block;margin-top:4px;color:var(--muted);font-size:clamp(12.5px, 1vw, 14.5px);line-height:1.3}
+@media (max-width:760px){
+  .ab-groups{grid-template-columns:1fr}
+  .ab-team{column-gap:12px}
+}
+</style>

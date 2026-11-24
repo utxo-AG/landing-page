@@ -1,0 +1,37 @@
+{
+  "context": "Adoption · Use-Case-Portfolio",
+  "field": {
+    "title": "Use Cases",
+    "benefit": "Nutzen →",
+    "effort": "Aufwand →"
+  },
+  "timeline": {
+    "title": "Weg in den Betrieb · Schätzung",
+    "of": "von ca.",
+    "from": "ab",
+    "about": "ca.",
+    "segments": [
+      { "label": "Analyse", "span": 8 },
+      { "label": "Auswahl", "span": 7 },
+      { "label": "Pilot", "span": 15 },
+      { "label": "Betrieb", "span": 7 }
+    ]
+  },
+  "operation": "Im Betrieb",
+  "operationNote": "Einführung in den Teams",
+  "inOperation": 2,
+  "chips": [
+    { "name": "Wissenssuche", "rank": 0, "at": [0.16, 0.1], "phone": [0.22, 0.07], "unit": "Woche", "count": 2, "duration": "2 Wochen", "phases": ["2 Tage", "2 Tage", "6 Tage"] },
+    { "name": "Rechnungsprüfung", "rank": 3, "at": [0.46, 0.08], "phone": [0.66, 0.1], "unit": "Woche", "count": 6, "duration": "6 Wochen", "phases": ["1 Woche", "1 Woche", "4 Wochen"] },
+    { "name": "Vertragsprüfung", "at": [0.8, 0.14] },
+    { "name": "Reporting", "rank": 1, "at": [0.33, 0.21], "phone": [0.4, 0.21], "unit": "Woche", "count": 4, "duration": "4 Wochen", "phases": ["1 Woche", "1 Woche", "2 Wochen"] },
+    { "name": "Ticket-Routing", "rank": 5, "at": [0.68, 0.27], "phone": [0.76, 0.3], "unit": "Monat", "count": 5, "duration": "5 Monate", "phases": ["3 Wochen", "5 Wochen", "3 Monate"] },
+    { "name": "Angebotserstellung", "rank": 2, "at": [0.19, 0.34], "phone": [0.27, 0.36], "unit": "Woche", "count": 3, "duration": "3 Wochen", "phases": ["3 Tage", "2 Tage", "2 Wochen"] },
+    { "name": "Kundenservice", "at": [0.86, 0.4], "phone": [0.78, 0.6] },
+    { "name": "Onboarding", "rank": 4, "at": [0.5, 0.46], "phone": [0.58, 0.48], "unit": "Monat", "count": 3, "duration": "3 Monate", "phases": ["2 Wochen", "2 Wochen", "2 Monate"] },
+    { "name": "Bedarfsprognose", "at": [0.83, 0.55] },
+    { "name": "Stammdatenpflege", "at": [0.58, 0.66], "phone": [0.6, 0.73] },
+    { "name": "Protokolle", "at": [0.15, 0.7], "phone": [0.22, 0.62] },
+    { "name": "Übersetzungen", "at": [0.38, 0.82], "phone": [0.26, 0.87] }
+  ]
+}

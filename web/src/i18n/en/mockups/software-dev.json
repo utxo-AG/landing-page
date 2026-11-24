@@ -1,0 +1,205 @@
+{
+  "scenes": {
+    "intro": "Example process",
+    "workflow": "Workflow",
+    "web": "Web application",
+    "mobile": "Mobile app",
+    "api": "Integrations",
+    "release": "Release"
+  },
+  "intro": {
+    "label": "Example process",
+    "title": "Purchasing management",
+    "line": "From request to posting, delivered as software."
+  },
+  "core": {
+    "workflow": [
+      "Requirement",
+      "Order approval"
+    ],
+    "app": [
+      "Portal",
+      "Procurement"
+    ],
+    "api": [
+      "Platform",
+      "API"
+    ],
+    "release": [
+      "Version",
+      "2.4.0"
+    ]
+  },
+  "chips": [
+    {
+      "workflow": [
+        "Department",
+        "Request"
+      ],
+      "app": [
+        "Requests",
+        "128"
+      ],
+      "api": [
+        "ERP",
+        "Orders"
+      ],
+      "release": [
+        "Build",
+        "1:42 min"
+      ]
+    },
+    {
+      "workflow": [
+        "Purchasing",
+        "Review"
+      ],
+      "app": [
+        "In review",
+        "14"
+      ],
+      "api": [
+        "CRM",
+        "Suppliers"
+      ],
+      "release": [
+        "Tests",
+        " / 212"
+      ]
+    },
+    {
+      "workflow": [
+        "Management",
+        "Approval"
+      ],
+      "app": [
+        "Awaiting approval",
+        "3"
+      ],
+      "api": [
+        "DMS",
+        "Documents"
+      ],
+      "release": [
+        "Review",
+        "approved"
+      ]
+    },
+    {
+      "workflow": [
+        "ERP",
+        "Posting"
+      ],
+      "app": [
+        "Posted",
+        "111"
+      ],
+      "api": [
+        "BI",
+        "Metrics"
+      ],
+      "release": [
+        "Deploy",
+        "2:32 pm"
+      ]
+    }
+  ],
+  "tests": 212,
+  "approved": "2",
+  "workflow": {
+    "over": "from EUR 5,000",
+    "auto": "automatic"
+  },
+  "web": {
+    "nav": [
+      "Overview",
+      "Orders",
+      "Suppliers",
+      "Analytics"
+    ],
+    "table": {
+      "title": "Open orders",
+      "rows": [
+        [
+          "Hartmann Technik",
+          "EUR 12,480",
+          "Approval"
+        ],
+        [
+          "Nordwerk Logistik",
+          "EUR 3,960",
+          "reviewed"
+        ],
+        [
+          "Elbe Industrie",
+          "EUR 27,150",
+          "reviewed"
+        ],
+        [
+          "Kessler Büro",
+          "EUR 845",
+          "posted"
+        ]
+      ]
+    },
+    "chart": {
+      "title": "Order volume",
+      "value": "EUR 1.84M",
+      "bars": [
+        [
+          "Jul",
+          46
+        ],
+        [
+          "Aug",
+          38
+        ],
+        [
+          "Sep",
+          62
+        ],
+        [
+          "Oct",
+          55
+        ],
+        [
+          "Nov",
+          78
+        ],
+        [
+          "Dec",
+          100
+        ]
+      ]
+    }
+  },
+  "mobile": {
+    "title": "Approvals",
+    "cards": [
+      {
+        "ref": "B-2041 · Purchasing",
+        "name": "Hartmann Technik",
+        "amount": "EUR 12,480"
+      },
+      {
+        "ref": "B-2046 · Production",
+        "name": "Alpina Messtechnik",
+        "amount": "EUR 8,720"
+      }
+    ],
+    "approve": "Approve"
+  },
+  "api": {
+    "links": [
+      "REST",
+      "Webhook",
+      "SFTP",
+      "SQL"
+    ]
+  },
+  "release": {
+    "from": "main",
+    "to": "Production",
+    "done": "shipped"
+  }
+}

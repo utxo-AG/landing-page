@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>utxo AG Entwurf C · Nacht</title>
+<link rel="stylesheet" href="drafts.css">
+<style>
+.hero{padding-top:clamp(48px, 6.4vw, 100px)}
+.hero-head{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);align-items:end;padding:0 var(--edge)}
+.hero-head h1{grid-column:1 / span 8}
+.hero-head .copy{grid-column:9 / -1;padding-bottom:.6vw}
+.hero-head .partner{margin-top:26px;flex-wrap:wrap;row-gap:10px}
+.run{margin-top:clamp(36px, 4.6vw, 72px);background:var(--stage);border-top:1px solid var(--stage-rule);border-bottom:1px solid var(--stage-rule);overflow:hidden}
+.run svg{width:100%;height:auto}
+.tl-grid{stroke:rgba(236,233,226,.08);stroke-width:1}
+.tl-time{fill:#8B8F98;font:600 13px "Manrope",sans-serif;letter-spacing:.04em}
+.tl-name{fill:#ECE9E2;font:500 17px "Manrope",sans-serif;letter-spacing:-.01em}
+.tl-bar{fill:rgba(236,233,226,.06);stroke:rgba(236,233,226,.42);stroke-width:1.2}
+.tl-done{fill:rgba(236,233,226,.86)}
+.tl-text{fill:#090B0F;font:600 13px "Manrope",sans-serif}
+.tl-text--open{fill:#8B8F98}
+.tl-link{fill:none;stroke:rgba(236,233,226,.42);stroke-width:1.2}
+.tl-now{stroke:var(--accent);stroke-width:1.4}
+.tl-accent{fill:var(--accent)}
+.tl-accent-t{fill:var(--accent);font:600 13px "Manrope",sans-serif;letter-spacing:.04em;text-transform:uppercase}
+.hero .strip{padding:18px var(--edge) 0}
+.svc-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);margin-top:clamp(40px, 6.2vw, 96px);align-items:stretch}
+.svc-grid figure{grid-column:1 / span 8}
+.facts{grid-column:10 / -1;display:flex;flex-direction:column;justify-content:space-between;padding-bottom:36px}
+.facts li{padding:18px 0;border-top:1px solid var(--rule)}
+.facts .label{display:block;margin-bottom:8px;color:var(--accent)}
+.th-c .console{border:1px solid var(--stage-rule)}
+@media (max-width:760px){
+  .hero-head,.svc-grid{display:block}
+  .hero-head .copy{padding-top:28px}
+  .run{overflow-x:auto}
+  .run svg{width:230%;max-width:none}
+  .strip span:nth-child(n+4){display:none}
+  .facts{padding:28px 0 0}
+  .facts .pill{margin-top:22px}
+}
+</style>
+</head>
+<body class="th-c">
+<div class="intro" aria-hidden="true"><img src="assets/wordmark-white.svg" alt=""></div>
+
+<header class="top top--plain">
+  <a class="logo" href="index.html"><img src="assets/wordmark-white.svg" alt="utxo AG" width="136" height="81"></a>
+  <div class="actions">
+    <a class="pill" href="https://cal.com/philip-isenmann-utxoag/30-min-meeting">Erstgespräch buchen <i></i></a>
+    <a class="pill pill--2" href="#">Menü</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-head">
+    <h1 class="display"><span>KI-Agenten</span><span>im Betrieb.</span></h1>
+    <div class="copy">
+      <p class="body">utxo AG entwickelt und betreibt Software und KI-Agenten für grosse Organisationen.</p>
+      <p class="partner label"><span>Sokosumi und Masumi: gemeinsam entwickelt mit</span><img src="assets/serviceplan-light.svg" alt="Serviceplan Group" width="272" height="28"></p>
+    </div>
+  </div>
+  <div class="run">
+    <svg viewBox="0 0 1440 400" role="img" aria-label="Zeitachse eines Auftrags: drei Agenten arbeiten nacheinander, am Ende steht Ihre Freigabe">
+      <g class="tl-grid"><line x1="300" y1="64" x2="300" y2="372"/><line x1="560" y1="64" x2="560" y2="372"/><line x1="820" y1="64" x2="820" y2="372"/><line x1="1080" y1="64" x2="1080" y2="372"/><line x1="1340" y1="64" x2="1340" y2="372"/><line x1="72" y1="64" x2="1368" y2="64"/></g>
+      <text class="tl-time" x="300" y="46">09:00</text><text class="tl-time" x="560" y="46">09:15</text><text class="tl-time" x="820" y="46">09:30</text><text class="tl-time" x="1080" y="46">09:45</text><text class="tl-time" x="1340" y="46">10:00</text>
+      <text class="tl-name" x="72" y="121">Briefing-Agent</text>
+      <text class="tl-name" x="72" y="201">Recherche-Agent</text>
+      <text class="tl-name" x="72" y="281">Reporting-Agent</text>
+      <text class="tl-name" x="72" y="361">Sie</text>
+      <rect class="tl-done" x="300" y="96" width="250" height="38" rx="19"/><text class="tl-text" x="320" y="120">Briefing geprüft</text>
+      <path class="tl-link" d="M550 115 C590 115 560 195 600 195"/>
+      <rect class="tl-done" x="600" y="176" width="330" height="38" rx="19"/><text class="tl-text" x="620" y="200">14 Quellen ausgewertet</text>
+      <path class="tl-link" d="M930 195 C970 195 940 275 980 275"/>
+      <rect class="tl-bar" x="980" y="256" width="250" height="38" rx="19"/>
+      <rect class="tl-done" x="980" y="256" width="118" height="38" rx="19"/>
+      <text class="tl-text--open tl-text" x="1112" y="280">Bericht entsteht</text>
+      <path class="tl-link" stroke-dasharray="3 6" d="M1230 275 C1270 275 1240 355 1280 355"/>
+      <circle class="tl-accent" cx="1296" cy="355" r="9"/><text class="tl-accent-t" x="1296" y="328" text-anchor="middle">Ihre Freigabe</text>
+      <line class="tl-now" x1="1098" y1="64" x2="1098" y2="372"/><text class="tl-accent-t" x="1106" y="88">Jetzt</text>
+    </svg>
+  </div>
+  <div class="strip label">
+    <span><b>01</b> Software Development</span>
+    <span><b>02</b> KI-Automationen</span>
+    <span><b>03</b> Managed Agents</span>
+    <span><b>04</b> Agent Factories</span>
+    <span><b>05</b> AI Adoption</span>
+    <span><b>06</b> Agentic CoWorker</span>
+  </div>
+</section>
+
+<section class="svc">
+  <div class="svc-head label"><span>03 / 06</span><span>Managed Agents</span></div>
+  <h2 class="display"><span>Agenten, die wir</span><span class="in">für Sie betreiben.</span></h2>
+  <div class="svc-grid">
+    <figure>
+      <div class="console">
+        <div class="console-bar label"><span>Betrieb · Ihre Agenten</span><span class="live"><i></i>Live</span></div>
+        <ul class="agents">
+          <li><b>Briefing-Agent</b><span>prüft ein Kampagnenbriefing</span><em class="st">läuft</em><div class="track"><i style="--v:72"></i></div></li>
+          <li><b>Recherche-Agent</b><span>Wettbewerbsanalyse, 14 Quellen</span><em class="st">läuft</em><div class="track"><i style="--v:38"></i></div></li>
+          <li><b>Reporting-Agent</b><span>Wochenbericht ist fertig</span><em class="st st--wait">Ihre Freigabe</em><div class="track track--wait"><i style="--v:100"></i></div></li>
+          <li><b>Ablage-Agent</b><span>startet um 18:00 Uhr</span><em class="st">geplant</em><div class="track"><i style="--v:0"></i></div></li>
+        </ul>
+        <div class="console-foot">
+          <div><small>Läufe heute</small><b>128</b></div>
+          <div><small>ohne Eingriff erledigt</small><b>94 %</b></div>
+          <div><small>warten auf Sie</small><b>1</b></div>
+        </div>
+      </div>
+      <figcaption class="sample label">Beispielansicht mit Beispieldaten</figcaption>
+    </figure>
+    <ul class="facts">
+      <li><span class="label">Betrieb</span>Wir hosten Ihre Agenten nach Ihren Anforderungen: Deutschland, EU oder on-premise.</li>
+      <li><span class="label">Überwachung</span>Jeder Lauf ist nachvollziehbar, jede Abweichung wird gemeldet.</li>
+      <li><span class="label">Anpassung</span>Ändert sich Ihr Prozess, passen wir die Agenten an.</li>
+      <li><a class="pill" href="#">Mehr zu Managed Agents <i></i></a></li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<aside class="note">
+  <h2>Entwurf C · Nacht</h2>
+  <ul>
+    <li>Fast schwarzer Grund, warmes Weiss als Schrift, ein kühles Flieder nur für "Jetzt" und "Ihre Freigabe".</li>
+    <li>Hero-Visual: die Zeitachse eines echten Auftrags über die volle Breite. Drei Agenten übergeben aneinander, am Ende steht der Mensch.</li>
+    <li>Bewegung: die "Jetzt"-Linie läuft von links nach rechts, Balken füllen sich, Übergaben zeichnen sich als Linie, zuletzt leuchtet die Freigabe auf.</li>
+    <li>Wirkt am technischsten. Risiko: dunkle Seiten sind bei Agenturgruppen verbreitet, die Unterscheidung kommt hier über das Visual.</li>
+  </ul>
+</aside>
+<nav class="switch" aria-label="Entwürfe"><a href="a.html">A</a><a href="b.html">B</a><a href="c.html" aria-current="page">C</a><a href="d.html">D</a><a href="e.html">E</a><a href="f.html">F</a></nav>
+</body>
+</html>

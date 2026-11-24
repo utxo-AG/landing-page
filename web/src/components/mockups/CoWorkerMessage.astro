@@ -1,0 +1,19 @@
+---
+/* coworker: the author is the AI CoWorker (her name is set in the accent tone) */
+const { author, message, coworker = false } = Astro.props;
+---
+<li class="cw-msg" data-coworker={coworker ? '' : undefined}>
+  <img class="cw-av" src={author.src} alt="" width="80" height="80" loading="lazy" decoding="async">
+  <p class="cw-meta"><b>{author.name}</b><time>{message.time}</time></p>
+  <span class="cw-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+  <div class="cw-body">
+    <p>{message.mention && <Fragment><span class="cw-mention">{message.mention}</span>{' '}</Fragment>}{message.text}</p>
+    {message.file && (
+      <div class="cw-file">
+        <b>{message.file}</b>
+        <span>{message.meta}</span>
+        <em class="st is-human">{message.status}</em>
+      </div>
+    )}
+  </div>
+</li>

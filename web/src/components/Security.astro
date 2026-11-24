@@ -1,0 +1,45 @@
+---
+const { t } = Astro.props;
+const s = t.security;
+---
+<section class="sec" id={s.id} data-sec>
+  <svg class="sec-stars" viewBox="0 0 200 200" aria-hidden="true"><polygon points="100.0,19.0 102.0,25.2 108.6,25.2 103.3,29.1 105.3,35.3 100.0,31.4 94.7,35.3 96.7,29.1 91.4,25.2 98.0,25.2"/><polygon points="136.0,28.6 138.0,34.9 144.6,34.9 139.3,38.7 141.3,44.9 136.0,41.1 130.7,44.9 132.7,38.7 127.4,34.9 134.0,34.9"/><polygon points="162.4,55.0 164.4,61.2 170.9,61.2 165.6,65.1 167.6,71.3 162.4,67.4 157.1,71.3 159.1,65.1 153.8,61.2 160.3,61.2"/><polygon points="172.0,91.0 174.0,97.2 180.6,97.2 175.3,101.1 177.3,107.3 172.0,103.4 166.7,107.3 168.7,101.1 163.4,97.2 170.0,97.2"/><polygon points="162.4,127.0 164.4,133.2 170.9,133.2 165.6,137.1 167.6,143.3 162.4,139.4 157.1,143.3 159.1,137.1 153.8,133.2 160.3,133.2"/><polygon points="136.0,153.4 138.0,159.6 144.6,159.6 139.3,163.4 141.3,169.6 136.0,165.8 130.7,169.6 132.7,163.4 127.4,159.6 134.0,159.6"/><polygon points="100.0,163.0 102.0,169.2 108.6,169.2 103.3,173.1 105.3,179.3 100.0,175.4 94.7,179.3 96.7,173.1 91.4,169.2 98.0,169.2"/><polygon points="64.0,153.4 66.0,159.6 72.6,159.6 67.3,163.4 69.3,169.6 64.0,165.8 58.7,169.6 60.7,163.4 55.4,159.6 62.0,159.6"/><polygon points="37.6,127.0 39.7,133.2 46.2,133.2 40.9,137.1 42.9,143.3 37.6,139.4 32.4,143.3 34.4,137.1 29.1,133.2 35.6,133.2"/><polygon points="28.0,91.0 30.0,97.2 36.6,97.2 31.3,101.1 33.3,107.3 28.0,103.4 22.7,107.3 24.7,101.1 19.4,97.2 26.0,97.2"/><polygon points="37.6,55.0 39.7,61.2 46.2,61.2 40.9,65.1 42.9,71.3 37.6,67.4 32.4,71.3 34.4,65.1 29.1,61.2 35.6,61.2"/><polygon points="64.0,28.6 66.0,34.9 72.6,34.9 67.3,38.7 69.3,44.9 64.0,41.1 58.7,44.9 60.7,38.7 55.4,34.9 62.0,34.9"/></svg>
+  <h2 class="display"><span class="ln"><span>{s.title}</span></span></h2>
+  <ul class="sec-list">
+    {s.rows.map((row, i) => (
+      <li class="sec-item" style={`--i:${i}`}>
+        <h3 class="sec-name">{row.name}</h3>
+        <p class="sec-text">{row.text}</p>
+        <p class="sec-tag label">{row.tag}</p>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<script>
+  import { register } from '../motion/loop.js';
+
+  document.querySelectorAll('[data-sec]').forEach((section) => register(section));
+</script>
+
+<style is:global>
+.sec{position:relative;overflow-x:clip;padding:clamp(96px, 14vw, 210px) var(--edge) 0}
+/* the twelve stars of the EU flag as a faint watermark, cut off by the right page edge only */
+.sec-stars{position:absolute;right:calc(min(60vw, 800px) * -.38);top:50%;z-index:-1;width:min(60vw, 800px);height:auto;transform:translateY(-42%);fill:var(--fg);opacity:.03;pointer-events:none}
+.sec-list{margin-top:clamp(40px, 5vw, 80px);border-bottom:1px solid var(--rule)}
+.sec-item{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);align-items:baseline;padding:clamp(18px, 1.8vw, 28px) 0;border-top:1px solid var(--rule)}
+.sec-name{grid-column:1 / span 3;font-size:clamp(21px, 2.2vw, 34px);font-weight:400;line-height:1.05;letter-spacing:-.035em}
+.sec-text{grid-column:4 / span 5;color:var(--muted);font-size:clamp(14px, 1.2vw, 17.5px);line-height:1.35}
+.sec-tag{grid-column:9 / -1;color:var(--muted);text-align:right}
+.js .sec-item{opacity:0;transform:translateY(22px);transition:opacity var(--t-move) ease,transform var(--t-enter) var(--ease);transition-delay:calc(120ms + var(--i) * var(--stagger))}
+.js .is-in .sec-item{opacity:1;transform:none}
+@media (max-width:900px){
+  .sec-stars{right:-38vw;width:100vw}
+  .sec-item{display:block}
+  .sec-text{margin-top:10px;max-width:34em}
+  .sec-tag{margin-top:12px;text-align:left}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .sec-item{opacity:1;transform:none;transition:none}
+}
+</style>

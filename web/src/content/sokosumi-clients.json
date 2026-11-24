@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Deutsche Telekom",
+    "file": "telekom.svg",
+    "scale": 1.3
+  },
+  {
+    "name": "Allianz",
+    "file": "allianz.svg",
+    "scale": 1
+  },
+  {
+    "name": "Lufthansa",
+    "file": "lufthansa.svg",
+    "scale": 0.9
+  },
+  {
+    "name": "ARD",
+    "file": "ard.svg",
+    "scale": 1.3
+  },
+  {
+    "name": "TDK",
+    "file": "tdk.svg",
+    "scale": 0.75
+  },
+  {
+    "name": "Ströer",
+    "file": "stroer.svg",
+    "scale": 1.15
+  }
+]

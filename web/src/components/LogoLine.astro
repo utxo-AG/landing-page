@@ -1,0 +1,50 @@
+---
+/*
+  One line of logos next to a label: a marquee that loops seamlessly (the list is rendered twice,
+  the copy is aria-hidden), CSS only. Reduced motion shows one static wrapping row.
+
+  logos:   [{ name, image: { src, width, height }, scale }]  scale = optical height factor, default 1
+  tone:    "mono" paints every logo in one tone (for single colour logos of any source colour),
+           "grey" keeps the logo's own values in greyscale (for logos with knocked out parts)
+  seconds: time per loop, reverse: runs left to right
+  slot:    optional link under the label
+*/
+const { label, logos, tone = 'mono', seconds = 50, reverse = false } = Astro.props;
+---
+<div class="refs-line">
+  <p class="refs-line-label label">{label}</p>
+  <div class:list={['refs-marquee', `refs-marquee--${tone}`, { 'is-reverse': reverse }]} style={`--t:${seconds}s`}>
+    {[false, true].map((copy) => (
+      <ul class="refs-set" aria-hidden={copy ? 'true' : undefined}>
+        {logos.map((logo) => <li><img src={logo.image.src} alt={copy ? '' : logo.name} width={logo.image.width} height={logo.image.height} style={`--k:${logo.scale ?? 1}`} loading="eager" fetchpriority="low" decoding="async"></li>)}
+      </ul>
+    ))}
+  </div>
+  <slot />
+</div>
+
+<style is:global>
+.refs-line{--logo:clamp(22px, 1.9vw, 27px);--logo-gap:clamp(40px, 4.6vw, 76px);display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--gap);align-items:center}
+.refs-line-label{grid-column:1 / span 3;color:var(--muted);text-wrap:balance}
+.refs-marquee{grid-column:4 / -1;display:flex;min-width:0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);mask-image:linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent)}
+.refs-set{flex:none;display:flex;align-items:center;justify-content:space-around;gap:var(--logo-gap);min-width:100%;height:calc(var(--logo) * 2.1);padding-right:var(--logo-gap);animation:refs-marquee var(--t) linear infinite}
+.is-reverse .refs-set{animation-direction:reverse}
+.refs-set li{flex:none}
+.refs-set img{width:auto;max-width:none;height:calc(var(--logo) * var(--k))}
+.refs-marquee--mono img{filter:brightness(0);opacity:.56}
+.refs-marquee--grey img{filter:grayscale(1);opacity:.64}
+.refs-line > a{grid-column:1 / span 3;justify-self:start;align-self:start;margin-top:14px}
+.refs-line:has(> a) .refs-line-label{align-self:end}
+.refs-line:has(> a) .refs-marquee{grid-row:1 / span 2}
+@keyframes refs-marquee{to{transform:translateX(-100%)}}
+@media (max-width:900px){
+  .refs-line{display:block}
+  .refs-marquee{margin-top:10px}
+}
+@media (prefers-reduced-motion:reduce){
+  .refs-marquee{-webkit-mask-image:none;mask-image:none}
+  .refs-set{flex-wrap:wrap;justify-content:flex-start;row-gap:18px;min-width:0;height:auto;padding:10px 0;animation:none}
+  .refs-marquee,.refs-set{flex:1 1 auto}
+  .refs-set[aria-hidden]{display:none}
+}
+</style>

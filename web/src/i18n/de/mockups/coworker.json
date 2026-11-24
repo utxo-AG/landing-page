@@ -1,0 +1,178 @@
+{
+  "context": "Workspace · Kampagnenteam",
+  "teamLabel": "Team",
+  "team": [
+    {
+      "name": "Jana Brandt",
+      "role": "Beratung",
+      "avatar": "jana"
+    },
+    {
+      "name": "Tobias Keller",
+      "role": "Strategie",
+      "avatar": "tobias"
+    },
+    {
+      "name": "Miriam Scholz",
+      "role": "Kreation",
+      "avatar": "miriam"
+    },
+    {
+      "name": "Felix Arnold",
+      "role": "Media",
+      "avatar": "felix"
+    },
+    {
+      "name": "Lena",
+      "role": "CoWorker · Recherche",
+      "avatar": "lena"
+    }
+  ],
+  "coworker": 4,
+  "channel": "Kampagne Herbst",
+  "members": "5 Mitglieder",
+  "compose": "Nachricht an Kampagne Herbst",
+  "weekLabel": "Woche",
+  "week": [
+    {
+      "day": "Mo",
+      "meetings": [
+        {
+          "time": "09:30",
+          "title": "Jour fixe"
+        },
+        {
+          "time": "14:00",
+          "title": "Strategie-Workshop"
+        }
+      ]
+    },
+    {
+      "day": "Di",
+      "meetings": [
+        {
+          "time": "14:00",
+          "title": "Kundentermin"
+        }
+      ]
+    },
+    {
+      "day": "Mi",
+      "meetings": [
+        {
+          "time": "11:00",
+          "title": "Kreativ-Review"
+        }
+      ]
+    },
+    {
+      "day": "Do",
+      "meetings": [
+        {
+          "time": "15:00",
+          "title": "Mediaplanung"
+        }
+      ]
+    },
+    {
+      "day": "Fr",
+      "meetings": [
+        {
+          "time": "10:00",
+          "title": "Kundenmeeting"
+        },
+        {
+          "time": "15:00",
+          "title": "Wochenabschluss"
+        }
+      ]
+    }
+  ],
+  "exchanges": [
+    {
+      "member": 0,
+      "ask": {
+        "time": "Mo 09:12",
+        "mention": "@Lena",
+        "text": "bitte die Wettbewerbsanalyse bis Donnerstag aktualisieren."
+      },
+      "answer": {
+        "time": "Mo 09:13",
+        "text": "Übernehme ich. Entwurf bis Mittwoch, 16 Uhr. Eine Frage: mit oder ohne Österreich?"
+      },
+      "reply": {
+        "time": "Mo 09:15",
+        "text": "Mit Österreich, bitte."
+      },
+      "delivery": {
+        "time": "Mi 15:40",
+        "text": "Der Entwurf ist fertig, Österreich ist enthalten.",
+        "file": "Wettbewerbsanalyse_v3.pdf",
+        "meta": "PDF · 24 Seiten",
+        "status": "Zur Abstimmung"
+      },
+      "task": {
+        "day": "Mi",
+        "time": "16:00",
+        "title": "Wettbewerbsanalyse"
+      }
+    },
+    {
+      "member": 3,
+      "ask": {
+        "time": "Di 10:04",
+        "mention": "@Lena",
+        "text": "kannst du die Mediadaten der Sommerkampagne für das Kundenmeeting am Freitag auswerten?"
+      },
+      "answer": {
+        "time": "Di 10:05",
+        "text": "Mache ich. Die Auswertung liegt am Donnerstag um 12 Uhr vor. Eine Frage: nach Kanal oder nach Zielgruppe gegliedert?"
+      },
+      "reply": {
+        "time": "Di 10:09",
+        "text": "Nach Kanal, das reicht."
+      },
+      "delivery": {
+        "time": "Do 11:35",
+        "text": "Die Auswertung ist fertig, gegliedert nach Kanal.",
+        "file": "Mediaauswertung_Sommer.xlsx",
+        "meta": "XLSX · 6 Tabellen",
+        "status": "Zur Abstimmung"
+      },
+      "task": {
+        "day": "Do",
+        "time": "12:00",
+        "title": "Mediaauswertung"
+      }
+    },
+    {
+      "member": 2,
+      "ask": {
+        "time": "Mo 16:20",
+        "mention": "@Lena",
+        "text": "für das Moodboard brauche ich Beispiele aktueller Herbstkampagnen aus dem Handel."
+      },
+      "answer": {
+        "time": "Mo 16:21",
+        "text": "Stelle ich zusammen. Zwölf Beispiele bis Dienstag, 10 Uhr. Eine Frage: nur Print und Aussenwerbung oder auch Social Media?"
+      },
+      "reply": {
+        "time": "Mo 16:24",
+        "text": "Auch Social Media."
+      },
+      "delivery": {
+        "time": "Di 09:45",
+        "text": "Zwölf Beispiele mit Quellen, Social Media ist dabei.",
+        "file": "Kampagnenbeispiele_Herbst.pdf",
+        "meta": "PDF · 14 Seiten",
+        "status": "Zur Abstimmung"
+      },
+      "task": {
+        "day": "Di",
+        "time": "10:00",
+        "title": "Kampagnenbeispiele"
+      }
+    }
+  ],
+  "typing": "schreibt …"
+}

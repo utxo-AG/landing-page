@@ -1,0 +1,48 @@
+---
+const { t } = Astro.props;
+const number = (i) => String(i + 1).padStart(2, '0');
+---
+<section class="ov" id="leistungen" data-reveal>
+  <p class="ov-label label"><span class="ln"><span>{t.overview.label}</span></span></p>
+  <ol class="ov-list">
+    {t.services.map((service, i) => (
+      <li style={`--i:${i}`}><a href={`#${service.id}`}><span class="ov-n label">{number(i)}</span><span class="ov-main"><span class="ov-name">{service.name}</span><span class="ov-text">{service.short}</span></span></a></li>
+    ))}
+  </ol>
+</section>
+
+<script>
+  import { register } from '../motion/loop.js';
+
+  document.querySelectorAll('[data-reveal]').forEach((section) => register(section));
+</script>
+
+<style is:global>
+.ov{padding:clamp(56px, 6vw, 92px) var(--edge) 0}
+.ov-label{color:var(--muted);margin-bottom:22px}
+.ov-list{border-bottom:1px solid var(--rule)}
+.ov-list li{border-top:1px solid var(--rule)}
+.js .ov-list li{opacity:0;transform:translateY(22px);transition:opacity var(--t-move) ease,transform var(--t-enter) var(--ease);transition-delay:calc(120ms + var(--i) * var(--stagger))}
+.js .is-in .ov-list li{opacity:1;transform:none}
+.ov-list a{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);align-items:baseline;padding:clamp(10px, 1vw, 15px) 0;transition:opacity var(--t-fast) var(--ease)}
+.ov-n{grid-column:1;color:var(--muted)}
+.ov-main{grid-column:2 / -1;position:relative;display:block;container-type:inline-size}
+.ov-name{display:inline-block;white-space:nowrap;font-size:clamp(21px, 2.2vw, 34px);line-height:1.05;letter-spacing:-.035em;transition:transform var(--t-move) var(--ease),color var(--t-fast) var(--ease)}
+.ov-text{display:block;color:var(--muted);font-size:clamp(14px, 1.2vw, 17.5px);line-height:1.3}
+@media (hover:hover) and (min-width:761px){
+  .ov-list:hover a{opacity:.32}
+  .ov-list a:hover{opacity:1}
+  .ov-text{position:absolute;left:0;top:50%;max-width:min(50%, 34em);color:var(--fg);opacity:0;transform:translate(-14px, -50%);transition:opacity var(--t-fast) var(--ease),transform var(--t-move) var(--ease)}
+  .ov-list a:hover .ov-name,.ov-list a:focus-visible .ov-name{transform:translateX(calc(100cqw - 100%));color:var(--muted)}
+  .ov-list a:hover .ov-text,.ov-list a:focus-visible .ov-text{opacity:1;transform:translate(0, -50%);transition-delay:.16s}
+}
+@media (max-width:760px){
+  .ov-list a{grid-template-columns:auto 1fr;gap:6px 14px}
+  .ov-main{grid-column:2}
+  .ov-name{white-space:normal}
+  .ov-text{margin-top:6px}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .ov-list li{opacity:1;transform:none;transition:none}
+}
+</style>

@@ -1,0 +1,48 @@
+---
+import logo from '../assets/wordmark-black.svg';
+import Consent from './Consent.astro';
+
+const { t } = Astro.props;
+const f = t.footer;
+---
+<footer class="foot">
+  <a class="foot-logo" href={t.home}><img src={logo.src} alt={t.header.logoAlt} width="72" height="43" loading="lazy"></a>
+  <nav class="foot-cols" aria-label="Footer">
+    <div>
+      <p class="label foot-label">{f.servicesLabel}</p>
+      <ul>{t.services.map((service) => <li><a href={`${t.home}#${service.id}`}>{service.name}</a></li>)}</ul>
+    </div>
+    <div>
+      <p class="label foot-label">{f.companyLabel}</p>
+      <ul>{t.menu.company.map((entry) => <li><a href={entry.href}>{entry.label}</a></li>)}</ul>
+    </div>
+    <div>
+      <p class="label foot-label">{f.productsLabel}</p>
+      <ul>{t.menu.products.map((entry) => <li><a href={entry.href} target="_blank" rel="noopener">{entry.label} <span aria-hidden="true">↗</span></a></li>)}</ul>
+    </div>
+    <div>
+      <p class="label foot-label">{f.legalLabel}</p>
+      <ul>
+        {f.legal.map((entry) => <li><a href={entry.href}>{entry.label}</a></li>)}
+        <li><button type="button" data-consent-open>{f.cookies}</button></li>
+      </ul>
+    </div>
+  </nav>
+  <p class="foot-line">{f.line}</p>
+</footer>
+<Consent t={t} />
+
+<style is:global>
+.foot{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(36px, 4vw, 64px) var(--gap);padding:clamp(56px, 6vw, 96px) var(--edge) clamp(28px, 3vw, 44px);font-size:clamp(15px, 1.15vw, 17px);line-height:1.3}
+.foot-logo{grid-column:1 / span 2;width:clamp(50px, 5vw, 72px)}
+.foot-cols{grid-column:4 / -1;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:var(--gap)}
+.foot-label{color:var(--muted);margin-bottom:14px}
+.foot li + li{margin-top:9px}
+.foot a,.foot button{transition:color var(--t-fast) var(--ease)}
+.foot a:hover,.foot button:hover{color:var(--muted)}
+.foot-line{grid-column:1 / -1;padding-top:22px;border-top:1px solid var(--rule);color:var(--muted);font-size:clamp(13px, 1vw, 15px)}
+@media (max-width:900px){
+  .foot-logo{grid-column:1 / -1}
+  .foot-cols{grid-column:1 / -1;grid-template-columns:1fr 1fr;row-gap:36px}
+}
+</style>

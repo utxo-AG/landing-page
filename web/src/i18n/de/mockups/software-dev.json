@@ -1,0 +1,205 @@
+{
+  "scenes": {
+    "intro": "Beispielprozess",
+    "workflow": "Workflow",
+    "web": "Web-Anwendung",
+    "mobile": "Mobile App",
+    "api": "Schnittstellen",
+    "release": "Release"
+  },
+  "intro": {
+    "label": "Beispielprozess",
+    "title": "Einkaufsmanagement",
+    "line": "Von der Anfrage bis zur Buchung, als Software umgesetzt."
+  },
+  "core": {
+    "workflow": [
+      "Anforderung",
+      "Bestellfreigabe"
+    ],
+    "app": [
+      "Portal",
+      "Beschaffung"
+    ],
+    "api": [
+      "Plattform",
+      "API"
+    ],
+    "release": [
+      "Version",
+      "2.4.0"
+    ]
+  },
+  "chips": [
+    {
+      "workflow": [
+        "Fachbereich",
+        "Anfrage"
+      ],
+      "app": [
+        "Anfragen",
+        "128"
+      ],
+      "api": [
+        "ERP",
+        "Aufträge"
+      ],
+      "release": [
+        "Build",
+        "1:42 min"
+      ]
+    },
+    {
+      "workflow": [
+        "Einkauf",
+        "Prüfung"
+      ],
+      "app": [
+        "In Prüfung",
+        "14"
+      ],
+      "api": [
+        "CRM",
+        "Lieferanten"
+      ],
+      "release": [
+        "Tests",
+        " / 212"
+      ]
+    },
+    {
+      "workflow": [
+        "Leitung",
+        "Freigabe"
+      ],
+      "app": [
+        "Freigabe offen",
+        "3"
+      ],
+      "api": [
+        "DMS",
+        "Dokumente"
+      ],
+      "release": [
+        "Review",
+        "freigegeben"
+      ]
+    },
+    {
+      "workflow": [
+        "ERP",
+        "Buchung"
+      ],
+      "app": [
+        "Gebucht",
+        "111"
+      ],
+      "api": [
+        "BI",
+        "Kennzahlen"
+      ],
+      "release": [
+        "Deploy",
+        "14:32 Uhr"
+      ]
+    }
+  ],
+  "tests": 212,
+  "approved": "2",
+  "workflow": {
+    "over": "ab 5'000 EUR",
+    "auto": "automatisch"
+  },
+  "web": {
+    "nav": [
+      "Übersicht",
+      "Bestellungen",
+      "Lieferanten",
+      "Auswertung"
+    ],
+    "table": {
+      "title": "Offene Bestellungen",
+      "rows": [
+        [
+          "Hartmann Technik",
+          "12'480 EUR",
+          "Freigabe"
+        ],
+        [
+          "Nordwerk Logistik",
+          "3'960 EUR",
+          "geprüft"
+        ],
+        [
+          "Elbe Industrie",
+          "27'150 EUR",
+          "geprüft"
+        ],
+        [
+          "Kessler Büro",
+          "845 EUR",
+          "gebucht"
+        ]
+      ]
+    },
+    "chart": {
+      "title": "Bestellvolumen",
+      "value": "1,84 Mio. EUR",
+      "bars": [
+        [
+          "Jul",
+          46
+        ],
+        [
+          "Aug",
+          38
+        ],
+        [
+          "Sep",
+          62
+        ],
+        [
+          "Okt",
+          55
+        ],
+        [
+          "Nov",
+          78
+        ],
+        [
+          "Dez",
+          100
+        ]
+      ]
+    }
+  },
+  "mobile": {
+    "title": "Freigaben",
+    "cards": [
+      {
+        "ref": "B-2041 · Einkauf",
+        "name": "Hartmann Technik",
+        "amount": "12'480 EUR"
+      },
+      {
+        "ref": "B-2046 · Produktion",
+        "name": "Alpina Messtechnik",
+        "amount": "8'720 EUR"
+      }
+    ],
+    "approve": "Freigeben"
+  },
+  "api": {
+    "links": [
+      "REST",
+      "Webhook",
+      "SFTP",
+      "SQL"
+    ]
+  },
+  "release": {
+    "from": "main",
+    "to": "Produktion",
+    "done": "ausgeliefert"
+  }
+}

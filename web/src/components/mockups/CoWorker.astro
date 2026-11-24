@@ -1,0 +1,166 @@
+---
+import CoWorkerMessage from './CoWorkerMessage.astro';
+
+const { t } = Astro.props;
+const m = t.mockups.coworker;
+const images = import.meta.glob('../../assets/avatars/*.webp', { eager: true, import: 'default' });
+const team = m.team.map((member) => ({ ...member, src: images[`../../assets/avatars/${member.avatar}.webp`].src }));
+const lena = team[m.coworker];
+const exchanges = m.exchanges.map((exchange) => {
+  const person = team[exchange.member];
+  return [
+    { author: person, message: exchange.ask },
+    { author: lena, message: exchange.answer },
+    { author: person, message: exchange.reply },
+    { author: lena, message: exchange.delivery },
+  ];
+});
+const week = m.week.map((entry) => ({
+  day: entry.day,
+  events: [
+    ...entry.meetings,
+    ...m.exchanges.map((exchange, index) => ({ ...exchange.task, task: index })).filter((task) => task.day === entry.day),
+  ].sort((a, b) => a.time.localeCompare(b.time)),
+}));
+---
+<div class="cw" data-mockup="coworker">
+  <div class="cw-win mock-light">
+    <div class="mock-bar label"><span>{m.context}</span><span class="mock-live"><i></i>{t.mockup.live}</span></div>
+    <div class="cw-cols">
+      <div class="cw-team">
+        <p class="cw-h label">{m.teamLabel}</p>
+        <ul>
+          {team.map((member, index) => (
+            <li style={`--i:${index}`} data-coworker={member === lena ? '' : undefined}>
+              <img class="cw-av" src={member.src} alt="" width="80" height="80" loading="lazy" decoding="async">
+              <b>{member.name}</b>
+              <span class="cw-role"><span>{member.role}</span>{member === lena && <span class="cw-status">{m.typing}</span>}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="cw-chan">
+        <p class="cw-h"><b>{m.channel}</b><span>{m.members}</span></p>
+        <div class="cw-thread">
+          <ol class="cw-feed">
+            {exchanges[0].map((entry) => <CoWorkerMessage {...entry} coworker={entry.author === lena} />)}
+          </ol>
+        </div>
+        <p class="cw-compose">{m.compose}</p>
+        {exchanges.map((exchange) => (
+          <template data-exchange>{exchange.map((entry) => <CoWorkerMessage {...entry} coworker={entry.author === lena} />)}</template>
+        ))}
+      </div>
+      <div class="cw-week">
+        <p class="cw-h label">{m.weekLabel}</p>
+        <ol>
+          {week.map((entry) => (
+            <li>
+              <b>{entry.day}</b>
+              <div>
+                {entry.events.map((event) => (
+                  <p class:list={['cw-ev', { 'cw-task': event.task !== undefined, 'is-on': event.task === 0 }]} data-task={event.task}>
+                    <time>{event.time}</time><span>{event.title}</span>{event.task !== undefined && <img class="cw-av" src={lena.src} alt={lena.name} width="80" height="80" loading="lazy" decoding="async">}
+                  </p>
+                ))}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { coworker } from './coworker.js';
+
+  document.querySelectorAll('[data-mockup="coworker"]').forEach(coworker);
+</script>
+
+<style is:global>
+.cw{container-type:inline-size}
+.cw-win{display:flex;flex-direction:column;aspect-ratio:3 / 2;overflow:hidden;border-radius:var(--radius);padding:clamp(18px, 3.4cqw, 36px);font-size:clamp(12px, 1.62cqw, 18px);line-height:1.35;box-shadow:0 44px 80px -42px rgba(12,18,48,.3)}
+.cw-cols{flex:1;min-height:0;display:grid;grid-template-columns:24% minmax(0,1fr) 30%}
+.cw-team,.cw-chan,.cw-week{min-width:0;min-height:0;padding-top:1.5em;display:flex;flex-direction:column}
+.cw-team{padding-right:1.3em}
+.cw-chan{padding:1.5em 1.3em 0;border-left:1px solid var(--m-rule);border-right:1px solid var(--m-rule)}
+.cw-week{padding-left:1.3em}
+.cw-h{display:flex;justify-content:space-between;align-items:baseline;gap:1em;height:1.6rem;color:var(--m-muted);white-space:nowrap}
+.cw-h b{font-size:1.12em;font-weight:600;letter-spacing:-.01em;color:var(--m-fg)}
+.cw-h span{font-size:.86em}
+.cw-av{flex:none;width:2.3em;height:2.3em;border-radius:50%;object-fit:cover;background:var(--m-soft)}
+
+.cw-team li{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:.8em;align-items:center;padding:.8em 0;border-bottom:1px solid var(--m-rule)}
+.cw-team .cw-av{grid-row:1 / span 2}
+.cw-team b{font-weight:600;letter-spacing:-.01em;align-self:end}
+.cw-role{display:grid;font-size:.86em;color:var(--m-muted);align-self:start}
+.cw-role span{grid-area:1 / 1;transition:opacity var(--t-fast)}
+.cw-status{opacity:0}
+.is-called .cw-role span:first-child{opacity:0}
+.is-called .cw-status{opacity:1}
+.cw-team .cw-av{transition:box-shadow var(--t-fast)}
+.is-called .cw-av{box-shadow:0 0 0 2px var(--m-bg),0 0 0 3px var(--m-muted)}
+.cw-team b,.cw-role span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.cw-thread{position:relative;flex:1;min-height:0;overflow:hidden;-webkit-mask-image:linear-gradient(to bottom, transparent 0, #000 2.6em);mask-image:linear-gradient(to bottom, transparent 0, #000 2.6em)}
+.cw-feed{position:absolute;left:0;right:0;bottom:0}
+.cw-msg{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:.8em;padding-bottom:1.15em}
+.cw-msg .cw-av{grid-row:1 / span 2}
+.cw-meta{display:flex;align-items:baseline;gap:.6em;white-space:nowrap}
+.cw-meta b{font-weight:600;letter-spacing:-.01em}
+.cw-meta time{font-size:.82em;color:var(--m-muted);font-variant-numeric:tabular-nums}
+.cw-body{grid-column:2;margin-top:.15em;text-wrap:pretty}
+.cw-mention{padding:.08em .4em;border-radius:.45em;background:color-mix(in srgb, var(--phthalo) 10%, transparent);color:var(--phthalo);font-weight:600}
+.cw-team [data-coworker] b,.cw-msg[data-coworker] .cw-meta b{color:var(--phthalo)}
+.cw-file{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:.5em .8em;margin-top:.6em;padding:.75em .9em;border-radius:.8em;background:var(--m-soft)}
+.cw-file b{grid-area:1 / 1 / 2 / -1;font-weight:600;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cw-file span{grid-area:2 / 1;font-size:.86em;color:var(--m-muted)}
+.cw-file .st{grid-area:2 / 2;font-size:.74em}
+.cw-dots{grid-column:2;display:none;align-items:center;gap:.3em;height:1.35em;margin-top:.15em}
+.cw-dots i{width:.36em;height:.36em;border-radius:50%;background:var(--m-muted);animation:cw-dot 1.2s ease-in-out infinite}
+.cw-dots i:nth-child(2){animation-delay:.15s}
+.cw-dots i:nth-child(3){animation-delay:.3s}
+.cw-msg.is-typing .cw-dots{display:flex}
+.cw-msg.is-typing .cw-body{display:none}
+.cw-msg.is-typing time{opacity:0}
+.cw-msg.is-new,.cw-msg.is-new .cw-body{animation:cw-in var(--t-move) var(--ease)}
+.cw-msg.is-new time{transition:opacity var(--t-fast)}
+@keyframes cw-in{from{opacity:0;transform:translateY(.7em)}to{opacity:1;transform:none}}
+@keyframes cw-dot{0%,60%,100%{opacity:.25}30%{opacity:1}}
+.cw-compose{flex:none;margin:0 0 1px;padding:.75em 1em;border-radius:99px;background:var(--m-soft);color:var(--m-muted);font-size:.92em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.cw-week ol{flex:1;display:flex;flex-direction:column}
+.cw-week li{flex:1;display:grid;grid-template-columns:2.1em minmax(0,1fr);align-content:center;border-bottom:1px solid var(--m-rule)}
+.cw-week li:last-child{border-bottom:0}
+.cw-week li > b{font-weight:600;line-height:2.1em}
+.cw-week li > div{display:grid;grid-auto-rows:2.1em;min-height:4.2em;align-content:center}
+.cw-ev{display:flex;align-items:center;gap:.6em;min-width:0;height:1.9em;align-self:center;font-size:.9em;color:var(--m-muted);white-space:nowrap}
+.cw-ev time{flex:none;font-variant-numeric:tabular-nums}
+.cw-ev span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis}
+.cw-task{margin:0 0 0 -.6em;padding:0 .3em 0 .6em;border-radius:.6em;background:var(--m-soft);color:var(--m-fg);font-weight:500;transition:opacity var(--t-move) ease,transform var(--t-move) var(--ease)}
+.cw-task .cw-av{width:1.2em;height:1.2em;margin-left:-.2em}
+.js .cw-task:not(.is-on){opacity:0;transform:translateY(.5em) scale(.96)}
+
+.js .cw-win{opacity:0;transform:translateY(56px);transition:transform var(--t-stage) var(--ease) .1s,opacity var(--t-move) ease .1s}
+.js .is-in .cw-win{opacity:1;transform:none}
+.js .cw-team li{opacity:0;transform:translateY(.8em);transition:opacity var(--t-move) ease,transform var(--t-move) var(--ease);transition-delay:calc(500ms + var(--i) * 170ms)}
+.js .cw-team li:last-child{transition-delay:1.5s}
+.js .is-in .cw-team li{opacity:1;transform:none}
+.js .cw-thread,.js .cw-week ol{opacity:0;transition:opacity var(--t-enter) ease .8s}
+.js .is-in .cw-thread,.js .is-in .cw-week ol{opacity:1}
+
+@container (max-width:700px){
+  .cw-win{aspect-ratio:auto;height:clamp(600px, 172cqw, 640px);font-size:clamp(13px, 3.7cqw, 15px)}
+  .cw-cols{display:flex;flex-direction:column}
+  .cw-week,.cw-team .cw-h,.cw-team b,.cw-role{display:none}
+  .cw-team{flex:none;padding:1em 0;border-bottom:1px solid var(--m-rule)}
+  .cw-team ul{display:flex;gap:.5em}
+  .cw-team li{display:block;padding:0;border:0}
+  .cw-chan{flex:1;padding:1em 0 0;border:0}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .cw-win,.js .cw-team li,.js .cw-thread,.js .cw-week ol,.cw-task,.cw-role span,.cw-team .cw-av{transition:none}
+  .cw-dots i{animation:none}
+}
+</style>

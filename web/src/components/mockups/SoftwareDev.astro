@@ -1,0 +1,323 @@
+---
+/*
+  Software Development: a short film in one dark frame. A title card ("intro", 00) and five scenes share five cards: the requirement
+  ("core") and four steps. A card has one face per role and one place per scene; places are in frame units
+  (1 unit = 1 % of the frame width), once for the wide frame (16:10) and once for the narrow one (4:5).
+  Everything else belongs to one or two scenes ([data-in]) and builds with its own delay (--d, in ms).
+  Lines are 1px boxes that draw by scale; "live" lines turn phthalo after --p ms.
+*/
+const { t } = Astro.props;
+const m = t.mockups['software-dev'];
+
+const SCENES = ['intro', 'workflow', 'web', 'mobile', 'api', 'release'];
+const SECONDS = { intro: 2.8 };
+const SCENE = 3.6;
+const STILL = 'web';
+const ROLES = { workflow: 'workflow', app: 'web mobile', api: 'api', release: 'release' };
+const SPEED = 50;
+
+const WIDE = [
+  { intro: [5, 22.0, 0], workflow: [5, 19], web: [2.9, 10.4], mobile: [-39.1, 10.4, 0.2], api: [7.4, 29.25], release: [5, 42.5] },
+  { intro: [5, 44.0, 0], workflow: [5, 41], web: [22.5, 11.5], mobile: [-19.5, 11.5, 0.2], api: [75, 10.5], release: [5, 22] },
+  { intro: [28, 44.0, 0], workflow: [28, 41], web: [41.13, 11.5], mobile: [-0.87, 11.5, 0.2], api: [75, 23], release: [29.13, 22] },
+  { intro: [52, 30.5, 0], workflow: [52, 27.5], web: [59.77, 11.5], mobile: [68.4, 16.5], api: [75, 35.5], release: [53.27, 22] },
+  { intro: [77.4, 44.0, 0], workflow: [77.4, 41], web: [78.4, 11.5], mobile: [36.4, 11.5, 0.2], api: [75, 48], release: [77.4, 22] },
+];
+const NARROW = [
+  { intro: [6, 23.0, 0], workflow: [6, 18], web: [6, 16.5], mobile: [6, 16.5, 0], api: [28.5, 20], release: [6, 84] },
+  { intro: [6, 47.0, 0], workflow: [6, 42], web: [6, 37], mobile: [6, 37, 0], api: [6, 58], release: [6, 26] },
+  { intro: [51, 47.0, 0], workflow: [51, 42], web: [51, 37], mobile: [51, 37, 0], api: [51, 58], release: [51, 26] },
+  { intro: [51, 71.0, 0], workflow: [51, 66], web: [6, 58], mobile: [28.5, 30], api: [6, 88], release: [6, 50] },
+  { intro: [6, 95.0, 0], workflow: [6, 90], web: [51, 58], mobile: [51, 58, 0], api: [51, 88], release: [51, 50] },
+];
+const places = (index) => SCENES.map((scene, k) => {
+  const [x, y, o = 1] = WIDE[index][scene];
+  const [px, py, po = 1] = NARROW[index][scene];
+  return `--x${k}:${x};--y${k}:${y};--o${k}:${o};--px${k}:${px};--py${k}:${py};--po${k}:${po}`;
+}).join(';');
+
+/* line: [scene, direction (h, v; a capital letter draws from the far end), x, y, length, delay, pulse delay] */
+const WIDE_LINES = [
+  ['workflow', 'v', 13.8, 27.2, 13.8, 700, 2000], ['workflow', 'h', 22.6, 45.1, 5.4, 980, 2250], ['workflow', 'h', 45.6, 45.1, 3.2, 1090, 2350],
+  ['workflow', 'V', 48.8, 31.6, 13.5, 1150, 2420], ['workflow', 'h', 48.8, 31.6, 3.2, 1420, 2650], ['workflow', 'h', 69.6, 31.6, 3.8, 1500, 2730],
+  ['workflow', 'v', 73.4, 31.6, 13.5, 1580, 2800], ['workflow', 'h', 48.8, 45.1, 24.6, 1150], ['workflow', 'h', 73.4, 45.1, 4, 1850, 3030],
+  ['api', 'h', 25, 33.35, 25, 600, 1900], ['api', 'V', 50, 14.6, 18.75, 1100, 2100], ['api', 'v', 50, 33.35, 18.75, 1100, 2100],
+  ['api', 'h', 50, 14.6, 25, 1475, 2300], ['api', 'h', 50, 27.1, 25, 1225, 2450], ['api', 'h', 50, 39.6, 25, 1225, 2600], ['api', 'h', 50, 52.1, 25, 1475, 2750],
+  ['release', 'h', 22.6, 26.1, 6.53, 700, 900], ['release', 'h', 46.73, 26.1, 6.54, 850, 1500], ['release', 'h', 70.87, 26.1, 6.53, 1000, 2100],
+];
+const NARROW_LINES = [
+  ['workflow', 'v', 27.5, 35, 7, 700, 2000], ['workflow', 'h', 49, 50.5, 2, 900, 2200], ['workflow', 'v', 72.5, 59, 7, 1000, 2400],
+  ['workflow', 'v', 72.5, 83, 15.5, 1200, 2600], ['workflow', 'H', 49, 98.5, 23.5, 1510, 2800],
+  ['api', 'v', 50, 37, 10, 600, 1900], ['api', 'H', 27.5, 47, 22.5, 800, 2100], ['api', 'h', 50, 47, 22.5, 800, 2100],
+  ['api', 'v', 27.5, 47, 41, 1250, 2350], ['api', 'v', 72.5, 47, 41, 1250, 2350],
+  ['release', 'h', 49, 34.5, 2, 700, 900], ['release', 'h', 49, 58.5, 2, 1000, 2100],
+];
+const line = ([scene, way, x, y, n, d, p], layout) => ({
+  class: ['sd-l', `sd-l--${way.toLowerCase()}`, way < 'a' && 'sd-l--far', p && 'is-live', layout],
+  scene,
+  style: `--x:${x};--y:${y};--n:${n};--d:${d};--t:${Math.round(Math.max(60, (n / SPEED) * 1000))}${p ? `;--p:${p}` : ''}`,
+});
+const lines = [...WIDE_LINES.map((entry) => line(entry, 'sd-wide')), ...NARROW_LINES.map((entry) => line(entry, 'sd-narrow'))];
+
+const cards = [m.core, ...m.chips].map((card, index) => ({
+  index,
+  faces: Object.entries(ROLES).map(([role, scenes]) => ({ scenes, top: card[role][0], main: card[role][1], count: index === 2 && role === 'release' && m.tests })),
+}));
+const open = cards[3];
+open.faces.find((face) => face.scenes === ROLES.app).phase = 'before';
+open.faces.push({ scenes: 'mobile', top: m.chips[2].app[0], main: m.approved, phase: 'after' });
+const number = (index) => String(index).padStart(2, '0');
+const film = JSON.stringify(SCENES.map((scene) => [scene, SECONDS[scene] ?? SCENE]));
+---
+<div class="sd" data-mockup="software-dev" data-film={film} data-scene={STILL} data-beat="2">
+  <div class="sd-frame stage-dark mock-dark">
+    <div class="sd-bar mock-bar label">
+      <p class="sd-caps">{SCENES.map((scene, index) => <span data-in={scene}><i>{number(index)}</i>{m.scenes[scene]}</span>)}</p>
+      <p class="sd-segs" aria-hidden="true">{SCENES.slice(1).map((scene) => <i data-in={scene}></i>)}</p>
+    </div>
+
+    <div class="sd-intro" data-in="intro">
+      <p class="sd-intro-label label" data-in="intro">{m.intro.label}</p>
+      <p class="sd-intro-title"><span data-in="intro">{m.intro.title}</span></p>
+      <p class="sd-intro-line" data-in="intro">{m.intro.line}</p>
+    </div>
+
+    <div class="sd-lines" aria-hidden="true">
+      {lines.map((entry) => <i class:list={entry.class} data-in={entry.scene} style={entry.style}></i>)}
+      <i class="sd-pipe" data-in="release"><b></b></i>
+    </div>
+    <p class="sd-tag sd-wide" data-in="workflow" style="--x:52;--y:23.9;--d:1500">{m.workflow.over}</p>
+    <p class="sd-tag sd-wide" data-in="workflow" style="--x:54;--y:46.6;--d:1700">{m.workflow.auto}</p>
+    {m.api.links.map((link, index) => <p class="sd-tag sd-wide" data-in="api" style={`--x:54;--y:${11.3 + index * 12.5};--d:${1700 + index * 120}`}>{link}</p>)}
+    <p class="sd-tag sd-tag--from" data-in="release" style="--d:500">{m.release.from}</p>
+    <p class="sd-tag sd-tag--to" data-in="release" style="--d:2500">{m.release.to}</p>
+    <p class="sd-done st" data-in="release" style="--d:2700">{m.release.done}</p>
+
+    <div class="sd-win mock-light" data-in="web mobile">
+      <ul class="sd-nav sd-wide">{m.web.nav.map((item, index) => <li class:list={['sd-rise', index === 0 && 'is-active']} data-in="web mobile" style={`--d:${350 + index * 70}`}>{item}</li>)}</ul>
+      <div class="sd-table sd-rise" data-in="web mobile" style="--d:500">
+        <b>{m.web.table.title}</b>
+        {m.web.table.rows.map(([name, amount, state], index) => (
+          <p class="sd-rise" data-in="web mobile" style={`--d:${650 + index * 90}`}><span>{name}</span><span>{amount}</span><em class:list={['st', index === 0 && 'is-open']}>{state}</em></p>
+        ))}
+      </div>
+      <div class="sd-chart sd-rise sd-wide" data-in="web mobile" style="--d:620">
+        <span>{m.web.chart.title}</span>
+        <b>{m.web.chart.value}</b>
+        <div class="sd-bars">{m.web.chart.bars.map(([label, value], index) => <div><i data-in="web mobile" style={`--v:${value};--d:${900 + index * 80}`}></i><small>{label}</small></div>)}</div>
+      </div>
+    </div>
+
+    <div class="sd-phone" data-in="mobile">
+      <b class="sd-phone-title">{m.mobile.title}</b>
+      {m.mobile.cards.map((card, index) => (
+        <div class="sd-card" style={`--d:${450 + index * 140}`} data-in="mobile">
+          <small>{card.ref}</small>
+          <b>{card.name}</b>
+          <span>{card.amount}</span>
+          <em class:list={['sd-btn', index === 0 && 'is-human']}>{m.mobile.approve}</em>
+        </div>
+      ))}
+    </div>
+
+    {cards.map((card) => (
+      <div class:list={['sd-chip', card.index === 0 && 'sd-chip--core', card === open && 'sd-chip--open']} style={`--i:${card.index};${places(card.index)}`}>
+        {card.index > 0 && <i class="sd-dot"></i>}
+        {card.faces.map((face) => (
+          <p class="sd-face" data-in={face.scenes} data-phase={face.phase}>
+            <small>{face.top}</small>
+            <b>{face.count && <span data-count={face.count}>{face.count}</span>}{face.main}</b>
+          </p>
+        ))}
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  import { softwareDev } from './software-dev.js';
+
+  document.querySelectorAll('[data-mockup="software-dev"]').forEach(softwareDev);
+</script>
+
+<style is:global>
+.sd{container-type:inline-size}
+.sd-frame{--u:1cqw;--cw:17.6;--ch:8.2;--pad:3.4;--sd-small:.88em;--sd-panel:#1B1E24;--sd-tile:#EFF1F5;--sd-line:rgba(238,240,246,.26);--sd-hair:inset 0 0 0 1px rgba(238,240,246,.1);aspect-ratio:16 / 10;perspective:calc(150 * var(--u));font-size:1.65cqw;line-height:1.3;box-shadow:0 60px 90px -40px rgba(12,18,48,.42),0 18px 30px -18px rgba(12,18,48,.24)}
+.sd-frame.mock-dark{background:var(--stage-gradient)}
+.sd-frame > *{z-index:1}
+.sd-frame small,.sd-tag{font-size:var(--sd-small);color:var(--m-muted);transition:color var(--t-move) ease}
+.sd-frame .st{font-size:var(--sd-small);padding:.32em .8em}
+.sd-frame b{font-weight:600}
+
+.sd [data-in]{opacity:0;transition:opacity var(--t-fast) ease,transform 0s var(--t-fast)}
+.sd .sd-rise{transform:translateY(1.1em)}
+.sd-l{position:absolute;left:calc(var(--x) * var(--u));top:calc(var(--y) * var(--u));background:var(--sd-line);transform-origin:0 0}
+.sd-l--h{width:calc(var(--n) * var(--u));height:1px;transform:scaleX(0)}
+.sd-l--v{width:1px;height:calc(var(--n) * var(--u));transform:scaleY(0)}
+.sd-l--far{transform-origin:100% 100%}
+.sd-l::after{content:"";position:absolute;inset:-.5px;background:var(--phthalo-lift);opacity:0}
+.sd[data-scene="intro"] [data-in~="intro"],.sd[data-scene="workflow"] [data-in~="workflow"],.sd[data-scene="web"] [data-in~="web"],.sd[data-scene="mobile"] [data-in~="mobile"],.sd[data-scene="api"] [data-in~="api"],.sd[data-scene="release"] [data-in~="release"]{
+  opacity:1;transition:opacity var(--t-move) ease calc(var(--d, 0) * 1ms),transform var(--t-enter) var(--ease) calc(var(--d, 0) * 1ms);
+  &.sd-rise,.sd-intro-title > &{transform:none}
+  &.sd-l{transform:none;transition:transform calc(var(--t) * 1ms) linear calc(var(--d) * 1ms)}
+  &.is-live::after{opacity:1;transition:opacity var(--t-fast) ease calc(var(--p) * 1ms)}
+}
+
+.sd-bar{position:absolute;left:calc(var(--pad) * var(--u));right:calc(var(--pad) * var(--u));top:calc(var(--pad) * var(--u))}
+.sd-caps,.sd-segs{display:grid}
+.sd-caps{overflow:hidden;color:var(--m-fg)}
+.sd-caps span{grid-area:1 / 1;white-space:nowrap}
+.sd .sd-caps span{transform:translateY(110%)}
+.sd .sd-caps span[data-in]{transition:opacity var(--t-fast) ease,transform var(--t-fast) ease}
+.sd-caps i{display:inline-block;width:2.4em;font-style:normal;color:var(--m-muted);font-variant-numeric:tabular-nums}
+.sd-segs{grid-auto-flow:column;gap:5px}
+.sd-segs i{position:relative;width:clamp(18px, 3.2cqw, 34px);height:2px;background:var(--m-soft)}
+.sd .sd-segs i{opacity:1}
+.sd-segs i::after{content:"";position:absolute;inset:0;background:var(--phthalo-lift);transform:scaleX(0);transform-origin:0 0;opacity:0;transition:opacity var(--t-fast),transform 0s var(--t-fast)}
+.sd[data-scene="intro"] .sd-caps [data-in="intro"],.sd[data-scene="workflow"] .sd-caps [data-in="workflow"],.sd[data-scene="web"] .sd-caps [data-in="web"],.sd[data-scene="mobile"] .sd-caps [data-in="mobile"],.sd[data-scene="api"] .sd-caps [data-in="api"],.sd[data-scene="release"] .sd-caps [data-in="release"]{transform:none;transition:opacity var(--t-move) ease .25s,transform var(--t-move) var(--ease) .25s}
+.sd[data-scene="workflow"] .sd-segs [data-in="workflow"]::after,.sd[data-scene="web"] .sd-segs [data-in="web"]::after,.sd[data-scene="mobile"] .sd-segs [data-in="mobile"]::after,.sd[data-scene="api"] .sd-segs [data-in="api"]::after,.sd[data-scene="release"] .sd-segs [data-in="release"]::after{opacity:1;transform:none;transition:transform 3.6s linear}
+
+.sd-intro{position:absolute;left:calc(5 * var(--u));right:calc(5 * var(--u));top:calc(23 * var(--u))}
+.sd-intro-label{color:var(--m-muted)}
+.sd-intro-title{overflow:hidden;margin-top:calc(1.6 * var(--u));padding-bottom:.14em;font-size:calc(7 * var(--u));line-height:1.02;letter-spacing:-.04em;white-space:nowrap}
+.sd-intro-title span{display:block}
+.sd .sd-intro-title span{transform:translateY(118%)}
+.sd-intro-line{margin-top:calc(1.2 * var(--u));font-size:1.3em;color:var(--m-muted)}
+.sd-intro-label{--d:calc(150 + var(--e, 0))}
+.sd-intro-title span{--d:calc(250 + var(--e, 0))}
+.sd-intro-line{--d:calc(550 + var(--e, 0))}
+.sd[data-scene="workflow"] .sd-intro{opacity:0;transition:opacity var(--t-fast) ease .3s}
+.sd[data-scene="workflow"] .sd-intro-title span{opacity:1;transform:translateY(-118%);transition:transform var(--t-move) var(--ease)}
+.js [data-section]:not([data-step]) .sd-intro{--e:700}
+.sd-chip{position:absolute;left:0;top:0;width:calc(var(--cw) * var(--u));height:calc(var(--ch) * var(--u));--x:var(--x0);--y:var(--y0);--o:var(--o0);opacity:var(--o);transform:translate(calc(var(--x) * var(--u)), calc(var(--y) * var(--u)));transition:transform .9s var(--ease) calc(var(--i) * 50ms),opacity var(--t-move) ease}
+.sd-frame > .sd-chip{z-index:3}
+.sd[data-scene="workflow"] .sd-chip{--x:var(--x1);--y:var(--y1);--o:var(--o1)}
+.sd[data-scene="web"] .sd-chip{--x:var(--x2);--y:var(--y2);--o:var(--o2)}
+.sd[data-scene="mobile"] .sd-chip{--x:var(--x3);--y:var(--y3);--o:var(--o3)}
+.sd[data-scene="api"] .sd-chip{--x:var(--x4);--y:var(--y4);--o:var(--o4)}
+.sd[data-scene="release"] .sd-chip{--x:var(--x5);--y:var(--y5);--o:var(--o5)}
+.sd-chip::before,.sd-chip::after{content:"";position:absolute;inset:0;border-radius:calc(1.2 * var(--u));background:var(--sd-panel);box-shadow:var(--sd-hair);transition:opacity var(--t-move) ease}
+.sd-chip::after{background:var(--sd-tile);box-shadow:none;opacity:0}
+.sd-chip > *{z-index:1}
+.sd-chip{transition-property:transform,opacity,color}
+.sd[data-scene="web"] .sd-chip,.sd[data-scene="mobile"] .sd-chip:not(.sd-chip--open){--m-muted:var(--muted);color:var(--fg)}
+.sd[data-scene="web"] .sd-chip::after,.sd[data-scene="mobile"] .sd-chip:not(.sd-chip--open)::after{opacity:1}
+.sd[data-scene="web"] .sd-chip--core::before,.sd[data-scene="mobile"] .sd-chip--core::before,.sd[data-scene="web"] .sd-chip--core::after,.sd[data-scene="mobile"] .sd-chip--core::after{opacity:0}
+.sd-face{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:.15em;padding:0 calc(1.4 * var(--u));white-space:nowrap}
+.sd .sd-face{--d:250;transform:translateY(.5em);transition:opacity var(--t-fast) ease,transform var(--t-fast) ease}
+.sd-face b{font-size:1.14em;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.sd-chip--core [data-in="release"] b{font-size:1.9em;font-weight:500;letter-spacing:-.03em;line-height:1.05}
+.sd[data-scene="workflow"] .sd-face[data-in~="workflow"],.sd[data-scene="web"] .sd-face[data-in~="web"],.sd[data-scene="mobile"] .sd-face[data-in~="mobile"],.sd[data-scene="api"] .sd-face[data-in~="api"],.sd[data-scene="release"] .sd-face[data-in~="release"]{transform:none}
+.sd[data-scene="mobile"][data-beat="2"] .sd-face[data-phase="before"],.sd[data-scene="mobile"]:not([data-beat="2"]) .sd-face[data-phase="after"]{opacity:0;transform:translateY(-.5em);transition:opacity var(--t-fast) ease,transform var(--t-fast) ease}
+.sd-dot{transition:background-color var(--t-move);position:absolute;right:calc(1.3 * var(--u));top:calc(1.3 * var(--u));width:max(6px, .75 * var(--u));height:max(6px, .75 * var(--u));border-radius:50%;background:rgba(238,240,246,.22)}
+.sd-dot::before,.sd-dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--phthalo-lift);opacity:0;transition:opacity var(--t-fast)}
+.sd[data-scene="workflow"] .sd-frame{--l0:1800;--l1:300}
+.sd[data-scene="api"] .sd-frame{--l0:2300;--l1:150}
+.sd[data-scene="release"] .sd-frame{--l0:200;--l1:600}
+.sd-chip{--lit:calc((var(--l0) + var(--i) * var(--l1)) * 1ms)}
+.sd[data-scene="workflow"] .sd-dot::before{animation:sd-lit-a var(--t-fast) var(--lit) both}
+.sd[data-scene="api"] .sd-dot::before{animation:sd-lit-b var(--t-fast) var(--lit) both}
+.sd[data-scene="release"] .sd-dot::before{animation:sd-lit-c var(--t-fast) var(--lit) both}
+.sd[data-scene="release"] .sd-dot ~ [data-in="release"] b:not(:has(span)){animation:sd-done var(--t-fast) var(--lit) both}
+@keyframes sd-lit-a{from{opacity:0}to{opacity:1}}
+@keyframes sd-lit-b{from{opacity:0}to{opacity:1}}
+@keyframes sd-lit-c{from{opacity:0}to{opacity:1}}
+@keyframes sd-done{from{opacity:.3}to{opacity:1}}
+.sd[data-scene="web"] .sd-chip--open .sd-dot::after,.sd[data-scene="mobile"] .sd-chip--open .sd-dot::after{opacity:1}
+.sd[data-scene="web"] .sd-dot,.sd[data-scene="mobile"] .sd-chip:not(.sd-chip--open) .sd-dot{background:rgba(7,8,10,.16)}
+
+.sd-tag{position:absolute;left:calc(var(--x) * var(--u));top:calc(var(--y) * var(--u));white-space:nowrap}
+.sd-tag--from{--x:5;--y:32.9}
+.sd-tag--to{left:auto;right:calc(5 * var(--u));--y:32.9}
+.sd-pipe{position:absolute;left:calc(5 * var(--u));right:calc(5 * var(--u));top:calc(37.2 * var(--u));height:3px;border-radius:3px;background:var(--m-soft);overflow:hidden}
+.sd-pipe b{display:block;height:100%;background:var(--phthalo-lift);transform:scaleX(0);transform-origin:0 0;transition:transform 0s var(--t-fast)}
+.sd[data-scene="release"] .sd-pipe b{transform:none;transition:transform 2.4s linear .2s}
+.sd-done{position:absolute;right:calc(5 * var(--u));top:calc(45.2 * var(--u));color:var(--phthalo-lift)}
+
+.sd-win{position:absolute;left:calc(2.5 * var(--u));top:calc(9.5 * var(--u));width:calc(95 * var(--u));height:calc(50 * var(--u));border-radius:calc(1.8 * var(--u));box-shadow:0 calc(3 * var(--u)) calc(8 * var(--u)) rgba(0,0,0,.5);transform-origin:12% 8%}
+.sd .sd-win{transform:translateY(calc(3 * var(--u))) rotateX(16deg) scale(.92);transition:opacity var(--t-fast) ease,transform var(--t-move) ease}
+.sd[data-scene="web"] .sd-win{transform:none}
+.sd[data-scene="mobile"] .sd-win{opacity:.2;transform:translateX(calc(-42 * var(--u)))}
+.sd-win > *{position:absolute}
+.sd-win::before{content:"";position:absolute;left:calc(18.5 * var(--u));top:0;bottom:0;width:1px;background:var(--m-rule)}
+.sd-nav{left:calc(1 * var(--u));top:calc(10.7 * var(--u));width:calc(16.5 * var(--u));display:grid;gap:.2em}
+.sd-nav li{padding:.5em calc(1.4 * var(--u));border-radius:.6em;color:var(--m-muted)}
+.sd-nav li.is-active{background:var(--m-soft);color:var(--m-fg)}
+.sd-table,.sd-chart{top:calc(11.7 * var(--u));height:calc(36.8 * var(--u));padding:calc(1.5 * var(--u)) calc(1.7 * var(--u));border-radius:calc(1.2 * var(--u));background:var(--sd-tile)}
+.sd-table{left:calc(20 * var(--u));width:calc(43 * var(--u));display:grid;grid-template-rows:auto repeat(4,minmax(0,1fr))}
+.sd-table p{display:grid;grid-template-columns:minmax(0,1fr) auto calc(10.4 * var(--u));gap:calc(1 * var(--u));align-items:center;border-top:1px solid var(--m-rule);white-space:nowrap;font-variant-numeric:tabular-nums}
+.sd-table > b{padding-bottom:calc(1.2 * var(--u))}
+.sd-table span:first-child{overflow:hidden;text-overflow:ellipsis}
+.sd-table em{justify-self:end}
+.sd-table .is-open{color:var(--phthalo)}
+.sd-chart{left:calc(64.03 * var(--u));width:calc(29.47 * var(--u));display:flex;flex-direction:column}
+.sd-chart > span{color:var(--m-muted)}
+.sd-chart > b{margin-top:.15em;font-size:1.5em;font-weight:500;letter-spacing:-.03em;white-space:nowrap}
+.sd-bars{flex:1;display:grid;grid-template-columns:repeat(6,1fr);gap:calc(.9 * var(--u));min-height:0;margin-top:calc(1.4 * var(--u))}
+.sd-bars div{display:grid;grid-template-rows:minmax(0,1fr) auto;gap:.4em;align-items:end;min-height:0;text-align:center}
+.sd-bars i{height:calc(var(--v) * 1%);border-radius:calc(.3 * var(--u)) calc(.3 * var(--u)) 0 0;background:rgba(7,8,10,.16);transform-origin:50% 100%}
+.sd .sd-bars i{transform:scaleY(0)}
+.sd[data-scene="web"] .sd-bars i,.sd[data-scene="mobile"] .sd-bars i{transform:none}
+.sd-bars div:last-child i{background:var(--phthalo)}
+
+.sd-phone{position:absolute;z-index:2;left:calc(66 * var(--u));top:calc(8.6 * var(--u));width:calc(22.4 * var(--u));height:calc(60 * var(--u));border-radius:calc(3 * var(--u));background:#08090B;box-shadow:inset 0 0 0 1px rgba(238,240,246,.24),0 calc(3 * var(--u)) calc(7 * var(--u)) rgba(0,0,0,.6)}
+.sd .sd-phone{transform:translateY(calc(16 * var(--u))) rotateX(-14deg);transition:opacity var(--t-fast) ease,transform var(--t-move) ease}
+.sd[data-scene="mobile"] .sd-phone{transform:none}
+.sd-phone-title{position:absolute;left:calc(2.4 * var(--u));top:calc(2.5 * var(--u));font-size:1.14em}
+.sd-card{position:absolute;left:calc(2.4 * var(--u));top:calc(17.6 * var(--u));width:calc(var(--cw) * var(--u));height:calc(19 * var(--u));display:flex;flex-direction:column;gap:.1em;padding:calc(1.4 * var(--u));border-radius:calc(1.2 * var(--u));background:var(--sd-panel);box-shadow:var(--sd-hair);white-space:nowrap}
+.sd-card + .sd-card{top:calc(38.1 * var(--u))}
+.sd .sd-card{transform:translateY(calc(3 * var(--u)))}
+.sd[data-scene="mobile"] .sd-card{transform:none}
+.sd-card span{font-size:1.14em;font-variant-numeric:tabular-nums}
+.sd-btn{margin-top:auto;padding:.55em 0;border-radius:99px;text-align:center;font-style:normal;font-size:var(--sd-small);font-weight:600;letter-spacing:.04em;text-transform:uppercase;box-shadow:inset 0 0 0 1px var(--sd-line);transition:transform .2s ease}
+.sd-btn.is-human{box-shadow:none}
+.sd[data-scene="mobile"][data-beat="1"] .sd-btn.is-human{transform:scale(.94)}
+.sd[data-scene="mobile"][data-beat="2"] .sd-card{transform:translateX(118%);opacity:0;transition:opacity var(--t-fast) ease .15s,transform var(--t-move) var(--ease)}
+.sd[data-scene="mobile"][data-beat="2"] .sd-card + .sd-card{transform:translateY(calc(-20.5 * var(--u)));opacity:1;transition:transform var(--t-move) var(--ease) .25s}
+
+.sd-narrow{display:none}
+.js .sd-frame{opacity:0;transform:translateY(60px) scale(.97);transition:transform var(--t-stage) var(--ease) .1s,opacity var(--t-move) ease .1s}
+.js .is-in .sd-frame{opacity:1;transform:none}
+.js .sd-chip{opacity:0}
+.js .is-in .sd-chip{opacity:var(--o);transition:transform .9s var(--ease) calc(var(--i) * 50ms),opacity var(--t-move) ease calc(500ms + var(--i) * 110ms)}
+.js [data-step] .sd-chip{transition:transform .9s var(--ease) calc(var(--i) * 50ms),opacity var(--t-move) ease}
+.js .sd[data-scene="intro"] .sd-chip{transition:transform .9s var(--ease),opacity var(--t-fast) ease}
+
+@container (max-width:620px){
+  .sd-frame{--cw:43;--ch:17;--pad:5;--sd-small:1em;aspect-ratio:4 / 5;font-size:max(10px, 3.2cqw)}
+  .sd-wide{display:none}
+  .sd-narrow{display:block}
+  .sd-chip{--x:var(--px0);--y:var(--py0);--o:var(--po0)}
+  .sd[data-scene="workflow"] .sd-chip{--x:var(--px1);--y:var(--py1);--o:var(--po1)}
+  .sd[data-scene="web"] .sd-chip{--x:var(--px2);--y:var(--py2);--o:var(--po2)}
+  .sd[data-scene="mobile"] .sd-chip{--x:var(--px3);--y:var(--py3);--o:var(--po3)}
+  .sd[data-scene="api"] .sd-chip{--x:var(--px4);--y:var(--py4);--o:var(--po4)}
+  .sd[data-scene="release"] .sd-chip{--x:var(--px5);--y:var(--py5);--o:var(--po5)}
+  .sd-intro{left:calc(6 * var(--u));right:calc(6 * var(--u));top:calc(40 * var(--u))}
+  .sd-intro-title{margin-top:calc(3 * var(--u));font-size:calc(8.6 * var(--u));white-space:normal}
+  .sd-intro-line{margin-top:calc(3 * var(--u));font-size:1.15em}
+  .sd-chip::before,.sd-card,.sd-table{border-radius:calc(3 * var(--u))}
+  .sd-face{padding:0 calc(3.6 * var(--u))}
+  .sd-dot{right:calc(3.2 * var(--u));top:calc(3.2 * var(--u))}
+  .sd-tag--from{--x:6;--y:68}
+  .sd-tag--to{right:calc(6 * var(--u));--y:68}
+  .sd-pipe{left:calc(6 * var(--u));right:calc(6 * var(--u));top:calc(76 * var(--u))}
+  .sd-done{right:calc(6 * var(--u));top:calc(89 * var(--u))}
+  .sd-win{left:calc(3 * var(--u));top:calc(14 * var(--u));width:calc(94 * var(--u));height:calc(105 * var(--u));border-radius:calc(4 * var(--u))}
+  .sd-win::before{display:none}
+  .sd[data-scene="mobile"] .sd-win{opacity:.25;transform:none}
+  .sd-table{left:calc(3 * var(--u));top:calc(65 * var(--u));width:calc(88 * var(--u));height:calc(37 * var(--u));padding:calc(3 * var(--u)) calc(3.6 * var(--u));grid-template-rows:auto repeat(3,minmax(0,1fr))}
+  .sd-table p{grid-template-columns:minmax(0,1fr) auto;gap:calc(2 * var(--u))}
+  .sd-table p:last-child,.sd-table span + span{display:none}
+  .sd-table > b{padding-bottom:calc(2 * var(--u))}
+  .sd-phone{left:calc(22 * var(--u));top:calc(16 * var(--u));width:calc(56 * var(--u));height:calc(120 * var(--u));border-radius:calc(7 * var(--u))}
+  .sd-phone-title{left:calc(6.5 * var(--u));top:calc(5 * var(--u))}
+  .sd-card{left:calc(6.5 * var(--u));top:calc(36 * var(--u));height:calc(40 * var(--u));padding:calc(3.4 * var(--u))}
+  .sd-card + .sd-card{top:calc(80 * var(--u))}
+  .sd[data-scene="mobile"][data-beat="2"] .sd-card + .sd-card{transform:translateY(calc(-44 * var(--u)))}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .sd-frame{transition:none;opacity:1;transform:none}
+  .sd-frame *,.sd-frame *::before,.sd-frame *::after{transition:none !important;animation:none !important}
+}
+</style>

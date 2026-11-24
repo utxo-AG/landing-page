@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>utxo AG Entwurf F · Massiv</title>
+<link rel="stylesheet" href="drafts.css">
+<script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/":"./vendor/addons/"}}</script>
+<style>
+.th-d{--bg:#EEF0F6;--fg:#07080A;--muted:#5D626C;--rule:rgba(7,8,10,.14);--stage:#14161B;--stage-fg:#EEF0F6;--stage-muted:#8A909B;--stage-rule:rgba(238,240,246,.12);--stage-soft:rgba(238,240,246,.07);--accent:#2438F5;--pill:#2B2E3A;--pill-fg:#fff;--pill-2:#E2E5EE}
+.th-d .intro{animation:none}
+.th-d .intro img{animation:none;transform-origin:0 0;width:min(40vw, 420px)}
+.th-d .top,.th-d main{animation:none}
+.th-d .logo img{visibility:hidden}
+.th-d.is-ready .logo img{visibility:visible;transition:visibility 0s .9s}
+.th-d .display{font-weight:400;letter-spacing:-.04em;font-size:clamp(42px, 8.6vw, 132px)}
+.th-d .top .statement{font-weight:400}
+
+.ln{display:block;overflow:hidden;padding-bottom:.14em;margin-bottom:-.14em}
+.ln > span{display:block;transform:translateY(118%);transition:transform 1s var(--ease);transition-delay:calc(var(--i, 0) * 90ms + var(--d, 0ms))}
+.is-ready .top .ln > span,.is-in .ln > span{transform:none}
+.top{--d:500ms}
+.actions{opacity:0;transition:opacity .8s var(--ease) .9s}
+.is-ready .actions{opacity:1}
+
+.hero{padding:clamp(20px, 2.4vw, 34px) var(--edge) 0}
+.stage3d{height:calc(100svh - clamp(190px, 17vw, 262px));min-height:340px;border-radius:var(--radius);overflow:hidden;background:var(--stage);opacity:0;transform:scale(.97);transition:opacity 1s var(--ease) .35s,transform 1.4s var(--ease) .35s;touch-action:pan-y}
+.is-ready .stage3d{opacity:1;transform:none}
+.stage3d canvas{display:block;width:100%;height:100%}
+.marks{display:grid;grid-template-columns:1fr 1fr auto 1fr 1fr;align-items:center;height:50px;font-size:var(--fs-label);font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.marks i{font-style:normal;font-size:22px;font-weight:300;line-height:1}
+.marks i:nth-child(2){text-align:right;padding-right:6vw}
+.marks i:nth-child(4){padding-left:6vw}
+.marks i:last-child{text-align:right}
+
+.seq{overflow-x:clip;padding:clamp(96px, 16vw, 240px) var(--edge) clamp(80px, 11vw, 170px)}
+.seq-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);margin-top:clamp(44px, 6.4vw, 100px);align-items:center}
+.device-wrap{grid-column:1 / span 7;perspective:1800px}
+.device{background:#0A0B0E;border-radius:34px;padding:14px;box-shadow:0 60px 90px -40px rgba(12,18,48,.38),0 18px 30px -18px rgba(12,18,48,.22);transform:rotateX(50deg) rotateZ(-9deg) scale(.8) translateY(90px);opacity:0;transition:transform 1.7s var(--ease) .15s,opacity .7s ease .15s}
+.is-in .device{transform:none;opacity:1}
+.device .console{border-radius:22px}
+.th-d .agents li{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s var(--ease);transition-delay:calc(900ms + var(--i) * 170ms)}
+.is-in .agents li{opacity:1;transform:none}
+.th-d .track i{width:0;transition:width 1.9s var(--ease) 1.4s,background-color .4s}
+.is-in .track i{width:calc(var(--v) * 1%)}
+.is-waiting .track--flip i{background:var(--accent);opacity:1}
+.th-d .st{transition:background-color .4s,color .4s}
+.th-d .st--wait{color:#fff}
+.seq .copy{grid-column:9 / -1;opacity:0;transform:translateY(20px);transition:opacity .9s ease .5s,transform .9s var(--ease) .5s}
+.is-in .copy{opacity:1;transform:none}
+.pill--white{background:#fff;color:var(--fg);box-shadow:0 1px 2px rgba(0,0,0,.04),0 10px 24px rgba(0,0,0,.05);margin-top:38px;transition:background-color .35s var(--ease),color .35s var(--ease)}
+.pill--white:hover,.th-d .pill--talk:hover{background:var(--accent);color:#fff}
+.th-d .pill--talk{transition:background-color .35s var(--ease)}
+
+.accents{position:fixed;left:12px;top:50%;transform:translateY(-50%);z-index:5;display:flex;flex-direction:column;gap:8px;padding:8px;border-radius:99px;background:var(--pill-2)}
+.accents button{width:18px;height:18px;border-radius:50%;border:0;padding:0;cursor:pointer;background:var(--c);outline-offset:2px}
+.accents button[aria-current]{outline:2px solid var(--fg)}
+@media (max-width:760px){
+  .stage3d{height:auto;min-height:0;aspect-ratio:1 / 1}
+  .marks{grid-template-columns:auto 1fr auto}
+  .marks i:nth-child(2),.marks i:nth-child(4){display:none}
+  .marks span{text-align:center}
+  .seq-grid{display:block}
+  .device{border-radius:24px;padding:9px}
+  .device .console{border-radius:16px}
+  .seq .copy{padding-top:34px}
+  .accents{top:auto;bottom:12px;left:12px;transform:none;flex-direction:row}
+}
+@media (prefers-reduced-motion:reduce){
+  .ln > span,.stage3d,.device,.th-d .agents li,.seq .copy,.actions{transition:none;transform:none;opacity:1}
+  .th-d .track i{transition:none;width:calc(var(--v) * 1%)}
+}
+.th-f{--accent:#EEF0F6}
+.th-f .stage3d{position:relative;background:linear-gradient(112deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,0) 26%, rgba(255,255,255,.022) 50%, rgba(255,255,255,0) 72%),radial-gradient(130% 75% at 50% 112%, rgba(18,70,54,.5) 0%, rgba(18,70,54,.17) 42%, rgba(22,84,64,0) 72%),radial-gradient(120% 100% at 28% 12%, #1B1D22 0%, #0E0F12 46%, #040506 100%)}
+.th-f .stage3d::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.055;mix-blend-mode:screen;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.62' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.th-f .stage3d canvas{position:relative;z-index:1}
+.th-f .st--wait{color:#14161B}
+.th-f .pill--white:hover{background:#07080A;color:#fff}
+.th-f .pill--talk,.th-f .pill--talk:hover{position:relative;isolation:isolate;overflow:hidden;color:#fff;background:radial-gradient(130% 150% at 50% 135%, rgba(22,92,70,.95) 0%, rgba(18,70,54,.35) 45%, rgba(18,70,54,0) 75%),linear-gradient(112deg, #23262C 0%, #0B0C0F 100%)}
+.th-f .pill--talk::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(135% 165% at 50% 140%, #1E7A5C 0%, rgba(20,92,69,.62) 42%, rgba(18,70,54,0) 78%);opacity:0;transition:opacity .45s var(--ease)}
+.th-f .pill--talk:hover::before{opacity:1}
+.th-f .marks{display:flex;justify-content:space-between;opacity:.32}
+.th-f .marks i:nth-child(n){padding:0;text-align:left}
+.ov{padding:clamp(56px, 6vw, 92px) var(--edge) 0}
+.ov-label{color:var(--muted);margin-bottom:22px}
+.ov-list{list-style:none;padding:0;border-bottom:1px solid var(--rule)}
+.ov-list li{border-top:1px solid var(--rule);opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .9s var(--ease);transition-delay:calc(120ms + var(--i) * 90ms)}
+.is-in .ov-list li{opacity:1;transform:none}
+.ov-list a{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);align-items:baseline;padding:clamp(10px, 1vw, 15px) 0;transition:opacity .35s var(--ease)}
+.ov-n{grid-column:1;color:var(--muted)}
+.ov-main{grid-column:2 / -1;position:relative;display:block;container-type:inline-size}
+.ov-name{display:inline-block;white-space:nowrap;font-size:clamp(21px, 2.2vw, 34px);line-height:1.05;letter-spacing:-.035em;transition:transform .7s var(--ease),color .4s var(--ease)}
+.ov-text{display:block;color:var(--muted);font-size:clamp(14px, 1.2vw, 17.5px);line-height:1.3}
+@media (hover:hover){
+  .ov-list:hover a{opacity:.32}
+  .ov-list a:hover{opacity:1}
+  .ov-text{position:absolute;left:0;top:50%;max-width:min(50%, 34em);color:var(--fg);opacity:0;transform:translate(-14px, -50%);transition:opacity .3s var(--ease),transform .6s var(--ease)}
+  .ov-list a:hover .ov-name,.ov-list a:focus-visible .ov-name{transform:translateX(calc(100cqw - 100%));color:var(--muted)}
+  .ov-list a:hover .ov-text,.ov-list a:focus-visible .ov-text{opacity:1;transform:translate(0, -50%);transition-delay:.16s}
+}
+@media (max-width:760px){
+  .th-f .marks i:nth-child(2),.th-f .marks i:nth-child(3){display:none}
+  .th-f .marks i:nth-child(4){display:block}
+  .ov-list a{grid-template-columns:auto 1fr;gap:6px 14px}
+  .ov-main{grid-column:2}
+  .ov-name{white-space:normal}
+  .ov-text{margin-top:6px}
+}
+@media (prefers-reduced-motion:reduce){.ov-list li{opacity:1;transform:none;transition:none}}
+.th-f{background-color:color-mix(in srgb, #EEF0F6, #E3EAE6 calc(var(--sp, 0) * 100%))}
+.th-f::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(60% 55% at calc(12% + var(--sp, 0) * 70%) calc(8% + var(--sp, 0) * 80%), rgba(18,92,70,.17) 0%, rgba(18,92,70,0) 70%),radial-gradient(55% 50% at calc(88% - var(--sp, 0) * 60%) calc(85% - var(--sp, 0) * 70%), rgba(104,116,190,.2) 0%, rgba(104,116,190,0) 70%)}
+.th-f .top .statement strong{font-weight:600}
+.th-f .logo{grid-column:1;width:clamp(50px, 5vw, 72px);opacity:0;transition:opacity .8s var(--ease) .2s}
+.th-f.is-ready .logo{opacity:1}
+.th-f .logo img{visibility:visible}
+.th-f .top .statement{grid-column:2 / span 8;font-size:clamp(20px, 2.1vw, 32px);line-height:1.04;letter-spacing:-.04em}
+.th-f .top{--d:150ms}
+@media (max-width:760px){.th-f .top .statement{grid-row:2;grid-column:1 / -1}}
+.contact{position:relative}
+.th-f button.pill{border:0;font-family:inherit;cursor:pointer}
+.contact-menu{position:absolute;right:0;top:calc(100% + 8px);z-index:6;display:grid;gap:6px;min-width:300px;animation:contact-in .45s var(--ease)}
+.contact-menu[hidden]{display:none}
+.contact-menu a{display:flex;white-space:nowrap;justify-content:space-between;align-items:baseline;gap:24px;padding:17px 20px;border-radius:16px;background:#fff;color:var(--fg);font-size:17px;letter-spacing:-.01em;box-shadow:0 1px 2px rgba(0,0,0,.05),0 14px 30px rgba(10,14,30,.1);transition:background-color .3s var(--ease),color .3s var(--ease)}
+.contact-menu a span{font-size:13px;color:var(--muted);transition:color .3s var(--ease)}
+.contact-menu a:hover,.contact-menu a:focus-visible{background:#0B0C0F;color:#fff}
+.contact-menu a:hover span,.contact-menu a:focus-visible span{color:rgba(255,255,255,.6)}
+@keyframes contact-in{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.contact-menu{animation:none}}
+</style>
+</head>
+<body class="th-d th-f">
+
+<header class="top">
+  <a class="logo" href="#"><img src="assets/wordmark-black.svg" alt="utxo AG" width="72" height="43"></a>
+  <h1 class="statement"><span class="ln" style="--i:0"><span><strong>Moderne Software für digitale Transformation.</strong></span></span><span class="ln" style="--i:1"><span>KI-native Lösungen für komplexe Unternehmensanforderungen.</span></span></h1>
+  <div class="actions">
+    <div class="contact" data-contact>
+      <button class="pill pill--talk" type="button" aria-expanded="false" aria-controls="contact-menu">Jetzt kontaktieren <i></i></button>
+      <div class="contact-menu" id="contact-menu" hidden>
+        <a href="https://cal.com/philip-isenmann-utxoag/30-min-meeting">Erstgespräch buchen<span>30 Minuten</span></a>
+        <a href="mailto:business@utxo.ag">E-Mail<span>business@utxo.ag</span></a>
+      </div>
+    </div>
+    <a class="pill pill--2" href="#">Menü</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="stage3d" data-stage><canvas aria-label="Die utxo Wortmarke als massiver Körper, der bei Berührung in Würfel zerfällt" role="img"></canvas></div>
+  <div class="marks" aria-hidden="true"><i>+</i><i>+</i><i>+</i><i>+</i></div>
+</section>
+
+<section class="ov" id="leistungen" data-reveal>
+  <p class="ov-label label"><span class="ln"><span>Leistungen</span></span></p>
+  <ol class="ov-list">
+    <li style="--i:0"><a href="#"><span class="ov-n label">01</span><span class="ov-main"><span class="ov-name">Software Development</span><span class="ov-text">Individuelle Software, auch KI-gestützt, vom Konzept bis in den Betrieb.</span></span></a></li>
+    <li style="--i:1"><a href="#"><span class="ov-n label">02</span><span class="ov-main"><span class="ov-name">KI-Automationen</span><span class="ov-text">Wiederkehrende Abläufe, die in Ihren Systemen von selbst laufen.</span></span></a></li>
+    <li style="--i:2"><a href="#managed-agents"><span class="ov-n label">03</span><span class="ov-main"><span class="ov-name">Managed Agents</span><span class="ov-text">KI-Agenten, die wir für Sie entwickeln, hosten und überwachen.</span></span></a></li>
+    <li style="--i:3"><a href="#"><span class="ov-n label">04</span><span class="ov-main"><span class="ov-name">Agent Factories und KI-Infrastruktur</span><span class="ov-text">Die Grundlage, auf der Ihre Organisation Agenten in Serie entwickelt und betreibt.</span></span></a></li>
+    <li style="--i:4"><a href="#"><span class="ov-n label">05</span><span class="ov-main"><span class="ov-name">AI Adoption und Consulting</span><span class="ov-text">Vom ersten Use Case zum Pilot in rund 30 Tagen und weiter in den Betrieb.</span></span></a></li>
+    <li style="--i:5"><a href="#"><span class="ov-n label">06</span><span class="ov-main"><span class="ov-name">Agentic CoWorker</span><span class="ov-text">KI-CoWorker, die sich wie Kolleginnen und Kollegen in Ihr Team integrieren.</span></span></a></li>
+  </ol>
+</section>
+
+<section class="seq" id="managed-agents" data-seq>
+  <h2 class="display"><span class="ln" style="--i:0"><span>Managed Agents</span></span></h2>
+  <div class="seq-grid">
+    <div class="device-wrap">
+      <div class="device">
+        <div class="console">
+          <div class="console-bar label"><span>Betrieb · Ihre Agenten</span><span class="live"><i></i>Live</span></div>
+          <ul class="agents">
+            <li style="--i:0"><b>Briefing-Agent</b><span>prüft ein Kampagnenbriefing</span><em class="st">läuft</em><div class="track"><i style="--v:72"></i></div></li>
+            <li style="--i:1"><b>Recherche-Agent</b><span>Wettbewerbsanalyse, 14 Quellen</span><em class="st">läuft</em><div class="track"><i style="--v:38"></i></div></li>
+            <li style="--i:2"><b>Reporting-Agent</b><span>Wochenbericht</span><em class="st st--wait" data-flip>Ihre Freigabe</em><div class="track track--flip"><i style="--v:100"></i></div></li>
+            <li style="--i:3"><b>Ablage-Agent</b><span>startet um 18:00 Uhr</span><em class="st">geplant</em><div class="track"><i style="--v:0"></i></div></li>
+          </ul>
+          <div class="console-foot">
+            <div><small>Läufe heute</small><b data-count="128">128</b></div>
+            <div><small>ohne Eingriff erledigt</small><b data-count="94">94<span> %</span></b></div>
+            <div><small>warten auf Sie</small><b data-count="1">1</b></div>
+          </div>
+        </div>
+      </div>
+      <p class="sample label">Beispielansicht mit Beispieldaten</p>
+    </div>
+    <div class="copy">
+      <p class="body">Wir entwickeln, hosten und überwachen Ihre KI-Agenten. Sie sehen jederzeit, was läuft, was erledigt ist und wo Ihre Freigabe nötig ist.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<nav class="switch" aria-label="Entwürfe"><a href="a.html">A</a><a href="b.html">B</a><a href="c.html">C</a><a href="d.html">D</a><a href="e.html">E</a><a href="f.html" aria-current="page">F</a></nav>
+<script type="module" src="f.js"></script>
+</body>
+</html>

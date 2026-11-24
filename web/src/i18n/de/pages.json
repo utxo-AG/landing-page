@@ -1,0 +1,88 @@
+{
+  "impressum": {
+    "heading": "Impressum",
+    "title": "Impressum | utxo AG",
+    "description": "Impressum und Handelsregisterangaben der utxo AG."
+  },
+  "datenschutz": {
+    "heading": "Datenschutz­erklärung",
+    "title": "Datenschutzerklärung | utxo AG",
+    "description": "Wie die utxo AG personenbezogene Daten erhebt, nutzt, speichert und weitergibt."
+  },
+  "agb": {
+    "heading": "Allgemeine Geschäfts­bedingungen",
+    "title": "Allgemeine Geschäftsbedingungen (AGB) | utxo AG",
+    "description": "Allgemeine Geschäftsbedingungen der utxo AG für individuell entwickelte KI-CoWorker (Agentic Service)."
+  },
+  "nutzungsrichtlinie": {
+    "heading": "Richtlinie zur akzeptablen Nutzung",
+    "title": "Richtlinie zur akzeptablen Nutzung | utxo AG",
+    "description": "Nutzungsrichtlinie für den KI-CoWorker / Agentic Service der utxo AG."
+  },
+  "avv": {
+    "heading": "Auftrags­verarbeitungs­vertrag",
+    "title": "Auftragsverarbeitungsvertrag (Vorlage) | utxo AG",
+    "description": "Vorlage für den Auftragsverarbeitungsvertrag der utxo AG. Der AVV wird für jedes Projekt individuell abgeschlossen."
+  },
+  "presse": {
+    "heading": "Presse",
+    "title": "Presseberichte zu Masumi und Sokosumi | utxo AG",
+    "description": "Presseberichte zu Masumi und Sokosumi, entwickelt von der utxo AG für die Serviceplan Group: Handelsblatt, Forbes, t3n, Horizont, W&V und weitere.",
+    "lede": "Für die Serviceplan Group entwickeln wir Masumi, ein Zahlungs- und Identitätsnetzwerk für KI-Agenten, und Sokosumi, eine Plattform für Marketing-Teams, und betreiben beide gemeinsam mit ihr. Das schreibt die Presse darüber.",
+    "logosTitle": "Medien",
+    "logosLabel": "Medien, die über unsere Projekte berichtet haben",
+    "coverageTitle": "Berichterstattung",
+    "more": "{n} weitere anzeigen",
+    "untitled": "Beitrag",
+    "contactTitle": "Medienkontakt",
+    "contactText": "Wir liefern gerne Hintergründe, Zahlen und Gesprächspartner aus unserem Team."
+  },
+  "about": {
+    "heading": "Über uns",
+    "title": "Über uns | utxo AG",
+    "description": "Das Team der utxo AG: rund 10 Menschen in Entwicklung, Design und Strategie.",
+    "teamTitle": "Team",
+    "teamText": "Rund 10 Menschen in Entwicklung, Design und Strategie. Sie sprechen direkt mit denen, die Ihre Lösung entwickeln.",
+    "linkedin": "{name} auf LinkedIn",
+    "contactTitle": "Kontakt",
+    "groups": {
+      "lead": "Management und Lead-Entwicklung",
+      "team": "Entwicklung, Web und Sales"
+    },
+    "companyTitle": "Unternehmen",
+    "facts": [
+      {
+        "label": "Firma",
+        "value": "utxo AG"
+      },
+      {
+        "label": "Gegründet",
+        "value": "Februar 2022"
+      },
+      {
+        "label": "Marke NMKR",
+        "value": "seit 2021"
+      },
+      {
+        "label": "Sitz",
+        "value": "Dammstrasse 16, 6300 Zug, Schweiz"
+      },
+      {
+        "label": "Handelsregister",
+        "value": "CH-400.3.450.669-8"
+      },
+      {
+        "label": "UID / MWST",
+        "value": "CHE-494.509.135 MWST"
+      },
+      {
+        "label": "Vertreten durch",
+        "value": "Patrick Tobler, CEO"
+      },
+      {
+        "label": "Kontakt",
+        "value": "business@utxo.ag"
+      }
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "context": "Auftragseingang · Automation",
+  "plates": {
+    "flow": "Ablauf",
+    "systems": "Systeme"
+  },
+  "stations": [
+    { "name": "Eingang", "system": "E-Mail" },
+    { "name": "Lesen", "system": "PDF" },
+    { "name": "Prüfen", "system": "Regelwerk" },
+    { "name": "Buchen", "system": "ERP" },
+    { "name": "Antwort", "system": "CRM" }
+  ],
+  "gate": "Ihre Freigabe",
+  "stats": {
+    "waiting": {
+      "label": "Zur Freigabe",
+      "value": 0
+    },
+    "total": {
+      "label": "Heute verarbeitet",
+      "value": 1284
+    }
+  }
+}

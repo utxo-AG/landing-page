@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>utxo AG Entwurf B · Papier</title>
+<link rel="stylesheet" href="drafts.css">
+<style>
+.hero{padding:clamp(56px, 8.4vw, 132px) var(--edge) 0}
+.hero-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);margin-top:clamp(44px, 6.4vw, 100px);align-items:end}
+.hero-copy{grid-column:1 / span 4}
+.hero-copy .partner{margin-top:38px;flex-wrap:wrap;row-gap:10px}
+.flow{grid-column:6 / -1;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);position:relative}
+.flow::before{content:"";position:absolute;left:0;right:0;top:9px;height:1px;background:var(--rule)}
+.step{position:relative;padding-top:38px}
+.step::before{content:"";position:absolute;left:0;top:5px;width:9px;height:9px;border-radius:50%;background:var(--fg)}
+.step--now::before{background:var(--accent);box-shadow:0 0 0 6px rgba(15,107,79,.14)}
+.step .label{display:block;margin-bottom:14px}
+.card{background:var(--stage);border:1px solid var(--stage-rule);border-radius:14px;padding:18px;font-size:clamp(12.5px, 1vw, 14.5px);line-height:1.35;min-height:clamp(170px, 14.5vw, 216px);display:flex;flex-direction:column;gap:9px}
+.card b{font-weight:600;font-size:1.1em;letter-spacing:-.01em}
+.card small{color:var(--stage-muted);font-size:1em}
+.card .ok{display:flex;gap:9px;align-items:center}
+.card .ok::before{content:"";width:13px;height:13px;border-radius:50%;border:1.5px solid var(--accent);background:var(--accent);flex:none}
+.card .ok--run::before{background:none}
+.card .ok--todo{color:var(--stage-muted)}
+.card .ok--todo::before{background:none;border-color:var(--stage-rule)}
+.bar{height:7px;border-radius:4px;background:var(--stage-soft);width:calc(var(--v) * 1%)}
+.card .btns{display:flex;gap:8px;margin-top:auto}
+.card .btns span{padding:8px 13px;border-radius:99px;font-weight:600;border:1px solid var(--stage-rule)}
+.card .btns .go{background:var(--accent);border-color:var(--accent);color:#fff}
+.display--m{font-size:clamp(38px, 5.7vw, 92px)}
+.svc-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);align-items:start}
+.svc-grid .copy{grid-column:1 / span 5}
+.svc-grid .copy .body{margin-top:clamp(26px, 3vw, 46px)}
+.svc-grid .pill{margin-top:34px}
+.svc-grid figure{grid-column:7 / -1}
+.th-b .console{border:1px solid var(--stage-rule)}
+@media (max-width:760px){
+  .hero-grid,.svc-grid{display:block}
+  .flow{grid-template-columns:1fr;margin-top:44px;gap:26px}
+  .flow::before{left:4px;right:auto;top:0;bottom:0;width:1px;height:auto}
+  .step{padding:0 0 0 30px}
+  .card{min-height:0}
+  .svc-grid figure{margin-top:40px}
+}
+</style>
+</head>
+<body class="th-b">
+<div class="intro" aria-hidden="true"><img src="assets/wordmark-black.svg" alt=""></div>
+
+<header class="top top--plain">
+  <a class="logo" href="index.html"><img src="assets/wordmark-black.svg" alt="utxo AG" width="136" height="81"></a>
+  <div class="actions">
+    <a class="pill pill--accent" href="https://cal.com/philip-isenmann-utxoag/30-min-meeting">Erstgespräch buchen <i></i></a>
+    <a class="pill pill--2" href="#">Menü</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <h1 class="display"><span class="in">Software und</span><span>KI-Agenten für</span><span>Ihren Betrieb.</span></h1>
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <p class="body">utxo AG entwickelt und betreibt KI-Systeme für grosse Organisationen. Vom ersten Use Case bis zum täglichen Betrieb.</p>
+      <p class="partner label"><span>Sokosumi und Masumi: gemeinsam entwickelt mit</span><img src="assets/serviceplan.svg" alt="Serviceplan Group" width="272" height="28"></p>
+    </div>
+    <div class="flow" role="img" aria-label="Ablauf: Auftrag, Agent arbeitet, Ihre Freigabe">
+      <div class="step">
+        <span class="label muted">01 Auftrag</span>
+        <div class="card"><b>Wochenbericht Kampagne</b><small>Quelle: Mediadaten</small><small>Empfänger: Kundenteam</small><small>Fällig: Freitag, 9:00 Uhr</small></div>
+      </div>
+      <div class="step step--now">
+        <span class="label muted">02 Agent arbeitet</span>
+        <div class="card"><b>Reporting-Agent</b><span class="ok">Daten geladen</span><span class="ok">Auffälligkeiten geprüft</span><span class="ok ok--run">Bericht wird verfasst</span><span class="ok ok--todo">Zur Freigabe vorlegen</span></div>
+      </div>
+      <div class="step">
+        <span class="label muted">03 Ihre Freigabe</span>
+        <div class="card"><b>Bericht, 4 Seiten</b><i class="bar" style="--v:92"></i><i class="bar" style="--v:78"></i><i class="bar" style="--v:55"></i><div class="btns"><span class="go">Freigeben</span><span>Anpassen</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="svc">
+  <div class="svc-head label"><span>03 / 06</span><span>Managed Agents</span></div>
+  <div class="svc-grid">
+    <div class="copy">
+      <h2 class="display display--m"><span>Agenten, die</span><span>wir für Sie</span><span>betreiben.</span></h2>
+      <p class="body">Wir entwickeln, hosten und überwachen Ihre KI-Agenten. Sie sehen jederzeit, was läuft, was erledigt ist und wo Ihre Freigabe nötig ist.</p>
+      <a class="pill" href="#">Mehr zu Managed Agents <i></i></a>
+    </div>
+    <figure>
+      <div class="console">
+        <div class="console-bar label"><span>Betrieb · Ihre Agenten</span><span class="live"><i></i>Live</span></div>
+        <ul class="agents">
+          <li><b>Briefing-Agent</b><span>prüft ein Kampagnenbriefing</span><em class="st">läuft</em><div class="track"><i style="--v:72"></i></div></li>
+          <li><b>Recherche-Agent</b><span>Wettbewerbsanalyse, 14 Quellen</span><em class="st">läuft</em><div class="track"><i style="--v:38"></i></div></li>
+          <li><b>Reporting-Agent</b><span>Wochenbericht ist fertig</span><em class="st st--wait">Ihre Freigabe</em><div class="track track--wait"><i style="--v:100"></i></div></li>
+          <li><b>Ablage-Agent</b><span>startet um 18:00 Uhr</span><em class="st">geplant</em><div class="track"><i style="--v:0"></i></div></li>
+        </ul>
+        <div class="console-foot">
+          <div><small>Läufe heute</small><b>128</b></div>
+          <div><small>ohne Eingriff erledigt</small><b>94 %</b></div>
+          <div><small>warten auf Sie</small><b>1</b></div>
+        </div>
+      </div>
+      <figcaption class="sample label">Beispielansicht mit Beispieldaten</figcaption>
+    </figure>
+  </div>
+</section>
+</main>
+
+<aside class="note">
+  <h2>Entwurf B · Papier</h2>
+  <ul>
+    <li>Warmes Papier, weisse Interface-Karten mit Haarlinien, Tannengrün nur für Status und Aktionen. Keine dunkle Fläche.</li>
+    <li>Die Headline trägt den Hero. Das Visual ist ein Ablauf aus drei echten Interface-Karten: Auftrag, Agent arbeitet, Ihre Freigabe.</li>
+    <li>Bewegung: Headline baut sich zeilenweise auf, dann wandert der grüne Punkt von Karte zu Karte, die Haken setzen sich nacheinander.</li>
+    <li>Ruhigste und am schnellsten ladende Richtung, kein WebGL nötig.</li>
+  </ul>
+</aside>
+<nav class="switch" aria-label="Entwürfe"><a href="a.html">A</a><a href="b.html" aria-current="page">B</a><a href="c.html">C</a><a href="d.html">D</a><a href="e.html">E</a><a href="f.html">F</a></nav>
+</body>
+</html>

@@ -1,0 +1,70 @@
+---
+import '../styles/tokens.css';
+import '../styles/base.css';
+import '../styles/mockup.css';
+import fontUrl from '../assets/fonts/manrope-latin-var.woff2?url';
+import iconSvg from '../assets/icons/icon.svg?url';
+import iconPng from '../assets/icons/favicon-96x96.png?url';
+import iconTouch from '../assets/icons/apple-touch-icon-180x180.png?url';
+import { alternates, defaultLanguage } from '../i18n/routes.js';
+
+/*
+  title, description: text pages override the home defaults from the dictionary.
+  The site is noindex unless it is built with PUBLIC_INDEXABLE=1 (set in the Dockerfile for production).
+*/
+const { t, title = t.meta.title, description = t.meta.description } = Astro.props;
+const canonical = new URL(Astro.url.pathname.replace(/\.html$/, ''), Astro.site).href;
+const indexable = import.meta.env.PUBLIC_INDEXABLE === '1';
+const versions = alternates(Astro.url.pathname);
+const absolute = (path) => new URL(path, Astro.site).href;
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': 'https://utxo.ag/#org',
+  name: 'utxo AG',
+  url: 'https://utxo.ag/',
+  email: 'business@utxo.ag',
+  address: { '@type': 'PostalAddress', streetAddress: 'Dammstrasse 16', postalCode: '6300', addressLocality: 'Zug', addressCountry: 'CH' },
+};
+---
+<!doctype html>
+<html lang={t.lang}>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+{!indexable && <meta name="robots" content="noindex">}
+<link rel="canonical" href={canonical}>
+{versions && Object.entries(versions).map(([lang, path]) => <link rel="alternate" hreflang={lang} href={absolute(path)}>)}
+{versions && <link rel="alternate" hreflang="x-default" href={absolute(versions[defaultLanguage])}>}
+<title>{title}</title>
+<meta name="description" content={description}>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="utxo AG">
+<meta property="og:locale" content={t.locale}>
+<meta property="og:url" content={canonical}>
+<meta property="og:title" content={title}>
+<meta property="og:description" content={description}>
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json" set:html={JSON.stringify(organization)}></script>
+<link rel="preload" href={fontUrl} as="font" type="font/woff2" crossorigin>
+<link rel="icon" href={iconSvg} type="image/svg+xml">
+<link rel="icon" href={iconPng} sizes="96x96" type="image/png">
+<link rel="apple-touch-icon" href={iconTouch}>
+<script is:inline>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<a class="skip" href="#main">{t.skip}</a>
+<slot />
+<script>
+  import { backdrop } from '../page/backdrop.js';
+  import { disclosures } from '../page/disclosure.js';
+
+  backdrop();
+  document.querySelectorAll('[data-set-lang]').forEach((link) => link.addEventListener('click', () => {
+    document.cookie = `utxo_lang=${link.dataset.setLang};path=/;max-age=31536000;samesite=lax`;
+  }));
+  disclosures();
+  document.documentElement.classList.add('is-ready');
+</script>
+</body>
+</html>

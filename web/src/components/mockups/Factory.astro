@@ -1,0 +1,201 @@
+---
+/*
+  Agent Factories: three isometric plates on the dark stage, each one set back by SHIFT against the plate below.
+  All geometry is in world units (one cube = 6 units). CSS projects it with --u (unit length), --ky/--kz (camera),
+  --g (plate distance) and --d (set-back), so the labels are flat text placed by the same projection
+  and never pass through a 3D transform. --l is the plate a coordinate belongs to.
+  The markup is the reduced-motion and no-JS frame: full grid, one cube waiting at "Freigabe".
+*/
+const { t } = Astro.props;
+const m = t.mockups.factory;
+
+const TILT = 68;
+const RISE = 20;
+const SHIFT = 10;
+const HOVER = 8;
+const CUBE = 6;
+const GAP = 3;
+const COLS = 6;
+const ROWS = 4;
+const LANE = 12;
+const POOL = 28;
+const OPEN = 8;
+const PITCH = CUBE + GAP;
+const WIDTH = COLS * PITCH + GAP;
+const RUN = ROWS * PITCH + GAP;
+const DEPTH = RUN + LANE;
+const laneY = RUN + LANE / 2;
+const SLOTS = COLS * ROWS;
+
+const kx = Math.SQRT1_2;
+const ky = Math.cos((TILT * Math.PI) / 180) * kx;
+const kz = Math.sin((TILT * Math.PI) / 180);
+const up = ky * (WIDTH + 2 * SHIFT) + kz * (2 * RISE + HOVER + CUBE) + 0.5;
+const down = ky * DEPTH;
+const camera = `--tilt:${TILT}deg;--ky:${ky.toFixed(4)};--kz:${kz.toFixed(4)};--g:${RISE};--d:${SHIFT};--hover:${HOVER};--up:${up.toFixed(2)};--down:${down.toFixed(2)}`;
+
+const field = WIDTH / m.fields.length;
+const stopX = m.fields.map((_, k) => field * (k + 0.5));
+const stops = stopX.map((x) => [x - CUBE / 2, laneY - CUBE / 2]);
+const cell = (s) => [GAP + (s % COLS) * PITCH, GAP + Math.floor(s / COLS) * PITCH];
+const slots = Array.from({ length: SLOTS }, (_, age) => cell((age * 11) % SLOTS));
+const gate = m.stations.length - 1;
+const wires = [
+  ...stopX.map((x) => ({ x, y: laneY, l: 1 })),
+  ...[12, 13].map((s) => ({ x: cell(s)[0] + CUBE / 2, y: cell(s)[1] + CUBE / 2, l: 2 })),
+];
+
+const cubes = Array.from({ length: POOL }, (_, i) => {
+  const n = i < POOL - SLOTS + OPEN ? i : i - POOL;
+  if (n < OPEN) {
+    const [x, y] = slots[(n + SLOTS) % SLOTS];
+    return { x, y, l: 2, marks: 3, i: (x + y - 2 * GAP) / PITCH };
+  }
+  if (n === OPEN) return { x: stops[gate][0], y: stops[gate][1], l: 1, marks: 2, i: 0 };
+  return { x: stops[0][0], y: stops[0][1], l: 1, marks: 0, i: 0, off: true };
+});
+const geo = JSON.stringify({ stops, slots, open: OPEN });
+---
+<div class="fa mock-dark" data-mockup="factory" data-geo={geo} style={camera}>
+  <div class="mock-bar label"><span>{m.context}</span><span class="mock-live"><i></i>{t.mockup.live}</span></div>
+  <dl class="fa-stats">
+    {Object.entries(m.stats).map(([key, stat]) => (
+      <div><dt class="label">{stat.label}</dt><dd data-count={key}>{stat.value}</dd></div>
+    ))}
+  </dl>
+  <div class="fa-scene">
+    <div class="fa-wires" aria-hidden="true">
+      {wires.map(({ x, y, l }) => (
+        <svg class="fa-wire" style={`--x:${x};--y:${y};--l:${l}`} viewBox="0 0 3 100" preserveAspectRatio="none">
+          <path class="fa-rail" d="M1.5 100V0" />
+          <path class="fa-pulse" d="M1.5 100V0" pathLength="1" />
+        </svg>
+      ))}
+    </div>
+    <div class="fa-world" aria-hidden="true">
+      <div class="fa-plate fa-plate--infra" style="--l:0">
+        {m.fields.map(() => <i class="fa-strip"></i>)}
+        {wires.map(({ x, y, l }) => <i class="fa-node" style={`--x:${x};--y:${y - l * SHIFT}`}></i>)}
+      </div>
+      <div class="fa-plate fa-plate--factory" style="--l:1">
+        <i class="fa-lane" style={`--x:${stopX[0]};--y:${laneY};--w:${stopX[stopX.length - 1] - stopX[0]}`}></i>
+        {stops.map(([x, y], k) => <i class:list={['fa-pad', k === 0 && 'fa-pad--source', k > gate && 'fa-pad--lift']} style={`--x:${x};--y:${y}`}></i>)}
+      </div>
+      <div class="fa-plate fa-plate--run" style="--l:2">
+        {Array.from({ length: SLOTS }, () => <i class="fa-slot"></i>)}
+      </div>
+      {cubes.map((cube) => (
+        <div class:list={['fa-cube', cube.off && 'is-flat is-off']} data-marks={cube.marks} style={`--x:${cube.x};--y:${cube.y};--l:${cube.l};--i:${cube.i}`}>
+          <i class="fa-top"></i><i class="fa-left"></i><i class="fa-right"></i>
+        </div>
+      ))}
+    </div>
+    <p class="fa-at fa-name label" style="--x:0;--y:0;--l:0">{m.plates.infra}</p>
+    <p class="fa-at fa-name label" style="--x:0;--y:0;--l:1">{m.plates.factory}</p>
+    <p class="fa-at fa-name label" style="--x:0;--y:0;--l:2">{m.plates.run}</p>
+    <ul class="fa-stops">
+      {m.stations.map((name, k) => <li class:list={['fa-at fa-stop st', k === gate && 'is-human']} data-gate={k === gate ? '' : undefined} style={`--x:${stopX[k]};--y:${laneY};--l:1;--n:${k}`}>{name}</li>)}
+    </ul>
+    <ul class="fa-fields label">
+      {m.fields.map((name, k) => <li class="fa-at fa-field" style={`--x:${field * k + 1};--y:${DEPTH};--l:0`}>{name}</li>)}
+    </ul>
+  </div>
+</div>
+
+<script>
+  import { factory } from './factory.js';
+
+  document.querySelectorAll('[data-mockup="factory"]').forEach(factory);
+</script>
+
+<style is:global>
+/* stage size for this mockup (variables read by ServiceSection) */
+.svc-stage:has(.fa){--stage-h:max(540px, min(88svh, 820px));--stage-ratio:3 / 4}
+@media (min-width:600px){
+  .svc-stage:has(.fa){--stage-ratio:6 / 7}
+}
+
+.fa{--p:clamp(22px, 3.4vw, 54px);--bar:clamp(34px, 3.2vw, 46px);--over:clamp(50px, 5vw, 76px);--slope:calc(var(--ky) / .7071);--step:calc(11.4 * var(--ky));--left:calc(1.4142 * var(--d));container-type:size;position:relative;display:flex;flex-direction:column;padding:var(--p);font-size:clamp(12px, 1.05vw, 15.5px);line-height:1.3}
+.fa.mock-dark{background:none}
+.fa .mock-bar{position:relative;z-index:1}
+.fa-stats{position:relative;z-index:1;align-self:flex-end;display:flex;gap:clamp(20px, 2.6vw, 44px);margin-top:clamp(12px, 1.4vw, 22px);text-align:right}
+.fa-stats dt{color:var(--m-muted);margin-bottom:5px}
+.fa-stats dd{font-size:clamp(22px, 2.4vw, 38px);font-weight:500;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+
+.fa-scene{--u:min((100cqh - var(--bar)) / (var(--up) + var(--down) + 5.6), (50cqw + var(--p) - var(--over) - 30px) / 76.4);position:absolute;right:var(--p);bottom:var(--p);width:calc((76.4 + var(--left)) * var(--u) + var(--over));height:calc((var(--up) + var(--down) + 5.6) * var(--u))}
+.fa-world{position:absolute;left:calc(var(--left) * var(--u));top:calc(var(--up) * var(--u));width:0;height:0;transform-origin:0 0;transform:rotateX(var(--tilt)) rotateZ(-45deg);transform-style:preserve-3d}
+.fa-world i{display:block}
+.fa-node,.fa-lane,.fa-pad,.fa-cube i{position:absolute}
+
+.fa-plate{position:absolute;left:0;top:0;width:calc(57 * var(--u));height:calc(51 * var(--u));background:rgba(238,240,246,.045);box-shadow:inset 0 0 0 1px rgba(238,240,246,.17);transform:translate3d(0, calc(var(--l) * var(--d) * -1 * var(--u)), calc(var(--l) * var(--g) * var(--u)))}
+.fa-plate--infra{display:flex}
+.fa-strip{flex:1}
+.fa-strip + .fa-strip{box-shadow:inset 1px 0 0 var(--m-rule)}
+.fa-node{left:calc((var(--x) - .9) * var(--u));top:calc((var(--y) - .9) * var(--u));width:calc(1.8 * var(--u));height:calc(1.8 * var(--u));background:var(--m-fg);opacity:.5}
+.fa-lane{left:calc(var(--x) * var(--u));top:calc(var(--y) * var(--u));width:calc(var(--w) * var(--u));height:1px;background:rgba(238,240,246,.2)}
+.fa-pad{left:calc((var(--x) - 1) * var(--u));top:calc((var(--y) - 1) * var(--u));width:calc(8 * var(--u));height:calc(8 * var(--u));background:#101216;box-shadow:inset 0 0 0 1px rgba(238,240,246,.26)}
+.fa-pad--source{box-shadow:inset 0 0 0 1px rgba(238,240,246,.6)}
+.fa-pad--lift{background:none;box-shadow:none;outline:1px dashed rgba(238,240,246,.3);outline-offset:-1px}
+.fa-plate--run{height:calc(39 * var(--u));display:grid;grid-template-columns:repeat(6, 1fr);gap:calc(3 * var(--u));padding:calc(3 * var(--u))}
+.fa-slot{background:var(--m-soft)}
+
+/* a cube: --x/--y on plate --l, --r plates above it (lift), --h hovering */
+.fa-cube{--s:1;position:absolute;left:0;top:0;width:calc(6 * var(--u));height:calc(6 * var(--u));transform-style:preserve-3d;transform:translate3d(calc(var(--x) * var(--u)), calc((var(--y) - var(--l) * var(--d)) * var(--u)), calc(((var(--l) + var(--r, 0)) * var(--g) + var(--h, 0) * var(--hover)) * var(--u))) scale3d(1, 1, var(--s));transition:transform var(--t-move) var(--ease)}
+.fa-cube i{width:100%;height:100%;opacity:var(--s);transition:opacity var(--t-fast)}
+.fa-top{left:0;top:0;background:#fff;transform:translateZ(calc(6 * var(--u)))}
+.fa-left{right:100%;top:0;background:#CDD1D9;transform-origin:100% 50%;transform:rotateY(90deg)}
+.fa-right{left:0;top:100%;background:#989EA9;transform-origin:50% 0;transform:rotateX(90deg)}
+.fa-top::after{content:"";position:absolute;left:16%;bottom:15%;width:68%;height:13%;background:linear-gradient(#0B0C0F 0 0) 0 0 / 20% 100% no-repeat,linear-gradient(#0B0C0F 0 0) 50% 0 / 20% 100% no-repeat,linear-gradient(#0B0C0F 0 0) 100% 0 / 20% 100% no-repeat;clip-path:inset(0 100% 0 0)}
+[data-marks="1"] .fa-top::after{clip-path:inset(0 70% 0 0)}
+[data-marks="2"] .fa-top::after{clip-path:inset(0 30% 0 0)}
+[data-marks="3"] .fa-top::after{clip-path:none}
+.fa-cube.is-flat{--s:0}
+.fa-cube.is-off,.fa-cube.is-off i{transition:none}
+
+/* projection of the plate point (--x, --y) on plate --l; wires hang down from it */
+.fa-at,.fa-wire{position:absolute;left:calc((var(--left) + (var(--x) + var(--y) - var(--l) * var(--d)) * .7071) * var(--u));top:calc((var(--up) + (var(--y) - var(--l) * var(--d) - var(--x)) * var(--ky) - var(--l) * var(--g) * var(--kz)) * var(--u))}
+.fa-wire{margin-left:-1.5px;width:3px;height:calc(var(--l) * var(--g) * var(--kz) * var(--u));max-width:none;overflow:visible;fill:none}
+.fa-rail{stroke:rgba(238,240,246,.22);stroke-width:1;stroke-dasharray:1 2.2}
+.fa-pulse{stroke:#fff;stroke-width:1.6;stroke-dasharray:calc(.2 / var(--l)) 1.4;stroke-dashoffset:calc(.2 / var(--l))}
+.fa-pulse.is-on{stroke-dashoffset:-1;transition:stroke-dashoffset calc(var(--t-move) + (var(--l) - 1) * .4s) linear}
+
+.fa-at{white-space:nowrap}
+/* plate name: tucked under the left flank of its plate, where no cube ever passes */
+.fa-name{transform:translate(calc(-100% + 16 * var(--u)), calc((16 * var(--slope) + .9) * var(--u)))}
+/* station label: flag on a pole above the station; each pole is longer than the one before,
+   so the four flags never share a line and stay above every cube passing below */
+.fa-stop{--pad:9px;--clear:calc(6 * var(--kz) + 6 * var(--ky) + .8);--pole:calc((.75 + .6 * var(--n)) * var(--step) + .6);padding:3px var(--pad);line-height:1.15;background:none;color:var(--m-muted);transform:translate(calc(-100% + var(--pad)), calc(-100% - (var(--clear) + var(--pole)) * var(--u)))}
+.fa-stop.is-human{background:var(--m-human-bg);color:var(--m-human-fg)}
+.fa-stop::after{content:"";position:absolute;right:var(--pad);top:100%;width:1px;height:calc(var(--pole) * var(--u));background:rgba(238,240,246,.3)}
+.fa-fields{color:var(--m-muted)}
+.fa-field{line-height:1.15;transform:translateY(calc(2.6 * var(--u)))}
+.fa-field::before{content:"";position:absolute;left:0;bottom:calc(100% + .4 * var(--u));width:1px;height:calc(1.7 * var(--u));background:rgba(238,240,246,.3)}
+
+.js .fa-plate{opacity:0;transform:translate3d(0, calc(var(--l) * var(--d) * -1 * var(--u)), calc((var(--l) * var(--g) - 12) * var(--u)));transition:opacity var(--t-move) ease,transform var(--t-enter) var(--ease);transition-delay:calc(var(--l) * 300ms)}
+.js .is-in .fa-plate{opacity:1;transform:translate3d(0, calc(var(--l) * var(--d) * -1 * var(--u)), calc(var(--l) * var(--g) * var(--u)))}
+.js .fa-at{opacity:0;translate:0 calc(12 * var(--kz) * var(--u));transition:opacity var(--t-move) ease,translate var(--t-enter) var(--ease),background-color var(--t-fast),color var(--t-fast);transition-delay:calc(var(--l) * 300ms + 150ms)}
+.js .is-in .fa-at{opacity:1;translate:none}
+.js .fa-wire,.js .fa-stats{opacity:0;transition:opacity var(--t-enter) ease 1.2s}
+.js .is-in .fa-wire,.js .is-in .fa-stats{opacity:1}
+.js .fa-cube{--s:0}
+.js .fa-cube,.js .fa-cube i{transition-delay:calc(1.3s + var(--i) * 60ms)}
+.js .is-in .fa-cube:not(.is-flat){--s:1}
+.js [data-step] .fa-cube,.js [data-step] .fa-cube i,.js [data-step] .fa-at{transition-delay:0s}
+
+/* up to 900px: stats in their own row, scene across the full width, field names as a legend row */
+@media (max-width:900px){
+  .fa{--p:clamp(14px, 3.6vw, 30px)}
+  .fa-stats{gap:clamp(16px, 4vw, 32px);margin-top:clamp(10px, 2.4vw, 20px)}
+  .fa-stats dt{margin-bottom:3px}
+  .fa-stats dd{font-size:clamp(19px, 4.6vw, 34px)}
+  .fa-scene{--u:min((100cqh - 108px - var(--bar)) / (var(--up) + var(--down)), 100cqw / (76.4 + var(--left)));position:relative;right:auto;bottom:auto;width:calc((76.4 + var(--left)) * var(--u));height:calc((var(--up) + var(--down)) * var(--u));margin:auto auto 3.6em}
+  .fa-stop{--pad:6px;padding:1px var(--pad);font-size:clamp(9px, 1.5vw, 12px)}
+  .fa-fields{position:absolute;left:50%;top:calc(100% + .9em);width:100cqw;transform:translateX(-50%);display:flex;flex-wrap:wrap;justify-content:center;gap:.3em 1.2em}
+  .fa-field{position:static;padding:0;transform:none}
+  .fa-field::before{display:none}
+  .js .fa-field{translate:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .fa-plate,.js .fa-at,.js .fa-wire,.js .fa-stats,.js .fa-cube,.js .fa-cube i{transition:none}
+}
+</style>

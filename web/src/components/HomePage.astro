@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from './Header.astro';
+import Hero from './Hero.astro';
+import Overview from './Overview.astro';
+import ServiceSection from './ServiceSection.astro';
+import SoftwareDev from './mockups/SoftwareDev.astro';
+import Automation from './mockups/Automation.astro';
+import ManagedAgents from './mockups/ManagedAgents.astro';
+import Factory from './mockups/Factory.astro';
+import Adoption from './mockups/Adoption.astro';
+import CoWorker from './mockups/CoWorker.astro';
+import References from './References.astro';
+import Security from './Security.astro';
+import Closing from './Closing.astro';
+import PressBand from './PressBand.astro';
+import Footer from './Footer.astro';
+
+const { t } = Astro.props;
+const sections = [
+  { id: 'software-development', layout: 'mockup-right', Mockup: SoftwareDev },
+  { id: 'agent-factories', layout: 'stage', Mockup: Factory },
+  { id: 'managed-agents', layout: 'mockup-left', Mockup: ManagedAgents },
+  { id: 'agentic-coworker', layout: 'mockup-right', Mockup: CoWorker },
+  { id: 'ki-automationen', layout: 'stage', Mockup: Automation },
+  { id: 'ai-adoption', layout: 'wide', Mockup: Adoption },
+];
+---
+<Base t={t}>
+  <Header t={t} panels={false} />
+  <main id="main">
+    <Hero t={t} />
+    <Overview t={t} />
+    {sections.map(({ id, layout, Mockup }) => (
+      <ServiceSection service={t.services.find((entry) => entry.id === id)} layout={layout}>
+        <Mockup t={t} />
+      </ServiceSection>
+    ))}
+    <References t={t} />
+    <Security t={t} />
+    <Closing t={t} />
+    <PressBand t={t} />
+  </main>
+  <Footer t={t} />
+</Base>

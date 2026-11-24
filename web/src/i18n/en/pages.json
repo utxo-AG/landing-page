@@ -1,0 +1,88 @@
+{
+  "impressum": {
+    "heading": "Imprint",
+    "title": "Imprint | utxo AG",
+    "description": "Legal imprint and company registration details for utxo AG."
+  },
+  "datenschutz": {
+    "heading": "Privacy Policy",
+    "title": "Privacy Policy | utxo AG",
+    "description": "How utxo AG collects, uses, stores, and shares personal data."
+  },
+  "agb": {
+    "heading": "Terms and Conditions",
+    "title": "Terms and Conditions | utxo AG",
+    "description": "Terms and conditions of utxo AG for individually developed AI CoWorkers (Agentic Service)."
+  },
+  "nutzungsrichtlinie": {
+    "heading": "Acceptable Use Policy",
+    "title": "Acceptable Use Policy | utxo AG",
+    "description": "Acceptable use policy governing utxo AG's AI CoWorker / Agentic Service."
+  },
+  "avv": {
+    "heading": "Data Processing Agreement",
+    "title": "Data Processing Agreement (Template) | utxo AG",
+    "description": "Template for utxo AG's Data Processing Agreement. The DPA is concluded individually for each project."
+  },
+  "presse": {
+    "heading": "Press",
+    "title": "Press coverage of Masumi and Sokosumi | utxo AG",
+    "description": "Press coverage of Masumi and Sokosumi, developed by utxo AG for the Serviceplan Group: Handelsblatt, Forbes, t3n, Horizont, W&V and more.",
+    "lede": "We develop Masumi, a payment and identity network for AI agents, and Sokosumi, a platform for marketing teams, for the Serviceplan Group and operate both together with the group. This is what the press has written about them.",
+    "logosTitle": "Outlets",
+    "logosLabel": "Outlets that covered our projects",
+    "coverageTitle": "Coverage",
+    "more": "Show {n} more",
+    "untitled": "Article",
+    "contactTitle": "Media contact",
+    "contactText": "We are happy to provide background, figures and interview partners from our team."
+  },
+  "about": {
+    "heading": "About us",
+    "title": "About us | utxo AG",
+    "description": "The utxo AG team: around 10 people in development, design and strategy.",
+    "teamTitle": "Team",
+    "teamText": "Around 10 people in development, design and strategy. You speak directly with the people who develop your solution.",
+    "linkedin": "{name} on LinkedIn",
+    "contactTitle": "Contact",
+    "groups": {
+      "lead": "Management and lead developers",
+      "team": "Development, web and sales"
+    },
+    "companyTitle": "Company",
+    "facts": [
+      {
+        "label": "Company",
+        "value": "utxo AG"
+      },
+      {
+        "label": "Founded",
+        "value": "February 2022"
+      },
+      {
+        "label": "NMKR brand",
+        "value": "since 2021"
+      },
+      {
+        "label": "Registered office",
+        "value": "Dammstrasse 16, 6300 Zug, Switzerland"
+      },
+      {
+        "label": "Commercial register",
+        "value": "CH-400.3.450.669-8"
+      },
+      {
+        "label": "UID / VAT",
+        "value": "CHE-494.509.135 MWST"
+      },
+      {
+        "label": "Represented by",
+        "value": "Patrick Tobler, CEO"
+      },
+      {
+        "label": "Contact",
+        "value": "business@utxo.ag"
+      }
+    ]
+  }
+}

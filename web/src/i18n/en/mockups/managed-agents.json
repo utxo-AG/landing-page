@@ -1,0 +1,87 @@
+{
+  "context": "Operations · Your agents",
+  "status": {
+    "run": "running",
+    "wait": "Your approval",
+    "plan": "scheduled",
+    "done": "done"
+  },
+  "approve": "Approve",
+  "rows": [
+    {
+      "name": "Briefing agent",
+      "task": "reviews a campaign brief",
+      "state": "run",
+      "progress": 72,
+      "due": 1
+    },
+    {
+      "name": "Research agent",
+      "task": "Competitor analysis, 14 sources",
+      "state": "run",
+      "progress": 38,
+      "due": 2
+    },
+    {
+      "name": "Reporting agent",
+      "task": "Weekly report",
+      "state": "run",
+      "progress": 88,
+      "due": 0
+    },
+    {
+      "name": "Filing agent",
+      "task": "files 46 documents",
+      "planned": "starts at 18:00",
+      "state": "plan",
+      "progress": 0
+    }
+  ],
+  "pool": [
+    {
+      "name": "Quote agent",
+      "task": "prepares a quote from the inquiry",
+      "planned": "starts at 18:15"
+    },
+    {
+      "name": "Monitoring agent",
+      "task": "Media monitoring, 32 sources",
+      "planned": "starts at 18:30"
+    },
+    {
+      "name": "Translation agent",
+      "task": "Campaign copy in 4 languages",
+      "planned": "starts at 19:00"
+    },
+    {
+      "name": "Invoice agent",
+      "task": "checks 18 incoming invoices",
+      "planned": "starts at 19:30"
+    },
+    {
+      "name": "Minutes agent",
+      "task": "summarizes the client meeting",
+      "planned": "starts at 20:00"
+    },
+    {
+      "name": "Data quality agent",
+      "task": "reconciles CRM contacts",
+      "planned": "starts at 20:30"
+    }
+  ],
+  "counters": {
+    "runs": {
+      "label": "Runs today",
+      "value": 128
+    },
+    "auto": {
+      "label": "handled automatically",
+      "value": 94,
+      "unit": "%"
+    },
+    "waiting": {
+      "label": "waiting for you",
+      "value": 0
+    }
+  }
+}
