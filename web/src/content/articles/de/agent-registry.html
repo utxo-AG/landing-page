@@ -1,4 +1,4 @@
-<p class="tp-answer">Eine Agent Registry ist das Verzeichnis aller KI-Agenten, die in einem Unternehmen arbeiten: wer sie verantwortet, wozu sie dienen, auf welche Daten und Systeme sie zugreifen und mit welcher Identität sie das tun. Sie ist der erste Schritt jeder Governance für Agenten, denn Rechte, Freigaben, Kosten und Protokolle lassen sich nur für Agenten regeln, von denen man weiss. Microsoft, Google und AWS bieten inzwischen eigene Registries an, teils noch als Vorschau (Stand November 2026). Wer mehrere Plattformen nutzt, wird mit keiner davon allein den vollständigen Bestand sehen.</p>
+<p class="tp-answer">Eine Agent Registry ist das Verzeichnis aller KI-Agenten, die in einem Unternehmen arbeiten: wer sie verantwortet, wozu sie dienen, auf welche Daten und Systeme sie zugreifen und mit welcher Identität sie das tun. Sie ist der erste Schritt jeder Governance für Agenten, denn Rechte, Freigaben, Kosten und Protokolle lassen sich nur für Agenten regeln, von denen man weiss. Microsoft, Google und AWS bieten inzwischen eigene Registries an, teils noch als Vorschau (Stand November 2026). Wer mehrere Plattformen nutzt, wird mit keiner davon allein den vollständigen Bestand sehen. Arbeiten Agenten verschiedener Unternehmen zusammen, braucht es zusätzlich eine offene Registry wie Masumi.</p>
 
 <section>
 <h2>Wie Agenten-Wildwuchs entsteht</h2>
@@ -59,7 +59,20 @@
 <h2>Warum keine einzelne Registry alles sieht</h2>
 <p>Jede dieser Registries sieht ihre eigene Plattform am besten. Die Anbindung fremder Plattformen ist teils noch Vorschau, ihr Umfang variiert laut Microsoft je Plattform. Eigene Agenten im eigenen Rechenzentrum, Agentenfunktionen kleinerer SaaS-Anwendungen und lokale Agenten fallen leicht durch das Raster.</p>
 <p>Die praktische Folge: Legen Sie fest, welches Verzeichnis führend ist, und lassen Sie die Hersteller-Registries dorthin zuliefern. Wer überwiegend in Microsoft 365 arbeitet, kann Agent 365 führend machen. Wer mehrere Clouds und eigene Agenten betreibt, fährt oft besser mit einem eigenen Verzeichnis, das die Plattformen über eine stabile Kennung verknüpft. Verantwortliche Person, Freigabestatus und Überprüfungsdatum werden an genau einer Stelle gepflegt.</p>
-<p>In offenen Netzwerken, in denen Agenten verschiedener Unternehmen zusammenarbeiten, reicht ein internes Verzeichnis nicht aus. Dafür gibt es offene Registries wie Masumi, die dezentrale Infrastruktur, über die KI-Agenten sich finden, ausweisen und bezahlen; utxo AG entwickelt und betreibt sie gemeinsam mit der Serviceplan Group und verantwortet Technologie und Hosting.</p>
+</section>
+
+<section>
+<h2>Agent Registry über Unternehmensgrenzen: Masumi</h2>
+<p>Innerhalb eines Unternehmens beantwortet ein internes Verzeichnis, welche Agenten es gibt und was sie dürfen. Es hat einen Eigentümer, und das ist richtig so. Sobald Agenten verschiedener Unternehmen zusammenarbeiten, etwa ein Rechercheagent, der den Datenagenten eines anderen Anbieters beauftragt, stellt sich eine andere Frage: Wer führt das gemeinsame Verzeichnis? Betreibt es eine einzelne Plattform, entscheidet sie über Zugang, Sichtbarkeit und Preise.</p>
+<p>Hier setzt Masumi an, eine offene, dezentrale Registry auf der Blockchain Cardano. utxo AG entwickelt und betreibt Masumi gemeinsam mit der Serviceplan Group und verantwortet Technologie und Hosting. Masumi beantwortet vier Fragen, die ein Agent klären muss, bevor er einen fremden Agenten beauftragt:</p>
+<ul>
+<li><strong>Finden:</strong> Jeder registrierte Agent ist durch ein NFT auf Cardano vertreten, das seine Metadaten enthält, etwa Beschreibung, Fähigkeiten, Schnittstelle und Preis. Die Abfrage der Registry kostet keine Transaktionsgebühren.</li>
+<li><strong>Ausweisen:</strong> Die Kennung eines Agenten leitet sich aus diesem NFT ab. Zusätzlich lassen sich dezentrale Identifikatoren nach W3C (DIDs) und Verifiable Credentials anhängen, also signierte Nachweise wie eine KYB-Prüfung des Unternehmens oder eine ISO-Zertifizierung. Ein auftraggebender Agent kann nach solchen Nachweisen filtern.</li>
+<li><strong>Bezahlen:</strong> Das Geld liegt in einem Smart Contract, der wie ein Treuhandkonto arbeitet. Liefert der beauftragte Agent nicht, geht es zurück; wird ein Ergebnis innerhalb der Einspruchsfrist angefochten, bleibt es gesperrt.</li>
+<li><strong>Nachweisen:</strong> Auf der Blockchain liegt nur ein Hash von Auftrag und Ergebnis, der Inhalt bleibt ausserhalb. So lässt sich später belegen, was angefragt und was geliefert wurde, ohne die Daten offenzulegen.</li>
+</ul>
+<p>Nach Angaben von Masumi waren Stand 23. Oktober 2026 180+ Agenten auf Masumi registriert, 18'700+ Aufträge liefen über die Treuhandfunktion, dazu kamen 40'000+ Treuhand-Transaktionen. Das ist ein früher Stand. Die Plattform Sokosumi, auf der Marketing-Teams KI-CoWorker und KI-Agenten beauftragen, nutzt Masumi für Identität und Bezahlung. Über Einsprüche entscheidet laut Dokumentation derzeit noch das Masumi-Team; ein Verfahren über die Community ist geplant.</p>
+<p>Eine offene Registry ersetzt das interne Verzeichnis nicht. Sie ergänzt es dort, wo eigene Agenten fremde beauftragen oder selbst von aussen beauftragt werden sollen. Dann gehört die Masumi-Kennung als zusätzliches Feld ins eigene Verzeichnis.</p>
 </section>
 
 <section>
@@ -104,9 +117,14 @@
 <li><a href="https://aws.amazon.com/about-aws/whats-new/2026/04/aws-agent-registry-in-agentcore-preview/" target="_blank" rel="noopener">AWS Agent Registry for centralized agent discovery and governance is now available in Preview</a>, Amazon Web Services, abgerufen am 26. November 2026</li>
 <li><a href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/registry.html" target="_blank" rel="noopener">AWS Agent Registry: Discover and manage agents, tools, and resources</a>, Amazon Web Services, abgerufen am 26. November 2026</li>
 <li><a href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/identity.html" target="_blank" rel="noopener">Provide identity and credential management for agent applications with Amazon Bedrock AgentCore Identity</a>, Amazon Web Services, abgerufen am 26. November 2026</li>
+<li><a href="https://www.masumi.network/dev/masumi/core-concepts/registry" target="_blank" rel="noopener">Registry</a>, Masumi Dokumentation, abgerufen am 26. November 2026</li>
+<li><a href="https://www.masumi.network/dev/masumi/core-concepts/identity" target="_blank" rel="noopener">Identity</a>, Masumi Dokumentation, abgerufen am 26. November 2026</li>
+<li><a href="https://www.masumi.network/dev/masumi/core-concepts/payments" target="_blank" rel="noopener">Payments &amp; Escrow</a>, Masumi Dokumentation, abgerufen am 26. November 2026</li>
+<li><a href="https://www.masumi.network/dev/masumi/core-concepts/refunds-and-disputes" target="_blank" rel="noopener">Refunds &amp; Disputes</a>, Masumi Dokumentation, abgerufen am 26. November 2026</li>
+<li><a href="https://www.masumi.network/dev/masumi/core-concepts/decision-logging" target="_blank" rel="noopener">Decision Logging</a>, Masumi Dokumentation, abgerufen am 26. November 2026</li>
 <li><a href="https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" target="_blank" rel="noopener">LLM06:2025 Excessive Agency</a>, OWASP GenAI Security Project, abgerufen am 26. November 2026</li>
 <li><a href="https://www.nist.gov/news-events/news/2026/02/new-concept-paper-identity-and-authority-software-agents" target="_blank" rel="noopener">New Concept Paper on Identity and Authority of Software Agents</a>, NIST, abgerufen am 26. November 2026</li>
-<li><a href="https://artificialintelligenceact.eu/article/4/" target="_blank" rel="noopener">Article 4: AI Literacy</a>, artificialintelligenceact.eu (Future of Life Institute), abgerufen am 26. November 2026</li>
-<li><a href="https://artificialintelligenceact.eu/article/26/" target="_blank" rel="noopener">Article 26: Obligations of Deployers of High-Risk AI Systems</a>, artificialintelligenceact.eu (Future of Life Institute), abgerufen am 26. November 2026</li>
+<li><a href="https://eur-lex.europa.eu/eli/reg/2024/1689/2026-07-27/deu#art_4" target="_blank" rel="noopener">Verordnung (EU) 2024/1689 (KI-Verordnung), Artikel 4, geändert durch Verordnung (EU) 2026/1744</a>, EUR-Lex (konsolidierte Fassung vom 27. Juli 2026), abgerufen am 26. November 2026</li>
+<li><a href="https://eur-lex.europa.eu/eli/reg/2024/1689/2026-07-27/deu#art_26" target="_blank" rel="noopener">Verordnung (EU) 2024/1689 (KI-Verordnung), Artikel 26</a>, EUR-Lex (konsolidierte Fassung vom 27. Juli 2026), abgerufen am 26. November 2026</li>
 </ul>
 </section>

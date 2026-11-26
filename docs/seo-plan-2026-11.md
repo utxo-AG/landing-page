@@ -110,4 +110,5 @@ B2B service keywords with enterprise intent have low volume and strong competito
 
 1. Exact URL of the LinkedIn company page (and any other official profile) for `sameAs`.
 2. Re-check the Claude/EU Data Boundary section of `copilot-oder-ki-coworker` after 2026-12-09 (Microsoft changes the EU default that day).
-3. Replace artificialintelligenceact.eu and gdpr-info.eu sources with EUR-Lex; update redirected source URLs (claude.com, anthropic.com/research, Microsoft Learn Copilot paths).
+3. Before releasing `ki-agenten-einfuehren`: Art. 4 AI Act was amended by Regulation (EU) 2026/1744 (in force 2026-07-27; "support the development of AI literacy", no guaranteed level); update its wording. AI Act sources cite the consolidated EUR-Lex version of 2026-07-27; high-risk duties (Art. 26, Annex III) apply from 2027-12-02.
+4. Article idea: agents across company borders (discover, identify, pay, prove) with Masumi as the main example; figures only from Masumi with an as-of date.

@@ -29,6 +29,13 @@
 - Masumi framed open registry
 - Copilot advice sentence trimmed
 - RPA article Phil statement
+- Deployed wave 1 PR 34
+- Indexing requested nine URLs
+- Phil statements in articles
+- Masumi section in registry
+- Sources switched to EUR-Lex
+- Fixed BSI PDF link
+- Updated redirected source URLs
 
 ## 778452ba-c747-4ac0-b926-6275773407e7 — 2026-11-23 UTC
 - Astro project in `web/`
