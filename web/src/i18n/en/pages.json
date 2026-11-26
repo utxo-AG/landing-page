@@ -84,5 +84,18 @@
         "value": "business@utxo.ag"
       }
     ]
+  },
+  "wissen": {
+    "title": "Insights: AI agents, software and security | utxo AG",
+    "description": "Articles by utxo AG on AI agents, AI CoWorkers, automation, software development and penetration testing: decision guides for enterprises.",
+    "heading": "Insights",
+    "lede": "Decision guides on AI agents, software and security from the work of utxo AG.",
+    "by": "By",
+    "updated": "Updated",
+    "service": "The service",
+    "more": "More articles",
+    "read": "Read article",
+    "breadcrumb": "Insights",
+    "published": "Published"
   }
 }

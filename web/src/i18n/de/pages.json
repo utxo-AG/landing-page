@@ -84,5 +84,18 @@
         "value": "business@utxo.ag"
       }
     ]
+  },
+  "wissen": {
+    "title": "Wissen: KI-Agenten, Software und Sicherheit | utxo AG",
+    "description": "Fachartikel der utxo AG zu KI-Agenten, KI-CoWorkern, Automatisierung, Softwareentwicklung und Penetrationstests: Entscheidungshilfen für Unternehmen.",
+    "heading": "Wissen",
+    "lede": "Entscheidungshilfen zu KI-Agenten, Software und Sicherheit aus der Praxis der utxo AG.",
+    "by": "Von",
+    "updated": "Aktualisiert",
+    "service": "Zur Leistung",
+    "more": "Weitere Artikel",
+    "read": "Artikel lesen",
+    "breadcrumb": "Wissen",
+    "published": "Veröffentlicht"
   }
 }

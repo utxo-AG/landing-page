@@ -2,8 +2,8 @@
   "lang": "de",
   "home": "/de",
   "meta": {
-    "title": "utxo AG: Moderne Software für digitale Transformation",
-    "description": "KI-native Lösungen für komplexe Unternehmensanforderungen: individuelle Software, KI-Agenten, Automationen, AI Adoption und Penetration Testing."
+    "title": "utxo AG: Softwareentwicklung und KI-Agenten für Unternehmen",
+    "description": "KI-native Lösungen für komplexe Unternehmensanforderungen: individuelle Softwareentwicklung, KI-Agenten, KI-Automatisierung, KI-Beratung und Penetrationstests."
   },
   "header": {
     "logoAlt": "utxo AG",
@@ -144,7 +144,11 @@
         "label": "Datenschutz",
         "href": "/de/datenschutz"
       }
-    ]
+    ],
+    "knowledge": {
+      "label": "Wissen",
+      "href": "/de/wissen"
+    }
   },
   "references": {
     "id": "referenzen",
@@ -318,6 +322,7 @@
     "breadcrumb": "Leistungen",
     "others": "Weitere Leistungen",
     "contactTitle": "Sprechen Sie mit uns über Ihr Vorhaben.",
-    "faq": "Häufige Fragen"
+    "faq": "Häufige Fragen",
+    "further": "Weiterführend"
   }
 }

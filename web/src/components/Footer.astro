@@ -1,9 +1,12 @@
 ---
 import logo from '../assets/wordmark-black.svg';
 import Consent from './Consent.astro';
+import { published } from '../content/articles.js';
 
 const { t } = Astro.props;
 const f = t.footer;
+/* the knowledge section link shows once the language has a section and at least one published article */
+const knowledge = Boolean(t.menu.knowledge.href) && published(t.lang).length > 0;
 ---
 <footer class="foot">
   <a class="foot-logo" href={t.home}><img src={logo.src} alt={t.header.logoAlt} width="72" height="43" loading="lazy"></a>
@@ -14,7 +17,7 @@ const f = t.footer;
     </div>
     <div>
       <p class="label foot-label">{f.companyLabel}</p>
-      <ul>{t.menu.company.map((entry) => <li><a href={entry.href}>{entry.label}</a></li>)}</ul>
+      <ul>{[...t.menu.company, ...(knowledge ? [t.menu.knowledge] : [])].map((entry) => <li><a href={entry.href}>{entry.label}</a></li>)}</ul>
     </div>
     <div>
       <p class="label foot-label">{f.productsLabel}</p>

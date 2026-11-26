@@ -1,6 +1,7 @@
 {
-  "title": "Penetration Testing: recurring penetration tests | utxo AG",
+  "title": "Penetration Testing for Web, API and AI Applications | utxo AG",
   "description": "Recurring penetration tests by utxo AG for web applications, APIs, infrastructure and AI applications: report, remediation and retest.",
+  "tagline": "Recurring penetration tests for web applications, APIs, infrastructure and AI",
   "lede": "We test your systems the way an attacker would approach them, and we repeat it at regular intervals. Every round ends with a report, fixed vulnerabilities and a retest.",
   "faq": [
     {

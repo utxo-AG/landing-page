@@ -2,10 +2,11 @@
 /*
   Detail page of one service, both languages. Structure:
     header · hero (breadcrumb label, h1 = service name, lede, the service's home mockup as the large visual)
-    · the page's own blocks (default slot; built from components/sp/*) · FAQ (page.faq, optional)
+    · the page's own blocks (default slot; built from components/sp/*) · further reading (published articles of this service, content/articles.js) · FAQ (page.faq, optional)
     · Sicherheit und Betrieb · the other services · contact · footer
   Props: t, id (service id), layout (the ServiceSection layout of the mockup). Slots: "mockup" (the home
-  mockup component), default (the blocks). Content: t.servicePages[id] = { title, description, lede, faq?, ... }.
+  mockup component), default (the blocks). Content: t.servicePages[id] = { title, description, tagline, lede, faq?, ... }.
+  tagline: the search term line inside the h1 under the service name (German terms on German pages), also the Service schema's serviceType.
   Styles of the block kit (sp-*) live here.
 */
 import Base from '../../layouts/Base.astro';
@@ -16,15 +17,17 @@ import Faq from '../sp/Faq.astro';
 import Security from '../Security.astro';
 import Closing from '../Closing.astro';
 import Footer from '../Footer.astro';
+import { articlePath, forService } from '../../content/articles.js';
 
 const { t, id, layout } = Astro.props;
 const service = t.services.find((entry) => entry.id === id);
 const page = t.servicePages[id];
 const number = String(t.services.indexOf(service) + 1).padStart(2, '0');
 const others = t.services.filter((entry) => entry !== service);
+const articles = forService(t.lang, id);
 const url = (path) => new URL(path, Astro.site).href;
 const schema = [
-  { '@type': 'Service', '@id': `${url(service.href)}#service`, name: service.name, description: page.description, provider: { '@id': 'https://utxo.ag/#org' }, areaServed: ['CH', 'DE', 'AT'], url: url(service.href) },
+  { '@type': 'Service', '@id': `${url(service.href)}#service`, name: service.name, serviceType: page.tagline, description: page.description, provider: { '@id': 'https://utxo.ag/#org' }, areaServed: ['CH', 'DE', 'AT'], url: url(service.href) },
   { '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'utxo AG', item: url(t.home) },
     { '@type': 'ListItem', position: 2, name: t.servicePage.breadcrumb, item: url(`${t.home}#leistungen`) },
@@ -38,13 +41,21 @@ const schema = [
   <main class="sp" id="main">
     <header class="sp-hero" data-sp-block>
       <p class="sp-crumb label sp-rise"><a href={`${t.home}#leistungen`}>{t.servicePage.breadcrumb}</a><span>{number}</span></p>
-      <h1 class="display"><span class="ln"><span>{service.name}</span></span></h1>
+      <h1 class="display"><span class="ln"><span>{service.name}</span></span><span class="sp-tagline sp-rise" style="--i:1">{page.tagline}</span></h1>
       <p class="sp-lede sp-rise" style="--i:2">{page.lede}</p>
     </header>
     <ServiceSection service={service} layout={layout} bare>
       <slot name="mockup" />
     </ServiceSection>
     <slot />
+    {articles.length > 0 && (
+      <section class="sp-others sp-further" data-sp-block>
+        <p class="label sp-others-label"><span class="ln"><span>{t.servicePage.further}</span></span></p>
+        <ul>
+          {articles.map((article, i) => <li class="sp-rise" style={`--i:${i}`}><a href={articlePath(article)}><span>{article.heading}</span><small>{article.lede}</small></a></li>)}
+        </ul>
+      </section>
+    )}
     {page.faq && (
       <Block title={t.servicePage.faq} layout="split">
         <Faq items={page.faq} />
@@ -73,6 +84,7 @@ const schema = [
 .sp-hero{padding:clamp(56px, 8vw, 128px) var(--edge) 0}
 .sp-crumb{display:flex;gap:14px;color:var(--muted);margin-bottom:clamp(18px, 2vw, 30px)}
 .sp-crumb a:hover{color:var(--fg)}
+.sp-tagline{display:block;margin-top:clamp(14px, 1.4vw, 22px);font-size:clamp(17px, 1.5vw, 24px);line-height:1.25;letter-spacing:-.02em;color:var(--muted)}
 .sp-lede{max-width:30em;margin-top:clamp(20px, 2.4vw, 36px);font-size:clamp(19px, 1.9vw, 30px);line-height:1.2;letter-spacing:-.03em}
 
 /* --- block kit of the service detail pages (components/sp/*) --- */

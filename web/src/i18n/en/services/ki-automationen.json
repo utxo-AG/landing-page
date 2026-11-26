@@ -1,6 +1,7 @@
 {
-  "title": "AI Automation for recurring processes | utxo AG",
-  "description": "AI automation by utxo AG: recurring cases are read, checked and posted in your existing systems. Exceptions go to your team for approval.",
+  "title": "AI Process Automation for Recurring Workflows | utxo AG",
+  "description": "AI process automation by utxo AG: recurring cases are read, checked and posted in your existing systems. Exceptions go to your team for approval.",
+  "tagline": "AI process automation for recurring workflows",
   "lede": "Orders, invoices, requests and documents are read, checked against your rules, posted in your existing systems and answered. Your team decides the exceptions.",
   "faq": [
     {

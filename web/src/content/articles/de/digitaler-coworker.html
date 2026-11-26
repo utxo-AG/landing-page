@@ -1,0 +1,117 @@
+<p class="tp-answer">Ein digitaler CoWorker ist ein KI-System, das eine feste Rolle in einem Team übernimmt: Er nimmt Aufgaben im gewohnten Kanal an, arbeitet sie mit Zugriff auf die Systeme des Unternehmens selbstständig aus, fragt nach, wenn etwas fehlt, und legt das Ergebnis einem Menschen zur Freigabe vor. Ein Chatbot beantwortet Fragen, ein KI-Assistent unterstützt eine Person bei ihrer eigenen Arbeit, RPA wiederholt fest programmierte Klickfolgen. Der CoWorker übernimmt einen Vorgang vom Auftrag bis zum prüfbaren Ergebnis.</p>
+
+<section>
+<h2>Die Definition im Detail</h2>
+<p>Hinter dem Begriff steckt technisch ein KI-Agent. IBM beschreibt einen Agenten als System, das Aufgaben autonom ausführt, indem es Arbeitsabläufe mit den verfügbaren Tools selbst entwirft. Anthropic unterscheidet in seinem Leitfaden für Entwickler zwei Arten von Systemen: Workflows folgen vordefinierten Codepfaden, Agenten steuern ihre Schritte und die Nutzung von Tools selbst. Ein digitaler CoWorker gehört zur zweiten Gruppe.</p>
+<p>Was ihn von einem beliebigen Agenten unterscheidet, ist die organisatorische Einbettung. Wir verwenden den Begriff für einen Agenten mit vier Merkmalen:</p>
+<ul>
+<li><strong>Rolle:</strong> ein umrissener Aufgabenbereich und eine Person im Team, an die er berichtet.</li>
+<li><strong>Kanal:</strong> Aufträge kommen dort an, wo sie heute auch entstehen, also per E-Mail, im Teamchat oder als Ticket.</li>
+<li><strong>Zugriff:</strong> Er liest und schreibt in den Systemen, die er für seine Aufgabe braucht, und nur dort, wo es freigegeben ist.</li>
+<li><strong>Freigabe:</strong> Ergebnisse verlassen das Team erst, wenn ein Mensch sie geprüft hat. Jeder Schritt wird protokolliert.</li>
+</ul>
+<p>Synonyme wie KI-Kollege, digitaler Kollege, AI Coworker oder Digital Worker meinen im Kern dasselbe. IBM spricht bei Digital Workers von softwarebasierter Arbeitskraft, die bedeutende Teile durchgängiger Prozesse eigenständig ausführt, und zitiert Forrester, nach dessen Definition solche Systeme an der Seite von Mitarbeitenden arbeiten. Wie utxo AG solche Rollen umsetzt, beschreibt die Seite <a href="/de/agentic-coworker">Agentic CoWorker</a>.</p>
+<p>Rechtlich ist ein CoWorker in aller Regel ein KI-System im Sinne von Artikel 3 der EU-KI-Verordnung: ein maschinengestütztes System, das mit unterschiedlichem Grad an Autonomie arbeitet und aus seinen Eingaben ableitet, wie es Ausgaben wie Inhalte, Empfehlungen oder Entscheidungen erzeugt. Welche Pflichten daraus folgen, hängt vom konkreten Einsatzzweck ab und ist im Einzelfall rechtlich zu prüfen; dieser Beitrag ist keine Rechtsberatung.</p>
+</section>
+
+<section>
+<h2>Eine Aufgabe, vier Ansätze</h2>
+<p>Ein Vorgang aus dem Kundenservice zeigt die Unterschiede. Das Beispiel ist frei gewählt und beschreibt kein Kundenprojekt. Eine Kundin schreibt an das Servicepostfach, dass eine Lieferung beschädigt angekommen ist, hängt ein Foto an und bittet um Ersatz. Der Kunde ist in Salesforce angelegt, Auftrag und Lieferung stehen im ERP.</p>
+<h3>Chatbot</h3>
+<p>Der Mitarbeiter im Kundenservice fragt den internen Chatbot, wie mit Transportschäden umzugehen ist. Er antwortet mit dem passenden Abschnitt der Kulanzrichtlinie. Die E-Mail selbst sieht er nicht, er öffnet kein System und erledigt keinen Schritt. Die Arbeit bleibt vollständig beim Mitarbeiter.</p>
+<h3>KI-Assistent</h3>
+<p>Ein Assistent wie Microsoft 365 Copilot fasst die E-Mail in Outlook zusammen und formuliert einen Antwortentwurf. Das spart Minuten, aber der Mitarbeiter stösst jeden Schritt an, sucht Auftrag und Lieferung im ERP selbst und entscheidet, wen er fragt. Der Assistent arbeitet für eine Person, in deren Sitzung, auf deren Anweisung. Wann ein solcher Assistent reicht, beschreibt der Vergleich <a href="/de/wissen/copilot-oder-ki-coworker">Copilot oder KI-CoWorker</a>.</p>
+<h3>RPA</h3>
+<p>UiPath definiert RPA als Softwareroboter, die wiederkehrende, regelbasierte Aufgaben automatisieren, indem sie menschliche Eingaben an Bildschirmen und Systemen nachahmen. Kommt die Meldung über ein Formular mit festen Feldern, kann ein Bot daraus einen Fall in Salesforce anlegen und die Auftragsnummer übertragen. Eine Beschwerde im Freitext mit Foto passt in keine feste Regel, und der Vorgang landet in einer Ausnahmeliste. Den ausführlichen Vergleich von RPA, Schnittstellen und KI-Automatisierung finden Sie im Beitrag <a href="/de/wissen/ki-automatisierung-oder-rpa">KI-Automatisierung oder RPA</a>.</p>
+<h3>Digitaler CoWorker</h3>
+<p>Der CoWorker übernimmt die E-Mail aus dem Servicepostfach als Aufgabe. Er legt den Fall in Salesforce an, sucht Auftrag und Lieferung im ERP und prüft, ob das Foto zur gelieferten Position passt. Fehlt die Auftragsnummer, fragt er bei der Kundin nach. Im Teamchat klärt er mit dem Lager, ob die Position für eine Ersatzlieferung verfügbar ist. Ist sie es, bereitet er die Ersatzlieferung und eine Antwort an die Kundin vor, sonst eine Gutschrift. Beides legt er der Teamleiterin im Kundenservice zur Freigabe vor. Ausgelöst oder verschickt wird erst nach ihrer Freigabe. Im Protokoll steht, welche Daten er gelesen und wen er gefragt hat.</p>
+<p>Der Unterschied zwischen einem digitalen CoWorker und RPA liegt im Umgang mit dem Unvorhergesehenen: RPA führt einen festgelegten Ablauf aus und stoppt bei der Ausnahme, der CoWorker klärt die Ausnahme mit den richtigen Personen und bereitet die Entscheidung vor.</p>
+</section>
+
+<section>
+<h2>Die Unterschiede im Überblick</h2>
+<table>
+<thead>
+<tr><th>Merkmal</th><th>Chatbot</th><th>KI-Assistent</th><th>RPA</th><th>digitaler CoWorker</th></tr>
+</thead>
+<tbody>
+<tr><td>Auslöser</td><td>Frage einer Person</td><td>Anweisung der Person, die ihn nutzt</td><td>Zeitplan oder festes Ereignis</td><td>Auftrag im Teamkanal, per E-Mail oder Ticket</td></tr>
+<tr><td>Arbeitsweise</td><td>Antwort im Dialog</td><td>einzelne Schritte in einer Anwendung</td><td>fest programmierte Abfolge</td><td>plant und erledigt die Schritte einer Aufgabe selbst</td></tr>
+<tr><td>Zugriff auf Systeme</td><td>meist keiner oder nur lesend auf Wissen</td><td>Inhalte der aktiven Sitzung</td><td>über Oberflächen oder Schnittstellen, fest verdrahtet</td><td>über Schnittstellen, mit eigenen, eng gefassten Rechten</td></tr>
+<tr><td>Ausnahmen</td><td>verweist auf einen Menschen</td><td>die Person entscheidet</td><td>Abbruch oder Ausnahmeliste</td><td>Rückfrage, dann Vorschlag zur Freigabe</td></tr>
+<tr><td>Ergebnis</td><td>Information</td><td>Entwurf für eine Person</td><td>erledigter Standardfall</td><td>prüfbares Arbeitsergebnis mit Protokoll</td></tr>
+<tr><td>Stärke</td><td>schnelle Auskunft</td><td>individuelle Produktivität</td><td>hohe Stückzahl bei stabilen Regeln</td><td>Vorgänge mit Abstimmung und wechselnden Eingaben</td></tr>
+</tbody>
+</table>
+</section>
+
+<section>
+<h2>Wo welcher Ansatz passt</h2>
+<p>Die Kategorien ersetzen einander nicht. IBM ordnet RPA und Gesprächsfähigkeiten ausdrücklich als Bausteine eines Digital Workers ein, und UiPath beschreibt RPA als Ausführungsschicht für Agenten (Stand November 2026). In der Praxis arbeiten die Ansätze nebeneinander.</p>
+<p>Wenn ein Ablauf häufig vorkommt, klaren Regeln folgt und die Eingaben ähnlich aussehen, ist eine regelbasierte Automation meist die bessere Wahl: schneller, günstiger im Betrieb, leichter zu prüfen. Ein Beispiel ist der Auftragseingang beim Grosshändler, bei dem Bestellungen gelesen, gegen Stammdaten und Preislisten geprüft und im ERP angelegt werden. Für solche Abläufe entwickelt utxo AG <a href="/de/ki-automationen">KI-Automationen</a>, bei denen nur die Ausnahmen zur Freigabe ans Team gehen. Anthropic rät in seinem Leitfaden zur selben Reihenfolge: zuerst die einfachste Lösung, mehr Autonomie nur, wenn die Aufgabe sie verlangt.</p>
+<p>Ein CoWorker lohnt sich dort, wo eine Aufgabe nicht in einen festen Ablauf passt. Drei typische Beispiele:</p>
+<ul>
+<li><strong>Einkauf:</strong> Bedarfsmeldungen aus Fachabteilungen sammeln, fehlende Angaben nachfragen, Vergleichsangebote aus früheren Bestellungen heraussuchen und eine Bestellanforderung zur Freigabe vorbereiten.</li>
+<li><strong>Projektbüro:</strong> Statusmeldungen aus Teamchat und Tickets sammeln, fehlende Angaben bei den Verantwortlichen nachfragen und den Wochenstand zur Abstimmung vorlegen.</li>
+<li><strong>Marketing Operations:</strong> ein Jira-Ticket für den Wochenreport annehmen, Kampagnendaten aus den freigegebenen Quellen ziehen, Unterlagen aus SharePoint einbeziehen und den Report vor dem Versand zur Abstimmung geben.</li>
+</ul>
+<p>Für Marketing-Teams gibt es dafür die Plattform Sokosumi, auf der Teams KI-CoWorker und KI-Agenten beauftragen und mit ihnen zusammenarbeiten. Sokosumi wird gemeinsam mit der Serviceplan Group entwickelt und betrieben, utxo AG verantwortet Technologie und Hosting.</p>
+</section>
+
+<section>
+<h2>Was ein CoWorker im Betrieb braucht</h2>
+<p>Ein Sprachmodell mit Zugang zu ein paar Schnittstellen ist noch kein CoWorker. Damit ein Team ihm eine Rolle anvertrauen kann, braucht es fünf Dinge, die nichts mit dem Modell zu tun haben.</p>
+<h3>Ein Rollenprofil</h3>
+<p>Es beschreibt, welche Aufgaben der CoWorker übernimmt, welche nicht, an wen er berichtet und woran das Team gute Arbeit misst. Ohne diese Abgrenzung landet alles bei ihm, was sonst niemand erledigen will, und niemand fühlt sich für das Ergebnis zuständig.</p>
+<h3>Ein Rechtekonzept</h3>
+<p>Der CoWorker bekommt eigene Zugänge, nicht die Konten von Mitarbeitenden. Lesen darf er dort, wo er Informationen braucht. Schreiben darf er nur in klar benannten Bereichen, etwa als Entwurf in der Ablage oder als Notiz im CRM.</p>
+<h3>Das Wissen des Teams</h3>
+<p>Vorlagen, Richtlinien und frühere Ergebnisse bestimmen, ob ein Entwurf dem Standard des Hauses entspricht. Ein Angebot im Vertrieb sieht anders aus als eine Analyse in der Agentur, auch wenn das Modell dasselbe ist.</p>
+<h3>Freigaberegeln</h3>
+<p>Das Team legt fest, welche Schritte eine Freigabe brauchen, zum Beispiel der Versand an Kunden oder eine Buchung. Diese Regeln lassen sich später lockern, wenn die Erfahrung zeigt, wo der CoWorker zuverlässig arbeitet.</p>
+<h3>Protokoll und Betrieb</h3>
+<p>Jede Aktion wird festgehalten: was er gelesen hat, welche Quellen er genutzt hat und für wen er gearbeitet hat. Jemand muss den CoWorker überwachen, Störungen beheben und die Rolle anpassen, wenn sich Abläufe oder Systeme ändern. Bei den CoWorkern, die utxo AG entwickelt, übernimmt utxo AG diesen Betrieb. Was er im Einzelnen umfasst, beschreibt der Beitrag <a href="/de/wissen/ki-agenten-betreiben">KI-Agenten betreiben: Monitoring und Freigaben</a>.</p>
+</section>
+
+<section>
+<h2>Woran Sie erkennen, ob eine Aufgabe zu einem CoWorker passt</h2>
+<ul>
+<li>Die Aufgabe kommt regelmässig vor, aber die Eingaben unterscheiden sich von Fall zu Fall.</li>
+<li>Sie verlangt Informationen aus mehreren Systemen, etwa ERP, CRM und Ablage.</li>
+<li>Für ein gutes Ergebnis braucht es heute Rückfragen bei Kolleginnen und Kollegen.</li>
+<li>Das Ergebnis lässt sich von einer Person in kurzer Zeit prüfen, weil Quellen und Schritte nachvollziehbar sind.</li>
+<li>Es gibt eine klare Person, die den Auftrag gibt und das Ergebnis abnimmt.</li>
+<li>Ein Fehler wird vor der Freigabe bemerkt und hat keine unumkehrbaren Folgen.</li>
+<li>Die Zugriffe lassen sich eng fassen: lesen, wo nötig, schreiben nur, wo freigegeben.</li>
+</ul>
+<p>Treffen nur die ersten beiden Punkte zu und folgt der Ablauf festen Regeln, spricht das eher für eine Automation. Fehlen die letzten drei, ist die Aufgabe für einen CoWorker noch nicht reif.</p>
+</section>
+
+<section>
+<h2>Grenzen und Freigaben</h2>
+<p>Ein digitaler CoWorker arbeitet Aufgaben selbstständig aus, entscheidet aber nichts an Stelle des Teams. Welche Schritte eine Freigabe brauchen, legt das Unternehmen fest. Bei einigen Schritten sollte die Antwort immer gleich lauten:</p>
+<ul>
+<li>Zahlungen ausführen, Bankverbindungen in Lieferantenstammdaten ändern oder Gutschriften auslösen.</li>
+<li>Verträge annehmen, Preise zusagen oder Erklärungen gegenüber Kunden abgeben.</li>
+<li>Entscheidungen über Personen treffen, etwa zu Bewerbungen oder Leistungsbewertungen.</li>
+<li>Inhalte nach aussen versenden, die nicht geprüft wurden.</li>
+</ul>
+<p>Der Grund: Sprachmodelle können Ergebnisse liefern, die plausibel klingen und trotzdem falsch sind. Anthropic weist für Agenten auf höhere Kosten und auf sich aufschaukelnde Fehler hin und empfiehlt Tests in abgeschotteten Umgebungen, Haltepunkte für menschliches Feedback und klare Abbruchbedingungen. Für den Betrieb heisst das: minimale Rechte, ein Protokoll jeder Aktion und am Anfang eine Prüfung jedes Ergebnisses, bis klar ist, wo der CoWorker zuverlässig arbeitet.</p>
+<p>Dazu kommt der Datenschutz. Ein CoWorker sieht Kundendaten, Aufträge und interne Kommunikation. Wo er läuft, welches Modell er nutzt und wer die Daten verarbeitet, muss für jedes Projekt geklärt sein. Bei utxo AG richtet sich das Hosting nach Ihren Anforderungen: Deutschland, EU oder on-premise. Wir arbeiten modellunabhängig. Wie ein CoWorker nach der EU-KI-Verordnung einzuordnen ist, sollte vor dem Start geklärt sein.</p>
+</section>
+
+<section>
+<h2>Mit einer Rolle beginnen</h2>
+<p>Ein sinnvoller Einstieg ist eine einzelne Rolle mit klarem Auftrag, einer verantwortlichen Person und wenigen Systemen. Wie lange es dauert, bis ein CoWorker im Team arbeitet, hängt von der Rolle und den Anbindungen ab: Manche sind in wenigen Wochen produktiv, andere brauchen Monate. utxo AG entwickelt und betreibt CoWorker mit Rolle, Kanal, Systemzugriff, Rückfragen und Freigabe durch einen Menschen. Mehr dazu auf der Seite <a href="/de/agentic-coworker">Agentic CoWorker</a>.</p>
+</section>
+
+<section>
+<h2>Quellen</h2>
+<ul>
+<li><a href="https://artificialintelligenceact.eu/article/3/" target="_blank" rel="noopener">Article 3: Definitions, EU Artificial Intelligence Act</a>, Future of Life Institute (Wiedergabe der Verordnung (EU) 2024/1689), abgerufen am 26. November 2026</li>
+<li><a href="https://www.ibm.com/think/topics/ai-agents" target="_blank" rel="noopener">What Are AI Agents?</a>, IBM, abgerufen am 26. November 2026</li>
+<li><a href="https://www.ibm.com/think/topics/digital-worker" target="_blank" rel="noopener">What is a Digital Worker?</a>, IBM, abgerufen am 26. November 2026</li>
+<li><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">Building effective agents</a>, Anthropic, abgerufen am 26. November 2026</li>
+<li><a href="https://www.uipath.com/rpa/robotic-process-automation" target="_blank" rel="noopener">What is robotic process automation (RPA)?</a>, UiPath, abgerufen am 26. November 2026</li>
+</ul>
+</section>

@@ -1,0 +1,29 @@
+/* Knowledge section (components/pages/ArticlePage.astro, ArticleIndex.astro). Builds on the text page grammar (.tp-*) of layouts/TextPage.astro. */
+.ar-meta{display:flex;flex-wrap:wrap;gap:8px 22px;margin:calc(var(--tp-y) * -.4) 0 var(--tp-y);padding-left:calc((100% + var(--gap)) / 12 * 3);color:var(--muted)}
+.ar-meta a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em;text-decoration-color:var(--rule)}
+.ar-meta a:hover{color:var(--fg);text-decoration-color:currentColor}
+.tp-prose > p.tp-answer:first-child{color:var(--fg);font-size:1.16em;line-height:1.45;letter-spacing:-.01em;padding-bottom:var(--tp-y);border-bottom:1px solid var(--rule);margin-bottom:var(--tp-y)}
+.tp-prose > section + section{margin-top:clamp(36px, 4.4vw, 68px)}
+.ar-service{font-size:clamp(21px, 2vw, 30px);line-height:1.1;letter-spacing:-.03em}
+.ar-service + p{margin-top:.6em;color:var(--muted)}
+.ar-list{border-bottom:1px solid var(--rule)}
+.ar-list li{border-top:1px solid var(--rule)}
+.ar-list li:first-child{border-top:0}
+.ar-list a{display:grid;grid-template-columns:repeat(9,1fr);gap:6px var(--gap);align-items:baseline;padding:clamp(12px, 1.2vw, 18px) 0;transition:opacity var(--t-fast) var(--ease)}
+.ar-list a span{grid-column:1 / span 5;font-size:clamp(19px, 1.7vw, 26px);line-height:1.15;letter-spacing:-.03em}
+.ar-list a small:last-child{grid-column:6 / -1;color:var(--muted);font-size:clamp(14px, 1.1vw, 16.5px);line-height:1.35}
+.ar-list--index a{grid-template-columns:repeat(12,1fr)}
+.ar-list--index a .label{grid-column:1 / span 3;color:var(--muted)}
+.ar-list--index a span{grid-column:4 / span 5}
+.ar-list--index a small:last-child{grid-column:9 / -1}
+@media (hover:hover){
+  .ar-list:hover a{opacity:.32}
+  .ar-list a:hover{opacity:1}
+}
+@media (max-width:1000px){
+  .ar-meta{padding-left:0}
+  .ar-list a,.ar-list--index a{display:block}
+  .ar-list a > *{display:block}
+  .ar-list a small:last-child{margin-top:6px}
+  .ar-list--index a .label{margin-bottom:6px}
+}

@@ -1,0 +1,100 @@
+<p class="tp-answer">Ein KI-Agent im laufenden Betrieb braucht drei Dinge: Telemetrie für jeden einzelnen Lauf und jeden Tool-Aufruf, Freigabepunkte überall dort, wo eine Aktion Aussenwirkung hat oder sich nicht rückgängig machen lässt, und eine schriftliche Zuordnung, wer bei welchem Alarm handelt. Der typische Fehler eines Agenten ist kein Absturz, sondern ein plausibel aussehendes falsches Ergebnis. Ein Monitoring, das nur Verfügbarkeit misst, sieht ihn nicht.</p>
+
+<section>
+<h2>Warum Agentenbetrieb anders ist als Softwarebetrieb</h2>
+<p>Klassische Software fällt laut aus: Ein Dienst antwortet nicht, ein Job bricht ab, ein Fehlercode landet im Log. Ein Agent fällt meistens leise aus. Er liefert ein vollständiges Angebot mit falscher Lieferzeit, eine Zusammenfassung, die eine Quelle falsch wiedergibt, oder er ruft dieselbe Schnittstelle zwanzigmal auf, weil er ein leeres Ergebnis als Aufforderung versteht, es noch einmal zu versuchen. Technisch ist jeder dieser Läufe ein Erfolg.</p>
+<p>Dazu kommen Ursachen, die ausserhalb des Agenten liegen:</p>
+<ol>
+<li><strong>Geänderte Quellsysteme.</strong> Ein ERP-Update benennt ein Feld um oder liefert eine Zahl in einer anderen Einheit. Der Agent arbeitet weiter, nur mit falschen Werten.</li>
+<li><strong>Manipulierte Eingaben.</strong> Das BSI beschreibt Indirect Prompt Injections als Anweisungen, die in Webseiten, E-Mails oder Dokumenten versteckt sind, die ein Sprachmodell auswertet. Ein Agent, der Anhänge liest und E-Mails senden darf, ist genau das Szenario, vor dem das BSI warnt.</li>
+<li><strong>Modellwechsel.</strong> Eine neue Modellversion antwortet anders formatiert, ausführlicher oder vorsichtiger. Was gestern durch die Prüfung kam, scheitert heute, oder schlimmer: umgekehrt.</li>
+<li><strong>Unbegrenzter Verbrauch.</strong> Schleifen und überlange Kontexte treiben Kosten und Laufzeit. OWASP führt das als eigenes Risiko (LLM10:2025 Unbounded Consumption).</li>
+</ol>
+<p>Bei <a href="/de/managed-agents">Managed Agents</a> gehört der Betrieb deshalb zur Leistung: utxo AG entwickelt die Agenten, hostet sie und überwacht jeden Lauf. Der Kunde sieht, was läuft, und entscheidet an den Freigabepunkten, die er festlegt.</p>
+</section>
+
+<section>
+<h2>Was Sie messen sollten</h2>
+<p>Die Grundeinheit ist der Lauf: ein Auslöser, eine Folge von Modell- und Tool-Aufrufen, ein Ergebnis, eventuell eine Freigabe. Jeder Lauf braucht eine eindeutige ID, die sich durch alle Systeme zieht, sonst rekonstruieren Sie im Ernstfall aus drei Logs eine Geschichte.</p>
+<p>Für die technische Seite gibt es inzwischen einen gemeinsamen Nenner. Die OpenTelemetry Semantic Conventions für generative KI definieren Spans unter anderem für Agentenaufrufe und für Tool-Ausführungen (<code>execute_tool</code>), mit Attributen wie <code>gen_ai.agent.name</code>, <code>gen_ai.agent.version</code> und <code>gen_ai.tool.name</code>, dazu Metriken für Tokenverbrauch. Der Standard hat den Status „Development“, Namen können sich also noch ändern. Wer heute danach instrumentiert, kann trotzdem später das Observability-Backend wechseln, ohne den Agenten anzufassen. Inhalte wie Tool-Argumente oder Systemanweisungen sind dort als „Opt-In“ geführt. Ob Sie sie aufzeichnen, sollten Sie pro Projekt entscheiden, denn in diesen Feldern stehen schnell personenbezogene Daten.</p>
+<p>Technische Spans allein reichen nicht. Die wichtigsten Signale sind fachlich:</p>
+<table>
+<thead>
+<tr><th>Signal</th><th>Was es zeigt</th><th>Beispiel für einen Alarm</th></tr>
+</thead>
+<tbody>
+<tr><td>Lauf-Status und Dauer</td><td>Ob Läufe enden und wie lange sie brauchen</td><td>Dauer liegt deutlich über dem üblichen Bereich dieses Agenten</td></tr>
+<tr><td>Tool-Aufrufe pro Lauf</td><td>Schleifen, Wiederholungen, falsche Tool-Wahl</td><td>Dieselbe Schnittstelle wird im selben Lauf mehrfach mit gleichen Argumenten aufgerufen</td></tr>
+<tr><td>Fehler der Quellsysteme</td><td>Ausfälle und geänderte Antworten von ERP, CRM, DMS</td><td>Pflichtfeld kommt leer zurück oder hat ein anderes Format</td></tr>
+<tr><td>Tokenverbrauch pro Lauf</td><td>Kosten und ausufernde Kontexte</td><td>Verbrauch eines Laufs überschreitet ein festes Budget, Lauf wird gestoppt</td></tr>
+<tr><td>Automatische Prüfungen</td><td>Ob ein Ergebnis die definierten Regeln erfüllt, bevor ein Mensch es sieht</td><td>Quote nicht bestandener Prüfungen steigt nach einem Release</td></tr>
+<tr><td>Rückgabequote bei Freigaben</td><td>Wie oft Menschen ein Ergebnis korrigieren</td><td>Quote steigt sprunghaft, oder liegt über Wochen bei null</td></tr>
+</tbody>
+</table>
+<p>Die letzte Zeile wird leicht übersehen. Eine Rückgabequote von null über Wochen klingt gut. Sie kann aber auch heissen, dass niemand mehr genau hinschaut.</p>
+</section>
+
+<section>
+<h2>Freigabepunkte richtig setzen</h2>
+<p>Ob ein Mensch freigibt, wird pro Aktion entschieden und nicht einmal für den ganzen Agenten. OWASP nennt unter LLM06:2025 Excessive Agency drei Ursachen für Schäden durch Agenten: zu viel Funktionalität, zu viele Rechte, zu viel Autonomie. Die Gegenmassnahmen sind entsprechend konkret: nur die Tools, die eine Aufgabe braucht, minimale Rechte in den Zielsystemen, und eine menschliche Freigabe für Aktionen mit hoher Tragweite. Dazu kommt der Grundsatz der „complete mediation“: Ob eine Aktion erlaubt ist, entscheidet das Zielsystem über seine Berechtigungen, nicht das Sprachmodell.</p>
+<p>Unsere Faustregel für Freigabepunkte: Ein Mensch entscheidet, wenn eine Aktion das Unternehmen verlässt (Mail an Kunden, Angebot, Veröffentlichung), wenn sie Geld oder Verträge betrifft, wenn sie sich nicht sauber rückgängig machen lässt oder wenn sie Entscheidungen über Personen vorbereitet. Interne Entwürfe, Recherchen und Sortierungen laufen ohne Eingriff durch.</p>
+<h3>Was ein guter Freigabeschritt zeigt</h3>
+<p>Ein Freigabeschritt, der nur „Freigeben?“ fragt, erzieht zum Durchklicken. Die Person braucht den Vorschlag selbst, die verwendeten Quellen, das Ergebnis der automatischen Prüfungen und vor allem die Abweichungen: Was ist anders als im Standardfall, was hat der Agent nicht belegen können? Dazu zwei Optionen, freigeben oder mit Kommentar zurückgeben, und beides landet mit Zeit und Person im Protokoll.</p>
+<p>Die EU-KI-Verordnung benennt das Problem dahinter ausdrücklich. Artikel 14 verlangt für Hochrisiko-Systeme, dass die beaufsichtigenden Personen sich des „Automatisierungsbias“ bewusst bleiben, also der Neigung, der Ausgabe eines Systems zu sehr zu vertrauen. Dieselbe Vorschrift nennt die Möglichkeit, das System per „Stopptaste“ oder ähnlichem Verfahren in einem sicheren Zustand anzuhalten. Beides sind gute Anforderungen, auch wenn Ihr Agent kein Hochrisiko-System ist.</p>
+</section>
+
+<section>
+<h2>Ein Runbook, das im Ernstfall trägt</h2>
+<p>Das folgende Beispiel ist erfunden. Ein Angebots-Agent im Vertriebsinnendienst liest Preise und Lieferzeiten aus dem ERP. Nach einem ERP-Update liefert die Schnittstelle Preise brutto statt netto. Der Agent erstellt weiter Angebote, formal korrekt, mit zu hohen Preisen. Die automatische Prüfung „Positionspreis gegen Preisliste“ schlägt beim dritten Angebot an, der Alarm geht an den Betrieb.</p>
+<p>Ein brauchbares Runbook für diesen Fall passt auf eine Seite:</p>
+<ol>
+<li><strong>Anhalten.</strong> Agent pausieren, neue Auslöser in eine Warteschlange legen statt verwerfen.</li>
+<li><strong>Eingrenzen.</strong> Über die Lauf-IDs im Protokoll alle Läufe seit dem ERP-Update finden, auch die, die schon freigegeben wurden.</li>
+<li><strong>Informieren.</strong> Die zuständige Person beim Kunden erhält die Liste betroffener Vorgänge, bevor ein falsches Angebot beim Endkunden nachgefasst wird.</li>
+<li><strong>Beheben.</strong> Anpassung an der Schnittstelle, Test an gespeicherten echten Fällen, auch an den betroffenen.</li>
+<li><strong>Wieder anlaufen.</strong> Neue Version einspielen, Warteschlange abarbeiten, Freigabepunkt für Preisabweichungen vorübergehend enger stellen.</li>
+<li><strong>Nachbereiten.</strong> Eine neue automatische Prüfung oder ein neuer Alarm, damit dieselbe Ursache beim nächsten Mal früher auffällt.</li>
+</ol>
+<p>Schritt zwei setzt ein vollständiges Protokoll voraus: Ohne Protokoll pro Lauf wissen Sie nicht, welche Angebote betroffen sind, und müssen im Zweifel alle prüfen.</p>
+</section>
+
+<section>
+<h2>Verantwortung: wer was tut</h2>
+<p>Bei einem betreuten Agenten verteilt sich die Verantwortung auf zwei Seiten, und das sollte vor dem Start schriftlich festgehalten sein. Bei Managed Agents von utxo AG liegen Entwicklung, Hosting, Überwachung, die Behandlung fehlgeschlagener Läufe und neue Versionen bei uns. Der Kunde legt fest, an welchen Stellen ein Mensch entscheidet und wer das ist, und trifft diese Entscheidungen. Jede Aktion wird protokolliert: was ein Agent getan hat, mit welchen Quellen und wer freigegeben hat.</p>
+<p>Die EU-KI-Verordnung liefert für diese Aufteilung eine brauchbare Vorlage, auch wenn sie im strengen Sinn nur für Hochrisiko-KI-Systeme gilt: Artikel 26 verlangt von deren Betreibern unter anderem eine menschliche Aufsicht durch kompetente Personen, die Überwachung des Betriebs und die Aufbewahrung der automatisch erzeugten Protokolle. Was das für Auftragsverarbeiter, Betreiber und die Wahl zwischen Eigenbetrieb, gehosteter Runtime und Managed Service bedeutet, steht im Beitrag <a href="/de/wissen/ki-agenten-betreiben-lassen">KI-Agenten betreiben lassen oder selbst betreiben?</a> Ob ein konkreter Agent ein Hochrisiko-System ist, hängt vom Einsatzzweck ab und ist eine rechtliche Einzelfallfrage; dieser Artikel ist keine Rechtsberatung. Unsere Arbeitsweise ist an der EU-KI-Verordnung ausgerichtet; Aufbewahrungsdauer und Umgang mit personenbezogenen Daten in Protokollen werden pro Projekt festgelegt.</p>
+<p>Wer eine Struktur für die eigene Governance sucht, findet sie im AI Risk Management Framework des NIST mit seinen vier Funktionen Govern, Map, Measure und Manage. Das Framework ist freiwillig. Für den Betrieb besonders nützlich: Measure und Manage zwingen dazu, Kennzahlen und Reaktionen festzulegen, bevor etwas passiert.</p>
+</section>
+
+<section>
+<h2>Checkliste vor dem Go-live</h2>
+<ul>
+<li>Jeder Lauf hat eine eindeutige ID, die in allen beteiligten Systemen auftaucht.</li>
+<li>Für jede Aktion des Agenten ist festgelegt, ob sie ohne Eingriff läuft oder freigegeben wird, und von wem.</li>
+<li>Die Rechte des Agenten in ERP, CRM und Postfach sind auf seine Aufgabe beschränkt und werden im Zielsystem durchgesetzt.</li>
+<li>Es gibt ein Budget pro Lauf für Tokens, Tool-Aufrufe und Laufzeit, bei dessen Überschreitung der Lauf stoppt.</li>
+<li>Automatische Prüfungen laufen, bevor ein Mensch ein Ergebnis sieht.</li>
+<li>Der Agent lässt sich anhalten, ohne dass eingehende Aufträge verloren gehen.</li>
+<li>Ein Satz gespeicherter echter Fälle dient als Regressionstest für jede neue Version und jeden Modellwechsel.</li>
+<li>Aufbewahrungsdauer und Inhalt der Protokolle sind mit Datenschutz und AVV abgestimmt.</li>
+<li>Das Runbook nennt für jeden Alarm eine zuständige Person auf beiden Seiten.</li>
+</ul>
+</section>
+
+<section>
+<h2>Wo die Grenzen liegen</h2>
+<p>Monitoring beweist nicht, dass jedes Ergebnis richtig ist. Es macht Fehler früher sichtbar und begrenzt ihren Umfang. Auch Prompt Injection ist mit heutigen Mitteln nicht vollständig zu verhindern; OWASP stellt ausdrücklich fest, dass Logging und Rate Limiting den Schaden begrenzen, aber Excessive Agency nicht verhindern. Deshalb gehören minimale Rechte und Freigabepunkte zusammen: Was ein Agent nicht darf, kann ihm auch niemand unterschieben.</p>
+<p>Eine zweite Grenze ist menschlich. Freigabepunkte funktionieren nur, solange die Menschen dahinter Zeit und Kontext haben. Zu viele Freigaben sind deshalb genauso ein Betriebsrisiko wie zu wenige. Freigabepunkte gehören deshalb regelmässig überprüft und verschoben, wenn die Zahlen zeigen, dass ein Punkt nur noch abgehakt wird.</p>
+<p>Wer viele Agenten in mehreren Bereichen betreibt, braucht dafür gemeinsame Infrastruktur statt einzelner Lösungen. Die gemeinsamen Schichten beschreibt der Beitrag <a href="/de/wissen/agent-factory">Was ist eine Agent Factory?</a> Das Verzeichnis, in dem jeder Agent mit verantwortlicher Person steht, behandelt der Beitrag <a href="/de/wissen/agent-registry">Agent Registry und Agent Identity</a>; die Leistung dazu heisst <a href="/de/agent-factories">Agent Factories und KI-Infrastruktur</a>. Hosting legen wir nach Ihren Anforderungen fest, in Deutschland, der EU oder on-premise, wir arbeiten modellunabhängig, und den AVV erstellen wir individuell pro Projekt. Wie der Betrieb Ihrer Agenten bei utxo AG konkret aussieht, zeigt die Seite <a href="/de/managed-agents">Managed Agents</a>.</p>
+</section>
+
+<section>
+<h2>Quellen</h2>
+<ul>
+<li><a href="https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=OJ:L_202401689" target="_blank" rel="noopener">Verordnung (EU) 2024/1689 (KI-Verordnung), Artikel 14 und 26</a>, Amtsblatt der Europäischen Union, EUR-Lex, abgerufen am 26. November 2026</li>
+<li><a href="https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" target="_blank" rel="noopener">LLM06:2025 Excessive Agency</a>, OWASP GenAI Security Project, abgerufen am 26. November 2026</li>
+<li><a href="https://genai.owasp.org/llm-top-10/" target="_blank" rel="noopener">2025 Top 10 Risk &amp; Mitigations for LLMs and Gen AI Apps</a>, OWASP GenAI Security Project, abgerufen am 26. November 2026</li>
+<li><a href="https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/KI/Generative_KI-Modelle.pdf" target="_blank" rel="noopener">Generative KI-Modelle: Chancen und Risiken für Industrie und Behörden, Version 2.0</a>, Bundesamt für Sicherheit in der Informationstechnik (BSI), abgerufen am 26. November 2026</li>
+<li><a href="https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/README.md" target="_blank" rel="noopener">Semantic conventions for generative AI systems</a>, OpenTelemetry, abgerufen am 26. November 2026</li>
+<li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">AI Risk Management Framework</a>, National Institute of Standards and Technology (NIST), abgerufen am 26. November 2026</li>
+</ul>
+</section>

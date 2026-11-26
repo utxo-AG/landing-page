@@ -1,6 +1,7 @@
 ---
 import TextPage from '../../layouts/TextPage.astro';
 import team from '../../content/team.json';
+import { memberId } from '../../content/team.js';
 
 /* About page of both languages: team in two groups side by side (content/team.json: role per language, group "lead" or "team") and contact. */
 const { t } = Astro.props;
@@ -19,7 +20,7 @@ const groups = ['lead', 'team'].map((key) => ({ key, members: members.filter((me
           <h3 class="ab-group label tp-rise" style="--i:2">{page.groups[group.key]}</h3>
           <ul class="ab-team">
             {group.members.map((member, i) => (
-              <li class="tp-rise" style={`--i:${2.5 + i * 0.5}`}>
+              <li class="tp-rise" id={memberId(member.name)} style={`--i:${2.5 + i * 0.5}`}>
                 <img src={member.image.src} alt={`${member.name}, ${member.role}`} width={member.image.width} height={member.image.height} loading="lazy" decoding="async">
                 <a class="ab-name" href={member.linkedin} target="_blank" rel="noopener" aria-label={page.linkedin.replace('{name}', member.name)}>{member.first} <span class="ab-last">{member.last} <span aria-hidden="true">↗</span></span></a>
                 <span class="ab-role">{member.role}</span>

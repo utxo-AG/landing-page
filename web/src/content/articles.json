@@ -1,0 +1,122 @@
+[
+  {
+    "lang": "de",
+    "slug": "digitaler-coworker",
+    "author": "Phil Isenmann",
+    "service": "agentic-coworker",
+    "title": "Digitaler CoWorker: Definition und Abgrenzung | utxo AG",
+    "heading": "Was ist ein digitaler CoWorker? Abgrenzung zu Chatbot, KI-Assistent und RPA",
+    "description": "Was ein digitaler CoWorker ist und wie er sich von Chatbot, KI-Assistent und RPA unterscheidet: Definition, Vergleich an einer Kundenbeschwerde und Grenzen.",
+    "lede": "Ein digitaler CoWorker übernimmt eine Rolle im Team und legt seine Ergebnisse einem Menschen zur Freigabe vor.",
+    "published": "2026-11-26",
+    "modified": null
+  },
+  {
+    "lang": "de",
+    "slug": "ki-agenten-einfuehren",
+    "author": "Phil Isenmann",
+    "service": "ai-adoption",
+    "title": "KI-Agenten im Unternehmen einführen | utxo AG",
+    "heading": "KI-Agenten im Unternehmen einführen: von der Prozessauswahl bis zum Betrieb",
+    "description": "KI-Agenten im Unternehmen einführen: Prozess nach fünf Kriterien wählen, mit echten Daten pilotieren, Rechte begrenzen und den Betrieb von Anfang an regeln.",
+    "lede": "Welcher Prozess zuerst, wie der Pilot zugeschnitten wird und was der Betrieb braucht.",
+    "published": null,
+    "modified": null
+  },
+  {
+    "lang": "de",
+    "slug": "ki-automatisierung-oder-rpa",
+    "author": "Phil Isenmann",
+    "service": "ki-automationen",
+    "title": "KI-Automatisierung oder RPA im Vergleich | utxo AG",
+    "heading": "KI-Automatisierung oder RPA: wann welcher Ansatz passt",
+    "description": "Wann RPA, eine API-Integration oder KI-Automatisierung passt: gezeigt an Eingangsrechnungen in SAP, mit Fehlerarten, Wartungsaufwand und Checkliste.",
+    "lede": "RPA, API-Integration und KI-Automatisierung lösen verschiedene Probleme. Ein Vergleich am Beispiel von Lieferantenrechnungen in SAP.",
+    "published": "2026-11-26",
+    "modified": null
+  },
+  {
+    "lang": "de",
+    "slug": "copilot-oder-ki-coworker",
+    "author": "Phil Isenmann",
+    "service": "agentic-coworker",
+    "title": "Copilot oder KI-CoWorker: Entscheidungshilfe | utxo AG",
+    "heading": "Microsoft Copilot oder individueller KI-CoWorker: Entscheidungshilfe",
+    "description": "Microsoft 365 Copilot, Copilot Cowork oder ein individueller KI-CoWorker? Wann welche Lösung passt, mit Vergleich, Checkliste und Microsoft-Quellen.",
+    "lede": "Wann Microsoft Copilot reicht und wann eine Rolle im Team einen eigenen KI-CoWorker braucht.",
+    "published": "2026-07-31",
+    "modified": "2026-11-26"
+  },
+  {
+    "lang": "de",
+    "slug": "ki-agenten-betreiben",
+    "author": "Phil Isenmann",
+    "service": "managed-agents",
+    "title": "KI-Agenten betreiben: Monitoring und Freigaben | utxo AG",
+    "heading": "KI-Agenten betreiben: Monitoring, Freigaben und Verantwortung im laufenden Betrieb",
+    "description": "KI-Agenten im Betrieb überwachen: welche Signale zählen, wo Freigabepunkte hingehören, wie ein Runbook aussieht und was die EU-KI-Verordnung dazu sagt.",
+    "lede": "Was ein KI-Agent im laufenden Betrieb braucht, damit Fehler früh auffallen und Menschen an den richtigen Stellen entscheiden.",
+    "published": "2026-11-26",
+    "modified": null
+  },
+  {
+    "lang": "de",
+    "slug": "penetrationstest-ki-anwendungen",
+    "author": "Phil Isenmann",
+    "service": "penetration-testing",
+    "title": "Penetrationstest für KI-Anwendungen | utxo AG",
+    "heading": "Penetrationstest für KI-Anwendungen und KI-Agenten: was geprüft wird",
+    "description": "Was ein Penetrationstest für KI-Anwendungen und Agenten prüft: Prompt Injection, Tool-Rechte, Datenabfluss, Retrieval und Mandantentrennung.",
+    "lede": "Was ein Penetrationstest bei Sprachmodellen und Agenten prüft und warum ein klassischer Web-Pentest diese Lücken übersieht.",
+    "published": null,
+    "modified": null
+  },
+  {
+    "lang": "de",
+    "slug": "individualsoftware-oder-standardsoftware",
+    "author": "Phil Isenmann",
+    "service": "software-development",
+    "title": "Individualsoftware oder Standardsoftware | utxo AG",
+    "heading": "Individualsoftware oder Standardsoftware: die Make-or-Buy-Entscheidung, wenn KI dazukommt",
+    "description": "Individualsoftware oder Standardsoftware: Standard für Routineprozesse, eigene Software, wo der Prozess zählt. Kosten, Lock-in, Data Act und KI im Vergleich.",
+    "lede": "Standardsoftware für Prozesse, die überall gleich laufen, Individualsoftware dort, wo ein Prozess Sie unterscheidet. KI verschiebt diese Grenze.",
+    "published": null,
+    "modified": null
+  },
+  {
+    "lang": "de",
+    "slug": "agent-factory",
+    "author": "Phil Isenmann",
+    "service": "agent-factories",
+    "title": "Was ist eine Agent Factory? Aufbau und Nutzen | utxo AG",
+    "heading": "Was ist eine Agent Factory? Gemeinsame Infrastruktur für viele KI-Agenten",
+    "description": "Was eine Agent Factory ist, welche gemeinsamen Schichten KI-Agenten in Unternehmen brauchen und ab wann sich eine Plattform für viele Agenten lohnt.",
+    "lede": "Gemeinsame Infrastruktur und ein einheitliches Verfahren, über die eine Organisation viele KI-Agenten entwickelt, prüft, freigibt und betreibt.",
+    "published": "2026-11-26",
+    "modified": null
+  },
+  {
+    "lang": "de",
+    "slug": "ki-agenten-betreiben-lassen",
+    "author": "Phil Isenmann",
+    "service": "managed-agents",
+    "title": "KI-Agenten betreiben lassen: Modelle im Vergleich | utxo AG",
+    "heading": "KI-Agenten betreiben lassen oder selbst betreiben?",
+    "description": "Eigenbetrieb, gehostete Agent-Runtime wie Claude Managed Agents oder Bedrock AgentCore, oder Managed Service: was jedes Modell abnimmt und was bei Ihnen bleibt.",
+    "lede": "Drei Betriebsmodelle für KI-Agenten und wer im jeweiligen Modell wofür zuständig ist.",
+    "published": "2026-11-26",
+    "modified": null
+  },
+  {
+    "lang": "de",
+    "slug": "agent-registry",
+    "author": "Phil Isenmann",
+    "service": "agent-factories",
+    "title": "Agent Registry und Agent Identity erklärt | utxo AG",
+    "heading": "Was ist eine Agent Registry? Verzeichnis und Identität für alle KI-Agenten im Unternehmen",
+    "description": "Agent Registry und Agent Identity erklärt: welche Felder ein Eintrag braucht, wie Microsoft, Google und AWS es lösen und wie Sie ohne grosse Plattform beginnen.",
+    "lede": "Welche Agenten es gibt, wem sie gehören und unter welcher Identität sie handeln.",
+    "published": "2026-11-26",
+    "modified": null
+  }
+]

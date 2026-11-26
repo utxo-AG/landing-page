@@ -1,0 +1,98 @@
+<p class="tp-answer">Eine Agent Factory ist die gemeinsame Infrastruktur und das einheitliche Verfahren, über die eine Organisation viele KI-Agenten entwickelt, prüft, freigibt und betreibt. Identität und Berechtigungen, Anbindungen an die Unternehmenssysteme, Testfälle, Freigabe, Protokoll und Kostenkontrolle stehen einmal bereit und gelten für jeden Agenten. Das lohnt sich, sobald mehrere Teams Agenten planen und für alle dieselben Vorgaben gelten sollen. Wer nur zwei oder drei Agenten betreibt, braucht noch keine Factory.</p>
+
+<section>
+<h2>Was mit Agent Factory gemeint ist</h2>
+<p>Der Begriff kommt von den grossen Cloud-Anbietern. Microsoft hat seine Plattform Azure AI Foundry im Mai 2025 als „AI app and agent factory“ vorgestellt und danach eine ganze Artikelreihe unter dem Titel „Agent Factory“ veröffentlicht, mit Themen wie Entwicklungsumgebung, Beobachtbarkeit, offene Standards und Governance. Google Cloud nennt sein Angebot seit April 2026 Gemini Enterprise Agent Platform und stellt dort Agent Identity, Agent Registry und Agent Gateway in den Mittelpunkt: Jeder Agent erhält eine nachvollziehbare Identität und arbeitet innerhalb fester Leitplanken. AWS beschreibt in der Dokumentation zu Amazon Bedrock AgentCore ausdrücklich den Anwendungsfall „Agent Platforms“: Interne Teams sollen Agenten auf einem vorgezeichneten Weg mit freigegebenen Tools entwickeln, während Beobachtbarkeit, Authentifizierung und Compliance zentral liegen.</p>
+<p>Die Produkte unterscheiden sich, die Bausteine kaum (Stand November 2026). Alle drei Anbieter trennen das, was ein einzelner Agent fachlich tut, von dem, was alle Agenten gemeinsam brauchen. Eine Agent Factory ist deshalb weniger ein Produkt als eine Arbeitsweise der Organisation: eine Plattform, die alle Agenten teilen, und eine Linie, über die jeder neue Agent und jede neue Version in den Betrieb kommt. Sie kann auf einem dieser Cloud-Dienste aufsetzen oder on-premise laufen. Wie utxo AG solche Plattformen für Unternehmen entwickelt, beschreibt die Seite <a href="/de/agent-factories">Agent Factories und KI-Infrastruktur</a>.</p>
+</section>
+
+<section>
+<h2>Was passiert, wenn zehn Teams einzeln Agenten einführen</h2>
+<p>Mit einem konkreten Anwendungsfall zu beginnen, ist richtig. Schwierig wird es beim zehnten, wenn zehn Teams unabhängig voneinander Agenten eingeführt haben.</p>
+<p>Es gibt dann zehn verschiedene Prompt-Setups, jedes in einem anderen Repository, manche nur in einer Konfigurationsoberfläche. Es gibt zehn Wege in das CRM: ein Agent nutzt ein technisches Konto mit vollen Rechten, ein anderer den persönlichen API-Schlüssel eines Mitarbeiters, der das Unternehmen längst verlassen hat, ein dritter exportiert nachts eine CSV-Datei. Niemand prüft die Agenten nach einheitlichen Kriterien. Ob ein Agent nach einem Modellwechsel schlechter arbeitet, merkt man erst an den Beschwerden der Fachabteilung.</p>
+<p>Dann kommen Fragen, die niemand schnell beantworten kann. Der Einkauf fragt, warum Rechnungen von drei Modellanbietern eingehen. Die IT-Sicherheit möchte eine Schnittstelle sperren und weiss nicht, welche Agenten danach stillstehen. Einzeln ist jede Frage lösbar. Zusammen binden sie genau die Leute, die neue Agenten entwickeln sollten. Die Frage davor, welche Agenten es überhaupt gibt, wem sie gehören und welche Daten sie lesen, behandelt der Beitrag <a href="/de/wissen/agent-registry">Agent Registry und Agent Identity</a>.</p>
+</section>
+
+<section>
+<h2>Die gemeinsamen Schichten einer Agent Factory</h2>
+<p>Eine Factory zieht alles, was nicht fachlich zu einem einzelnen Agenten gehört, in gemeinsame Schichten. Die folgende Übersicht zeigt, was jede Schicht vereinheitlicht und welches Problem ohne sie typischerweise entsteht.</p>
+<table>
+<thead>
+<tr><th>Schicht</th><th>Was sie vereinheitlicht</th><th>Was ohne sie schiefgeht</th></tr>
+</thead>
+<tbody>
+<tr><td>Identität und Berechtigungen</td><td>Jeder Agent hat eine eigene Identität, Rollen kommen aus dem bestehenden Verzeichnis, Anmeldung über SSO</td><td>Agenten arbeiten mit geteilten oder persönlichen Zugangsdaten, niemand weiss, wer was darf</td></tr>
+<tr><td>Anbindungen</td><td>Schnittstellen zu ERP, CRM, DMS und Fachanwendungen werden einmal entwickelt und von allen Agenten genutzt</td><td>Jedes Team schreibt eigene Zugriffe, eine Änderung im CRM legt mehrere Agenten unbemerkt lahm</td></tr>
+<tr><td>Vorlagen</td><td>Aufbau, Richtlinien und Grundtests eines Agenten sind vorgegeben</td><td>Jeder Agent ist ein Einzelstück, Regeln müssen in jedem Agenten von Hand nachgezogen werden</td></tr>
+<tr><td>Evaluationssätze</td><td>Festgelegte Prüffälle je Agent plus gemeinsame Tests für übergreifende Regeln</td><td>Qualität wird nach Gefühl beurteilt, Verschlechterungen nach einem Modellwechsel bleiben unentdeckt</td></tr>
+<tr><td>Freigabeprozess</td><td>Wer erstellt, wer freigibt, wer betreibt; jede Version geht erst nach menschlicher Freigabe in den Betrieb</td><td>Änderungen landen direkt im Betrieb, Verantwortung ist im Fehlerfall unklar</td></tr>
+<tr><td>Beobachtbarkeit und Protokoll</td><td>Welcher Agent hat wann mit welchen Daten und welchem Modell gearbeitet, in einer Übersicht</td><td>Fehler lassen sich nicht nachvollziehen, Auskunftsfragen kosten Tage</td></tr>
+<tr><td>Modellzugang und Kostenkontrolle</td><td>Modelle werden über eine gemeinsame Schicht angesprochen, Verbrauch wird je Agent und Bereich erfasst</td><td>Verträge mit mehreren Anbietern, keine Zuordnung der Kosten, ein Modellwechsel erfordert Änderungen an jedem Agenten</td></tr>
+</tbody>
+</table>
+<p>Diese Schichten decken sich weitgehend mit dem, was die Cloud-Anbieter als Bausteine anbieten. AWS listet für AgentCore (Stand November 2026) unter anderem Identity, Gateway, Policy, Observability, Evaluations und eine Registry, die einen Freigabeprozess für Agenten und Tools vorsieht. Microsoft bezeichnet Identität in seiner Agent-Factory-Reihe als die eigentliche Steuerungsebene. Die Arbeit liegt darin, diese Schichten an die eigene Systemlandschaft und die eigenen Vorgaben anzupassen.</p>
+</section>
+
+<section>
+<h2>Anbindungen: ein Standard statt zehn Sonderlösungen</h2>
+<p>Für die Anbindung von Agenten an Daten und Systeme hat sich das Model Context Protocol (MCP) als offener Standard etabliert. Die Spezifikation beschreibt drei Rollen: Hosts sind die KI-Anwendungen, Clients die Verbindungen innerhalb dieser Anwendungen, Server die Dienste, die Daten und Funktionen bereitstellen. Ein Server kann Ressourcen, vorbereitete Prompts und Tools anbieten, die ein Modell aufrufen darf. Microsoft beschreibt MCP als herstellerneutralen Standard, mit dem Tools so bereitgestellt werden, dass jeder kompatible Agent sie nutzen kann. AWS wandelt in AgentCore Gateway bestehende Schnittstellen in MCP-kompatible Tools um.</p>
+<p>Für eine Factory heisst das: Die Anbindung an das CRM wird einmal als Server entwickelt, mit klar beschriebenen Funktionen und eingeschränkten Rechten. Jeder Agent, der Kundendaten lesen darf, nutzt genau diesen Zugang. Wird das CRM umgestellt, ändert sich eine Anbindung, nicht zehn.</p>
+<p>Die Spezifikation schränkt das selbst ein. Tools stehen dort ausdrücklich für die Ausführung beliebigen Codes und sind entsprechend vorsichtig zu behandeln. Beschreibungen von Tools gelten als nicht vertrauenswürdig, solange sie nicht von einem vertrauenswürdigen Server stammen. Und das Protokoll kann seine Sicherheitsprinzipien nicht selbst durchsetzen, das müssen die Anwendungen leisten. Hier liegt eine Aufgabe der Factory: Sie legt fest, welche Server zugelassen sind, welcher Agent welches Tool aufrufen darf und welche Aktionen eine menschliche Bestätigung brauchen.</p>
+</section>
+
+<section>
+<h2>Evaluation: Agenten in Serie prüfen</h2>
+<p>Ohne gemeinsame Tests ist eine Factory nur eine Sammlung von Agenten auf derselben Infrastruktur. Anthropic hat im Januar 2026 beschrieben, wie Teams Agenten systematisch bewerten. Die Grundbegriffe sind einfach: Eine Aufgabe ist ein einzelner Test mit festgelegten Eingaben und Erfolgskriterien, ein Grader ist die Logik, die das Ergebnis bewertet. Als Start empfiehlt der Beitrag 20 bis 50 einfache Aufgaben, die aus echten Fehlern stammen. Gemeldete Fehler aus dem Betrieb werden zu neuen Testfällen.</p>
+<p>Zwei Arten von Tests sind zu unterscheiden. Tests der Fähigkeiten zeigen, was ein Agent noch nicht gut kann, und starten bewusst mit einer niedrigen Erfolgsquote. Regressionstests prüfen, ob der Agent weiterhin erledigt, was er bereits konnte, und sollten nahezu vollständig bestanden werden. Automatisierte Tests bei jeder Änderung am Agenten und bei jedem Modellwechsel nennt der Beitrag die erste Verteidigungslinie gegen Qualitätsprobleme. Ebenso deutlich ist der Rat, die Protokolle vieler Durchläufe tatsächlich zu lesen, um die Bewertungslogik selbst zu prüfen.</p>
+<p>In einer Factory kommt eine zweite Ebene hinzu. Jeder Agent hat seine eigenen Prüffälle für seine fachliche Aufgabe. Zusätzlich gibt es gemeinsame Tests, die aus der Vorlage kommen und übergreifende Regeln prüfen, etwa den Umgang mit personenbezogenen Daten oder die Pflicht, bei bestimmten Aktionen einen Menschen zu fragen. Ändert sich eine solche Regel, wird sie gegen den gesamten Bestand geprüft.</p>
+</section>
+
+<section>
+<h2>Ein Beispiel: eine neue Regel für 24 Agenten</h2>
+<p><em>Illustratives Beispiel, kein Kundenprojekt.</em> Eine Agenturgruppe betreibt 24 Agenten in vier Bereichen. Die Datenschutzbeauftragte verlangt eine strengere Regel für den Umgang mit Kundendaten. Ohne Factory passt jedes Team seinen Agenten selbst an, in eigenem Tempo und mit eigener Auslegung.</p>
+<p>In einer Factory wird die Regel einmal in der Vorlage geändert, gegen die Tests jedes Agenten geprüft und nach der Freigabe auf den Bestand ausgerollt. Ein Agent besteht seine Tests nicht. Er bleibt auf der bisherigen Version, bis er angepasst ist und das Plattform-Team entschieden hat. Die übrigen 23 Agenten arbeiten bereits nach der neuen Regel, und im Protokoll ist nachvollziehbar, welcher Agent seit wann welche Version nutzt.</p>
+<p>Die Protokollierung hat dabei auch eine rechtliche Seite: Artikel 26 der EU-KI-Verordnung verpflichtet Betreiber von Hochrisiko-KI-Systemen unter anderem, automatisch erzeugte Protokolle aufzubewahren. Die Pflichten im Einzelnen und ihre Verteilung zwischen Unternehmen und Dienstleister stehen im Beitrag <a href="/de/wissen/ki-agenten-betreiben-lassen">KI-Agenten betreiben lassen oder selbst betreiben?</a> Ob ein bestimmter Agent als Hochrisiko-System gilt, hängt vom Einsatzzweck ab und ist im Einzelfall rechtlich zu prüfen; dieser Beitrag ist keine Rechtsberatung. Liegt das Protokoll in der gemeinsamen Schicht, muss eine solche Anforderung nicht nachträglich in jedem Agenten ergänzt werden.</p>
+</section>
+
+<section>
+<h2>Wann Sie noch keine Agent Factory brauchen</h2>
+<p>Anthropic empfiehlt in seinem Leitfaden für Agenten, die einfachste mögliche Lösung zu suchen und Komplexität nur dann zu erhöhen, wenn sie gebraucht wird. Das gilt auch für die Plattform.</p>
+<p>Wenn Ihre Organisation weniger als eine Handvoll Agenten betreibt, diese von einem Team verantwortet werden und kaum gemeinsame Systeme nutzen, ist eine Factory zu früh. Besser ist ein einzelner Agent, der sauber entwickelt und betrieben wird. Für diesen Fall bietet utxo AG <a href="/de/managed-agents">Managed Agents</a> an; was ein einzelner Agent im laufenden Betrieb braucht, beschreibt der Beitrag <a href="/de/wissen/ki-agenten-betreiben">KI-Agenten betreiben: Monitoring und Freigaben</a>.</p>
+<p>Auch dann lohnt es sich, einige Grundsätze von Anfang an einzuhalten: eine eigene Identität für jeden Agenten statt geteilter Zugangsdaten, festgelegte Prüffälle, ein Protokoll jeder Aktion und eine benannte Person, die neue Versionen freigibt. Wer so beginnt, kann später auf eine Factory umsteigen, ohne die bestehenden Agenten neu zu entwickeln.</p>
+</section>
+
+<section>
+<h2>Checkliste: Ist eine Agent Factory für Sie sinnvoll?</h2>
+<p>Je mehr Punkte zutreffen, desto eher lohnt sich gemeinsame Infrastruktur.</p>
+<ul>
+<li>Mehrere Bereiche planen eigene Agenten, oder es laufen bereits Agenten in verschiedenen Teams.</li>
+<li>Die Agenten greifen auf dieselben Systeme zu, etwa CRM, ERP oder Dokumentenablage.</li>
+<li>Für alle Agenten sollen dieselben Vorgaben zu Datenschutz, Zugriff und Freigabe gelten.</li>
+<li>Sie können heute nicht schnell beantworten, welche Agenten welche Daten lesen.</li>
+<li>Sie möchten Modelle wechseln können, ohne jeden Agenten anzupassen.</li>
+<li>Die Kosten für Modelle sollen je Agent oder Bereich zugeordnet werden.</li>
+<li>Ihr eigenes Entwicklungsteam soll künftig selbst Agenten entwickeln, nach denselben Regeln wie externe Partner.</li>
+<li>Es gibt eine Stelle, die Plattform, Vorlagen und Freigaben verantworten kann.</li>
+</ul>
+</section>
+
+<section>
+<h2>Wie utxo AG eine Agent Factory entwickelt</h2>
+<p>Eine Factory wächst entlang konkreter Anwendungsfälle. utxo AG geht in fünf Schritten vor. In der Bestandsaufnahme klären wir mit Fachbereichen, IT und Datenschutz, welche Agenten geplant sind, welche Systeme sie brauchen und welche Vorgaben gelten. Im Fundament werden Hosting, Modellzugang, Identität, Datenzugriff und Protokoll in der vereinbarten Umgebung eingerichtet. Danach durchläuft ein erster Agent die Linie vollständig: Vorlage, Anbindung, Test, Freigabe. In der Serie entstehen weitere Agenten aus den Vorlagen, und wie viel davon Ihr eigenes Team übernimmt, legen wir gemeinsam fest. Im Betrieb überwacht utxo AG die Plattform, pflegt Vorlagen und Anbindungen und rollt Änderungen kontrolliert aus.</p>
+<p>Wie lange das dauert, hängt von der Ausgangslage ab. Manche Vorhaben sind in wenigen Wochen produktiv, andere brauchen Monate. Die Plattform ist modellunabhängig, lokale Open-Source-Modelle prüfen wir projektbezogen. Hosting nach Ihren Anforderungen: Deutschland, EU oder on-premise.</p>
+<p>Erfahrung mit Infrastruktur für Agenten bringt utxo AG aus zwei Plattformen mit. Masumi, die dezentrale Infrastruktur, über die KI-Agenten sich finden, ausweisen und bezahlen, und Sokosumi, die Plattform, auf der Marketing-Teams KI-CoWorker und KI-Agenten beauftragen, werden gemeinsam mit der Serviceplan Group entwickelt und betrieben. utxo AG verantwortet dabei Technologie und Hosting. Was eine Agent Factory für Ihre Organisation umfassen kann, lesen Sie auf der Seite <a href="/de/agent-factories">Agent Factories und KI-Infrastruktur</a>.</p>
+</section>
+
+<section>
+<h2>Quellen</h2>
+<ul>
+<li><a href="https://azure.microsoft.com/en-us/blog/azure-ai-foundry-your-ai-app-and-agent-factory/" target="_blank" rel="noopener">Azure AI Foundry: Your AI App and agent factory</a>, Microsoft, abgerufen am 26. November 2026</li>
+<li><a href="https://azure.microsoft.com/en-us/blog/agent-factory-designing-the-open-agentic-web-stack/" target="_blank" rel="noopener">Agent Factory: Designing the open agentic web stack</a>, Microsoft, abgerufen am 26. November 2026</li>
+<li><a href="https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-agent-platform" target="_blank" rel="noopener">Introducing Gemini Enterprise Agent Platform, powering the next wave of agents</a>, Google Cloud, abgerufen am 26. November 2026</li>
+<li><a href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" target="_blank" rel="noopener">What is Amazon Bedrock AgentCore?</a>, Amazon Web Services, abgerufen am 26. November 2026</li>
+<li><a href="https://modelcontextprotocol.io/specification/2025-11-25" target="_blank" rel="noopener">Model Context Protocol Specification (Version 2025-11-25)</a>, Model Context Protocol, abgerufen am 26. November 2026</li>
+<li><a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents" target="_blank" rel="noopener">Demystifying evals for AI agents</a>, Anthropic, abgerufen am 26. November 2026</li>
+<li><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">Building effective agents</a>, Anthropic, abgerufen am 26. November 2026</li>
+<li><a href="https://artificialintelligenceact.eu/article/26/" target="_blank" rel="noopener">Article 26: Obligations of Deployers of High-Risk AI Systems</a>, artificialintelligenceact.eu (Future of Life Institute), abgerufen am 26. November 2026</li>
+</ul>
+</section>

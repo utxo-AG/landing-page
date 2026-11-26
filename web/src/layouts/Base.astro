@@ -32,6 +32,7 @@ const graph = [
     foundingDate: '2022-02',
     address: { '@type': 'PostalAddress', streetAddress: 'Dammstrasse 16', postalCode: '6300', addressLocality: 'Zug', addressCountry: 'CH' },
     areaServed: ['CH', 'DE', 'AT'],
+    brand: { '@type': 'Brand', name: 'NMKR', url: 'https://www.nmkr.io' },
     hasOfferCatalog: { '@type': 'OfferCatalog', name: t.overview.label, itemListElement: t.services.map((service) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: service.name, description: service.short } })) },
   },
   { '@type': 'WebSite', '@id': 'https://utxo.ag/#website', url: 'https://utxo.ag/', name: 'utxo AG', publisher: { '@id': 'https://utxo.ag/#org' }, inLanguage: ['de', 'en'] },

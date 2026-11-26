@@ -1,0 +1,33 @@
+---
+import TextPage from '../../layouts/TextPage.astro';
+import '../../styles/articles.css';
+import { articlePath, published, sectionPath } from '../../content/articles.js';
+
+/* Overview of the knowledge section: published articles of one language, newest first, grouped by nothing (few articles). */
+const { t } = Astro.props;
+const page = t.pages.wissen;
+const articles = published(t.lang);
+const serviceName = (id) => t.services.find((entry) => entry.id === id)?.name;
+const url = (path) => new URL(path, Astro.site).href;
+const schema = [{
+  '@type': 'CollectionPage',
+  '@id': `${url(sectionPath[t.lang])}#collection`,
+  name: page.heading,
+  hasPart: articles.map((article) => ({ '@type': 'Article', headline: article.heading, url: url(articlePath(article)), datePublished: article.published })),
+}];
+---
+<TextPage t={t} title={page.title} description={page.description} heading={page.heading} lede={page.lede} schema={schema}>
+  <section class="tp-row" data-reveal>
+    <ul class="tp-wide ar-list ar-list--index">
+      {articles.map((article, i) => (
+        <li class="tp-rise" style={`--i:${i}`}>
+          <a href={articlePath(article)}>
+            <small class="label">{serviceName(article.service)}</small>
+            <span>{article.heading}</span>
+            <small>{article.lede}</small>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</TextPage>

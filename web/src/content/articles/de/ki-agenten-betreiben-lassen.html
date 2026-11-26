@@ -1,0 +1,100 @@
+<p class="tp-answer">KI-Agenten lassen sich auf drei Arten betreiben: vollständig selbst, auf einer gehosteten Agent-Runtime eines Modell- oder Cloud-Anbieters oder als Managed Service, bei dem ein Partner den Agenten entwickelt, hostet, überwacht und für den Betrieb geradesteht. Eine Runtime nimmt Ihnen Infrastruktur ab, aber keine Verantwortung für Ergebnisse, Fehler und Modellwechsel. Welches Modell passt, hängt weniger von der Technik ab als davon, ob Sie ein eigenes Team haben, das Agenten dauerhaft betreuen kann und will.</p>
+
+<section>
+<h2>Warum „Managed Agents“ heute zwei Dinge bedeutet</h2>
+<p>Seit dem 8. April 2026 heisst ein Produkt von Anthropic „Claude Managed Agents“. Es ist eine gehostete Laufzeitumgebung für Agenten, die Anthropic als öffentliche Beta gestartet hat: Anthropic stellt die Agentenschleife, die Sandbox für die Ausführung von Tools und die Infrastruktur für Zustand, Gedächtnis, Berechtigungen und zeitgesteuerte Läufe. Wer heute nach „Managed Agents“ sucht, landet deshalb oft bei einer Programmierschnittstelle für Entwicklerteams.</p>
+<p>Derselbe Begriff steht im Dienstleistungsmarkt für etwas anderes: Ein Partner übernimmt den Agenten als laufenden Betrieb, vergleichbar mit Managed Services in der klassischen IT. Auch unser Angebot <a href="/de/managed-agents">Managed Agents</a> heisst so und gehört in diese zweite Gruppe.</p>
+<p>Für Einkauf, Datenschutz und IT sind das zwei verschiedene Geschäfte. Eine Runtime ist ein Produkt, das Ihr Team benutzt. Ein Managed Service ist eine Leistung, die jemand für Sie erbringt und für die er vertraglich einsteht. Klären Sie bei jedem Angebot zuerst, welches von beiden vor Ihnen liegt.</p>
+</section>
+
+<section>
+<h2>Die drei Betriebsmodelle im Überblick</h2>
+<h3>1. Eigenbetrieb</h3>
+<p>Ihr Team entwickelt den Agenten mit einem Framework seiner Wahl, ruft Modelle direkt über deren Schnittstellen auf und betreibt alles auf eigener Infrastruktur oder in einem eigenen Cloud-Konto. Sie kontrollieren jede Schicht: wo Daten liegen, welches Modell antwortet, wie lange Protokolle gespeichert werden. Dafür entwickeln und pflegen Sie auch jede Schicht selbst, von der Sandbox für Code-Ausführung über Wiederholungslogik bis zur Überwachung.</p>
+<h3>2. Gehostete Agent-Runtime</h3>
+<p>Die grossen Modell- und Cloud-Anbieter bieten inzwischen Laufzeitumgebungen, die den technischen Unterbau übernehmen. Stand der jeweiligen Dokumentation am 26. November 2026:</p>
+<ul>
+<li><strong>Claude Managed Agents</strong> (Anthropic, Beta): eine vorgefertigte Agentenschleife in verwalteter Infrastruktur, für lang laufende und asynchrone Aufgaben. Ausgeführt wird in einer Cloud-Sandbox von Anthropic oder in einer selbst gehosteten Sandbox. Sitzungen speichern Verlauf, Sandbox-Zustand und Ergebnisse serverseitig; laut Dokumentation ist der Dienst deshalb nicht für Zero Data Retention geeignet, ausser in der selbst gehosteten Variante.</li>
+<li><strong>Amazon Bedrock AgentCore</strong> (AWS): eine Sammlung einzeln nutzbarer Dienste, darunter Runtime mit isolierten Sitzungen, Memory, Gateway für Tools, Identity, Observability, Evaluations und Policy für feste Regeln bei Tool-Aufrufen. AWS betont, dass die Dienste mit beliebigen Frameworks und Modellen funktionieren.</li>
+<li><strong>Microsoft Foundry Agent Service</strong>: drei Agententypen, von reinen Konfigurations-Agenten („prompt agents“), die Foundry vollständig betreibt, bis zu „hosted agents“, bei denen Sie eigenen Code als Container liefern und Foundry Endpunkt, Skalierung und Identität stellt.</li>
+<li><strong>Agent Runtime</strong> in der Gemini Enterprise Agent Platform (Google Cloud): eine nach eigener Beschreibung vollständig verwaltete Laufzeitumgebung zum Bereitstellen, Betreiben und Skalieren von Agenten, mit Tracing über OpenTelemetry und Cloud Trace.</li>
+</ul>
+<p>Allen gemeinsam: Sie definieren den Agenten, seine Tools und seine Grenzen. Die Plattform führt ihn aus. Was der Agent tut, ob er es richtig tut und was passiert, wenn nicht, bleibt bei Ihnen.</p>
+<h3>3. Managed Service durch einen Partner</h3>
+<p>Ein Dienstleister entwickelt den Agenten für Ihre Abläufe, betreibt ihn in einer vereinbarten Umgebung, überwacht die Läufe, behandelt Fehler und spielt neue Versionen ein. Technisch kann darunter Eigenbetrieb beim Partner oder eine der genannten Runtimes liegen. Entscheidend ist, dass der Betrieb als Leistung vereinbart ist und Sie einen Ansprechpartner haben, der für ihn zuständig ist.</p>
+</section>
+
+<section>
+<h2>Was nimmt Ihnen welches Modell ab, und was bleibt bei Ihnen?</h2>
+<p>Die folgende Matrix vergleicht die Aufgaben, die im Betrieb eines Agenten tatsächlich anfallen. „Teilweise“ heisst: Die Plattform liefert die Funktion, Einrichtung und Auswertung liegen bei Ihnen.</p>
+<table>
+<thead>
+<tr><th>Aufgabe</th><th>Eigenbetrieb</th><th>Gehostete Runtime</th><th>Managed Service</th></tr>
+</thead>
+<tbody>
+<tr><td>Infrastruktur, Sandbox, Skalierung</td><td>Ihr Team</td><td>Anbieter</td><td>Partner</td></tr>
+<tr><td>Agentenlogik und Anbindung an ERP, CRM, DMS</td><td>Ihr Team</td><td>Ihr Team</td><td>Partner, mit Ihrem Fachwissen</td></tr>
+<tr><td>Prozesswissen und Definition „richtiges Ergebnis“</td><td>Sie</td><td>Sie</td><td>Sie, gemeinsam festgehalten</td></tr>
+<tr><td>Freigabeentscheidungen</td><td>Sie</td><td>Sie</td><td>Sie</td></tr>
+<tr><td>Überwachung der Läufe und Alarme</td><td>Ihr Team</td><td>Teilweise (Tracing vorhanden, Auswertung bei Ihnen)</td><td>Partner</td></tr>
+<tr><td>Behandlung fehlgeschlagener Läufe</td><td>Ihr Team</td><td>Ihr Team</td><td>Partner, nach Absprache mit Ihnen</td></tr>
+<tr><td>Evals und Regressionstests</td><td>Ihr Team</td><td>Teilweise (Evaluationsdienste vorhanden)</td><td>Partner</td></tr>
+<tr><td>Modellwechsel und neue Versionen</td><td>Ihr Team</td><td>Ihr Team, im Rahmen der unterstützten Modelle</td><td>Partner, geprüft vor dem Einspielen</td></tr>
+<tr><td>Datenschutzrechtliche Verantwortung</td><td>Sie</td><td>Sie, Anbieter als Auftragsverarbeiter</td><td>Sie, Partner als Auftragsverarbeiter</td></tr>
+<tr><td>Kostenkontrolle</td><td>Ihr Team</td><td>Ihr Team, verbrauchsabhängig abgerechnet</td><td>Vertraglich geregelt</td></tr>
+</tbody>
+</table>
+<p>Drei Zeilen ändern sich in keinem Modell. Das Wissen, wie ein Prozess in Ihrem Haus richtig läuft, und die Entscheidung an Freigabepunkten bleiben bei Ihnen: Ein Partner kann Prozesswissen aufnehmen und in Prüfregeln übersetzen, ersetzen kann er es nicht. Auch die Verantwortung für personenbezogene Daten bleibt beim Verantwortlichen im Sinne der DSGVO, egal wer die Server betreibt.</p>
+</section>
+
+<section>
+<h2>Wer trägt rechtlich die Verantwortung?</h2>
+<p>Beim Auslagern greifen vor allem zwei Regelwerke: die DSGVO und die EU-KI-Verordnung. Nach Artikel 28 DSGVO dürfen Sie nur Auftragsverarbeiter einsetzen, die hinreichende Garantien für geeignete technische und organisatorische Massnahmen bieten. Ein Auftragsverarbeiter darf weitere Auftragsverarbeiter nur mit Ihrer vorherigen schriftlichen Genehmigung einsetzen, und am Ende des Auftrags werden die Daten nach Ihrer Wahl gelöscht oder zurückgegeben. Bei einer Runtime ist der Anbieter Ihr Auftragsverarbeiter. Bei einem Managed Service ist es der Partner, und dessen Cloud- und Modellanbieter werden zu Unterauftragsverarbeitern, die Sie kennen und genehmigen müssen.</p>
+<p>Die EU-KI-Verordnung unterscheidet zwischen Anbietern und Betreibern eines KI-Systems. Artikel 26 verpflichtet Betreiber von Hochrisiko-KI-Systemen unter anderem, die menschliche Aufsicht Personen mit der nötigen Kompetenz, Ausbildung und Befugnis zu übertragen, den Betrieb zu überwachen und die automatisch erzeugten Protokolle, soweit sie unter ihrer Kontrolle stehen, mindestens sechs Monate aufzubewahren, sofern anderes Recht nichts anderes bestimmt. Diese Pflichten treffen das Unternehmen, das den Agenten in eigener Verantwortung einsetzt. Ein Dienstleister kann Sie dabei unterstützen, zum Beispiel mit vollständigen Protokollen und klaren Freigabepunkten. Die Rolle als Betreiber übernimmt er damit nicht automatisch. Ob ein konkreter Agent als Hochrisiko-System gilt, hängt vom Einsatzzweck ab und ist eine Einzelfallfrage; dieser Artikel ist keine Rechtsberatung.</p>
+<p>Wer betreiben lässt, lagert also die Arbeit des Betriebs aus. Die Verantwortung bleibt und muss so organisiert sein, dass Sie sie tragen können.</p>
+</section>
+
+<section>
+<h2>Wann ist welches Modell die bessere Wahl?</h2>
+<h3>Eigenbetrieb</h3>
+<p>Sinnvoll, wenn Agenten zu Ihrem Kernprodukt gehören, Sie ein Plattformteam mit Erfahrung in Betrieb und Sicherheit haben und Anforderungen an Datenhaltung bestehen, die keine verwaltete Umgebung erfüllt. Ebenso, wenn Sie viele Agenten in mehreren Bereichen planen und die gemeinsame Infrastruktur dafür im Haus halten wollen; was dazu gehört, beschreibt der Beitrag <a href="/de/wissen/agent-factory">Was ist eine Agent Factory?</a> Der Preis ist ein dauerhaft gebundenes Team, auch wenn gerade kein neuer Agent entsteht.</p>
+<h3>Gehostete Runtime</h3>
+<p>Die bessere Wahl, wenn Sie ein eigenes Entwicklerteam haben, das Agenten entwickeln und betreuen kann, aber keine Sandbox, Sitzungsverwaltung und Skalierung selbst betreiben will. Das gilt besonders, wenn Ihr Unternehmen ohnehin in einer der grossen Clouds arbeitet und Identität, Netzwerk und Protokollierung dort bereits geregelt sind. Prüfen Sie zwei Punkte früh: welche Modelle die Runtime unterstützt, denn manche Plattformen sind an eine Modellfamilie gebunden, und welche Daten die Plattform wie lange speichert. Die Dokumentation von Claude Managed Agents etwa hält fest (Stand November 2026), dass Sitzungsprotokolle bestehen bleiben, bis Sie sie löschen.</p>
+<h3>Managed Service</h3>
+<p>Passend, wenn der Agent ein Geschäftsproblem lösen soll, Sie aber kein Team aufbauen wollen, das ihn dauerhaft entwickelt und überwacht. Typisch ist das für Fachbereiche, Agenturen und Unternehmen, deren IT mit dem Kerngeschäft ausgelastet ist. Sie kaufen dann keine Plattform, sondern ein Ergebnis mit vereinbartem Betrieb. Wie dieser Betrieb im Alltag aussieht, mit Signalen, Freigabepunkten und Runbooks, beschreibt der Beitrag <a href="/de/wissen/ki-agenten-betreiben">KI-Agenten betreiben: Monitoring und Freigaben</a>.</p>
+<p>Mischformen sind häufig und oft vernünftig: Ein Partner entwickelt und betreibt die ersten Agenten, Ihr Team lernt mit und übernimmt später einzelne Teile. Das setzt voraus, dass der Vertrag eine Übergabe vorsieht.</p>
+</section>
+
+<section>
+<h2>Was Sie vertraglich regeln sollten</h2>
+<p>Ob Runtime oder Managed Service, diese Punkte gehören vor dem Start geklärt. Bei einer Runtime finden Sie die Antworten in den Vertragsbedingungen und der Dokumentation des Anbieters, bei einem Partner verhandeln Sie sie.</p>
+<ul>
+<li><strong>Service Level:</strong> Verfügbarkeit, Reaktionszeit bei Störungen und Fehlläufen, Wartungsfenster. Bei Beta-Funktionen gilt oft kein Service Level; prüfen Sie den Status jeder Funktion, die Sie nutzen.</li>
+<li><strong>Freigabepunkte:</strong> welche Aktionen nur nach menschlicher Freigabe ausgeführt werden, wer freigibt und wer Freigabepunkte ändern darf.</li>
+<li><strong>Protokollierung:</strong> was pro Lauf aufgezeichnet wird (Aktionen, Quellen, Freigaben), wo die Protokolle liegen, wie lange sie aufbewahrt werden und ob Sie jederzeit Zugriff haben.</li>
+<li><strong>Exit und Datenportabilität:</strong> in welchem Format Sie Konfiguration, Prompts, Testfälle, Protokolle und Daten erhalten, wenn Sie wechseln oder den Betrieb übernehmen, und in welcher Frist gelöscht wird.</li>
+<li><strong>Unterauftragsverarbeiter und AVV:</strong> vollständige Liste der beteiligten Cloud- und Modellanbieter, Verarbeitungsorte, Verfahren bei neuen Unterauftragsverarbeitern mit Widerspruchsmöglichkeit.</li>
+<li><strong>Modellwechsel:</strong> wer entscheidet, ob ein Modell gewechselt wird, wie vorher getestet wird und wie Sie informiert werden, wenn ein Anbieter ein Modell abkündigt.</li>
+<li><strong>Störungen:</strong> wer bei einem fehlerhaften Ergebnis den Agenten anhält, betroffene Vorgänge ermittelt und Sie informiert, und in welcher Zeit.</li>
+<li><strong>Weiterentwicklung:</strong> wie Änderungswünsche eingebracht, geprüft und eingespielt werden, und ob ein Satz echter Testfälle als Massstab für jede neue Version dient.</li>
+</ul>
+</section>
+
+<section>
+<h2>Wie utxo AG Managed Agents versteht</h2>
+<p>Bei utxo AG ist Managed Agents ein Managed Service im Sinn des dritten Modells. Wir entwickeln die Agenten für Ihre Abläufe, hosten sie nach Ihren Anforderungen in Deutschland, der EU oder on-premise und überwachen jeden Lauf. Schlägt ein Lauf fehl, wird er wiederholt oder von unserem Team übernommen. Jede Aktion wird protokolliert: was ein Agent getan hat, mit welchen Quellen und wer freigegeben hat. Neue Versionen und Modellwechsel prüfen wir, bevor sie in den Betrieb gehen; wir arbeiten modellunabhängig. Den AVV erstellen wir individuell pro Projekt, mit den Unterauftragsverarbeitern und der Region, die für Ihr Projekt tatsächlich gelten.</p>
+<p>Ihr Team behält, was nicht auslagerbar ist: das Wissen über Ihre Prozesse und die Entscheidungen an den Freigabepunkten, die Sie festlegen. Wenn Sie prüfen möchten, welches Betriebsmodell für Ihre Agenten passt, finden Sie Umfang und Ablauf auf der Seite <a href="/de/managed-agents">Managed Agents</a>.</p>
+</section>
+
+<section>
+<h2>Quellen</h2>
+<ul>
+<li><a href="https://claude.com/blog/claude-managed-agents" target="_blank" rel="noopener">Claude Managed Agents: get to production 10x faster</a>, Anthropic, abgerufen am 26. November 2026</li>
+<li><a href="https://platform.claude.com/docs/en/managed-agents/overview" target="_blank" rel="noopener">Claude Managed Agents overview</a>, Anthropic, abgerufen am 26. November 2026</li>
+<li><a href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" target="_blank" rel="noopener">What is Amazon Bedrock AgentCore?</a>, Amazon Web Services, abgerufen am 26. November 2026</li>
+<li><a href="https://learn.microsoft.com/en-us/azure/foundry/agents/overview" target="_blank" rel="noopener">What is Microsoft Foundry Agent Service?</a>, Microsoft Learn, abgerufen am 26. November 2026</li>
+<li><a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/runtime" target="_blank" rel="noopener">Agent Runtime</a>, Google Cloud, abgerufen am 26. November 2026</li>
+<li><a href="https://artificialintelligenceact.eu/article/26/" target="_blank" rel="noopener">Article 26: Obligations of Deployers of High-Risk AI Systems</a>, artificialintelligenceact.eu (Future of Life Institute), abgerufen am 26. November 2026</li>
+<li><a href="https://gdpr-info.eu/art-28-gdpr/" target="_blank" rel="noopener">Art. 28 GDPR: Processor</a>, gdpr-info.eu, abgerufen am 26. November 2026</li>
+</ul>
+</section>

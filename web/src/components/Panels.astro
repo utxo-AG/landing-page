@@ -11,9 +11,11 @@
   Behaviour and markup contract: page/disclosure.js.
 */
 import logo from '../assets/wordmark-white.svg';
+import { published } from '../content/articles.js';
 
 const { t, mode } = Astro.props;
 const m = t.menu;
+const knowledge = Boolean(m.knowledge.href) && published(t.lang).length > 0;
 const number = (i) => String(i + 1).padStart(2, '0');
 const classes = ['panel', `panel--${mode}`];
 ---
@@ -53,7 +55,7 @@ const classes = ['panel', `panel--${mode}`];
     <div class="menu-col">
       <p class="menu-label label">{m.companyLabel}</p>
       <ul>
-        {m.company.map((entry) => <li><a href={entry.href}>{entry.label}</a></li>)}
+        {[...m.company, ...(knowledge ? [m.knowledge] : [])].map((entry) => <li><a href={entry.href}>{entry.label}</a></li>)}
       </ul>
     </div>
     <div class="menu-col">
