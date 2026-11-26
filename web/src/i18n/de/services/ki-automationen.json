@@ -1,6 +1,7 @@
 {
-  "title": "KI-Automationen für wiederkehrende Abläufe | utxo AG",
-  "description": "KI-Automationen von utxo AG: Wiederkehrende Vorgänge werden gelesen, geprüft und in Ihren Systemen gebucht. Ausnahmen gehen zur Freigabe an Ihr Team.",
+  "title": "KI-Automatisierung von Geschäftsprozessen | utxo AG",
+  "description": "Prozessautomatisierung mit KI: Wiederkehrende Vorgänge werden gelesen, geprüft und in Ihren Systemen gebucht. Ausnahmen gehen zur Freigabe an Ihr Team.",
+  "tagline": "Prozessautomatisierung mit KI für wiederkehrende Abläufe",
   "lede": "Aufträge, Rechnungen, Anfragen und Dokumente werden gelesen, nach Ihren Regeln geprüft, in Ihren bestehenden Systemen gebucht und beantwortet. Die Ausnahmen entscheidet Ihr Team.",
   "faq": [
     {

@@ -1,6 +1,7 @@
 {
-  "title": "Agentic CoWorker: AI CoWorkers for your team | utxo AG",
-  "description": "AI CoWorkers that join your team like colleagues: with a role, tasks in the channel your team already uses, questions when needed and results for review.",
+  "title": "AI CoWorkers: digital coworkers for your team | utxo AG",
+  "description": "AI CoWorkers join your team as digital coworkers: with a role, tasks in the channel your team already uses, questions when needed and results for review.",
+  "tagline": "AI CoWorkers as digital coworkers in your team",
   "lede": "An AI CoWorker is a member of your team, with a name, a role and tasks. It works in the channel your team already uses, asks when something is unclear and submits results for review.",
   "faq": [
     {

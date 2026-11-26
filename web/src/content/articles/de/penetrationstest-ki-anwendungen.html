@@ -1,0 +1,104 @@
+<p class="tp-answer">Ein Penetrationstest für KI-Anwendungen und KI-Agenten prüft, ob sich das System über seine Eingaben, Dokumente und angebundenen Tools zu etwas bringen lässt, das ihm nicht erlaubt ist: Daten anderer Personen oder Mandanten preisgeben, Aktionen in Fremdsystemen auslösen oder Inhalte unbemerkt nach aussen schicken. Im Mittelpunkt stehen direkte und indirekte Prompt Injection, die Rechte der Tools, die Verarbeitung der Modellausgabe, die Wissensquellen im Retrieval und die Trennung zwischen Mandanten. Die klassische Prüfung von Web-Oberfläche, Schnittstellen und Infrastruktur gehört weiterhin dazu.</p>
+
+<section>
+<h2>Warum ein klassischer Web-Pentest diese Lücken übersieht</h2>
+<p>Ein Web-Pentest sucht nach Fehlern im Code und in der Konfiguration: fehlende Berechtigungsprüfungen, Injection in Datenbankabfragen, unsichere Sitzungen. Diese Prüfungen bleiben bei einer KI-Anwendung nötig. Die typischen Schwachstellen eines Agenten liegen aber an einer anderen Stelle, nämlich in der Frage, wem das Modell folgt.</p>
+<p>Ein Sprachmodell erhält Systemanweisung, Nutzereingabe, abgerufene Dokumente und Tool-Ergebnisse als einen zusammenhängenden Text. Das BSI beschreibt das Grundproblem so: Ein LLM kann allein nicht zwischen User-Prompt, Systemanweisungen, externen Anweisungen und Daten unterscheiden. Eine Anweisung, die in einer E-Mail, einem PDF oder auf einer Webseite steht, kann deshalb dieselbe Wirkung haben wie eine Anweisung der berechtigten Person.</p>
+<p>Daraus folgen drei Gründe, warum Scanner und klassische Testfälle hier wenig finden. Erstens kommt der Angriff oft über Kanäle, die niemand als Benutzereingabe betrachtet, etwa ein Support-Postfach oder ein hochgeladenes Dokument. Zweitens ist die Nutzlast natürliche Sprache, für die es keine feste Signatur gibt. Drittens entscheidet am Ende ein Tool mit eigenen Zugangsdaten, nicht die Anwendung mit der Berechtigung der angemeldeten Person. Unsere <a href="/de/penetration-testing">Penetrationstests</a> decken deshalb bei KI-Anwendungen beides ab: die bekannte Anwendungssicherheit und das Verhalten des Modells mit seinen Tools.</p>
+</section>
+
+<section>
+<h2>Die Risikoklassen im Überblick</h2>
+<p>Für die Einordnung der Risiken gibt es öffentliche Rahmenwerke. Die OWASP Top 10 for LLM Applications 2025 benennen die häufigsten Risikoklassen, der OWASP-Leitfaden zu agentischen Systemen ergänzt Bedrohungen wie Tool-Missbrauch und den Missbrauch von Identitäten und Rechten. MITRE ATLAS sammelt Taktiken und Techniken von Angreifern gegen KI-Systeme samt Fallstudien, und die Taxonomie NIST AI 100-2 ordnet Angriffe wie direkte und indirekte Prompt Injection sowie die Sicherheit von Agenten begrifflich ein. Diese Quellen helfen bei der Einordnung, der konkrete Prüfumfang ergibt sich aus Ihrer Anwendung.</p>
+<table>
+<thead>
+<tr><th>Risikoklasse</th><th>Was geprüft wird</th><th>Typischer Befund</th></tr>
+</thead>
+<tbody>
+<tr><td>Direkte Prompt Injection</td><td>Ob Nutzereingaben Rollen, Regeln oder Grenzen der Anwendung aushebeln</td><td>Der Assistent beantwortet Fragen ausserhalb seines Auftrags oder ignoriert Sperrvermerke</td></tr>
+<tr><td>Indirekte Prompt Injection</td><td>Ob Anweisungen in E-Mails, Dokumenten, Webseiten oder Tool-Ergebnissen ausgeführt werden</td><td>Versteckter Text in einem Anhang steuert die nächste Aktion des Agenten</td></tr>
+<tr><td>Zu weitreichende Rechte (Excessive Agency)</td><td>Welche Tools und Funktionen der Agent hat, mit welchen Rechten und ob heikle Aktionen eine Freigabe brauchen</td><td>Das CRM-Tool läuft mit einem Dienstkonto, das alle Kundendatensätze lesen darf</td></tr>
+<tr><td>Datenabfluss über Tools und Links</td><td>Ob Inhalte über gesendete Nachrichten, Abrufe externer Adressen oder gerenderte Bilder und Links abfliessen</td><td>Ein Bild in der Chat-Oberfläche lädt eine externe Adresse, die Gesprächsinhalte enthält</td></tr>
+<tr><td>System-Prompt-Leakage</td><td>Ob sich die Systemanweisung auslesen lässt und ob sie Geheimnisse oder Sicherheitslogik enthält</td><td>Interne Regeln, Namen von Schnittstellen oder ein Zugangsschlüssel stehen im Prompt</td></tr>
+<tr><td>Unsichere Ausgabeverarbeitung</td><td>Wie die Modellausgabe weiterverwendet wird: im Browser, in Datenbankabfragen, in Dateipfaden oder in der Shell</td><td>Vom Modell erzeugtes Markup wird ungefiltert dargestellt und führt Skripte aus</td></tr>
+<tr><td>Retrieval und Mandantentrennung</td><td>Ob die Wissensbasis Rechte beachtet, ob Quellen manipuliert werden können und ob Mandanten getrennt sind</td><td>Eine Suchanfrage liefert Textstellen aus Dokumenten eines anderen Kunden</td></tr>
+</tbody>
+</table>
+<p>Zwei Punkte aus den OWASP-Beschreibungen sind für den Test besonders wichtig. Die Systemanweisung ist kein Geheimnis und keine Sicherheitskontrolle: Was ein Prompt verbietet, muss zusätzlich im Code oder im Zielsystem durchgesetzt sein. Und die Modellausgabe ist wie die Eingabe eines nicht vertrauenswürdigen Benutzers zu behandeln, bevor sie an andere Komponenten geht.</p>
+</section>
+
+<section>
+<h2>Beispiel: eine Angriffskette gegen einen Support-Agenten</h2>
+<p>Das folgende Szenario ist erfunden und dient nur der Veranschaulichung. Ein Unternehmen setzt einen Agenten ein, der eingehende Support-E-Mails liest, im CRM den passenden Kunden nachschlägt und eine Antwort entwirft. Kurze Standardantworten verschickt er selbst, alles andere legt er Mitarbeitenden zur Prüfung vor.</p>
+<h3>Einschleusen</h3>
+<p>Eine angreifende Person schickt eine gewöhnlich wirkende Anfrage an das Support-Postfach. Im HTML der Nachricht steht zusätzlich Text, den ein Mensch im Mailprogramm nicht sieht, etwa weisse Schrift auf weissem Grund. Er enthält Anweisungen an den Agenten. Eine Anmeldung braucht die Person dafür nicht.</p>
+<h3>Ausführen</h3>
+<p>Der Agent verarbeitet den versteckten Text als Teil der Anfrage. Er sucht im CRM nach weiteren Kunden, weil die Anweisung es verlangt. Das gelingt, weil das CRM-Tool mit einem Dienstkonto arbeitet, das alle Datensätze lesen darf, und nicht auf den Kunden des aktuellen Tickets beschränkt ist.</p>
+<h3>Abfluss</h3>
+<p>Die gefundenen Daten landen in einer Antwort, die der Agent als Standardantwort einstuft und selbst versendet. Ein zweiter Weg führt über die interne Oberfläche: Der Entwurf enthält ein Bild, dessen Adresse auf einen fremden Server zeigt und die Daten als Parameter trägt. Sobald eine Mitarbeiterin den Entwurf öffnet, lädt der Browser das Bild, und die Daten sind übertragen, ohne dass jemand klickt.</p>
+<p>Keiner dieser Schritte ist für sich ein klassischer Programmierfehler. Die Schwachstelle entsteht aus der Kombination von nicht vertrauenswürdiger Eingabe, einem Tool mit zu vielen Rechten und einem Ausgabekanal nach aussen. Das BSI nennt genau diese Kombination als Voraussetzung für Datenabfluss: Zugriff auf private Informationen, Verarbeitung unzuverlässiger Quellen und ein möglicher Exfiltrationspfad, zum Beispiel das Laden von Bildern aus dem Internet.</p>
+</section>
+
+<section>
+<h2>Wie ein Befund im Bericht aussieht</h2>
+<p>Ein Befund beschreibt nicht nur, dass ein Angriff funktioniert hat, sondern unter welchen Bedingungen und wie verlässlich. Für das Beispiel oben könnte der Eintrag so aussehen (Beispieldaten):</p>
+<p><strong>Titel:</strong> Indirekte Prompt Injection über eingehende E-Mails führt zum Versand von Kundendaten an externe Empfänger</p>
+<p><strong>Bereich:</strong> Support-Agent, Tools „CRM-Suche“ und „Antwort senden“</p>
+<p><strong>Voraussetzung:</strong> Die angreifende Person kann eine E-Mail an das Support-Postfach senden, eine Anmeldung ist nicht nötig</p>
+<p><strong>Nachweis:</strong> Testnachricht mit einer harmlosen Markierung statt echter Daten, Ablauf und Antworten des Agenten protokolliert, Wiederholung mit derselben Eingabe in mehreren Durchläufen</p>
+<p><strong>Risiko:</strong> hoch, weil keine Anmeldung nötig ist und personenbezogene Daten betroffen sind</p>
+<p><strong>Empfehlung:</strong> Das CRM-Tool serverseitig auf den Kunden des aktuellen Tickets beschränken, Versand an Adressen ausserhalb des Ticketverlaufs nur nach Freigabe durch Mitarbeitende, externe Bilder und Links in Entwürfen nicht automatisch laden</p>
+<p>Die Empfehlungen setzen bewusst ausserhalb des Modells an. Eine zusätzliche Zeile im Prompt kann helfen, sie ersetzt aber keine Berechtigung im Zielsystem und keine Freigabe durch einen Menschen.</p>
+</section>
+
+<section>
+<h2>So gehen wir beim Test vor</h2>
+<p>Am Anfang steht eine Bestandsaufnahme: Welche Modelle und Anbieter sind im Einsatz, welche Datenquellen fliessen in den Kontext, welche Tools kann der Agent aufrufen und mit welchen Konten, wo wird die Ausgabe angezeigt oder weiterverarbeitet. Daraus entsteht ein Bild der Vertrauensgrenzen. Jede Stelle, an der fremder Inhalt in den Kontext gelangt, ist ein möglicher Einstieg, und jedes Tool mit Schreib- oder Senderechten ein möglicher Hebel.</p>
+<p>Der eigentliche Test kombiniert Handarbeit und Wiederholung. Angriffsideen für die einzelnen Risikoklassen werden von Hand an die Anwendung angepasst, weil sich ein Support-Agent anders verhält als eine Dokumentensuche. Vielversprechende Varianten laufen anschliessend mehrfach, um zu sehen, wie zuverlässig sie wirken. Parallel prüfen wir die Umgebung wie bei jeder anderen Anwendung: Anmeldung, Berechtigungen der Schnittstellen, Speicherung der Gesprächsverläufe, Trennung der Mandanten in Datenbank und Vektorspeicher.</p>
+<p>Bei Agenten, die dauerhaft im Betrieb laufen, etwa als <a href="/de/managed-agents">Managed Agents</a>, lohnt sich ein Blick auf die Protokolle: Lassen sich Tool-Aufrufe im Nachhinein nachvollziehen, und fällt ein ungewöhnliches Muster auf, bevor Schaden entsteht?</p>
+</section>
+
+<section>
+<h2>Was ein Test leisten kann und was nicht</h2>
+<p>Sprachmodelle antworten nicht deterministisch. Ein Angriff, der in einem Durchlauf scheitert, kann im nächsten gelingen. Ein Befund mit einer Erfolgsquote unter hundert Prozent ist deshalb der Normalfall, und eine Eingabe, die im Test abgewehrt wurde, ist kein Beleg dafür, dass sie immer abgewehrt wird.</p>
+<p>Für Prompt Injection gibt es nach heutigem Stand keine vollständige Abwehr. Das BSI hält fest, dass derzeit keine absolut sichere Lösung existiert und auch gezielt entwickelte Schutzmassnahmen durch angepasste Angriffe umgangen werden können. Ziel des Tests ist deshalb weniger, jede Injection zu verhindern, als zu zeigen, was ein erfolgreicher Angriff anrichten kann. Wenn ein Agent nur lesen darf, was die angemeldete Person ohnehin sehen darf, und für Aktionen mit Aussenwirkung eine Freigabe braucht, bleibt der Schaden begrenzt.</p>
+<p>Jeder Test ist eine Momentaufnahme. Ein Wechsel des Modells oder der Modellversion, eine geänderte Systemanweisung, ein neues Tool oder eine neue Datenquelle können das Verhalten verändern, ohne dass sich der Code der Anwendung ändert. Nach solchen Änderungen ist ein Nachtest sinnvoll, auch wenn der vereinbarte Abstand bis zur nächsten Runde noch nicht erreicht ist.</p>
+</section>
+
+<section>
+<h2>Vorbereitung auf den Test</h2>
+<p>Je vollständiger die folgenden Punkte vorab geklärt sind, desto mehr Testzeit fliesst in die eigentliche Prüfung:</p>
+<ul>
+<li>Schriftliche Freigabe des Systeminhabers sowie, falls nötig, die Zustimmung von Hosting- und Modellanbietern</li>
+<li>Liste aller Tools und Schnittstellen, die der Agent aufrufen kann, mit den verwendeten Konten und deren Rechten</li>
+<li>Übersicht der Datenquellen im Kontext: Wissensbasis, Postfächer, Uploads, Webzugriffe</li>
+<li>Testkonten mit unterschiedlichen Rollen und, bei mandantenfähigen Systemen, in mindestens zwei Mandanten</li>
+<li>Eine Testumgebung mit realistischen, aber nicht echten Daten sowie Klarheit, welche Prüfungen auf dem Produktivsystem nötig sind</li>
+<li>Aktuelle Systemanweisung, eingesetztes Modell und Version, damit Ergebnisse später einer Konfiguration zugeordnet werden können</li>
+<li>Ansprechpersonen in Entwicklung und IT, die während des Testfensters erreichbar sind</li>
+<li>Festlegung, welche Aktionen der Agent im Test wirklich ausführen darf, zum Beispiel ob echte E-Mails verschickt werden</li>
+</ul>
+</section>
+
+<section>
+<h2>Regelmässig prüfen statt einmal abhaken</h2>
+<p>KI-Anwendungen verändern sich schneller als viele klassische Systeme: Modelle werden aktualisiert, Agenten erhalten neue Tools, Wissensbasen wachsen. utxo AG prüft Web-Anwendungen, Schnittstellen, Infrastruktur sowie KI-Anwendungen und Agenten in wiederkehrenden Runden. Vor jeder Runde legen wir Umfang und schriftliche Freigabe mit Ihnen fest. Danach folgen Bericht, Unterstützung bei der Behebung und ein Nachtest, die nächste Runde kommt im vereinbarten Abstand oder nach grösseren Änderungen. Wie das im Einzelnen abläuft, lesen Sie auf der Seite <a href="/de/penetration-testing">Penetration Testing</a>.</p>
+</section>
+
+<section>
+<h2>Quellen</h2>
+<ul>
+<li><a href="https://genai.owasp.org/llm-top-10/" target="_blank" rel="noopener">OWASP Top 10 for LLM Applications 2025</a>, OWASP Gen AI Security Project, abgerufen am 26. November 2026</li>
+<li><a href="https://genai.owasp.org/llmrisk/llm01-prompt-injection/" target="_blank" rel="noopener">LLM01:2025 Prompt Injection</a>, OWASP Gen AI Security Project, abgerufen am 26. November 2026</li>
+<li><a href="https://genai.owasp.org/llmrisk/llm052025-improper-output-handling/" target="_blank" rel="noopener">LLM05:2025 Improper Output Handling</a>, OWASP Gen AI Security Project, abgerufen am 26. November 2026</li>
+<li><a href="https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" target="_blank" rel="noopener">LLM06:2025 Excessive Agency</a>, OWASP Gen AI Security Project, abgerufen am 26. November 2026</li>
+<li><a href="https://genai.owasp.org/llmrisk/llm072025-system-prompt-leakage/" target="_blank" rel="noopener">LLM07:2025 System Prompt Leakage</a>, OWASP Gen AI Security Project, abgerufen am 26. November 2026</li>
+<li><a href="https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/" target="_blank" rel="noopener">LLM08:2025 Vector and Embedding Weaknesses</a>, OWASP Gen AI Security Project, abgerufen am 26. November 2026</li>
+<li><a href="https://genai.owasp.org/resource/agentic-ai-threats-and-mitigations/" target="_blank" rel="noopener">Agentic AI: Threats and Mitigations</a>, OWASP Gen AI Security Project, abgerufen am 26. November 2026</li>
+<li><a href="https://genai.owasp.org/2025/12/09/owasp-genai-security-project-releases-top-10-risks-and-mitigations-for-agentic-ai-security/" target="_blank" rel="noopener">OWASP GenAI Security Project Releases Top 10 Risks and Mitigations for Agentic AI Security</a>, OWASP Gen AI Security Project, abgerufen am 26. November 2026</li>
+<li><a href="https://atlas.mitre.org/" target="_blank" rel="noopener">MITRE ATLAS (Adversarial Threat Landscape for AI Systems)</a>, MITRE, abgerufen am 26. November 2026</li>
+<li><a href="https://csrc.nist.gov/pubs/ai/100/2/e2025/final" target="_blank" rel="noopener">NIST AI 100-2 E2025, Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations</a>, National Institute of Standards and Technology, abgerufen am 26. November 2026</li>
+<li><a href="https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/KI/Evasion-Angriffe_auf_LLMs-Gegenmassnahmen.pdf?__blob=publicationFile" target="_blank" rel="noopener">Evasion-Attacks auf LLMs: Gegenmassnahmen in der Praxis</a>, Bundesamt für Sicherheit in der Informationstechnik, abgerufen am 26. November 2026</li>
+<li><a href="https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/KI/Basisschutz_Indirect-Prompt-Injections_LLM.pdf?__blob=publicationFile" target="_blank" rel="noopener">Basisschutz gegen Indirect Prompt Injections in dokumentbasierten LLM-Chats</a>, Bundesamt für Sicherheit in der Informationstechnik, abgerufen am 26. November 2026</li>
+</ul>
+</section>

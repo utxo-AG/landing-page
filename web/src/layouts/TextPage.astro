@@ -4,15 +4,15 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
 /*
-  Shared layout of every subpage. title, description: page meta. heading: the h1 (may carry soft hyphens). lede: optional.
+  Shared layout of every subpage. title, description: page meta. heading: the h1 (may carry soft hyphens). lede: optional. schema: extra JSON-LD nodes (passed to Base).
   Content grammar (all aligned to the 12-column grid of the home):
     .tp-row[data-reveal] > .tp-h (h2, columns 1 to 3) + .tp-main (columns 4 to 12) or .tp-text (columns 4 to 10)
     .tp-prose[data-reveal]  long-form HTML: top-level p/ul/dl/hr and section > h2 + content, see components/Prose.astro
     .tp-rise                rises in when its [data-reveal] ancestor gets .is-in (motion/loop.js), order via --i
 */
-const { t, title, description, heading, lede } = Astro.props;
+const { t, title, description, heading, lede, schema } = Astro.props;
 ---
-<Base t={t} title={title} description={description}>
+<Base t={t} title={title} description={description} schema={schema}>
   <Header t={t} statement={false} />
   <main class="tp" id="main">
     <header class="tp-head" data-reveal>

@@ -1,6 +1,7 @@
 {
-  "title": "Agent Factories and AI Infrastructure | utxo AG",
-  "description": "Shared infrastructure and a governed production line your organization uses to develop, test, approve and update AI agents at scale.",
+  "title": "Agent Factory: develop AI agents at scale | utxo AG",
+  "description": "AI infrastructure and a governed production line your organization uses to develop, test, approve and update AI agents at scale.",
+  "tagline": "A platform to develop and run AI agents at scale",
   "lede": "We develop the shared infrastructure and the production line your organization uses to develop, test, approve and update many AI agents by one consistent process.",
   "scope": {
     "title": "What you get",

@@ -2,8 +2,8 @@
   "lang": "en",
   "home": "/en",
   "meta": {
-    "title": "utxo AG: Modern software for digital transformation",
-    "description": "AI-native solutions for complex enterprise requirements: custom software, AI agents, automation, AI adoption and penetration testing."
+    "title": "utxo AG: Custom Software and AI Agents for Enterprises",
+    "description": "AI-native solutions for complex enterprise requirements: custom software development, AI agents, AI process automation, AI consulting and penetration testing."
   },
   "header": {
     "logoAlt": "utxo AG",
@@ -144,7 +144,11 @@
         "label": "Privacy",
         "href": "/en/privacy"
       }
-    ]
+    ],
+    "knowledge": {
+      "label": "Insights",
+      "href": ""
+    }
   },
   "references": {
     "id": "referenzen",
@@ -318,6 +322,7 @@
     "breadcrumb": "Services",
     "others": "More services",
     "contactTitle": "Talk to us about your project.",
-    "faq": "Frequently asked questions"
+    "faq": "Frequently asked questions",
+    "further": "Further reading"
   }
 }

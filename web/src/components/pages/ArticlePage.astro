@@ -1,0 +1,70 @@
+---
+import TextPage from '../../layouts/TextPage.astro';
+import '../../styles/articles.css';
+import Prose from '../Prose.astro';
+import { articlePath, author as authorOf, body, published, sectionPath } from '../../content/articles.js';
+import { routes } from '../../i18n/routes.js';
+import { memberId } from '../../content/team.js';
+
+/*
+  One article of the knowledge section: h1 + lede (TextPage head), byline (author from team.json, link to the team page,
+  dates), the body (content/articles/<lang>/<slug>.html), the service it supports, more articles.
+  Dates: "Veröffentlicht" (published) and, when later, "Aktualisiert" (modified); the same values go into the schema.
+  Schema: Article (author Person with the team page anchor as url and LinkedIn as sameAs, publisher #org), BreadcrumbList.
+*/
+const { t, article } = Astro.props;
+const page = t.pages.wissen;
+const person = authorOf(article);
+const service = t.services.find((entry) => entry.id === article.service);
+const more = published(t.lang).filter((entry) => entry.slug !== article.slug).slice(0, 3);
+const url = (path) => new URL(path, Astro.site).href;
+const profile = `${routes.about[t.lang]}#${memberId(person.name)}`;
+const modified = article.modified && article.modified !== article.published ? article.modified : null;
+const date = (value) => new Date(`${value}T12:00:00Z`).toLocaleDateString(t.lang, { day: 'numeric', month: 'long', year: 'numeric' });
+const schema = [
+  {
+    '@type': 'Article',
+    '@id': `${url(articlePath(article))}#article`,
+    headline: article.heading,
+    description: article.description,
+    inLanguage: t.lang,
+    datePublished: article.published,
+    dateModified: modified ?? article.published,
+    mainEntityOfPage: url(articlePath(article)),
+    image: url(`/og/og-${t.lang}.png`),
+    author: { '@type': 'Person', name: person.name, jobTitle: person.role[t.lang], url: url(profile), sameAs: [person.linkedin], worksFor: { '@id': 'https://utxo.ag/#org' } },
+    publisher: { '@id': 'https://utxo.ag/#org' },
+    about: { '@type': 'Service', name: service.name, url: url(service.href) },
+  },
+  { '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'utxo AG', item: url(t.home) },
+    { '@type': 'ListItem', position: 2, name: page.breadcrumb, item: url(sectionPath[t.lang]) },
+    { '@type': 'ListItem', position: 3, name: article.heading, item: url(articlePath(article)) },
+  ] },
+];
+---
+<TextPage t={t} title={article.title} description={article.description} heading={article.heading} lede={article.lede} schema={schema}>
+  <p class="ar-meta label tp-rise" data-reveal>
+    <a href={sectionPath[t.lang]}>{page.breadcrumb}</a>
+    <span>{page.by} <a href={profile}>{person.name}</a>, {person.role[t.lang]}</span>
+    <span>{page.published} <time datetime={article.published}>{date(article.published)}</time></span>
+    {modified && <span>{page.updated} <time datetime={modified}>{date(modified)}</time></span>}
+  </p>
+  <Prose html={body(article)} />
+  <section class="tp-row" data-reveal>
+    <h2 class="tp-h tp-rise">{page.service}</h2>
+    <div class="tp-text tp-rise" style="--i:1">
+      <p class="ar-service">{service.name}</p>
+      <p>{service.short}</p>
+      <p class="tp-actions"><a class="pill pill--2" href={service.href}>{t.servicePage.more}</a></p>
+    </div>
+  </section>
+  {more.length > 0 && (
+    <section class="tp-row" data-reveal>
+      <h2 class="tp-h tp-rise">{page.more}</h2>
+      <ul class="tp-main ar-list">
+        {more.map((entry, i) => <li class="tp-rise" style={`--i:${i + 1}`}><a href={articlePath(entry)}><span>{entry.heading}</span><small>{entry.lede}</small></a></li>)}
+      </ul>
+    </section>
+  )}
+</TextPage>

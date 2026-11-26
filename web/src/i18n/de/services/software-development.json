@@ -1,6 +1,7 @@
 {
-  "title": "Software Development: individuelle Software für Ihre Prozesse | utxo AG",
-  "description": "Individuelle Software für Unternehmensprozesse: Web-Anwendungen, Mobile Apps und Schnittstellen, auf Wunsch KI-gestützt. Vom Konzept bis in den Betrieb.",
+  "title": "Individuelle Softwareentwicklung für Unternehmen | utxo AG",
+  "description": "Individuelle Softwareentwicklung für Unternehmen: Web-Anwendungen, Mobile Apps und Schnittstellen, auf Wunsch KI-gestützt. Vom Konzept bis in den Betrieb.",
+  "tagline": "Individuelle Softwareentwicklung für Unternehmen",
   "lede": "Wir entwickeln Software für Prozesse, die sich mit Standardprodukten nicht gut abbilden lassen. Ein festes Team begleitet sie vom Konzept bis in den Betrieb.",
   "faq": [
     { "q": "Wann lohnt sich individuelle Software gegenüber einem Standardprodukt?", "a": "Wenn ein Prozess für Ihr Unternehmen wichtig ist und sich mit Standardprodukten nur über Umwege, Zusatzlisten oder manuelle Schritte abbilden lässt. Im Erstgespräch klären wir das offen. Passt ein Standardprodukt besser, sagen wir das." },

@@ -1,0 +1,112 @@
+<p class="tp-answer">Eine Agent Registry ist das Verzeichnis aller KI-Agenten, die in einem Unternehmen arbeiten: wer sie verantwortet, wozu sie dienen, auf welche Daten und Systeme sie zugreifen und mit welcher Identität sie das tun. Sie ist der erste Schritt jeder Governance für Agenten, denn Rechte, Freigaben, Kosten und Protokolle lassen sich nur für Agenten regeln, von denen man weiss. Microsoft, Google und AWS bieten inzwischen eigene Registries an, teils noch als Vorschau (Stand November 2026). Wer mehrere Plattformen nutzt, wird mit keiner davon allein den vollständigen Bestand sehen.</p>
+
+<section>
+<h2>Wie Agenten-Wildwuchs entsteht</h2>
+<p>Agenten entstehen heute an Stellen, die kaum jemand gemeinsam im Blick hat. Eine Fachabteilung klickt sich in Copilot Studio einen Agenten für Kundenanfragen zusammen. Der Vertrieb aktiviert Agentforce in Salesforce. Das Entwicklungsteam schreibt eigene Agenten, die über eine Programmierschnittstelle ein Sprachmodell aufrufen. In mehreren SaaS-Anwendungen schaltet ein Administrator eine neue Agentenfunktion frei, weil sie im Lizenzumfang enthalten ist. Dazu kommen lokale Agenten, die Mitarbeitende selbst installieren; Microsoft nennt dafür im Mai 2026 Claude Code und OpenClaw und spricht von einer neuen Welle von Schatten-KI.</p>
+<p>Die Folgen zeigen sich selten sofort. Ein Agent läuft weiter, obwohl die Person, die ihn eingerichtet hat, längst in einem anderen Bereich arbeitet. Drei Agenten teilen sich ein technisches Konto mit Schreibrechten im CRM. Ein API-Schlüssel steckt in der Konfiguration einer SaaS-Anwendung und wurde seit der Einrichtung nie gewechselt. Bei einem Agenten wiegt das schwerer als bei klassischer Software, weil er selbst handelt und in Systeme schreibt.</p>
+<p>OWASP beschreibt das Risiko unter dem Namen Excessive Agency und führt es auf drei Ursachen zurück: Ein Agent hat Zugriff auf mehr Funktionen, als er braucht, die angebundenen Systeme gewähren ihm mehr Rechte als nötig, oder folgenreiche Aktionen laufen ohne unabhängige Prüfung. Alle drei lassen sich erst beheben, wenn bekannt ist, welche Agenten es gibt. In einer Agent Factory ist das Verzeichnis die Grundlage, auf der Identität, Freigabe und Betrieb aufsetzen; die übrigen Schichten beschreibt der Beitrag <a href="/de/wissen/agent-factory">Was ist eine Agent Factory?</a></p>
+</section>
+
+<section>
+<h2>Was gehört in einen Registry-Eintrag?</h2>
+<p>Ein Eintrag muss Fragen beantworten wie: Welche Agenten lesen Kundendaten? Welche stehen still, wenn eine Schnittstelle gesperrt wird? Die folgenden Felder sind ein sinnvoller Mindestumfang; das Beispiel beschreibt einen fiktiven Agenten.</p>
+<table>
+<thead>
+<tr><th>Feld</th><th>Warum</th><th>Beispiel</th></tr>
+</thead>
+<tbody>
+<tr><td>Kennung und Name</td><td>Eine stabile Kennung verbindet den Eintrag mit Identität, Protokollen und Rechnungen, auch wenn der Name wechselt</td><td>AG-0042, Agent Angebotsprüfung</td></tr>
+<tr><td>Verantwortliche Person</td><td>Eine benannte Person entscheidet über Änderungen und Abschaltung; ein Team allein ist im Ernstfall nicht erreichbar</td><td>Leiterin Vertriebsinnendienst, Stellvertretung benannt</td></tr>
+<tr><td>Zweck</td><td>Ohne festgelegten Zweck lässt sich nicht beurteilen, ob Daten und Rechte angemessen sind</td><td>Prüft eingehende Angebote auf Vollständigkeit und Konditionen</td></tr>
+<tr><td>Plattform und Betriebsort</td><td>Zeigt, wo der Agent läuft und welche Konsole für ihn zuständig ist</td><td>Eigener Code, Rechenzentrum in Deutschland</td></tr>
+<tr><td>Datenzugriff</td><td>Grundlage für Auskunftsfragen und Datenschutz; die Kategorien lassen sich aus dem Verzeichnis von Verarbeitungstätigkeiten übernehmen</td><td>Kundenstammdaten, Preislisten, keine Gesundheitsdaten</td></tr>
+<tr><td>Tools und Anbindungen</td><td>Zeigt, welche Agenten betroffen sind, wenn sich ein System ändert oder gesperrt wird</td><td>ERP lesend, CRM lesend, E-Mail-Entwurf</td></tr>
+<tr><td>Identität und Berechtigungen</td><td>Verknüpft den Eintrag mit dem Konto, unter dem der Agent handelt, und mit dessen Rechten</td><td>Eigene Agentenidentität, Rolle „Angebote lesen“</td></tr>
+<tr><td>Modell und Version</td><td>Nach einem Modellwechsel muss klar sein, welche Agenten neu geprüft werden</td><td>Modell und Modellversion, Agentenversion 3.2</td></tr>
+<tr><td>Freigabestatus</td><td>Trennt Entwürfe und Tests vom produktiven Betrieb</td><td>Freigegeben am 12.10.2026 durch die verantwortliche Person</td></tr>
+<tr><td>Risikoklasse</td><td>Bestimmt Prüftiefe, Überwachung und Freigabepflichten</td><td>Mittel: Kundendaten, keine Aktion ohne Bestätigung</td></tr>
+<tr><td>Ort der Protokolle</td><td>Im Fehlerfall oder bei einer Prüfung muss niemand erst suchen</td><td>Zentrales Log-System, Aufbewahrung nach interner Vorgabe</td></tr>
+<tr><td>Kostenstelle</td><td>Ordnet Modell- und Betriebskosten dem Bereich zu, der den Nutzen hat</td><td>Kostenstelle Vertrieb</td></tr>
+<tr><td>Nächste Überprüfung</td><td>Verhindert, dass ein Agent nach Projektende unbemerkt weiterläuft</td><td>Fester Termin, spätestens nach einem Quartal</td></tr>
+</tbody>
+</table>
+<p>Agentenversion und Modellversion gehören in getrennte Felder, weil sie sich unabhängig ändern. Der Freigabestatus sollte nur feste Werte kennen, etwa Entwurf, Test, freigegeben, ausser Betrieb.</p>
+</section>
+
+<section>
+<h2>Agent Identity: Warum jeder Agent ein eigenes Konto braucht</h2>
+<p>Drei Muster kommen in der Praxis vor. Ein Agent nutzt das persönliche Konto eines Mitarbeiters: Er hat dann alle Rechte dieser Person, seine Aktionen sind im Protokoll nicht von ihren zu unterscheiden, und mit ihrem Austritt bricht er ab. Mehrere Agenten teilen sich ein Dienstkonto: Keine Aktion lässt sich einem bestimmten Agenten zuordnen, und wer den Zugang sperrt, stoppt alle zugleich. Oder jeder Agent erhält eine eigene Identität mit eigenen Rechten. Nur so lassen sich Rechte gezielt vergeben, Aktionen zuordnen und einzelne Agenten abschalten.</p>
+<p>In der Ankündigung von Agent 365 im Mai 2026 unterscheidet Microsoft Agenten, die mit den delegierten Rechten eines Nutzers handeln, von Agenten mit eigenen Zugangsdaten. Für den ersten Fall empfiehlt OWASP, Aktionen im Kontext genau dieses Nutzers auszuführen.</p>
+<h3>Kurzlebige Zugangsdaten statt fester Schlüssel</h3>
+<p>Feste API-Schlüssel ohne Ablaufdatum werden vergessen. Die Plattformen setzen deshalb auf kurzlebige Zugangsdaten (Stand November 2026). Google vergibt mit Agent Identity jedem Agenten eine Identität nach dem offenen Standard SPIFFE und ein X.509-Zertifikat, das 24 Stunden gilt und automatisch erneuert wird; API-Schlüssel für andere Dienste liegen in einem zentralen Speicher. AWS setzt Agentenidentitäten in AgentCore Identity als Workload-Identitäten um und verwaltet dort auch die Zugangsdaten für Drittdienste. Ohne diese Plattformen gelingt dasselbe mit einem Secret-Manager und kurzlebigen Token.</p>
+<h3>Rechte je Tool, geprüft ausserhalb des Modells</h3>
+<p>OWASP rät, einem Agenten nur die Tools zu geben, die er braucht, offene Tools wie einen allgemeinen Shell-Zugang durch eng zugeschnittene Funktionen zu ersetzen und die Berechtigung im Zielsystem zu prüfen, nicht im Modell. Google setzt das in Agent Gateway so um, dass Verbindungen zu Tools und Endpunkten blockiert sind, solange keine ausdrückliche IAM-Richtlinie sie erlaubt.</p>
+<p>Registry und Identität gehören zusammen: Eine Identität ohne Eintrag kann niemand zuordnen, ein Eintrag ohne Identität niemand überprüfen.</p>
+</section>
+
+<section>
+<h2>Wie Microsoft, Google und AWS das Thema angehen</h2>
+<p>Stand der Herstellerangaben: 26. November 2026. Funktionen in der Vorschau können sich bis zur allgemeinen Verfügbarkeit ändern.</p>
+<h3>Microsoft: Agent 365 und Entra Agent ID</h3>
+<p>Microsoft Agent 365 ist seit dem 1. Mai 2026 für Geschäftskunden allgemein verfügbar. Die Registry im Microsoft 365 Admin Center zeigt für jeden Agenten, wem er gehört, wie stark er genutzt wird und welche Risikosignale vorliegen; Agenten ohne Eigentümer lassen sich finden und neu zuweisen. Die Identität liefert Microsoft Entra Agent ID, mit Vorlagen (Blueprints) für einheitliche Richtlinien. Microsoft hat die Ansichten zusammengeführt: Agent 365 ist das Verzeichnis, Entra die Identitätsschicht, die laut Dokumentation nur Agenten mit Entra-Identität zeigt. Zur Ignite am 17. November 2026 kündigte Microsoft an, dass verbundene Agenten aus Salesforce Agentforce, Amazon AgentCore und Google Vertex AI automatisch eine Entra Agent ID erhalten; der Rollout soll im Dezember 2026 abgeschlossen sein. Die Synchronisierung anderer Plattformen und die Erkennung von Schatten-KI in der Registry sind als Vorschau gekennzeichnet.</p>
+<h3>Google: Agent Identity, Agent Registry und Agent Gateway</h3>
+<p>Google hat am 22. April 2026 die Gemini Enterprise Agent Platform vorgestellt und die Governance auf drei Bausteine verteilt. Agent Identity vergibt jedem Agenten eine eindeutige kryptografische Identität. Agent Registry verzeichnet freigegebene Agenten, Tools, MCP-Server und Endpunkte. Agent Gateway leitet den Verkehr der Agenten und setzt die Richtlinien durch, wobei es vor jeder Verbindung die Registry prüft.</p>
+<h3>AWS: Agent Registry und AgentCore Identity</h3>
+<p>AWS hat die AWS Agent Registry am 9. April 2026 als Vorschau in Amazon Bedrock AgentCore veröffentlicht. Teams reichen dort Einträge für Agenten, Tools, MCP-Server und Skills zur Freigabe ein; erst freigegebene Einträge sind für andere auffindbar, veraltete lassen sich zurückziehen. Die Identität liefert AgentCore Identity.</p>
+</section>
+
+<section>
+<h2>Warum keine einzelne Registry alles sieht</h2>
+<p>Jede dieser Registries sieht ihre eigene Plattform am besten. Die Anbindung fremder Plattformen ist teils noch Vorschau, ihr Umfang variiert laut Microsoft je Plattform. Eigene Agenten im eigenen Rechenzentrum, Agentenfunktionen kleinerer SaaS-Anwendungen und lokale Agenten fallen leicht durch das Raster.</p>
+<p>Die praktische Folge: Legen Sie fest, welches Verzeichnis führend ist, und lassen Sie die Hersteller-Registries dorthin zuliefern. Wer überwiegend in Microsoft 365 arbeitet, kann Agent 365 führend machen. Wer mehrere Clouds und eigene Agenten betreibt, fährt oft besser mit einem eigenen Verzeichnis, das die Plattformen über eine stabile Kennung verknüpft. Verantwortliche Person, Freigabestatus und Überprüfungsdatum werden an genau einer Stelle gepflegt.</p>
+<p>In offenen Netzwerken, in denen Agenten verschiedener Unternehmen zusammenarbeiten, reicht ein internes Verzeichnis nicht aus. Dafür gibt es offene Registries wie Masumi, die dezentrale Infrastruktur, über die KI-Agenten sich finden, ausweisen und bezahlen; utxo AG entwickelt und betreibt sie gemeinsam mit der Serviceplan Group und verantwortet Technologie und Hosting.</p>
+</section>
+
+<section>
+<h2>So beginnen Sie ohne grosse Plattform</h2>
+<p>Für den Anfang genügt eine Tabelle oder ein kleiner interner Dienst mit den Feldern von oben, sofern die Felder feste Werte haben und eine Person sie pflegt. Die erste Bestandsaufnahme folgt den Spuren, die Agenten hinterlassen:</p>
+<ul>
+<li>Benennen Sie eine Person, die das Verzeichnis verantwortet und neue Einträge prüft.</li>
+<li>Exportieren Sie aus den Admin-Konsolen Ihrer Plattformen, etwa Microsoft 365, Salesforce oder Google Workspace, die Liste aller Agenten.</li>
+<li>Gehen Sie bei jedem Modellanbieter die vorhandenen API-Schlüssel durch und ordnen Sie jeden Schlüssel einem Agenten und einer Person zu.</li>
+<li>Prüfen Sie Rechnungen und Kostenstellen auf Ausgaben für Modelle und KI-Funktionen; jede Position führt zu einem Agenten oder einer Anwendung.</li>
+<li>Fragen Sie die Entwicklungsteams nach Repositories, die ein Sprachmodell aufrufen, und die Fachbereiche nach aktivierten KI-Funktionen in ihren SaaS-Anwendungen.</li>
+<li>Setzen Sie für Agenten ohne verantwortliche Person eine Frist; findet sich bis dahin niemand, wird der Agent abgeschaltet.</li>
+<li>Ersetzen Sie persönliche und geteilte Zugangsdaten, beginnend bei Agenten mit Schreibrechten.</li>
+<li>Vereinbaren Sie eine Regel für alle neuen Agenten: Ohne Eintrag geht kein Agent in den Betrieb.</li>
+</ul>
+<p>Die letzte Regel ist die wichtigste. Eine einmalige Bestandsaufnahme veraltet schnell; nur diese Bedingung hält das Verzeichnis aktuell. Wie der laufende Betrieb mit Überwachung und Freigabepunkten aussieht, beschreibt der Beitrag <a href="/de/wissen/ki-agenten-betreiben">KI-Agenten im Betrieb</a>.</p>
+</section>
+
+<section>
+<h2>Was das Verzeichnis mit der EU-KI-Verordnung zu tun hat</h2>
+<p>Die EU-KI-Verordnung schreibt kein Agentenverzeichnis vor, es erleichtert aber Betreiberpflichten. Artikel 4 verlangt in der geänderten Fassung Massnahmen, um die KI-Kompetenz der Personen zu fördern, die KI-Systeme im Auftrag des Unternehmens bedienen; ein bestimmtes Kompetenzniveau muss nicht garantiert werden. Dafür muss man wissen, wer mit welchen Systemen arbeitet. Für Hochrisiko-Systeme verlangt Artikel 26 unter anderem eine menschliche Aufsicht durch kompetente Personen, die Überwachung des Betriebs und die Aufbewahrung der automatisch erzeugten Protokolle. Die Felder Risikoklasse, verantwortliche Person und Ort der Protokolle zeigen je Agent, wer diese Aufgaben hat und wo die Nachweise liegen. Wie sich die Pflichten verteilen, wenn ein Dienstleister den Agenten betreibt, steht im Beitrag <a href="/de/wissen/ki-agenten-betreiben-lassen">KI-Agenten betreiben lassen oder selbst betreiben?</a> Ob ein bestimmter Agent als Hochrisiko-System gilt, hängt vom Einsatzzweck ab und ist im Einzelfall rechtlich zu prüfen; dieser Beitrag ersetzt keine Rechtsberatung.</p>
+<p>Auch die Standardisierung hat begonnen: Das NCCoE des NIST hat im Februar 2026 ein Konzeptpapier zu Identifikation, Autorisierung und Protokollierung von KI-Agenten zur Diskussion gestellt.</p>
+</section>
+
+<section>
+<h2>Wie utxo AG Registry und Identität umsetzt</h2>
+<p>In den Agent Factories, die utxo AG für Unternehmen entwickelt, gehören Identität und Protokoll zum Fundament, und Versionen, Zustand und Protokolle aller Agenten stehen in einer Übersicht. Jeder Agent startet aus einer geprüften Vorlage und geht erst nach festgelegten Tests und menschlicher Freigabe in den Betrieb. Welche Felder das Verzeichnis führt, legen wir im Projekt fest. Die Plattform ist modellunabhängig; Hosting nach Ihren Anforderungen: Deutschland, EU oder on-premise.</p>
+<p>Wer nur einen einzelnen Agenten braucht, ist mit <a href="/de/managed-agents">Managed Agents</a> besser bedient. Was eine Factory mit Registry, Identität und Freigabeprozess für Ihre Organisation umfassen kann, lesen Sie auf der Seite <a href="/de/agent-factories">Agent Factories und KI-Infrastruktur</a>.</p>
+</section>
+
+<section>
+<h2>Quellen</h2>
+<ul>
+<li><a href="https://www.microsoft.com/en-us/security/blog/2026/05/01/microsoft-agent-365-now-generally-available-expands-capabilities-and-integrations/" target="_blank" rel="noopener">Microsoft Agent 365, now generally available, expands capabilities and integrations</a>, Microsoft, abgerufen am 26. November 2026</li>
+<li><a href="https://learn.microsoft.com/en-us/microsoft-agent-365/overview" target="_blank" rel="noopener">Microsoft Agent 365 overview</a>, Microsoft Learn, abgerufen am 26. November 2026</li>
+<li><a href="https://learn.microsoft.com/en-us/entra/agent-id/agent-registry-convergence" target="_blank" rel="noopener">Agent Registry convergence with Microsoft Agent 365</a>, Microsoft Learn, abgerufen am 26. November 2026</li>
+<li><a href="https://learn.microsoft.com/en-us/entra/agent-id/what-is-microsoft-entra-agent-id" target="_blank" rel="noopener">What is Microsoft Entra Agent ID?</a>, Microsoft Learn, abgerufen am 26. November 2026</li>
+<li><a href="https://techcommunity.microsoft.com/blog/agent-365-blog/whats-new-in-microsoft-agent-365-ignite-2026/4571753" target="_blank" rel="noopener">What's new in Microsoft Agent 365: Ignite 2026</a>, Microsoft Tech Community, abgerufen am 26. November 2026</li>
+<li><a href="https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-agent-platform" target="_blank" rel="noopener">Introducing Gemini Enterprise Agent Platform, powering the next wave of agents</a>, Google Cloud, abgerufen am 26. November 2026</li>
+<li><a href="https://docs.cloud.google.com/iam/docs/agent-identity-overview" target="_blank" rel="noopener">Agent Identity overview</a>, Google Cloud, abgerufen am 26. November 2026</li>
+<li><a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/govern" target="_blank" rel="noopener">Govern your agents</a>, Google Cloud, abgerufen am 26. November 2026</li>
+<li><a href="https://aws.amazon.com/about-aws/whats-new/2026/04/aws-agent-registry-in-agentcore-preview/" target="_blank" rel="noopener">AWS Agent Registry for centralized agent discovery and governance is now available in Preview</a>, Amazon Web Services, abgerufen am 26. November 2026</li>
+<li><a href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/registry.html" target="_blank" rel="noopener">AWS Agent Registry: Discover and manage agents, tools, and resources</a>, Amazon Web Services, abgerufen am 26. November 2026</li>
+<li><a href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/identity.html" target="_blank" rel="noopener">Provide identity and credential management for agent applications with Amazon Bedrock AgentCore Identity</a>, Amazon Web Services, abgerufen am 26. November 2026</li>
+<li><a href="https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" target="_blank" rel="noopener">LLM06:2025 Excessive Agency</a>, OWASP GenAI Security Project, abgerufen am 26. November 2026</li>
+<li><a href="https://www.nist.gov/news-events/news/2026/02/new-concept-paper-identity-and-authority-software-agents" target="_blank" rel="noopener">New Concept Paper on Identity and Authority of Software Agents</a>, NIST, abgerufen am 26. November 2026</li>
+<li><a href="https://artificialintelligenceact.eu/article/4/" target="_blank" rel="noopener">Article 4: AI Literacy</a>, artificialintelligenceact.eu (Future of Life Institute), abgerufen am 26. November 2026</li>
+<li><a href="https://artificialintelligenceact.eu/article/26/" target="_blank" rel="noopener">Article 26: Obligations of Deployers of High-Risk AI Systems</a>, artificialintelligenceact.eu (Future of Life Institute), abgerufen am 26. November 2026</li>
+</ul>
+</section>

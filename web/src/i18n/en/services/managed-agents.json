@@ -1,6 +1,7 @@
 {
-  "title": "Managed Agents: AI agents developed, hosted and monitored | utxo AG",
-  "description": "utxo AG develops, hosts and monitors your AI agents. You see what is running and decide at defined approval points. Every action is logged.",
+  "title": "AI Agent Development and Hosting: Managed Agents | utxo AG",
+  "description": "utxo AG develops AI agents for your company, hosts and monitors them. You decide at defined approval points, and every action is logged.",
+  "tagline": "AI agent development, with hosting and operations",
   "lede": "Your AI agents run in our operations: developed, hosted, monitored and continuously improved by utxo AG. Your team sees the status and decides at the points you define.",
   "scope": {
     "title": "What we take on for you",

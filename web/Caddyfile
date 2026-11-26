@@ -31,8 +31,8 @@ map {path} {legacy} {
 	~^/de/doc-indexer$                               /de/software-development
 	~^/en/doc-indexer$                               /en/software-development
 	~^/comparison(\.en)?(\.html)?$                  /en/agentic-coworker
-	~^/comparison\.de(\.html)?$                     /de/agentic-coworker
-	~^/de/coworker-vs-copilot$                       /de/agentic-coworker
+	~^/comparison\.de(\.html)?$                     /de/wissen/copilot-oder-ki-coworker
+	~^/de/coworker-vs-copilot$                       /de/wissen/copilot-oder-ki-coworker
 	~^/en/coworker-vs-copilot$                       /en/agentic-coworker
 	~^/ai-in-business(\.en)?(\.html)?$              /en/ai-adoption
 	~^/ai-in-business\.de(\.html)?$                 /de/ai-adoption

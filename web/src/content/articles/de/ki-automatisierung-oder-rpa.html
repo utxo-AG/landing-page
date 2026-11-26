@@ -1,0 +1,92 @@
+<p class="tp-answer">RPA passt, wenn ein Ablauf strukturierte Eingaben, feste Regeln und eine stabile Oberfläche hat und das Zielsystem keine Schnittstelle bietet. Eine API-Integration ist die bessere und günstigere Wahl, sobald beide Seiten strukturierte Daten austauschen können. KI-Automatisierung lohnt sich dort, wo Eingaben uneinheitlich sind, etwa PDF-Rechnungen in wechselnden Layouts oder Bestellungen im Freitext einer E-Mail, und wo ein Teil der Vorgänge eine Entscheidung braucht. In der Praxis arbeiten die drei Ansätze oft zusammen.</p>
+
+<section>
+<h2>Drei Ansätze, drei Arten, ein System zu bedienen</h2>
+<p>Wil van der Aalst, Martin Bichler und Armin Heinzl beschreiben RPA als Sammelbegriff für Software, die auf der Benutzeroberfläche anderer Systeme so arbeitet, wie es ein Mensch tun würde. Sie nennen das einen Ansatz von aussen nach innen: Das bestehende Informationssystem bleibt unverändert, der Bot klickt und tippt an seiner Oberfläche. UiPath definiert RPA ähnlich als Software-Roboter, die repetitive, regelbasierte Aufgaben wie Dateneingabe und das Übertragen von Informationen zwischen Systemen übernehmen. Microsoft beschreibt die Desktop-Flows in Power Automate als RPA-Funktion für regelbasierte Aufgaben, auch in Legacy-Anwendungen wie Terminalemulatoren.</p>
+<p>Eine API-Integration verbindet Systeme dagegen von innen. Ein Programm übergibt einen Datensatz direkt an die Schnittstelle des Zielsystems, ohne Bildschirm und ohne Mausklick. SAP S/4HANA Cloud bietet dafür zum Beispiel einen OData-Service, mit dem sich Lieferantenrechnungen aus einem externen Quellsystem per API-Aufruf anlegen lassen.</p>
+<p>KI-Automatisierung setzt einen Schritt früher an: beim Verstehen der Eingabe. Ein Modell liest Dokumente und E-Mails, deren Aufbau nicht festgelegt ist, und macht daraus einen strukturierten Datensatz. Für Dokumente heisst das Intelligent Document Processing: TechTarget beschreibt es als Kombination von Texterkennung mit KI, die anders als vorlagenbasierte Verfahren auch halbstrukturierte und unstrukturierte Dokumente verarbeiten kann. Danach prüfen feste Regeln den Datensatz, und gebucht wird wieder über eine Schnittstelle. Der Begriff intelligente Automatisierung meint meist genau diese Verbindung von KI für das Lesen und Entscheiden mit klassischer Automatisierung für das Ausführen. Wie utxo AG solche Abläufe umsetzt, zeigt die Seite <a href="/de/ki-automationen">KI-Automationen</a>.</p>
+</section>
+
+<section>
+<h2>Ein Beispiel: Eingangsrechnungen von Lieferanten in SAP</h2>
+<p>Ein Industrieunternehmen erhält Lieferantenrechnungen per E-Mail, die meisten als PDF, einige als strukturierte E-Rechnung, ein paar als Scan. Jede Rechnung soll gegen Bestellung und Wareneingang abgeglichen und in SAP erfasst werden. Derselbe Ablauf lässt sich auf drei Arten automatisieren.</p>
+
+<h3>Variante 1: RPA</h3>
+<p>Ein Bot öffnet das Postfach, speichert den Anhang, liest die Felder mit einer Vorlage pro Lieferant aus und tippt sie in die Erfassungsmaske von SAP. Er findet Eingabefelder über Selektoren, also Beschreibungen der Oberflächenelemente. Microsoft dokumentiert, dass Selektoren die Struktur eines Elements in der Anwendung abbilden und dass man mehrere Selektoren als Rückfall hinterlegen kann, falls einer nicht mehr greift.</p>
+<p>Daraus ergeben sich die typischen Fehlerarten. Ändert ein Release die Maske oder erscheint ein unerwarteter Dialog, bricht der Bot ab oder schreibt in das falsche Feld. Schickt ein Lieferant ein neues Layout, passt die Vorlage nicht mehr. Die Wartung fällt bei jeder Änderung an Oberfläche oder Dokument an, nicht nach Plan. Bei einem einzigen Lieferanten mit festem Format und einer Maske, die sich selten ändert, funktioniert das zuverlässig und ist schnell eingerichtet.</p>
+
+<h3>Variante 2: API-Integration</h3>
+<p>Liefert der Lieferant strukturierte Daten, etwa als E-Rechnung im XML-Format oder über eine EDI-Verbindung, braucht es weder Bildschirm noch Texterkennung. Ein Mapping ordnet die Felder zu, eine Middleware oder ein kleiner Dienst ruft die Schnittstelle von SAP auf. Fehler sind hier meist fachlich: eine unbekannte Lieferantennummer, eine Bestellposition, die nicht passt, eine geschlossene Buchungsperiode. Sie kommen als eindeutige Fehlermeldung des Systems zurück und lassen sich gezielt behandeln.</p>
+<p>Für diesen Teil der Rechnungen ist die API-Integration die sauberste und im Betrieb günstigste Lösung. Sie scheitert nur dort, wo die Eingabe nicht strukturiert ist, und das ist bei Eingangsrechnungen oft ein grosser Teil.</p>
+
+<h3>Variante 3: KI-Automatisierung mit Ausnahmebehandlung</h3>
+<p>Ein Modell liest jedes PDF unabhängig vom Layout und erkennt Lieferant, Rechnungsnummer, Bestellbezug, Positionen und Beträge. Microsoft beschreibt für sein vorgefertigtes Rechnungsmodell genau diese Felder und gibt für jedes einen Konfidenzwert aus. In der Dokumentation steht auch ein Beispiel, das bei einem Konfidenzwert für den Gesamtbetrag unter 0,65 einen zweiten, eigens trainierten Leseschritt anstösst.</p>
+<p>Danach greifen feste Regeln: Ist der Lieferant im Stamm, passt der Bestellbezug, stimmen Menge und Preis mit Bestellung und Wareneingang überein, ist der Betrag innerhalb der Toleranz? Erfüllt eine Rechnung alle Regeln, wird sie über die Schnittstelle gebucht. Weicht etwas ab oder ist eine Angabe nicht eindeutig gelesen, geht der Vorgang mit Begründung an die zuständige Person. Jeder Schritt wird protokolliert: was gelesen wurde, welche Regel gegriffen hat, wer freigegeben hat.</p>
+<p>Die Fehlerart ist eine andere als bei RPA. Das Modell kann eine Angabe falsch lesen. Deshalb entscheidet nicht das Modell über die Buchung, sondern das Regelwerk, und unsichere Fälle landen bei einem Menschen. UiPath empfiehlt in seiner Dokumentation zu Document Understanding aus demselben Grund einen menschlichen Prüfschritt nach der automatischen Klassifizierung, weil sonst die Extraktion auf den falschen Inhalt angewendet wird. Die Wartung verschiebt sich von Selektoren und Vorlagen hin zu Regeln, Toleranzen und Stammdaten.</p>
+</section>
+
+<section>
+<h2>Der direkte Vergleich</h2>
+<table>
+<thead>
+<tr><th>Kriterium</th><th>RPA</th><th>API-Integration</th><th>KI-Automatisierung</th></tr>
+</thead>
+<tbody>
+<tr><td>Eingabe</td><td>strukturiert, fester Aufbau</td><td>strukturiert, maschinenlesbar</td><td>auch unstrukturiert: PDF, Scan, Freitext</td></tr>
+<tr><td>Anbindung</td><td>über die Oberfläche</td><td>über die Schnittstelle</td><td>Lesen per Modell, Buchen über Schnittstelle</td></tr>
+<tr><td>Typischer Fehler</td><td>Oberfläche geändert, Feld verfehlt</td><td>Mapping oder Stammdaten passen nicht</td><td>Angabe falsch oder unsicher gelesen</td></tr>
+<tr><td>Wartung fällt an bei</td><td>Release, neuem Layout, neuem Dialog</td><td>Änderung der Schnittstelle oder des Formats</td><td>neuen Regeln, Toleranzen, Sonderfällen</td></tr>
+<tr><td>Ausnahmen</td><td>Abbruch oder Fehlerliste</td><td>Fehlermeldung des Systems</td><td>Vorgang mit Begründung zur Freigabe</td></tr>
+<tr><td>Passt besonders gut</td><td>Legacy-System ohne Schnittstelle, stabile Maske</td><td>strukturierter Datenaustausch zwischen Systemen</td><td>wechselnde Dokumente, Vorgänge mit Prüfbedarf</td></tr>
+</tbody>
+</table>
+</section>
+
+<section>
+<h2>Wo RPA oder eine reine Schnittstelle die bessere Wahl ist</h2>
+<p>Nicht jeder Ablauf braucht ein Sprachmodell. Wenn die Daten ohnehin strukturiert vorliegen und das Zielsystem eine Schnittstelle hat, ist eine direkte Integration schneller, günstiger im Betrieb und leichter zu testen. Ein Modell dazwischen würde nur Kosten und eine zusätzliche Fehlerquelle einführen.</p>
+<p>RPA hat ihren Platz bei Systemen, die keine Schnittstelle anbieten oder deren Schnittstelle nicht freigegeben ist, etwa alte Fachanwendungen oder Terminalemulatoren. Auch als Übergangslösung bis zu einer Systemablösung kann ein Bot sinnvoll sein, weil er das bestehende System nicht verändert. Van der Aalst und seine Mitautoren sehen RPA vor allem bei häufigen, gleichförmigen Fällen, während seltene Fälle bei Menschen bleiben. Darin liegt die Stärke: viele gleiche Vorgänge, wenig Varianz.</p>
+<p>KI-Automatisierung ist dagegen die falsche Wahl, wenn die Regel vollständig bekannt und die Eingabe immer gleich ist. Dann leistet ein deterministisches Programm dasselbe mit weniger Aufwand.</p>
+<p>Am anderen Ende stehen Vorgänge, die Rückfragen bei Kolleginnen und Kollegen und Abstimmung über mehrere Tage brauchen. Sie passen in kein Regelwerk mit Ausnahmeliste und sind eher eine Aufgabe für einen digitalen CoWorker; die Abgrenzung steht im Beitrag <a href="/de/wissen/digitaler-coworker">Was ist ein digitaler CoWorker?</a></p>
+</section>
+
+<section>
+<h2>Hybride Abläufe: drei Mittel, ein Regelwerk</h2>
+<p>Oft trifft ein Ablauf auf alle drei Situationen. Strukturierte E-Rechnungen gehen direkt über die Schnittstelle. PDF und Scans liest ein Modell, danach laufen sie durch dasselbe Regelwerk. Gibt es für einen Schritt in einem Altsystem keine Schnittstelle, kann ein Bot diesen einen Schritt übernehmen. Regeln, Freigaben und Protokoll sollten dabei an einer Stelle liegen und nicht in drei getrennten Lösungen gepflegt werden.</p>
+<p>Die grossen RPA-Plattformen gehen diesen Weg selbst (Stand November 2026): UiPath ergänzt seine Bots mit Document Understanding, Microsoft kombiniert Power Automate mit den Dokumentmodellen von AI Builder. Die Frage ist deshalb selten RPA oder KI, sondern welcher Schritt mit welchem Mittel am stabilsten läuft. Wo Standardsoftware an Grenzen kommt, entwickelt utxo AG die fehlenden Teile als <a href="/de/software-development">individuelle Software</a>.</p>
+</section>
+
+<section>
+<h2>Checkliste für die Entscheidung</h2>
+<p>Gehen Sie einen Ablauf mit echten Vorgängen der letzten Wochen durch und beantworten Sie für jeden Schritt diese Punkte:</p>
+<ul>
+<li>Liegt die Eingabe strukturiert vor, oder kommt sie als PDF, Scan oder Freitext? Strukturiert spricht für eine Schnittstelle, unstrukturiert für KI beim Lesen.</li>
+<li>Bietet das Zielsystem eine freigegebene Schnittstelle? Wenn nein, ist RPA für diesen Schritt eine Option.</li>
+<li>Wie oft ändern sich Oberfläche und Dokumentformate? Häufige Änderungen machen RPA wartungsintensiv.</li>
+<li>Lassen sich die Prüfregeln vollständig aufschreiben? Was sich nicht als Regel fassen lässt, gehört zur Freigabe an einen Menschen.</li>
+<li>Wer entscheidet heute die Ausnahmen, und wie soll ein Vorgang diese Person erreichen?</li>
+<li>Muss jeder Schritt nachvollziehbar sein, etwa für Revision oder Buchhaltung? Dann braucht es ein Protokoll pro Vorgang.</li>
+<li>Wo dürfen die Daten verarbeitet werden? Das bestimmt Hosting und Modellwahl.</li>
+</ul>
+</section>
+
+<section>
+<h2>Wie utxo AG KI-Automatisierung umsetzt</h2>
+<p>utxo AG entwickelt Automationen für klar umrissene Abläufe wie Auftragseingang oder Eingangsrechnungen. Viele Unternehmen kommen mit einer konkreten Vorstellung von einem KI-Agenten zu uns. Reicht für einen Ablauf eine Automation, raten wir dazu und suchen gemeinsam die Prozesse, in denen ein Agent mehr bringt. Wiederkehrende Vorgänge werden gelesen, nach Ihren Regeln geprüft und in Ihren bestehenden Systemen gebucht. Vorgänge, die nicht alle Regeln erfüllen oder nicht eindeutig gelesen werden, gehen mit Begründung zur Freigabe an Ihr Team. Jeder Schritt ist protokolliert.</p>
+<p>Ein Projekt beginnt mit einem Ablauf und mit echten Vorgängen. Wir nehmen den Ablauf auf, legen mit Ihrem Fachbereich fest, was die Automation selbst abschliesst und was zur Freigabe geht, und binden sie über Schnittstellen an Posteingang, ERP und CRM an. Im Probebetrieb bearbeitet die Automation echte Vorgänge, Ihr Team gibt jeden einzelnen frei. Nach Ihrer Abnahme schliesst sie Vorgänge selbst ab, und wir hosten, überwachen und passen sie an, wenn sich Ihr Ablauf ändert. Bietet ein System keine Schnittstelle, prüfen wir im Projekt, welcher Weg tragfähig ist.</p>
+<p>Wie lange es bis zum Betrieb dauert, hängt vom Ablauf und von Ihren Systemen ab. Wir arbeiten modellunabhängig, das Hosting richtet sich nach Ihren Anforderungen: Deutschland, EU oder on-premise. Mehr dazu auf der Seite <a href="/de/ki-automationen">KI-Automationen</a>.</p>
+</section>
+
+<section>
+<h2>Quellen</h2>
+<ul>
+<li><a href="https://link.springer.com/article/10.1007/s12599-018-0542-4" target="_blank" rel="noopener">Robotic Process Automation</a>, Wil M. P. van der Aalst, Martin Bichler, Armin Heinzl, Business &amp; Information Systems Engineering 60 (2018), abgerufen am 26. November 2026</li>
+<li><a href="https://www.uipath.com/rpa/robotic-process-automation" target="_blank" rel="noopener">What is Robotic Process Automation</a>, UiPath, abgerufen am 26. November 2026</li>
+<li><a href="https://learn.microsoft.com/en-us/power-automate/desktop-flows/introduction" target="_blank" rel="noopener">Introduction to desktop flows</a>, Microsoft Learn, abgerufen am 26. November 2026</li>
+<li><a href="https://learn.microsoft.com/en-us/power-automate/desktop-flows/ui-elements" target="_blank" rel="noopener">Automate using UI elements</a>, Microsoft Learn, abgerufen am 26. November 2026</li>
+<li><a href="https://learn.microsoft.com/en-us/ai-builder/prebuilt-invoice-processing" target="_blank" rel="noopener">Invoice processing prebuilt AI model</a>, Microsoft Learn, abgerufen am 26. November 2026</li>
+<li><a href="https://docs.uipath.com/document-understanding/automation-suite/2.2510/classic-user-guide/document-classification-validation-overview" target="_blank" rel="noopener">Document classification validation overview</a>, UiPath, abgerufen am 26. November 2026</li>
+<li><a href="https://www.techtarget.com/searchcontentmanagement/definition/intelligent-document-processing-IDP" target="_blank" rel="noopener">What is intelligent document processing (IDP)?</a>, TechTarget, abgerufen am 26. November 2026</li>
+<li><a href="https://userapps.support.sap.com/sap/support/knowledge/en/3439469" target="_blank" rel="noopener">3439469: Create Supplier Invoice with Data for One-Time Supplier</a>, SAP, abgerufen am 26. November 2026</li>
+</ul>
+</section>

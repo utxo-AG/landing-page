@@ -1,5 +1,35 @@
 # Changes
 
+## 673a4868-c06f-4f97-8aed-401b3eac14e9 — 2026-11-26 UTC
+- Sitemap resubmitted in GSC
+- SEO audit and plan
+- Added `docs/seo-plan-2026-11.md`
+- Service `tagline` under h1
+- New service titles and descriptions
+- New home meta titles
+- NMKR `brand` in Organization
+- Knowledge section `/de/wissen`
+- `articles.json` single source
+- Eight German article drafts
+- Further reading on services
+- Old Copilot guide redirected
+- Lighthouse audit documented
+- Two Managed Agents articles
+- Agent Registry article
+- Honest article dates
+- Article FAQPage markup removed
+- Author profile anchor
+- Wave one seven articles
+- Vendor facts checked against sources
+- Fixed Art. 4 wording
+- Fixed audit log claim
+- Fixed Agent Runtime tracing
+- Softened registry dates
+- Registry offer sentence removed
+- Masumi framed open registry
+- Copilot advice sentence trimmed
+- RPA article Phil statement
+
 ## 778452ba-c747-4ac0-b926-6275773407e7 — 2026-11-23 UTC
 - Astro project in `web/`
 - Draft F ported to components

@@ -1,6 +1,7 @@
 {
-  "title": "Penetration Testing: regelmässige Penetrationstests | utxo AG",
+  "title": "Penetrationstests für Web, API und KI-Anwendungen | utxo AG",
   "description": "Regelmässige Penetrationstests von utxo AG für Web-Anwendungen, Schnittstellen, Infrastruktur und KI-Anwendungen: Bericht, Behebung und Nachtest.",
+  "tagline": "Regelmässige Penetrationstests für Web-Anwendungen, Schnittstellen, Infrastruktur und KI",
   "lede": "Wir prüfen Ihre Systeme so, wie ein Angreifer vorgehen würde, und wiederholen das regelmässig. Jede Runde endet mit einem Bericht, behobenen Schwachstellen und einem Nachtest.",
   "faq": [
     {

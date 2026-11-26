@@ -1,6 +1,7 @@
 {
-  "title": "Software Development: custom software for your processes | utxo AG",
-  "description": "Custom software for enterprise processes: web applications, mobile apps and integrations, AI-assisted where it helps. From concept to operation.",
+  "title": "Custom Software Development for Enterprises | utxo AG",
+  "description": "Custom software development for enterprise processes: web applications, mobile apps and integrations, AI-assisted where it helps. From concept to operation.",
+  "tagline": "Custom software development for enterprises",
   "lede": "We develop software for processes that standard products do not cover well. A dedicated team stays with it from concept to operation.",
   "faq": [
     { "q": "When is custom software the better choice over a standard product?", "a": "When a process matters to your company and standard products only cover it through workarounds, side lists or manual steps. We discuss this openly in the first conversation. If a standard product fits better, we say so." },
