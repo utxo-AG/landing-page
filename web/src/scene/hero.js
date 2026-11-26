@@ -13,7 +13,7 @@ import { createTypeflow } from './typeflow.js';
   Lite mode (.is-lite on <html>, rules in styles/base.css): without hardware acceleration the scene is not
   created at all, and a scene that cannot hold its frame rate in the second after its entry is given up
   (loop stopped, observers disconnected, WebGL context released). The stages then show the still wordmark
-  and the panels simply appear.
+  and the panels simply appear (.is-still). On phones Hero.astro does not load this module at all.
 */
 const SOFTWARE = /swiftshader|llvmpipe|softpipe|software|basic render|mesa offscreen/i;
 const ENTRY = 2600;
@@ -48,7 +48,7 @@ function whenSlow(then) {
 
 export function hero(stage) {
   const forced = import.meta.env.DEV && location.search.includes('scene=on');
-  if (!forced && software()) { document.documentElement.classList.add('is-lite'); return; }
+  if (!forced && software()) { document.documentElement.classList.add('is-lite', 'is-still'); return; }
   const blocks = createBlocks(stage, { svg, maxPixelRatio: matchMedia('(max-width: 760px)').matches ? 1.5 : 2 });
   const closing = document.querySelector('[data-stage-return]');
   const panels = [...stage.querySelectorAll('.panel')];
@@ -84,6 +84,6 @@ export function hero(stage) {
     near.disconnect();
     flow?.destroy();
     blocks.destroy();
-    document.documentElement.classList.add('is-lite');
+    document.documentElement.classList.add('is-lite', 'is-still');
   });
 }

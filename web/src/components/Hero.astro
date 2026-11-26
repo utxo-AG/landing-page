@@ -11,7 +11,9 @@ const { t } = Astro.props;
 
 <script>
   const stage = document.querySelector('[data-stage]');
-  requestAnimationFrame(() => import('../scene/hero.js').then(({ hero }) => hero(stage)));
+  const forced = import.meta.env.DEV && location.search.includes('scene=on');
+  if (matchMedia('(max-width: 760px)').matches && !forced) document.documentElement.classList.add('is-still');
+  else requestAnimationFrame(() => import('../scene/hero.js').then(({ hero }) => hero(stage)));
 </script>
 
 <style is:global>
