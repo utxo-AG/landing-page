@@ -1,6 +1,10 @@
 # Changes
 
 ## 673a4868-c06f-4f97-8aed-401b3eac14e9 — 2026-11-26 UTC
+- Deployed article updates PR 35
+- Phones show static wordmark
+- New class "is-still"
+- Lighthouse mobile 73 to 98
 - Sitemap resubmitted in GSC
 - SEO audit and plan
 - Added `docs/seo-plan-2026-11.md`
